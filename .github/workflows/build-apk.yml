@@ -5,6 +5,8 @@ on:
   push:
     paths:
       - 'PFM_Android_Alpha084_port_source.zip'
+      - 'overrides/**'
+      - '.github/workflows/build-apk.yml'
 
 jobs:
   build:
@@ -28,6 +30,18 @@ jobs:
           test -f "$PROJECT/app/libs/pfm_core_android.jar"
           echo "PROJECT=$PROJECT" >> "$GITHUB_ENV"
           unzip -t "$PROJECT/app/libs/pfm_core_android.jar" >/dev/null
+
+      - name: Apply Android native-port overrides
+        shell: bash
+        run: |
+          set -euxo pipefail
+          if [ -d overrides/app ]; then
+            cp -a overrides/app/. "$PROJECT/app/"
+          fi
+          test -f "$PROJECT/app/src/main/java/pfm/android/PfmActivity.java"
+          test -f "$PROJECT/app/src/main/java/pfm/android/compat/lcdui/game/GameCanvas.java"
+          grep -q 'isDoubleBuffered()' "$PROJECT/app/src/main/java/pfm/android/compat/lcdui/game/GameCanvas.java"
+          grep -q 'showFatal' "$PROJECT/app/src/main/java/pfm/android/PfmActivity.java"
 
       - name: Set up Java 21
         uses: actions/setup-java@v4
