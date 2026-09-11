@@ -43,8 +43,15 @@ jobs:
           test -f "$PROJECT/app/src/main/java/pfm/android/compat/lcdui/game/GameCanvas.java"
           grep -q 'isDoubleBuffered()' "$PROJECT/app/src/main/java/pfm/android/compat/lcdui/game/GameCanvas.java"
           grep -q 'showFatal' "$PROJECT/app/src/main/java/pfm/android/PfmActivity.java"
-          sed -i 's/versionCode 85/versionCode 86/' "$PROJECT/app/build.gradle"
-          sed -i "s/versionName '0.84-android-port.2'/versionName '0.84-android-port.3'/" "$PROJECT/app/build.gradle"
+
+          # v8: keep menu grouping strict on the left edge (to exclude popup titles),
+          # but allow buttons in one menu to have visibly different lengths.
+          sed -i 's/Math.abs(xe\[i\]-xe\[target\])>18/Math.abs(xe[i]-xe[target])>42/g' "$PROJECT/app/src/main/java/pfm/android/compat/lcdui/game/GameCanvas.java"
+          sed -i 's/Math.abs((xe\[i\]-xs\[i\])-(xe\[target\]-xs\[target\]))>24/Math.abs((xe[i]-xs[i])-(xe[target]-xs[target]))>46/g' "$PROJECT/app/src/main/java/pfm/android/compat/lcdui/game/GameCanvas.java"
+
+          # Force a monotonic package version for installation over v7.
+          sed -i -E 's/versionCode [0-9]+/versionCode 88/' "$PROJECT/app/build.gradle"
+          sed -i -E "s/versionName '[^']+'/versionName '0.84-android-port.5'/" "$PROJECT/app/build.gradle"
 
       - name: Restore stable debug signing key
         shell: bash
@@ -93,7 +100,7 @@ jobs:
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
-          name: PFM-2011-Android-Alpha084-touch-v5
+          name: PFM-2011-Android-Alpha084-touch-v8
           path: ${{ env.PROJECT }}/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
           retention-days: 30
