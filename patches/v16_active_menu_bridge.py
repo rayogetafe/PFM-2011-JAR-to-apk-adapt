@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import re
 import sys
 from pathlib import Path
 
@@ -27,12 +28,20 @@ if 'handleCoreMenuTap(int x,int y)' not in s:
         raise SystemExit('corner-back marker not found')
     s=s.replace(marker,helper+marker,1)
 
-needle='''                        if (handleCornerBackTap(x,y)) return true;'''
-replacement='''                        if (handleCornerBackTap(x,y)) return true;\n                        // Preferred Android path: actual active legacy menu and\n                        // its real selectable child hitboxes.  Only fall back to\n                        // image recognition for screens that are not v/w menus.\n                        if (handleCoreMenuTap(x,y)) return true;'''
 if 'if (handleCoreMenuTap(x,y)) return true;' not in s:
-    if needle not in s:
-        raise SystemExit('ACTION_UP insertion point not found')
-    s=s.replace(needle,replacement,1)
+    # Formatting of ACTION_UP changed in v14; find the semantic call rather than
+    # relying on one exact whitespace layout.
+    pat=re.compile(r'(?P<indent>[ \t]*)if\s*\(\s*handleCornerBackTap\s*\(\s*x\s*,\s*y\s*\)\s*\)\s*return\s+true\s*;')
+    m=pat.search(s)
+    if not m:
+        raise SystemExit('ACTION_UP semantic insertion point not found')
+    indent=m.group('indent')
+    old=m.group(0)
+    new=(old+'\n'+indent+'// Preferred Android path: actual active legacy menu and\n'
+         +indent+'// its real selectable child hitboxes. Only fall back to image\n'
+         +indent+'// recognition for screens that are not v/w menus.\n'
+         +indent+'if (handleCoreMenuTap(x,y)) return true;')
+    s=s[:m.start()]+new+s[m.end():]
 
 p.write_text(s,encoding='utf-8')
 print('Applied v16 active-menu touch bridge to',p)
