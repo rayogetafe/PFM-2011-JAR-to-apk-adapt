@@ -43,6 +43,8 @@ jobs:
           test -f "$PROJECT/app/src/main/java/pfm/android/compat/lcdui/game/GameCanvas.java"
           grep -q 'isDoubleBuffered()' "$PROJECT/app/src/main/java/pfm/android/compat/lcdui/game/GameCanvas.java"
           grep -q 'showFatal' "$PROJECT/app/src/main/java/pfm/android/PfmActivity.java"
+          sed -i 's/versionCode 85/versionCode 86/' "$PROJECT/app/build.gradle"
+          sed -i "s/versionName '0.84-android-port.2'/versionName '0.84-android-port.3'/" "$PROJECT/app/build.gradle"
 
       - name: Restore stable debug signing key
         shell: bash
@@ -91,7 +93,7 @@ jobs:
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
-          name: PFM-2011-Android-Alpha084-debug
+          name: PFM-2011-Android-Alpha084-touch-v5
           path: ${{ env.PROJECT }}/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
           retention-days: 30
