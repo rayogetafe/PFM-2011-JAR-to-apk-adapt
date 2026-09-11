@@ -1,0 +1,23 @@
+name: Inspect du screen map v24
+on:
+  push:
+    paths:
+      - '.github/workflows/inspect-du-v24.yml'
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Dump du and core signatures
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf x && mkdir x
+          unzip -q PFM_Android_Alpha084_port_source.zip -d x
+          JAR="$PWD/x/PFM_Android_Alpha084_port/app/libs/pfm_core_android.jar"
+          echo '===== DU FULL ====='
+          javap -classpath "$JAR" -p -c du
+          echo '===== CP ====='; javap -classpath "$JAR" -p cp
+          echo '===== DW ====='; javap -classpath "$JAR" -p dw
+          echo '===== CI ====='; javap -classpath "$JAR" -p ci
+          echo '===== M STRING FIELDS ====='; javap -classpath "$JAR" -p m | head -500
