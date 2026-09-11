@@ -1,3 +1,5 @@
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
@@ -5,12 +7,15 @@ import java.util.Vector;
 
 /**
  * Bridge that lives in the legacy core's default package, so it can use the
- * original PFM menu model directly.  Android GameCanvas calls this class by
+ * original PFM menu model directly. Android GameCanvas calls this class by
  * reflection because named Java packages cannot import the default package.
  */
 public final class PfmTouchBridge {
     private static final String TAG = "PFM_TOUCH";
+    private static final Handler MAIN = new Handler(Looper.getMainLooper());
+    private static final long VISUAL_SELECTION_DELAY_MS = 66L;
     private static ed cachedUi;
+    private static boolean activationPending;
 
     private PfmTouchBridge() {}
 
@@ -42,6 +47,10 @@ public final class PfmTouchBridge {
      */
     public static boolean tapActiveMenu(int x,int y) {
         try {
+            // Prevent a second tap from changing selection while the previous
+            // menu item is waiting for its short visual-selection frame window.
+            if (activationPending) return true;
+
             ed manager=ui();
             if (manager==null) return false;
             dv active=manager.a();
@@ -76,7 +85,7 @@ public final class PfmTouchBridge {
                      .append(left).append(',').append(top).append('-')
                      .append(right).append(',').append(bottom).append(']');
 
-                // Original buttons have shadows/angled ends.  Give the model
+                // Original buttons have shadows/angled ends. Give the model
                 // hitbox a small margin but keep selection scoped strictly to
                 // the actual children of the active menu.
                 if (x>=left-18 && x<=right+18 && y>=top-14 && y<=bottom+18) {
@@ -109,13 +118,23 @@ public final class PfmTouchBridge {
             trace.append(" -> idx=").append(chosen);
             Log.d(TAG,trace.toString());
 
-            // Use the game's own selection setter.  Then request FIRE through
-            // the same dd.i flag that v.b() consumes on the next game update.
-            // No synthetic UP/DOWN pulses are involved.
+            // v16 established that the game's own menu model is the reliable
+            // source of truth. Keep that selection path unchanged, but do not
+            // FIRE in the same instant: give the old renderer about two 30-FPS
+            // frames to repaint the newly selected row first. This fixes the
+            // cosmetic flash where the old row stayed yellow while the correct
+            // item's text already entered its active state.
             active.e(chosen);
-            dd.i=true;
+            activationPending=true;
+            MAIN.postDelayed(new Runnable() {
+                public void run() {
+                    dd.i=true;
+                    activationPending=false;
+                }
+            },VISUAL_SELECTION_DELAY_MS);
             return true;
         } catch (Throwable t) {
+            activationPending=false;
             Log.w(TAG,"tapActiveMenu failed",t);
             return false;
         }
