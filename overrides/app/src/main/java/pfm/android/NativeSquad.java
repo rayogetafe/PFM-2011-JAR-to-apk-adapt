@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -20,7 +21,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-/** Native Android squad/player screen, read-only against the Alpha 0.84 core. */
+/** Native Android squad/player screen against the Alpha 0.84 core. */
 public final class NativeSquad {
     private NativeSquad() {}
 
@@ -130,7 +131,7 @@ public final class NativeSquad {
         b.append("Rating: ").append(p.rating()).append("\n");
         if(p.apps>0&&p.ratingMatches<=0)
             b.append("(No persisted rating samples are available in this loaded season.)\n");
-        b.append("\nRead-only native view in v20. Line-up changes still use the legacy screen.");
+        b.append("\nUse EDIT XI on the Squad screen for pre-match Starting XI changes.");
         new AlertDialog.Builder(a)
                 .setTitle("#"+p.number+"  "+p.name)
                 .setMessage(b.toString())
@@ -171,8 +172,13 @@ public final class NativeSquad {
         root.setPadding(dp(a,10),dp(a,4),dp(a,10),0);
 
         TextView info=text(a,"Tap a player for details. FAT = fatigue (0 is fresh, 100 is exhausted).",13f,false);
-        info.setPadding(dp(a,6),dp(a,2),dp(a,6),dp(a,6));
+        info.setPadding(dp(a,6),dp(a,2),dp(a,6),dp(a,5));
         root.addView(info);
+
+        Button editXi=new Button(a);
+        editXi.setText("EDIT XI");
+        editXi.setOnClickListener(v -> NativeLineup.show(a));
+        root.addView(editXi,new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT));
 
         LinearLayout controls=new LinearLayout(a);
         controls.setOrientation(LinearLayout.HORIZONTAL);
