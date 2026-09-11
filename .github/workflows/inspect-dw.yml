@@ -1,0 +1,29 @@
+name: Inspect dw formation candidate
+on:
+  push:
+    paths: ['.github/workflows/inspect-dw.yml']
+  workflow_dispatch:
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Dump dw and callers of dw.a(byte)
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf build-inspect
+          mkdir build-inspect
+          unzip -q PFM_Android_Alpha084_port_source.zip -d build-inspect
+          JAR="$PWD/build-inspect/PFM_Android_Alpha084_port/app/libs/pfm_core_android.jar"
+          echo '===== FULL dw ====='
+          javap -classpath "$JAR" -p -c dw
+          echo '===== CALLERS dw.a:(B)V ====='
+          jar tf "$JAR" | grep -E '^[A-Za-z0-9_$]+\.class$' | sed 's/\.class$//' > /tmp/classes.txt
+          while IFS= read -r cls; do
+            javap -classpath "$JAR" -p -c "$cls" > /tmp/jp.txt 2>/dev/null || continue
+            if grep -q 'Method dw.a:(B)V' /tmp/jp.txt; then
+              echo "===== $cls ====="
+              grep -E -B20 -A20 'Method dw.a:\(B\)V' /tmp/jp.txt | head -220 || true
+            fi
+          done < /tmp/classes.txt
