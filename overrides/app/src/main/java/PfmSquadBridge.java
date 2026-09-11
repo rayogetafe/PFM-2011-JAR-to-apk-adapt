@@ -107,13 +107,30 @@ public final class PfmSquadBridge {
     }
 
     /**
-     * The legacy match substitution screen sets dg.c to the remaining number of
-     * live substitutions. A positive value means this is not a safe place to
-     * edit the pre-match squad order/formation from the native screen.
+     * True when the core's current legacy screen is the live match screen ca.
+     * db keeps the runtime du instance; dd.a:bl is its actual current screen.
+     * This is a stronger guard than dg.c because dg.c can return to zero while
+     * a match is still in progress.
+     */
+    public static boolean liveMatchActive(){
+        try{
+            du runtime=(du)field(db.class,"a",du.class).get(null);
+            if(runtime==null)return false;
+            bl current=(bl)field(dd.class,"a",bl.class).get(runtime);
+            return current instanceof ca;
+        }catch(Throwable t){
+            return false;
+        }
+    }
+
+    /**
+     * Native squad-order / formation editing is pre-match only. Block the
+     * entire live match screen first, then keep the old substitution guard as
+     * a second protection for transitional match states.
      */
     public static boolean canEditLineup(){
         try{
-            if(!available())return false;
+            if(!available()||liveMatchActive())return false;
             Field f=field(dg.class,"c",Byte.TYPE);
             return (f.getByte(null)&255)==0;
         }catch(Throwable t){
