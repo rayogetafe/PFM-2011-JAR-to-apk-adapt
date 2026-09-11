@@ -64,12 +64,17 @@ jobs:
           grep -q 'setAutoRotation' "$SETTINGS_BRIDGE"
           grep -q 'Auto rotation' "$NATIVE_SETTINGS"
           grep -q 'PfmSquadBridge' "$NATIVE_SQUAD"
-          grep -q 'EDIT XI' "$NATIVE_SQUAD"
+          grep -q 'LINE-UP / TACTICS' "$NATIVE_SQUAD"
           grep -q 'NativeLineup.show' "$NATIVE_SQUAD"
           grep -q 'swapLineupPositions' "$SQUAD_BRIDGE"
-          grep -q 'short\[\].*order' "$SQUAD_BRIDGE"
+          grep -q 'formationIndex' "$SQUAD_BRIDGE"
+          grep -q 'setFormationIndex' "$SQUAD_BRIDGE"
+          grep -q 'Field dw.class,"d"' "$SQUAD_BRIDGE" || grep -q 'field(dw.class,"d",Byte.TYPE)' "$SQUAD_BRIDGE"
           grep -q 'STARTING XI' "$NATIVE_LINEUP"
           grep -q 'BENCH / RESERVES' "$NATIVE_LINEUP"
+          grep -q 'UNDO SWAP' "$NATIVE_LINEUP"
+          grep -q 'FORMATION:' "$NATIVE_LINEUP"
+          grep -q '4-4-2' "$NATIVE_LINEUP"
           grep -q 'pfmCondition60' "$SQUAD_BRIDGE"
           grep -q 'pfmDiscipline70' "$SQUAD_BRIDGE"
           grep -q 'ratingMatches' "$SQUAD_BRIDGE"
@@ -93,12 +98,12 @@ jobs:
           grep -q 'PfmTouchBridge' "$GAME"
 
           if grep -q 'directLegacyMenuSelectAndFire' "$GAME"; then
-            echo 'ERROR: old v13 ambiguous reflection bridge leaked into v21' >&2
+            echo 'ERROR: old v13 ambiguous reflection bridge leaked into v22' >&2
             exit 1
           fi
 
-          sed -i -E 's/versionCode [0-9]+/versionCode 101/' "$PROJECT/app/build.gradle"
-          sed -i -E "s/versionName '[^']+'/versionName '0.84-android-port.18-v21-native-lineup'/" "$PROJECT/app/build.gradle"
+          sed -i -E 's/versionCode [0-9]+/versionCode 102/' "$PROJECT/app/build.gradle"
+          sed -i -E "s/versionName '[^']+'/versionName '0.84-android-port.19-v22-native-lineup-tactics'/" "$PROJECT/app/build.gradle"
 
       - name: Restore stable debug signing key
         shell: bash
@@ -147,7 +152,7 @@ jobs:
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
-          name: PFM-2011-Android-Alpha084-v21-native-lineup
+          name: PFM-2011-Android-Alpha084-v22-native-lineup-tactics
           path: ${{ env.PROJECT }}/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
           retention-days: 30
