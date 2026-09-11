@@ -15,17 +15,24 @@ jobs:
         shell: bash
         run: |
           set -euxo pipefail
-          rm -rf build-inspect core-unpacked
-          mkdir build-inspect core-unpacked
+          rm -rf build-inspect
+          mkdir build-inspect
           unzip -q PFM_Android_Alpha084_port_source.zip -d build-inspect
           JAR="$PWD/build-inspect/PFM_Android_Alpha084_port/app/libs/pfm_core_android.jar"
           echo "JAR=$JAR" >> "$GITHUB_ENV"
-          (cd core-unpacked && jar xf "$JAR")
-      - name: Dump tactics candidates
+      - name: Compact class signatures
         shell: bash
         run: |
-          set -euxo pipefail
+          set -euo pipefail
           for cls in cp dw dz de df dg dh di dj dk dl dm dn do dp dq dr ds dt; do
             echo "===== $cls ====="
-            javap -classpath "$JAR" -p -c "$cls" || true
+            javap -classpath "$JAR" -p "$cls" | sed -n '1,120p' || true
+          done
+      - name: Formation-shape bytecode clues
+        shell: bash
+        run: |
+          set -euo pipefail
+          for cls in de df dh di dj dk dl dm dn do dp dq dr ds dt; do
+            echo "===== $cls ====="
+            javap -classpath "$JAR" -p -c "$cls" | grep -E -B5 -A10 'bipush[[:space:]]+(9|10|11)|sipush[[:space:]]+(9|10|11)|Field dw\.|Field cp\.|class v|class w|putfield|putstatic' | head -220 || true
           done
