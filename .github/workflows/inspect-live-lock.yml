@@ -1,0 +1,31 @@
+name: Inspect PFM live match lock state
+
+on:
+  push:
+    paths:
+      - '.github/workflows/inspect-live-lock.yml'
+  workflow_dispatch:
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Inspect match state
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf build-inspect && mkdir build-inspect
+          unzip -q PFM_Android_Alpha084_port_source.zip -d build-inspect
+          JAR="$PWD/build-inspect/PFM_Android_Alpha084_port/app/libs/pfm_core_android.jar"
+          javap -classpath "$JAR" -p -c ca > /tmp/ca.txt
+          echo '===== ca signature ====='
+          javap -classpath "$JAR" -p ca | head -180
+          echo '===== writes to ca boolean fields ====='
+          grep -E -B18 -A22 'putstatic.*Field (a|b|c):Z|getstatic.*Field (a|b|c):Z' /tmp/ca.txt | head -900 || true
+          echo '===== constructor / lifecycle ====='
+          sed -n '1,520p' /tmp/ca.txt
+          for cls in dd du db dg pfmMatchEvents pfmSubstitutions; do
+            echo "===== $cls signature ====="
+            javap -classpath "$JAR" -p "$cls" | head -200 || true
+          done
