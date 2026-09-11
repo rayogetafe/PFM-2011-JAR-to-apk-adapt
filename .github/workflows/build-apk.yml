@@ -45,19 +45,20 @@ jobs:
           grep -q 'isDoubleBuffered()' "$PROJECT/app/src/main/java/pfm/android/compat/lcdui/game/GameCanvas.java"
           grep -q 'showFatal' "$PROJECT/app/src/main/java/pfm/android/PfmActivity.java"
 
-          # Retain the v8 visual menu detector and v9 keypad sequencer.
+          # Keep the wider grouping tolerance from v8 and the v9 synthetic-key
+          # sequencer, then apply the fixes derived from v10's on-device traces.
           sed -i 's/Math.abs(xe\[i\]-xe\[target\])>18/Math.abs(xe[i]-xe[target])>42/g' "$PROJECT/app/src/main/java/pfm/android/compat/lcdui/game/GameCanvas.java"
           sed -i 's/Math.abs((xe\[i\]-xs\[i\])-(xe\[target\]-xs\[target\]))>24/Math.abs((xe[i]-xs[i])-(xe[target]-xs[target]))>46/g' "$PROJECT/app/src/main/java/pfm/android/compat/lcdui/game/GameCanvas.java"
           python3 patches/v9_frame_sync.py "$PROJECT/app/src/main/java/pfm/android/compat/lcdui/game/GameCanvas.java"
           grep -q 'pumpSyntheticFrame' "$PROJECT/app/src/main/java/pfm/android/compat/lcdui/game/GameCanvas.java"
 
-          # v10 is intentionally diagnostic: show the detector's target/selected
-          # rows and command in the top black letterbox after every menu tap.
-          python3 patches/v10_menu_debug.py "$PROJECT/app/src/main/java/pfm/android/compat/lcdui/game/GameCanvas.java"
-          grep -q 'drawTouchDebug' "$PROJECT/app/src/main/java/pfm/android/compat/lcdui/game/GameCanvas.java"
+          # v11: exclude compact popup title rows (confirmed in Options traces)
+          # and expand lower-button hit zones (confirmed by Continue-game traces).
+          python3 patches/v11_menu_fix.py "$PROJECT/app/src/main/java/pfm/android/compat/lcdui/game/GameCanvas.java"
+          grep -q 'menuFirst=first' "$PROJECT/app/src/main/java/pfm/android/compat/lcdui/game/GameCanvas.java"
 
-          sed -i -E 's/versionCode [0-9]+/versionCode 90/' "$PROJECT/app/build.gradle"
-          sed -i -E "s/versionName '[^']+'/versionName '0.84-android-port.7-debug'/" "$PROJECT/app/build.gradle"
+          sed -i -E 's/versionCode [0-9]+/versionCode 91/' "$PROJECT/app/build.gradle"
+          sed -i -E "s/versionName '[^']+'/versionName '0.84-android-port.8'/" "$PROJECT/app/build.gradle"
 
       - name: Restore stable debug signing key
         shell: bash
@@ -106,7 +107,7 @@ jobs:
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
-          name: PFM-2011-Android-Alpha084-touch-v10-debug
+          name: PFM-2011-Android-Alpha084-touch-v11
           path: ${{ env.PROJECT }}/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
           retention-days: 30
