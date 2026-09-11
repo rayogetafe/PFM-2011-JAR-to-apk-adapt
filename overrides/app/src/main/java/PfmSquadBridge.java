@@ -109,7 +109,7 @@ public final class PfmSquadBridge {
     /**
      * The legacy match substitution screen sets dg.c to the remaining number of
      * live substitutions. A positive value means this is not a safe place to
-     * edit the pre-match XI from the native screen.
+     * edit the pre-match squad order from the native screen.
      */
     public static boolean canEditLineup(){
         try{
@@ -122,13 +122,14 @@ public final class PfmSquadBridge {
     }
 
     /**
-     * Swap one Starting-XI slot (0..10) with one bench/reserve slot (11+).
-     * This mirrors dg's original manual Line-up code: swap both dw.a player IDs
-     * and, when the user's team is currently loaded in cp, the matching eg[]
-     * entries. Formation is intentionally untouched.
+     * Swap any two squad-order positions. The legacy dg Line-up editor uses the
+     * same primitive operation: swap dw.a player IDs and, when the user's team
+     * is the currently loaded cp team, swap the matching live eg[] entries too.
+     * Slots 0..10 are the Starting XI; slots 11+ are bench/reserves.
+     * Formation is intentionally untouched.
      *
-     * Return: 1 success; -1 invalid/core unavailable; -2 same side of XI split;
-     * -3 native pre-match editing is unavailable (typically a live match).
+     * Return: 1 success; -1 invalid/core unavailable; -3 native pre-match
+     * editing is unavailable (typically a live match).
      */
     public static int swapLineupPositions(int first,int second){
         try{
@@ -136,7 +137,6 @@ public final class PfmSquadBridge {
             if(team==null)return -1;
             int n=squadCount(team);
             if(first<0||second<0||first>=n||second>=n||first==second)return -1;
-            if((first<11)==(second<11))return -2;
             if(!canEditLineup())return -3;
 
             short[] order=(short[])field(dw.class,"a",short[].class).get(team);
