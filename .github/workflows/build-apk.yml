@@ -41,39 +41,43 @@ jobs:
             cp -a overrides/app/. "$PROJECT/app/"
           fi
           GAME="$PROJECT/app/src/main/java/pfm/android/compat/lcdui/game/GameCanvas.java"
+          BRIDGE="$PROJECT/app/src/main/java/PfmTouchBridge.java"
           test -f "$PROJECT/app/src/main/java/pfm/android/PfmActivity.java"
           test -f "$GAME"
+          test -f "$BRIDGE"
           grep -q 'isDoubleBuffered()' "$GAME"
           grep -q 'showFatal' "$PROJECT/app/src/main/java/pfm/android/PfmActivity.java"
+          grep -q 'tapActiveMenu' "$BRIDGE"
 
-          # v15 combines the two empirically useful halves of the previous work:
-          # 1) v9: a synthetic key is visible for exactly one PFM game frame;
-          # 2) v14: the v5-style global menu detector that restored the correct
-          #    Start/Back and Finalize/Continue target calculation.
-          # This avoids the timed-hold race where one DOWN/UP is polled on 2-3
-          # legacy frames and wraps around a two-item menu.
+          # Preserve the frame-synchronised fallback input for the safety panel
+          # and non-menu screens.
           python3 patches/v9_frame_sync.py "$GAME"
           grep -q 'pumpSyntheticFrame' "$GAME"
           grep -q 'syntheticQueue' "$GAME"
 
+          # Keep the proven image detector only as a fallback.  v16 will handle
+          # real v/w menus through the core's own active UI controller instead.
           python3 patches/v14_restore_v5_menu_path.py "$GAME"
           grep -q 'Ordinary menus intentionally use the proven v5 global selection' "$GAME"
 
-          # Give selection changes four neutral PFM frames before FIRE and make
-          # native pointer taps wait for the synthetic queue as well.
           python3 patches/v15_frame_synced_menu_input.py "$GAME"
           grep -q 'syntheticGapFrames=4' "$GAME"
           grep -q 'syntheticSequenceActive()' "$GAME"
-          grep -q 'KEY_HOLD_MS=0L' "$GAME"
-          grep -q 'KEY_STEP_MS=0L' "$GAME"
+
+          # v16: tap actual children of ed.a()'s active v/w controller, set its
+          # real selection with dv.e(index), then request only FIRE.  No visual
+          # row-count -> repeated UP/DOWN translation is used on these menus.
+          python3 patches/v16_active_menu_bridge.py "$GAME"
+          grep -q 'handleCoreMenuTap' "$GAME"
+          grep -q 'PfmTouchBridge' "$GAME"
 
           if grep -q 'directLegacyMenuSelectAndFire' "$GAME"; then
-            echo 'ERROR: v13 reflection bridge leaked into v15' >&2
+            echo 'ERROR: old v13 ambiguous reflection bridge leaked into v16' >&2
             exit 1
           fi
 
-          sed -i -E 's/versionCode [0-9]+/versionCode 95/' "$PROJECT/app/build.gradle"
-          sed -i -E "s/versionName '[^']+'/versionName '0.84-android-port.12-v15-frame-sync'/" "$PROJECT/app/build.gradle"
+          sed -i -E 's/versionCode [0-9]+/versionCode 96/' "$PROJECT/app/build.gradle"
+          sed -i -E "s/versionName '[^']+'/versionName '0.84-android-port.13-v16-active-menu'/" "$PROJECT/app/build.gradle"
 
       - name: Restore stable debug signing key
         shell: bash
@@ -122,7 +126,7 @@ jobs:
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
-          name: PFM-2011-Android-Alpha084-touch-v15
+          name: PFM-2011-Android-Alpha084-touch-v16
           path: ${{ env.PROJECT }}/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
           retention-days: 30
