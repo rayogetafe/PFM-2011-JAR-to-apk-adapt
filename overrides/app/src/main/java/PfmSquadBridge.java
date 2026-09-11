@@ -1,7 +1,7 @@
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
-/** Android bridge to the current user's real PFM squad and pre-match XI order. */
+/** Android bridge to the current user's real PFM squad, formation and pre-match XI order. */
 public final class PfmSquadBridge {
     private PfmSquadBridge() {}
 
@@ -109,7 +109,7 @@ public final class PfmSquadBridge {
     /**
      * The legacy match substitution screen sets dg.c to the remaining number of
      * live substitutions. A positive value means this is not a safe place to
-     * edit the pre-match squad order from the native screen.
+     * edit the pre-match squad order/formation from the native screen.
      */
     public static boolean canEditLineup(){
         try{
@@ -119,6 +119,31 @@ public final class PfmSquadBridge {
         }catch(Throwable t){
             return false;
         }
+    }
+
+    /** Stock formation index. The original formation screen (bg) initializes
+     * its v-menu selection from dw.d and writes v.d back to dw.d. dw.a[][][]
+     * has exactly 9 formation templates, indexed by this value. */
+    public static int formationIndex(){
+        try{
+            dw team=userTeam();
+            if(team==null)return -1;
+            int v=field(dw.class,"d",Byte.TYPE).getByte(team)&255;
+            return (v>=0&&v<9)?v:-1;
+        }catch(Throwable t){return -1;}
+    }
+
+    /** Return 1 on success, -1 invalid/core unavailable, -3 live-match lock. */
+    public static int setFormationIndex(int index){
+        try{
+            if(index<0||index>=9)return -1;
+            dw team=userTeam();
+            if(team==null)return -1;
+            if(!canEditLineup())return -3;
+            // This is exactly the stock bg selection operation.
+            field(dw.class,"d",Byte.TYPE).setByte(team,(byte)index);
+            return 1;
+        }catch(Throwable t){return -1;}
     }
 
     /**
