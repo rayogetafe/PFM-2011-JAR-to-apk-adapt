@@ -1,0 +1,53 @@
+name: Inspect transfer core for v24
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/inspect-transfers-v24.yml'
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Inspect transfer-related bytecode
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf build-inspect && mkdir build-inspect
+          unzip -q PFM_Android_Alpha084_port_source.zip -d build-inspect
+          JAR="$PWD/build-inspect/PFM_Android_Alpha084_port/app/libs/pfm_core_android.jar"
+          echo '===== classes containing transfer-ish constants/method refs ====='
+          jar tf "$JAR" | grep '\.class$' | sed 's#/#.#g;s#\.class$##' > /tmp/classes.txt
+          while read -r cls; do
+            javap -classpath "$JAR" -p -c -constants "$cls" 2>/dev/null > /tmp/one.txt || continue
+            if grep -Eqi 'transfer|market|buy|sell|offer|fee|budget|contract|loan|cash|money|price|value|wage'; then :; fi < /dev/null
+            if grep -Eqi 'transfer|market|buy|sell|offer|fee|budget|contract|loan|price|value|wage|pfmTransferOpen' /tmp/one.txt; then
+              echo "===== CLASS $cls ====="
+              grep -Ein -B8 -A18 'transfer|market|buy|sell|offer|fee|budget|contract|loan|price|value|wage|pfmTransferOpen' /tmp/one.txt | head -260 || true
+            fi
+          done < /tmp/classes.txt
+
+          echo '===== du constructor / screen array mapping ====='
+          javap -classpath "$JAR" -p -c du > /tmp/du.txt
+          sed -n '1,1300p' /tmp/du.txt
+
+          echo '===== cp signature ====='
+          javap -classpath "$JAR" -p cp | head -260
+          echo '===== dw signature ====='
+          javap -classpath "$JAR" -p dw | head -320
+          echo '===== ci signature ====='
+          javap -classpath "$JAR" -p ci | head -320
+          echo '===== ca transfer helper ====='
+          javap -classpath "$JAR" -p -c ca > /tmp/ca.txt
+          grep -n -A100 -B20 'pfmTransferOpen' /tmp/ca.txt || true
+
+          echo '===== classes referencing player team arrays / money-like int fields ====='
+          for cls in $(cat /tmp/classes.txt); do
+            javap -classpath "$JAR" -p -c "$cls" 2>/dev/null > /tmp/one.txt || continue
+            if grep -q 'Field cp.a:\[Ldw;' /tmp/one.txt && grep -Eq 'Field dw\..*:I|Field ci\..*:I' /tmp/one.txt; then
+              echo "--- $cls ---"
+              grep -E -n -B4 -A12 'Field cp.a:\[Ldw;|Field dw\..*:I|Field ci\..*:I' /tmp/one.txt | head -160 || true
+            fi
+          done
