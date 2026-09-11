@@ -56,14 +56,18 @@ jobs:
           python3 patches/v11_menu_fix.py "$PROJECT/app/src/main/java/pfm/android/compat/lcdui/game/GameCanvas.java"
           grep -q 'menuFirst=first' "$PROJECT/app/src/main/java/pfm/android/compat/lcdui/game/GameCanvas.java"
 
-          # v12: let the final detected row own the remaining canvas below it,
-          # and pace synthetic DOWN/UP -> OK like a human using the safety panel.
+          # v12: preserve the generous hit zone for bottom-most items.
           python3 patches/v12_bottom_menu_fix.py "$PROJECT/app/src/main/java/pfm/android/compat/lcdui/game/GameCanvas.java"
           grep -q 'hitBottom=' "$PROJECT/app/src/main/java/pfm/android/compat/lcdui/game/GameCanvas.java"
-          grep -q 'syntheticGapFrames=4' "$PROJECT/app/src/main/java/pfm/android/compat/lcdui/game/GameCanvas.java"
 
-          sed -i -E 's/versionCode [0-9]+/versionCode 92/' "$PROJECT/app/build.gradle"
-          sed -i -E "s/versionName '[^']+'/versionName '0.84-android-port.9'/" "$PROJECT/app/build.gradle"
+          # v13: stop emulating directional navigation for taps. Resolve the
+          # active legacy v menu controller, call its own e(index) selection
+          # setter directly, then send only FIRE.
+          python3 patches/v13_direct_menu_select.py "$PROJECT/app/src/main/java/pfm/android/compat/lcdui/game/GameCanvas.java"
+          grep -q 'directLegacyMenuSelectAndFire' "$PROJECT/app/src/main/java/pfm/android/compat/lcdui/game/GameCanvas.java"
+
+          sed -i -E 's/versionCode [0-9]+/versionCode 93/' "$PROJECT/app/build.gradle"
+          sed -i -E "s/versionName '[^']+'/versionName '0.84-android-port.10'/" "$PROJECT/app/build.gradle"
 
       - name: Restore stable debug signing key
         shell: bash
@@ -112,7 +116,7 @@ jobs:
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
-          name: PFM-2011-Android-Alpha084-touch-v12
+          name: PFM-2011-Android-Alpha084-touch-v13
           path: ${{ env.PROJECT }}/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
           retention-days: 30
