@@ -19,8 +19,8 @@ android {
         applicationId 'pfm.android.careerlab'
         minSdk 23
         targetSdk 35
-        versionCode 85
-        versionName '0.84-android-port.2'
+        versionCode 86
+        versionName '0.84-android-port.3'
     }
 
     buildTypes {
