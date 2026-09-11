@@ -20,19 +20,27 @@ jobs:
           unzip -q PFM_Android_Alpha084_port_source.zip -d build-inspect
           JAR="$PWD/build-inspect/PFM_Android_Alpha084_port/app/libs/pfm_core_android.jar"
           echo "JAR=$JAR" >> "$GITHUB_ENV"
-      - name: Compact class signatures
+      - name: Find classes that select menu indices and touch team fields
         shell: bash
         run: |
           set -euo pipefail
-          for cls in cp dw dz de df dg dh di dj dk dl dm dn do dp dq dr ds dt; do
-            echo "===== $cls ====="
-            javap -classpath "$JAR" -p "$cls" | sed -n '1,120p' || true
-          done
-      - name: Formation-shape bytecode clues
+          jar tf "$JAR" | grep -E '^[A-Za-z0-9_$]+\.class$' | sed 's/\.class$//' > /tmp/classes.txt
+          while IFS= read -r cls; do
+            javap -classpath "$JAR" -p -c "$cls" > /tmp/jp.txt 2>/dev/null || continue
+            if grep -q 'Field dw\.' /tmp/jp.txt && grep -qE 'Method v\.(e|a):\(I\)' /tmp/jp.txt; then
+              echo "===== CANDIDATE $cls ====="
+              grep -E -B10 -A16 'Field dw\.|Method v\.(e|a):\(I\)|putfield.*Field dw\.|bipush[[:space:]]+9|anewarray|newarray' /tmp/jp.txt | head -300 || true
+            fi
+          done < /tmp/classes.txt
+      - name: Find every direct write to dw byte fields
         shell: bash
         run: |
           set -euo pipefail
-          for cls in de df dh di dj dk dl dm dn do dp dq dr ds dt; do
-            echo "===== $cls ====="
-            javap -classpath "$JAR" -p -c "$cls" | grep -E -B5 -A10 'bipush[[:space:]]+(9|10|11)|sipush[[:space:]]+(9|10|11)|Field dw\.|Field cp\.|class v|class w|putfield|putstatic' | head -220 || true
-          done
+          jar tf "$JAR" | grep -E '^[A-Za-z0-9_$]+\.class$' | sed 's/\.class$//' > /tmp/classes.txt
+          while IFS= read -r cls; do
+            javap -classpath "$JAR" -p -c "$cls" > /tmp/jp.txt 2>/dev/null || continue
+            if grep -qE 'putfield.*// Field dw\.[a-zA-Z]+:B' /tmp/jp.txt; then
+              echo "===== DW BYTE WRITER $cls ====="
+              grep -E -B14 -A12 'putfield.*// Field dw\.[a-zA-Z]+:B' /tmp/jp.txt | head -260 || true
+            fi
+          done < /tmp/classes.txt
