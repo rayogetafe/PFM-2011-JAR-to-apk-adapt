@@ -70,6 +70,25 @@ public final class PfmSquadBridge {
         }
     }
 
+    private static void invokeEnsure(Class<?> c){
+        try{
+            Method m=c.getDeclaredMethod("ensure");
+            m.setAccessible(true);
+            m.invoke(null);
+        }catch(Throwable ignored){}
+    }
+
+    private static int staticByte(Class<?> c,String name,int id){
+        if(id<0||id>=512)return 0;
+        try{
+            invokeEnsure(c);
+            Field f=field(c,name,byte[].class);
+            byte[] a=(byte[])f.get(null);
+            if(a==null||id>=a.length)return 0;
+            return a[id]&255;
+        }catch(Throwable t){return 0;}
+    }
+
     public static boolean available(){
         try{
             dw t=userTeam();
@@ -88,8 +107,10 @@ public final class PfmSquadBridge {
     }
 
     /**
-     * TSV columns: playerId, number, name, pos, spe, res, qua, morale, age,
-     * starts, appearances, assists, rating10.
+     * TSV columns:
+     * playerId, number, name, pos, spe, res, qua, morale, age,
+     * goals, starts, appearances, assists, rating10, ratingMatches,
+     * fatigue, injuryRounds, yellow, red, suspensionRounds.
      */
     public static String[] rows(){
         try{
@@ -101,7 +122,7 @@ public final class PfmSquadBridge {
                 int id=playerId(team,i);
                 ci p=playerAt(team,i);
                 if(p==null){
-                    out[i]=id+"\t0\tUnknown\t?\t0\t0\t0\t0\t0\t0\t0\t0\t0";
+                    out[i]=id+"\t0\tUnknown\t?\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0";
                     continue;
                 }
                 String name=pfmPlayerName60.name(p);
@@ -112,19 +133,28 @@ public final class PfmSquadBridge {
                 int spe=ub(p,"c");
                 int res=ub(p,"d");
                 int qua=ub(p,"e");
+                int goals=ub(p,"g");
                 int mor=ub(p,"h");
                 int age=ub(p,"a");
                 int starts=pfmPlayerStats.starts(id);
                 int apps=pfmPlayerStats.appearances(id);
                 int assists=pfmContrib80.assists(id);
+                int ratingMatches=pfmPlayerStats.ratingMatches(id);
                 int rat10=pfmPlayerStats.averageRating10(id);
+                int fatigue=staticByte(pfmCondition60.class,"fatigue",id);
+                int injury=staticByte(pfmCondition60.class,"injury",id);
+                int suspension=0;
+                try{suspension=pfmDiscipline70.roundsOut(id);}catch(Throwable ignored){}
+                int yellow=staticByte(pfmDiscipline70.class,"yellow",id);
+                int red=staticByte(pfmDiscipline70.class,"red",id);
                 out[i]=id+"\t"+number+"\t"+name.replace('\t',' ')+"\t"+pos(position)+"\t"+
                         spe+"\t"+res+"\t"+qua+"\t"+mor+"\t"+age+"\t"+
-                        starts+"\t"+apps+"\t"+assists+"\t"+rat10;
+                        goals+"\t"+starts+"\t"+apps+"\t"+assists+"\t"+rat10+"\t"+ratingMatches+"\t"+
+                        fatigue+"\t"+injury+"\t"+yellow+"\t"+red+"\t"+suspension;
             }
             return out;
         }catch(Throwable t){
-            return new String[]{"-1\t0\tSquad unavailable: "+t.getClass().getSimpleName()+"\t?\t0\t0\t0\t0\t0\t0\t0\t0\t0"};
+            return new String[]{"-1\t0\tSquad unavailable: "+t.getClass().getSimpleName()+"\t?\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0"};
         }
     }
 }
