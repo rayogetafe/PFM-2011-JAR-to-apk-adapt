@@ -1,0 +1,30 @@
+name: Inspect PFM fixture score storage
+
+on:
+  push:
+    paths:
+      - '.github/workflows/inspect-scores.yml'
+  workflow_dispatch:
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Inspect score storage
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf build-inspect && mkdir build-inspect
+          unzip -q PFM_Android_Alpha084_port_source.zip -d build-inspect
+          JAR="$PWD/build-inspect/PFM_Android_Alpha084_port/app/libs/pfm_core_android.jar"
+          for cls in ca cp pfmMatchEvents pfmRoundAccess60; do
+            echo "===== $cls dw.c / schedule / score clues ====="
+            javap -classpath "$JAR" -p -c "$cls" > /tmp/jp.txt
+            grep -F -B24 -A34 '// Field dw.c:[B' /tmp/jp.txt || true
+            grep -F -B20 -A30 '// Field a:[[[I' /tmp/jp.txt | head -500 || true
+            grep -E -B18 -A30 'goalsFor|goalsAgainst|bastore|baload|iastore|iaload|finishMatchday|pfmPlayedForTable' /tmp/jp.txt | head -900 || true
+          done
+          echo '===== cp methods around ef results ====='
+          javap -classpath "$JAR" -p -c cp > /tmp/cp.txt
+          grep -nE '^  public static ef|^  private static ef' /tmp/cp.txt || true
