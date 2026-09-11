@@ -1,7 +1,7 @@
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
-/** Read-only Android bridge to the current user's real PFM squad. */
+/** Android bridge to the current user's real PFM squad and pre-match XI order. */
 public final class PfmSquadBridge {
     private PfmSquadBridge() {}
 
@@ -104,6 +104,57 @@ public final class PfmSquadBridge {
             String s=text(name);
             return s.length()==0?"Squad":s;
         }catch(Throwable t){return "Squad";}
+    }
+
+    /**
+     * The legacy match substitution screen sets dg.c to the remaining number of
+     * live substitutions. A positive value means this is not a safe place to
+     * edit the pre-match XI from the native screen.
+     */
+    public static boolean canEditLineup(){
+        try{
+            if(!available())return false;
+            Field f=field(dg.class,"c",Byte.TYPE);
+            return (f.getByte(null)&255)==0;
+        }catch(Throwable t){
+            return false;
+        }
+    }
+
+    /**
+     * Swap one Starting-XI slot (0..10) with one bench/reserve slot (11+).
+     * This mirrors dg's original manual Line-up code: swap both dw.a player IDs
+     * and, when the user's team is currently loaded in cp, the matching eg[]
+     * entries. Formation is intentionally untouched.
+     *
+     * Return: 1 success; -1 invalid/core unavailable; -2 same side of XI split;
+     * -3 native pre-match editing is unavailable (typically a live match).
+     */
+    public static int swapLineupPositions(int first,int second){
+        try{
+            dw team=userTeam();
+            if(team==null)return -1;
+            int n=squadCount(team);
+            if(first<0||second<0||first>=n||second>=n||first==second)return -1;
+            if((first<11)==(second<11))return -2;
+            if(!canEditLineup())return -3;
+
+            short[] order=(short[])field(dw.class,"a",short[].class).get(team);
+            if(order==null||first>=order.length||second>=order.length)return -1;
+            short s=order[first]; order[first]=order[second]; order[second]=s;
+
+            // Match the old dg editor exactly when this team is the active cp team.
+            try{
+                dw active=(dw)field(cp.class,"a",dw.class).get(null);
+                eg[] live=(eg[])field(cp.class,"a",eg[].class).get(null);
+                if(active==team&&live!=null&&first<live.length&&second<live.length){
+                    eg e=live[first]; live[first]=live[second]; live[second]=e;
+                }
+            }catch(Throwable ignored){}
+            return 1;
+        }catch(Throwable t){
+            return -1;
+        }
     }
 
     /**
