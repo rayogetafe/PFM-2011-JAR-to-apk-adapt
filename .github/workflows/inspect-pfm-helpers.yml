@@ -1,0 +1,26 @@
+name: Inspect PFM helper classes
+
+on:
+  push:
+    paths:
+      - '.github/workflows/inspect-pfm-helpers.yml'
+  workflow_dispatch:
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Dump helper classes
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf build-inspect && mkdir build-inspect
+          unzip -q PFM_Android_Alpha084_port_source.zip -d build-inspect
+          JAR="$PWD/build-inspect/PFM_Android_Alpha084_port/app/libs/pfm_core_android.jar"
+          echo '===== PFM CLASSES ====='
+          jar tf "$JAR" | grep -E '^pfm.*\.class$' | sort
+          for cls in $(jar tf "$JAR" | grep -E '^pfm.*\.class$' | sed 's/\.class$//' | sort); do
+            echo "===== $cls ====="
+            javap -classpath "$JAR" -p "$cls" | head -220 || true
+          done
