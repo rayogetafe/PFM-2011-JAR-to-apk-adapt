@@ -45,18 +45,19 @@ jobs:
           grep -q 'isDoubleBuffered()' "$PROJECT/app/src/main/java/pfm/android/compat/lcdui/game/GameCanvas.java"
           grep -q 'showFatal' "$PROJECT/app/src/main/java/pfm/android/PfmActivity.java"
 
-          # v8 menu geometry fixes retained as the visual target detector.
+          # Retain the v8 visual menu detector and v9 keypad sequencer.
           sed -i 's/Math.abs(xe\[i\]-xe\[target\])>18/Math.abs(xe[i]-xe[target])>42/g' "$PROJECT/app/src/main/java/pfm/android/compat/lcdui/game/GameCanvas.java"
           sed -i 's/Math.abs((xe\[i\]-xs\[i\])-(xe\[target\]-xs\[target\]))>24/Math.abs((xe[i]-xs[i])-(xe[target]-xs[target]))>46/g' "$PROJECT/app/src/main/java/pfm/android/compat/lcdui/game/GameCanvas.java"
-
-          # v9: keypad taps are no longer time-held. They are armed/released on
-          # PFM's own ~33 ms frame boundaries so one Android tap = one legacy key.
           python3 patches/v9_frame_sync.py "$PROJECT/app/src/main/java/pfm/android/compat/lcdui/game/GameCanvas.java"
           grep -q 'pumpSyntheticFrame' "$PROJECT/app/src/main/java/pfm/android/compat/lcdui/game/GameCanvas.java"
 
-          # Monotonic package version for installation over v8.
-          sed -i -E 's/versionCode [0-9]+/versionCode 89/' "$PROJECT/app/build.gradle"
-          sed -i -E "s/versionName '[^']+'/versionName '0.84-android-port.6'/" "$PROJECT/app/build.gradle"
+          # v10 is intentionally diagnostic: show the detector's target/selected
+          # rows and command in the top black letterbox after every menu tap.
+          python3 patches/v10_menu_debug.py "$PROJECT/app/src/main/java/pfm/android/compat/lcdui/game/GameCanvas.java"
+          grep -q 'drawTouchDebug' "$PROJECT/app/src/main/java/pfm/android/compat/lcdui/game/GameCanvas.java"
+
+          sed -i -E 's/versionCode [0-9]+/versionCode 90/' "$PROJECT/app/build.gradle"
+          sed -i -E "s/versionName '[^']+'/versionName '0.84-android-port.7-debug'/" "$PROJECT/app/build.gradle"
 
       - name: Restore stable debug signing key
         shell: bash
@@ -105,7 +106,7 @@ jobs:
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
-          name: PFM-2011-Android-Alpha084-touch-v9
+          name: PFM-2011-Android-Alpha084-touch-v10-debug
           path: ${{ env.PROJECT }}/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
           retention-days: 30
