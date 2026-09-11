@@ -1,0 +1,54 @@
+name: Inspect PFM season competition internals
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/inspect-season.yml'
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Extract core
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf build-inspect && mkdir build-inspect
+          unzip -q PFM_Android_Alpha084_port_source.zip -d build-inspect
+          JAR="$PWD/build-inspect/PFM_Android_Alpha084_port/app/libs/pfm_core_android.jar"
+          echo "JAR=$JAR" >> "$GITHUB_ENV"
+      - name: Core signatures
+        shell: bash
+        run: |
+          set -euo pipefail
+          for cls in cp dw ca du; do
+            echo "===== $cls SIGNATURE ====="
+            javap -classpath "$JAR" -p "$cls" | head -260 || true
+          done
+      - name: Find standings readers
+        shell: bash
+        run: |
+          set -euo pipefail
+          jar tf "$JAR" | grep -E '^[A-Za-z0-9_$]+\.class$' | sed 's/\.class$//' > /tmp/classes.txt
+          while IFS= read -r cls; do
+            javap -classpath "$JAR" -p -c "$cls" > /tmp/jp.txt 2>/dev/null || continue
+            if grep -q 'Field dw.h:B' /tmp/jp.txt && grep -qE 'Field dw.(k|l):B' /tmp/jp.txt; then
+              echo "===== STANDINGS CANDIDATE $cls ====="
+              grep -E -B18 -A24 'Field dw\.(h|i|j|k|l|m|n):B|Field cp\.a:\[Ldw;|compareTo|sort|tableswitch|lookupswitch' /tmp/jp.txt | head -420 || true
+            fi
+          done < /tmp/classes.txt
+      - name: Find fixture and round readers
+        shell: bash
+        run: |
+          set -euo pipefail
+          while IFS= read -r cls; do
+            javap -classpath "$JAR" -p -c "$cls" > /tmp/jp.txt 2>/dev/null || continue
+            if grep -qE 'Field cp\.[a-zA-Z]+:\[\[?[BSI]|Field cp\.[a-zA-Z]+:\[Ldw;|Field ca\.' /tmp/jp.txt; then
+              if grep -qE 'round|fixture|Field dw\.c:\[B|Field dw\.h:B|Field cp\.[a-zA-Z]+:\[\[?[BSI' /tmp/jp.txt; then
+                echo "===== FIXTURE CANDIDATE $cls ====="
+                grep -E -B14 -A20 'Field cp\.[a-zA-Z]+:\[\[?[BSI|Field dw\.c:\[B|Field dw\.(m|n|h|k|l):B|Field ca\.|bipush[[:space:]]+(34|38|17|19|20)|sipush' /tmp/jp.txt | head -360 || true
+              fi
+            fi
+          done < /tmp/classes.txt
