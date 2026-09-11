@@ -32,8 +32,10 @@ public class GameCanvas extends Displayable {
     private static final int SWIPE_THRESHOLD=24;
     private static final int DRAG_START_THRESHOLD=13;
     private static final int TAP_MOVE_THRESHOLD=14;
-    private static final long KEY_HOLD_MS=40L;
-    private static final long KEY_STEP_MS=68L;
+    // The original game polls key-state flags from its own loop. Short pulses can
+    // be missed on popup/two-item menus, so keep each key alive for > one tick.
+    private static final long KEY_HOLD_MS=82L;
+    private static final long KEY_STEP_MS=135L;
 
     private final Bitmap buffer=Bitmap.createBitmap(LOGICAL_W,LOGICAL_H,Bitmap.Config.ARGB_8888);
     private final GameView view;
@@ -139,14 +141,14 @@ public class GameCanvas extends Displayable {
             pulseKey(key,delay);
             delay+=KEY_STEP_MS;
         }
-        syntheticBusyUntil=now+delay+35L;
+        syntheticBusyUntil=now+delay+55L;
         return true;
     }
 
     private boolean sendSingle(int key){ return sendSequence(new int[]{key}); }
 
     private boolean sendRepeatedThenFire(int navKey,int count){
-        int n=Math.max(0,Math.min(8,count));
+        int n=Math.max(0,Math.min(12,count));
         int[] keys=new int[n+1];
         for(int i=0;i<n;i++) keys[i]=navKey;
         keys[n]=-5;
@@ -156,9 +158,9 @@ public class GameCanvas extends Displayable {
     private synchronized boolean directPointerTap(final int x,final int y){
         long now=SystemClock.uptimeMillis();
         if(now<syntheticBusyUntil) return false;
-        syntheticBusyUntil=now+95L;
+        syntheticBusyUntil=now+110L;
         pointerPressed(x,y);
-        AndroidRuntime.main().postDelayed(() -> pointerReleased(x,y),42L);
+        AndroidRuntime.main().postDelayed(() -> pointerReleased(x,y),48L);
         return true;
     }
 
@@ -174,7 +176,7 @@ public class GameCanvas extends Displayable {
 
     private boolean isStrongGold(int color){
         int r=(color>>16)&255,g=(color>>8)&255,b=color&255;
-        return r>165 && g>100 && g<220 && b<95 && r*100>g*108;
+        return r>165 && g>100 && g<225 && b<100 && r*100>g*106;
     }
 
     private void captureFrame(){
@@ -209,95 +211,125 @@ public class GameCanvas extends Displayable {
         return max;
     }
 
+    private int rowYellowScore(int y0,int y1,int x0,int x1){
+        int yellow=0,green=0,gold=0;
+        for(int y=Math.max(0,y0);y<=Math.min(LOGICAL_H-1,y1);y+=2){
+            for(int x=Math.max(0,x0);x<=Math.min(LOGICAL_W-1,x1);x+=3){
+                int c=pixelScratch[y*LOGICAL_W+x];
+                if(isYellow(c)) yellow++;
+                if(isGreen(c)) green++;
+                if(isStrongGold(c)) gold++;
+            }
+        }
+        // Selected menu items are overwhelmingly yellow/gold while ordinary
+        // siblings are green. Penalising green also prevents title bars winning.
+        return yellow*4 + gold*2 - green;
+    }
+
     /**
-     * Detect classic green/yellow menu rows and translate a tap into the exact
-     * keypad navigation that the original game expects. v7 deliberately does
-     * not try to interpret the small Back/FW/BW row: those remain available via
-     * the large Android control strip so they cannot interfere with normal menus.
+     * Detect classic green/yellow menu rows and translate a tap into keypad
+     * navigation. v8 fixes three issues from v7:
+     *  - split pieces of one yellow row are merged (Options no longer +1),
+     *  - popup title bars are excluded by stricter geometry matching,
+     *  - the scan reaches the bottom of the 503px canvas so Quit is hittable.
      */
     private boolean handleClassicMenuTap(int tapX,int tapY){
         try{
             captureFrame();
-            int[] ys=new int[24],ye=new int[24],yc=new int[24];
-            int[] xs=new int[24],xe=new int[24],gold=new int[24];
-            int count=0,runStart=-1,runGold=0;
+            int[] ys=new int[28],ye=new int[28],yc=new int[28];
+            int[] xs=new int[28],xe=new int[28],score=new int[28];
+            int count=0,runStart=-1;
 
-            for(int y=35;y<478;y++){
-                int colored=0,rowGold=0;
+            for(int y=30;y<LOGICAL_H;y++){
+                int colored=0;
                 for(int x=4;x<LOGICAL_W-4;x+=4){
                     int c=pixelScratch[y*LOGICAL_W+x];
                     if(isGreen(c)||isYellow(c)) colored++;
-                    if(isStrongGold(c)) rowGold++;
                 }
-                boolean active=colored>=20;
-                if(active){
-                    if(runStart<0){ runStart=y; runGold=0; }
-                    runGold+=rowGold;
-                }
-                if((!active||y==477)&&runStart>=0){
+                boolean active=colored>=19;
+                if(active && runStart<0) runStart=y;
+
+                if((!active || y==LOGICAL_H-1) && runStart>=0){
                     int runEnd=active?y:y-1;
                     int height=runEnd-runStart+1;
-                    if(height>=5&&height<=40){
+                    if(height>=4 && height<=42){
                         int minX=rowMinX(runStart,runEnd);
                         int maxX=rowMaxX(runStart,runEnd);
-                        if(minX>=0&&maxX-minX>=70){
-                            if(count>0 && runStart-ye[count-1]<=4 &&
-                               Math.abs(minX-xs[count-1])<=12 && Math.abs(maxX-xe[count-1])<=18){
+                        if(minX>=0 && maxX-minX>=68){
+                            boolean merge=false;
+                            if(count>0){
+                                int gap=runStart-ye[count-1]-1;
+                                int mergedHeight=runEnd-ys[count-1]+1;
+                                merge=gap<=10 && mergedHeight<=46 &&
+                                        Math.abs(minX-xs[count-1])<=16 &&
+                                        Math.abs(maxX-xe[count-1])<=24;
+                            }
+                            if(merge){
                                 ye[count-1]=runEnd;
                                 yc[count-1]=(ys[count-1]+runEnd)/2;
-                                gold[count-1]+=runGold;
                                 xs[count-1]=Math.min(xs[count-1],minX);
                                 xe[count-1]=Math.max(xe[count-1],maxX);
-                            } else if(count<24){
+                                score[count-1]=rowYellowScore(ys[count-1],ye[count-1],xs[count-1],xe[count-1]);
+                            } else if(count<ys.length){
                                 ys[count]=runStart; ye[count]=runEnd;
                                 yc[count]=(runStart+runEnd)/2;
-                                xs[count]=minX; xe[count]=maxX; gold[count]=runGold;
+                                xs[count]=minX; xe[count]=maxX;
+                                score[count]=rowYellowScore(runStart,runEnd,minX,maxX);
                                 count++;
                             }
                         }
                     }
-                    runStart=-1; runGold=0;
+                    runStart=-1;
                 }
             }
             if(count<2) return false;
 
-            int target=-1,bestDist=30;
+            // Prefer the actual vertical hit-box of a detected row. Only fall
+            // back to the nearest centre when the user taps its shadow/edge.
+            int target=-1,bestDist=999;
             for(int i=0;i<count;i++){
-                int d=Math.abs(tapY-yc[i]);
-                if(d<bestDist && tapX>=xs[i]-20 && tapX<=xe[i]+20){
-                    bestDist=d; target=i;
+                if(tapX<xs[i]-20 || tapX>xe[i]+20) continue;
+                int margin=9;
+                if(tapY>=ys[i]-margin && tapY<=ye[i]+margin){
+                    int d=Math.abs(tapY-yc[i]);
+                    if(d<bestDist){ bestDist=d; target=i; }
+                }
+            }
+            if(target<0){
+                bestDist=28;
+                for(int i=0;i<count;i++){
+                    if(tapX<xs[i]-20 || tapX>xe[i]+20) continue;
+                    int d=Math.abs(tapY-yc[i]);
+                    if(d<bestDist){ bestDist=d; target=i; }
                 }
             }
             if(target<0) return false;
 
-            /*
-             * Build only the contiguous local cluster around the tapped row.
-             * This is the important v7 fix: an Options popup cannot absorb the
-             * Options/Finalize controls visible underneath it, even if the colors
-             * and widths happen to be similar.
-             */
+            // Build a local menu group with almost identical left/right edges.
+            // The Options title is ~12 px further right than its four items, so
+            // an 8 px left-edge tolerance intentionally excludes that header.
             int first=target,last=target;
             while(first>0){
                 int i=first-1,j=first;
                 int gap=yc[j]-yc[i];
-                if(gap>72) break;
-                if(Math.abs(xs[i]-xs[target])>22 || Math.abs(xe[i]-xe[target])>38) break;
-                if(Math.abs((xe[i]-xs[i])-(xe[target]-xs[target]))>42) break;
+                if(gap>68) break;
+                if(Math.abs(xs[i]-xs[target])>8 || Math.abs(xe[i]-xe[target])>18) break;
+                if(Math.abs((xe[i]-xs[i])-(xe[target]-xs[target]))>24) break;
                 first=i;
             }
             while(last<count-1){
                 int i=last+1,j=last;
                 int gap=yc[i]-yc[j];
-                if(gap>72) break;
-                if(Math.abs(xs[i]-xs[target])>22 || Math.abs(xe[i]-xe[target])>38) break;
-                if(Math.abs((xe[i]-xs[i])-(xe[target]-xs[target]))>42) break;
+                if(gap>68) break;
+                if(Math.abs(xs[i]-xs[target])>8 || Math.abs(xe[i]-xe[target])>18) break;
+                if(Math.abs((xe[i]-xs[i])-(xe[target]-xs[target]))>24) break;
                 last=i;
             }
             if(last-first<1) return false;
 
-            int selected=-1,selectedGold=10;
+            int selected=-1,bestScore=Integer.MIN_VALUE;
             for(int i=first;i<=last;i++){
-                if(gold[i]>selectedGold){ selectedGold=gold[i]; selected=i; }
+                if(score[i]>bestScore){ bestScore=score[i]; selected=i; }
             }
             if(selected<0) return false;
 
