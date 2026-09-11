@@ -40,34 +40,28 @@ jobs:
           if [ -d overrides/app ]; then
             cp -a overrides/app/. "$PROJECT/app/"
           fi
+          GAME="$PROJECT/app/src/main/java/pfm/android/compat/lcdui/game/GameCanvas.java"
           test -f "$PROJECT/app/src/main/java/pfm/android/PfmActivity.java"
-          test -f "$PROJECT/app/src/main/java/pfm/android/compat/lcdui/game/GameCanvas.java"
-          grep -q 'isDoubleBuffered()' "$PROJECT/app/src/main/java/pfm/android/compat/lcdui/game/GameCanvas.java"
+          test -f "$GAME"
+          grep -q 'isDoubleBuffered()' "$GAME"
           grep -q 'showFatal' "$PROJECT/app/src/main/java/pfm/android/PfmActivity.java"
 
-          # Keep the wider grouping tolerance from v8 and the v9 synthetic-key
-          # sequencer, then apply the fixes derived from on-device diagnostics.
-          sed -i 's/Math.abs(xe\[i\]-xe\[target\])>18/Math.abs(xe[i]-xe[target])>42/g' "$PROJECT/app/src/main/java/pfm/android/compat/lcdui/game/GameCanvas.java"
-          sed -i 's/Math.abs((xe\[i\]-xs\[i\])-(xe\[target\]-xs\[target\]))>24/Math.abs((xe[i]-xs[i])-(xe[target]-xs[target]))>46/g' "$PROJECT/app/src/main/java/pfm/android/compat/lcdui/game/GameCanvas.java"
-          python3 patches/v9_frame_sync.py "$PROJECT/app/src/main/java/pfm/android/compat/lcdui/game/GameCanvas.java"
-          grep -q 'pumpSyntheticFrame' "$PROJECT/app/src/main/java/pfm/android/compat/lcdui/game/GameCanvas.java"
+          # v14 is a regression-based repair, not another cumulative experiment.
+          # Start directly from the checked-in Android compatibility layer, restore
+          # the v5 timing/global-menu path that empirically handled Finalize, and
+          # retain the proven popup-title exclusion for the match Options popup.
+          # Intentionally DO NOT apply v9/v11/v12/v13 on top of this build.
+          python3 patches/v14_restore_v5_menu_path.py "$GAME"
+          grep -q 'Ordinary menus intentionally use the proven v5 global selection' "$GAME"
+          grep -q 'KEY_HOLD_MS=40L' "$GAME"
+          grep -q 'KEY_STEP_MS=68L' "$GAME"
+          if grep -q 'directLegacyMenuSelectAndFire' "$GAME"; then
+            echo 'ERROR: v13 reflection bridge leaked into v14' >&2
+            exit 1
+          fi
 
-          # v11: exclude compact popup title rows.
-          python3 patches/v11_menu_fix.py "$PROJECT/app/src/main/java/pfm/android/compat/lcdui/game/GameCanvas.java"
-          grep -q 'menuFirst=first' "$PROJECT/app/src/main/java/pfm/android/compat/lcdui/game/GameCanvas.java"
-
-          # v12: preserve the generous hit zone for bottom-most items.
-          python3 patches/v12_bottom_menu_fix.py "$PROJECT/app/src/main/java/pfm/android/compat/lcdui/game/GameCanvas.java"
-          grep -q 'hitBottom=' "$PROJECT/app/src/main/java/pfm/android/compat/lcdui/game/GameCanvas.java"
-
-          # v13: stop emulating directional navigation for taps. Resolve the
-          # active legacy v menu controller, call its own e(index) selection
-          # setter directly, then send only FIRE.
-          python3 patches/v13_direct_menu_select.py "$PROJECT/app/src/main/java/pfm/android/compat/lcdui/game/GameCanvas.java"
-          grep -q 'directLegacyMenuSelectAndFire' "$PROJECT/app/src/main/java/pfm/android/compat/lcdui/game/GameCanvas.java"
-
-          sed -i -E 's/versionCode [0-9]+/versionCode 93/' "$PROJECT/app/build.gradle"
-          sed -i -E "s/versionName '[^']+'/versionName '0.84-android-port.10'/" "$PROJECT/app/build.gradle"
+          sed -i -E 's/versionCode [0-9]+/versionCode 94/' "$PROJECT/app/build.gradle"
+          sed -i -E "s/versionName '[^']+'/versionName '0.84-android-port.11-v14-regression'/" "$PROJECT/app/build.gradle"
 
       - name: Restore stable debug signing key
         shell: bash
@@ -116,7 +110,7 @@ jobs:
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
-          name: PFM-2011-Android-Alpha084-touch-v13
+          name: PFM-2011-Android-Alpha084-touch-v14
           path: ${{ env.PROJECT }}/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
           retention-days: 30
