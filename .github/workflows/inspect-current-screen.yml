@@ -1,0 +1,26 @@
+name: Inspect active legacy screen getter
+
+on:
+  push:
+    paths:
+      - '.github/workflows/inspect-current-screen.yml'
+  workflow_dispatch:
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Dump active screen getter
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf build-inspect && mkdir build-inspect
+          unzip -q PFM_Android_Alpha084_port_source.zip -d build-inspect
+          JAR="$PWD/build-inspect/PFM_Android_Alpha084_port/app/libs/pfm_core_android.jar"
+          javap -classpath "$JAR" -p -c du > /tmp/du.txt
+          javap -classpath "$JAR" -p -c db > /tmp/db.txt
+          echo '===== du a()L... ====='
+          grep -E -B8 -A55 '^  public final bl a\(\);' /tmp/du.txt || true
+          echo '===== db static du field reads ====='
+          grep -E -B14 -A20 'Field a:Ldu;' /tmp/db.txt | head -500 || true
