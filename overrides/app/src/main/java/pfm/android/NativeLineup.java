@@ -20,9 +20,14 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
-/** Native pre-match squad-order / Starting XI editor. Formation is owned by the legacy core. */
+/** Native pre-match Starting XI, squad-order and formation editor. */
 public final class NativeLineup {
     private NativeLineup() {}
+
+    // Same order as the stock bg formation menu / dw.a[9] formation templates.
+    private static final String[] FORMATIONS={
+            "4-3-3","4-5-1","3-4-3","3-5-2","5-4-1","5-2-3","4-2-4","5-3-2","4-4-2"
+    };
 
     private static int dp(Context c,int v){
         return Math.round(v*c.getResources().getDisplayMetrics().density);
@@ -88,19 +93,34 @@ public final class NativeLineup {
         return out;
     }
 
+    private static Class<?> bridge() throws Exception { return Class.forName("PfmSquadBridge"); }
+
     private static boolean canEdit(){
-        try{
-            Class<?> c=Class.forName("PfmSquadBridge");
-            return Boolean.TRUE.equals(c.getMethod("canEditLineup").invoke(null));
-        }catch(Throwable t){return false;}
+        try{return Boolean.TRUE.equals(bridge().getMethod("canEditLineup").invoke(null));}
+        catch(Throwable t){return false;}
     }
 
     private static int swap(int a,int b){
         try{
-            Class<?> c=Class.forName("PfmSquadBridge");
-            Method m=c.getMethod("swapLineupPositions",Integer.TYPE,Integer.TYPE);
+            Method m=bridge().getMethod("swapLineupPositions",Integer.TYPE,Integer.TYPE);
             return ((Integer)m.invoke(null,Integer.valueOf(a),Integer.valueOf(b))).intValue();
         }catch(Throwable t){return -1;}
+    }
+
+    private static int formationIndex(){
+        try{return ((Integer)bridge().getMethod("formationIndex").invoke(null)).intValue();}
+        catch(Throwable t){return -1;}
+    }
+
+    private static int setFormation(int index){
+        try{
+            Method m=bridge().getMethod("setFormationIndex",Integer.TYPE);
+            return ((Integer)m.invoke(null,Integer.valueOf(index))).intValue();
+        }catch(Throwable t){return -1;}
+    }
+
+    private static String formationName(int index){
+        return index>=0&&index<FORMATIONS.length?FORMATIONS[index]:"?";
     }
 
     private static boolean autoRotation(){
@@ -126,11 +146,11 @@ public final class NativeLineup {
         if(selected<0||selected>=players.size())
             return "Tap any player, then tap any other player to swap their squad-order slots.";
         PlayerRow p=players.get(selected);
-        return "Selected: "+slotName(selected)+"  #"+p.number+" "+p.name+".  Tap another player to swap, or tap this row again to cancel.";
+        return "Selected: "+slotName(selected)+"  #"+p.number+" "+p.name+". Tap another player to swap, or tap this row again to cancel.";
     }
 
     private static String xiSummary(List<PlayerRow> players){
-        int unavailable=0, fatigue=0, count=0;
+        int unavailable=0,fatigue=0,count=0;
         int limit=Math.min(11,players.size());
         for(int i=0;i<limit;i++){
             PlayerRow p=players.get(i);
@@ -139,7 +159,7 @@ public final class NativeLineup {
             count++;
         }
         int avg=count==0?0:Math.round((float)fatigue/count);
-        String s="Starting XI: "+limit+" players  •  avg FAT "+avg;
+        String s="Starting XI: "+limit+"  •  avg FAT "+avg+"  •  formation "+formationName(formationIndex());
         if(unavailable>0)s+="  •  unavailable "+unavailable;
         return s;
     }
@@ -155,22 +175,27 @@ public final class NativeLineup {
         root.setOrientation(LinearLayout.VERTICAL);
         root.setPadding(dp(a,8),dp(a,2),dp(a,8),0);
 
-        String note="Full squad-order editor. Slots XI 1–XI 11 start the match; B 1+ are bench/reserves. Formation is not changed.";
-        if(autoRotation())note+="\nAuto rotation is ON and may rebuild the XI before the next matchday.";
-        TextView info=text(a,note,12.5f,false);
-        info.setPadding(dp(a,6),dp(a,2),dp(a,6),dp(a,5));
+        String note="Full pre-match editor: reorder any two squad slots and choose the stock formation. XI 1–XI 11 start; B 1+ are bench/reserves.";
+        if(autoRotation())note+="\nAuto rotation is ON and may rebuild the XI before the next matchday; it does not change formation.";
+        TextView info=text(a,note,12.2f,false);
+        info.setPadding(dp(a,6),dp(a,2),dp(a,6),dp(a,4));
         root.addView(info);
 
-        final TextView editState=text(a,canEdit()?"Pre-match squad editing enabled":"Squad editing unavailable during a live match — use legacy substitutions",12.5f,true);
-        editState.setPadding(dp(a,6),0,dp(a,6),dp(a,3));
+        final TextView editState=text(a,canEdit()?"Pre-match editing enabled":"Editing unavailable during a live match — use legacy substitutions",12.5f,true);
+        editState.setPadding(dp(a,6),0,dp(a,6),dp(a,2));
         root.addView(editState);
 
-        final TextView summary=text(a,xiSummary(players),12.5f,true);
+        final TextView summary=text(a,xiSummary(players),12.3f,true);
         summary.setPadding(dp(a,6),0,dp(a,6),dp(a,3));
         root.addView(summary);
 
+        final Button formation=new Button(a);
+        formation.setText("FORMATION: "+formationName(formationIndex()));
+        formation.setEnabled(canEdit());
+        root.addView(formation,new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT));
+
         final TextView selection=text(a,"",12f,false);
-        selection.setPadding(dp(a,8),dp(a,5),dp(a,8),dp(a,5));
+        selection.setPadding(dp(a,8),dp(a,4),dp(a,8),dp(a,4));
         selection.setBackgroundColor(0xfff2f2f2);
         root.addView(selection);
 
@@ -178,9 +203,13 @@ public final class NativeLineup {
         actions.setOrientation(LinearLayout.HORIZONTAL);
         actions.setGravity(Gravity.CENTER_VERTICAL);
         final Button cancel=new Button(a);
-        cancel.setText("CLEAR SELECTION");
+        cancel.setText("CLEAR");
         cancel.setEnabled(false);
         actions.addView(cancel,new LinearLayout.LayoutParams(0,LinearLayout.LayoutParams.WRAP_CONTENT,1f));
+        final Button undo=new Button(a);
+        undo.setText("UNDO SWAP");
+        undo.setEnabled(false);
+        actions.addView(undo,new LinearLayout.LayoutParams(0,LinearLayout.LayoutParams.WRAP_CONTENT,1f));
         final Button refresh=new Button(a);
         refresh.setText("REFRESH");
         actions.addView(refresh,new LinearLayout.LayoutParams(0,LinearLayout.LayoutParams.WRAP_CONTENT,1f));
@@ -189,6 +218,7 @@ public final class NativeLineup {
         ListView list=new ListView(a);
         list.setDividerHeight(1);
         final int[] selected={-1};
+        final int[] lastSwap={-1,-1};
 
         ArrayAdapter<PlayerRow> adapter=new ArrayAdapter<PlayerRow>(a,android.R.layout.simple_list_item_1,players){
             @Override public View getView(int position,View convertView,ViewGroup parent){
@@ -215,9 +245,9 @@ public final class NativeLineup {
                     row.addView(l3);
                 }
                 PlayerRow p=getItem(position);
-                if(position==0){ section.setVisibility(View.VISIBLE); section.setText("STARTING XI"); }
-                else if(position==11){ section.setVisibility(View.VISIBLE); section.setText("BENCH / RESERVES"); }
-                else { section.setText(""); section.setVisibility(View.GONE); }
+                if(position==0){section.setVisibility(View.VISIBLE);section.setText("STARTING XI");}
+                else if(position==11){section.setVisibility(View.VISIBLE);section.setText("BENCH / RESERVES");}
+                else{section.setText("");section.setVisibility(View.GONE);}
 
                 l1.setText(slotName(position)+"   #"+p.number+"  "+p.name+"   "+p.pos+(p.unavailable()?"  !":""));
                 l2.setText("FAT "+p.fatigue+"   "+p.status()+"   MOR "+p.mor+"   RAT "+p.rating());
@@ -240,6 +270,9 @@ public final class NativeLineup {
         Runnable syncUi=() -> {
             selection.setText(selectionText(players,selected[0]));
             cancel.setEnabled(selected[0]>=0);
+            undo.setEnabled(lastSwap[0]>=0&&lastSwap[1]>=0&&canEdit());
+            formation.setEnabled(canEdit());
+            formation.setText("FORMATION: "+formationName(formationIndex()));
             summary.setText(xiSummary(players));
             adapter.notifyDataSetChanged();
         };
@@ -249,15 +282,58 @@ public final class NativeLineup {
             players.clear();
             players.addAll(fresh);
             selected[0]=-1;
+            lastSwap[0]=lastSwap[1]=-1;
             syncUi.run();
         };
 
-        cancel.setOnClickListener(v -> { selected[0]=-1; syncUi.run(); });
+        formation.setOnClickListener(v -> {
+            if(!canEdit()){
+                Toast.makeText(a,"Formation cannot be changed during a live match",Toast.LENGTH_SHORT).show();
+                return;
+            }
+            int current=formationIndex();
+            new AlertDialog.Builder(a)
+                    .setTitle("Formation")
+                    .setSingleChoiceItems(FORMATIONS,current,(dialog,which) -> {
+                        int r=setFormation(which);
+                        if(r==1){
+                            dialog.dismiss();
+                            syncUi.run();
+                            Toast.makeText(a,"Formation: "+FORMATIONS[which],Toast.LENGTH_SHORT).show();
+                        }else if(r==-3){
+                            dialog.dismiss();
+                            Toast.makeText(a,"Formation cannot be changed during a live match",Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(a,"Could not update formation",Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .setNegativeButton("Cancel",null)
+                    .show();
+        });
+
+        cancel.setOnClickListener(v -> {selected[0]=-1;syncUi.run();});
         refresh.setOnClickListener(v -> reload.run());
+        undo.setOnClickListener(v -> {
+            if(lastSwap[0]<0||lastSwap[1]<0)return;
+            int r=swap(lastSwap[0],lastSwap[1]);
+            if(r==1){
+                List<PlayerRow> fresh=loadRows();
+                players.clear();
+                players.addAll(fresh);
+                lastSwap[0]=lastSwap[1]=-1;
+                selected[0]=-1;
+                syncUi.run();
+                Toast.makeText(a,"Last squad-order swap undone",Toast.LENGTH_SHORT).show();
+            }else{
+                lastSwap[0]=lastSwap[1]=-1;
+                syncUi.run();
+                Toast.makeText(a,"Could not undo the swap",Toast.LENGTH_SHORT).show();
+            }
+        });
 
         list.setOnItemClickListener((parent,view,position,id) -> {
             if(!canEdit()){
-                editState.setText("Squad editing unavailable during a live match — use legacy substitutions");
+                editState.setText("Editing unavailable during a live match — use legacy substitutions");
                 Toast.makeText(a,"Use the legacy match Substitutions screen during a live match",Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -279,6 +355,7 @@ public final class NativeLineup {
             int result=swap(first,position);
             selected[0]=-1;
             if(result==1){
+                lastSwap[0]=first;lastSwap[1]=position;
                 List<PlayerRow> fresh=loadRows();
                 players.clear();
                 players.addAll(fresh);
@@ -286,7 +363,7 @@ public final class NativeLineup {
                 String what=crossed?"Starting XI membership updated":"Squad order updated";
                 Toast.makeText(a,what+": "+firstName+" ↔ "+secondName,Toast.LENGTH_SHORT).show();
             }else if(result==-3){
-                editState.setText("Squad editing unavailable during a live match — use legacy substitutions");
+                editState.setText("Editing unavailable during a live match — use legacy substitutions");
                 syncUi.run();
                 Toast.makeText(a,"Live-match squad changes are blocked",Toast.LENGTH_SHORT).show();
             }else{
@@ -298,14 +375,14 @@ public final class NativeLineup {
         syncUi.run();
 
         AlertDialog dlg=new AlertDialog.Builder(a)
-                .setTitle("Line-up / Squad order")
+                .setTitle("Line-up / Tactics")
                 .setView(root)
                 .setPositiveButton("Close",null)
                 .create();
         dlg.setOnShowListener(x -> {
             Window w=dlg.getWindow();
             if(w!=null)w.setLayout(WindowManager.LayoutParams.MATCH_PARENT,
-                    Math.round(a.getResources().getDisplayMetrics().heightPixels*0.94f));
+                    Math.round(a.getResources().getDisplayMetrics().heightPixels*0.95f));
         });
         dlg.show();
     }
