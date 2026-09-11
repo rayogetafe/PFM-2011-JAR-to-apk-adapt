@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import pfm.android.AndroidRuntime;
 import pfm.android.NativeSettings;
+import pfm.android.NativeSquad;
 import pfm.android.compat.lcdui.game.GameCanvas;
 import pfm.android.compat.midlet.MIDlet;
 
@@ -23,6 +24,16 @@ public final class Display {
         return Math.round(v*a.getResources().getDisplayMetrics().density);
     }
 
+    private static Button nativeButton(Activity a,String label){
+        Button b=new Button(a);
+        b.setText(label);
+        b.setTextSize(12f);
+        b.setAllCaps(false);
+        b.setAlpha(0.92f);
+        b.setPadding(dp(a,8),0,dp(a,8),0);
+        return b;
+    }
+
     private static View buildAndroidRoot(GameCanvas gc) {
         Activity a=AndroidRuntime.activity();
         View game=gc.androidView();
@@ -33,19 +44,22 @@ public final class Display {
         root.addView(game,new FrameLayout.LayoutParams(
                 FrameLayout.LayoutParams.MATCH_PARENT,FrameLayout.LayoutParams.MATCH_PARENT));
 
-        Button settings=new Button(a);
-        settings.setText("SETTINGS");
-        settings.setTextSize(12f);
-        settings.setAllCaps(false);
-        settings.setAlpha(0.92f);
-        settings.setPadding(dp(a,8),0,dp(a,8),0);
+        Button settings=nativeButton(a,"SETTINGS");
         settings.setOnClickListener(v -> NativeSettings.show(a));
-
         FrameLayout.LayoutParams sp=new FrameLayout.LayoutParams(dp(a,108),dp(a,38));
         sp.gravity=Gravity.TOP|Gravity.START;
         sp.leftMargin=dp(a,8);
         sp.topMargin=dp(a,8);
         root.addView(settings,sp);
+
+        Button squad=nativeButton(a,"SQUAD");
+        squad.setOnClickListener(v -> NativeSquad.show(a));
+        FrameLayout.LayoutParams qp=new FrameLayout.LayoutParams(dp(a,108),dp(a,38));
+        qp.gravity=Gravity.TOP|Gravity.END;
+        qp.rightMargin=dp(a,8);
+        qp.topMargin=dp(a,8);
+        root.addView(squad,qp);
+
         return root;
     }
 
