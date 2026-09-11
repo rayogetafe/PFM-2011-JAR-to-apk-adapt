@@ -48,15 +48,14 @@ jobs:
           grep -q 'isDoubleBuffered()' "$GAME"
           grep -q 'showFatal' "$PROJECT/app/src/main/java/pfm/android/PfmActivity.java"
           grep -q 'tapActiveMenu' "$BRIDGE"
+          grep -q 'VISUAL_SELECTION_DELAY_MS' "$BRIDGE"
 
-          # Preserve the frame-synchronised fallback input for the safety panel
-          # and non-menu screens.
+          # Preserve frame-synchronised fallback input for the safety panel and
+          # non-menu screens. Direct menu taps use the v16/v17 core bridge.
           python3 patches/v9_frame_sync.py "$GAME"
           grep -q 'pumpSyntheticFrame' "$GAME"
           grep -q 'syntheticQueue' "$GAME"
 
-          # Keep the proven image detector only as a fallback.  v16 will handle
-          # real v/w menus through the core's own active UI controller instead.
           python3 patches/v14_restore_v5_menu_path.py "$GAME"
           grep -q 'Ordinary menus intentionally use the proven v5 global selection' "$GAME"
 
@@ -64,20 +63,20 @@ jobs:
           grep -q 'syntheticGapFrames=4' "$GAME"
           grep -q 'syntheticSequenceActive()' "$GAME"
 
-          # v16: tap actual children of ed.a()'s active v/w controller, set its
-          # real selection with dv.e(index), then request only FIRE.  No visual
-          # row-count -> repeated UP/DOWN translation is used on these menus.
+          # Direct touch path: hit-test the actual active v/w menu and its real
+          # selectable children. PfmTouchBridge v17 then lets the new selection
+          # render briefly before FIRE, fixing the cosmetic stale-yellow flash.
           python3 patches/v16_active_menu_bridge.py "$GAME"
           grep -q 'handleCoreMenuTap' "$GAME"
           grep -q 'PfmTouchBridge' "$GAME"
 
           if grep -q 'directLegacyMenuSelectAndFire' "$GAME"; then
-            echo 'ERROR: old v13 ambiguous reflection bridge leaked into v16' >&2
+            echo 'ERROR: old v13 ambiguous reflection bridge leaked into v17' >&2
             exit 1
           fi
 
-          sed -i -E 's/versionCode [0-9]+/versionCode 96/' "$PROJECT/app/build.gradle"
-          sed -i -E "s/versionName '[^']+'/versionName '0.84-android-port.13-v16-active-menu'/" "$PROJECT/app/build.gradle"
+          sed -i -E 's/versionCode [0-9]+/versionCode 97/' "$PROJECT/app/build.gradle"
+          sed -i -E "s/versionName '[^']+'/versionName '0.84-android-port.14-v17-visual-sync'/" "$PROJECT/app/build.gradle"
 
       - name: Restore stable debug signing key
         shell: bash
@@ -126,7 +125,7 @@ jobs:
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
-          name: PFM-2011-Android-Alpha084-touch-v16
+          name: PFM-2011-Android-Alpha084-touch-v17
           path: ${{ env.PROJECT }}/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
           retention-days: 30
