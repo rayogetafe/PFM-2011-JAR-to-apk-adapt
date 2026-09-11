@@ -5,11 +5,13 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -18,7 +20,7 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
-/** Native pre-match Starting XI editor. Formation itself is still owned by the legacy core. */
+/** Native pre-match squad-order / Starting XI editor. Formation is owned by the legacy core. */
 public final class NativeLineup {
     private NativeLineup() {}
 
@@ -27,7 +29,8 @@ public final class NativeLineup {
     }
 
     private static final class PlayerRow {
-        int id,number,fatigue,injury,suspension;
+        int id,number,spe,res,qua,mor,age,goals,starts,apps,assists,rating10,ratingMatches;
+        int fatigue,injury,yellow,red,suspension;
         String name,pos;
 
         static PlayerRow parse(String s){
@@ -38,8 +41,21 @@ public final class NativeLineup {
                 r.number=Integer.parseInt(p[1]);
                 r.name=p[2];
                 r.pos=p[3];
+                r.spe=Integer.parseInt(p[4]);
+                r.res=Integer.parseInt(p[5]);
+                r.qua=Integer.parseInt(p[6]);
+                r.mor=Integer.parseInt(p[7]);
+                r.age=Integer.parseInt(p[8]);
+                r.goals=Integer.parseInt(p[9]);
+                r.starts=Integer.parseInt(p[10]);
+                r.apps=Integer.parseInt(p[11]);
+                r.assists=Integer.parseInt(p[12]);
+                r.rating10=Integer.parseInt(p[13]);
+                r.ratingMatches=Integer.parseInt(p[14]);
                 r.fatigue=Integer.parseInt(p[15]);
                 r.injury=Integer.parseInt(p[16]);
+                r.yellow=Integer.parseInt(p[17]);
+                r.red=Integer.parseInt(p[18]);
                 r.suspension=Integer.parseInt(p[19]);
             }catch(Throwable t){
                 r.name=s; r.pos="?";
@@ -54,6 +70,11 @@ public final class NativeLineup {
             if(injury>0)return "INJ "+injury+"r";
             if(suspension>0)return "SUSP "+suspension+"r";
             return "available";
+        }
+
+        String rating(){
+            if(ratingMatches<=0)return "n/a";
+            return (rating10/10)+"."+Math.abs(rating10%10);
         }
     }
 
@@ -97,6 +118,32 @@ public final class NativeLineup {
         return v;
     }
 
+    private static String slotName(int position){
+        return position<11?("XI "+(position+1)):("B "+(position-10));
+    }
+
+    private static String selectionText(List<PlayerRow> players,int selected){
+        if(selected<0||selected>=players.size())
+            return "Tap any player, then tap any other player to swap their squad-order slots.";
+        PlayerRow p=players.get(selected);
+        return "Selected: "+slotName(selected)+"  #"+p.number+" "+p.name+".  Tap another player to swap, or tap this row again to cancel.";
+    }
+
+    private static String xiSummary(List<PlayerRow> players){
+        int unavailable=0, fatigue=0, count=0;
+        int limit=Math.min(11,players.size());
+        for(int i=0;i<limit;i++){
+            PlayerRow p=players.get(i);
+            if(p.unavailable())unavailable++;
+            fatigue+=p.fatigue;
+            count++;
+        }
+        int avg=count==0?0:Math.round((float)fatigue/count);
+        String s="Starting XI: "+limit+" players  •  avg FAT "+avg;
+        if(unavailable>0)s+="  •  unavailable "+unavailable;
+        return s;
+    }
+
     public static void show(Activity a){
         final ArrayList<PlayerRow> players=new ArrayList<>(loadRows());
         if(players.size()<12){
@@ -108,15 +155,36 @@ public final class NativeLineup {
         root.setOrientation(LinearLayout.VERTICAL);
         root.setPadding(dp(a,8),dp(a,2),dp(a,8),0);
 
-        String note="Tap one player, then a player on the other side of the XI / bench split to swap them. Formation is not changed.";
+        String note="Full squad-order editor. Slots XI 1–XI 11 start the match; B 1+ are bench/reserves. Formation is not changed.";
         if(autoRotation())note+="\nAuto rotation is ON and may rebuild the XI before the next matchday.";
         TextView info=text(a,note,12.5f,false);
-        info.setPadding(dp(a,6),dp(a,2),dp(a,6),dp(a,6));
+        info.setPadding(dp(a,6),dp(a,2),dp(a,6),dp(a,5));
         root.addView(info);
 
-        final TextView editState=text(a,canEdit()?"Pre-match XI editing enabled":"XI editing unavailable during a live match — use legacy substitutions",12.5f,true);
-        editState.setPadding(dp(a,6),0,dp(a,6),dp(a,6));
+        final TextView editState=text(a,canEdit()?"Pre-match squad editing enabled":"Squad editing unavailable during a live match — use legacy substitutions",12.5f,true);
+        editState.setPadding(dp(a,6),0,dp(a,6),dp(a,3));
         root.addView(editState);
+
+        final TextView summary=text(a,xiSummary(players),12.5f,true);
+        summary.setPadding(dp(a,6),0,dp(a,6),dp(a,3));
+        root.addView(summary);
+
+        final TextView selection=text(a,"",12f,false);
+        selection.setPadding(dp(a,8),dp(a,5),dp(a,8),dp(a,5));
+        selection.setBackgroundColor(0xfff2f2f2);
+        root.addView(selection);
+
+        LinearLayout actions=new LinearLayout(a);
+        actions.setOrientation(LinearLayout.HORIZONTAL);
+        actions.setGravity(Gravity.CENTER_VERTICAL);
+        final Button cancel=new Button(a);
+        cancel.setText("CLEAR SELECTION");
+        cancel.setEnabled(false);
+        actions.addView(cancel,new LinearLayout.LayoutParams(0,LinearLayout.LayoutParams.WRAP_CONTENT,1f));
+        final Button refresh=new Button(a);
+        refresh.setText("REFRESH");
+        actions.addView(refresh,new LinearLayout.LayoutParams(0,LinearLayout.LayoutParams.WRAP_CONTENT,1f));
+        root.addView(actions);
 
         ListView list=new ListView(a);
         list.setDividerHeight(1);
@@ -125,89 +193,119 @@ public final class NativeLineup {
         ArrayAdapter<PlayerRow> adapter=new ArrayAdapter<PlayerRow>(a,android.R.layout.simple_list_item_1,players){
             @Override public View getView(int position,View convertView,ViewGroup parent){
                 LinearLayout row;
-                TextView section,l1,l2;
-                if(convertView instanceof LinearLayout&&((LinearLayout)convertView).getChildCount()==3){
+                TextView section,l1,l2,l3;
+                if(convertView instanceof LinearLayout&&((LinearLayout)convertView).getChildCount()==4){
                     row=(LinearLayout)convertView;
                     section=(TextView)row.getChildAt(0);
                     l1=(TextView)row.getChildAt(1);
                     l2=(TextView)row.getChildAt(2);
+                    l3=(TextView)row.getChildAt(3);
                 }else{
                     row=new LinearLayout(a);
                     row.setOrientation(LinearLayout.VERTICAL);
                     row.setPadding(dp(a,11),dp(a,5),dp(a,11),dp(a,6));
-                    row.setMinimumHeight(dp(a,58));
+                    row.setMinimumHeight(dp(a,68));
                     section=text(a,"",11.5f,true);
                     l1=text(a,"",16f,true);
                     l2=text(a,"",12.5f,false);
+                    l3=text(a,"",11.5f,false);
                     row.addView(section);
                     row.addView(l1);
                     row.addView(l2);
+                    row.addView(l3);
                 }
                 PlayerRow p=getItem(position);
                 if(position==0){ section.setVisibility(View.VISIBLE); section.setText("STARTING XI"); }
                 else if(position==11){ section.setVisibility(View.VISIBLE); section.setText("BENCH / RESERVES"); }
                 else { section.setText(""); section.setVisibility(View.GONE); }
 
-                String slot=position<11?("XI "+(position+1)):"BENCH";
-                l1.setText(slot+"   #"+p.number+"  "+p.name+"   "+p.pos+(p.unavailable()?"  !":""));
-                l2.setText("FAT "+p.fatigue+"   "+p.status());
-                row.setBackgroundColor(position==selected[0]?0xffd9ead3:Color.TRANSPARENT);
+                l1.setText(slotName(position)+"   #"+p.number+"  "+p.name+"   "+p.pos+(p.unavailable()?"  !":""));
+                l2.setText("FAT "+p.fatigue+"   "+p.status()+"   MOR "+p.mor+"   RAT "+p.rating());
+                l3.setText("SPE "+p.spe+"  RES "+p.res+"  QUA "+p.qua+"   ST "+p.starts+" AP "+p.apps+" G "+p.goals+" A "+p.assists);
+                if(position==selected[0]){
+                    row.setBackgroundColor(0xffcfe8cf);
+                    l1.setText("✓  "+l1.getText());
+                }else if(position<11&&p.unavailable()){
+                    row.setBackgroundColor(0xffffe0e0);
+                }else if(position<11){
+                    row.setBackgroundColor(0xfff6fbf6);
+                }else{
+                    row.setBackgroundColor(Color.TRANSPARENT);
+                }
                 return row;
             }
         };
         list.setAdapter(adapter);
+
+        Runnable syncUi=() -> {
+            selection.setText(selectionText(players,selected[0]));
+            cancel.setEnabled(selected[0]>=0);
+            summary.setText(xiSummary(players));
+            adapter.notifyDataSetChanged();
+        };
+
+        Runnable reload=() -> {
+            List<PlayerRow> fresh=loadRows();
+            players.clear();
+            players.addAll(fresh);
+            selected[0]=-1;
+            syncUi.run();
+        };
+
+        cancel.setOnClickListener(v -> { selected[0]=-1; syncUi.run(); });
+        refresh.setOnClickListener(v -> reload.run());
+
         list.setOnItemClickListener((parent,view,position,id) -> {
             if(!canEdit()){
-                editState.setText("XI editing unavailable during a live match — use legacy substitutions");
+                editState.setText("Squad editing unavailable during a live match — use legacy substitutions");
                 Toast.makeText(a,"Use the legacy match Substitutions screen during a live match",Toast.LENGTH_SHORT).show();
                 return;
             }
             if(selected[0]<0){
                 selected[0]=position;
-                adapter.notifyDataSetChanged();
-                Toast.makeText(a,position<11?"Now select a bench player":"Now select a Starting XI player",Toast.LENGTH_SHORT).show();
+                syncUi.run();
                 return;
             }
             if(selected[0]==position){
                 selected[0]=-1;
-                adapter.notifyDataSetChanged();
-                return;
-            }
-            if((selected[0]<11)==(position<11)){
-                selected[0]=position;
-                adapter.notifyDataSetChanged();
-                Toast.makeText(a,position<11?"Now select a bench player":"Now select a Starting XI player",Toast.LENGTH_SHORT).show();
+                syncUi.run();
                 return;
             }
 
             int first=selected[0];
+            String firstName=players.get(first).name;
+            String secondName=players.get(position).name;
+            boolean crossed=(first<11)!=(position<11);
             int result=swap(first,position);
             selected[0]=-1;
             if(result==1){
                 List<PlayerRow> fresh=loadRows();
                 players.clear();
                 players.addAll(fresh);
-                adapter.notifyDataSetChanged();
-                Toast.makeText(a,"Starting XI updated",Toast.LENGTH_SHORT).show();
+                syncUi.run();
+                String what=crossed?"Starting XI membership updated":"Squad order updated";
+                Toast.makeText(a,what+": "+firstName+" ↔ "+secondName,Toast.LENGTH_SHORT).show();
             }else if(result==-3){
-                editState.setText("XI editing unavailable during a live match — use legacy substitutions");
-                Toast.makeText(a,"Live-match XI changes are blocked",Toast.LENGTH_SHORT).show();
+                editState.setText("Squad editing unavailable during a live match — use legacy substitutions");
+                syncUi.run();
+                Toast.makeText(a,"Live-match squad changes are blocked",Toast.LENGTH_SHORT).show();
             }else{
-                adapter.notifyDataSetChanged();
-                Toast.makeText(a,"Could not update the Starting XI",Toast.LENGTH_SHORT).show();
+                syncUi.run();
+                Toast.makeText(a,"Could not update the squad order",Toast.LENGTH_SHORT).show();
             }
         });
         root.addView(list,new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,0,1f));
+        syncUi.run();
 
         AlertDialog dlg=new AlertDialog.Builder(a)
-                .setTitle("Starting XI")
+                .setTitle("Line-up / Squad order")
                 .setView(root)
                 .setPositiveButton("Close",null)
                 .create();
         dlg.setOnShowListener(x -> {
             Window w=dlg.getWindow();
             if(w!=null)w.setLayout(WindowManager.LayoutParams.MATCH_PARENT,
-                    Math.round(a.getResources().getDisplayMetrics().heightPixels*0.92f));
+                    Math.round(a.getResources().getDisplayMetrics().heightPixels*0.94f));
         });
         dlg.show();
     }
