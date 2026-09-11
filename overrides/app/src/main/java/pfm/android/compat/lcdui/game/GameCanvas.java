@@ -14,10 +14,7 @@ import pfm.android.AndroidRuntime;
 import pfm.android.compat.lcdui.Displayable;
 import pfm.android.compat.lcdui.Graphics;
 
-/**
- * Android-native compatibility surface for the small subset of MIDP GameCanvas
- * used by the PFM 2011 core. No J2ME runtime or emulator is involved.
- */
+/** Android-native compatibility surface for the PFM 2011 core. */
 public class GameCanvas extends Displayable {
     public static final int UP=1, LEFT=2, RIGHT=5, DOWN=6, FIRE=8;
     public static final int UP_PRESSED=0x0002;
@@ -134,7 +131,6 @@ public class GameCanvas extends Displayable {
         },delayMs+KEY_HOLD_MS);
     }
 
-    /** Queue one deterministic synthetic sequence and ignore extra taps until it finishes. */
     private synchronized boolean sendSequence(int[] keys){
         long now=SystemClock.uptimeMillis();
         if(now<syntheticBusyUntil) return false;
@@ -157,10 +153,6 @@ public class GameCanvas extends Displayable {
         return sendSequence(keys);
     }
 
-    /**
-     * Some original PFM widgets already understand J2ME pointer events. For those
-     * widgets a native click is much more reliable than emulating keypad motion.
-     */
     private synchronized boolean directPointerTap(final int x,final int y){
         long now=SystemClock.uptimeMillis();
         if(now<syntheticBusyUntil) return false;
@@ -185,71 +177,14 @@ public class GameCanvas extends Displayable {
         return r>165 && g>100 && g<220 && b<95 && r*100>g*108;
     }
 
-    private boolean isOrange(int color){
-        int r=(color>>16)&255,g=(color>>8)&255,b=color&255;
-        return r>105 && g>45 && b<105 && r*100>g*104 && r*100>b*135;
-    }
-
     private void captureFrame(){
         buffer.getPixels(pixelScratch,0,LOGICAL_W,0,0,LOGICAL_W,LOGICAL_H);
     }
 
-    /** Lower-left orange arrow: this widget already supports pointer clicks. */
+    /** The lower-left orange arrow has working native pointer handling. */
     private boolean handleCornerBackTap(int x,int y){
         if(x<=78 && y>=452) return directPointerTap(x,y);
         return false;
-    }
-
-    /**
-     * Detects a horizontal row with two or more compact orange/gold buttons
-     * (Calendar Back/FW/BW and similar widgets). These buttons already support
-     * pointer input, so do exactly one native click and no extra FIRE.
-     */
-    private boolean handleMultiGoldButtonTap(int tapX,int tapY){
-        try{
-            captureFrame();
-            int bestY=-1,bestPixels=0;
-            int y0=Math.max(20,tapY-18),y1=Math.min(LOGICAL_H-20,tapY+18);
-            for(int y=y0;y<=y1;y++){
-                int n=0;
-                for(int x=0;x<LOGICAL_W;x+=2){
-                    int c=pixelScratch[y*LOGICAL_W+x];
-                    if(isOrange(c)||isStrongGold(c)||isYellow(c)) n++;
-                }
-                if(n>bestPixels){ bestPixels=n; bestY=y; }
-            }
-            if(bestY<0||bestPixels<22) return false;
-
-            int[] starts=new int[8],ends=new int[8];
-            int count=0,start=-1,lastGood=-99;
-            for(int x=0;x<LOGICAL_W;x++){
-                int good=0;
-                for(int yy=Math.max(0,bestY-3);yy<=Math.min(LOGICAL_H-1,bestY+3);yy++){
-                    int c=pixelScratch[yy*LOGICAL_W+x];
-                    if(isOrange(c)||isYellow(c)||isStrongGold(c)) good++;
-                }
-                if(good>=2){
-                    if(start<0) start=x;
-                    lastGood=x;
-                } else if(start>=0 && x-lastGood>8){
-                    int end=lastGood;
-                    if(end-start>=25 && count<8){ starts[count]=start; ends[count]=end; count++; }
-                    start=-1;
-                }
-            }
-            if(start>=0){
-                int end=lastGood;
-                if(end-start>=25 && count<8){ starts[count]=start; ends[count]=end; count++; }
-            }
-            if(count<2) return false;
-
-            for(int i=0;i<count;i++){
-                if(tapX>=starts[i]-10 && tapX<=ends[i]+10){
-                    return directPointerTap(tapX,tapY);
-                }
-            }
-            return false;
-        } catch(Throwable ignored){ return false; }
     }
 
     private int rowMinX(int y0,int y1){
@@ -275,9 +210,10 @@ public class GameCanvas extends Displayable {
     }
 
     /**
-     * Recognises classic vertical PFM menus. Rows are grouped by their horizontal
-     * geometry before navigation is calculated. This prevents an open popup menu
-     * (e.g. Options) from being mixed with Options/Finalize buttons underneath it.
+     * Detect classic green/yellow menu rows and translate a tap into the exact
+     * keypad navigation that the original game expects. v7 deliberately does
+     * not try to interpret the small Back/FW/BW row: those remain available via
+     * the large Android control strip so they cannot interfere with normal menus.
      */
     private boolean handleClassicMenuTap(int tapX,int tapY){
         try{
@@ -301,14 +237,23 @@ public class GameCanvas extends Displayable {
                 if((!active||y==477)&&runStart>=0){
                     int runEnd=active?y:y-1;
                     int height=runEnd-runStart+1;
-                    if(height>=5&&height<=40&&count<24){
+                    if(height>=5&&height<=40){
                         int minX=rowMinX(runStart,runEnd);
                         int maxX=rowMaxX(runStart,runEnd);
                         if(minX>=0&&maxX-minX>=70){
-                            ys[count]=runStart; ye[count]=runEnd;
-                            yc[count]=(runStart+runEnd)/2;
-                            xs[count]=minX; xe[count]=maxX; gold[count]=runGold;
-                            count++;
+                            if(count>0 && runStart-ye[count-1]<=4 &&
+                               Math.abs(minX-xs[count-1])<=12 && Math.abs(maxX-xe[count-1])<=18){
+                                ye[count-1]=runEnd;
+                                yc[count-1]=(ys[count-1]+runEnd)/2;
+                                gold[count-1]+=runGold;
+                                xs[count-1]=Math.min(xs[count-1],minX);
+                                xe[count-1]=Math.max(xe[count-1],maxX);
+                            } else if(count<24){
+                                ys[count]=runStart; ye[count]=runEnd;
+                                yc[count]=(runStart+runEnd)/2;
+                                xs[count]=minX; xe[count]=maxX; gold[count]=runGold;
+                                count++;
+                            }
                         }
                     }
                     runStart=-1; runGold=0;
@@ -316,37 +261,47 @@ public class GameCanvas extends Displayable {
             }
             if(count<2) return false;
 
-            int target=-1,bestDist=31;
+            int target=-1,bestDist=30;
             for(int i=0;i<count;i++){
                 int d=Math.abs(tapY-yc[i]);
-                if(d<bestDist && tapX>=xs[i]-25 && tapX<=xe[i]+25){
+                if(d<bestDist && tapX>=xs[i]-20 && tapX<=xe[i]+20){
                     bestDist=d; target=i;
                 }
             }
             if(target<0) return false;
 
-            int targetW=xe[target]-xs[target];
-            int[] group=new int[24];
-            int groupCount=0;
-            for(int i=0;i<count;i++){
-                int w=xe[i]-xs[i];
-                if(Math.abs(xs[i]-xs[target])<=34 &&
-                   Math.abs(xe[i]-xe[target])<=58 &&
-                   Math.abs(w-targetW)<=72){
-                    group[groupCount++]=i;
-                }
+            /*
+             * Build only the contiguous local cluster around the tapped row.
+             * This is the important v7 fix: an Options popup cannot absorb the
+             * Options/Finalize controls visible underneath it, even if the colors
+             * and widths happen to be similar.
+             */
+            int first=target,last=target;
+            while(first>0){
+                int i=first-1,j=first;
+                int gap=yc[j]-yc[i];
+                if(gap>72) break;
+                if(Math.abs(xs[i]-xs[target])>22 || Math.abs(xe[i]-xe[target])>38) break;
+                if(Math.abs((xe[i]-xs[i])-(xe[target]-xs[target]))>42) break;
+                first=i;
             }
-            if(groupCount<2) return false;
-
-            int targetPos=-1,selectedPos=-1,selectedGold=14;
-            for(int p=0;p<groupCount;p++){
-                int i=group[p];
-                if(i==target) targetPos=p;
-                if(gold[i]>selectedGold){ selectedGold=gold[i]; selectedPos=p; }
+            while(last<count-1){
+                int i=last+1,j=last;
+                int gap=yc[i]-yc[j];
+                if(gap>72) break;
+                if(Math.abs(xs[i]-xs[target])>22 || Math.abs(xe[i]-xe[target])>38) break;
+                if(Math.abs((xe[i]-xs[i])-(xe[target]-xs[target]))>42) break;
+                last=i;
             }
-            if(targetPos<0||selectedPos<0) return false;
+            if(last-first<1) return false;
 
-            int delta=targetPos-selectedPos;
+            int selected=-1,selectedGold=10;
+            for(int i=first;i<=last;i++){
+                if(gold[i]>selectedGold){ selectedGold=gold[i]; selected=i; }
+            }
+            if(selected<0) return false;
+
+            int delta=target-selected;
             if(delta<0) return sendRepeatedThenFire(-1,-delta);
             if(delta>0) return sendRepeatedThenFire(-2,delta);
             return sendSingle(-5);
@@ -357,8 +312,7 @@ public class GameCanvas extends Displayable {
         private float downRawX,downRawY;
         private int downX,downY;
         private int downControlKey;
-        // 0=tap candidate, 1=horizontal swipe, 2=vertical pointer drag.
-        private int gestureMode;
+        private int gestureMode; // 0=tap, 1=horizontal swipe, 2=vertical pointer drag
         private final Paint controlsPaint=new Paint(Paint.ANTI_ALIAS_FLAG);
         private final Paint controlsText=new Paint(Paint.ANTI_ALIAS_FLAG);
 
@@ -397,7 +351,6 @@ public class GameCanvas extends Displayable {
                     Math.round((y-r.top)*LOGICAL_H/(float)Math.max(1,r.height()))));
         }
 
-        /** About twice the v5 vertical size, while still clamped to the black margin. */
         private float controlHeight(int margin){
             return Math.min(172f,Math.max(128f,margin-16f));
         }
@@ -506,7 +459,6 @@ public class GameCanvas extends Displayable {
                     if(Math.abs(dx)<=TAP_MOVE_THRESHOLD&&Math.abs(dy)<=TAP_MOVE_THRESHOLD){
                         haptic();
                         if(handleCornerBackTap(x,y)) return true;
-                        if(handleMultiGoldButtonTap(x,y)) return true;
                         if(handleClassicMenuTap(x,y)) return true;
                         sendSingle(-5);
                     }
