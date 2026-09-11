@@ -1,0 +1,38 @@
+name: Fast inspect transfer core v24
+
+on:
+  push:
+    paths:
+      - '.github/workflows/inspect-transfers-fast-v24.yml'
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fast scan
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf build-inspect corefiles && mkdir build-inspect corefiles
+          unzip -q PFM_Android_Alpha084_port_source.zip -d build-inspect
+          JAR="$PWD/build-inspect/PFM_Android_Alpha084_port/app/libs/pfm_core_android.jar"
+          (cd corefiles && jar xf "$JAR")
+          echo '===== binary string hits ====='
+          grep -aRilE 'transfer|market|buy|sell|offer|contract|price|wage|fee|budget' corefiles --include='*.class' | sort | head -120 || true
+          echo '===== javap hit classes ====='
+          grep -aRilE 'transfer|market|buy|sell|offer|contract|price|wage|fee|budget' corefiles --include='*.class' | sed 's#^corefiles/##;s#/#.#g;s#\.class$##' | sort -u | head -80 > /tmp/hits.txt || true
+          cat /tmp/hits.txt
+          while read -r cls; do
+            [ -n "$cls" ] || continue
+            echo "===== $cls ====="
+            javap -classpath "$JAR" -p -c -constants "$cls" | head -1400 || true
+          done < /tmp/hits.txt
+          echo '===== du screen construction only ====='
+          javap -classpath "$JAR" -p -c du | grep -n -E -B5 -A14 'new +#[0-9]+ +// class|anewarray +#[0-9]+ +// class bl|putfield +#[0-9]+ +// Field a:\[Lbl;' | head -1400 || true
+          echo '===== subclasses of db signatures ====='
+          for f in corefiles/*.class; do
+            cls=$(basename "$f" .class)
+            sig=$(javap -classpath "$JAR" -p "$cls" 2>/dev/null | head -1 || true)
+            case "$sig" in *' extends db '*) echo "$sig";; esac
+          done
