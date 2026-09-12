@@ -53,6 +53,7 @@ public final class NativeSquad {
         LinearLayout navigation=new LinearLayout(a);navigation.setOrientation(LinearLayout.HORIZONTAL);
         Button season=new Button(a);season.setText("SEASON");season.setOnClickListener(v->NativeSeasonHub.show(a));navigation.addView(season,new LinearLayout.LayoutParams(0,LinearLayout.LayoutParams.WRAP_CONTENT,1f));
         Button editXi=new Button(a);editXi.setText("LINE-UP");editXi.setOnClickListener(v->NativeLineup.show(a));navigation.addView(editXi,new LinearLayout.LayoutParams(0,LinearLayout.LayoutParams.WRAP_CONTENT,1f));
+        Button matchday=new Button(a);matchday.setText("MATCHDAY");matchday.setOnClickListener(v->NativeMatchday.show(a));navigation.addView(matchday,new LinearLayout.LayoutParams(0,LinearLayout.LayoutParams.WRAP_CONTENT,1f));
         Button transfers=new Button(a);transfers.setText("TRANSFERS");navigation.addView(transfers,new LinearLayout.LayoutParams(0,LinearLayout.LayoutParams.WRAP_CONTENT,1f));root.addView(navigation);
 
         LinearLayout controls=new LinearLayout(a);controls.setOrientation(LinearLayout.HORIZONTAL);controls.setPadding(0,0,0,dp(a,5));
