@@ -5,6 +5,8 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.GradientDrawable;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -15,6 +17,8 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ImageView;
+import java.io.InputStream;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 
@@ -36,8 +40,8 @@ public final class NativeSeasonHub {
     }
 
     private static final class TableRow {
-        int rank,p,w,d,l,gf,ga,gd,pts;String club="";boolean user;
-        static TableRow parse(String s){TableRow r=new TableRow();try{String[] p=s.split("\\t",-1);r.rank=Integer.parseInt(p[0]);r.club=p[1];r.p=Integer.parseInt(p[2]);r.w=Integer.parseInt(p[3]);r.d=Integer.parseInt(p[4]);r.l=Integer.parseInt(p[5]);r.gf=Integer.parseInt(p[6]);r.ga=Integer.parseInt(p[7]);r.gd=Integer.parseInt(p[8]);r.pts=Integer.parseInt(p[9]);r.user="1".equals(p[10]);}catch(Throwable ignored){}return r;}
+        int rank,p,w,d,l,gf,ga,gd,pts,teamId=-1;String club="";boolean user;
+        static TableRow parse(String s){TableRow r=new TableRow();try{String[] p=s.split("\\t",-1);r.rank=Integer.parseInt(p[0]);r.club=p[1];r.p=Integer.parseInt(p[2]);r.w=Integer.parseInt(p[3]);r.d=Integer.parseInt(p[4]);r.l=Integer.parseInt(p[5]);r.gf=Integer.parseInt(p[6]);r.ga=Integer.parseInt(p[7]);r.gd=Integer.parseInt(p[8]);r.pts=Integer.parseInt(p[9]);r.user="1".equals(p[10]);if(p.length>11)r.teamId=Integer.parseInt(p[11]);}catch(Throwable ignored){}return r;}
     }
 
     private static final class MatchRow {
@@ -52,6 +56,7 @@ public final class NativeSeasonHub {
     public static void show(Activity a){
         if(!available()){Toast.makeText(a,"Season data is unavailable until a career is loaded",Toast.LENGTH_SHORT).show();return;}
         final Overview ov=Overview.parse(callString("overview"));
+        final String league=callString("leagueCode");
         final ArrayList<TableRow> standings=table();
         final ArrayList<MatchRow> matches=schedule();
 
@@ -66,15 +71,18 @@ public final class NativeSeasonHub {
         LinearLayout tabs=new LinearLayout(a);tabs.setOrientation(LinearLayout.HORIZONTAL);
         final Button tableBtn=new Button(a);tableBtn.setText("TABLE");
         final Button scheduleBtn=new Button(a);scheduleBtn.setText("SCHEDULE");
+        final Button historyBtn=new Button(a);historyBtn.setText("HISTORY");
         tabs.addView(tableBtn,new LinearLayout.LayoutParams(0,LinearLayout.LayoutParams.WRAP_CONTENT,1f));
-        tabs.addView(scheduleBtn,new LinearLayout.LayoutParams(0,LinearLayout.LayoutParams.WRAP_CONTENT,1f));root.addView(tabs);
+        tabs.addView(scheduleBtn,new LinearLayout.LayoutParams(0,LinearLayout.LayoutParams.WRAP_CONTENT,1f));
+        tabs.addView(historyBtn,new LinearLayout.LayoutParams(0,LinearLayout.LayoutParams.WRAP_CONTENT,1f));root.addView(tabs);
 
-        final LinearLayout tableHead=tableRow(a,"#","CLUB","P","W","D","L","GF","GA","GD","PTS",true);root.addView(tableHead);
+        final LinearLayout tableHead=tableRow(a,"#","CLUB","P","W","D","L","GF","GA","GD","PTS",true,null);root.addView(tableHead);
+        final TextView legend=text(a,"CHAMPIONS LEAGUE     EUROPA LEAGUE     RELEGATION",9.8f,true);legend.setPadding(dp(a,5),dp(a,2),dp(a,5),dp(a,2));legend.setBackgroundColor(0xfff4f4f4);root.addView(legend);
         final ListView tableList=new ListView(a);tableList.setDividerHeight(1);
         ArrayAdapter<TableRow> tableAdapter=new ArrayAdapter<TableRow>(a,android.R.layout.simple_list_item_1,standings){
             @Override public View getView(int pos,View cv,ViewGroup parent){
-                TableRow r=getItem(pos);LinearLayout row=tableRow(a,String.valueOf(r.rank),r.club,String.valueOf(r.p),String.valueOf(r.w),String.valueOf(r.d),String.valueOf(r.l),String.valueOf(r.gf),String.valueOf(r.ga),(r.gd>0?"+":"")+r.gd,String.valueOf(r.pts),r.user);
-                row.setBackgroundColor(r.user?0xffdff1df:Color.TRANSPARENT);return row;
+                TableRow r=getItem(pos);LinearLayout row=tableRow(a,String.valueOf(r.rank),r.club,String.valueOf(r.p),String.valueOf(r.w),String.valueOf(r.d),String.valueOf(r.l),String.valueOf(r.gf),String.valueOf(r.ga),(r.gd>0?"+":"")+r.gd,String.valueOf(r.pts),r.user,r.teamId<0?null:(league+(r.teamId+1)+".png"));
+                int color=zoneColor(league,r.rank,standings.size());GradientDrawable bg=new GradientDrawable();bg.setColor(color);if(r.user){bg.setStroke(dp(a,2),0xff2e7d32);}row.setBackground(bg);return row;
             }};
         tableList.setAdapter(tableAdapter);root.addView(tableList,new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,0,1f));
 
@@ -92,18 +100,20 @@ public final class NativeSeasonHub {
         schedList.setAdapter(schedAdapter);root.addView(schedList,new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,0,1f));
 
         final boolean[] tableMode={true};
-        Runnable sync=()->{tableHead.setVisibility(tableMode[0]?View.VISIBLE:View.GONE);tableList.setVisibility(tableMode[0]?View.VISIBLE:View.GONE);schedHead.setVisibility(tableMode[0]?View.GONE:View.VISIBLE);schedList.setVisibility(tableMode[0]?View.GONE:View.VISIBLE);tableBtn.setEnabled(!tableMode[0]);scheduleBtn.setEnabled(tableMode[0]);if(!tableMode[0]&&!matches.isEmpty()){int target=Math.max(0,Math.min(matches.size()-1,ov.played-2));schedList.setSelection(target);}};
+        Runnable sync=()->{tableHead.setVisibility(tableMode[0]?View.VISIBLE:View.GONE);legend.setVisibility(tableMode[0]?View.VISIBLE:View.GONE);tableList.setVisibility(tableMode[0]?View.VISIBLE:View.GONE);schedHead.setVisibility(tableMode[0]?View.GONE:View.VISIBLE);schedList.setVisibility(tableMode[0]?View.GONE:View.VISIBLE);tableBtn.setEnabled(!tableMode[0]);scheduleBtn.setEnabled(tableMode[0]);if(!tableMode[0]&&!matches.isEmpty()){int target=Math.max(0,Math.min(matches.size()-1,ov.played-2));schedList.setSelection(target);}};
         tableBtn.setOnClickListener(v->{tableMode[0]=true;sync.run();});scheduleBtn.setOnClickListener(v->{tableMode[0]=false;sync.run();});sync.run();
+        historyBtn.setOnClickListener(v->NativeHistory.show(a));
 
         AlertDialog dlg=new AlertDialog.Builder(a).setTitle("Season / Competition").setView(root).setPositiveButton("Close",null).create();
         dlg.setOnShowListener(x->{Window w=dlg.getWindow();if(w!=null)w.setLayout(WindowManager.LayoutParams.MATCH_PARENT,Math.round(a.getResources().getDisplayMetrics().heightPixels*0.94f));});dlg.show();
     }
 
     private static TextView cell(Context c,String value,float size,boolean bold,int gravity){TextView v=text(c,value,size,bold);v.setGravity(gravity);v.setSingleLine(true);v.setPadding(dp(c,1),dp(c,1),dp(c,1),dp(c,1));return v;}
-    private static LinearLayout tableRow(Context c,String rank,String club,String p,String w,String d,String l,String gf,String ga,String gd,String pts,boolean bold){
+    private static int zoneColor(String league,int rank,int count){int cl="en".equals(league)||"es".equals(league)||"it".equals(league)?4:("de".equals(league)||"fr".equals(league)?3:0);int el="fr".equals(league)?1:(cl>0?2:0);int releg="de".equals(league)?2:(cl>0?3:0);if(rank<=cl)return 0xffdcecff;if(rank<=cl+el)return 0xffffefc2;if(releg>0&&rank>count-releg)return 0xffffdddd;return Color.TRANSPARENT;}
+    private static LinearLayout tableRow(Context c,String rank,String club,String p,String w,String d,String l,String gf,String ga,String gd,String pts,boolean bold,String badge){
         LinearLayout row=new LinearLayout(c);row.setOrientation(LinearLayout.HORIZONTAL);row.setPadding(dp(c,2),0,dp(c,2),0);
         float[] weights={.55f,3.8f,.62f,.62f,.62f,.62f,.68f,.68f,.82f,.82f};String[] values={rank,club,p,w,d,l,gf,ga,gd,pts};
-        for(int i=0;i<values.length;i++){int gravity=i==1?(android.view.Gravity.START|android.view.Gravity.CENTER_VERTICAL):android.view.Gravity.CENTER;row.addView(cell(c,values[i],i==1?9.4f:9.1f,bold,gravity),new LinearLayout.LayoutParams(0,LinearLayout.LayoutParams.WRAP_CONTENT,weights[i]));}
+        for(int i=0;i<values.length;i++){int gravity=i==1?(android.view.Gravity.START|android.view.Gravity.CENTER_VERTICAL):android.view.Gravity.CENTER;if(i==1&&badge!=null){LinearLayout clubCell=new LinearLayout(c);clubCell.setOrientation(LinearLayout.HORIZONTAL);clubCell.setGravity(android.view.Gravity.CENTER_VERTICAL);try{InputStream in=NativeSeasonHub.class.getResourceAsStream("/resources/"+badge);if(in!=null){ImageView logo=new ImageView(c);logo.setImageBitmap(BitmapFactory.decodeStream(in));logo.setScaleType(ImageView.ScaleType.FIT_CENTER);clubCell.addView(logo,new LinearLayout.LayoutParams(dp(c,18),dp(c,18)));in.close();}}catch(Throwable ignored){}clubCell.addView(cell(c,values[i],10.5f,bold,gravity),new LinearLayout.LayoutParams(0,dp(c,22),1f));row.addView(clubCell,new LinearLayout.LayoutParams(0,dp(c,22),weights[i]));}else row.addView(cell(c,values[i],i==1?10.5f:10.1f,bold,gravity),new LinearLayout.LayoutParams(0,dp(c,22),weights[i]));}
         return row;
     }
 }
