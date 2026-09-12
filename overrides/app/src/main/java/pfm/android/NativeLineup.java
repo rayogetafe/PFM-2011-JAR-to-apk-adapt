@@ -170,6 +170,7 @@ public final class NativeLineup {
             Toast.makeText(a,"Line-up is unavailable until a career squad is loaded",Toast.LENGTH_SHORT).show();
             return;
         }
+        final boolean pauseToken=NativePause.begin();
 
         LinearLayout root=new LinearLayout(a);
         root.setOrientation(LinearLayout.VERTICAL);
@@ -379,6 +380,7 @@ public final class NativeLineup {
                 .setView(root)
                 .setPositiveButton("Close",null)
                 .create();
+        dlg.setOnDismissListener(x -> NativePause.end(pauseToken));
         dlg.setOnShowListener(x -> {
             Window w=dlg.getWindow();
             if(w!=null)w.setLayout(WindowManager.LayoutParams.MATCH_PARENT,
