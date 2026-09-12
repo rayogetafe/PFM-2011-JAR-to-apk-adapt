@@ -16,6 +16,7 @@ public final class PfmTouchBridge {
     private static final long VISUAL_SELECTION_DELAY_MS = 66L;
     private static ed cachedUi;
     private static boolean activationPending;
+    private static int routeGeneration;
 
     private PfmTouchBridge() {}
 
@@ -136,6 +137,46 @@ public final class PfmTouchBridge {
         } catch (Throwable t) {
             activationPending=false;
             Log.w(TAG,"tapActiveMenu failed",t);
+            return false;
+        }
+    }
+
+    /**
+     * Enter the stock New players controller first, then activate one of its
+     * real menu items.  This preserves the legacy parent screen used by Back;
+     * jumping straight to Buy/Search/Sell leaves that parent uninitialised.
+     */
+    public static boolean openPlayersMenuItem(final int item) {
+        if(item<0||item>2)return false;
+        try{
+            Field runtimeField=null;
+            for(Field f:db.class.getDeclaredFields())if(Modifier.isStatic(f.getModifiers())&&f.getType()==du.class){f.setAccessible(true);runtimeField=f;break;}
+            if(runtimeField==null)return false;
+            final du runtime=(du)runtimeField.get(null);
+            if(runtime==null)return false;
+            final int generation=++routeGeneration;
+            runtime.a((byte)20);
+            MAIN.postDelayed(new Runnable(){int attempts;
+                public void run(){
+                    if(generation!=routeGeneration)return;
+                    try{
+                        Field activeField=null;
+                        for(Field f:dd.class.getDeclaredFields())if(f.getType()==bl.class){f.setAccessible(true);activeField=f;break;}
+                        Object controller=activeField==null?null:activeField.get(runtime);
+                        ed manager=ui();dv active=manager==null?null:manager.a();
+                        if(controller instanceof at&&active instanceof v){
+                            ((v)active).e(item);
+                            activationPending=true;
+                            MAIN.postDelayed(new Runnable(){public void run(){dd.i=true;activationPending=false;}},VISUAL_SELECTION_DELAY_MS);
+                            return;
+                        }
+                    }catch(Throwable ignored){}
+                    if(++attempts<24)MAIN.postDelayed(this,40L);
+                }
+            },80L);
+            return true;
+        }catch(Throwable t){
+            Log.w(TAG,"players route failed",t);
             return false;
         }
     }
