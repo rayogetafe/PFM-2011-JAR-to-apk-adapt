@@ -81,8 +81,17 @@ public final class PfmSeasonBridge {
     public static String seasonLabel(){
         int s=0;
         try{s=Math.max(0,pfm2.getSeason());}catch(Throwable ignored){}
-        int y=2010+s;
+        int y=s>=2000?s:2010+s;
         return y+"/"+(y+1);
+    }
+
+    /** Resource prefix used by the original game for the active league badges. */
+    public static String leagueCode(){
+        try{
+            int league=field(ea.class,"a",Integer.TYPE).getInt(null);
+            String[] codes={"en","es","it","de","fr","in"};
+            return league>=0&&league<codes.length?codes[league]:"";
+        }catch(Throwable ignored){return "";}
     }
 
     public static int playedMatches(){return played();}
@@ -110,7 +119,7 @@ public final class PfmSeasonBridge {
     }
 
     /**
-     * Table TSV: rank, club, P, W, D, L, GF, GA, GD, PTS, isUser.
+     * Table TSV: rank, club, P, W, D, L, GF, GA, GD, PTS, isUser, teamId.
      * Uses cp.c[] — the exact legacy table permutation after the game's sorter.
      */
     public static String[] tableRows(){
@@ -121,10 +130,10 @@ public final class PfmSeasonBridge {
             String[] out=new String[order.length];
             for(int r=0;r<order.length;r++){
                 int idx=order[r]&255;
-                if(idx<0||idx>=all.length||all[idx]==null){out[r]=(r+1)+"\t?\t0\t0\t0\t0\t0\t0\t0\t0\t0";continue;}
+                if(idx<0||idx>=all.length||all[idx]==null){out[r]=(r+1)+"\t?\t0\t0\t0\t0\t0\t0\t0\t0\t0\t-1";continue;}
                 dw t=all[idx];int w=ub(t,"i"),l=ub(t,"j"),d=Math.max(0,p-w-l),gf=ub(t,"k"),ga=ub(t,"l");
                 out[r]=(r+1)+"\t"+name(t).replace('\t',' ')+"\t"+p+"\t"+w+"\t"+d+"\t"+l+"\t"+
-                        gf+"\t"+ga+"\t"+(gf-ga)+"\t"+ub(t,"h")+"\t"+(same(t,u)?1:0);
+                        gf+"\t"+ga+"\t"+(gf-ga)+"\t"+ub(t,"h")+"\t"+(same(t,u)?1:0)+"\t"+ub(t,"n");
             }
             return out;
         }catch(Throwable t){return new String[0];}
