@@ -51,6 +51,7 @@ jobs:
           MATCHDAY_BRIDGE="$PROJECT/app/src/main/java/PfmMatchdayBridge.java"
           NATIVE_SETTINGS="$PROJECT/app/src/main/java/pfm/android/NativeSettings.java"
           NATIVE_SQUAD="$PROJECT/app/src/main/java/pfm/android/NativeSquad.java"
+          NATIVE_POLICY="$PROJECT/app/src/main/java/pfm/android/NativeSquadPolicy.java"
           NATIVE_LINEUP="$PROJECT/app/src/main/java/pfm/android/NativeLineup.java"
           NATIVE_SEASON="$PROJECT/app/src/main/java/pfm/android/NativeSeasonHub.java"
           NATIVE_TRANSFERS="$PROJECT/app/src/main/java/pfm/android/NativeTransfers.java"
@@ -70,6 +71,7 @@ jobs:
           test -f "$MATCHDAY_BRIDGE"
           test -f "$NATIVE_SETTINGS"
           test -f "$NATIVE_SQUAD"
+          test -f "$NATIVE_POLICY"
           test -f "$NATIVE_LINEUP"
           test -f "$NATIVE_SEASON"
           test -f "$NATIVE_TRANSFERS"
@@ -81,7 +83,6 @@ jobs:
           grep -q 'showFatal' "$PROJECT/app/src/main/java/pfm/android/PfmActivity.java"
           grep -q 'tapActiveMenu' "$BRIDGE"
           grep -q 'openPlayersMenuItem' "$BRIDGE"
-          grep -q 'pfmNavigateAndFire' "$BRIDGE"
           grep -q 'pfmNavigateAndFire' "$GAME"
           grep -q 'VISUAL_SELECTION_DELAY_MS' "$BRIDGE"
           grep -q 'setAutoRotation' "$SETTINGS_BRIDGE"
@@ -92,11 +93,15 @@ jobs:
           grep -q 'season.setText("SEASON")' "$NATIVE_SQUAD"
           grep -q 'NativeSeasonHub.show' "$NATIVE_SQUAD"
           grep -q 'NativeTransfers.show' "$NATIVE_SQUAD"
+          grep -q 'NativeSquadPolicy.show' "$NATIVE_SQUAD"
+          grep -q 'Players used in starting XI' "$NATIVE_POLICY"
+          grep -q 'AUTO ROTATION' "$NATIVE_POLICY"
           grep -q 'NativePause.begin' "$NATIVE_SQUAD"
           grep -q 'NativePause.begin' "$NATIVE_LINEUP"
           grep -q 'marketRows' "$TRANSFER_BRIDGE"
           grep -q 'openPlayersMenuItem' "$TRANSFER_BRIDGE"
-          grep -q 'BUY / MARKET' "$NATIVE_TRANSFERS"
+          grep -q 'BUY → OK' "$NATIVE_TRANSFERS"
+          grep -q 'press the green OK button' "$NATIVE_TRANSFERS"
           grep -q 'postDelayed' "$NATIVE_TRANSFERS"
           grep -q 'PfmHistoryBridge' "$NATIVE_HISTORY"
           grep -q 'FINAL TABLE' "$NATIVE_HISTORY"
@@ -156,14 +161,15 @@ jobs:
           # v27 widens seasonal rotation while preserving the existing
           # deterministic fatigue/injury/substitution engine.
           python3 patches/v27_rotation.py "$PROJECT/app/libs/pfm_core_android.jar"
+          python3 patches/v28_sub_frequency.py "$PROJECT/app/libs/pfm_core_android.jar"
 
           if grep -q 'directLegacyMenuSelectAndFire' "$GAME"; then
             echo 'ERROR: old v13 ambiguous reflection bridge leaked into v23' >&2
             exit 1
           fi
 
-          sed -i -E 's/versionCode [0-9]+/versionCode 107/' "$PROJECT/app/build.gradle"
-          sed -i -E "s/versionName '[^']+'/versionName '0.84-android-port.24-v27-rotation-history'/" "$PROJECT/app/build.gradle"
+          sed -i -E 's/versionCode [0-9]+/versionCode 108/' "$PROJECT/app/build.gradle"
+          sed -i -E "s/versionName '[^']+'/versionName '0.84-android-port.25-v28-squad-policy'/" "$PROJECT/app/build.gradle"
 
       - name: Restore stable debug signing key
         shell: bash
@@ -212,7 +218,7 @@ jobs:
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
-          name: PFM-2011-Android-Alpha084-v27-rotation-history
+          name: PFM-2011-Android-Alpha084-v28-squad-policy
           path: ${{ env.PROJECT }}/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
           retention-days: 30

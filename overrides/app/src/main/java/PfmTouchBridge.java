@@ -41,13 +41,6 @@ public final class PfmTouchBridge {
         return null;
     }
 
-    private static int selectedIndex(dv active){
-        try{
-            for(Field f:dv.class.getDeclaredFields())if(f.getName().equals("d")&&f.getType()==Integer.TYPE){f.setAccessible(true);return f.getInt(active);}
-        }catch(Throwable ignored){}
-        return 0;
-    }
-
     /**
      * Select and activate the actual currently-active legacy menu item at x/y.
      * Returns false when the active controller is not a classic v/w menu or the
@@ -149,9 +142,11 @@ public final class PfmTouchBridge {
     }
 
     /**
-     * Enter the stock New players controller first, then activate one of its
-     * real menu items.  This preserves the legacy parent screen used by Back;
-     * jumping straight to Buy/Search/Sell leaves that parent uninitialised.
+     * Enter the stock New players controller and select one of its real menu
+     * items, but deliberately do not FIRE it. Synthetic FIRE can be consumed
+     * by the next controller on a core polling boundary, producing a blank
+     * unrelated screen. The user confirms with the visible Android OK button,
+     * which is the exact stable path used by the original menus and Back.
      */
     public static boolean openPlayersMenuItem(final int item) {
         if(item<0||item>2)return false;
@@ -172,13 +167,9 @@ public final class PfmTouchBridge {
                         Object controller=activeField==null?null:activeField.get(runtime);
                         ed manager=ui();dv active=manager==null?null:manager.a();
                         if(controller instanceof at&&active instanceof v){
-                            // Do not mutate v and dd.i directly here. That path
-                            // changes the picture but can fire between two core
-                            // polling ticks, leaving Buy/Search/Sell half-open.
-                            // Use the same held-key sequence as the bottom Android
-                            // controls, relative to the menu's real selection.
-                            int selected=selectedIndex(active);
-                            if(runtime.pfmNavigateAndFire(item-selected))return;
+                            active.e(item);
+                            Log.i(TAG,"New players ready; selected item="+item+" for manual OK");
+                            return;
                         }
                     }catch(Throwable ignored){}
                     if(++attempts<24)MAIN.postDelayed(this,40L);

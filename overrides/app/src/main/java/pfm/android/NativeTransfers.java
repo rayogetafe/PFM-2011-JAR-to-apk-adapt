@@ -45,7 +45,10 @@ public final class NativeTransfers {
         dialog.setOnDismissListener(v->{
             NativePause.end(pauseToken);
             a.getWindow().getDecorView().postDelayed(()->{
-                try{if(!open(screen))Toast.makeText(a,"Could not open the legacy transfer screen",Toast.LENGTH_SHORT).show();}
+                try{
+                    if(!open(screen))Toast.makeText(a,"Could not open the legacy transfer screen",Toast.LENGTH_SHORT).show();
+                    else Toast.makeText(a,"Selected in New players — press the green OK button",Toast.LENGTH_LONG).show();
+                }
                 finally{routing=false;}
             },180L);
         });
@@ -58,8 +61,8 @@ public final class NativeTransfers {
         final ArrayList<PlayerRow> market=rows();
         LinearLayout root=new LinearLayout(a);root.setOrientation(LinearLayout.VERTICAL);root.setPadding(dp(a,8),dp(a,2),dp(a,8),0);
         boolean window=bool("transferOpen");TextView status=text(a,"Budget: "+money(integer("budget"))+"   •   Window: "+(window?"OPEN":"CLOSED")+"   •   Listed: "+market.size(),14f,true);status.setPadding(dp(a,7),dp(a,3),dp(a,7),dp(a,5));status.setBackgroundColor(window?0xffdff1df:0xffffe3cf);root.addView(status);
-        TextView hint=text(a,"Tap a player for details. Buy, Search and Sell use the original transaction screens and preserve all core rules.",11.5f,false);hint.setPadding(dp(a,7),dp(a,4),dp(a,7),dp(a,5));root.addView(hint);
-        LinearLayout actions=new LinearLayout(a);actions.setOrientation(LinearLayout.HORIZONTAL);Button buy=new Button(a);buy.setText("BUY / MARKET");actions.addView(buy,new LinearLayout.LayoutParams(0,LinearLayout.LayoutParams.WRAP_CONTENT,1f));Button search=new Button(a);search.setText("SEARCH");actions.addView(search,new LinearLayout.LayoutParams(0,LinearLayout.LayoutParams.WRAP_CONTENT,1f));Button sell=new Button(a);sell.setText("SELL");actions.addView(sell,new LinearLayout.LayoutParams(0,LinearLayout.LayoutParams.WRAP_CONTENT,1f));root.addView(actions);
+        TextView hint=text(a,"Tap a player for details. Buy, Search and Sell safely select the matching original menu row; press the green OK button once to enter it.",11.5f,false);hint.setPadding(dp(a,7),dp(a,4),dp(a,7),dp(a,5));root.addView(hint);
+        LinearLayout actions=new LinearLayout(a);actions.setOrientation(LinearLayout.HORIZONTAL);Button buy=new Button(a);buy.setText("BUY → OK");actions.addView(buy,new LinearLayout.LayoutParams(0,LinearLayout.LayoutParams.WRAP_CONTENT,1f));Button search=new Button(a);search.setText("SEARCH → OK");actions.addView(search,new LinearLayout.LayoutParams(0,LinearLayout.LayoutParams.WRAP_CONTENT,1f));Button sell=new Button(a);sell.setText("SELL → OK");actions.addView(sell,new LinearLayout.LayoutParams(0,LinearLayout.LayoutParams.WRAP_CONTENT,1f));root.addView(actions);
         if(market.isEmpty()){TextView empty=text(a,"No players are currently listed. AI clubs populate the market as career rounds and off-season market ticks advance.",14f,false);empty.setGravity(android.view.Gravity.CENTER);root.addView(empty,new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,0,1f));}
         else{
             ListView list=new ListView(a);list.setDividerHeight(1);
