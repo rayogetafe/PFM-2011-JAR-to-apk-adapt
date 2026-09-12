@@ -41,6 +41,13 @@ public final class PfmTouchBridge {
         return null;
     }
 
+    private static int selectedIndex(dv active){
+        try{
+            for(Field f:dv.class.getDeclaredFields())if(f.getName().equals("d")&&f.getType()==Integer.TYPE){f.setAccessible(true);return f.getInt(active);}
+        }catch(Throwable ignored){}
+        return 0;
+    }
+
     /**
      * Select and activate the actual currently-active legacy menu item at x/y.
      * Returns false when the active controller is not a classic v/w menu or the
@@ -170,7 +177,7 @@ public final class PfmTouchBridge {
                             // polling ticks, leaving Buy/Search/Sell half-open.
                             // Use the same held-key sequence as the bottom Android
                             // controls, relative to the menu's real selection.
-                            int selected=active.d;
+                            int selected=selectedIndex(active);
                             if(runtime.pfmNavigateAndFire(item-selected))return;
                         }
                     }catch(Throwable ignored){}
