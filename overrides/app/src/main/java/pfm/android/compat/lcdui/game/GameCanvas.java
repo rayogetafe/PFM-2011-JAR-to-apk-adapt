@@ -155,6 +155,18 @@ public class GameCanvas extends Displayable {
         return sendSequence(keys);
     }
 
+    /**
+     * Route an Android-native action through the exact keypad path used by the
+     * original game. The caller supplies a delta from the currently selected
+     * legacy row, so this also remains correct when New players remembers its
+     * previous selection.
+     */
+    public final boolean pfmNavigateAndFire(int delta){
+        if(delta<0) return sendRepeatedThenFire(-1,-delta);
+        if(delta>0) return sendRepeatedThenFire(-2,delta);
+        return sendSingle(-5);
+    }
+
     private synchronized boolean directPointerTap(final int x,final int y){
         long now=SystemClock.uptimeMillis();
         if(now<syntheticBusyUntil) return false;

@@ -14,6 +14,7 @@ public final class PfmHistoryBridge {
     private static Field field(Class<?> c,String name,Class<?> type)throws Exception{for(Field f:c.getDeclaredFields())if(f.getName().equals(name)&&f.getType()==type){f.setAccessible(true);return f;}throw new NoSuchFieldException(name);}
     private static String playerName(int id){try{ci[] all=(ci[])field(cp.class,"a",ci[].class).get(null);if(all!=null&&id>=0&&id<all.length&&all[id]!=null)return pfmPlayerName60.name(all[id]).replace('\t',' ');}catch(Throwable ignored){}return "Player "+id;}
     private static String norm(String s){return s==null?"":s.replace(".","").replace(" ","").trim().toUpperCase();}
+    private static int teamId(String club){try{dw[] all=(dw[])field(cp.class,"a",dw[].class).get(null);if(all!=null)for(dw t:all)if(t!=null){String n="";try{n=pfmAccess50.name(t);}catch(Throwable ignored){}if(norm(n).equals(norm(club)))return field(dw.class,"n",Byte.TYPE).getByte(t)&255;}}catch(Throwable ignored){}return -1;}
     private static byte[] record(String store,int season){RecordStore rs=null;try{rs=RecordStore.openRecordStore(store,false);for(int i=1;i<=rs.getNumRecords();i++){byte[] b=rs.getRecord(i);if(b==null)continue;if(store.startsWith("P2UH")&&b.length>=8&&b[0]==85&&b[1]==50&&b[2]==72&&b[3]==49&&(((b[5]&255)<<8)|(b[6]&255))==season)return b;if(store.startsWith("P2H")&&b.length>=5&&(b[0]&255)==72&&(2010+(b[2]&255))==season)return b;}}catch(Throwable ignored){}finally{if(rs!=null)try{rs.closeRecordStore();}catch(Throwable ignored){}}return null;}
 
     public static boolean available(){try{return pfmPlayerHistoryV2.userTeam()!=null;}catch(Throwable t){return false;}}
@@ -33,7 +34,7 @@ public final class PfmHistoryBridge {
         ArrayList<R> rows=new ArrayList<R>();int count=b[3]&255,pos=5;
         for(int i=0;i<count&&pos<b.length;i++){int len=b[pos++]&255;if(pos+len+5>b.length)break;R r=new R();r.n=text(b,pos,len);pos+=len;r.pts=b[pos++]&255;r.w=b[pos++]&255;r.l=b[pos++]&255;r.gf=b[pos++]&255;r.ga=b[pos++]&255;rows.add(r);}
         Collections.sort(rows,new Comparator<R>(){public int compare(R a,R z){int c=z.pts-a.pts;if(c!=0)return c;c=(z.gf-z.ga)-(a.gf-a.ga);if(c!=0)return c;return z.gf-a.gf;}});
-        String user="";try{user=PfmSeasonBridge.teamName();}catch(Throwable ignored){}String[] out=new String[rows.size()];int played=Math.max(0,2*(rows.size()-1));for(int i=0;i<rows.size();i++){R r=rows.get(i);int d=Math.max(0,played-r.w-r.l);boolean mine=norm(r.n).equals(norm(user));out[i]=(i+1)+"\t"+r.n+"\t"+played+"\t"+r.w+"\t"+d+"\t"+r.l+"\t"+r.gf+"\t"+r.ga+"\t"+(r.gf-r.ga)+"\t"+r.pts+"\t"+(mine?1:0)+"\t-1";}return out;
+        String user="";try{user=PfmSeasonBridge.teamName();}catch(Throwable ignored){}String[] out=new String[rows.size()];int played=Math.max(0,2*(rows.size()-1));for(int i=0;i<rows.size();i++){R r=rows.get(i);int d=Math.max(0,played-r.w-r.l);boolean mine=norm(r.n).equals(norm(user));out[i]=(i+1)+"\t"+r.n+"\t"+played+"\t"+r.w+"\t"+d+"\t"+r.l+"\t"+r.gf+"\t"+r.ga+"\t"+(r.gf-r.ga)+"\t"+r.pts+"\t"+(mine?1:0)+"\t"+teamId(r.n);}return out;
     }
 
     /** TSV: playerId, name, goals, appearances, starts, rating10, speed, resistance, quality. */

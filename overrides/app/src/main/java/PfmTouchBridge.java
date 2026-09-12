@@ -165,10 +165,13 @@ public final class PfmTouchBridge {
                         Object controller=activeField==null?null:activeField.get(runtime);
                         ed manager=ui();dv active=manager==null?null:manager.a();
                         if(controller instanceof at&&active instanceof v){
-                            ((v)active).e(item);
-                            activationPending=true;
-                            MAIN.postDelayed(new Runnable(){public void run(){dd.i=true;activationPending=false;}},VISUAL_SELECTION_DELAY_MS);
-                            return;
+                            // Do not mutate v and dd.i directly here. That path
+                            // changes the picture but can fire between two core
+                            // polling ticks, leaving Buy/Search/Sell half-open.
+                            // Use the same held-key sequence as the bottom Android
+                            // controls, relative to the menu's real selection.
+                            int selected=active.d;
+                            if(runtime.pfmNavigateAndFire(item-selected))return;
                         }
                     }catch(Throwable ignored){}
                     if(++attempts<24)MAIN.postDelayed(this,40L);

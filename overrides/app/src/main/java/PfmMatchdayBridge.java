@@ -30,6 +30,17 @@ public final class PfmMatchdayBridge {
     public static String[] substitutionPlan(){ArrayList<String> out=new ArrayList<String>();try{dw t=team();int n=count(t);boolean[] used=new boolean[11];for(int i=11;i<n&&out.size()<3;i++){ci in=at(t,i);int inMinutes=minutes(t,i);if(in==null||ub(in,"b")==0||inMinutes<=0)continue;int minute=90-inMinutes,outSlot=-1;for(int j=0;j<11;j++){ci starter=at(t,j);if(!used[j]&&starter!=null&&ub(starter,"b")==ub(in,"b")&&minutes(t,j)==minute){outSlot=j;used[j]=true;break;}}out.add(minute+"\t"+(outSlot>=0?name(at(t,outSlot)):"Tactical change")+"\t"+name(in)+"\t"+outSlot+"\t"+i);}}catch(Throwable ignored){}return out.toArray(new String[out.size()]);}
 
     private static String eventStore(){int s=pfm2.getSlot();return s==1?"P2E002":(s==2?"P2E003":"P2E001");}
+    private static String matchLine(String body){
+        try{
+            int marker=body.indexOf("ROUND ");if(marker<0)return "";int start=marker+6,end=start;while(end<body.length()&&Character.isDigit(body.charAt(end)))end++;
+            int reportSeason=-1;int seasonAt=body.indexOf("SEASON ");if(seasonAt>=0){int s=seasonAt+7,e=s;while(e<body.length()&&Character.isDigit(body.charAt(e)))e++;reportSeason=Integer.parseInt(body.substring(s,e));}
+            if(reportSeason!=pfm2.getSeason())return "";
+            int round=Integer.parseInt(body.substring(start,end));String[] fixtures=PfmSeasonBridge.scheduleRows();
+            for(String row:fixtures){String[] p=row.split("\t",-1);if(p.length>=5&&Integer.parseInt(p[0])==round)return "MATCH "+p[3]+" vs "+p[4];}
+        }catch(Throwable ignored){}
+        return "";
+    }
+    private static String enrich(String body){String match=matchLine(body);if(match.length()==0)return body;int nl=body.indexOf('\n');return nl<0?body+"\n"+match:body.substring(0,nl+1)+match+"\n"+body.substring(nl+1);}
     /** Complete newest-first persisted match reports. */
-    public static String[] eventRecords(){final class E{int key;String body;}ArrayList<E> all=new ArrayList<E>();RecordStore rs=null;try{rs=RecordStore.openRecordStore(eventStore(),false);for(int i=1;i<=rs.getNumRecords();i++){String raw=new String(rs.getRecord(i));int nl=raw.indexOf('\n');if(nl<0)continue;E e=new E();try{e.key=Integer.parseInt(raw.substring(0,nl).trim());}catch(Throwable x){e.key=0;}e.body=raw.substring(nl+1);all.add(e);}}catch(Throwable ignored){}finally{if(rs!=null)try{rs.closeRecordStore();}catch(Throwable ignored){}}Collections.sort(all,new Comparator<E>(){public int compare(E a,E b){return b.key-a.key;}});String[] out=new String[all.size()];for(int i=0;i<out.length;i++)out[i]=all.get(i).body;return out;}
+    public static String[] eventRecords(){final class E{int key;String body;}ArrayList<E> all=new ArrayList<E>();RecordStore rs=null;try{rs=RecordStore.openRecordStore(eventStore(),false);for(int i=1;i<=rs.getNumRecords();i++){String raw=new String(rs.getRecord(i));int nl=raw.indexOf('\n');if(nl<0)continue;E e=new E();try{e.key=Integer.parseInt(raw.substring(0,nl).trim());}catch(Throwable x){e.key=0;}e.body=enrich(raw.substring(nl+1));all.add(e);}}catch(Throwable ignored){}finally{if(rs!=null)try{rs.closeRecordStore();}catch(Throwable ignored){}}Collections.sort(all,new Comparator<E>(){public int compare(E a,E b){return b.key-a.key;}});String[] out=new String[all.size()];for(int i=0;i<out.length;i++)out[i]=all.get(i).body;return out;}
 }
