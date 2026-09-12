@@ -23,6 +23,7 @@ import java.util.Locale;
 /** Native transfer-market overview backed by the live PFM core. */
 public final class NativeTransfers {
     private NativeTransfers() {}
+    private static boolean routing;
     private static int dp(Context c,int v){return Math.round(v*c.getResources().getDisplayMetrics().density);}
     private static TextView text(Context c,String s,float size,boolean bold){TextView v=new TextView(c);v.setText(s);v.setTextSize(size);if(bold)v.setTypeface(Typeface.DEFAULT,Typeface.BOLD);return v;}
     private static Class<?> bridge() throws Exception{return Class.forName("PfmTransferBridge");}
@@ -38,7 +39,18 @@ public final class NativeTransfers {
     private static ArrayList<PlayerRow> rows(){ArrayList<PlayerRow> out=new ArrayList<PlayerRow>();try{String[] values=(String[])bridge().getMethod("marketRows").invoke(null);if(values!=null)for(String s:values)out.add(PlayerRow.parse(s));}catch(Throwable ignored){}return out;}
     private static boolean open(int screen){try{Method m=bridge().getMethod("openLegacy",Integer.TYPE);return Boolean.TRUE.equals(m.invoke(null,Integer.valueOf(screen)));}catch(Throwable ignored){return false;}}
     private static void details(Activity a,PlayerRow p){String body="Club: "+p.club+"\nPosition: "+p.pos+"   Age: "+p.age+"\n\nSPE  "+p.spe+"\nRES  "+p.res+"\nQUA  "+p.qua+"\nMOR  "+p.mor+"\n\nOverall: "+p.rating()+"\nAsking price: "+money(p.price)+"\n\nUse BUY / MARKET to complete the transaction through the original game rules.";new AlertDialog.Builder(a).setTitle(p.name).setMessage(body).setPositiveButton("Close",null).show();}
-    private static void route(Activity a,AlertDialog dialog,int screen){dialog.dismiss();if(!open(screen))Toast.makeText(a,"Could not open the legacy transfer screen",Toast.LENGTH_SHORT).show();}
+    private static void route(Activity a,AlertDialog dialog,int screen,boolean pauseToken){
+        if(routing)return;
+        routing=true;
+        dialog.setOnDismissListener(v->{
+            NativePause.end(pauseToken);
+            a.getWindow().getDecorView().postDelayed(()->{
+                try{if(!open(screen))Toast.makeText(a,"Could not open the legacy transfer screen",Toast.LENGTH_SHORT).show();}
+                finally{routing=false;}
+            },180L);
+        });
+        dialog.dismiss();
+    }
 
     public static void show(Activity a){
         if(!bool("available")){Toast.makeText(a,"Start or load a career first",Toast.LENGTH_SHORT).show();return;}
@@ -54,6 +66,6 @@ public final class NativeTransfers {
             ArrayAdapter<PlayerRow> adapter=new ArrayAdapter<PlayerRow>(a,android.R.layout.simple_list_item_1,market){@Override public View getView(int pos,View cv,ViewGroup parent){LinearLayout row;TextView l1,l2;if(cv instanceof LinearLayout&&((LinearLayout)cv).getChildCount()==2){row=(LinearLayout)cv;l1=(TextView)row.getChildAt(0);l2=(TextView)row.getChildAt(1);}else{row=new LinearLayout(a);row.setOrientation(LinearLayout.VERTICAL);row.setPadding(dp(a,9),dp(a,5),dp(a,9),dp(a,5));l1=text(a,"",14f,true);l2=text(a,"",11.5f,false);row.addView(l1);row.addView(l2);}PlayerRow p=getItem(pos);l1.setText(p.name+"   "+p.pos+"   "+money(p.price));l2.setText(p.club+"   •   OVR "+p.rating()+"   SPE "+p.spe+"  RES "+p.res+"  QUA "+p.qua+"  MOR "+p.mor+"   AGE "+p.age);row.setBackgroundColor(p.price<=integer("budget")?Color.TRANSPARENT:0xffffeeee);return row;}};
             list.setAdapter(adapter);list.setOnItemClickListener((p,v,pos,id)->details(a,market.get(pos)));root.addView(list,new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,0,1f));
         }
-        final AlertDialog dialog=new AlertDialog.Builder(a).setTitle("Transfers / Market").setView(root).setNegativeButton("Close",null).create();buy.setOnClickListener(v->route(a,dialog,33));search.setOnClickListener(v->route(a,dialog,41));sell.setOnClickListener(v->route(a,dialog,34));dialog.setOnDismissListener(v->NativePause.end(pauseToken));dialog.setOnShowListener(v->{Window w=dialog.getWindow();if(w!=null)w.setLayout(WindowManager.LayoutParams.MATCH_PARENT,Math.round(a.getResources().getDisplayMetrics().heightPixels*0.94f));});dialog.show();
+        final AlertDialog dialog=new AlertDialog.Builder(a).setTitle("Transfers / Market").setView(root).setNegativeButton("Close",null).create();buy.setOnClickListener(v->route(a,dialog,33,pauseToken));search.setOnClickListener(v->route(a,dialog,41,pauseToken));sell.setOnClickListener(v->route(a,dialog,34,pauseToken));dialog.setOnDismissListener(v->{NativePause.end(pauseToken);routing=false;});dialog.setOnShowListener(v->{Window w=dialog.getWindow();if(w!=null)w.setLayout(WindowManager.LayoutParams.MATCH_PARENT,Math.round(a.getResources().getDisplayMetrics().heightPixels*0.94f));});dialog.show();
     }
 }
