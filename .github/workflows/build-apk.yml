@@ -3,6 +3,8 @@ name: Build standalone PFM Android APK
 on:
   workflow_dispatch:
   push:
+    branches:
+      - main
     paths:
       - 'PFM_Android_Alpha084_port_source.zip'
       - 'overrides/**'
@@ -48,12 +50,14 @@ jobs:
           PAUSE_BRIDGE="$PROJECT/app/src/main/java/PfmNativePauseBridge.java"
           TRANSFER_BRIDGE="$PROJECT/app/src/main/java/PfmTransferBridge.java"
           HISTORY_BRIDGE="$PROJECT/app/src/main/java/PfmHistoryBridge.java"
+          MATCHDAY_BRIDGE="$PROJECT/app/src/main/java/PfmMatchdayBridge.java"
           NATIVE_SETTINGS="$PROJECT/app/src/main/java/pfm/android/NativeSettings.java"
           NATIVE_SQUAD="$PROJECT/app/src/main/java/pfm/android/NativeSquad.java"
           NATIVE_LINEUP="$PROJECT/app/src/main/java/pfm/android/NativeLineup.java"
           NATIVE_SEASON="$PROJECT/app/src/main/java/pfm/android/NativeSeasonHub.java"
           NATIVE_TRANSFERS="$PROJECT/app/src/main/java/pfm/android/NativeTransfers.java"
           NATIVE_HISTORY="$PROJECT/app/src/main/java/pfm/android/NativeHistory.java"
+          NATIVE_MATCHDAY="$PROJECT/app/src/main/java/pfm/android/NativeMatchday.java"
           NATIVE_PAUSE="$PROJECT/app/src/main/java/pfm/android/NativePause.java"
           DISPLAY="$PROJECT/app/src/main/java/pfm/android/compat/lcdui/Display.java"
           test -f "$PROJECT/app/src/main/java/pfm/android/PfmActivity.java"
@@ -65,17 +69,20 @@ jobs:
           test -f "$PAUSE_BRIDGE"
           test -f "$TRANSFER_BRIDGE"
           test -f "$HISTORY_BRIDGE"
+          test -f "$MATCHDAY_BRIDGE"
           test -f "$NATIVE_SETTINGS"
           test -f "$NATIVE_SQUAD"
           test -f "$NATIVE_LINEUP"
           test -f "$NATIVE_SEASON"
           test -f "$NATIVE_TRANSFERS"
           test -f "$NATIVE_HISTORY"
+          test -f "$NATIVE_MATCHDAY"
           test -f "$NATIVE_PAUSE"
           test -f "$DISPLAY"
           grep -q 'isDoubleBuffered()' "$GAME"
           grep -q 'showFatal' "$PROJECT/app/src/main/java/pfm/android/PfmActivity.java"
           grep -q 'tapActiveMenu' "$BRIDGE"
+          grep -q 'openPlayersMenuItem' "$BRIDGE"
           grep -q 'VISUAL_SELECTION_DELAY_MS' "$BRIDGE"
           grep -q 'setAutoRotation' "$SETTINGS_BRIDGE"
           grep -q 'Auto rotation' "$NATIVE_SETTINGS"
@@ -88,6 +95,7 @@ jobs:
           grep -q 'NativePause.begin' "$NATIVE_SQUAD"
           grep -q 'NativePause.begin' "$NATIVE_LINEUP"
           grep -q 'marketRows' "$TRANSFER_BRIDGE"
+          grep -q 'openPlayersMenuItem' "$TRANSFER_BRIDGE"
           grep -q 'BUY / MARKET' "$NATIVE_TRANSFERS"
           grep -q 'postDelayed' "$NATIVE_TRANSFERS"
           grep -q 'PfmHistoryBridge' "$NATIVE_HISTORY"
@@ -96,6 +104,11 @@ jobs:
           grep -q 'leagueCode' "$SEASON_BRIDGE"
           grep -q 'CHAMPIONS LEAGUE' "$NATIVE_SEASON"
           grep -q 'NativeHistory.show' "$NATIVE_SEASON"
+          grep -q 'PfmSeasonBridge.teamName' "$HISTORY_BRIDGE"
+          grep -q 'substitutionPlan' "$MATCHDAY_BRIDGE"
+          grep -q 'eventRecords' "$MATCHDAY_BRIDGE"
+          grep -q 'AUTO SUBS' "$NATIVE_MATCHDAY"
+          grep -q 'MATCHDAY' "$NATIVE_SQUAD"
           grep -q 'swapLineupPositions' "$SQUAD_BRIDGE"
           grep -q 'formationIndex' "$SQUAD_BRIDGE"
           grep -q 'setFormationIndex' "$SQUAD_BRIDGE"
@@ -140,8 +153,8 @@ jobs:
             exit 1
           fi
 
-          sed -i -E 's/versionCode [0-9]+/versionCode 105/' "$PROJECT/app/build.gradle"
-          sed -i -E "s/versionName '[^']+'/versionName '0.84-android-port.22-v25-history-zones'/" "$PROJECT/app/build.gradle"
+          sed -i -E 's/versionCode [0-9]+/versionCode 106/' "$PROJECT/app/build.gradle"
+          sed -i -E "s/versionName '[^']+'/versionName '0.84-android-port.23-v26-matchday'/" "$PROJECT/app/build.gradle"
 
       - name: Restore stable debug signing key
         shell: bash
@@ -190,7 +203,7 @@ jobs:
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
-          name: PFM-2011-Android-Alpha084-v25-history-zones
+          name: PFM-2011-Android-Alpha084-v26-matchday
           path: ${{ env.PROJECT }}/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
           retention-days: 30
