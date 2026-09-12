@@ -41,6 +41,6 @@ public final class PfmTransferBridge {
     /** 33 Buy players, 41 Search, 34 Sell players in the stock du screen map. */
     public static boolean openLegacy(int screen){
         if(screen!=33&&screen!=41&&screen!=34)return false;
-        try{du runtime=(du)field(db.class,"a",du.class).get(null);if(runtime==null)return false;runtime.a((byte)screen);return true;}catch(Throwable ignored){return false;}
+        try{int item=screen==33?0:(screen==41?1:2);return PfmTouchBridge.openPlayersMenuItem(item);}catch(Throwable ignored){return false;}
     }
 }
