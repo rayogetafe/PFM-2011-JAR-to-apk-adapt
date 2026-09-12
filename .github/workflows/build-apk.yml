@@ -1,4 +1,5 @@
 name: Build standalone PFM Android APK
+# v28 build trigger: safe transfer hand-off and squad policy dashboard.
 
 on:
   workflow_dispatch:
