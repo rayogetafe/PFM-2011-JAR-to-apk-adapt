@@ -69,13 +69,11 @@ public final class NativeSeasonHub {
         tabs.addView(tableBtn,new LinearLayout.LayoutParams(0,LinearLayout.LayoutParams.WRAP_CONTENT,1f));
         tabs.addView(scheduleBtn,new LinearLayout.LayoutParams(0,LinearLayout.LayoutParams.WRAP_CONTENT,1f));root.addView(tabs);
 
-        final TextView tableHead=text(a,"#   CLUB                         P   W   D   L        GD      PTS",11f,true);tableHead.setPadding(dp(a,7),dp(a,4),dp(a,7),dp(a,4));root.addView(tableHead);
+        final LinearLayout tableHead=tableRow(a,"#","CLUB","P","W","D","L","GF","GA","GD","PTS",true);root.addView(tableHead);
         final ListView tableList=new ListView(a);tableList.setDividerHeight(1);
         ArrayAdapter<TableRow> tableAdapter=new ArrayAdapter<TableRow>(a,android.R.layout.simple_list_item_1,standings){
             @Override public View getView(int pos,View cv,ViewGroup parent){
-                LinearLayout row;TextView l1,l2;
-                if(cv instanceof LinearLayout&&((LinearLayout)cv).getChildCount()==2){row=(LinearLayout)cv;l1=(TextView)row.getChildAt(0);l2=(TextView)row.getChildAt(1);}else{row=new LinearLayout(a);row.setOrientation(LinearLayout.VERTICAL);row.setPadding(dp(a,8),dp(a,5),dp(a,8),dp(a,5));l1=text(a,"",14.5f,true);l2=text(a,"",11.5f,false);row.addView(l1);row.addView(l2);}
-                TableRow r=getItem(pos);l1.setText(r.rank+".  "+r.club+"                                  "+r.pts);l2.setText("P "+r.p+"   W "+r.w+"  D "+r.d+"  L "+r.l+"     "+r.gf+":"+r.ga+"   GD "+(r.gd>=0?"+":"")+r.gd+"     PTS "+r.pts);
+                TableRow r=getItem(pos);LinearLayout row=tableRow(a,String.valueOf(r.rank),r.club,String.valueOf(r.p),String.valueOf(r.w),String.valueOf(r.d),String.valueOf(r.l),String.valueOf(r.gf),String.valueOf(r.ga),(r.gd>0?"+":"")+r.gd,String.valueOf(r.pts),r.user);
                 row.setBackgroundColor(r.user?0xffdff1df:Color.TRANSPARENT);return row;
             }};
         tableList.setAdapter(tableAdapter);root.addView(tableList,new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,0,1f));
@@ -99,5 +97,13 @@ public final class NativeSeasonHub {
 
         AlertDialog dlg=new AlertDialog.Builder(a).setTitle("Season / Competition").setView(root).setPositiveButton("Close",null).create();
         dlg.setOnShowListener(x->{Window w=dlg.getWindow();if(w!=null)w.setLayout(WindowManager.LayoutParams.MATCH_PARENT,Math.round(a.getResources().getDisplayMetrics().heightPixels*0.94f));});dlg.show();
+    }
+
+    private static TextView cell(Context c,String value,float size,boolean bold,int gravity){TextView v=text(c,value,size,bold);v.setGravity(gravity);v.setSingleLine(true);v.setPadding(dp(c,1),dp(c,1),dp(c,1),dp(c,1));return v;}
+    private static LinearLayout tableRow(Context c,String rank,String club,String p,String w,String d,String l,String gf,String ga,String gd,String pts,boolean bold){
+        LinearLayout row=new LinearLayout(c);row.setOrientation(LinearLayout.HORIZONTAL);row.setPadding(dp(c,2),0,dp(c,2),0);
+        float[] weights={.55f,3.8f,.62f,.62f,.62f,.62f,.68f,.68f,.82f,.82f};String[] values={rank,club,p,w,d,l,gf,ga,gd,pts};
+        for(int i=0;i<values.length;i++){int gravity=i==1?(android.view.Gravity.START|android.view.Gravity.CENTER_VERTICAL):android.view.Gravity.CENTER;row.addView(cell(c,values[i],i==1?9.4f:9.1f,bold,gravity),new LinearLayout.LayoutParams(0,LinearLayout.LayoutParams.WRAP_CONTENT,weights[i]));}
+        return row;
     }
 }
