@@ -54,8 +54,10 @@ public final class NativeSquad {
         Button season=new Button(a);season.setText("SEASON");season.setOnClickListener(v->NativeSeasonHub.show(a));navigation.addView(season,new LinearLayout.LayoutParams(0,LinearLayout.LayoutParams.WRAP_CONTENT,1f));
         Button editXi=new Button(a);editXi.setText("LINE-UP");editXi.setOnClickListener(v->NativeLineup.show(a));navigation.addView(editXi,new LinearLayout.LayoutParams(0,LinearLayout.LayoutParams.WRAP_CONTENT,1f));
         Button matchday=new Button(a);matchday.setText("MATCHDAY");matchday.setOnClickListener(v->NativeMatchday.show(a));navigation.addView(matchday,new LinearLayout.LayoutParams(0,LinearLayout.LayoutParams.WRAP_CONTENT,1f));
-        Button transfers=new Button(a);transfers.setText("TRANSFERS");navigation.addView(transfers,new LinearLayout.LayoutParams(0,LinearLayout.LayoutParams.WRAP_CONTENT,1f));root.addView(navigation);
+        // NativeTransfers.show is intentionally retired; transactions stay in the original JAR menu.
+        root.addView(navigation);
         Button policy=new Button(a);policy.setText("SQUAD POLICY / ROTATION");root.addView(policy,new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT));
+        Button analytics=new Button(a);analytics.setText("TEAM ANALYTICS");root.addView(analytics,new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT));
 
         LinearLayout controls=new LinearLayout(a);controls.setOrientation(LinearLayout.HORIZONTAL);controls.setPadding(0,0,0,dp(a,5));
         Spinner filter=new Spinner(a);String[] filters={"All","GK","DEF","MID","FW","Unavailable"};ArrayAdapter<String> fa=new ArrayAdapter<>(a,android.R.layout.simple_spinner_item,filters);fa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);filter.setAdapter(fa);controls.addView(filter,new LinearLayout.LayoutParams(0,LinearLayout.LayoutParams.WRAP_CONTENT,1f));
@@ -67,8 +69,8 @@ public final class NativeSquad {
         Runnable refresh=()->{String f=String.valueOf(filter.getSelectedItem());String s=String.valueOf(sort.getSelectedItem());visible.clear();for(PlayerRow p:source)if(matchesFilter(p,f))visible.add(p);Comparator<PlayerRow> cmp=comparator(s);if(cmp!=null)Collections.sort(visible,cmp);adapter.notifyDataSetChanged();};
         filter.setOnItemSelectedListener(new android.widget.AdapterView.OnItemSelectedListener(){public void onItemSelected(android.widget.AdapterView<?> p,View v,int pos,long id){refresh.run();}public void onNothingSelected(android.widget.AdapterView<?> p){}});sort.setOnItemSelectedListener(new android.widget.AdapterView.OnItemSelectedListener(){public void onItemSelected(android.widget.AdapterView<?> p,View v,int pos,long id){refresh.run();}public void onNothingSelected(android.widget.AdapterView<?> p){}});refresh.run();
         AlertDialog dlg=new AlertDialog.Builder(a).setTitle(teamName()+" — Squad").setView(root).setPositiveButton("Close",null).create();
-        transfers.setOnClickListener(v->{NativeTransfers.show(a);dlg.dismiss();});
         policy.setOnClickListener(v->{NativeSquadPolicy.show(a);dlg.dismiss();});
+        analytics.setOnClickListener(v->{NativeTeamAnalytics.show(a);dlg.dismiss();});
         dlg.setOnDismissListener(x->NativePause.end(pauseToken));dlg.setOnShowListener(x->{Window w=dlg.getWindow();if(w!=null)w.setLayout(WindowManager.LayoutParams.MATCH_PARENT,Math.round(a.getResources().getDisplayMetrics().heightPixels*0.90f));});dlg.show();
     }
 }
