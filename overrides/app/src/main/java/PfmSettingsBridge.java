@@ -80,4 +80,8 @@ public final class PfmSettingsBridge {
             return false;
         }
     }
+
+    public static int getTransferFrequency(){try{return pfmTransferPolicy31.get();}catch(Throwable t){return 2;}}
+    public static boolean setTransferFrequency(int value){try{return pfmTransferPolicy31.set(value);}catch(Throwable t){return false;}}
+    public static boolean careerMode(){try{return pfm2.getMode()==1;}catch(Throwable t){return false;}}
 }

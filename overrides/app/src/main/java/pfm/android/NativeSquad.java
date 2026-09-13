@@ -69,7 +69,7 @@ public final class NativeSquad {
         list.setAdapter(adapter);list.setOnItemClickListener((parent,view,position,id)->showPlayer(a,visible.get(position)));root.addView(list,new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,0,1f));
         Runnable refresh=()->{String f=String.valueOf(filter.getSelectedItem());String s=String.valueOf(sort.getSelectedItem());visible.clear();for(PlayerRow p:source)if(matchesFilter(p,f))visible.add(p);Comparator<PlayerRow> cmp=comparator(s);if(cmp!=null)Collections.sort(visible,cmp);adapter.notifyDataSetChanged();};
         filter.setOnItemSelectedListener(new android.widget.AdapterView.OnItemSelectedListener(){public void onItemSelected(android.widget.AdapterView<?> p,View v,int pos,long id){refresh.run();}public void onNothingSelected(android.widget.AdapterView<?> p){}});sort.setOnItemSelectedListener(new android.widget.AdapterView.OnItemSelectedListener(){public void onItemSelected(android.widget.AdapterView<?> p,View v,int pos,long id){refresh.run();}public void onNothingSelected(android.widget.AdapterView<?> p){}});refresh.run();
-        AlertDialog dlg=new AlertDialog.Builder(a).setTitle(teamName()+" — Squad").setView(root).setPositiveButton("Close",null).create();
+        AlertDialog dlg=new AlertDialog.Builder(a).setTitle(teamName()+" — Squad  "+source.size()+" / 25").setView(root).setPositiveButton("Close",null).create();
         policy.setOnClickListener(v->{NativeSquadPolicy.show(a);dlg.dismiss();});
         analytics.setOnClickListener(v->{NativeTeamAnalytics.show(a);dlg.dismiss();});
         careers.setOnClickListener(v->{NativePlayerCareer.show(a);dlg.dismiss();});

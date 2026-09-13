@@ -68,6 +68,8 @@ public final class NativeSeasonHub {
         String roundText=ov.played>=ov.total?"Season complete":"Next: "+ov.next+"   •   "+(ov.played+1)+" / "+ov.total;
         TextView next=text(a,roundText,13f,false);next.setPadding(dp(a,7),dp(a,4),dp(a,7),dp(a,7));next.setBackgroundColor(0xfff2f2f2);root.addView(next);
 
+        Button leagueCenter=new Button(a);leagueCenter.setText("LEAGUE CENTER • ALL MATCHES / CLUBS");leagueCenter.setOnClickListener(v->NativeLeagueCenter.show(a));root.addView(leagueCenter,new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT));
+
         LinearLayout tabs=new LinearLayout(a);tabs.setOrientation(LinearLayout.HORIZONTAL);
         final Button tableBtn=new Button(a);tableBtn.setText("TABLE");
         final Button scheduleBtn=new Button(a);scheduleBtn.setText("SCHEDULE");
