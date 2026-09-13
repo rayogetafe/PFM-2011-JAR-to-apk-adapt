@@ -56,6 +56,7 @@ jobs:
           ROSTER_INTEGRITY="$PROJECT/app/src/main/java/pfmRosterIntegrity32.java"
           MATCH_ARCHIVE="$PROJECT/app/src/main/java/pfmLeagueMatchArchive34.java"
           MATCH_POST="$PROJECT/app/src/main/java/pfmMatchPost35.java"
+          RATING_POST="$PROJECT/app/src/main/java/pfmRatingPost36.java"
           NATIVE_SETTINGS="$PROJECT/app/src/main/java/pfm/android/NativeSettings.java"
           NATIVE_SQUAD="$PROJECT/app/src/main/java/pfm/android/NativeSquad.java"
           NATIVE_POLICY="$PROJECT/app/src/main/java/pfm/android/NativeSquadPolicy.java"
@@ -196,6 +197,7 @@ jobs:
           test -s "$ROSTER_INTEGRITY"
           test -s "$MATCH_ARCHIVE"
           test -s "$MATCH_POST"
+          test -s "$RATING_POST"
           grep -q 'repairAll' "$ROSTER_INTEGRITY"
           grep -q 'runStockMarketTick' "$TRANSFER_POLICY"
           grep -q 'snapshotRound' "$GK_STATS"
@@ -208,9 +210,16 @@ jobs:
           grep -q 'exact fixture lineups' patches/v34_match_archive.py
           python3 patches/v35_match_post.py "$PROJECT/app/libs/pfm_core_android.jar"
           grep -q 'assists and discipline archived' patches/v35_match_post.py
+          python3 patches/v36_same_round_discipline.py "$PROJECT/app/libs/pfm_core_android.jar"
+          grep -q 'completed live round' patches/v36_same_round_discipline.py
+          grep -q 'completedRoundOne' "$MATCH_POST"
+          grep -q 'ratingSum10' "$RATING_POST"
           grep -q 'SUBSTITUTES USED' "$NATIVE_LEAGUE"
           grep -q 'MATCH STATISTICS' "$NATIVE_LEAGUE"
           grep -q 'Open club' "$NATIVE_LEAGUE"
+          grep -q 'leaguePlayerRows' "$LEAGUE_BRIDGE"
+          grep -q 'rosterAudit' "$LEAGUE_BRIDGE"
+          grep -q 'Player or club name' "$NATIVE_LEAGUE"
           grep -q 'matchReport' "$LEAGUE_BRIDGE"
           grep -q 'snapshotAfterLoad' "$TRANSFER_POLICY"
 
@@ -219,8 +228,8 @@ jobs:
             exit 1
           fi
 
-          sed -i -E 's/versionCode [0-9]+/versionCode 115/' "$PROJECT/app/build.gradle"
-          sed -i -E "s/versionName '[^']+'/versionName '0.84-android-port.32-v35-match-center'/" "$PROJECT/app/build.gradle"
+          sed -i -E 's/versionCode [0-9]+/versionCode 116/' "$PROJECT/app/build.gradle"
+          sed -i -E "s/versionName '[^']+'/versionName '0.84-android-port.33-v36-live-match-stats'/" "$PROJECT/app/build.gradle"
 
       - name: Restore stable debug signing key
         shell: bash
@@ -269,7 +278,7 @@ jobs:
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
-          name: PFM-2011-Android-Alpha084-v35-match-center
+          name: PFM-2011-Android-Alpha084-v36-live-match-stats
           path: ${{ env.PROJECT }}/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
           retention-days: 30

@@ -86,8 +86,10 @@ def patch_class(data):
                 code = bytes(buf[code_start:code_end])
                 if code.count(b"\x10\x19") != 2 or code.count(b"\x10\x06") != 1:
                     raise RuntimeError("unexpected pfmCondition60.starts bytecode")
-                code = code.replace(b"\x10\x19", b"\x10\x14")
-                code = code.replace(b"\x10\x06", b"\x10\x08")
+                # v36 midpoint calibration: v27's 20/8 produced too few
+                # 37–38-start players, while the stock 25/6 was too static.
+                code = code.replace(b"\x10\x19", b"\x10\x17")
+                code = code.replace(b"\x10\x06", b"\x10\x07")
                 buf[code_start:code_end] = code
                 found = True
             pos = attr_start + attr_len
@@ -115,7 +117,7 @@ def main(path):
     finally:
         if os.path.exists(temporary):
             os.unlink(temporary)
-    print("v27 rotation: fatigue threshold 25->20, selection penalty 6->8")
+    print("v36 rotation calibration: fatigue threshold 25->23, selection penalty 6->7")
 
 
 if __name__ == "__main__":
