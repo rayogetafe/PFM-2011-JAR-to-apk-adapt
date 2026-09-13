@@ -21,17 +21,20 @@ public final class NativeSquadPolicy {
     private static boolean setAuto(boolean value){try{return Boolean.TRUE.equals(Class.forName("PfmSettingsBridge").getMethod("setAutoRotation",Boolean.TYPE).invoke(null,Boolean.valueOf(value)));}catch(Throwable t){return false;}}
     private static String teamName(){try{return String.valueOf(Class.forName("PfmSquadBridge").getMethod("teamName").invoke(null));}catch(Throwable t){return "Squad";}}
     private static String[] rows(){try{return (String[])Class.forName("PfmSquadBridge").getMethod("rows").invoke(null);}catch(Throwable t){return new String[0];}}
+    private static int playedMatches(){try{return ((Integer)Class.forName("PfmSeasonBridge").getMethod("playedMatches").invoke(null)).intValue();}catch(Throwable t){return 0;}}
 
     private static String summary(){
-        int players=0,starters=0,starts=0,apps=0,played=0,highFatigue=0,unavailable=0;
+        int players=0,starters=0,starts=0,apps=0,highFatigue=0,unavailable=0;
         for(String row:rows())try{
             String[] p=row.split("\\t",-1);players++;int st=Integer.parseInt(p[10]);int ap=Integer.parseInt(p[11]);int fatigue=Integer.parseInt(p[15]);int injury=Integer.parseInt(p[16]);int suspension=Integer.parseInt(p[19]);
-            starts+=st;apps+=ap;if(st>0)starters++;if(ap>played)played=ap;if(fatigue>=60)highFatigue++;if(injury>0||suspension>0)unavailable++;
+            starts+=st;apps+=ap;if(st>0)starters++;if(fatigue>=60)highFatigue++;if(injury>0||suspension>0)unavailable++;
         }catch(Throwable ignored){}
+        int played=Math.max(0,playedMatches());
         int subApps=Math.max(0,apps-starts);double perMatch=played<=0?0.0:(double)subApps/(double)played;
         String rotation=starters<16?"narrow":(starters<=21?"balanced":"wide");
         String subs=played<=0?"not available":(perMatch<2.65?"slightly low":(perMatch<=2.95?"realistic":"high"));
-        return "Season matches: "+played+"\nPlayers used in starting XI: "+starters+" / "+players+"  ("+rotation+")\nSubstitute appearances: "+subApps+"  •  "+String.format(Locale.US,"%.2f",perMatch)+" per match  ("+subs+")\nHigh fatigue (60+): "+highFatigue+"  •  Injured/suspended: "+unavailable;
+        int expectedStarts=played*11;String integrity=played<=0?"waiting for matches":(starts==expectedStarts?"complete":"check: "+starts+" / "+expectedStarts+" starts");
+        return "Team matches: "+played+"  •  stat integrity: "+integrity+"\nPlayers used in starting XI: "+starters+" / "+players+"  ("+rotation+")\nSubstitute appearances: "+subApps+"  •  "+String.format(Locale.US,"%.2f",perMatch)+" per team match  ("+subs+")\nHigh fatigue (60+): "+highFatigue+"  •  Injured/suspended: "+unavailable;
     }
 
     public static void show(Activity a){

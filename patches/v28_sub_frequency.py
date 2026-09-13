@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Slightly raise the deterministic three-sub-era selection probability."""
+"""Raise the deterministic three-sub-era selection probability to its v30 target."""
 import os
 import sys
 import tempfile
@@ -13,7 +13,7 @@ def patch_class(data):
     old = b"\x10\x34"
     if data.count(old) != 1:
         raise RuntimeError("unexpected pfmPatch32 BIPUSH 52 count")
-    return data.replace(old, b"\x10\x3a")
+    return data.replace(old, b"\x10\x40")
 
 
 def main(path):
@@ -30,7 +30,7 @@ def main(path):
         os.replace(temporary, path)
     finally:
         if os.path.exists(temporary): os.unlink(temporary)
-    print("v28 substitutions: base selection chance 52->58 (three-player cap preserved)")
+    print("v30 substitutions: base selection chance 52->64 (three-player cap preserved)")
 
 
 if __name__ == "__main__":

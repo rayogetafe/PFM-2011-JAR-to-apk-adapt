@@ -1,5 +1,4 @@
 name: Build standalone PFM Android APK
-# v28 build trigger: safe transfer hand-off and squad policy dashboard.
 
 on:
   workflow_dispatch:
@@ -53,6 +52,8 @@ jobs:
           NATIVE_SETTINGS="$PROJECT/app/src/main/java/pfm/android/NativeSettings.java"
           NATIVE_SQUAD="$PROJECT/app/src/main/java/pfm/android/NativeSquad.java"
           NATIVE_POLICY="$PROJECT/app/src/main/java/pfm/android/NativeSquadPolicy.java"
+          NATIVE_ANALYTICS="$PROJECT/app/src/main/java/pfm/android/NativeTeamAnalytics.java"
+          NATIVE_PLAYER_CAREER="$PROJECT/app/src/main/java/pfm/android/NativePlayerCareer.java"
           NATIVE_LINEUP="$PROJECT/app/src/main/java/pfm/android/NativeLineup.java"
           NATIVE_SEASON="$PROJECT/app/src/main/java/pfm/android/NativeSeasonHub.java"
           NATIVE_TRANSFERS="$PROJECT/app/src/main/java/pfm/android/NativeTransfers.java"
@@ -73,6 +74,8 @@ jobs:
           test -f "$NATIVE_SETTINGS"
           test -f "$NATIVE_SQUAD"
           test -f "$NATIVE_POLICY"
+          test -f "$NATIVE_ANALYTICS"
+          test -f "$NATIVE_PLAYER_CAREER"
           test -f "$NATIVE_LINEUP"
           test -f "$NATIVE_SEASON"
           test -f "$NATIVE_TRANSFERS"
@@ -93,17 +96,23 @@ jobs:
           grep -q 'NativeLineup.show' "$NATIVE_SQUAD"
           grep -q 'season.setText("SEASON")' "$NATIVE_SQUAD"
           grep -q 'NativeSeasonHub.show' "$NATIVE_SQUAD"
-          grep -q 'NativeTransfers.show' "$NATIVE_SQUAD"
           grep -q 'NativeSquadPolicy.show' "$NATIVE_SQUAD"
+          grep -q 'NativeTeamAnalytics.show' "$NATIVE_SQUAD"
+          grep -q 'NativePlayerCareer.show' "$NATIVE_SQUAD"
+          grep -q 'TOP SCORERS' "$NATIVE_ANALYTICS"
+          grep -q 'SQUAD DEPTH' "$NATIVE_ANALYTICS"
+          grep -q 'Career totals' "$NATIVE_PLAYER_CAREER"
+          grep -q 'Attribute change' "$NATIVE_PLAYER_CAREER"
           grep -q 'Players used in starting XI' "$NATIVE_POLICY"
+          grep -q 'playedMatches' "$NATIVE_POLICY"
+          grep -q 'stat integrity' "$NATIVE_POLICY"
           grep -q 'AUTO ROTATION' "$NATIVE_POLICY"
           grep -q 'NativePause.begin' "$NATIVE_SQUAD"
           grep -q 'NativePause.begin' "$NATIVE_LINEUP"
           grep -q 'marketRows' "$TRANSFER_BRIDGE"
           grep -q 'openPlayersMenuItem' "$TRANSFER_BRIDGE"
-          grep -q 'BUY → OK' "$NATIVE_TRANSFERS"
-          grep -q 'press the green OK button' "$NATIVE_TRANSFERS"
-          grep -q 'postDelayed' "$NATIVE_TRANSFERS"
+          grep -q 'experimental native transfer' "$NATIVE_TRANSFERS"
+          grep -q 'original New players menu' "$NATIVE_TRANSFERS"
           grep -q 'PfmHistoryBridge' "$NATIVE_HISTORY"
           grep -q 'FINAL TABLE' "$NATIVE_HISTORY"
           grep -q 'SQUAD STATS' "$NATIVE_HISTORY"
@@ -163,14 +172,15 @@ jobs:
           # deterministic fatigue/injury/substitution engine.
           python3 patches/v27_rotation.py "$PROJECT/app/libs/pfm_core_android.jar"
           python3 patches/v28_sub_frequency.py "$PROJECT/app/libs/pfm_core_android.jar"
+          grep -q 'base selection chance 52->64' patches/v28_sub_frequency.py
 
           if grep -q 'directLegacyMenuSelectAndFire' "$GAME"; then
             echo 'ERROR: old v13 ambiguous reflection bridge leaked into v23' >&2
             exit 1
           fi
 
-          sed -i -E 's/versionCode [0-9]+/versionCode 108/' "$PROJECT/app/build.gradle"
-          sed -i -E "s/versionName '[^']+'/versionName '0.84-android-port.25-v28-squad-policy'/" "$PROJECT/app/build.gradle"
+          sed -i -E 's/versionCode [0-9]+/versionCode 110/' "$PROJECT/app/build.gradle"
+          sed -i -E "s/versionName '[^']+'/versionName '0.84-android-port.27-v30-player-careers'/" "$PROJECT/app/build.gradle"
 
       - name: Restore stable debug signing key
         shell: bash
@@ -219,7 +229,7 @@ jobs:
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
-          name: PFM-2011-Android-Alpha084-v28-squad-policy
+          name: PFM-2011-Android-Alpha084-v30-player-careers
           path: ${{ env.PROJECT }}/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
           retention-days: 30
