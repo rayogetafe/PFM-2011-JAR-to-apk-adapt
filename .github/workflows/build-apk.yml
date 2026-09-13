@@ -55,6 +55,7 @@ jobs:
           STATS_HOOK="$PROJECT/app/src/main/java/pfmStatsHook31.java"
           ROSTER_INTEGRITY="$PROJECT/app/src/main/java/pfmRosterIntegrity32.java"
           MATCH_ARCHIVE="$PROJECT/app/src/main/java/pfmLeagueMatchArchive34.java"
+          MATCH_POST="$PROJECT/app/src/main/java/pfmMatchPost35.java"
           NATIVE_SETTINGS="$PROJECT/app/src/main/java/pfm/android/NativeSettings.java"
           NATIVE_SQUAD="$PROJECT/app/src/main/java/pfm/android/NativeSquad.java"
           NATIVE_POLICY="$PROJECT/app/src/main/java/pfm/android/NativeSquadPolicy.java"
@@ -194,6 +195,7 @@ jobs:
           grep -q 'rollForMarket' patches/v31_policy_stats_hooks.py
           test -s "$ROSTER_INTEGRITY"
           test -s "$MATCH_ARCHIVE"
+          test -s "$MATCH_POST"
           grep -q 'repairAll' "$ROSTER_INTEGRITY"
           grep -q 'runStockMarketTick' "$TRANSFER_POLICY"
           grep -q 'snapshotRound' "$GK_STATS"
@@ -204,7 +206,11 @@ jobs:
           grep -q 'winter and summer calls share' patches/v33_market_gateway.py
           python3 patches/v34_match_archive.py "$PROJECT/app/libs/pfm_core_android.jar"
           grep -q 'exact fixture lineups' patches/v34_match_archive.py
-          grep -q 'STARTING XI / USED SUBSTITUTES' "$NATIVE_LEAGUE"
+          python3 patches/v35_match_post.py "$PROJECT/app/libs/pfm_core_android.jar"
+          grep -q 'assists and discipline archived' patches/v35_match_post.py
+          grep -q 'SUBSTITUTES USED' "$NATIVE_LEAGUE"
+          grep -q 'MATCH STATISTICS' "$NATIVE_LEAGUE"
+          grep -q 'Open club' "$NATIVE_LEAGUE"
           grep -q 'matchReport' "$LEAGUE_BRIDGE"
           grep -q 'snapshotAfterLoad' "$TRANSFER_POLICY"
 
@@ -213,8 +219,8 @@ jobs:
             exit 1
           fi
 
-          sed -i -E 's/versionCode [0-9]+/versionCode 114/' "$PROJECT/app/build.gradle"
-          sed -i -E "s/versionName '[^']+'/versionName '0.84-android-port.31-v34-match-archive'/" "$PROJECT/app/build.gradle"
+          sed -i -E 's/versionCode [0-9]+/versionCode 115/' "$PROJECT/app/build.gradle"
+          sed -i -E "s/versionName '[^']+'/versionName '0.84-android-port.32-v35-match-center'/" "$PROJECT/app/build.gradle"
 
       - name: Restore stable debug signing key
         shell: bash
@@ -263,7 +269,7 @@ jobs:
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
-          name: PFM-2011-Android-Alpha084-v34-match-archive
+          name: PFM-2011-Android-Alpha084-v35-match-center
           path: ${{ env.PROJECT }}/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
           retention-days: 30
