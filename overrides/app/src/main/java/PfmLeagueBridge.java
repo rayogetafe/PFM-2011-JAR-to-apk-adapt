@@ -39,6 +39,11 @@ public final class PfmLeagueBridge {
         try{for(String body:PfmMatchdayBridge.eventRecords()){if(body.indexOf("\nMATCH ")<0)continue;int at=body.indexOf("ROUND ");if(at<0)continue;int s=at+6,e=s;while(e<body.length()&&Character.isDigit(body.charAt(e)))e++;if(e>s&&Integer.parseInt(body.substring(s,e))==roundOne)return body;}}catch(Throwable ignored){}return "";
     }
 
+    /** Exact per-fixture facts captured by v34 at the moment the match was played. */
+    public static String matchReport(int roundOne,int homeIndex,int awayIndex){
+        try{dw[] ts=teams();if(homeIndex<0||awayIndex<0||homeIndex>=ts.length||awayIndex>=ts.length)return "";return pfmLeagueMatchArchive34.report(roundOne,ts[homeIndex],ts[awayIndex]);}catch(Throwable ignored){return "";}
+    }
+
     /** TSV: played,total,all38,all37,GK38,GK37,DEF38,DEF37,MID38,MID37,FW38,FW37,targetTotal. */
     public static String durability(){int[] a38=new int[4],a37=new int[4];int all38=0,all37=0;try{dw[] ts=teams();ci[] ps=players();for(dw t:ts){short[] ids=order(t);int n=count(t);for(int i=0;i<n&&ids!=null&&i<ids.length;i++){int id=ids[i]&65535;if(id>=ps.length||ps[id]==null)continue;int st=pfmPlayerStats.starts(id),po=ub(ps[id],"b");if(st==38){all38++;if(po<4)a38[po]++;}if(st==37){all37++;if(po<4)a37[po]++;}}}}catch(Throwable ignored){}int target=targetTotal();return played()+"\t"+totalRounds()+"\t"+all38+"\t"+all37+"\t"+a38[0]+"\t"+a37[0]+"\t"+a38[1]+"\t"+a37[1]+"\t"+a38[2]+"\t"+a37[2]+"\t"+a38[3]+"\t"+a37[3]+"\t"+target;}
     private static int targetTotal(){try{int league=field(ea.class,"a",Integer.TYPE).getInt(null);int[] targets={21,8,13,0,20,0};return league>=0&&league<targets.length?targets[league]:0;}catch(Throwable t){return 0;}}

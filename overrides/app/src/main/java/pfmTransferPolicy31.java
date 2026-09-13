@@ -20,6 +20,12 @@ public final class pfmTransferPolicy31 {
             pfmRosterIntegrity32.repairAll();
             if(pfm2.getMode()!=1||get()==0)return;
             if(get()!=1||du.a(100)<35)bb.a();
+            /* A matchday restores pfmLineup83's pre-match roster snapshot.  The
+               winter market runs while that snapshot is still alive, so without
+               refreshing it the mail/budget survive but the player move is
+               silently rolled back.  Make the completed market the new source
+               of truth before the end-of-round restore. */
+            try{if(pfm2.getOffseasonPhase()==0)pfmLineup83.snapshotAfterLoad();}catch(Throwable ignored){}
         }catch(Throwable ignored){}
         finally{try{pfmRosterIntegrity32.repairAll();}catch(Throwable ignored){}}
     }
