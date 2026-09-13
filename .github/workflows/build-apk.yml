@@ -213,7 +213,12 @@ jobs:
           python3 patches/v36_same_round_discipline.py "$PROJECT/app/libs/pfm_core_android.jar"
           grep -q 'completed live round' patches/v36_same_round_discipline.py
           grep -q 'completedRoundOne' "$MATCH_POST"
+          grep -q 'suspensionSnapshot' "$MATCH_POST"
           grep -q 'ratingSum10' "$RATING_POST"
+          grep -q 'coherent post-match timeline' "$MATCH_ARCHIVE"
+          grep -q 'goal-minute eligible draw' "$MATCH_ARCHIVE"
+          grep -q 'One latent match flow' "$MATCH_ARCHIVE"
+          grep -q 'BitmapFactory' "$NATIVE_LEAGUE"
           grep -q 'SUBSTITUTES USED' "$NATIVE_LEAGUE"
           grep -q 'MATCH STATISTICS' "$NATIVE_LEAGUE"
           grep -q 'Open club' "$NATIVE_LEAGUE"
@@ -228,8 +233,8 @@ jobs:
             exit 1
           fi
 
-          sed -i -E 's/versionCode [0-9]+/versionCode 116/' "$PROJECT/app/build.gradle"
-          sed -i -E "s/versionName '[^']+'/versionName '0.84-android-port.33-v36-live-match-stats'/" "$PROJECT/app/build.gradle"
+          sed -i -E 's/versionCode [0-9]+/versionCode 117/' "$PROJECT/app/build.gradle"
+          sed -i -E "s/versionName '[^']+'/versionName '0.84-android-port.34-v37-coherent-match-flow'/" "$PROJECT/app/build.gradle"
 
       - name: Restore stable debug signing key
         shell: bash
@@ -278,7 +283,7 @@ jobs:
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
-          name: PFM-2011-Android-Alpha084-v36-live-match-stats
+          name: PFM-2011-Android-Alpha084-v37-coherent-match-flow
           path: ${{ env.PROJECT }}/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
           retention-days: 30
