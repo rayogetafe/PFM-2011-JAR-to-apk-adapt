@@ -18,7 +18,7 @@ public final class PfmLeagueBridge {
     private static boolean user(dw t){try{return t==pfmPlayerHistoryV2.userTeam()||ub(t,"n")==ub(pfmPlayerHistoryV2.userTeam(),"n");}catch(Throwable x){return false;}}
     private static short[] order(dw t){try{return (short[])field(dw.class,"a",short[].class).get(t);}catch(Throwable x){return null;}}
     private static int count(dw t){try{return pfmRosterAccess50.count(t);}catch(Throwable x){return 0;}}
-    public static boolean available(){try{return teams()!=null&&players()!=null&&schedule()!=null;}catch(Throwable t){return false;}}
+    public static boolean available(){try{try{pfmRosterIntegrity32.repairAll();}catch(Throwable ignored){}return teams()!=null&&players()!=null&&schedule()!=null;}catch(Throwable t){return false;}}
     public static int totalRounds(){try{return schedule().length;}catch(Throwable t){return 0;}}
     public static int playedMatches(){return played();}
     public static int goalkeeperTrackedThrough(){try{return pfmGoalkeeperStats31.trackedThrough();}catch(Throwable t){return 0;}}

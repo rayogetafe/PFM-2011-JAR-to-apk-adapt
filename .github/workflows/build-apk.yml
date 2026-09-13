@@ -53,6 +53,7 @@ jobs:
           TRANSFER_POLICY="$PROJECT/app/src/main/java/pfmTransferPolicy31.java"
           GK_STATS="$PROJECT/app/src/main/java/pfmGoalkeeperStats31.java"
           STATS_HOOK="$PROJECT/app/src/main/java/pfmStatsHook31.java"
+          ROSTER_INTEGRITY="$PROJECT/app/src/main/java/pfmRosterIntegrity32.java"
           NATIVE_SETTINGS="$PROJECT/app/src/main/java/pfm/android/NativeSettings.java"
           NATIVE_SQUAD="$PROJECT/app/src/main/java/pfm/android/NativeSquad.java"
           NATIVE_POLICY="$PROJECT/app/src/main/java/pfm/android/NativeSquadPolicy.java"
@@ -190,14 +191,21 @@ jobs:
           grep -q 'base selection chance 52->64' patches/v28_sub_frequency.py
           python3 patches/v31_policy_stats_hooks.py "$PROJECT/app/libs/pfm_core_android.jar"
           grep -q 'rollForMarket' patches/v31_policy_stats_hooks.py
+          test -s "$ROSTER_INTEGRITY"
+          grep -q 'repairAll' "$ROSTER_INTEGRITY"
+          grep -q 'runStockMarketTick' "$TRANSFER_POLICY"
+          grep -q 'snapshotRound' "$GK_STATS"
+          grep -q 'pfmRosterIntegrity32.repairAll' "$STATS_HOOK"
+          python3 patches/v32_transfer_integrity.py "$PROJECT/app/libs/pfm_core_android.jar"
+          grep -q 'runStockMarketTick' patches/v32_transfer_integrity.py
 
           if grep -q 'directLegacyMenuSelectAndFire' "$GAME"; then
             echo 'ERROR: old v13 ambiguous reflection bridge leaked into v23' >&2
             exit 1
           fi
 
-          sed -i -E 's/versionCode [0-9]+/versionCode 111/' "$PROJECT/app/build.gradle"
-          sed -i -E "s/versionName '[^']+'/versionName '0.84-android-port.28-v31-league-center'/" "$PROJECT/app/build.gradle"
+          sed -i -E 's/versionCode [0-9]+/versionCode 112/' "$PROJECT/app/build.gradle"
+          sed -i -E "s/versionName '[^']+'/versionName '0.84-android-port.29-v32-transfer-integrity'/" "$PROJECT/app/build.gradle"
 
       - name: Restore stable debug signing key
         shell: bash
@@ -246,7 +254,7 @@ jobs:
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
-          name: PFM-2011-Android-Alpha084-v31-league-center
+          name: PFM-2011-Android-Alpha084-v32-transfer-integrity
           path: ${{ env.PROJECT }}/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
           retention-days: 30

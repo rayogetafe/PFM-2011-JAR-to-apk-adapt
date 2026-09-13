@@ -14,6 +14,16 @@ public final class pfmTransferPolicy31 {
     public static boolean set(int value){try{int v=Math.max(0,Math.min(4,value));return prefs().edit().putInt(KEY,v).commit()&&get()==v;}catch(Throwable t){return false;}}
     public static int chance(){return CHANCE[get()];}
 
+    /** Gate the original transfer-list engine too; this ran before the v31 check. */
+    public static void runStockMarketTick(){
+        try{
+            pfmRosterIntegrity32.repairAll();
+            if(pfm2.getMode()!=1||get()==0)return;
+            if(get()!=1||du.a(100)<35)bb.a();
+        }catch(Throwable ignored){}
+        finally{try{pfmRosterIntegrity32.repairAll();}catch(Throwable ignored){}}
+    }
+
     /** Return value is compared with 30 by the original pfmMarketTick code. */
     public static int rollForMarket(){
         try{
@@ -21,5 +31,14 @@ public final class pfmTransferPolicy31 {
             int chance=chance();
             return chance>0&&du.a(100)<chance?0:99;
         }catch(Throwable t){return 99;}
+    }
+
+    /** Run the original private big-transfer branch and reconcile both rosters afterwards. */
+    public static void runPoach(){
+        try{
+            if(pfm2.getMode()!=1||get()==0)return;
+            java.lang.reflect.Method m=pfmMarketTick.class.getDeclaredMethod("tryPoach");m.setAccessible(true);m.invoke(null);
+        }catch(Throwable ignored){}
+        finally{try{pfmRosterIntegrity32.repairAll();}catch(Throwable ignored){}}
     }
 }

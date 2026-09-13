@@ -14,6 +14,7 @@ public final class pfmGoalkeeperStats31 {
     private static int pos(ci p){try{return field(ci.class,"b",Byte.TYPE).getByte(p)&255;}catch(Throwable x){return -1;}}
     private static int quality(ci p){try{return field(ci.class,"e",Byte.TYPE).getByte(p)&255;}catch(Throwable x){return 65;}}
     private static short[][] snapshots(){try{return (short[][])field(pfmLineup83.class,"snapByTeamId",short[][].class).get(null);}catch(Throwable x){return null;}}
+    private static int snapshotRound(){try{return field(pfmLineup83.class,"snapRound",Integer.TYPE).getInt(null);}catch(Throwable x){return -1;}}
     private static int score(dw t,int round){try{byte[] a=(byte[])field(dw.class,"c",byte[].class).get(t);return a!=null&&round>=0&&round<a.length?(a[round]&255):-1;}catch(Throwable x){return -1;}}
     private static int opponentGoals(dw team,int round){
         try{dw[] teams=(dw[])field(cp.class,"a",dw[].class).get(null);int[][][] schedule=(int[][][])field(cp.class,"a",int[][][].class).get(null);if(teams==null||schedule==null||round<0||round>=schedule.length)return -1;int id=teamId(team);for(int[] f:schedule[round]){if(f==null||f.length<2)continue;dw h=teams[f[0]],a=teams[f[1]];if(teamId(h)==id)return score(a,round);if(teamId(a)==id)return score(h,round);}}catch(Throwable ignored){}return -1;
@@ -27,9 +28,9 @@ public final class pfmGoalkeeperStats31 {
 
     public static void onMatchdayCompleted(){
         try{
-            int played=Math.max(0,cp.pfmPlayedForTable()),round=played-1;if(round<0)return;SharedPreferences p=prefs();String lastKey=prefix()+"last";int last=p.getInt(lastKey,-1);SharedPreferences.Editor e=p.edit();
-            if(played<=last){for(String k:p.getAll().keySet())if(k.startsWith(prefix()))e.remove(k);e.commit();last=-1;}
-            if(round<=last)return;dw[] teams=(dw[])field(cp.class,"a",dw[].class).get(null);ci[] players=(ci[])field(cp.class,"a",ci[].class).get(null);if(teams==null||players==null)return;
+            int round=snapshotRound();if(round<0)round=Math.max(0,cp.pfmPlayedForTable()-1);if(round<0)return;SharedPreferences p=prefs();String lastKey=prefix()+"last";int last=p.getInt(lastKey,-1);SharedPreferences.Editor e=p.edit();
+            if(round<last){for(String k:p.getAll().keySet())if(k.startsWith(prefix()))e.remove(k);e.commit();last=-1;}
+            if(round==last)return;dw[] teams=(dw[])field(cp.class,"a",dw[].class).get(null);ci[] players=(ci[])field(cp.class,"a",ci[].class).get(null);if(teams==null||players==null)return;
             for(dw team:teams){if(team==null)continue;int id=startingKeeper(team);if(id<0||id>=players.length||players[id]==null)continue;int ga=opponentGoals(team,round);if(ga<0)continue;add(e,p,id,"st",1);add(e,p,id,"ga",ga);if(ga==0)add(e,p,id,"cs",1);add(e,p,id,"sv",modelledSaves(id,players[id],round,ga));}
             e.putInt(prefix()+"tracked",get(p,"tracked")+1);e.putInt(lastKey,round).apply();
         }catch(Throwable ignored){}

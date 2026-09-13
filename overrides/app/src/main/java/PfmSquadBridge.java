@@ -91,6 +91,7 @@ public final class PfmSquadBridge {
 
     public static boolean available(){
         try{
+            try{pfmRosterIntegrity32.repairAll();}catch(Throwable ignored){}
             dw t=userTeam();
             return t!=null&&squadCount(t)>0;
         }catch(Throwable t){return false;}
