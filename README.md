@@ -4,8 +4,15 @@ Android adaptation of the Play Football Manager 2011 Alpha 0.84 J2ME core.
 
 ## Current build
 
-`v42-world-leagues-nationality` continues from v41 on the historical
+`v43-world-competition-center` continues from v42 on the historical
 `v28-build` line.  It keeps v39's match-statistics changes and adds:
+
+- a structured World Competition Center with the same compact table columns,
+  badge cells and qualification/relegation zones as the active league view;
+- a round selector covering every matchday of the current parallel season;
+- separate league leaderboards and club/squad/player-profile navigation;
+- reconstructable final-table history for completed parallel seasons without
+  retaining obsolete match-by-match archives;
 
 - deterministic parallel 2010/11 seasons for the other top-five leagues,
   synchronized to the active career calendar;

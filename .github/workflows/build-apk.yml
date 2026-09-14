@@ -247,6 +247,7 @@ jobs:
           test "$(wc -l < overrides/nationalities_v42.tsv)" -eq 2282
           test "$(grep -c $'^P\t' "$PROJECT/app/src/main/assets/world_v42.tsv")" -eq 2281
           test -s "$PROJECT/app/src/main/java/pfm/android/NativeWorldCenter.java"
+          test -s "$PROJECT/app/src/main/java/pfm/android/NativeWorldCompetition.java"
           test -s "$PROJECT/app/src/main/java/pfmNationality42.java"
           test -s "$PROJECT/app/src/main/java/pfmSubTiming38.java"
           grep -q 'suspensionSnapshot' "$MATCH_POST"
@@ -269,8 +270,8 @@ jobs:
             exit 1
           fi
 
-          sed -i -E 's/versionCode [0-9]+/versionCode 122/' "$PROJECT/app/build.gradle"
-          sed -i -E "s/versionName '[^']+'/versionName '0.84-android-port.38-v42-world-leagues-nationality'/" "$PROJECT/app/build.gradle"
+          sed -i -E 's/versionCode [0-9]+/versionCode 123/' "$PROJECT/app/build.gradle"
+          sed -i -E "s/versionName '[^']+'/versionName '0.84-android-port.38-v43-world-competition-center'/" "$PROJECT/app/build.gradle"
 
       - name: Restore stable debug signing key
         shell: bash
@@ -318,7 +319,7 @@ jobs:
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
-          name: PFM-2011-Android-Alpha084-v42-world-leagues-nationality
+          name: PFM-2011-Android-Alpha084-v43-world-competition-center
           path: ${{ env.PROJECT }}/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
           retention-days: 30
