@@ -133,7 +133,7 @@ public final class PfmSeasonBridge {
                 if(idx<0||idx>=all.length||all[idx]==null){out[r]=(r+1)+"\t?\t0\t0\t0\t0\t0\t0\t0\t0\t0\t-1";continue;}
                 dw t=all[idx];int w=ub(t,"i"),l=ub(t,"j"),d=Math.max(0,p-w-l),gf=ub(t,"k"),ga=ub(t,"l");
                 out[r]=(r+1)+"\t"+name(t).replace('\t',' ')+"\t"+p+"\t"+w+"\t"+d+"\t"+l+"\t"+
-                        gf+"\t"+ga+"\t"+(gf-ga)+"\t"+ub(t,"h")+"\t"+(same(t,u)?1:0)+"\t"+ub(t,"n");
+                        gf+"\t"+ga+"\t"+(gf-ga)+"\t"+ub(t,"h")+"\t"+(same(t,u)?1:0)+"\t"+idx;
             }
             return out;
         }catch(Throwable t){return new String[0];}

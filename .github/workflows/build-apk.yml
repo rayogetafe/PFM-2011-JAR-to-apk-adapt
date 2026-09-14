@@ -40,6 +40,13 @@ jobs:
           if [ -d overrides/app ]; then
             cp -a overrides/app/. "$PROJECT/app/"
           fi
+          # Android does not reliably expose arbitrary JAR resources through
+          # Class.getResourceAsStream. Stage the original 2010/11 game badges
+          # as real Android assets so every native screen can load them.
+          mkdir -p "$PROJECT/app/src/main/assets/badges" "$PROJECT/badge-stage"
+          unzip -q "$PROJECT/app/libs/pfm_core_android.jar" 'resources/*.png' -d "$PROJECT/badge-stage"
+          find "$PROJECT/badge-stage/resources" -maxdepth 1 -type f -regextype posix-extended -regex '.*/(en|es|it|de|fr|in)[0-9]+\.png' -exec cp {} "$PROJECT/app/src/main/assets/badges/" \;
+          test "$(find "$PROJECT/app/src/main/assets/badges" -type f -name '*.png' | wc -l)" -eq 118
           GAME="$PROJECT/app/src/main/java/pfm/android/compat/lcdui/game/GameCanvas.java"
           BRIDGE="$PROJECT/app/src/main/java/PfmTouchBridge.java"
           SETTINGS_BRIDGE="$PROJECT/app/src/main/java/PfmSettingsBridge.java"
@@ -213,11 +220,14 @@ jobs:
           python3 patches/v36_same_round_discipline.py "$PROJECT/app/libs/pfm_core_android.jar"
           grep -q 'completed live round' patches/v36_same_round_discipline.py
           grep -q 'completedRoundOne' "$MATCH_POST"
+          python3 patches/v38_sub_timing.py "$PROJECT/app/libs/pfm_core_android.jar"
+          grep -q 'pfmSubTiming38' patches/v38_sub_timing.py
+          test -s "$PROJECT/app/src/main/java/pfmSubTiming38.java"
           grep -q 'suspensionSnapshot' "$MATCH_POST"
           grep -q 'ratingSum10' "$RATING_POST"
-          grep -q 'coherent post-match timeline' "$MATCH_ARCHIVE"
+          grep -q 'v38 calibrated coherent match flow' "$MATCH_ARCHIVE"
           grep -q 'goal-minute eligible draw' "$MATCH_ARCHIVE"
-          grep -q 'One latent match flow' "$MATCH_ARCHIVE"
+          grep -q 'score and tactical noise' "$MATCH_ARCHIVE"
           grep -q 'BitmapFactory' "$NATIVE_LEAGUE"
           grep -q 'SUBSTITUTES USED' "$NATIVE_LEAGUE"
           grep -q 'MATCH STATISTICS' "$NATIVE_LEAGUE"
@@ -233,8 +243,8 @@ jobs:
             exit 1
           fi
 
-          sed -i -E 's/versionCode [0-9]+/versionCode 117/' "$PROJECT/app/build.gradle"
-          sed -i -E "s/versionName '[^']+'/versionName '0.84-android-port.34-v37-coherent-match-flow'/" "$PROJECT/app/build.gradle"
+          sed -i -E 's/versionCode [0-9]+/versionCode 118/' "$PROJECT/app/build.gradle"
+          sed -i -E "s/versionName '[^']+'/versionName '0.84-android-port.35-v38-calibrated-match-flow'/" "$PROJECT/app/build.gradle"
 
       - name: Restore stable debug signing key
         shell: bash
@@ -283,7 +293,7 @@ jobs:
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
-          name: PFM-2011-Android-Alpha084-v37-coherent-match-flow
+          name: PFM-2011-Android-Alpha084-v38-calibrated-match-flow
           path: ${{ env.PROJECT }}/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
           retention-days: 30
