@@ -1,5 +1,5 @@
 name: Build standalone PFM Android APK
-# v40: exact badge mapping and first historical roster-depth rebalance
+# v41: Chievo badge, audited 21-25 player squads, budget-neutral rebalance
 
 on:
   workflow_dispatch:
@@ -50,7 +50,7 @@ jobs:
           test "$(find "$PROJECT/app/src/main/assets/badges_v40_legacy" -type f -name '*.png' | wc -l)" -eq 118
           test "$(wc -l < "$GITHUB_WORKSPACE/overrides/badges_v40_manifest.tsv")" -eq 119
           grep -q $'^en1.png\tChelsea\tEngland/chelsea-fc.png' "$GITHUB_WORKSPACE/overrides/badges_v40_manifest.tsv"
-          grep -q $'^it14.png\tChievo\tItaly/\[bundled original\]' "$GITHUB_WORKSPACE/overrides/badges_v40_manifest.tsv"
+          grep -q $'^it14.png\tChievo\tItaly/chievo-verona.png' "$GITHUB_WORKSPACE/overrides/badges_v40_manifest.tsv"
           rm -rf "$PROJECT/app/src/main/assets/badges"
           mkdir -p "$PROJECT/app/src/main/assets/badges" "$PROJECT/badge-stage/resources"
           cp "$PROJECT/app/src/main/assets/badges_v40/"*.png "$PROJECT/app/src/main/assets/badges/"
@@ -236,6 +236,10 @@ jobs:
           grep -q 'pfmSubTiming38' patches/v38_sub_timing.py
           python3 patches/v40_roster_depth.py "$PROJECT/app/libs/pfm_core_android.jar"
           grep -q '36 historical wide/second forwards' patches/v40_roster_depth.py
+          cp "$PROJECT/app/libs/pfm_core_android.jar" "$PROJECT/v41-base.jar"
+          python3 patches/v41_roster_expansion.py "$PROJECT/app/libs/pfm_core_android.jar" overrides/roster_v41_plan.json
+          grep -q '21-25 owned players' patches/v41_roster_expansion.py
+          python3 tools/audit_v41_build.py "$PROJECT/v41-base.jar" "$PROJECT/app/libs/pfm_core_android.jar" overrides/roster_v41_plan.json
           test -s "$PROJECT/app/src/main/java/pfmSubTiming38.java"
           grep -q 'suspensionSnapshot' "$MATCH_POST"
           grep -q 'ratingSum10' "$RATING_POST"
@@ -257,8 +261,8 @@ jobs:
             exit 1
           fi
 
-          sed -i -E 's/versionCode [0-9]+/versionCode 120/' "$PROJECT/app/build.gradle"
-          sed -i -E "s/versionName '[^']+'/versionName '0.84-android-port.37-v40-exact-badges-roster-depth'/" "$PROJECT/app/build.gradle"
+          sed -i -E 's/versionCode [0-9]+/versionCode 121/' "$PROJECT/app/build.gradle"
+          sed -i -E "s/versionName '[^']+'/versionName '0.84-android-port.38-v41-audited-roster-expansion'/" "$PROJECT/app/build.gradle"
 
       - name: Restore stable debug signing key
         shell: bash
@@ -307,7 +311,7 @@ jobs:
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
-          name: PFM-2011-Android-Alpha084-v40-exact-badges-roster-depth
+          name: PFM-2011-Android-Alpha084-v41-audited-roster-expansion
           path: ${{ env.PROJECT }}/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
           retention-days: 30

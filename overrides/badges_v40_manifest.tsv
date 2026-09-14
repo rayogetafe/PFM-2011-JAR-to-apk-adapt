@@ -52,7 +52,7 @@ it10.png	Bari	Italy/ssc-bar.png	explicit supplied mapping
 it11.png	Fiorentina	Italy/acf-fiorentina.png	explicit supplied mapping
 it12.png	Lazio	Italy/ss-lazio.png	explicit supplied mapping
 it13.png	Catania	Italy/catania-fc.jpg	explicit supplied mapping
-it14.png	Chievo	Italy/[bundled original]	original fallback: Chievo source missing
+it14.png	Chievo	Italy/chievo-verona.png	explicit supplied mapping
 it15.png	Udinese	Italy/udinese-calcio.png	explicit supplied mapping
 it16.png	Cagliari	Italy/cagliari-calcio.png	explicit supplied mapping
 it17.png	Bologna	Italy/bologna-fc.png	explicit supplied mapping

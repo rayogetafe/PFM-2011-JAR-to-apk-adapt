@@ -75,7 +75,7 @@ LEAGUES = {
         ("Fiorentina", "acf-fiorentina.png"),
         ("Lazio", "ss-lazio.png"),
         ("Catania", "catania-fc.jpg"),
-        ("Chievo", None),
+        ("Chievo", "chievo-verona.png"),
         ("Udinese", "udinese-calcio.png"),
         ("Cagliari", "cagliari-calcio.png"),
         ("Bologna", "bologna-fc.png"),
@@ -232,22 +232,18 @@ def main() -> None:
             original = args.originals / resource
             if not original.is_file():
                 raise FileNotFoundError(original)
-            if filename is None:
-                source = original
-                status = "original fallback: Chievo source missing"
-            else:
-                source = args.supplied / country / filename
-                if not source.is_file():
-                    raise FileNotFoundError(source)
-                used.add(source.resolve())
-                status = "explicit supplied mapping"
+            source = args.supplied / country / filename
+            if not source.is_file():
+                raise FileNotFoundError(source)
+            used.add(source.resolve())
+            status = "explicit supplied mapping"
             native = prepare(source, (256, 256), 18)
             with Image.open(original) as old:
                 legacy_size = old.size
             legacy = prepare(source, legacy_size, 1)
             native.save(args.native_output / resource, optimize=True)
             legacy.save(args.legacy_output / resource, optimize=True)
-            rows.append(f"{resource}\t{club}\t{country}/{filename or '[bundled original]'}\t{status}")
+            rows.append(f"{resource}\t{club}\t{country}/{filename}\t{status}")
 
     for index in range(1, 21):
         resource = f"in{index}.png"
@@ -261,8 +257,8 @@ def main() -> None:
     ignored = sorted(path.as_posix() for path in supplied - used)
     if ignored != [str((args.supplied / "Italy" / "atalanta-bc.png").resolve()).replace("\\", "/")]:
         raise RuntimeError(f"unexpected unused supplied files: {ignored}")
-    if len(used) != 97:
-        raise RuntimeError(f"expected 97 explicitly mapped supplied badges, got {len(used)}")
+    if len(used) != 98:
+        raise RuntimeError(f"expected 98 explicitly mapped supplied badges, got {len(used)}")
     args.manifest.parent.mkdir(parents=True, exist_ok=True)
     args.manifest.write_text("\n".join(rows) + "\n", encoding="utf-8")
     if args.archive_dir:
@@ -278,7 +274,7 @@ def main() -> None:
         for index, start in enumerate(range(0, len(archive), chunk)):
             (args.archive_dir / f"part-{index:02d}").write_bytes(archive[start:start + chunk])
         print(f"v40 badge archive: {len(archive)} bytes in {(len(archive) + chunk - 1) // chunk} parts")
-    print("v40 badges: 97 explicit supplied mappings, Chievo fallback, Atalanta ignored")
+    print("v41 badges: 98 explicit supplied mappings, Atalanta ignored")
 
 
 if __name__ == "__main__":
