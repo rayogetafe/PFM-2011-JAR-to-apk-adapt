@@ -240,6 +240,14 @@ jobs:
           python3 patches/v41_roster_expansion.py "$PROJECT/app/libs/pfm_core_android.jar" overrides/roster_v41_plan.json
           grep -q '21-25 owned players' patches/v41_roster_expansion.py
           python3 tools/audit_v41_build.py "$PROJECT/v41-base.jar" "$PROJECT/app/libs/pfm_core_android.jar" overrides/roster_v41_plan.json
+          python3 tools/build_v42_world_asset.py "$PROJECT/app/libs/pfm_core_android.jar" overrides/nationalities_v42.tsv "$PROJECT/app/src/main/assets/world_v42.tsv"
+          mkdir -p "$PROJECT/v42-stage/resources"
+          cp overrides/nationalities_v42.tsv "$PROJECT/v42-stage/resources/nationalities_v42.tsv"
+          (cd "$PROJECT/v42-stage" && zip -q -u "$CORE_JAR" resources/nationalities_v42.tsv)
+          test "$(wc -l < overrides/nationalities_v42.tsv)" -eq 2282
+          test "$(grep -c $'^P\t' "$PROJECT/app/src/main/assets/world_v42.tsv")" -eq 2281
+          test -s "$PROJECT/app/src/main/java/pfm/android/NativeWorldCenter.java"
+          test -s "$PROJECT/app/src/main/java/pfmNationality42.java"
           test -s "$PROJECT/app/src/main/java/pfmSubTiming38.java"
           grep -q 'suspensionSnapshot' "$MATCH_POST"
           grep -q 'ratingSum10' "$RATING_POST"
@@ -261,8 +269,8 @@ jobs:
             exit 1
           fi
 
-          sed -i -E 's/versionCode [0-9]+/versionCode 121/' "$PROJECT/app/build.gradle"
-          sed -i -E "s/versionName '[^']+'/versionName '0.84-android-port.38-v41-audited-roster-expansion'/" "$PROJECT/app/build.gradle"
+          sed -i -E 's/versionCode [0-9]+/versionCode 122/' "$PROJECT/app/build.gradle"
+          sed -i -E "s/versionName '[^']+'/versionName '0.84-android-port.38-v42-world-leagues-nationality'/" "$PROJECT/app/build.gradle"
 
       - name: Restore stable debug signing key
         shell: bash
@@ -310,7 +318,7 @@ jobs:
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
-          name: PFM-2011-Android-Alpha084-v41-audited-roster-expansion
+          name: PFM-2011-Android-Alpha084-v42-world-leagues-nationality
           path: ${{ env.PROJECT }}/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
           retention-days: 30

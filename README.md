@@ -4,8 +4,16 @@ Android adaptation of the Play Football Manager 2011 Alpha 0.84 J2ME core.
 
 ## Current build
 
-`v41-audited-roster-expansion` continues from the v40 code on the historical
+`v42-world-leagues-nationality` continues from v41 on the historical
 `v28-build` line.  It keeps v39's match-statistics changes and adds:
+
+- deterministic parallel 2010/11 seasons for the other top-five leagues,
+  synchronized to the active career calendar;
+- World Leagues tables, results and player scoring lists;
+- an audited nationality sidecar for all 2,281 club-owned players (2,179 FIFA
+  11 matches plus 102 manual identity checks) without changing legacy saves;
+- the stock engine and exact League Center for the active competition, avoiding
+  conflicting duplicate simulation;
 
 - an explicit, auditable mapping from the league database order to all 98 club
   badge slots, replacing v39's unreliable visual-similarity assignment;
