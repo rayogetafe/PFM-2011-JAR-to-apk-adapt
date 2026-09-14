@@ -4,7 +4,7 @@ Android adaptation of the Play Football Manager 2011 Alpha 0.84 J2ME core.
 
 ## Current build
 
-`v45-stock-fast-world-sim` continues from v44 on the historical
+`v46-world-engine-recalibration` continues from v45 on the historical
 `v28-build` line.  It keeps v39's match-statistics changes and adds:
 
 - an isolated port of the original `bb` quick-match strength and scoring
@@ -17,6 +17,11 @@ Android adaptation of the Play Football Manager 2011 Alpha 0.84 J2ME core.
   completed-season history after a new season starts;
 - active-league detection cross-checked against the actual loaded legacy
   table, preventing that competition from being duplicated in this screen;
+- stock formation/style attack shares replace v45's incorrect fixed 50/50
+  assumption, with league opportunity tempo calibrated before every roll;
+- ten-season per-league scoring guards target the observed 2010/11 environment
+  (including Ligue 1's materially lower scoring rate), without post-processing
+  match scores or weakening team-strength differences;
 
 - a fourteen-segment parallel match model shaped after the stock fast-match
   engine, using the ordered starting XI instead of whole-squad averages;
