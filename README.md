@@ -4,8 +4,19 @@ Android adaptation of the Play Football Manager 2011 Alpha 0.84 J2ME core.
 
 ## Current build
 
-`v44-world-engine-parity` continues from v43 on the historical
+`v45-stock-fast-world-sim` continues from v44 on the historical
 `v28-build` line.  It keeps v39's match-statistics changes and adds:
+
+- an isolated port of the original `bb` quick-match strength and scoring
+  formula for the four parallel leagues, including XI attributes and morale;
+- the stock fourteen attacking checks per match without touching the active
+  career's global points, morale, fixtures, or player-stat arrays;
+- appearance-safe scorers and assist providers, so a player can no longer
+  record a goal or assist while showing zero appearances;
+- fresh table rows from the list adapter, fixing missing ranks 18/19 in
+  completed-season history after a new season starts;
+- active-league detection cross-checked against the actual loaded legacy
+  table, preventing that competition from being duplicated in this screen;
 
 - a fourteen-segment parallel match model shaped after the stock fast-match
   engine, using the ordered starting XI instead of whole-squad averages;
