@@ -1,0 +1,4 @@
+build-inspect/
+work/
+__pycache__/
+*.pyc

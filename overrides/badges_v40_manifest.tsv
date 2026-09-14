@@ -1,0 +1,119 @@
+resource	club	source	status
+en1.png	Chelsea	England/chelsea-fc.png	explicit supplied mapping
+en2.png	Man United	England/manchester-united.png	explicit supplied mapping
+en3.png	Arsenal	England/arsenal-fc.png	explicit supplied mapping
+en4.png	Tottenham	England/tottenham-hotspur.png	explicit supplied mapping
+en5.png	Man City	England/manchester-city.png	explicit supplied mapping
+en6.png	Aston Villa	England/aston-villa.png	explicit supplied mapping
+en7.png	Liverpool	England/liverpool-fc.png	explicit supplied mapping
+en8.png	Everton	England/everton-fc.png	explicit supplied mapping
+en9.png	Birmingham	England/birmingham-city.png	explicit supplied mapping
+en10.png	Blackburn	England/blackburn-rovers.png	explicit supplied mapping
+en11.png	Stoke City	England/stoke-city.png	explicit supplied mapping
+en12.png	Fulham	England/fulham-fc.png	explicit supplied mapping
+en13.png	Sunderland	England/sunderland-afc.png	explicit supplied mapping
+en14.png	Bolton	England/bolton-wanderers.png	explicit supplied mapping
+en15.png	Wolves	England/wolverhampton-wanderers.png	explicit supplied mapping
+en16.png	Wigan	England/wigan-athletic.png	explicit supplied mapping
+en17.png	West Ham	England/west-ham-united.png	explicit supplied mapping
+en18.png	Newcastle	England/newcastle-united.png	explicit supplied mapping
+en19.png	West Brom	England/west-bromwich-albion.png	explicit supplied mapping
+en20.png	Blackpool	England/blackpool-fc.png	explicit supplied mapping
+es1.png	Barcelona	Spain/fc-barcelona.png	explicit supplied mapping
+es2.png	Real Madrid	Spain/real-madrid.png	explicit supplied mapping
+es3.png	Sevilla	Spain/sevilla-fc.png	explicit supplied mapping
+es4.png	Atl. Madrid	Spain/atletico-madrid.png	explicit supplied mapping
+es5.png	Villarreal	Spain/villarreal-cf.png	explicit supplied mapping
+es6.png	Valencia	Spain/valencia-cf.png	explicit supplied mapping
+es7.png	Deportivo	Spain/deportivo-de-a-coruna.png	explicit supplied mapping
+es8.png	Malaga	Spain/malaga-cf.png	explicit supplied mapping
+es9.png	Mallorca	Spain/rcd-mallorca.png	explicit supplied mapping
+es10.png	Espanyol	Spain/rcd-espanyo.png	explicit supplied mapping
+es11.png	Almeria	Spain/ud-almeria.png	explicit supplied mapping
+es12.png	Racing	Spain/racing-de-santander.png	explicit supplied mapping
+es13.png	Ath. Bilbao	Spain/athletic-club.png	explicit supplied mapping
+es14.png	Sporting	Spain/real-sporting-de-gijon.png	explicit supplied mapping
+es15.png	Osasuna	Spain/ca-osasuna.png	explicit supplied mapping
+es16.png	Levante	Spain/levante-ud.png	explicit supplied mapping
+es17.png	Getafe	Spain/getafe-cf.png	explicit supplied mapping
+es18.png	R. Sociedad	Spain/real-sociedad-logo-footylogos.png	explicit supplied mapping
+es19.png	Zaragoza	Spain/real-zaragoza.png	explicit supplied mapping
+es20.png	Hercules	Spain/hercules-cf.png	explicit supplied mapping
+it1.png	Inter	Italy/inter-milan.png	explicit supplied mapping
+it2.png	Roma	Italy/as-roma.png	explicit supplied mapping
+it3.png	Milan	Italy/ac-milan.png	explicit supplied mapping
+it4.png	Sampdoria	Italy/uc-sampdoria.png	explicit supplied mapping
+it5.png	Palermo	Italy/palermo-fc.png	explicit supplied mapping
+it6.png	Napoli	Italy/ssc-napoli.png	explicit supplied mapping
+it7.png	Juventus	Italy/juventus-fc.png	explicit supplied mapping
+it8.png	Parma	Italy/parma-calcio.png	explicit supplied mapping
+it9.png	Genoa	Italy/genoa-cfc.png	explicit supplied mapping
+it10.png	Bari	Italy/ssc-bar.png	explicit supplied mapping
+it11.png	Fiorentina	Italy/acf-fiorentina.png	explicit supplied mapping
+it12.png	Lazio	Italy/ss-lazio.png	explicit supplied mapping
+it13.png	Catania	Italy/catania-fc.jpg	explicit supplied mapping
+it14.png	Chievo	Italy/[bundled original]	original fallback: Chievo source missing
+it15.png	Udinese	Italy/udinese-calcio.png	explicit supplied mapping
+it16.png	Cagliari	Italy/cagliari-calcio.png	explicit supplied mapping
+it17.png	Bologna	Italy/bologna-fc.png	explicit supplied mapping
+it18.png	Lecce	Italy/us-lecce.png	explicit supplied mapping
+it19.png	Cesena	Italy/cesena-f.png	explicit supplied mapping
+it20.png	Brescia	Italy/brescia-calcio.png	explicit supplied mapping
+de1.png	Bayern	Germany/bayern-munchen.png	explicit supplied mapping
+de2.png	Schalke 04	Germany/schalke-04.png	explicit supplied mapping
+de3.png	Werder	Germany/werder-bremen.png	explicit supplied mapping
+de4.png	Leverkusen	Germany/bayer-04-leverkusen.png	explicit supplied mapping
+de5.png	Dortmund	Germany/borussia-dortmund.png	explicit supplied mapping
+de6.png	Stuttgart	Germany/vfb-stuttgart.png	explicit supplied mapping
+de7.png	Hamburg	Germany/hamburger-sv-.png	explicit supplied mapping
+de8.png	Wolfsburg	Germany/vfl-wolfsburg.png	explicit supplied mapping
+de9.png	Mainz 05	Germany/1-fsv-mainz-05.png	explicit supplied mapping
+de10.png	Frankfurt	Germany/eintracht-frankfurt.png	explicit supplied mapping
+de11.png	Hoffenheim	Germany/tsg-hoffenheim.png	explicit supplied mapping
+de12.png	M'gladbach	Germany/borussia-monchengladbach.png	explicit supplied mapping
+de13.png	Koln	Germany/1-fc-koln.png	explicit supplied mapping
+de14.png	Freiburg	Germany/sc-freiburg.png	explicit supplied mapping
+de15.png	Hannover 96	Germany/hannover-9.png	explicit supplied mapping
+de16.png	Nurnberg	Germany/1-fc-nurnberg.png	explicit supplied mapping
+de17.png	K'lautern	Germany/1-fc-kaiserslautern.png	explicit supplied mapping
+de18.png	St. Pauli	Germany/fc-st-pauli.png	explicit supplied mapping
+fr1.png	Marseille	France/olympique-marseill.png	explicit supplied mapping
+fr2.png	Lyon	France/olympique-lyonnais.png	explicit supplied mapping
+fr3.png	Auxerre	France/aj-auxerre.png	explicit supplied mapping
+fr4.png	Lille	France/lille-losc.png	explicit supplied mapping
+fr5.png	Montpellier	France/montpellier-hsc.png	explicit supplied mapping
+fr6.png	Bordeaux	France/girondins-bordeaux.png	explicit supplied mapping
+fr7.png	Lorient	France/fc-lorient.png	explicit supplied mapping
+fr8.png	Monaco	France/as-monaco.png	explicit supplied mapping
+fr9.png	Rennes	France/stade-rennais.png	explicit supplied mapping
+fr10.png	Valenciennes	France/valenciennes-fc.png	explicit supplied mapping
+fr11.png	Lens	France/rc-lens.png	explicit supplied mapping
+fr12.png	Nancy	France/as-nancy-lorraine.png	explicit supplied mapping
+fr13.png	Paris SG	France/paris-saint-germain.png	explicit supplied mapping
+fr14.png	Toulouse	France/toulouse-fc.png	explicit supplied mapping
+fr15.png	Nice	France/ogc-nice.png	explicit supplied mapping
+fr16.png	Sochaux	France/sochaux-montbeliard.png	explicit supplied mapping
+fr17.png	St-Etienne	France/as-saint-etienne.png	explicit supplied mapping
+fr18.png	Caen	France/sm-caen.png	explicit supplied mapping
+fr19.png	Brest	France/stade-brestois.png	explicit supplied mapping
+fr20.png	Arles	France/ac-arlesien.png	explicit supplied mapping
+in1.png	International 1	[bundled original]	not a domestic league
+in2.png	International 2	[bundled original]	not a domestic league
+in3.png	International 3	[bundled original]	not a domestic league
+in4.png	International 4	[bundled original]	not a domestic league
+in5.png	International 5	[bundled original]	not a domestic league
+in6.png	International 6	[bundled original]	not a domestic league
+in7.png	International 7	[bundled original]	not a domestic league
+in8.png	International 8	[bundled original]	not a domestic league
+in9.png	International 9	[bundled original]	not a domestic league
+in10.png	International 10	[bundled original]	not a domestic league
+in11.png	International 11	[bundled original]	not a domestic league
+in12.png	International 12	[bundled original]	not a domestic league
+in13.png	International 13	[bundled original]	not a domestic league
+in14.png	International 14	[bundled original]	not a domestic league
+in15.png	International 15	[bundled original]	not a domestic league
+in16.png	International 16	[bundled original]	not a domestic league
+in17.png	International 17	[bundled original]	not a domestic league
+in18.png	International 18	[bundled original]	not a domestic league
+in19.png	International 19	[bundled original]	not a domestic league
+in20.png	International 20	[bundled original]	not a domestic league
