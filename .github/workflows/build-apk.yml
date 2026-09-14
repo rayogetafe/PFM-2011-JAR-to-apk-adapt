@@ -1,4 +1,7 @@
+[publish-v36 5bdcc51] Trigger v39 Android build
+ 1 file changed, 1 insertion(+)
 name: Build standalone PFM Android APK
+# v39: refined flow and dual-path historical badges
 
 on:
   workflow_dispatch:
