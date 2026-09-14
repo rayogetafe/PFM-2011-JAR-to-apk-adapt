@@ -40,12 +40,20 @@ jobs:
           if [ -d overrides/app ]; then
             cp -a overrides/app/. "$PROJECT/app/"
           fi
-          # Android does not reliably expose arbitrary JAR resources through
-          # Class.getResourceAsStream. Stage the original 2010/11 game badges
-          # as real Android assets so every native screen can load them.
-          mkdir -p "$PROJECT/app/src/main/assets/badges" "$PROJECT/badge-stage"
-          unzip -q "$PROJECT/app/libs/pfm_core_android.jar" 'resources/*.png' -d "$PROJECT/badge-stage"
-          find "$PROJECT/badge-stage/resources" -maxdepth 1 -type f -regextype posix-extended -regex '.*/(en|es|it|de|fr|in)[0-9]+\.png' -exec cp {} "$PROJECT/app/src/main/assets/badges/" \;
+          mkdir -p "$PROJECT/app/src/main/assets"
+          cat "$GITHUB_WORKSPACE/overrides/badges_v39_archive/"part-* > "$PROJECT/badges-v39.tar.gz"
+          tar -xzf "$PROJECT/badges-v39.tar.gz" -C "$PROJECT/app/src/main/assets"
+          # Install v39's verified 2010/11 badge set in both rendering paths:
+          # Android assets power native screens; JAR resources power legacy UI.
+          test "$(find "$PROJECT/app/src/main/assets/badges_v39" -type f -name '*.png' | wc -l)" -eq 118
+          test "$(find "$PROJECT/app/src/main/assets/badges_v39_legacy" -type f -name '*.png' | wc -l)" -eq 118
+          rm -rf "$PROJECT/app/src/main/assets/badges"
+          mkdir -p "$PROJECT/app/src/main/assets/badges" "$PROJECT/badge-stage/resources"
+          cp "$PROJECT/app/src/main/assets/badges_v39/"*.png "$PROJECT/app/src/main/assets/badges/"
+          cp "$PROJECT/app/src/main/assets/badges_v39_legacy/"*.png "$PROJECT/badge-stage/resources/"
+          CORE_JAR="$(realpath "$PROJECT/app/libs/pfm_core_android.jar")"
+          (cd "$PROJECT/badge-stage" && zip -q -u "$CORE_JAR" resources/*.png)
+          rm -rf "$PROJECT/app/src/main/assets/badges_v39" "$PROJECT/app/src/main/assets/badges_v39_legacy"
           test "$(find "$PROJECT/app/src/main/assets/badges" -type f -name '*.png' | wc -l)" -eq 118
           GAME="$PROJECT/app/src/main/java/pfm/android/compat/lcdui/game/GameCanvas.java"
           BRIDGE="$PROJECT/app/src/main/java/PfmTouchBridge.java"
@@ -225,7 +233,7 @@ jobs:
           test -s "$PROJECT/app/src/main/java/pfmSubTiming38.java"
           grep -q 'suspensionSnapshot' "$MATCH_POST"
           grep -q 'ratingSum10' "$RATING_POST"
-          grep -q 'v38 calibrated coherent match flow' "$MATCH_ARCHIVE"
+          grep -q 'v39 calibrated coherent match flow' "$MATCH_ARCHIVE"
           grep -q 'goal-minute eligible draw' "$MATCH_ARCHIVE"
           grep -q 'score and tactical noise' "$MATCH_ARCHIVE"
           grep -q 'BitmapFactory' "$NATIVE_LEAGUE"
@@ -243,8 +251,8 @@ jobs:
             exit 1
           fi
 
-          sed -i -E 's/versionCode [0-9]+/versionCode 118/' "$PROJECT/app/build.gradle"
-          sed -i -E "s/versionName '[^']+'/versionName '0.84-android-port.35-v38-calibrated-match-flow'/" "$PROJECT/app/build.gradle"
+          sed -i -E 's/versionCode [0-9]+/versionCode 119/' "$PROJECT/app/build.gradle"
+          sed -i -E "s/versionName '[^']+'/versionName '0.84-android-port.36-v39-refined-stats-real-badges'/" "$PROJECT/app/build.gradle"
 
       - name: Restore stable debug signing key
         shell: bash
@@ -293,7 +301,7 @@ jobs:
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
-          name: PFM-2011-Android-Alpha084-v38-calibrated-match-flow
+          name: PFM-2011-Android-Alpha084-v39-refined-stats-real-badges
           path: ${{ env.PROJECT }}/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
           retention-days: 30
