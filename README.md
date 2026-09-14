@@ -4,8 +4,15 @@ Android adaptation of the Play Football Manager 2011 Alpha 0.84 J2ME core.
 
 ## Current build
 
-`v43-world-competition-center` continues from v42 on the historical
+`v44-world-engine-parity` continues from v43 on the historical
 `v28-build` line.  It keeps v39's match-statistics changes and adds:
+
+- a fourteen-segment parallel match model shaped after the stock fast-match
+  engine, using the ordered starting XI instead of whole-squad averages;
+- an automated 10-season guard requiring 2.45-3.35 total goals per match
+  (current five-league range: 2.92-3.04);
+- only the four non-active top-five leagues in World Competitions;
+- fixed-width two-digit ranks and numeric columns plus a visible zone legend;
 
 - a structured World Competition Center with the same compact table columns,
   badge cells and qualification/relegation zones as the active league view;
