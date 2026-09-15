@@ -197,6 +197,14 @@ roster limits. The two-way legacy adapter removes the sold player from the live
 matchday squad and repeats that reconciliation after a stock save is loaded,
 so the old roster cannot silently restore a completed outgoing transfer.
 
+## Native transfer activity (v63)
+
+The global market now exposes its persistent deal journal as Transfer Activity.
+Each entry records direction, player, seller, buyer, season, fee, annual wage
+and contract length. The view can switch between the user's transactions and
+all world activity, providing the UI and audit boundary needed before AI clubs
+begin trading with one another.
+
 ## Badge audit
 
 [`overrides/badges_v40_manifest.tsv`](overrides/badges_v40_manifest.tsv) is the
