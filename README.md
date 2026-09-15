@@ -4,8 +4,16 @@ Android adaptation of the Play Football Manager 2011 Alpha 0.84 J2ME core.
 
 ## Current build
 
-`v49-lineup-driven-world-engine` continues from v48 on the historical
+`v50-market-economy-shortlist` continues from v49 on the historical
 `v28-build` line.  It keeps v39's match-statistics changes and adds:
+
+- estimated asking prices derived transparently from the original database
+  value, age, club role, positional depth and total squad size;
+- essential-player protection for shallow clubs and positions, preventing the
+  future transfer engine from stripping a club without a replacement;
+- a persistent cross-league shortlist plus Affordable and Shortlist filters;
+- economy audits covering all 2,281 players before bid/ownership mutations are
+  enabled in the next transfer block;
 
 - one shared matchday selection object now drives both the score calculation
   and the player ledger; v48 incorrectly rotated statistics after calculating
