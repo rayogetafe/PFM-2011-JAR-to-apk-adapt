@@ -180,6 +180,14 @@ completed deal and club balance. Market views and the matchday roster adapter
 now consume the career copy, making `world_v42` an import source rather than a
 runtime authority for transferred-player attributes.
 
+## Native Contract Center (v61)
+
+The user's complete native squad now has a dedicated contract view, sorted by
+expiry, with annual wage and contract end shown for every player. Renewals are
+written through the same validated atomic career transaction as transfers:
+length is restricted to 1–5 years, players reject cuts below 90% of their
+current contract and the club cannot exceed its native annual wage budget.
+
 ## Badge audit
 
 [`overrides/badges_v40_manifest.tsv`](overrides/badges_v40_manifest.tsv) is the
