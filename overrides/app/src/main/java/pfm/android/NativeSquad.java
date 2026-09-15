@@ -60,6 +60,7 @@ public final class NativeSquad {
         Button analytics=new Button(a);analytics.setText("TEAM ANALYTICS");root.addView(analytics,new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT));
         Button careers=new Button(a);careers.setText("PLAYER CAREERS");root.addView(careers,new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT));
         Button contracts=new Button(a);contracts.setText("CONTRACT CENTER");root.addView(contracts,new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT));
+        Button sales=new Button(a);sales.setText("TRANSFER OUT CENTER");root.addView(sales,new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT));
 
         LinearLayout controls=new LinearLayout(a);controls.setOrientation(LinearLayout.HORIZONTAL);controls.setPadding(0,0,0,dp(a,5));
         Spinner filter=new Spinner(a);String[] filters={"All","GK","DEF","MID","FW","Unavailable"};ArrayAdapter<String> fa=new ArrayAdapter<>(a,android.R.layout.simple_spinner_item,filters);fa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);filter.setAdapter(fa);controls.addView(filter,new LinearLayout.LayoutParams(0,LinearLayout.LayoutParams.WRAP_CONTENT,1f));
@@ -75,6 +76,7 @@ public final class NativeSquad {
         analytics.setOnClickListener(v->{NativeTeamAnalytics.show(a);dlg.dismiss();});
         careers.setOnClickListener(v->{NativePlayerCareer.show(a);dlg.dismiss();});
         contracts.setOnClickListener(v->{NativeContracts.show(a);dlg.dismiss();});
+        sales.setOnClickListener(v->{NativeSales.show(a);dlg.dismiss();});
         dlg.setOnDismissListener(x->NativePause.end(pauseToken));dlg.setOnShowListener(x->{Window w=dlg.getWindow();if(w!=null)w.setLayout(WindowManager.LayoutParams.MATCH_PARENT,Math.round(a.getResources().getDisplayMetrics().heightPixels*0.90f));});dlg.show();
     }
 }

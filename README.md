@@ -188,6 +188,15 @@ written through the same validated atomic career transaction as transfers:
 length is restricted to 1–5 years, players reject cuts below 90% of their
 current contract and the club cannot exceed its native annual wage budget.
 
+## Native outgoing transfers (v62)
+
+The Transfer Out Center produces up to three affordable offers from clubs in
+the other top-five leagues. Accepting an offer atomically changes ownership,
+both club balances and the native deal journal, while enforcing 18–30 player
+roster limits. The two-way legacy adapter removes the sold player from the live
+matchday squad and repeats that reconciliation after a stock save is loaded,
+so the old roster cannot silently restore a completed outgoing transfer.
+
 ## Badge audit
 
 [`overrides/badges_v40_manifest.tsv`](overrides/badges_v40_manifest.tsv) is the

@@ -305,14 +305,16 @@ jobs:
           grep -q 'p.spe=x.spe' "$PROJECT/app/src/main/java/pfm/android/NativeCareerStore.java"
           grep -q 'CONTRACT CENTER' "$PROJECT/app/src/main/java/pfm/android/NativeSquad.java"
           grep -q 'Annual wage budget would be exceeded' "$PROJECT/app/src/main/java/pfm/android/NativeCareerStore.java"
+          grep -q 'TRANSFER OUT CENTER' "$PROJECT/app/src/main/java/pfm/android/NativeSquad.java"
+          grep -q 'removePlayer' "$PROJECT/app/src/main/java/PfmNativeRosterAdapter.java"
 
           if grep -q 'directLegacyMenuSelectAndFire' "$GAME"; then
             echo 'ERROR: old v13 ambiguous reflection bridge leaked into v23' >&2
             exit 1
           fi
 
-          sed -i -E 's/versionCode [0-9]+/versionCode 141/' "$PROJECT/app/build.gradle"
-          sed -i -E "s/versionName '[^']+'/versionName '0.84-android-port.38-v61-native-contract-center'/" "$PROJECT/app/build.gradle"
+          sed -i -E 's/versionCode [0-9]+/versionCode 142/' "$PROJECT/app/build.gradle"
+          sed -i -E "s/versionName '[^']+'/versionName '0.84-android-port.38-v62-native-player-sales'/" "$PROJECT/app/build.gradle"
 
       - name: Restore stable debug signing key
         shell: bash
@@ -360,7 +362,7 @@ jobs:
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
-          name: PFM-2011-Android-Alpha084-v61-native-contract-center
+          name: PFM-2011-Android-Alpha084-v62-native-player-sales
           path: ${{ env.PROJECT }}/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
           retention-days: 30
