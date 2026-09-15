@@ -4,8 +4,17 @@ Android adaptation of the Play Football Manager 2011 Alpha 0.84 J2ME core.
 
 ## Current build
 
-`v51-audited-player-economy` continues from v50 on the historical
+`v52-youth-assets-bid-planner` continues from v51 on the historical
 `v28-build` line.  It keeps v39's match-statistics changes and adds:
+
+- prospect protection adds a controlled 8-20 percentage points of seller
+  resistance for high-upside players aged 22 or under, preventing cases such
+  as 20-year-old elite players being offered at almost bare database value;
+- position-aware hard blocks now cover only exceptional replacement risks:
+  the audited goalkeeper rate falls from 26/257 (10.1%) to 6/257 (2.3%);
+- Prepare bid opens a non-mutating negotiation preview with opening offer,
+  seller estimate, wage basis and remaining budget, ready for the later
+  persistent transfer transaction layer;
 
 - an all-player 2010/11 age audit using FIFA 11 team data, an appearance/DOB
   cross-check and the independently audited v41 additions;

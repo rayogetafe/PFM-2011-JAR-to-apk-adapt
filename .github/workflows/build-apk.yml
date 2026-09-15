@@ -261,6 +261,8 @@ jobs:
           grep -q 'capped seller resistance' "$PROJECT/app/src/main/java/pfm/android/NativeGlobalMarket.java"
           grep -q 'pfm_global_shortlist' "$PROJECT/app/src/main/java/pfm/android/NativeGlobalMarket.java"
           grep -q 'Estimated asking price' "$PROJECT/app/src/main/java/pfm/android/NativeGlobalMarket.java"
+          grep -q 'young asset +' "$PROJECT/app/src/main/java/pfm/android/NativeGlobalMarket.java"
+          grep -q 'PREPARE BID' "$PROJECT/app/src/main/java/pfm/android/NativeGlobalMarket.java"
           grep -q 'ALL TOP-5 LEAGUES' "$PROJECT/app/src/main/java/pfm/android/NativeWorldCompetition.java"
           grep -q 'int\[\] result=score(code,seed,h,a,hs,as)' "$PROJECT/app/src/main/java/pfm/android/NativeWorldCenter.java"
           grep -q 'pfm_world_careers' "$PROJECT/app/src/main/java/pfm/android/NativeWorldCenter.java"
@@ -288,8 +290,8 @@ jobs:
             exit 1
           fi
 
-          sed -i -E 's/versionCode [0-9]+/versionCode 131/' "$PROJECT/app/build.gradle"
-          sed -i -E "s/versionName '[^']+'/versionName '0.84-android-port.38-v51-audited-player-economy'/" "$PROJECT/app/build.gradle"
+          sed -i -E 's/versionCode [0-9]+/versionCode 132/' "$PROJECT/app/build.gradle"
+          sed -i -E "s/versionName '[^']+'/versionName '0.84-android-port.38-v52-youth-assets-bid-planner'/" "$PROJECT/app/build.gradle"
 
       - name: Restore stable debug signing key
         shell: bash
@@ -337,7 +339,7 @@ jobs:
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
-          name: PFM-2011-Android-Alpha084-v51-audited-player-economy
+          name: PFM-2011-Android-Alpha084-v52-youth-assets-bid-planner
           path: ${{ env.PROJECT }}/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
           retention-days: 30
