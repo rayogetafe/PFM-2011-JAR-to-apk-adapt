@@ -171,6 +171,15 @@ actual player's name, age, position and attributes instead of trusting a stale
 numeric id, fixing imported players disappearing when the legacy save restores
 its older 24-player roster.
 
+## Self-contained native player state (v60)
+
+Career schema v4 stores SPE, RES, QUA and morale for all 2,281 players alongside
+their stable identity, ownership, contract and value. Existing schema-v3 saves
+are upgraded atomically from the audited world dataset while retaining every
+completed deal and club balance. Market views and the matchday roster adapter
+now consume the career copy, making `world_v42` an import source rather than a
+runtime authority for transferred-player attributes.
+
 ## Badge audit
 
 [`overrides/badges_v40_manifest.tsv`](overrides/badges_v40_manifest.tsv) is the
