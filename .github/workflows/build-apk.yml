@@ -298,14 +298,16 @@ jobs:
           grep -q 'Player or club name' "$NATIVE_LEAGUE"
           grep -q 'matchReport' "$LEAGUE_BRIDGE"
           grep -q 'snapshotAfterLoad' "$TRANSFER_POLICY"
+          grep -q 'pfm_native_legacy_ids_v58' "$PROJECT/app/src/main/java/PfmNativeRosterAdapter.java"
+          grep -q 'Legacy matchday sync' "$PROJECT/app/src/main/java/pfm/android/NativeCareerStore.java"
 
           if grep -q 'directLegacyMenuSelectAndFire' "$GAME"; then
             echo 'ERROR: old v13 ambiguous reflection bridge leaked into v23' >&2
             exit 1
           fi
 
-          sed -i -E 's/versionCode [0-9]+/versionCode 137/' "$PROJECT/app/build.gradle"
-          sed -i -E "s/versionName '[^']+'/versionName '0.84-android-port.38-v57-visible-ask-contract-entry'/" "$PROJECT/app/build.gradle"
+          sed -i -E 's/versionCode [0-9]+/versionCode 138/' "$PROJECT/app/build.gradle"
+          sed -i -E "s/versionName '[^']+'/versionName '0.84-android-port.38-v58-native-legacy-roster-adapter'/" "$PROJECT/app/build.gradle"
 
       - name: Restore stable debug signing key
         shell: bash
@@ -353,7 +355,7 @@ jobs:
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
-          name: PFM-2011-Android-Alpha084-v57-visible-ask-contract-entry
+          name: PFM-2011-Android-Alpha084-v58-native-legacy-roster-adapter
           path: ${{ env.PROJECT }}/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
           retention-days: 30

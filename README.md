@@ -155,6 +155,16 @@ club. v41 now uses that capacity while keeping original first-XI and bench order
 stable. The full applied plan is recorded in
 [`overrides/roster_v41_plan.json`](overrides/roster_v41_plan.json).
 
+## Native-to-matchday roster bridge (v58)
+
+Completed native transfers into the user's club are now reconciled into the
+still-active legacy matchday roster. The bridge preserves the imported player's
+SPE/RES/QUA, morale, value, wage and ownership, extends player-indexed sidecars,
+repairs lineup invariants and records a stable native-to-legacy id mapping so
+opening the screen or restarting cannot duplicate a player. A full 25-player
+legacy roster is reported as pending instead of being overwritten; the native
+career remains the source of truth while this transition limit exists.
+
 ## Badge audit
 
 [`overrides/badges_v40_manifest.tsv`](overrides/badges_v40_manifest.tsv) is the
