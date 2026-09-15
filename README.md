@@ -4,16 +4,19 @@ Android adaptation of the Play Football Manager 2011 Alpha 0.84 J2ME core.
 
 ## Current build
 
-`v50-market-economy-shortlist` continues from v49 on the historical
+`v51-audited-player-economy` continues from v50 on the historical
 `v28-build` line.  It keeps v39's match-statistics changes and adds:
 
-- estimated asking prices derived transparently from the original database
-  value, age, club role, positional depth and total squad size;
-- essential-player protection for shallow clubs and positions, preventing the
-  future transfer engine from stripping a club without a replacement;
-- a persistent cross-league shortlist plus Affordable and Shortlist filters;
-- economy audits covering all 2,281 players before bid/ownership mutations are
-  enabled in the next transfer block;
+- an all-player 2010/11 age audit using FIFA 11 team data, an appearance/DOB
+  cross-check and the independently audited v41 additions;
+- balanced database values and wage bases for all 2,281 players, derived from
+  overall, smooth age/position curves and a tightly capped reputation input;
+- capped seller resistance (maximum 1.75x) that separates player importance
+  from replacement difficulty instead of multiplying stacked premiums;
+- separate Affordable and Available filters, explicit Not for sale status,
+  and the persistent shortlist from v50;
+- the Global Player Market now includes the active league as well as the four
+  parallel leagues, making it the intended future transfer centre;
 
 - one shared matchday selection object now drives both the score calculation
   and the player ledger; v48 incorrectly rotated statistics after calculating
@@ -36,8 +39,8 @@ Android adaptation of the Play Football Manager 2011 Alpha 0.84 J2ME core.
 - a 98-club full-season rotation audit requiring at least 18 used players and
   preventing any outfield selection from starting every match;
 
-- a read-only Global Player Market covering every player in the four parallel
-  leagues, with player/club/nationality search and position filters;
+- a read-only Global Player Market covering every player in all five leagues,
+  with player/club/nationality search and position filters;
 - sorting by database value, overall, age or name, plus detailed value, wage
   basis and current-budget affordability in each player profile;
 - original database financial fields in the world sidecar, establishing a

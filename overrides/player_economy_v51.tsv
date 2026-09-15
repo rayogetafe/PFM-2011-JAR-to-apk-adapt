@@ -1,0 +1,2282 @@
+league	club	playerIndex	player	age	value	wage	method
+en	Chelsea	0	Cech	28	27800000	2100000	fifa11-club
+en	Chelsea	2	Terry	29	23000000	1700000	fifa11-club
+en	Chelsea	4	A. Cole	29	20000000	1500000	fifa11-club
+en	Chelsea	1	Bosingwa	28	7300000	550000	fifa11-club
+en	Chelsea	3	Ivanovic	26	7000000	500000	fifa11-club
+en	Chelsea	8	Lampard	32	23100000	1750000	fifa11-club
+en	Chelsea	6	Essien	27	28900000	2150000	fifa11-club
+en	Chelsea	7	Malouda	30	15100000	1150000	fifa11-club
+en	Chelsea	15	Ramires	23	11600000	850000	fifa11-club
+en	Chelsea	10	Drogba	32	27100000	2050000	fifa11-club
+en	Chelsea	9	Anelka	31	9100000	700000	fifa11-club
+en	Chelsea	11	Hilario	34	2200000	150000	fifa11-club
+en	Chelsea	14	Bruma	18	7100000	550000	fifa11-club
+en	Chelsea	13	Alex	28	4800000	350000	fifa11-club
+en	Chelsea	12	P. Ferreira	31	2800000	200000	fifa11-club
+en	Chelsea	17	Mikel	23	7600000	550000	fifa11-club
+en	Chelsea	5	Benayoun	30	3800000	300000	fifa11-club
+en	Chelsea	18	Zhirkov	27	5600000	400000	fifa11-club
+en	Chelsea	16	Kalou	25	6700000	500000	fifa11-club
+en	Chelsea	19	Sturridge	20	4200000	300000	fifa11-club
+en	Chelsea	400	Turnbull	25	3300000	250000	audited-addition
+en	Chelsea	401	Van Aanholt	20	1900000	150000	audited-addition
+en	Chelsea	402	McEachran	17	2400000	200000	audited-addition
+en	Chelsea	403	Kakuta	19	4100000	300000	audited-addition
+en	Man United	20	Van der Sar	39	11700000	900000	fifa11-club
+en	Man United	23	Vidic	28	36200000	2700000	fifa11-club
+en	Man United	22	Ferdinand	31	19000000	1400000	fifa11-club
+en	Man United	24	Evra	29	20000000	1500000	fifa11-club
+en	Man United	21	Rafael	20	16900000	1250000	fifa11-club
+en	Man United	26	Carrick	29	18900000	1400000	fifa11-club
+en	Man United	25	Scholes	35	9000000	700000	fifa11-club
+en	Man United	31	Park	29	11800000	900000	fifa11-club
+en	Man United	28	Rooney	24	56900000	4250000	fifa11-club
+en	Man United	32	Berbatov	29	35700000	2700000	fifa11-club
+en	Man United	29	Nani	23	45400000	3400000	fifa11-club
+en	Man United	33	Kuszczak	28	6700000	500000	fifa11-club
+en	Man United	39	Smalling	20	13500000	1000000	fifa11-club
+en	Man United	38	Evans	22	9700000	750000	fifa11-club
+en	Man United	34	Fabio	20	7600000	550000	fifa11-club
+en	Man United	27	Valencia	25	16600000	1250000	fifa11-club
+en	Man United	36	Giggs	36	4100000	300000	fifa11-club
+en	Man United	35	Fletcher	26	12000000	900000	fifa11-club
+en	Man United	37	Anderson	22	13800000	1050000	fifa11-club
+en	Man United	30	Hernandez	22	28600000	2150000	fifa11-club
+en	Man United	404	O'Shea	29	7800000	600000	audited-addition
+en	Man United	405	Brown	30	7100000	550000	audited-addition
+en	Man United	406	Gibson	22	8600000	650000	audited-addition
+en	Man United	407	Owen	29	12300000	900000	audited-addition
+en	Man United	408	Bebe	20	2300000	150000	audited-addition
+en	Arsenal	40	Szczesny	20	9900000	750000	fifa11-club
+en	Arsenal	41	Sagna	27	9200000	700000	fifa11-club
+en	Arsenal	43	Koscielny	24	10800000	800000	fifa11-club
+en	Arsenal	44	Clichy	25	10500000	800000	fifa11-club
+en	Arsenal	42	Vermaelen	24	7800000	600000	fifa11-club
+en	Arsenal	45	Fabregas	23	50300000	3750000	fifa11-club
+en	Arsenal	54	Song	22	17200000	1300000	fifa11-club
+en	Arsenal	56	Wilshere	18	15000000	1100000	fifa11-club
+en	Arsenal	47	Arshavin	29	8200000	600000	fifa11-club
+en	Arsenal	50	Van Persie	27	37600000	2800000	fifa11-club
+en	Arsenal	49	Walcott	21	12800000	950000	fifa11-club
+en	Arsenal	51	Fabianski	25	3300000	250000	fifa11-club
+en	Arsenal	59	Gibbs	20	6800000	500000	fifa11-club
+en	Arsenal	52	Squillaci	30	3000000	200000	fifa11-club
+en	Arsenal	46	Rosicky	29	5900000	450000	fifa11-club
+en	Arsenal	53	Ramsey	19	6400000	500000	fifa11-club
+en	Arsenal	58	Diaby	24	5700000	450000	fifa11-club
+en	Arsenal	55	Denilson	22	5200000	400000	fifa11-club
+en	Arsenal	48	Bendtner	22	8000000	600000	fifa11-club
+en	Arsenal	57	Chamakh	26	6200000	450000	fifa11-club
+en	Arsenal	409	Almunia	33	4100000	300000	audited-addition
+en	Arsenal	410	Djourou	23	7900000	600000	audited-addition
+en	Arsenal	411	Eboue	27	5200000	400000	audited-addition
+en	Arsenal	412	Vela	21	7300000	550000	audited-addition
+en	Arsenal	413	Mannone	22	3200000	250000	audited-addition
+en	Tottenham	60	Gomes	29	7700000	600000	fifa11-club
+en	Tottenham	64	Assou-Ekotto	26	8400000	650000	fifa11-club
+en	Tottenham	79	Dawson	26	8400000	650000	fifa11-club
+en	Tottenham	62	Hutton	25	9000000	700000	fifa11-club
+en	Tottenham	61	Corluka	24	9200000	700000	fifa11-club
+en	Tottenham	66	King	29	5600000	400000	fifa11-club
+en	Tottenham	67	Modric	24	29500000	2200000	fifa11-club
+en	Tottenham	63	Bale	21	29300000	2200000	fifa11-club
+en	Tottenham	72	Van der Vaart	27	19500000	1450000	fifa11-club
+en	Tottenham	70	Pavlyuchenko	28	10700000	800000	fifa11-club
+en	Tottenham	69	Defoe	27	8700000	650000	fifa11-club
+en	Tottenham	71	Cudicini	36	1500000	100000	fifa11-club
+en	Tottenham	78	Rose	20	5900000	450000	fifa11-club
+en	Tottenham	73	Kaboul	24	4600000	350000	fifa11-club
+en	Tottenham	68	Lennon	23	10100000	750000	fifa11-club
+en	Tottenham	65	Palacios	26	6700000	500000	fifa11-club
+en	Tottenham	75	Bentley	26	3700000	300000	fifa11-club
+en	Tottenham	76	Huddlestone	23	3800000	300000	fifa11-club
+en	Tottenham	77	Sandro	21	3500000	250000	fifa11-club
+en	Tottenham	74	Crouch	29	3200000	250000	fifa11-club
+en	Tottenham	414	Bassong	24	7100000	550000	audited-addition
+en	Tottenham	415	Jenas	27	4900000	350000	audited-addition
+en	Tottenham	416	Kranjcar	26	7500000	550000	audited-addition
+en	Tottenham	417	Keane	30	5100000	400000	audited-addition
+en	Tottenham	418	Woodgate	30	3000000	200000	audited-addition
+en	Man City	91	Hart	23	13900000	1050000	fifa11-club
+en	Man City	92	Kompany	24	24700000	1850000	fifa11-club
+en	Man City	84	Zabaleta	25	18000000	1350000	fifa11-club
+en	Man City	83	Lescott	28	12500000	950000	fifa11-club
+en	Man City	82	K. Toure	29	10200000	750000	fifa11-club
+en	Man City	81	Boateng	21	11600000	850000	fifa11-club
+en	Man City	98	Silva	24	33900000	2550000	fifa11-club
+en	Man City	85	Y. Toure	27	22300000	1650000	fifa11-club
+en	Man City	86	Barry	29	13600000	1000000	fifa11-club
+en	Man City	90	Tevez	26	51900000	3900000	fifa11-club
+en	Man City	88	Balotelli	20	16800000	1250000	fifa11-club
+en	Man City	80	Given	34	3900000	300000	fifa11-club
+en	Man City	93	Kolarov	24	4600000	350000	fifa11-club
+en	Man City	87	Wright-Phillips	28	9000000	700000	fifa11-club
+en	Man City	94	Jong	25	8000000	600000	fifa11-club
+en	Man City	95	Vieira	34	3000000	200000	fifa11-club
+en	Man City	96	Milner	24	5700000	450000	fifa11-club
+en	Man City	97	Johnson	22	6000000	450000	fifa11-club
+en	Man City	89	Adebayor	26	10700000	800000	fifa11-club
+en	Man City	99	Santa Cruz	29	8500000	650000	fifa11-club
+en	Man City	419	Richards	22	9700000	750000	audited-addition
+en	Man City	420	Bridge	30	4100000	300000	audited-addition
+en	Man City	421	Boyata	19	3500000	250000	audited-addition
+en	Man City	422	Jo	23	6100000	450000	audited-addition
+en	Man City	423	Taylor	29	2600000	200000	audited-addition
+en	Aston Villa	100	Friedel	39	5200000	400000	fifa11-club
+en	Aston Villa	104	Warnock	28	4800000	350000	fifa11-club
+en	Aston Villa	103	Cuellar	29	2200000	150000	fifa11-club
+en	Aston Villa	101	Young	31	1600000	100000	fifa11-club
+en	Aston Villa	102	Dunne	30	1800000	150000	fifa11-club
+en	Aston Villa	105	Albrighton	20	6300000	450000	fifa11-club
+en	Aston Villa	108	Downing	26	6000000	450000	fifa11-club
+en	Aston Villa	106	Petrov	31	3400000	250000	fifa11-club
+en	Aston Villa	107	Reo-Coker	26	4500000	350000	fifa11-club
+en	Aston Villa	109	Agbonlahor	23	7000000	500000	fifa11-club
+en	Aston Villa	110	Carew	30	3900000	300000	fifa11-club
+en	Aston Villa	111	Guzan	25	800000	50000	fifa11-club
+en	Aston Villa	118	Collins	27	1600000	100000	fifa11-club
+en	Aston Villa	116	Davies	25	1900000	150000	fifa11-club
+en	Aston Villa	119	Beye	32	900000	50000	fifa11-club
+en	Aston Villa	113	Clark	20	1300000	100000	fifa11-club
+en	Aston Villa	114	Ireland	24	1800000	150000	fifa11-club
+en	Aston Villa	112	Delph	20	1800000	150000	fifa11-club
+en	Aston Villa	117	Delfouneso	19	2400000	200000	fifa11-club
+en	Aston Villa	115	Heskey	32	1000000	100000	fifa11-club
+en	Aston Villa	424	Luke Young	31	1600000	100000	audited-addition
+en	Aston Villa	425	Bannan	20	1600000	100000	audited-addition
+en	Aston Villa	426	Lichaj	21	600000	50000	audited-addition
+en	Aston Villa	427	Osbourne	22	800000	50000	audited-addition
+en	Liverpool	120	Reina	28	21600000	1600000	fifa11-club
+en	Liverpool	121	Johnson	26	12900000	950000	fifa11-club
+en	Liverpool	123	Carragher	32	3700000	300000	fifa11-club
+en	Liverpool	122	Skrtel	25	6800000	500000	fifa11-club
+en	Liverpool	124	Konchesky	29	4500000	350000	fifa11-club
+en	Liverpool	127	Gerrard	30	28500000	2150000	fifa11-club
+en	Liverpool	125	Meireles	27	12500000	950000	fifa11-club
+en	Liverpool	134	Lucas	23	13400000	1000000	fifa11-club
+en	Liverpool	126	Poulsen	30	4300000	300000	fifa11-club
+en	Liverpool	129	Torres	26	35800000	2700000	fifa11-club
+en	Liverpool	130	Kuyt	30	10100000	750000	fifa11-club
+en	Liverpool	131	B. Jones	28	2700000	200000	fifa11-club
+en	Liverpool	133	Aurelio	30	4100000	300000	fifa11-club
+en	Liverpool	132	Kyrgiakos	31	2100000	150000	fifa11-club
+en	Liverpool	128	Jovanovic	29	3600000	250000	fifa11-club
+en	Liverpool	138	Rodriguez	29	3100000	250000	fifa11-club
+en	Liverpool	139	Shelvey	18	4700000	350000	fifa11-club
+en	Liverpool	135	J. Cole	28	2900000	200000	fifa11-club
+en	Liverpool	136	Babel	23	7000000	500000	fifa11-club
+en	Liverpool	137	N'Gog	21	4600000	350000	fifa11-club
+en	Liverpool	428	Agger	25	13500000	1000000	audited-addition
+en	Liverpool	429	Kelly	20	3800000	300000	audited-addition
+en	Liverpool	430	Spearing	21	3100000	250000	audited-addition
+en	Liverpool	431	Pacheco	19	3800000	300000	audited-addition
+en	Liverpool	432	Darby	21	1900000	150000	audited-addition
+en	Everton	140	Howard	31	8100000	600000	fifa11-club
+en	Everton	144	Baines	25	15000000	1100000	fifa11-club
+en	Everton	154	Jagielka	28	8500000	650000	fifa11-club
+en	Everton	141	Hibbert	29	2500000	200000	fifa11-club
+en	Everton	149	Cahill	30	9700000	750000	fifa11-club
+en	Everton	146	Arteta	28	10300000	750000	fifa11-club
+en	Everton	145	Fellaini	22	12000000	900000	fifa11-club
+en	Everton	148	Osman	29	4100000	300000	fifa11-club
+en	Everton	147	Neville	33	1700000	150000	fifa11-club
+en	Everton	150	Saha	32	3200000	250000	fifa11-club
+en	Everton	142	Anichebe	22	4500000	350000	fifa11-club
+en	Everton	151	Mucha	27	1200000	100000	fifa11-club
+en	Everton	143	Coleman	22	3200000	250000	fifa11-club
+en	Everton	153	Distin	32	1400000	100000	fifa11-club
+en	Everton	155	Heitinga	26	1600000	100000	fifa11-club
+en	Everton	157	Rodwell	19	3200000	250000	fifa11-club
+en	Everton	156	Pienaar	28	1600000	100000	fifa11-club
+en	Everton	152	Bilyaletdinov	25	1600000	100000	fifa11-club
+en	Everton	159	Yakubu	27	2200000	150000	fifa11-club
+en	Everton	158	Beckford	26	1600000	100000	fifa11-club
+en	Everton	433	Baxter	18	2000000	150000	audited-addition
+en	Everton	434	Gueye	20	2400000	200000	audited-addition
+en	Everton	435	Duffy	18	1300000	100000	audited-addition
+en	Everton	436	Turner	26	1300000	100000	audited-addition
+en	Birmingham	160	Foster	27	7000000	500000	fifa11-club
+en	Birmingham	165	Dann	23	5500000	400000	fifa11-club
+en	Birmingham	162	R. Johnson	27	2000000	150000	fifa11-club
+en	Birmingham	161	Carr	34	700000	50000	fifa11-club
+en	Birmingham	163	Parnaby	28	1400000	100000	fifa11-club
+en	Birmingham	164	Larsson	25	5600000	400000	fifa11-club
+en	Birmingham	167	Ferguson	32	2200000	150000	fifa11-club
+en	Birmingham	168	McFadden	27	3100000	250000	fifa11-club
+en	Birmingham	166	Bowyer	33	1300000	100000	fifa11-club
+en	Birmingham	170	Zigic	29	3100000	250000	fifa11-club
+en	Birmingham	169	Jerome	23	3900000	300000	fifa11-club
+en	Birmingham	171	Doyle	25	700000	50000	fifa11-club
+en	Birmingham	175	Murphy	26	800000	50000	fifa11-club
+en	Birmingham	172	Ridgewell	26	700000	50000	fifa11-club
+en	Birmingham	174	Beausejour	26	1500000	100000	fifa11-club
+en	Birmingham	179	C. Gardner	23	1700000	150000	fifa11-club
+en	Birmingham	176	Fahey	27	800000	50000	fifa11-club
+en	Birmingham	173	Hleb	29	600000	50000	fifa11-club
+en	Birmingham	177	Derbyshire	24	1300000	100000	fifa11-club
+en	Birmingham	178	Phillips	37	300000	50000	fifa11-club
+en	Birmingham	437	Jiranek	31	900000	50000	audited-addition
+en	Birmingham	438	Michel	24	2000000	150000	audited-addition
+en	Birmingham	439	Valles	20	500000	50000	audited-addition
+en	Blackburn	180	Robinson	30	2100000	150000	fifa11-club
+en	Blackburn	192	Samba	26	8400000	650000	fifa11-club
+en	Blackburn	182	Nelsen	32	1800000	150000	fifa11-club
+en	Blackburn	184	Salgado	34	1200000	100000	fifa11-club
+en	Blackburn	185	N'Zonzi	21	6200000	450000	fifa11-club
+en	Blackburn	188	Pedersen	28	3900000	300000	fifa11-club
+en	Blackburn	181	Emerton	31	2400000	200000	fifa11-club
+en	Blackburn	187	Diouf	29	3000000	200000	fifa11-club
+en	Blackburn	186	Andrews	29	2400000	200000	fifa11-club
+en	Blackburn	189	Roberts	32	2700000	200000	fifa11-club
+en	Blackburn	190	Kalinic	22	3600000	250000	fifa11-club
+en	Blackburn	191	Brown	28	1200000	100000	fifa11-club
+en	Blackburn	183	Givet	28	2100000	150000	fifa11-club
+en	Blackburn	193	P. Jones	18	2000000	150000	fifa11-club
+en	Blackburn	199	Olsson	22	1400000	100000	fifa11-club
+en	Blackburn	195	Grella	30	1400000	100000	fifa11-club
+en	Blackburn	194	Hoilett	20	1100000	100000	fifa11-club
+en	Blackburn	197	Dunn	30	700000	50000	fifa11-club
+en	Blackburn	196	Benjani	32	800000	50000	fifa11-club
+en	Blackburn	198	M. Diouf	22	1300000	100000	fifa11-club
+en	Blackburn	440	Bunn	25	900000	50000	audited-addition
+en	Blackburn	441	Chimbonda	31	1600000	100000	audited-addition
+en	Blackburn	442	Hanley	18	1100000	100000	audited-addition
+en	Blackburn	443	Linganzi	20	1800000	150000	audited-addition
+en	Stoke City	211	Begovic	23	7700000	600000	fifa11-club
+en	Stoke City	207	Wilson	23	3900000	300000	fifa11-club
+en	Stoke City	204	Faye	32	1400000	100000	fifa11-club
+en	Stoke City	201	Huth	26	2500000	200000	fifa11-club
+en	Stoke City	203	Shawcross	22	2400000	200000	fifa11-club
+en	Stoke City	208	Etherington	29	3600000	250000	fifa11-club
+en	Stoke City	205	Delap	34	1700000	150000	fifa11-club
+en	Stoke City	206	Whelan	26	3700000	300000	fifa11-club
+en	Stoke City	212	Tuncay	28	6700000	500000	fifa11-club
+en	Stoke City	209	Fuller	30	2200000	150000	fifa11-club
+en	Stoke City	210	K. Jones	25	2900000	200000	fifa11-club
+en	Stoke City	200	Sorensen	34	1900000	150000	fifa11-club
+en	Stoke City	202	Higginbotham	31	1100000	100000	fifa11-club
+en	Stoke City	214	Wilkinson	26	1100000	100000	fifa11-club
+en	Stoke City	218	Diao	33	800000	50000	fifa11-club
+en	Stoke City	215	Tonge	27	1200000	100000	fifa11-club
+en	Stoke City	219	Whitehead	28	800000	50000	fifa11-club
+en	Stoke City	213	Pennant	27	700000	50000	fifa11-club
+en	Stoke City	217	Gudjohnsen	31	1100000	100000	fifa11-club
+en	Stoke City	216	Walters	26	1800000	150000	fifa11-club
+en	Stoke City	444	Collins	30	1300000	100000	audited-addition
+en	Stoke City	445	Sidibe	30	1300000	100000	audited-addition
+en	Stoke City	446	Nash	36	500000	50000	audited-addition
+en	Stoke City	447	Shotton	21	700000	50000	audited-addition
+en	Fulham	220	Schwarzer	37	4600000	350000	fifa11-club
+en	Fulham	231	Hangeland	29	6700000	500000	fifa11-club
+en	Fulham	222	Pantsil	29	2800000	200000	fifa11-club
+en	Fulham	221	Salcido	30	2300000	150000	fifa11-club
+en	Fulham	223	Hughes	30	2300000	150000	fifa11-club
+en	Fulham	225	Dempsey	27	4200000	300000	fifa11-club
+en	Fulham	227	Gera	31	2900000	200000	fifa11-club
+en	Fulham	228	Murphy	33	1700000	150000	fifa11-club
+en	Fulham	226	Etuhu	28	2900000	200000	fifa11-club
+en	Fulham	230	Johnson	29	6200000	450000	fifa11-club
+en	Fulham	229	Zamora	29	4900000	350000	fifa11-club
+en	Fulham	232	Stockdale	24	900000	50000	fifa11-club
+en	Fulham	224	Senderos	25	3400000	250000	fifa11-club
+en	Fulham	238	Baird	28	1200000	100000	fifa11-club
+en	Fulham	239	Kelly	26	900000	50000	fifa11-club
+en	Fulham	236	Greening	31	1200000	100000	fifa11-club
+en	Fulham	237	Duff	31	1200000	100000	fifa11-club
+en	Fulham	235	Davies	30	900000	50000	fifa11-club
+en	Fulham	234	Dembele	23	1700000	150000	fifa11-club
+en	Fulham	233	Kamara	29	1200000	100000	fifa11-club
+en	Fulham	448	Halliche	23	2000000	150000	audited-addition
+en	Fulham	449	Briggs	19	1700000	150000	audited-addition
+en	Fulham	450	Dikgacoi	25	2000000	150000	audited-addition
+en	Fulham	451	E. Johnson	29	2800000	200000	audited-addition
+en	Sunderland	240	Mignolet	22	2400000	200000	fifa11-club
+en	Sunderland	242	Ferdinand	25	4500000	350000	fifa11-club
+en	Sunderland	241	Bardsley	25	1900000	150000	fifa11-club
+en	Sunderland	243	Da Silva	30	1300000	100000	fifa11-club
+en	Sunderland	255	Cattermole	22	6900000	500000	fifa11-club
+en	Sunderland	247	Richardson	25	2800000	200000	fifa11-club
+en	Sunderland	246	Henderson	20	3200000	250000	fifa11-club
+en	Sunderland	248	Malbranque	30	1900000	150000	fifa11-club
+en	Sunderland	245	Reid	28	2000000	150000	fifa11-club
+en	Sunderland	249	Bent	26	13700000	1050000	fifa11-club
+en	Sunderland	250	Gyan	24	8500000	650000	fifa11-club
+en	Sunderland	251	Gordon	27	900000	50000	fifa11-club
+en	Sunderland	244	Angeleri	27	1600000	100000	fifa11-club
+en	Sunderland	259	Mensah	27	1500000	100000	fifa11-club
+en	Sunderland	253	Bramble	29	800000	50000	fifa11-club
+en	Sunderland	252	Onuoha	23	1200000	100000	fifa11-club
+en	Sunderland	256	Zenden	34	800000	50000	fifa11-club
+en	Sunderland	258	Elmohamady	22	1500000	100000	fifa11-club
+en	Sunderland	254	Riveros	27	1000000	100000	fifa11-club
+en	Sunderland	257	Welbeck	19	1900000	150000	fifa11-club
+en	Sunderland	452	Turner	26	2800000	200000	audited-addition
+en	Sunderland	453	Campbell	22	2700000	200000	audited-addition
+en	Sunderland	454	Meyler	21	1100000	100000	audited-addition
+en	Sunderland	455	Healy	31	900000	50000	audited-addition
+en	Bolton	260	Jaaskelainen	35	5400000	400000	fifa11-club
+en	Bolton	262	Cahill	24	13900000	1050000	fifa11-club
+en	Bolton	264	Samuel	29	3300000	250000	fifa11-club
+en	Bolton	261	Ricketts	28	2700000	200000	fifa11-club
+en	Bolton	263	Knight	30	2300000	150000	fifa11-club
+en	Bolton	268	Taylor	28	3900000	300000	fifa11-club
+en	Bolton	265	M. Davies	22	5200000	400000	fifa11-club
+en	Bolton	266	Muamba	22	4300000	300000	fifa11-club
+en	Bolton	267	Gardner	31	2400000	200000	fifa11-club
+en	Bolton	269	K. Davies	33	2000000	150000	fifa11-club
+en	Bolton	270	Elmander	29	3100000	250000	fifa11-club
+en	Bolton	271	Bogdan	22	1200000	100000	fifa11-club
+en	Bolton	274	Steinsson	28	1400000	100000	fifa11-club
+en	Bolton	272	P. Robinson	31	900000	50000	fifa11-club
+en	Bolton	275	Petrov	31	1200000	100000	fifa11-club
+en	Bolton	273	Cohen	26	1700000	150000	fifa11-club
+en	Bolton	277	Holden	25	1600000	100000	fifa11-club
+en	Bolton	276	Lee Chung-yong	22	1300000	100000	fifa11-club
+en	Bolton	278	Klasnic	30	1300000	100000	fifa11-club
+en	Bolton	279	Blake	34	800000	50000	fifa11-club
+en	Bolton	456	O'Brien	31	1000000	100000	audited-addition
+en	Bolton	457	M. Alonso	19	1300000	100000	audited-addition
+en	Bolton	458	Ward	19	1000000	100000	audited-addition
+en	Bolton	459	S. Davis	30	1400000	100000	audited-addition
+en	Wolves	280	Hennessey	23	1700000	150000	fifa11-club
+en	Wolves	281	Foley	25	3800000	300000	fifa11-club
+en	Wolves	282	Stearman	23	3600000	250000	fifa11-club
+en	Wolves	283	Zubar	24	2600000	200000	fifa11-club
+en	Wolves	284	Elokobi	24	2700000	200000	fifa11-club
+en	Wolves	298	Jarvis	24	7400000	550000	fifa11-club
+en	Wolves	286	Henry	27	3100000	250000	fifa11-club
+en	Wolves	287	Milijas	27	2800000	200000	fifa11-club
+en	Wolves	288	Edwards	24	2900000	200000	fifa11-club
+en	Wolves	290	Doyle	26	3100000	250000	fifa11-club
+en	Wolves	289	Ebanks-Blake	24	2600000	200000	fifa11-club
+en	Wolves	291	Ikeme	24	900000	50000	fifa11-club
+en	Wolves	297	Ward	25	900000	50000	fifa11-club
+en	Wolves	292	Mouyokolo	23	1000000	100000	fifa11-club
+en	Wolves	293	Van Damme	26	700000	50000	fifa11-club
+en	Wolves	285	Kightly	24	2500000	200000	fifa11-club
+en	Wolves	295	Hunt	29	1000000	100000	fifa11-club
+en	Wolves	296	Keogh	25	1500000	100000	audited-retained
+en	Wolves	299	Vokes	20	1400000	100000	fifa11-unique
+en	Wolves	294	Fletcher	23	1100000	100000	fifa11-club
+en	Wolves	460	Berra	25	3000000	200000	audited-addition
+en	Wolves	461	Craddock	35	1100000	100000	audited-addition
+en	Wolves	462	Guedioura	24	2500000	200000	audited-addition
+en	Wolves	463	D. Jones	25	2400000	200000	audited-addition
+en	Wolves	464	Mancienne	22	3600000	250000	audited-addition
+en	Wigan	300	Kirkland	29	1400000	100000	fifa11-club
+en	Wigan	302	Gohouri	29	2200000	150000	fifa11-club
+en	Wigan	303	Boyce	30	2000000	150000	fifa11-club
+en	Wigan	301	Stam	26	1600000	100000	fifa11-club
+en	Wigan	304	Figueroa	27	1500000	100000	fifa11-club
+en	Wigan	317	N'Zogbia	24	9800000	750000	fifa11-club
+en	Wigan	309	J. Gomez	25	4800000	350000	fifa11-club
+en	Wigan	306	Thomas	25	3200000	250000	fifa11-club
+en	Wigan	305	Diame	23	2500000	200000	fifa11-club
+en	Wigan	310	Rodallega	25	2900000	200000	fifa11-club
+en	Wigan	308	Boselli	25	2500000	200000	fifa11-club
+en	Wigan	311	Al-Habsi	28	1200000	100000	fifa11-club
+en	Wigan	314	Alcaraz	28	700000	50000	fifa11-club
+en	Wigan	312	Caldwell	29	500000	50000	fifa11-club
+en	Wigan	307	McCarthy	19	2300000	150000	fifa11-club
+en	Wigan	316	Cleverley	21	1300000	100000	fifa11-club
+en	Wigan	315	McArthur	22	1100000	100000	fifa11-club
+en	Wigan	318	Watson	25	700000	50000	fifa11-club
+en	Wigan	319	Di Santo	21	900000	50000	fifa11-club
+en	Wigan	313	Moses	19	1000000	100000	fifa11-club
+en	Wigan	465	Pollitt	38	400000	50000	audited-addition
+en	Wigan	466	S. Caldwell	28	1500000	100000	audited-addition
+en	Wigan	467	McManaman	19	1900000	150000	audited-addition
+en	West Ham	320	Green	30	4300000	300000	fifa11-club
+en	West Ham	324	Ilunga	28	1800000	150000	fifa11-club
+en	West Ham	322	Upson	31	1000000	100000	fifa11-club
+en	West Ham	321	Faubert	27	1500000	100000	fifa11-club
+en	West Ham	326	Parker	29	10700000	800000	fifa11-club
+en	West Ham	325	Stanislas	20	3200000	250000	fifa11-club
+en	West Ham	328	Hitzlsperger	28	1600000	100000	fifa11-club
+en	West Ham	327	Barrera	23	1900000	150000	fifa11-club
+en	West Ham	338	Collison	21	2000000	150000	fifa11-club
+en	West Ham	329	Obinna	23	4400000	350000	fifa11-club
+en	West Ham	330	Cole	26	3500000	250000	fifa11-club
+en	West Ham	331	Stech	20	800000	50000	fifa11-club
+en	West Ham	323	Da Costa	24	1300000	100000	fifa11-club
+en	West Ham	335	Spector	24	1000000	100000	fifa11-club
+en	West Ham	333	Reid	22	800000	50000	fifa11-club
+en	West Ham	332	Tomkins	21	600000	50000	fifa11-club
+en	West Ham	339	Behrami	25	1000000	100000	fifa11-club
+en	West Ham	334	Noble	23	1000000	100000	fifa11-club
+en	West Ham	337	Boa Morte	33	300000	50000	fifa11-club
+en	West Ham	336	Piquionne	31	500000	50000	fifa11-club
+en	West Ham	468	Gabbidon	31	900000	50000	audited-addition
+en	West Ham	469	Dyer	31	1200000	100000	audited-addition
+en	West Ham	470	McCarthy	32	1000000	100000	audited-addition
+en	West Ham	471	Jacobsen	30	1000000	100000	audited-addition
+en	West Ham	472	Kurucz	22	700000	50000	audited-addition
+en	Newcastle	340	Harper	35	1600000	100000	fifa11-club
+en	Newcastle	341	Simpson	23	2400000	200000	fifa11-club
+en	Newcastle	343	Coloccini	28	1800000	150000	fifa11-club
+en	Newcastle	344	Williamson	26	1800000	150000	fifa11-club
+en	Newcastle	342	Enrique	24	1900000	150000	fifa11-club
+en	Newcastle	345	Nolan	28	3200000	250000	fifa11-club
+en	Newcastle	349	Smith	29	2700000	200000	fifa11-club
+en	Newcastle	347	Barton	27	2400000	200000	fifa11-club
+en	Newcastle	357	Carroll	21	11000000	800000	fifa11-club
+en	Newcastle	348	Best	23	3500000	250000	fifa11-club
+en	Newcastle	350	Lovenkrands	30	2200000	150000	fifa11-club
+en	Newcastle	351	Krul	22	900000	50000	fifa11-club
+en	Newcastle	355	Perch	24	1300000	100000	fifa11-club
+en	Newcastle	352	Taylor	26	900000	50000	fifa11-club
+en	Newcastle	346	Tiote	24	2900000	200000	fifa11-club
+en	Newcastle	356	Arfa	23	2100000	150000	fifa11-club
+en	Newcastle	358	Gutierrez	27	1400000	100000	fifa11-club
+en	Newcastle	353	Guthrie	23	1300000	100000	fifa11-club
+en	Newcastle	354	Routledge	25	1000000	100000	fifa11-club
+en	Newcastle	359	Ameobi	28	1500000	100000	fifa11-club
+en	Newcastle	473	R. Taylor	24	3500000	250000	audited-addition
+en	Newcastle	474	S. Campbell	35	1300000	100000	audited-addition
+en	Newcastle	475	Gosling	20	3200000	250000	audited-addition
+en	Newcastle	476	Vuckic	18	2400000	200000	audited-addition
+en	Newcastle	477	Ranger	19	2200000	150000	audited-addition
+en	West Brom	360	Carson	24	2300000	150000	fifa11-club
+en	West Brom	364	Jara	25	2600000	200000	fifa11-club
+en	West Brom	363	Cech	27	2300000	150000	fifa11-club
+en	West Brom	362	Olsson	27	2000000	150000	fifa11-club
+en	West Brom	361	Mattock	20	2100000	150000	fifa11-club
+en	West Brom	365	Scharner	30	2400000	200000	fifa11-club
+en	West Brom	366	Brunt	25	3200000	250000	fifa11-club
+en	West Brom	367	Dorrans	23	2500000	200000	fifa11-club
+en	West Brom	368	Morrison	24	2000000	150000	fifa11-club
+en	West Brom	370	Odemwingie	29	8600000	650000	fifa11-club
+en	West Brom	369	Bednar	27	3600000	250000	fifa11-club
+en	West Brom	371	Myhill	27	900000	50000	fifa11-club
+en	West Brom	379	Reid	29	1100000	100000	fifa11-club
+en	West Brom	376	Shorey	29	1100000	100000	fifa11-club
+en	West Brom	373	Zuiverloon	23	1200000	100000	fifa11-club
+en	West Brom	374	Tamas	26	900000	50000	fifa11-club
+en	West Brom	372	Ibanez	29	700000	50000	fifa11-club
+en	West Brom	378	Tchoyi	27	1600000	100000	fifa11-club
+en	West Brom	375	Mulumbu	23	1300000	100000	fifa11-club
+en	West Brom	377	Thomas	27	1100000	100000	fifa11-club
+en	West Brom	478	Cox	23	2200000	150000	audited-addition
+en	West Brom	479	Fortune	29	1500000	100000	audited-addition
+en	West Brom	480	Meite	29	1100000	100000	audited-addition
+en	West Brom	481	Barnes	22	1300000	100000	audited-addition
+en	Blackpool	390	Gilks	28	2400000	200000	fifa11-club
+en	Blackpool	388	Baptiste	24	1900000	150000	fifa11-club
+en	Blackpool	381	Cathcart	21	1900000	150000	fifa11-club
+en	Blackpool	382	Eardley	21	1900000	150000	fifa11-club
+en	Blackpool	384	Evatt	28	1400000	100000	fifa11-club
+en	Blackpool	383	Crainey	29	1100000	100000	fifa11-club
+en	Blackpool	387	Adam	24	4900000	350000	fifa11-club
+en	Blackpool	385	Vaughan	27	1600000	100000	fifa11-club
+en	Blackpool	395	Taylor-Fletcher	29	1000000	100000	fifa11-club
+en	Blackpool	392	Campbell	28	2700000	200000	fifa11-club
+en	Blackpool	389	Harewood	31	2000000	150000	fifa11-club
+en	Blackpool	380	Kingson	32	1200000	100000	appearance-db
+en	Blackpool	399	Basham	22	1000000	100000	fifa11-club
+en	Blackpool	393	Keinan	25	800000	50000	fifa11-club
+en	Blackpool	396	Sylvestre	26	900000	50000	fifa11-club
+en	Blackpool	397	Carney	27	700000	50000	fifa11-club
+en	Blackpool	398	Southern	29	600000	50000	fifa11-club
+en	Blackpool	391	Grandin	22	900000	50000	fifa11-club
+en	Blackpool	386	Varney	27	1300000	100000	fifa11-club
+en	Blackpool	394	Ormerod	33	600000	50000	fifa11-club
+en	Blackpool	482	Rachubka	29	1000000	100000	audited-addition
+en	Blackpool	483	R. Edwards	27	1500000	100000	audited-addition
+en	Blackpool	484	M. Phillips	19	1000000	100000	audited-addition
+en	Blackpool	485	B. Clarke	22	1000000	100000	audited-addition
+es	Barcelona	0	Valdes	28	24200000	1800000	fifa11-club
+es	Barcelona	1	Alves	27	34600000	2600000	fifa11-club
+es	Barcelona	2	Puyol	32	21700000	1650000	fifa11-club
+es	Barcelona	3	Pique	23	36300000	2700000	fifa11-club
+es	Barcelona	4	Abidal	31	9200000	700000	fifa11-club
+es	Barcelona	6	Xavi	30	43500000	3250000	fifa11-club
+es	Barcelona	5	Iniesta	26	55100000	4150000	fifa11-club
+es	Barcelona	11	Busquets	22	34400000	2600000	fifa11-club
+es	Barcelona	7	Messi	23	94200000	7050000	fifa11-club
+es	Barcelona	8	Villa	28	40000000	3000000	fifa11-club
+es	Barcelona	15	Pedro	23	34900000	2600000	fifa11-club
+es	Barcelona	12	Pinto	34	2400000	200000	fifa11-club
+es	Barcelona	13	Maxwell	29	5600000	400000	fifa11-club
+es	Barcelona	14	Milito	29	5600000	400000	fifa11-club
+es	Barcelona	19	Adriano	25	7500000	550000	fifa11-club
+es	Barcelona	9	Mascherano	26	23900000	1800000	fifa11-club
+es	Barcelona	16	Keita	30	5400000	400000	fifa11-club
+es	Barcelona	17	Thiago	19	7400000	550000	fifa11-club
+es	Barcelona	18	Bojan	20	9400000	700000	fifa11-club
+es	Barcelona	10	Jeffren	22	5400000	400000	fifa11-club
+es	Barcelona	400	Fontas	20	5100000	400000	audited-addition
+es	Barcelona	401	J. dos Santos	20	6300000	450000	audited-addition
+es	Barcelona	402	Bartra	19	4300000	300000	audited-addition
+es	Real Madrid	20	Casillas	29	42800000	3200000	fifa11-club
+es	Real Madrid	21	Ramos	24	40800000	3050000	fifa11-club
+es	Real Madrid	38	Carvalho	32	16400000	1250000	fifa11-club
+es	Real Madrid	23	Pepe	27	23600000	1750000	fifa11-club
+es	Real Madrid	24	Marcelo	22	25900000	1950000	fifa11-club
+es	Real Madrid	25	Xabi Alonso	28	38500000	2900000	fifa11-club
+es	Real Madrid	36	Ozil	21	52700000	3950000	fifa11-club
+es	Real Madrid	26	Di Maria	22	46500000	3500000	fifa11-club
+es	Real Madrid	27	Ronaldo	25	89700000	6750000	fifa11-club
+es	Real Madrid	29	Benzema	22	47300000	3550000	fifa11-club
+es	Real Madrid	30	Higuain	22	32200000	2400000	fifa11-club
+es	Real Madrid	31	Dudek	37	1900000	150000	fifa11-club
+es	Real Madrid	22	Albiol	24	10600000	800000	fifa11-club
+es	Real Madrid	32	Arbeloa	27	6500000	500000	fifa11-club
+es	Real Madrid	34	Garay	23	7100000	550000	fifa11-club
+es	Real Madrid	37	Khedira	23	23500000	1750000	fifa11-club
+es	Real Madrid	28	Kaka	28	17800000	1350000	fifa11-club
+es	Real Madrid	35	Lass	25	11200000	850000	fifa11-club
+es	Real Madrid	33	P. Leon	23	6700000	500000	fifa11-club
+es	Real Madrid	39	Canales	19	7400000	550000	fifa11-club
+es	Real Madrid	403	Granero	23	13400000	1000000	audited-addition
+es	Real Madrid	404	Gago	24	11500000	850000	audited-addition
+es	Real Madrid	405	M. Diarra	25	14400000	1100000	audited-addition
+es	Real Madrid	406	Adan	23	1900000	150000	audited-addition
+es	Real Madrid	407	Mateos	23	2000000	150000	audited-addition
+es	Sevilla	40	Palop	36	5900000	450000	fifa11-club
+es	Sevilla	41	Navarro	28	6100000	450000	fifa11-club
+es	Sevilla	44	Escude	31	4600000	350000	fifa11-club
+es	Sevilla	42	Dabo	23	7100000	550000	fifa11-club
+es	Sevilla	43	Caceres	23	6300000	450000	fifa11-club
+es	Sevilla	48	Navas	24	14800000	1100000	fifa11-club
+es	Sevilla	47	Perotti	22	12000000	900000	fifa11-club
+es	Sevilla	46	Renato	31	4900000	350000	fifa11-club
+es	Sevilla	45	Zokora	29	6100000	450000	fifa11-club
+es	Sevilla	56	Negredo	25	17200000	1300000	fifa11-club
+es	Sevilla	49	Kanoute	32	6300000	450000	fifa11-club
+es	Sevilla	51	Varas	27	2800000	200000	fifa11-club
+es	Sevilla	53	Fazio	23	3600000	250000	fifa11-club
+es	Sevilla	52	Konko	26	3200000	250000	fifa11-club
+es	Sevilla	57	Cigarini	24	4900000	350000	fifa11-club
+es	Sevilla	55	Capel	22	5200000	400000	fifa11-club
+es	Sevilla	59	Romaric	27	2800000	200000	fifa11-club
+es	Sevilla	54	Guarente	24	3000000	200000	fifa11-club
+es	Sevilla	50	Luis Fabiano	29	6200000	450000	fifa11-club
+es	Sevilla	58	Rodri	20	3700000	300000	fifa11-club
+es	Sevilla	408	Alexis	25	5300000	400000	audited-addition
+es	Sevilla	409	Acosta	22	2200000	150000	audited-addition
+es	Sevilla	410	Alfaro	23	4200000	300000	audited-addition
+es	Sevilla	411	Luna	19	1700000	150000	audited-addition
+es	Atl. Madrid	60	De Gea	19	20300000	1500000	fifa11-club
+es	Atl. Madrid	78	Godin	24	15400000	1150000	fifa11-club
+es	Atl. Madrid	61	Perea	31	5500000	400000	fifa11-club
+es	Atl. Madrid	62	Dominguez	21	8300000	600000	fifa11-club
+es	Atl. Madrid	63	Ujfalusi	32	4100000	300000	fifa11-club
+es	Atl. Madrid	65	Assuncao	30	5400000	400000	fifa11-club
+es	Atl. Madrid	66	Reyes	26	7500000	550000	fifa11-club
+es	Atl. Madrid	75	Tiago	29	4100000	300000	fifa11-club
+es	Atl. Madrid	68	Aguero	22	72000000	5400000	fifa11-club
+es	Atl. Madrid	67	Forlan	31	20300000	1500000	fifa11-club
+es	Atl. Madrid	69	D. Costa	21	11000000	800000	fifa11-club
+es	Atl. Madrid	73	Asenjo	21	4000000	300000	fifa11-club
+es	Atl. Madrid	64	Lopez	28	5400000	400000	fifa11-club
+es	Atl. Madrid	74	Filipe Luis	25	5300000	400000	fifa11-club
+es	Atl. Madrid	79	Valera	25	4500000	350000	fifa11-club
+es	Atl. Madrid	72	Koke	18	5600000	400000	fifa11-club
+es	Atl. Madrid	77	Suarez	23	5000000	400000	fifa11-club
+es	Atl. Madrid	71	Simao	30	2700000	200000	fifa11-club
+es	Atl. Madrid	76	Camacho	20	4500000	350000	fifa11-club
+es	Atl. Madrid	70	Salvio	20	9400000	700000	fifa11-unique
+es	Atl. Madrid	412	Raul Garcia	24	7400000	550000	audited-addition
+es	Atl. Madrid	413	Fran Merida	20	6300000	450000	audited-addition
+es	Atl. Madrid	414	Juanito	34	2200000	150000	audited-addition
+es	Atl. Madrid	415	Joel	20	1200000	100000	audited-addition
+es	Villarreal	80	Lopez	28	10800000	800000	fifa11-club
+es	Villarreal	84	Capdevila	32	4900000	350000	fifa11-club
+es	Villarreal	83	Gonzalo	26	8400000	650000	fifa11-club
+es	Villarreal	81	Angel	29	6700000	500000	fifa11-club
+es	Villarreal	82	Marchena	31	4600000	350000	fifa11-club
+es	Villarreal	87	Cazorla	25	28800000	2150000	fifa11-club
+es	Villarreal	86	Valero	25	14400000	1100000	fifa11-club
+es	Villarreal	88	Cani	29	7100000	550000	fifa11-club
+es	Villarreal	85	Senna	34	3000000	200000	fifa11-club
+es	Villarreal	90	Rossi	23	34900000	2600000	fifa11-club
+es	Villarreal	89	Nilmar	26	17900000	1350000	fifa11-club
+es	Villarreal	91	Oliva	34	2200000	150000	fifa11-club
+es	Villarreal	92	Musacchio	20	6800000	500000	fifa11-club
+es	Villarreal	97	M. Gaspar	19	5200000	400000	fifa11-club
+es	Villarreal	94	Kiko	22	4000000	300000	fifa11-club
+es	Villarreal	95	Catala	25	3400000	250000	fifa11-club
+es	Villarreal	93	Bruno	26	6700000	500000	fifa11-club
+es	Villarreal	96	Matilla	22	5200000	400000	fifa11-club
+es	Villarreal	98	Montero	20	6600000	500000	fifa11-club
+es	Villarreal	99	Ruben	23	5200000	400000	fifa11-club
+es	Villarreal	416	Altidore	20	8400000	650000	audited-addition
+es	Villarreal	417	J. Oriol	23	3600000	250000	audited-addition
+es	Villarreal	418	Juan Carlos	23	3400000	250000	audited-addition
+es	Valencia	100	Cesar	38	7100000	550000	fifa11-club
+es	Valencia	102	J. Alba	21	13200000	1000000	fifa11-club
+es	Valencia	104	Mathieu	26	11200000	850000	fifa11-club
+es	Valencia	103	R. Costa	29	6700000	500000	fifa11-club
+es	Valencia	108	Mata	22	28600000	2150000	fifa11-club
+es	Valencia	107	Hernandez	25	16600000	1250000	fifa11-club
+es	Valencia	105	Topal	24	16400000	1250000	fifa11-club
+es	Valencia	106	Banega	22	17200000	1300000	fifa11-club
+es	Valencia	101	Albelda	32	7000000	500000	fifa11-club
+es	Valencia	110	Soldado	25	23300000	1750000	fifa11-club
+es	Valencia	109	Aduriz	29	12300000	900000	fifa11-club
+es	Valencia	119	Guaita	23	7700000	600000	fifa11-club
+es	Valencia	111	Moya	26	4300000	300000	fifa11-club
+es	Valencia	112	Dealbert	27	4600000	350000	fifa11-club
+es	Valencia	113	Miguel	30	3600000	250000	fifa11-club
+es	Valencia	114	Maduro	25	4500000	350000	fifa11-club
+es	Valencia	116	Joaquin	29	8300000	600000	fifa11-club
+es	Valencia	117	Feghouli	20	7200000	550000	fifa11-club
+es	Valencia	118	T. Costa	25	5600000	400000	fifa11-club
+es	Valencia	115	Vicente	29	3600000	250000	fifa11-club
+es	Valencia	419	Stankevicius	29	4500000	350000	audited-addition
+es	Valencia	420	D. Navarro	30	6100000	450000	audited-addition
+es	Valencia	421	M. Fernandes	24	8200000	600000	audited-addition
+es	Valencia	422	Isco	18	4200000	300000	audited-addition
+es	Valencia	423	Paco Alcacer	17	3000000	200000	audited-addition
+es	Deportivo	120	Aranzubia	30	1800000	150000	fifa11-club
+es	Deportivo	122	Castro	27	2900000	200000	fifa11-club
+es	Deportivo	123	Lopo	30	2000000	150000	fifa11-club
+es	Deportivo	121	Morel	32	1000000	100000	fifa11-club
+es	Deportivo	124	Aythami	24	1900000	150000	fifa11-club
+es	Deportivo	128	Valeron	35	2000000	150000	fifa11-club
+es	Deportivo	126	Rodriguez	28	2900000	200000	fifa11-club
+es	Deportivo	125	Guardado	23	3500000	250000	fifa11-club
+es	Deportivo	127	Perez	21	2600000	200000	fifa11-club
+es	Deportivo	129	Adrian	22	4500000	350000	fifa11-club
+es	Deportivo	130	Riki	30	2800000	200000	fifa11-club
+es	Deportivo	131	Manu	24	900000	50000	fifa11-club
+es	Deportivo	132	Colotto	29	700000	50000	fifa11-club
+es	Deportivo	136	Desmarets	31	900000	50000	fifa11-club
+es	Deportivo	134	Juca	30	900000	50000	fifa11-club
+es	Deportivo	138	Saul	25	1400000	100000	fifa11-club
+es	Deportivo	137	Tomas	25	1000000	100000	fifa11-club
+es	Deportivo	133	Michel	22	900000	50000	fifa11-club
+es	Deportivo	135	Urreta	20	900000	50000	fifa11-club
+es	Deportivo	139	Lassad	24	2600000	200000	fifa11-club
+es	Deportivo	424	Manuel Pablo	34	1100000	100000	audited-addition
+es	Deportivo	425	Laure	25	1300000	100000	audited-addition
+es	Deportivo	426	Ze Castro	27	1500000	100000	audited-addition
+es	Deportivo	427	J. Dominguez	20	1600000	100000	audited-addition
+es	Malaga	428	Galatto	27	2100000	150000	audited-addition
+es	Malaga	143	Weligton	31	1600000	100000	fifa11-club
+es	Malaga	141	Gamez	25	2300000	150000	fifa11-club
+es	Malaga	144	Mtiliga	29	1700000	150000	fifa11-club
+es	Malaga	142	Kris	25	1900000	150000	fifa11-club
+es	Malaga	145	Apono	26	3700000	300000	fifa11-club
+es	Malaga	146	Torres	21	3700000	300000	fifa11-club
+es	Malaga	147	Valdo	29	2700000	200000	fifa11-unique
+es	Malaga	148	Lolo	26	3000000	200000	audited-retained
+es	Malaga	150	Silva	26	3000000	200000	fifa11-club
+es	Malaga	152	Rondon	20	8400000	650000	fifa11-club
+es	Malaga	151	Arnau	35	500000	50000	fifa11-club
+es	Malaga	157	Juanito	30	900000	50000	fifa11-club
+es	Malaga	154	Cuadrado	29	800000	50000	audited-retained
+es	Malaga	153	Eliseu	26	1300000	100000	fifa11-club
+es	Malaga	156	Fernando	31	700000	50000	fifa11-club
+es	Malaga	155	Quincy	24	1300000	100000	fifa11-club
+es	Malaga	159	Pablo	32	700000	50000	audited-retained
+es	Malaga	149	Baha	29	2500000	200000	fifa11-club
+es	Malaga	158	Fernandez	25	1500000	100000	fifa11-club
+es	Malaga	429	Ruben	26	1300000	100000	audited-addition
+es	Malaga	430	Juanmi	17	3500000	250000	audited-addition
+es	Malaga	431	Recio	19	2800000	200000	audited-addition
+es	Malaga	432	Portillo	20	1000000	100000	audited-addition
+es	Malaga	433	Duda	30	3800000	300000	audited-addition
+es	Mallorca	160	Aouate	32	4400000	350000	fifa11-club
+es	Mallorca	162	Ramis	25	5300000	400000	fifa11-club
+es	Mallorca	163	Nunes	33	2200000	150000	fifa11-club
+es	Mallorca	161	Ximo	20	3000000	200000	fifa11-club
+es	Mallorca	170	Corrales	28	1800000	150000	fifa11-club
+es	Mallorca	164	Josemi	25	1700000	150000	audited-retained
+es	Mallorca	176	De Guzman	22	6900000	500000	fifa11-club
+es	Mallorca	165	Marti	35	1700000	150000	fifa11-club
+es	Mallorca	167	Castro	25	4000000	300000	fifa11-club
+es	Mallorca	178	Nsue	20	5600000	400000	fifa11-club
+es	Mallorca	168	Webo	28	3300000	250000	fifa11-club
+es	Mallorca	171	Lux	28	1000000	100000	fifa11-club
+es	Mallorca	172	Nadal	21	800000	50000	fifa11-club
+es	Mallorca	174	K. Garcia	20	1300000	100000	appearance-db
+es	Mallorca	173	Alvarez	33	500000	50000	audited-retained
+es	Mallorca	166	Ayoze	28	1600000	100000	fifa11-club
+es	Mallorca	175	Tuni	28	800000	50000	fifa11-club
+es	Mallorca	179	Varela	27	600000	50000	audited-retained
+es	Mallorca	169	Cavenaghi	26	3100000	250000	fifa11-club
+es	Mallorca	177	Victor	25	1700000	150000	fifa11-club
+es	Mallorca	434	Cendros	23	2000000	150000	audited-addition
+es	Mallorca	435	Pereira	22	1300000	100000	audited-addition
+es	Mallorca	436	Pina	22	1500000	100000	audited-addition
+es	Mallorca	437	Joao Victor	21	1500000	100000	audited-addition
+es	Espanyol	191	Alvarez	24	5300000	400000	fifa11-club
+es	Espanyol	197	Vila	21	3700000	300000	fifa11-club
+es	Espanyol	184	Amat	18	2000000	150000	fifa11-club
+es	Espanyol	183	Forlin	22	3200000	250000	fifa11-club
+es	Espanyol	182	Ruiz	21	2900000	200000	fifa11-club
+es	Espanyol	187	Garcia	29	4100000	300000	fifa11-club
+es	Espanyol	186	J. Marquez	24	3700000	300000	fifa11-club
+es	Espanyol	185	Baena	21	3100000	250000	fifa11-club
+es	Espanyol	190	Osvaldo	24	7700000	600000	fifa11-club
+es	Espanyol	189	Alonso	31	3600000	250000	fifa11-club
+es	Espanyol	188	S. Garcia	27	4300000	300000	fifa11-club
+es	Espanyol	180	Kameni	26	3200000	250000	fifa11-club
+es	Espanyol	181	J. Lopez	24	2300000	150000	fifa11-club
+es	Espanyol	192	Chica	25	900000	50000	fifa11-club
+es	Espanyol	193	Verdu	27	2100000	150000	fifa11-club
+es	Espanyol	195	Marquez	24	1600000	100000	fifa11-club
+es	Espanyol	196	Silva	24	1200000	100000	audited-retained
+es	Espanyol	199	Callejon	23	2600000	200000	fifa11-club
+es	Espanyol	194	Vazquez	19	1700000	150000	appearance-db
+es	Espanyol	198	Sanchez	31	800000	50000	audited-retained
+es	Espanyol	438	C. Alvarez	24	2600000	200000	audited-addition
+es	Espanyol	439	Javi Lopez	24	1400000	100000	audited-addition
+es	Espanyol	440	Duscher	31	2900000	200000	audited-addition
+es	Espanyol	441	Datolo	26	5200000	400000	audited-addition
+es	Almeria	200	Alves	25	10300000	750000	fifa11-club
+es	Almeria	201	Michel	20	3000000	200000	fifa11-club
+es	Almeria	212	C. Garcia	26	2500000	200000	fifa11-club
+es	Almeria	202	M. Silva	21	1900000	150000	fifa11-club
+es	Almeria	203	Pellerano	26	1400000	100000	fifa11-club
+es	Almeria	219	Bernardello	24	3300000	250000	fifa11-club
+es	Almeria	208	Crusat	28	2300000	150000	fifa11-club
+es	Almeria	206	Ortiz	33	900000	50000	fifa11-club
+es	Almeria	205	Vargas	30	1100000	100000	fifa11-club
+es	Almeria	210	Piatti	21	6400000	500000	fifa11-club
+es	Almeria	209	Uche	27	3300000	250000	fifa11-club
+es	Almeria	211	Esteban	35	500000	50000	fifa11-club
+es	Almeria	204	Jakobsen	24	900000	50000	fifa11-club
+es	Almeria	213	Acasiete	32	300000	50000	fifa11-club
+es	Almeria	207	Corona	29	1000000	100000	fifa11-club
+es	Almeria	215	Nieto	24	700000	50000	fifa11-club
+es	Almeria	214	Soriano	26	600000	50000	audited-retained
+es	Almeria	218	M'Bami	27	400000	50000	fifa11-club
+es	Almeria	217	Ulloa	24	3000000	200000	fifa11-club
+es	Almeria	216	Goitom	25	800000	50000	fifa11-club
+es	Almeria	442	Juanito	23	2900000	200000	audited-addition
+es	Almeria	443	Luna	23	2000000	150000	audited-addition
+es	Almeria	444	Diego Garcia	24	1100000	100000	audited-addition
+es	Racing	220	Tono	30	1500000	100000	fifa11-club
+es	Racing	224	Cisma	28	2700000	200000	fifa11-club
+es	Racing	222	Henrique	23	3200000	250000	fifa11-club
+es	Racing	221	Francis	28	2100000	150000	fifa11-club
+es	Racing	233	Osmar	22	1800000	150000	fifa11-club
+es	Racing	229	Bakircioglu	29	3600000	250000	fifa11-club
+es	Racing	225	Munitis	35	1500000	100000	fifa11-club
+es	Racing	228	Serrano	28	3200000	250000	fifa11-club
+es	Racing	226	Lacen	26	3400000	250000	fifa11-club
+es	Racing	227	Colsa	31	1700000	150000	fifa11-club
+es	Racing	230	Rosenberg	27	3300000	250000	fifa11-club
+es	Racing	231	Coltorti	29	600000	50000	fifa11-club
+es	Racing	223	Torrejon	24	1500000	100000	fifa11-club
+es	Racing	232	Pinillos	36	200000	50000	fifa11-club
+es	Racing	238	Cristian	24	800000	50000	fifa11-club
+es	Racing	236	Diop	24	1600000	100000	fifa11-club
+es	Racing	234	Adrian	22	1500000	100000	fifa11-club
+es	Racing	235	Arana	25	1200000	100000	fifa11-club
+es	Racing	237	Bolado	21	2100000	150000	fifa11-club
+es	Racing	239	Nahuelpan	23	1500000	100000	fifa11-club
+es	Racing	445	Tziolis	25	2000000	150000	audited-addition
+es	Racing	446	Waldo Ponce	27	2000000	150000	audited-addition
+es	Racing	447	M. Fernandez	24	1500000	100000	audited-addition
+es	Racing	448	Ramon Arcas	19	1600000	100000	audited-addition
+es	Ath. Bilbao	240	Iraizoz	29	4500000	350000	fifa11-club
+es	Ath. Bilbao	241	Iraola	28	8500000	650000	fifa11-club
+es	Ath. Bilbao	244	Castillo	24	5400000	400000	fifa11-club
+es	Ath. Bilbao	242	Amorebieta	25	4500000	350000	fifa11-club
+es	Ath. Bilbao	243	Ocio	33	1600000	100000	fifa11-club
+es	Ath. Bilbao	246	Martinez	21	24600000	1850000	fifa11-club
+es	Ath. Bilbao	247	Orbaiz	31	3900000	300000	fifa11-club
+es	Ath. Bilbao	248	Gurpegui	30	3800000	300000	fifa11-club
+es	Ath. Bilbao	250	Llorente	25	33300000	2500000	fifa11-club
+es	Ath. Bilbao	245	Muniain	17	12000000	900000	fifa11-club
+es	Ath. Bilbao	249	Toquero	26	7000000	500000	fifa11-club
+es	Ath. Bilbao	251	R. Fernandez	22	2000000	150000	appearance-db
+es	Ath. Bilbao	255	Jose	21	2900000	200000	fifa11-club
+es	Ath. Bilbao	253	Ustaritz	27	1600000	100000	fifa11-club
+es	Ath. Bilbao	252	Koikili	29	1300000	100000	fifa11-club
+es	Ath. Bilbao	259	Lopez	27	2800000	200000	fifa11-club
+es	Ath. Bilbao	254	Susaeta	22	3100000	250000	fifa11-club
+es	Ath. Bilbao	258	Gomez	20	3200000	250000	fifa11-club
+es	Ath. Bilbao	256	Gabilondo	31	1700000	150000	fifa11-club
+es	Ath. Bilbao	257	De Marcos	21	2200000	150000	fifa11-club
+es	Ath. Bilbao	449	San Jose	21	6600000	500000	audited-addition
+es	Ath. Bilbao	450	Iturraspe	21	3500000	250000	audited-addition
+es	Ath. Bilbao	451	Aurtenetxe	18	2200000	150000	audited-addition
+es	Ath. Bilbao	452	I. Perez	22	1300000	100000	audited-addition
+es	Sporting	260	Pablo	31	2000000	150000	fifa11-club
+es	Sporting	276	Pedro	22	2800000	200000	fifa11-club
+es	Sporting	263	Gregory	29	1700000	150000	fifa11-club
+es	Sporting	261	Lora	23	2400000	200000	fifa11-club
+es	Sporting	262	Botia	21	2500000	200000	fifa11-club
+es	Sporting	266	Eguren	29	3600000	250000	fifa11-club
+es	Sporting	267	Ayoze	24	4100000	300000	fifa11-club
+es	Sporting	265	Cases	22	4300000	300000	appearance-db
+es	Sporting	269	Carmelo	27	3100000	250000	fifa11-club
+es	Sporting	268	C. Castro	28	1900000	150000	fifa11-club
+es	Sporting	270	Novo	31	2000000	150000	fifa11-club
+es	Sporting	271	Cuellar	26	800000	50000	fifa11-club
+es	Sporting	264	Canella	22	2400000	200000	fifa11-club
+es	Sporting	273	Angel	20	1000000	100000	fifa11-club
+es	Sporting	278	Moran	23	1500000	100000	fifa11-club
+es	Sporting	279	Maldonado	25	1000000	100000	audited-retained
+es	Sporting	277	A. Castro	28	800000	50000	fifa11-club
+es	Sporting	275	Barral	27	1300000	100000	fifa11-club
+es	Sporting	272	Gerard	30	800000	50000	audited-retained
+es	Sporting	274	Bilic	29	800000	50000	fifa11-club
+es	Sporting	453	Rivera	32	1100000	100000	audited-addition
+es	Sporting	454	Sangoy	25	1000000	100000	audited-addition
+es	Sporting	455	Jorge Garcia	23	1800000	150000	audited-addition
+es	Osasuna	280	Ricardo	38	1200000	100000	fifa11-club
+es	Osasuna	284	Monreal	24	2700000	200000	fifa11-club
+es	Osasuna	281	Echaide	22	2400000	200000	fifa11-unique
+es	Osasuna	282	Nelson	27	2000000	150000	fifa11-club
+es	Osasuna	283	S. Fernandez	33	1100000	100000	appearance-db
+es	Osasuna	288	Juanfran	25	5600000	400000	fifa11-club
+es	Osasuna	285	Nekounam	29	3600000	250000	fifa11-club
+es	Osasuna	287	Masoud	26	4500000	350000	fifa11-club
+es	Osasuna	286	Punal	34	1700000	150000	fifa11-club
+es	Osasuna	289	Aranda	30	2500000	200000	fifa11-club
+es	Osasuna	290	Pandiani	34	1600000	100000	fifa11-club
+es	Osasuna	291	Riesgo	26	1400000	100000	fifa11-club
+es	Osasuna	292	Flano	26	1200000	100000	fifa11-club
+es	Osasuna	293	Oier	24	900000	50000	fifa11-club
+es	Osasuna	296	Lolo	26	1700000	150000	fifa11-club
+es	Osasuna	297	Ruper	23	1700000	150000	fifa11-club
+es	Osasuna	294	Vadocz	25	1200000	100000	fifa11-club
+es	Osasuna	298	Lekic	25	1700000	150000	fifa11-club
+es	Osasuna	295	Sola	24	1700000	150000	fifa11-club
+es	Osasuna	299	Camunas	30	800000	50000	fifa11-club
+es	Osasuna	456	Damia	28	1400000	100000	audited-addition
+es	Osasuna	457	Calleja	32	1100000	100000	audited-addition
+es	Osasuna	458	Annunziata	23	600000	50000	audited-addition
+es	Levante	300	Reina	25	2200000	150000	fifa11-club
+es	Levante	303	Nano	31	1600000	100000	fifa11-club
+es	Levante	304	Juanfran	34	1100000	100000	fifa11-club
+es	Levante	301	Cerra	27	1600000	100000	fifa11-club
+es	Levante	302	Ballesteros	34	700000	50000	fifa11-club
+es	Levante	307	Suarez	31	2400000	200000	fifa11-club
+es	Levante	308	Juanlu	30	2700000	200000	fifa11-club
+es	Levante	305	Pallardo	23	2500000	200000	fifa11-club
+es	Levante	310	Caicedo	21	7300000	550000	fifa11-club
+es	Levante	306	Nadal	24	4300000	300000	fifa11-club
+es	Levante	309	Ruben	31	2000000	150000	fifa11-club
+es	Levante	311	Mora	28	800000	50000	audited-retained
+es	Levante	318	Del Horno	29	1100000	100000	fifa11-club
+es	Levante	317	Rodas	22	1200000	100000	fifa11-club
+es	Levante	316	Angel	27	800000	50000	audited-retained
+es	Levante	313	Mossa	21	900000	50000	fifa11-club
+es	Levante	315	Sergio	33	900000	50000	fifa11-club
+es	Levante	319	Larrea	26	1300000	100000	fifa11-club
+es	Levante	314	Pena	31	700000	50000	audited-retained
+es	Levante	312	Jorda	26	1200000	100000	fifa11-club
+es	Levante	140	Munua	32	1900000	150000	fifa11-club
+es	Levante	459	Robuste	25	1900000	150000	audited-addition
+es	Levante	460	Javi Venta	34	1100000	100000	audited-addition
+es	Levante	461	Stuani	23	3500000	250000	audited-addition
+es	Levante	462	Xisco	30	2000000	150000	audited-addition
+es	Getafe	320	Codina	28	2700000	200000	fifa11-club
+es	Getafe	327	Diaz	31	3700000	300000	fifa11-club
+es	Getafe	321	Torres	24	4600000	350000	fifa11-club
+es	Getafe	324	Mane	28	3600000	250000	fifa11-club
+es	Getafe	333	Marcano	24	3500000	250000	fifa11-club
+es	Getafe	322	Parejo	21	6200000	450000	fifa11-club
+es	Getafe	325	Boateng	27	4900000	350000	fifa11-club
+es	Getafe	335	Rios	28	3200000	250000	fifa11-club
+es	Getafe	330	Manu	26	5400000	400000	fifa11-club
+es	Getafe	329	Colunga	25	4200000	300000	fifa11-club
+es	Getafe	339	Miku	25	4200000	300000	fifa11-club
+es	Getafe	331	Ustari	24	900000	50000	fifa11-club
+es	Getafe	323	Rafa	25	2300000	150000	fifa11-club
+es	Getafe	332	Mario	28	800000	50000	fifa11-club
+es	Getafe	326	Casquero	34	1500000	100000	fifa11-club
+es	Getafe	336	Gavilan	25	3200000	250000	fifa11-club
+es	Getafe	334	Sanchez	22	1900000	150000	fifa11-club
+es	Getafe	328	Arizmendi	26	2700000	200000	fifa11-club
+es	Getafe	337	Albin	24	1700000	150000	fifa11-club
+es	Getafe	465	Sardinero	19	1000000	100000	audited-addition
+es	Getafe	463	Victor Sanchez	22	2200000	150000	audited-addition
+es	Getafe	464	Mosquera	22	1700000	150000	audited-addition
+es	R. Sociedad	340	Bravo	27	2100000	150000	fifa11-club
+es	R. Sociedad	341	Gonzalez	24	2300000	150000	fifa11-club
+es	R. Sociedad	343	Martinez	24	1900000	150000	fifa11-club
+es	R. Sociedad	344	Ansotegi	28	1400000	100000	fifa11-club
+es	R. Sociedad	342	De la Bella	24	1700000	150000	fifa11-club
+es	R. Sociedad	348	Griezmann	19	3200000	250000	fifa11-club
+es	R. Sociedad	347	Xabi Prieto	27	2400000	200000	fifa11-club
+es	R. Sociedad	346	Aranburu	31	1500000	100000	fifa11-club
+es	R. Sociedad	345	Rivas	30	1600000	100000	fifa11-club
+es	R. Sociedad	350	Llorente	30	5600000	400000	fifa11-club
+es	R. Sociedad	349	Tamudo	32	2000000	150000	fifa11-club
+es	R. Sociedad	351	Zubikarai	26	700000	50000	fifa11-club
+es	R. Sociedad	355	Estrada	23	1200000	100000	fifa11-club
+es	R. Sociedad	353	Demidov	23	1000000	100000	fifa11-unique
+es	R. Sociedad	352	Elustondo	23	800000	50000	fifa11-club
+es	R. Sociedad	356	Bergara	24	1800000	150000	fifa11-club
+es	R. Sociedad	357	Zurutuza	24	1200000	100000	fifa11-club
+es	R. Sociedad	354	Illarramendi	20	1000000	100000	fifa11-club
+es	R. Sociedad	359	Ifran	23	1700000	150000	fifa11-club
+es	R. Sociedad	358	Agirretxe	23	1500000	100000	fifa11-club
+es	R. Sociedad	466	Sarpong	22	2600000	200000	audited-addition
+es	R. Sociedad	467	Carlos Martinez	24	1900000	150000	audited-addition
+es	R. Sociedad	468	Viguera	23	900000	50000	audited-addition
+es	Zaragoza	360	Franco	33	1800000	150000	fifa11-club
+es	Zaragoza	363	Jarosik	32	2900000	200000	fifa11-club
+es	Zaragoza	372	Diogo	27	3300000	250000	fifa11-club
+es	Zaragoza	471	P. da Silva	23	3200000	250000	audited-addition
+es	Zaragoza	379	Gabi	27	8400000	650000	fifa11-club
+es	Zaragoza	366	Herrera	21	6200000	450000	fifa11-club
+es	Zaragoza	361	Ponzio	28	3900000	300000	fifa11-club
+es	Zaragoza	375	Lafita	26	3900000	300000	fifa11-club
+es	Zaragoza	365	Edmilson	34	1500000	100000	fifa11-club
+es	Zaragoza	369	Uche	26	3600000	250000	fifa11-club
+es	Zaragoza	370	Sinama-Pongolle	25	3300000	250000	fifa11-club
+es	Zaragoza	371	Roberto	25	900000	50000	audited-retained
+es	Zaragoza	362	Contini	30	1300000	100000	fifa11-club
+es	Zaragoza	376	Obradovic	22	1200000	100000	fifa11-club
+es	Zaragoza	373	Lanzaro	28	900000	50000	fifa11-unique
+es	Zaragoza	374	Paredes	28	800000	50000	fifa11-club
+es	Zaragoza	377	Bertolo	24	3300000	250000	fifa11-club
+es	Zaragoza	367	N'Daw	26	2200000	150000	fifa11-unique
+es	Zaragoza	378	Lacruz	18	1900000	150000	fifa11-club
+es	Zaragoza	368	Braulio	24	2100000	150000	fifa11-club
+es	Zaragoza	469	Doblas	30	1800000	150000	audited-addition
+es	Zaragoza	470	Jorge Lopez	31	1700000	150000	audited-addition
+es	Zaragoza	472	Boutahar	23	2500000	200000	audited-addition
+es	Hercules	380	Calatayud	30	1500000	100000	fifa11-club
+es	Hercules	473	Pulhac	26	1200000	100000	audited-addition
+es	Hercules	383	Sarr	26	1600000	100000	fifa11-club
+es	Hercules	389	K. Femenia	22	4000000	300000	audited-retained
+es	Hercules	381	Juanra	30	1300000	100000	fifa11-club
+es	Hercules	388	Rufete	33	1200000	100000	fifa11-club
+es	Hercules	387	Aguilar	25	2000000	150000	fifa11-club
+es	Hercules	385	Farinos	32	1000000	100000	fifa11-club
+es	Hercules	395	Tote	31	1000000	100000	fifa11-club
+es	Hercules	397	Drenthe	23	1700000	150000	fifa11-club
+es	Hercules	399	Portillo	28	1200000	100000	fifa11-club
+es	Hercules	391	Alba	32	500000	50000	fifa11-club
+es	Hercules	384	Pena	32	1000000	100000	fifa11-club
+es	Hercules	394	A. Paz	31	700000	50000	fifa11-club
+es	Hercules	392	Cortes	31	300000	50000	fifa11-club
+es	Hercules	390	Fritzler	24	1600000	100000	fifa11-club
+es	Hercules	386	Gomes	25	1400000	100000	fifa11-club
+es	Hercules	396	Sendoa	34	400000	50000	fifa11-club
+es	Hercules	398	Valdez	26	1400000	100000	fifa11-club
+es	Hercules	393	Trezeguet	32	1000000	100000	fifa11-club
+es	Hercules	474	Pamarot	31	800000	50000	audited-addition
+es	Hercules	475	Velthuizen	23	2700000	200000	audited-addition
+es	Hercules	476	Thomert	30	1400000	100000	audited-addition
+it	Inter	0	Cesar	30	24400000	1850000	fifa11-club
+it	Inter	1	Maicon	29	25600000	1900000	fifa11-club
+it	Inter	3	Lucio	32	13100000	1000000	fifa11-club
+it	Inter	4	Chivu	29	11100000	850000	fifa11-club
+it	Inter	2	Samuel	32	7400000	550000	fifa11-club
+it	Inter	7	Sneijder	26	33100000	2500000	fifa11-club
+it	Inter	5	Zanetti	37	5600000	400000	fifa11-club
+it	Inter	6	Cambiasso	30	13000000	1000000	fifa11-club
+it	Inter	11	Stankovic	31	6800000	500000	fifa11-club
+it	Inter	10	Coutinho	18	11300000	850000	fifa11-club
+it	Inter	8	Eto'o	29	43100000	3250000	fifa11-club
+it	Inter	12	Castellazzi	35	3600000	250000	fifa11-club
+it	Inter	13	Materazzi	37	1500000	100000	fifa11-club
+it	Inter	15	Santon	19	4300000	300000	fifa11-club
+it	Inter	14	Cordoba	34	2500000	200000	fifa11-club
+it	Inter	16	Motta	28	5800000	450000	fifa11-club
+it	Inter	17	Mariga	23	6700000	500000	fifa11-club
+it	Inter	18	Pandev	27	6500000	500000	fifa11-club
+it	Inter	9	Milito	31	6100000	450000	fifa11-club
+it	Inter	19	Biabiany	22	7200000	550000	fifa11-club
+it	Inter	400	Orlandoni	38	1100000	100000	audited-addition
+it	Inter	401	Natalino	18	2000000	150000	audited-addition
+it	Inter	402	Obi	19	3200000	250000	audited-addition
+it	Inter	403	Muntari	23	7600000	550000	audited-addition
+it	Inter	404	Suazo	30	2800000	200000	audited-addition
+it	Roma	20	Doni	30	9700000	750000	fifa11-club
+it	Roma	21	Burdisso	29	10000000	750000	fifa11-club
+it	Roma	23	Juan	31	7300000	550000	fifa11-club
+it	Roma	22	Mexes	28	8500000	650000	fifa11-club
+it	Roma	24	Riise	29	5600000	400000	fifa11-club
+it	Roma	26	De Rossi	27	25600000	1900000	fifa11-club
+it	Roma	25	Pizarro	30	7600000	550000	fifa11-club
+it	Roma	27	Taddei	30	5400000	400000	fifa11-club
+it	Roma	29	Totti	33	14400000	1100000	fifa11-club
+it	Roma	28	Vucinic	26	10900000	800000	fifa11-club
+it	Roma	30	Menez	23	8700000	650000	fifa11-club
+it	Roma	31	Lobont	32	2200000	150000	fifa11-club
+it	Roma	39	Cicinho	30	2000000	150000	fifa11-club
+it	Roma	406	Rosi	23	2800000	200000	audited-addition
+it	Roma	33	Castellini	31	1800000	150000	fifa11-club
+it	Roma	38	Brighi	29	2700000	200000	fifa11-club
+it	Roma	36	Perrotta	32	2000000	150000	fifa11-club
+it	Roma	34	Simplicio	30	2200000	150000	fifa11-club
+it	Roma	37	Adriano	28	4000000	300000	fifa11-club
+it	Roma	35	Borriello	28	4700000	350000	fifa11-club
+it	Roma	405	Julio Sergio	31	5200000	400000	audited-addition
+it	Roma	407	Greco	24	1600000	100000	audited-addition
+it	Roma	408	Okaka	21	4100000	300000	audited-addition
+it	Milan	52	Abbiati	33	12300000	900000	fifa11-club
+it	Milan	53	Silva	25	34600000	2600000	fifa11-club
+it	Milan	42	Nesta	34	11200000	850000	fifa11-club
+it	Milan	41	Zambrotta	33	11600000	850000	fifa11-club
+it	Milan	55	Abate	23	14200000	1050000	fifa11-club
+it	Milan	58	Seedorf	34	12000000	900000	fifa11-club
+it	Milan	45	Pirlo	31	15600000	1150000	fifa11-club
+it	Milan	47	Ambrosini	33	10800000	800000	fifa11-club
+it	Milan	44	Boateng	23	23500000	1750000	fifa11-club
+it	Milan	49	Ibrahimovic	28	53900000	4050000	fifa11-club
+it	Milan	50	Pato	20	37400000	2800000	fifa11-club
+it	Milan	40	Amelia	28	10800000	800000	fifa11-club
+it	Milan	43	Yepes	34	5600000	400000	fifa11-club
+it	Milan	57	Bonera	29	6700000	500000	fifa11-club
+it	Milan	54	Antonini	28	6100000	450000	fifa11-club
+it	Milan	46	Gattuso	32	12200000	900000	fifa11-club
+it	Milan	48	Ronaldinho	30	8600000	650000	fifa11-club
+it	Milan	56	Flamini	26	6700000	500000	fifa11-club
+it	Milan	51	Robinho	26	21500000	1600000	fifa11-club
+it	Milan	59	Inzaghi	37	1900000	150000	fifa11-club
+it	Milan	409	Roma	36	2900000	200000	audited-addition
+it	Milan	410	Oddo	34	2800000	200000	audited-addition
+it	Milan	411	Sokratis	22	8900000	650000	audited-addition
+it	Milan	412	Merkel	18	4200000	300000	audited-addition
+it	Milan	413	Strasser	20	2200000	150000	audited-addition
+it	Sampdoria	60	Curci	25	1800000	150000	fifa11-club
+it	Sampdoria	73	Rossi	21	3700000	300000	fifa11-club
+it	Sampdoria	62	Lucchini	29	1700000	150000	fifa11-club
+it	Sampdoria	415	Accardi	27	2000000	150000	audited-addition
+it	Sampdoria	63	Gastaldello	27	1600000	100000	fifa11-club
+it	Sampdoria	65	Palombo	28	9000000	700000	fifa11-club
+it	Sampdoria	66	Semioli	30	2200000	150000	fifa11-club
+it	Sampdoria	68	Mannini	26	3000000	200000	fifa11-club
+it	Sampdoria	69	Cassano	28	18800000	1400000	fifa11-club
+it	Sampdoria	70	Pazzini	26	15600000	1150000	fifa11-club
+it	Sampdoria	67	Pozzi	24	2600000	200000	fifa11-club
+it	Sampdoria	71	Fiorillo	20	1200000	100000	fifa11-club
+it	Sampdoria	75	Ziegler	24	1500000	100000	fifa11-club
+it	Sampdoria	72	Regini	24	1000000	100000	audited-retained
+it	Sampdoria	77	Cacciatore	23	900000	50000	fifa11-club
+it	Sampdoria	64	Guberti	25	1700000	150000	fifa11-club
+it	Sampdoria	74	Poli	20	1800000	150000	fifa11-club
+it	Sampdoria	79	Dessena	23	1700000	150000	fifa11-club
+it	Sampdoria	78	Tissone	24	1000000	100000	fifa11-club
+it	Sampdoria	76	Marilungo	21	1100000	100000	fifa11-club
+it	Sampdoria	414	Da Costa	26	1100000	100000	audited-addition
+it	Sampdoria	416	Padalino	26	1600000	100000	audited-addition
+it	Sampdoria	417	Koman	21	2000000	150000	audited-addition
+it	Palermo	91	Sirigu	23	10800000	800000	fifa11-club
+it	Palermo	84	Cassani	27	5200000	400000	fifa11-club
+it	Palermo	81	Balzaretti	28	4200000	300000	fifa11-club
+it	Palermo	83	Goian	29	2500000	200000	fifa11-club
+it	Palermo	82	Bovo	27	2900000	200000	fifa11-club
+it	Palermo	88	Pastore	21	28200000	2100000	fifa11-club
+it	Palermo	87	Ilicic	22	7700000	600000	fifa11-club
+it	Palermo	85	Migliaccio	29	4700000	350000	fifa11-club
+it	Palermo	86	Nocerino	25	4800000	350000	fifa11-club
+it	Palermo	89	Maccarone	30	2800000	200000	fifa11-club
+it	Palermo	90	Miccoli	31	2500000	200000	fifa11-club
+it	Palermo	80	Benussi	28	3400000	250000	fifa11-club
+it	Palermo	92	Munoz	19	1900000	150000	fifa11-club
+it	Palermo	99	Darmian	20	1700000	150000	fifa11-club
+it	Palermo	93	Raggi	26	1100000	100000	fifa11-unique
+it	Palermo	95	Bacinovic	20	2200000	150000	fifa11-club
+it	Palermo	94	Kasami	18	1900000	150000	fifa11-club
+it	Palermo	96	Hernandez	20	2800000	200000	fifa11-club
+it	Palermo	97	Mchedlidze	20	2300000	150000	fifa11-unique
+it	Palermo	98	Pinilla	26	1800000	150000	fifa11-club
+it	Palermo	418	Brichetto	27	1400000	100000	audited-addition
+it	Palermo	419	Joao Pedro	18	2800000	200000	audited-addition
+it	Palermo	420	Liverani	34	1700000	150000	audited-addition
+it	Napoli	100	De Sanctis	33	4600000	350000	fifa11-club
+it	Napoli	102	Cannavaro	29	6700000	500000	fifa11-club
+it	Napoli	103	Campagnaro	30	4600000	350000	fifa11-club
+it	Napoli	104	Zuniga	24	6900000	500000	fifa11-club
+it	Napoli	107	Hamsik	23	33600000	2500000	fifa11-club
+it	Napoli	108	Maggio	28	11600000	850000	fifa11-club
+it	Napoli	105	Gargano	26	7500000	550000	fifa11-club
+it	Napoli	106	Yebda	26	6700000	500000	fifa11-club
+it	Napoli	116	Pazienza	28	5800000	450000	fifa11-club
+it	Napoli	109	Cavani	23	50700000	3800000	fifa11-club
+it	Napoli	110	Lavezzi	25	38300000	2850000	fifa11-club
+it	Napoli	111	Iezzo	37	1500000	100000	fifa11-club
+it	Napoli	101	Aronica	32	3300000	250000	fifa11-club
+it	Napoli	112	Santacroce	24	3500000	250000	fifa11-club
+it	Napoli	113	Grava	33	1400000	100000	fifa11-club
+it	Napoli	115	Cribari	30	1800000	150000	fifa11-club
+it	Napoli	117	Dossena	28	3900000	300000	fifa11-club
+it	Napoli	114	Sosa	25	3600000	250000	fifa11-club
+it	Napoli	118	Lucarelli	34	1700000	150000	fifa11-club
+it	Napoli	119	Dumitru	18	4900000	350000	fifa11-club
+it	Napoli	421	Gianello	34	1200000	100000	audited-addition
+it	Napoli	422	Vitale	22	2800000	200000	audited-addition
+it	Napoli	423	Blasi	30	2400000	200000	audited-addition
+it	Napoli	424	Maiello	19	1800000	150000	audited-addition
+it	Juventus	120	Buffon	32	22500000	1700000	fifa11-club
+it	Juventus	122	Chiellini	26	25300000	1900000	fifa11-club
+it	Juventus	124	De Ceglie	23	12600000	950000	fifa11-club
+it	Juventus	121	Grosso	32	5700000	450000	fifa11-club
+it	Juventus	123	Bonucci	23	12800000	950000	fifa11-club
+it	Juventus	126	Krasic	25	14400000	1100000	fifa11-club
+it	Juventus	129	Pepe	27	14400000	1100000	fifa11-club
+it	Juventus	125	Aquilani	26	10400000	800000	fifa11-club
+it	Juventus	127	Melo	27	8000000	600000	fifa11-club
+it	Juventus	128	Quagliarella	27	11600000	850000	fifa11-club
+it	Juventus	137	Del Piero	35	2600000	200000	fifa11-club
+it	Juventus	131	Storari	32	4400000	350000	fifa11-club
+it	Juventus	132	Grygera	30	2000000	150000	fifa11-club
+it	Juventus	135	Motta	24	3100000	250000	fifa11-club
+it	Juventus	139	Sissoko	25	4000000	300000	fifa11-club
+it	Juventus	133	Martinez	27	3200000	250000	fifa11-club
+it	Juventus	134	Lanzafame	23	3400000	250000	fifa11-club
+it	Juventus	136	Salihamidzic	33	1300000	100000	fifa11-club
+it	Juventus	130	Amauri	30	3900000	300000	fifa11-club
+it	Juventus	138	Iaquinta	30	3400000	250000	fifa11-club
+it	Juventus	425	Manninger	33	3100000	250000	audited-addition
+it	Juventus	426	Legrottaglie	33	2900000	200000	audited-addition
+it	Juventus	427	Traore	20	4200000	300000	audited-addition
+it	Juventus	428	Giandonato	18	1400000	100000	audited-addition
+it	Parma	140	Pavarini	36	1700000	150000	fifa11-club
+it	Parma	141	Dellafiore	25	3000000	200000	fifa11-club
+it	Parma	143	Paci	32	1200000	100000	fifa11-club
+it	Parma	144	Zenoni	30	1500000	100000	audited-retained
+it	Parma	429	Zaccardo	28	2100000	150000	audited-addition
+it	Parma	145	Morrone	31	2400000	200000	fifa11-club
+it	Parma	324	Valiani	29	2700000	200000	fifa11-club
+it	Parma	147	Galloppa	25	2400000	200000	fifa11-club
+it	Parma	146	Giovinco	23	1500000	100000	fifa11-club
+it	Parma	149	Bojinov	24	3800000	300000	fifa11-club
+it	Parma	150	Paloschi	20	3700000	300000	fifa11-club
+it	Parma	151	Mirante	27	800000	50000	fifa11-club
+it	Parma	152	Gobbi	29	1000000	100000	fifa11-club
+it	Parma	154	Antonelli	23	900000	50000	fifa11-club
+it	Parma	153	Paletta	24	900000	50000	fifa11-club
+it	Parma	155	Candreva	23	1500000	100000	fifa11-club
+it	Parma	156	Marques	25	1200000	100000	fifa11-club
+it	Parma	157	Leonardi	33	400000	50000	audited-retained
+it	Parma	159	Crespo	35	400000	50000	fifa11-club
+it	Parma	430	Lucarelli	33	900000	50000	audited-addition
+it	Parma	431	Angelo	23	2800000	200000	audited-addition
+it	Genoa	160	Eduardo	27	3200000	250000	fifa11-club
+it	Genoa	161	Rafinha	24	5400000	400000	fifa11-club
+it	Genoa	164	Moretti	29	3900000	300000	fifa11-club
+it	Genoa	162	Dainelli	31	3200000	250000	fifa11-club
+it	Genoa	166	Chico	23	4700000	350000	fifa11-club
+it	Genoa	163	Ferrari	26	2500000	200000	audited-retained
+it	Genoa	168	Jankovic	26	6700000	500000	fifa11-club
+it	Genoa	165	Kharja	27	5600000	400000	fifa11-club
+it	Genoa	167	Juric	28	2600000	200000	audited-retained
+it	Genoa	169	Palacio	28	5400000	400000	fifa11-club
+it	Genoa	170	Toni	33	3200000	250000	fifa11-club
+it	Genoa	171	Scarpi	37	800000	50000	fifa11-club
+it	Genoa	172	Criscito	23	1800000	150000	fifa11-club
+it	Genoa	179	Mesto	28	1200000	100000	fifa11-club
+it	Genoa	178	Alessio	37	300000	50000	fifa11-club
+it	Genoa	174	Modesto	28	1100000	100000	fifa11-club
+it	Genoa	176	Milanetto	34	800000	50000	fifa11-club
+it	Genoa	177	Veloso	24	1800000	150000	fifa11-club
+it	Genoa	173	Sculli	29	1100000	100000	fifa11-club
+it	Genoa	175	Jovanovic	26	2700000	200000	fifa11-club
+it	Genoa	432	Perin	17	900000	50000	audited-addition
+it	Bari	180	Gillet	31	4000000	300000	fifa11-club
+it	Bari	183	Raggi	26	1400000	100000	fifa11-club
+it	Bari	184	Parisi	33	700000	50000	fifa11-club
+it	Bari	181	Masiello	28	800000	50000	fifa11-club
+it	Bari	182	Stellini	32	500000	50000	audited-retained
+it	Bari	188	Almiron	29	4100000	300000	fifa11-club
+it	Bari	185	Donati	29	1500000	100000	fifa11-club
+it	Bari	186	Gazzi	27	1700000	150000	fifa11-club
+it	Bari	187	Alvarez	30	1400000	100000	fifa11-club
+it	Bari	189	Barreto	25	5800000	450000	fifa11-club
+it	Bari	190	Ghezzal	25	1900000	150000	fifa11-club
+it	Bari	191	Fontana	35	400000	50000	fifa11-unique
+it	Bari	194	Colombo	26	700000	50000	audited-retained
+it	Bari	199	Visconti	25	700000	50000	audited-retained
+it	Bari	193	Belmonte	23	700000	50000	fifa11-club
+it	Bari	192	Esposito	27	600000	50000	audited-retained
+it	Bari	197	Rivas	27	600000	50000	fifa11-club
+it	Bari	198	Rajcic	27	500000	50000	audited-retained
+it	Bari	195	Rudolf	25	800000	50000	fifa11-unique
+it	Bari	196	Kutuzov	30	500000	50000	fifa11-club
+it	Bari	433	Padelli	24	800000	50000	audited-addition
+it	Bari	434	Rossi	22	1600000	100000	audited-addition
+it	Bari	435	Pulzetti	26	1700000	150000	audited-addition
+it	Bari	436	Caputo	23	1000000	100000	audited-addition
+it	Fiorentina	200	Frey	30	3400000	250000	fifa11-club
+it	Fiorentina	203	Natali	31	2300000	150000	fifa11-club
+it	Fiorentina	201	Comotto	31	1800000	150000	fifa11-club
+it	Fiorentina	204	Vargas	26	2800000	200000	fifa11-club
+it	Fiorentina	202	Gamberini	29	1700000	150000	fifa11-club
+it	Fiorentina	209	Ljajic	18	6400000	500000	fifa11-club
+it	Fiorentina	205	Marchionni	30	3800000	300000	fifa11-club
+it	Fiorentina	207	Santana	28	3900000	300000	fifa11-club
+it	Fiorentina	208	Montolivo	25	4800000	350000	fifa11-club
+it	Fiorentina	206	Jovetic	20	3300000	250000	fifa11-club
+it	Fiorentina	210	Gilardino	28	4000000	300000	fifa11-club
+it	Fiorentina	215	Avramov	31	1000000	100000	fifa11-club
+it	Fiorentina	211	Boruc	30	1200000	100000	fifa11-club
+it	Fiorentina	213	De Silvestri	22	1800000	150000	fifa11-club
+it	Fiorentina	214	Pasqual	28	1100000	100000	fifa11-club
+it	Fiorentina	218	Cerci	23	1700000	150000	fifa11-club
+it	Fiorentina	216	D'Agostino	28	1300000	100000	fifa11-club
+it	Fiorentina	439	Bolatti	25	2400000	200000	audited-addition
+it	Fiorentina	212	Donadel	27	1000000	100000	fifa11-club
+it	Fiorentina	217	Babacar	17	2000000	150000	fifa11-club
+it	Fiorentina	437	Seculin	20	600000	50000	audited-addition
+it	Fiorentina	438	Camporese	18	2200000	150000	audited-addition
+it	Fiorentina	440	Papa Waigo	26	1000000	100000	audited-addition
+it	Lazio	220	Muslera	24	13600000	1000000	fifa11-club
+it	Lazio	221	Scaloni	32	8200000	600000	fifa11-club
+it	Lazio	223	Diakite	23	14200000	1050000	fifa11-club
+it	Lazio	222	Lichtsteiner	26	11200000	850000	fifa11-club
+it	Lazio	225	Garrido	25	12000000	900000	fifa11-club
+it	Lazio	224	Biava	33	3200000	250000	fifa11-club
+it	Lazio	228	Hernanes	25	19200000	1450000	fifa11-club
+it	Lazio	226	Brocchi	34	4000000	300000	fifa11-club
+it	Lazio	227	Ledesma	27	7000000	500000	fifa11-club
+it	Lazio	229	Zarate	23	15700000	1200000	fifa11-club
+it	Lazio	230	Floccari	28	6000000	450000	fifa11-club
+it	Lazio	238	Carrizo	26	3200000	250000	fifa11-unique
+it	Lazio	232	Dias	31	2100000	150000	fifa11-club
+it	Lazio	233	Stendardo	29	2500000	200000	fifa11-club
+it	Lazio	235	Mauri	30	4300000	300000	fifa11-club
+it	Lazio	231	Bresciano	30	2400000	200000	fifa11-club
+it	Lazio	237	Foggia	27	3100000	250000	fifa11-club
+it	Lazio	236	Matuzalem	30	2400000	200000	fifa11-club
+it	Lazio	234	Kozak	21	4100000	300000	fifa11-club
+it	Lazio	239	Rocchi	32	2000000	150000	fifa11-club
+it	Lazio	441	Berny	27	2100000	150000	audited-addition
+it	Lazio	442	Cavanda	19	3500000	250000	audited-addition
+it	Lazio	443	Gonzalez	25	4800000	350000	audited-addition
+it	Catania	240	Andujar	27	2800000	200000	fifa11-club
+it	Catania	243	Bellusci	21	3700000	300000	fifa11-club
+it	Catania	242	Silvestre	25	3400000	250000	fifa11-club
+it	Catania	244	Capuano	29	2200000	150000	fifa11-club
+it	Catania	241	Potenza	26	2100000	150000	fifa11-club
+it	Catania	247	Gomez	22	10700000	800000	fifa11-club
+it	Catania	245	Carboni	31	2900000	200000	fifa11-club
+it	Catania	248	Ledesma	26	4500000	350000	fifa11-club
+it	Catania	246	Biagianti	26	3400000	250000	fifa11-club
+it	Catania	249	Lopez	26	6200000	450000	fifa11-club
+it	Catania	250	Morimoto	22	6300000	450000	fifa11-club
+it	Catania	251	Campagnolo	32	700000	50000	fifa11-club
+it	Catania	257	Alvarez	26	1600000	100000	fifa11-club
+it	Catania	253	Marchese	25	1700000	150000	fifa11-club
+it	Catania	252	Spolli	27	1100000	100000	fifa11-club
+it	Catania	255	Barrientos	25	2000000	150000	fifa11-club
+it	Catania	256	Ricchiuti	32	1000000	100000	fifa11-club
+it	Catania	258	Izco	27	1600000	100000	fifa11-club
+it	Catania	254	Sciacca	21	1500000	100000	fifa11-club
+it	Catania	259	Plasmati	27	1600000	100000	fifa11-club
+it	Catania	444	Kosicky	24	900000	50000	audited-addition
+it	Catania	445	Terlizzi	30	1500000	100000	audited-addition
+it	Catania	446	Antenucci	25	2500000	200000	audited-addition
+it	Catania	447	Martinho	22	1900000	150000	audited-addition
+it	Chievo	260	Sorrentino	31	1400000	100000	fifa11-club
+it	Chievo	264	Mantovani	26	3500000	250000	fifa11-club
+it	Chievo	263	Andreolli	24	2700000	200000	fifa11-club
+it	Chievo	261	Frey	26	2100000	150000	fifa11-club
+it	Chievo	262	Mandelli	33	900000	50000	fifa11-club
+it	Chievo	265	Rigoni	25	4800000	350000	fifa11-club
+it	Chievo	266	Marcolini	34	2000000	150000	fifa11-club
+it	Chievo	267	Fernandes	23	4200000	300000	fifa11-club
+it	Chievo	268	Thereau	27	4300000	300000	fifa11-club
+it	Chievo	269	Moscardelli	30	2800000	200000	fifa11-club
+it	Chievo	270	Pellissier	31	2500000	200000	fifa11-club
+it	Chievo	271	Miskiewicz	26	800000	50000	audited-retained
+it	Chievo	272	Cesar	28	900000	50000	fifa11-club
+it	Chievo	275	Jokic	24	1200000	100000	fifa11-club
+it	Chievo	277	Guana	29	1300000	100000	fifa11-club
+it	Chievo	274	Luciano	34	700000	50000	fifa11-club
+it	Chievo	273	Bentz	32	700000	50000	audited-retained
+it	Chievo	276	Constant	23	900000	50000	fifa11-club
+it	Chievo	278	Esposito	32	900000	50000	audited-retained
+it	Chievo	279	Granoche	26	1000000	100000	fifa11-club
+it	Chievo	448	Squizzi	36	500000	50000	audited-addition
+it	Chievo	449	Morero	28	1400000	100000	audited-addition
+it	Chievo	450	Bogliaacino	30	1900000	150000	audited-addition
+it	Chievo	451	De Paula	26	1400000	100000	audited-addition
+it	Udinese	280	Handanovic	26	14400000	1100000	fifa11-club
+it	Udinese	282	Zapata	23	7900000	600000	fifa11-club
+it	Udinese	283	Armero	23	7900000	600000	fifa11-club
+it	Udinese	284	Pasquale	28	6100000	450000	fifa11-club
+it	Udinese	281	Isla	22	7300000	550000	fifa11-club
+it	Udinese	285	Inler	26	13500000	1000000	fifa11-club
+it	Udinese	287	Asamoah	21	8800000	650000	fifa11-club
+it	Udinese	286	Pinzi	29	4100000	300000	fifa11-club
+it	Udinese	290	Di Natale	32	26300000	1950000	fifa11-club
+it	Udinese	299	Sanchez	21	42100000	3150000	fifa11-club
+it	Udinese	289	Flores	27	7200000	550000	fifa11-club
+it	Udinese	291	Belardi	32	2200000	150000	fifa11-club
+it	Udinese	293	Benatia	23	3600000	250000	fifa11-club
+it	Udinese	292	Domizzi	30	2000000	150000	fifa11-club
+it	Udinese	298	Eremenko	29	2700000	200000	audited-retained
+it	Udinese	454	Cuadrado	22	3900000	300000	audited-addition
+it	Udinese	297	Badu	19	3700000	300000	fifa11-club
+it	Udinese	295	Obodo	26	3000000	200000	fifa11-unique
+it	Udinese	294	Abdi	23	2500000	200000	fifa11-club
+it	Udinese	288	Corradi	34	2400000	200000	fifa11-club
+it	Udinese	452	Koprivec	22	2000000	150000	audited-addition
+it	Udinese	453	Coda	25	5300000	400000	audited-addition
+it	Udinese	455	Denis	28	5400000	400000	audited-addition
+it	Cagliari	300	Marchetti	27	2800000	200000	fifa11-club
+it	Cagliari	301	Pisano	24	3500000	250000	fifa11-club
+it	Cagliari	302	Ariaudo	21	3700000	300000	fifa11-club
+it	Cagliari	303	Canini	25	3000000	200000	fifa11-club
+it	Cagliari	308	Cossu	30	3200000	250000	fifa11-club
+it	Cagliari	305	Conti	31	2400000	200000	fifa11-club
+it	Cagliari	306	Lazzari	25	3600000	250000	fifa11-club
+it	Cagliari	307	Biondini	27	2800000	200000	fifa11-club
+it	Cagliari	310	Pinardi	29	1500000	100000	fifa11-club
+it	Cagliari	314	Matri	26	7800000	600000	fifa11-club
+it	Cagliari	309	Nene	27	5800000	450000	fifa11-club
+it	Cagliari	315	Agazzi	26	1300000	100000	fifa11-club
+it	Cagliari	456	Pelizzoli	29	1400000	100000	audited-addition
+it	Cagliari	304	Agostini	31	1600000	100000	fifa11-club
+it	Cagliari	317	Astori	23	2400000	200000	fifa11-club
+it	Cagliari	312	Perico	26	1200000	100000	fifa11-club
+it	Cagliari	313	Nainggolan	22	2200000	150000	fifa11-club
+it	Cagliari	319	Larrivey	27	1800000	150000	audited-retained
+it	Cagliari	318	Ragatzu	18	2200000	150000	fifa11-club
+it	Cagliari	316	Mancosu	21	1600000	100000	audited-retained
+it	Cagliari	457	Biasi	31	900000	50000	audited-addition
+it	Cagliari	458	Laneri	26	900000	50000	audited-addition
+it	Cagliari	459	Acquafresca	22	4500000	350000	audited-addition
+it	Bologna	320	Viviano	24	1900000	150000	fifa11-club
+it	Bologna	322	Britos	25	3000000	200000	fifa11-club
+it	Bologna	321	Moras	29	1900000	150000	fifa11-club
+it	Bologna	323	Terzi	26	2100000	150000	fifa11-unique
+it	Bologna	325	Perez	30	3200000	250000	fifa11-club
+it	Bologna	329	Rocca	22	4300000	300000	fifa11-club
+it	Bologna	328	Ramirez	19	4600000	350000	appearance-db
+it	Bologna	462	Busce	34	700000	50000	audited-addition
+it	Bologna	326	Krhin	20	3200000	250000	fifa11-club
+it	Bologna	330	Di Vaio	34	4800000	350000	fifa11-club
+it	Bologna	335	Gimenez	24	1700000	150000	fifa11-club
+it	Bologna	331	Colombo	28	800000	50000	audited-retained
+it	Bologna	332	Portanova	31	800000	50000	fifa11-club
+it	Bologna	336	Morleo	26	1200000	100000	fifa11-club
+it	Bologna	333	Cherubin	24	1000000	100000	fifa11-club
+it	Bologna	327	Mudingayi	28	2300000	150000	fifa11-club
+it	Bologna	334	Casarini	21	1800000	150000	fifa11-club
+it	Bologna	338	Ekdal	21	1800000	150000	fifa11-club
+it	Bologna	463	Paponi	23	2000000	150000	audited-addition
+it	Bologna	339	Meggiorini	24	1500000	100000	fifa11-club
+it	Bologna	460	Lupatelli	32	1100000	100000	audited-addition
+it	Bologna	461	Esposito	24	1900000	150000	audited-addition
+it	Lecce	340	Rosati	27	2100000	150000	fifa11-club
+it	Lecce	341	Tomovic	23	1800000	150000	fifa11-unique
+it	Lecce	343	Ferrario	25	1500000	100000	fifa11-club
+it	Lecce	356	Terranova	31	900000	50000	audited-retained
+it	Lecce	344	Fabiano	28	1200000	100000	fifa11-club
+it	Lecce	348	Giacomazzi	32	1500000	100000	fifa11-club
+it	Lecce	347	Mazzotta	21	2600000	200000	fifa11-unique
+it	Lecce	346	Bertolacci	19	2800000	200000	fifa11-club
+it	Lecce	345	Munari	27	1600000	100000	fifa11-club
+it	Lecce	349	Corvia	25	3300000	250000	fifa11-club
+it	Lecce	350	Lepore	25	3300000	250000	fifa11-unique
+it	Lecce	351	Benassi	28	1200000	100000	fifa11-club
+it	Lecce	342	Mesbah	25	1100000	100000	fifa11-club
+it	Lecce	359	Donati	20	1300000	100000	fifa11-club
+it	Lecce	353	Esposito	27	600000	50000	audited-retained
+it	Lecce	352	Giuliatto	26	500000	50000	fifa11-club
+it	Lecce	358	Vives	30	800000	50000	fifa11-club
+it	Lecce	354	Defendi	25	700000	50000	fifa11-unique
+it	Lecce	467	Ofere	24	1000000	100000	audited-addition
+it	Lecce	355	Di Michele	34	400000	50000	fifa11-club
+it	Lecce	464	Petrachi	24	700000	50000	audited-addition
+it	Lecce	465	Gustavo	28	1200000	100000	audited-addition
+it	Lecce	466	Grossmuller	27	1700000	150000	audited-addition
+it	Cesena	372	Cavalieri	27	3200000	250000	fifa11-club
+it	Cesena	364	Lauro	29	1400000	100000	fifa11-club
+it	Cesena	363	Volta	23	2000000	150000	fifa11-unique
+it	Cesena	362	Nagatomo	23	1600000	100000	fifa11-club
+it	Cesena	361	Ceccarelli	27	1300000	100000	fifa11-club
+it	Cesena	370	Jimenez	26	3700000	300000	fifa11-club
+it	Cesena	371	Sammarco	27	3500000	250000	fifa11-unique
+it	Cesena	366	Giaccherini	25	3300000	250000	fifa11-club
+it	Cesena	367	De Feudis	27	2100000	150000	fifa11-unique
+it	Cesena	368	Schelotto	21	2100000	150000	fifa11-club
+it	Cesena	369	Bogdani	33	1800000	150000	fifa11-club
+it	Cesena	360	Antonioli	40	700000	50000	fifa11-club
+it	Cesena	379	Franceschini	35	300000	50000	audited-retained
+it	Cesena	376	Colucci	30	600000	50000	fifa11-club
+it	Cesena	377	De Maio	23	900000	50000	fifa11-unique
+it	Cesena	365	Parolo	25	1800000	150000	fifa11-club
+it	Cesena	378	Ragusa	30	800000	50000	audited-retained
+it	Cesena	373	Piangerelli	36	200000	50000	fifa11-club
+it	Cesena	469	Appiah	29	1500000	100000	audited-addition
+it	Cesena	375	Malonga	21	1000000	100000	fifa11-club
+it	Cesena	468	Pellegrino	30	1000000	100000	audited-addition
+it	Cesena	470	Ighalo	21	1800000	150000	audited-addition
+it	Brescia	380	Arcari	32	1400000	100000	fifa11-club
+it	Brescia	381	Lopez	32	1200000	100000	audited-retained
+it	Brescia	382	Bega	35	700000	50000	fifa11-club
+it	Brescia	384	Zebina	32	900000	50000	fifa11-club
+it	Brescia	383	Zoboli	28	1200000	100000	fifa11-club
+it	Brescia	388	Diamanti	27	2400000	200000	fifa11-club
+it	Brescia	387	Hetemaj	23	2500000	200000	fifa11-club
+it	Brescia	385	Salamon	21	2200000	150000	fifa11-unique
+it	Brescia	386	Kone	23	1000000	100000	fifa11-club
+it	Brescia	389	Eder	23	3500000	250000	fifa11-club
+it	Brescia	390	Caracciolo	28	2700000	200000	fifa11-club
+it	Brescia	397	Sereni	35	400000	50000	fifa11-club
+it	Brescia	399	Owusu	35	300000	50000	audited-retained
+it	Brescia	393	Dallamano	26	600000	50000	fifa11-club
+it	Brescia	392	De Maio	23	500000	50000	fifa11-club
+it	Brescia	394	Vass	21	1100000	100000	fifa11-club
+it	Brescia	391	Taddei	29	500000	50000	fifa11-club
+it	Brescia	398	Rispoli	22	600000	50000	fifa11-unique
+it	Brescia	395	Possanzini	34	500000	50000	fifa11-club
+it	Brescia	471	Leali	17	1500000	100000	audited-addition
+it	Brescia	472	Berardi	22	1000000	100000	audited-addition
+it	Brescia	473	Budel	29	1200000	100000	audited-addition
+de	Bayern	0	Butt	36	8400000	650000	fifa11-club
+de	Bayern	1	Lahm	26	37100000	2800000	fifa11-club
+de	Bayern	2	Van Buyten	32	9800000	750000	fifa11-club
+de	Bayern	4	Contento	20	16900000	1250000	fifa11-club
+de	Bayern	3	Demichelis	29	10000000	750000	fifa11-club
+de	Bayern	5	Ribery	27	41600000	3100000	fifa11-club
+de	Bayern	7	Schweinsteiger	26	34400000	2600000	fifa11-club
+de	Bayern	15	Kroos	20	16200000	1200000	fifa11-club
+de	Bayern	8	Robben	26	51900000	3900000	fifa11-club
+de	Bayern	17	Gomez	25	49800000	3750000	fifa11-club
+de	Bayern	9	Muller	20	30000000	2250000	fifa11-club
+de	Bayern	11	Kraft	22	6300000	450000	fifa11-club
+de	Bayern	18	Badstuber	21	14900000	1100000	fifa11-club
+de	Bayern	13	Breno	20	5100000	400000	fifa11-club
+de	Bayern	6	Van Bommel	33	4600000	350000	fifa11-club
+de	Bayern	16	Altintop	27	8400000	650000	fifa11-club
+de	Bayern	12	Pranjic	28	6400000	500000	fifa11-club
+de	Bayern	14	Tymoshchuk	31	5600000	400000	fifa11-club
+de	Bayern	19	Ottl	25	6400000	500000	fifa11-club
+de	Bayern	10	Klose	32	7300000	550000	fifa11-club
+de	Bayern	360	Sattelmaier	23	2300000	150000	audited-addition
+de	Bayern	361	Braafheid	27	4600000	350000	audited-addition
+de	Bayern	362	Alaba	18	3800000	300000	audited-addition
+de	Bayern	363	Olic	30	10100000	750000	audited-addition
+de	Schalke 04	20	Neuer	24	55700000	4200000	fifa11-club
+de	Schalke 04	22	Howedes	22	22600000	1700000	fifa11-club
+de	Schalke 04	21	Uchida	22	6500000	500000	fifa11-club
+de	Schalke 04	23	Papadopoulos	18	5300000	400000	fifa11-club
+de	Schalke 04	34	Metzelder	29	2200000	150000	fifa11-club
+de	Schalke 04	25	Farfan	25	8300000	600000	fifa11-club
+de	Schalke 04	27	Jurado	24	4900000	350000	fifa11-club
+de	Schalke 04	30	Rakitic	22	5200000	400000	fifa11-club
+de	Schalke 04	26	Jones	28	2900000	200000	fifa11-club
+de	Schalke 04	28	Raul	33	14400000	1100000	fifa11-club
+de	Schalke 04	29	Huntelaar	27	26700000	2000000	fifa11-club
+de	Schalke 04	364	Schober	34	1200000	100000	audited-addition
+de	Schalke 04	24	Pander	27	2300000	150000	fifa11-club
+de	Schalke 04	33	Hoogland	25	2600000	200000	fifa11-club
+de	Schalke 04	38	Plestan	29	1400000	100000	fifa11-club
+de	Schalke 04	365	Matip	19	3900000	300000	audited-addition
+de	Schalke 04	36	Pliatsikas	22	2600000	200000	fifa11-club
+de	Schalke 04	35	Kenia	19	2300000	150000	fifa11-club
+de	Schalke 04	37	Kobiashvili	33	1000000	100000	fifa11-unique
+de	Schalke 04	39	Edu	28	1700000	150000	fifa11-club
+de	Schalke 04	366	Escudero	20	1900000	150000	audited-addition
+de	Schalke 04	367	Moritz	20	2200000	150000	audited-addition
+de	Schalke 04	368	Gavranovic	20	1600000	100000	audited-addition
+de	Werder	40	Wiese	28	16100000	1200000	fifa11-club
+de	Werder	42	Mertesacker	25	6000000	450000	fifa11-club
+de	Werder	41	Fritz	29	4500000	350000	fifa11-club
+de	Werder	43	Naldo	27	4600000	350000	fifa11-club
+de	Werder	44	Boenisch	23	4700000	350000	fifa11-club
+de	Werder	49	Bargfrede	21	7900000	600000	fifa11-club
+de	Werder	46	Frings	33	2700000	200000	fifa11-club
+de	Werder	371	Borowski	30	2700000	200000	audited-addition
+de	Werder	45	Marin	22	4600000	350000	fifa11-club
+de	Werder	50	Almeida	26	7000000	500000	fifa11-club
+de	Werder	48	Arnautovic	21	6200000	450000	fifa11-club
+de	Werder	51	Vander	29	1300000	100000	fifa11-club
+de	Werder	53	Prodl	23	2400000	200000	fifa11-club
+de	Werder	370	Pasanen	29	1700000	150000	audited-addition
+de	Werder	52	Andersen	22	1800000	150000	fifa11-club
+de	Werder	59	Silvestre	33	800000	50000	fifa11-club
+de	Werder	55	Jensen	31	1200000	100000	fifa11-club
+de	Werder	58	Wesley	23	1900000	150000	fifa11-club
+de	Werder	54	Kroos	19	2100000	150000	fifa11-club
+de	Werder	57	Hunt	23	2000000	150000	fifa11-club
+de	Werder	369	Mielitz	21	1000000	100000	audited-addition
+de	Werder	372	Pizarro	31	7100000	550000	audited-addition
+de	Leverkusen	60	Adler	25	20000000	1500000	fifa11-club
+de	Leverkusen	64	Kadlec	25	18000000	1350000	fifa11-club
+de	Leverkusen	61	Castro	23	14200000	1050000	fifa11-club
+de	Leverkusen	68	Schwaab	22	14600000	1100000	fifa11-club
+de	Leverkusen	77	Vidal	23	23500000	1750000	fifa11-club
+de	Leverkusen	67	Barnetta	25	16000000	1200000	fifa11-club
+de	Leverkusen	65	Rolfes	28	11600000	850000	fifa11-club
+de	Leverkusen	66	Augusto	22	17800000	1350000	fifa11-club
+de	Leverkusen	76	Sam	22	16100000	1200000	fifa11-club
+de	Leverkusen	70	Kiessling	26	10900000	800000	fifa11-club
+de	Leverkusen	69	Derdiyok	22	8900000	650000	fifa11-club
+de	Leverkusen	71	Giefer	20	3700000	300000	fifa11-club
+de	Leverkusen	62	Friedrich	30	8100000	600000	fifa11-club
+de	Leverkusen	63	Hyypia	36	2600000	200000	fifa11-club
+de	Leverkusen	72	Reinartz	21	6600000	500000	fifa11-club
+de	Leverkusen	74	Sinkiewicz	24	5400000	400000	fifa11-unique
+de	Leverkusen	79	Vida	21	3300000	250000	fifa11-club
+de	Leverkusen	78	Bender	21	14100000	1050000	fifa11-club
+de	Leverkusen	75	Ballack	33	3500000	250000	fifa11-club
+de	Leverkusen	73	Helmes	26	7800000	600000	fifa11-club
+de	Leverkusen	373	Balitsch	29	5300000	400000	audited-addition
+de	Leverkusen	374	Kaplan	20	2700000	200000	audited-addition
+de	Leverkusen	375	Jorgensen	19	3300000	250000	audited-addition
+de	Dortmund	80	Weidenfeller	30	11000000	800000	fifa11-club
+de	Dortmund	83	Hummels	21	34300000	2550000	fifa11-club
+de	Dortmund	82	Subotic	21	26700000	2000000	fifa11-club
+de	Dortmund	95	Piszczek	25	18000000	1350000	fifa11-club
+de	Dortmund	81	Owomoyela	30	10200000	750000	fifa11-club
+de	Dortmund	87	Sahin	21	40500000	3050000	fifa11-club
+de	Dortmund	97	Gotze	18	30100000	2250000	fifa11-club
+de	Dortmund	96	Kagawa	21	25600000	1900000	fifa11-club
+de	Dortmund	86	Kuba	24	14800000	1100000	fifa11-club
+de	Dortmund	92	Bender	21	15800000	1200000	fifa11-club
+de	Dortmund	99	Barrios	25	30600000	2300000	fifa11-club
+de	Dortmund	376	Langerak	22	3200000	250000	audited-addition
+de	Dortmund	84	Schmelzer	22	12900000	950000	fifa11-club
+de	Dortmund	93	Santana	24	7700000	600000	fifa11-club
+de	Dortmund	98	Grosskreutz	22	8600000	650000	fifa11-club
+de	Dortmund	378	Feulner	28	5800000	450000	audited-addition
+de	Dortmund	85	Kehl	30	4300000	300000	fifa11-club
+de	Dortmund	88	Hajnal	29	4700000	350000	fifa11-club
+de	Dortmund	90	Zidan	28	6700000	500000	fifa11-club
+de	Dortmund	89	Lewandowski	22	8200000	600000	fifa11-club
+de	Dortmund	377	Dede	32	5700000	450000	audited-addition
+de	Dortmund	379	Le Tallec	19	4300000	300000	audited-addition
+de	Stuttgart	100	Ulreich	22	6300000	450000	fifa11-club
+de	Stuttgart	380	Boulahrouz	28	2400000	200000	audited-addition
+de	Stuttgart	101	Trasch	22	5700000	450000	fifa11-club
+de	Stuttgart	103	Tasci	23	5500000	400000	fifa11-club
+de	Stuttgart	102	Delpierre	29	2500000	200000	fifa11-club
+de	Stuttgart	382	Funk	20	1000000	100000	audited-addition
+de	Stuttgart	105	Kuzmanovic	22	6000000	450000	fifa11-club
+de	Stuttgart	108	Gebhart	21	6200000	450000	fifa11-club
+de	Stuttgart	110	Pogrebnyak	26	7000000	500000	fifa11-club
+de	Stuttgart	109	Cacau	29	2800000	200000	fifa11-club
+de	Stuttgart	111	Stolz	26	2900000	200000	fifa11-club
+de	Stuttgart	112	Boka	27	2000000	150000	fifa11-club
+de	Stuttgart	115	Molinaro	27	1700000	150000	fifa11-club
+de	Stuttgart	114	Niedermeier	24	1900000	150000	fifa11-club
+de	Stuttgart	116	Gentner	25	3200000	250000	fifa11-club
+de	Stuttgart	113	Audel	26	2200000	150000	fifa11-club
+de	Stuttgart	118	Marica	24	2600000	200000	fifa11-club
+de	Stuttgart	119	Harnik	23	1100000	100000	fifa11-club
+de	Stuttgart	91	Ziegler	34	4300000	300000	fifa11-club
+de	Stuttgart	381	Bah	22	1600000	100000	audited-addition
+de	Stuttgart	383	Bicakcic	20	1700000	150000	audited-addition
+de	Hamburg	120	Rost	37	3500000	250000	fifa11-club
+de	Hamburg	122	Westermann	27	4900000	350000	fifa11-club
+de	Hamburg	121	Demel	29	4500000	350000	fifa11-club
+de	Hamburg	123	Mathijsen	30	2500000	200000	fifa11-club
+de	Hamburg	124	Jansen	24	3500000	250000	fifa11-club
+de	Hamburg	125	Trochowski	26	4500000	350000	fifa11-club
+de	Hamburg	126	Jarolim	31	2900000	200000	fifa11-club
+de	Hamburg	128	Elia	23	5400000	400000	fifa11-club
+de	Hamburg	127	Roberto	36	1100000	100000	fifa11-club
+de	Hamburg	130	Petric	29	6200000	450000	fifa11-club
+de	Hamburg	129	Guerrero	26	7000000	500000	fifa11-club
+de	Hamburg	131	Mickel	21	1600000	100000	fifa11-club
+de	Hamburg	133	Aogo	23	2400000	200000	fifa11-club
+de	Hamburg	385	Diekmeier	20	2500000	200000	audited-addition
+de	Hamburg	135	Rincon	22	1900000	150000	fifa11-club
+de	Hamburg	137	Torun	20	2000000	150000	fifa11-club
+de	Hamburg	138	Pitroipa	24	1800000	150000	fifa11-club
+de	Hamburg	134	Kacar	23	1900000	150000	fifa11-club
+de	Hamburg	139	Tesche	23	1900000	150000	fifa11-club
+de	Hamburg	136	Van Nistelrooy	34	900000	50000	fifa11-club
+de	Hamburg	178	Choupo-Moting	21	1600000	100000	fifa11-club
+de	Hamburg	384	Drobny	30	4300000	300000	audited-addition
+de	Wolfsburg	140	Benaglio	26	4300000	300000	fifa11-club
+de	Wolfsburg	144	Schafer	26	4900000	350000	fifa11-club
+de	Wolfsburg	147	Friedrich	31	2800000	200000	fifa11-club
+de	Wolfsburg	141	Riether	27	3900000	300000	fifa11-club
+de	Wolfsburg	143	Barzagli	29	2800000	200000	fifa11-club
+de	Wolfsburg	145	Kahlenberg	27	4200000	300000	fifa11-club
+de	Wolfsburg	146	Josue	31	2900000	200000	fifa11-club
+de	Wolfsburg	159	Cicero	26	2600000	200000	fifa11-club
+de	Wolfsburg	150	Dzeko	24	31400000	2350000	fifa11-club
+de	Wolfsburg	149	Grafite	31	4100000	300000	fifa11-club
+de	Wolfsburg	148	Mandzukic	24	5100000	400000	fifa11-club
+de	Wolfsburg	151	Lenz	36	1000000	100000	fifa11-club
+de	Wolfsburg	142	Madlung	28	2700000	200000	fifa11-club
+de	Wolfsburg	152	Pekarik	23	2400000	200000	fifa11-club
+de	Wolfsburg	155	Kjaer	21	2100000	150000	appearance-db
+de	Wolfsburg	154	Wolze	20	1900000	150000	fifa11-club
+de	Wolfsburg	156	Gartner	23	2900000	200000	audited-retained
+de	Wolfsburg	153	Diego	25	2300000	150000	fifa11-club
+de	Wolfsburg	386	Hitz	22	1600000	100000	audited-addition
+de	Wolfsburg	387	Dejagah	24	3700000	300000	audited-addition
+de	Wolfsburg	388	Cigerci	18	900000	50000	audited-addition
+de	Wolfsburg	389	F. Johnson	22	1800000	150000	audited-addition
+de	Mainz 05	160	Muller	32	5500000	400000	fifa11-club
+de	Mainz 05	161	Zabavnik	29	5000000	400000	fifa11-club
+de	Mainz 05	164	Low	31	4100000	300000	fifa11-club
+de	Mainz 05	163	Bungert	23	6300000	450000	fifa11-club
+de	Mainz 05	173	Fuchs	24	5400000	400000	fifa11-club
+de	Mainz 05	167	Pekovic	31	4400000	350000	audited-retained
+de	Mainz 05	166	Ivanschitz	26	6000000	450000	fifa11-club
+de	Mainz 05	165	Heller	28	3900000	300000	fifa11-club
+de	Mainz 05	168	Soto	30	3200000	250000	fifa11-club
+de	Mainz 05	176	Holtby	19	4800000	350000	fifa11-club
+de	Mainz 05	169	Allagui	24	10200000	750000	fifa11-club
+de	Mainz 05	170	Wetklo	30	5500000	400000	fifa11-club
+de	Mainz 05	162	Noveski	31	2800000	200000	fifa11-club
+de	Mainz 05	175	Svensson	31	1600000	100000	fifa11-club
+de	Mainz 05	171	Kirchhoff	19	3000000	200000	fifa11-club
+de	Mainz 05	172	Vrancic	25	2800000	200000	audited-retained
+de	Mainz 05	174	Karhan	34	1200000	100000	fifa11-club
+de	Mainz 05	177	Polanski	24	2900000	200000	fifa11-club
+de	Mainz 05	179	Schurrle	19	8600000	650000	fifa11-club
+de	Mainz 05	392	Szalai	22	4000000	300000	audited-addition
+de	Mainz 05	390	Fathi	26	3500000	250000	audited-addition
+de	Mainz 05	391	Risse	20	4500000	350000	audited-addition
+de	Frankfurt	180	Nikolov	36	1500000	100000	fifa11-club
+de	Frankfurt	181	Ochs	26	2800000	200000	fifa11-club
+de	Frankfurt	182	Franz	29	1900000	150000	fifa11-club
+de	Frankfurt	183	Russ	25	2600000	200000	fifa11-club
+de	Frankfurt	184	Clark	27	2800000	200000	fifa11-club
+de	Frankfurt	187	Caio	24	3300000	250000	fifa11-club
+de	Frankfurt	185	Chris	32	1500000	100000	fifa11-club
+de	Frankfurt	186	Kormaz	24	2900000	200000	fifa11-club
+de	Frankfurt	196	Rode	19	1600000	100000	fifa11-club
+de	Frankfurt	188	Gekas	30	5100000	400000	fifa11-club
+de	Frankfurt	190	Fenin	23	3500000	250000	fifa11-club
+de	Frankfurt	191	Fahrmann	21	1400000	100000	fifa11-club
+de	Frankfurt	192	Tzavellas	22	1400000	100000	fifa11-club
+de	Frankfurt	198	Jung	20	800000	50000	fifa11-club
+de	Frankfurt	194	Alvarez	18	1600000	100000	fifa11-club
+de	Frankfurt	197	Meier	27	1200000	100000	fifa11-club
+de	Frankfurt	195	Schwegler	23	1500000	100000	fifa11-club
+de	Frankfurt	199	Kohler	30	700000	50000	fifa11-club
+de	Frankfurt	189	Amanatidis	28	2300000	150000	fifa11-club
+de	Frankfurt	193	Altintop	27	1400000	100000	fifa11-club
+de	Frankfurt	393	Vasoski	30	1500000	100000	audited-addition
+de	Frankfurt	394	Titsch-Rivero	20	1600000	100000	audited-addition
+de	Hoffenheim	200	Starke	29	3200000	250000	fifa11-club
+de	Hoffenheim	202	Jaissle	22	3200000	250000	fifa11-club
+de	Hoffenheim	205	Compper	25	3000000	200000	fifa11-club
+de	Hoffenheim	203	Ibertsberger	28	3000000	200000	fifa11-club
+de	Hoffenheim	204	Simunic	32	1600000	100000	fifa11-club
+de	Hoffenheim	208	Salihovic	25	4800000	350000	fifa11-club
+de	Hoffenheim	206	Sigurdsson	20	4500000	350000	fifa11-club
+de	Hoffenheim	209	Rudy	20	4500000	350000	fifa11-club
+de	Hoffenheim	207	Gustavo	23	2900000	200000	fifa11-club
+de	Hoffenheim	218	Terrazzino	29	1300000	100000	audited-retained
+de	Hoffenheim	210	Ibisevic	26	7800000	600000	fifa11-club
+de	Hoffenheim	211	Haas	27	1800000	150000	fifa11-club
+de	Hoffenheim	201	Beck	23	2800000	200000	fifa11-club
+de	Hoffenheim	215	Nelson	22	2000000	150000	audited-retained
+de	Hoffenheim	212	Vorsah	22	1400000	100000	fifa11-club
+de	Hoffenheim	217	Williams	23	1200000	100000	audited-retained
+de	Hoffenheim	214	Weis	25	1200000	100000	fifa11-club
+de	Hoffenheim	213	Ba	25	2900000	200000	fifa11-club
+de	Hoffenheim	216	Mlapa	19	2200000	150000	fifa11-club
+de	Hoffenheim	219	Obasi	24	1700000	150000	fifa11-club
+de	Hoffenheim	395	Gulde	19	1300000	100000	audited-addition
+de	Hoffenheim	396	Vukcevic	20	3200000	250000	audited-addition
+de	Hoffenheim	397	Tagoe	23	3500000	250000	audited-addition
+de	M'gladbach	220	Bailly	24	2600000	200000	fifa11-club
+de	M'gladbach	222	Brouwers	28	2700000	200000	fifa11-club
+de	M'gladbach	223	Dante	26	2500000	200000	fifa11-club
+de	M'gladbach	221	Levels	23	2000000	150000	fifa11-club
+de	M'gladbach	224	Daems	31	1100000	100000	fifa11-club
+de	M'gladbach	234	Reus	21	12800000	950000	fifa11-club
+de	M'gladbach	228	Arango	30	3800000	300000	fifa11-club
+de	M'gladbach	225	Meeuwis	29	2700000	200000	fifa11-club
+de	M'gladbach	226	Marx	29	2100000	150000	fifa11-club
+de	M'gladbach	229	Bobadilla	23	3100000	250000	fifa11-club
+de	M'gladbach	230	Idrissou	30	1400000	100000	fifa11-club
+de	M'gladbach	231	Heimeroth	29	1100000	100000	fifa11-club
+de	M'gladbach	233	Jaures	32	600000	50000	fifa11-club
+de	M'gladbach	399	Anderson	22	2000000	150000	audited-addition
+de	M'gladbach	232	Dorda	21	900000	50000	fifa11-club
+de	M'gladbach	239	Jantschke	20	800000	50000	fifa11-club
+de	M'gladbach	227	Bradley	23	2100000	150000	fifa11-club
+de	M'gladbach	235	Herrmann	19	1600000	100000	fifa11-club
+de	M'gladbach	238	Neustadter	22	1500000	100000	fifa11-club
+de	M'gladbach	237	Matmour	25	800000	50000	fifa11-club
+de	M'gladbach	398	ter Stegen	18	1100000	100000	audited-addition
+de	M'gladbach	400	de Camargo	27	3300000	250000	audited-addition
+de	M'gladbach	401	Callsen-Bracker	25	2300000	150000	audited-addition
+de	Koln	240	Mondragon	39	1300000	100000	fifa11-club
+de	Koln	242	Mohamad	30	2300000	150000	fifa11-club
+de	Koln	243	Geromel	24	3100000	250000	fifa11-club
+de	Koln	241	Brecko	26	2500000	200000	fifa11-club
+de	Koln	244	Wome	26	2500000	200000	audited-retained
+de	Koln	248	Ehret	30	2400000	200000	fifa11-club
+de	Koln	246	Petit	33	1500000	100000	fifa11-club
+de	Koln	247	Pezzoni	21	3100000	250000	fifa11-club
+de	Koln	250	Podolski	25	10000000	750000	fifa11-club
+de	Koln	249	Novakovic	31	5100000	400000	fifa11-club
+de	Koln	245	Freis	25	3700000	300000	fifa11-club
+de	Koln	251	Kessler	24	3000000	200000	fifa11-unique
+de	Koln	253	Schorch	21	1900000	150000	fifa11-club
+de	Koln	252	McKenna	30	1000000	100000	fifa11-club
+de	Koln	255	Yalcin	20	2200000	150000	fifa11-club
+de	Koln	258	Matuschyk	21	2200000	150000	fifa11-club
+de	Koln	256	Lanig	26	1700000	150000	fifa11-club
+de	Koln	254	Clemens	19	1600000	100000	fifa11-club
+de	Koln	257	Jajalo	22	1500000	100000	fifa11-club
+de	Koln	259	Chihi	22	1600000	100000	fifa11-club
+de	Koln	402	Varvodic	21	1200000	100000	audited-addition
+de	Koln	403	Ionita	21	2100000	150000	audited-addition
+de	Koln	404	Yabo	18	800000	50000	audited-addition
+de	Koln	405	Brosinski	22	1300000	100000	audited-addition
+de	Freiburg	260	Pouplin	25	3300000	250000	fifa11-club
+de	Freiburg	262	Krmas	30	2300000	150000	fifa11-club
+de	Freiburg	263	Butscher	30	2300000	150000	fifa11-club
+de	Freiburg	261	Mujdza	26	2500000	200000	fifa11-club
+de	Freiburg	264	Bastians	22	2800000	200000	fifa11-club
+de	Freiburg	265	Putsila	23	3800000	300000	fifa11-club
+de	Freiburg	268	Abdessadki	29	2700000	200000	fifa11-club
+de	Freiburg	266	Ferati	23	3800000	300000	fifa11-unique
+de	Freiburg	267	Schuster	25	2800000	200000	fifa11-club
+de	Freiburg	270	Makiadi	26	2600000	200000	fifa11-club
+de	Freiburg	269	Cisse	25	20000000	1500000	fifa11-club
+de	Freiburg	271	Baumann	20	2100000	150000	fifa11-club
+de	Freiburg	273	Barth	30	1300000	100000	fifa11-club
+de	Freiburg	272	Toprak	21	1700000	150000	fifa11-club
+de	Freiburg	275	Iashvili	32	1100000	100000	fifa11-unique
+de	Freiburg	278	Rosenthal	24	2000000	150000	fifa11-club
+de	Freiburg	276	Flum	22	2200000	150000	fifa11-club
+de	Freiburg	274	Uzoma	21	1800000	150000	fifa11-unique
+de	Freiburg	277	Caligiuri	22	1800000	150000	fifa11-club
+de	Freiburg	279	Reisinger	28	1200000	100000	fifa11-club
+de	Freiburg	406	Salz	25	1100000	100000	audited-addition
+de	Freiburg	407	Banovic	30	2200000	150000	audited-addition
+de	Freiburg	408	D. Williams	21	1000000	100000	audited-addition
+de	Hannover 96	280	Fromlowitz	24	6100000	450000	fifa11-club
+de	Hannover 96	281	Cherundolo	31	4100000	300000	fifa11-club
+de	Hannover 96	284	Djakpa	23	7100000	550000	fifa11-club
+de	Hannover 96	282	Haggui	26	6300000	450000	fifa11-club
+de	Hannover 96	283	Schulz	27	5200000	400000	fifa11-club
+de	Hannover 96	286	Schmiedebach	21	10600000	800000	fifa11-club
+de	Hannover 96	285	Andreasen	27	6300000	450000	fifa11-club
+de	Hannover 96	293	Pinto	29	2700000	200000	fifa11-club
+de	Hannover 96	287	Konan	26	10900000	800000	fifa11-club
+de	Hannover 96	290	Abdellaoue	24	11900000	900000	fifa11-club
+de	Hannover 96	288	Hanke	26	7000000	500000	fifa11-club
+de	Hannover 96	291	Miller	28	2700000	200000	fifa11-club
+de	Hannover 96	294	Pogatetz	27	4600000	350000	fifa11-club
+de	Hannover 96	292	Eggimann	29	1900000	150000	fifa11-club
+de	Hannover 96	297	Lala	34	1300000	100000	fifa11-club
+de	Hannover 96	295	Stindl	22	3000000	200000	fifa11-club
+de	Hannover 96	299	Stoppelkamp	23	2100000	150000	fifa11-club
+de	Hannover 96	289	Schlaudraff	27	5800000	450000	fifa11-club
+de	Hannover 96	298	Forssell	29	1100000	100000	fifa11-club
+de	Hannover 96	409	Zieler	21	2400000	200000	audited-addition
+de	Hannover 96	410	Chahed	27	2000000	150000	audited-addition
+de	Hannover 96	411	Rausch	20	3800000	300000	audited-addition
+de	Nurnberg	300	Schafer	31	4000000	300000	fifa11-club
+de	Nurnberg	302	Maroh	23	5500000	400000	fifa11-club
+de	Nurnberg	303	Wolf	28	4200000	300000	fifa11-club
+de	Nurnberg	301	Chandler	20	3000000	200000	appearance-db
+de	Nurnberg	304	Pinola	27	2300000	150000	fifa11-club
+de	Nurnberg	305	Simons	33	2700000	200000	fifa11-club
+de	Nurnberg	306	Hegeler	22	6000000	450000	fifa11-club
+de	Nurnberg	307	Ekici	20	3200000	250000	fifa11-club
+de	Nurnberg	310	Mintal	32	1500000	100000	fifa11-club
+de	Nurnberg	308	Eigler	26	5400000	400000	fifa11-club
+de	Nurnberg	309	Schieber	21	6400000	500000	fifa11-club
+de	Nurnberg	311	Stephan	23	2300000	150000	fifa11-club
+de	Nurnberg	315	Judt	24	2300000	150000	fifa11-club
+de	Nurnberg	313	Bieler	24	1900000	150000	fifa11-club
+de	Nurnberg	316	Pech	34	800000	50000	audited-retained
+de	Nurnberg	319	Frantz	23	1500000	100000	fifa11-club
+de	Nurnberg	314	Vidosic	23	1500000	100000	fifa11-club
+de	Nurnberg	317	Cohen	21	1500000	100000	fifa11-club
+de	Nurnberg	318	Correa	28	2000000	150000	audited-retained
+de	Nurnberg	312	Kaya	31	1000000	100000	audited-retained
+de	Nurnberg	412	Nilsson	27	3300000	250000	audited-addition
+de	Nurnberg	413	Mak	20	2200000	150000	audited-addition
+de	Nurnberg	414	Mendler	19	1800000	150000	audited-addition
+de	Nurnberg	415	Plattenhardt	18	1800000	150000	audited-addition
+de	K'lautern	320	Sippel	22	3600000	250000	fifa11-club
+de	K'lautern	324	Amedick	27	3300000	250000	fifa11-club
+de	K'lautern	327	Petsos	19	4300000	300000	fifa11-club
+de	K'lautern	322	Damjanovic	29	2200000	150000	fifa11-club
+de	K'lautern	321	Dick	25	2600000	200000	fifa11-club
+de	K'lautern	330	Tiffert	28	9000000	700000	fifa11-club
+de	K'lautern	329	De Wit	22	5200000	400000	fifa11-club
+de	K'lautern	328	Kirch	28	3900000	300000	fifa11-club
+de	K'lautern	325	Amri	25	3700000	300000	fifa11-club
+de	K'lautern	323	Ilicevic	23	3500000	250000	fifa11-club
+de	K'lautern	326	Lakic	26	7000000	500000	fifa11-club
+de	K'lautern	337	Trapp	20	2500000	200000	fifa11-club
+de	K'lautern	331	Knaller	23	1500000	100000	fifa11-club
+de	K'lautern	338	Rodnei	24	1700000	150000	fifa11-club
+de	K'lautern	332	Bugera	32	800000	50000	fifa11-club
+de	K'lautern	333	Hornig	30	1000000	100000	audited-retained
+de	K'lautern	339	Bilek	26	1900000	150000	fifa11-club
+de	K'lautern	335	Rivic	25	1600000	100000	fifa11-club
+de	K'lautern	336	Correia	21	1800000	150000	fifa11-club
+de	K'lautern	334	Nemec	24	3000000	200000	fifa11-club
+de	K'lautern	416	Abel	29	1300000	100000	audited-addition
+de	K'lautern	417	Moravek	20	3200000	250000	audited-addition
+de	K'lautern	418	Micanski	24	3000000	200000	audited-addition
+de	K'lautern	419	Walch	23	1900000	150000	audited-addition
+de	St. Pauli	340	Kessler	24	2600000	200000	fifa11-club
+de	St. Pauli	346	Gunesch	26	1200000	100000	fifa11-club
+de	St. Pauli	341	Zambrano	21	1400000	100000	fifa11-club
+de	St. Pauli	345	Eger	27	1100000	100000	fifa11-club
+de	St. Pauli	343	Lechner	29	800000	50000	fifa11-club
+de	St. Pauli	344	Drose-Anpen	28	900000	50000	audited-retained
+de	St. Pauli	349	Lehmann	27	1700000	150000	fifa11-club
+de	St. Pauli	347	Boll	31	1000000	100000	fifa11-club
+de	St. Pauli	348	Kalla	24	1600000	100000	fifa11-club
+de	St. Pauli	350	Morena	30	1400000	100000	fifa11-club
+de	St. Pauli	359	Ebbers	32	500000	50000	fifa11-club
+de	St. Pauli	351	Pliquett	25	1700000	150000	fifa11-club
+de	St. Pauli	342	Thorandt	29	700000	50000	fifa11-club
+de	St. Pauli	352	Schultz	33	200000	50000	fifa11-club
+de	St. Pauli	356	Takyi	25	1000000	100000	fifa11-club
+de	St. Pauli	357	Sukuta-Pasu	20	900000	50000	fifa11-club
+de	St. Pauli	355	Naki	21	800000	50000	fifa11-club
+de	St. Pauli	358	Hennings	23	800000	50000	fifa11-club
+de	St. Pauli	353	Asamoah	31	300000	50000	fifa11-club
+de	St. Pauli	354	Kruse	22	1000000	100000	fifa11-club
+de	St. Pauli	420	Hain	37	800000	50000	audited-addition
+de	St. Pauli	421	Rothenbach	29	800000	50000	audited-addition
+de	St. Pauli	422	Daube	21	2000000	150000	audited-addition
+de	St. Pauli	423	Bartels	23	1500000	100000	audited-addition
+fr	Marseille	0	Mandanda	25	26600000	2000000	fifa11-club
+fr	Marseille	2	Diawara	31	8000000	600000	fifa11-club
+fr	Marseille	3	Heinze	32	4800000	350000	fifa11-club
+fr	Marseille	1	Azpilicueta	21	9500000	700000	fifa11-club
+fr	Marseille	5	Lucho	29	19100000	1450000	fifa11-club
+fr	Marseille	6	Mbia	24	22700000	1700000	fifa11-club
+fr	Marseille	10	A. Ayew	20	21600000	1600000	fifa11-club
+fr	Marseille	14	Valbuena	25	13600000	1000000	fifa11-club
+fr	Marseille	7	Cheyrou	29	9500000	700000	fifa11-club
+fr	Marseille	8	Remy	23	21000000	1600000	fifa11-club
+fr	Marseille	19	Gignac	24	20500000	1550000	fifa11-club
+fr	Marseille	11	Andrade	31	2600000	200000	fifa11-club
+fr	Marseille	4	Taiwo	25	7500000	550000	fifa11-club
+fr	Marseille	400	Hilton	32	4100000	300000	audited-addition
+fr	Marseille	16	Abriel	31	4200000	300000	fifa11-club
+fr	Marseille	18	Cisse	32	3500000	250000	fifa11-club
+fr	Marseille	17	Kabore	22	5200000	400000	fifa11-club
+fr	Marseille	15	Krstic	33	2300000	150000	audited-retained
+fr	Marseille	9	Brandao	30	7900000	600000	fifa11-club
+fr	Marseille	13	J. Ayew	18	6800000	500000	fifa11-club
+fr	Marseille	401	N'Diaye	25	1900000	150000	audited-addition
+fr	Marseille	402	Sabo	23	1600000	100000	audited-addition
+fr	Marseille	403	Gnabouyou	21	1800000	150000	audited-addition
+fr	Lyon	20	Lloris	23	40300000	3000000	fifa11-club
+fr	Lyon	21	Reveillere	30	8100000	600000	fifa11-club
+fr	Lyon	23	Cris	33	5100000	400000	fifa11-club
+fr	Lyon	24	Cissokho	22	13000000	1000000	fifa11-club
+fr	Lyon	37	Lovren	21	9500000	700000	fifa11-club
+fr	Lyon	32	Gourcuff	24	18800000	1400000	fifa11-club
+fr	Lyon	29	Bastos	27	14400000	1100000	fifa11-club
+fr	Lyon	26	Toulalan	26	10500000	800000	fifa11-club
+fr	Lyon	30	Lisandro	27	33300000	2500000	fifa11-club
+fr	Lyon	28	Gomis	25	23000000	1700000	fifa11-club
+fr	Lyon	25	Briand	25	11300000	850000	fifa11-club
+fr	Lyon	31	Vercoutre	30	2700000	200000	fifa11-club
+fr	Lyon	34	Kolodziejczak	18	5300000	400000	fifa11-club
+fr	Lyon	22	Gonalons	21	10600000	800000	fifa11-club
+fr	Lyon	38	Kallstrom	28	6400000	500000	fifa11-club
+fr	Lyon	27	Makoun	27	6300000	450000	fifa11-club
+fr	Lyon	36	Ederson	24	7400000	550000	fifa11-club
+fr	Lyon	35	Pjanic	20	7200000	550000	fifa11-club
+fr	Lyon	33	Grenier	19	6400000	500000	fifa11-club
+fr	Lyon	39	Lacazette	19	5700000	450000	fifa11-club
+fr	Lyon	404	Diakhate	26	3500000	250000	audited-addition
+fr	Lyon	405	Pied	21	3100000	250000	audited-addition
+fr	Lyon	406	Delgado	29	5300000	400000	audited-addition
+fr	Lyon	407	Gassama	20	3800000	300000	audited-addition
+fr	Auxerre	40	Sorin	29	3800000	300000	fifa11-club
+fr	Auxerre	41	Hengbart	30	3000000	200000	fifa11-club
+fr	Auxerre	43	Mignot	29	3300000	250000	fifa11-club
+fr	Auxerre	44	Grichting	31	2300000	150000	fifa11-club
+fr	Auxerre	45	Pedretti	29	4700000	350000	fifa11-club
+fr	Auxerre	47	Chafni	28	5200000	400000	fifa11-club
+fr	Auxerre	48	Birsa	24	5700000	450000	fifa11-club
+fr	Auxerre	46	Dudka	26	2600000	200000	fifa11-club
+fr	Auxerre	56	Sammaritano	24	2000000	150000	fifa11-club
+fr	Auxerre	50	Tallec	25	3100000	250000	fifa11-club
+fr	Auxerre	49	Jelen	29	3700000	300000	fifa11-club
+fr	Auxerre	52	Riou	23	900000	50000	fifa11-club
+fr	Auxerre	42	Coulibaly	29	1700000	150000	fifa11-club
+fr	Auxerre	408	Berthod	26	3200000	250000	audited-addition
+fr	Auxerre	55	Boly	19	1500000	100000	appearance-db
+fr	Auxerre	54	Langil	22	1900000	150000	fifa11-club
+fr	Auxerre	53	Ndinga	22	1900000	150000	fifa11-club
+fr	Auxerre	59	A. Traore	21	1100000	100000	fifa11-club
+fr	Auxerre	51	Oliech	25	1900000	150000	fifa11-club
+fr	Auxerre	58	Contout	25	1700000	150000	fifa11-club
+fr	Auxerre	409	Quercia	24	1900000	150000	audited-addition
+fr	Lille	60	Landreau	31	9200000	700000	fifa11-club
+fr	Lille	62	Rami	24	15400000	1150000	fifa11-club
+fr	Lille	61	Beria	27	11800000	900000	fifa11-club
+fr	Lille	63	Chedjou	25	12000000	900000	fifa11-club
+fr	Lille	64	Emerson	24	12300000	900000	fifa11-club
+fr	Lille	68	Hazard	19	42300000	3150000	fifa11-club
+fr	Lille	65	Mavuba	26	20900000	1550000	fifa11-club
+fr	Lille	67	Cabaye	24	19700000	1500000	fifa11-club
+fr	Lille	66	Balmont	30	8600000	650000	fifa11-club
+fr	Lille	73	Sow	24	30700000	2300000	fifa11-club
+fr	Lille	69	Gervinho	23	23800000	1800000	fifa11-club
+fr	Lille	71	Butelle	27	4900000	350000	fifa11-unique
+fr	Lille	76	Debuchy	25	10500000	800000	fifa11-club
+fr	Lille	75	Rozehnal	30	6100000	450000	fifa11-club
+fr	Lille	77	Souare	20	6800000	500000	fifa11-club
+fr	Lille	411	Vandam	23	2000000	150000	audited-addition
+fr	Lille	78	Obraniak	25	4800000	350000	fifa11-club
+fr	Lille	74	Gueye	21	5300000	400000	fifa11-club
+fr	Lille	70	Frau	30	6700000	500000	fifa11-club
+fr	Lille	79	De Melo	25	5800000	450000	fifa11-club
+fr	Lille	410	Mouko	31	2300000	150000	audited-addition
+fr	Lille	412	Dumont	27	5600000	400000	audited-addition
+fr	Montpellier	80	Jourdren	24	3400000	250000	fifa11-club
+fr	Montpellier	81	Jeunechamp	34	1400000	100000	fifa11-club
+fr	Montpellier	82	Dzodic	33	1600000	100000	fifa11-club
+fr	Montpellier	84	Collin	36	900000	50000	fifa11-club
+fr	Montpellier	83	Spahic	30	1500000	100000	fifa11-club
+fr	Montpellier	94	Yanga-Mbiwa	21	5300000	400000	fifa11-club
+fr	Montpellier	85	Pitau	33	1700000	150000	fifa11-club
+fr	Montpellier	87	Costa	22	2600000	200000	audited-retained
+fr	Montpellier	95	Giroud	23	6000000	450000	fifa11-club
+fr	Montpellier	90	Camara	27	2900000	200000	fifa11-club
+fr	Montpellier	89	Kabze	28	2300000	150000	fifa11-club
+fr	Montpellier	91	Pionnier	28	1000000	100000	fifa11-club
+fr	Montpellier	93	Nelson	20	1300000	100000	fifa11-club
+fr	Montpellier	92	Kaoutari	20	1100000	100000	fifa11-club
+fr	Montpellier	88	Dernis	29	1800000	150000	fifa11-club
+fr	Montpellier	86	Marveaux	28	1600000	100000	fifa11-club
+fr	Montpellier	96	Belhanda	20	1600000	100000	fifa11-club
+fr	Montpellier	98	Estrada	27	800000	50000	fifa11-club
+fr	Montpellier	99	Saihi	23	1300000	100000	fifa11-club
+fr	Montpellier	97	Koita	19	1400000	100000	fifa11-club
+fr	Montpellier	413	Bocaly	22	3200000	250000	audited-addition
+fr	Montpellier	414	Ait-Fana	21	4000000	300000	audited-addition
+fr	Montpellier	415	Stambouli	20	1000000	100000	audited-addition
+fr	Bordeaux	100	Carrasso	28	12400000	950000	fifa11-club
+fr	Bordeaux	104	Tremoulinas	24	4600000	350000	fifa11-club
+fr	Bordeaux	103	Chalme	29	3300000	250000	fifa11-club
+fr	Bordeaux	101	Henrique	27	2900000	200000	fifa11-club
+fr	Bordeaux	102	Planus	28	2700000	200000	fifa11-club
+fr	Bordeaux	107	Ben Khalfallah	27	9700000	750000	fifa11-club
+fr	Bordeaux	105	Wendel	28	5200000	400000	fifa11-club
+fr	Bordeaux	106	Diarra	29	5400000	400000	fifa11-club
+fr	Bordeaux	108	Sertic	21	6200000	450000	fifa11-unique
+fr	Bordeaux	109	Diabate	22	7200000	550000	fifa11-club
+fr	Bordeaux	110	Modeste	22	5400000	400000	fifa11-club
+fr	Bordeaux	111	Rame	37	800000	50000	fifa11-club
+fr	Bordeaux	114	Traore	30	1500000	100000	audited-retained
+fr	Bordeaux	112	Savic	20	1900000	150000	fifa11-club
+fr	Bordeaux	115	Ciani	26	1800000	150000	fifa11-club
+fr	Bordeaux	117	Plasil	28	2500000	200000	fifa11-club
+fr	Bordeaux	116	Gouffran	24	3000000	200000	fifa11-club
+fr	Bordeaux	118	Bellion	27	1800000	150000	fifa11-club
+fr	Bordeaux	113	Jussie	26	1800000	150000	fifa11-club
+fr	Bordeaux	119	Saivet	19	2200000	150000	fifa11-club
+fr	Bordeaux	416	Keita	20	1700000	150000	audited-addition
+fr	Bordeaux	417	Sane	23	3200000	250000	audited-addition
+fr	Bordeaux	418	Marange	24	900000	50000	audited-addition
+fr	Lorient	120	Audard	32	1900000	150000	fifa11-club
+fr	Lorient	121	Baca	27	2900000	200000	fifa11-club
+fr	Lorient	124	Lan	32	1600000	100000	fifa11-club
+fr	Lorient	123	Kone	21	2900000	200000	fifa11-club
+fr	Lorient	122	Bourillon	26	2100000	150000	fifa11-club
+fr	Lorient	126	Romao	26	4500000	350000	fifa11-club
+fr	Lorient	127	Mvuemba	25	3600000	250000	fifa11-club
+fr	Lorient	128	Amalfitano	25	3600000	250000	fifa11-club
+fr	Lorient	136	Diarra	26	2200000	150000	fifa11-club
+fr	Lorient	130	Gameiro	23	40200000	3000000	fifa11-club
+fr	Lorient	132	Cappone	31	1000000	100000	fifa11-club
+fr	Lorient	125	Calve	26	2500000	200000	fifa11-unique
+fr	Lorient	134	Ecuele Manga	22	2000000	150000	fifa11-club
+fr	Lorient	133	Boutruche	32	600000	50000	audited-retained
+fr	Lorient	135	Robert	21	2200000	150000	fifa11-club
+fr	Lorient	137	Jouffre	26	1900000	150000	fifa11-club
+fr	Lorient	131	Kitambala	21	2300000	150000	fifa11-club
+fr	Lorient	139	Pinard	24	2100000	150000	audited-retained
+fr	Lorient	419	Lecomte	19	1700000	150000	audited-addition
+fr	Lorient	420	Autret	19	1200000	100000	audited-addition
+fr	Lorient	421	Coquelin	19	1800000	150000	audited-addition
+fr	Monaco	140	Ruffier	23	10800000	800000	fifa11-club
+fr	Monaco	155	Adriano	28	8500000	650000	fifa11-club
+fr	Monaco	142	Puygrenier	28	3000000	200000	fifa11-club
+fr	Monaco	145	Nkoulou	20	3800000	300000	fifa11-club
+fr	Monaco	143	Mongongu	21	3300000	250000	fifa11-club
+fr	Monaco	141	Lolo	28	2100000	150000	fifa11-club
+fr	Monaco	148	Gosso	27	2800000	200000	fifa11-club
+fr	Monaco	146	Haruna	19	3700000	300000	fifa11-club
+fr	Monaco	149	Mollo	21	3500000	250000	fifa11-unique
+fr	Monaco	150	Park	25	6700000	500000	fifa11-club
+fr	Monaco	147	Mbokani	24	3500000	250000	fifa11-club
+fr	Monaco	151	Roma	36	700000	50000	fifa11-unique
+fr	Monaco	144	Traore	30	1800000	150000	fifa11-club
+fr	Monaco	152	Hansson	33	600000	50000	fifa11-club
+fr	Monaco	153	Bonnart	30	800000	50000	appearance-db
+fr	Monaco	158	Coutadeur	24	1800000	150000	fifa11-club
+fr	Monaco	159	Malonga	23	1900000	150000	fifa11-club
+fr	Monaco	157	Alonso	28	1300000	100000	fifa11-club
+fr	Monaco	156	Licata	26	1800000	150000	fifa11-unique
+fr	Monaco	154	Niculae	28	1300000	100000	fifa11-club
+fr	Monaco	422	Muratori	23	1800000	150000	audited-addition
+fr	Monaco	423	N. Mendy	18	3300000	250000	audited-addition
+fr	Monaco	424	Bulot	20	2200000	150000	audited-addition
+fr	Rennes	160	Douchez	30	7300000	550000	fifa11-club
+fr	Rennes	162	Mangane	27	3900000	300000	fifa11-club
+fr	Rennes	163	Kana-Biyik	21	4100000	300000	fifa11-club
+fr	Rennes	161	Fanni	28	3000000	200000	fifa11-club
+fr	Rennes	164	Theophile-Catherine	20	4200000	300000	fifa11-club
+fr	Rennes	169	Marveaux	24	9800000	750000	fifa11-club
+fr	Rennes	165	Leroy	35	2200000	150000	fifa11-club
+fr	Rennes	167	Lemoine	23	5900000	450000	fifa11-club
+fr	Rennes	166	Tettey	24	3300000	250000	fifa11-club
+fr	Rennes	168	Bangoura	25	5800000	450000	fifa11-club
+fr	Rennes	170	Montano	26	4700000	350000	fifa11-club
+fr	Rennes	171	Luzi	33	900000	50000	audited-retained
+fr	Rennes	426	Boye	23	1400000	100000	audited-addition
+fr	Rennes	179	M'Vila	20	3600000	250000	fifa11-club
+fr	Rennes	178	Brahimi	20	3200000	250000	fifa11-club
+fr	Rennes	177	Doumbia	21	2000000	150000	fifa11-club
+fr	Rennes	176	Dalmat	31	1100000	100000	fifa11-club
+fr	Rennes	172	Kembo	22	1800000	150000	fifa11-club
+fr	Rennes	425	Diallo	18	1700000	150000	audited-addition
+fr	Rennes	427	Mandjeck	21	2200000	150000	audited-addition
+fr	Rennes	428	Jebbour	19	1700000	150000	audited-addition
+fr	Valenciennes	180	Penneteau	29	2200000	150000	fifa11-club
+fr	Valenciennes	181	Mater	29	1900000	150000	fifa11-club
+fr	Valenciennes	183	Schmitz	29	1900000	150000	fifa11-club
+fr	Valenciennes	182	Bisevac	27	2000000	150000	fifa11-club
+fr	Valenciennes	184	Angoua	23	2400000	200000	fifa11-club
+fr	Valenciennes	186	Sanchez	24	4900000	350000	fifa11-club
+fr	Valenciennes	185	Saez	28	2900000	200000	fifa11-club
+fr	Valenciennes	189	Danic	28	2900000	200000	fifa11-club
+fr	Valenciennes	188	Kadir	26	2600000	200000	fifa11-club
+fr	Valenciennes	187	Cohade	25	2800000	200000	fifa11-club
+fr	Valenciennes	190	Pujol	30	5600000	400000	fifa11-club
+fr	Valenciennes	191	Grondin	26	1100000	100000	fifa11-unique
+fr	Valenciennes	193	Bong	22	1400000	100000	fifa11-club
+fr	Valenciennes	195	Ducourtioux	32	1000000	100000	fifa11-club
+fr	Valenciennes	196	Bangoura	24	1600000	100000	fifa11-club
+fr	Valenciennes	197	Lacourt	24	1400000	100000	fifa11-club
+fr	Valenciennes	194	Dossevi	22	1500000	100000	fifa11-club
+fr	Valenciennes	192	Samassa	24	1900000	150000	fifa11-club
+fr	Valenciennes	198	Khiter	25	1900000	150000	fifa11-club
+fr	Valenciennes	199	Aboubakar	18	2000000	150000	fifa11-club
+fr	Valenciennes	429	Leca	24	1300000	100000	audited-addition
+fr	Valenciennes	430	Isimat-Mirin	19	2200000	150000	audited-addition
+fr	Valenciennes	431	Gomis	26	3000000	200000	audited-addition
+fr	Lens	200	Runje	34	1000000	100000	fifa11-club
+fr	Lens	204	Ramos	27	2300000	150000	fifa11-club
+fr	Lens	203	Chelle	32	900000	50000	fifa11-club
+fr	Lens	201	Demont	32	700000	50000	fifa11-club
+fr	Lens	202	Yahia	28	1100000	100000	fifa11-club
+fr	Lens	207	Boukari	23	3400000	250000	fifa11-club
+fr	Lens	205	Kovacevic	29	1300000	100000	fifa11-club
+fr	Lens	206	Hermach	24	1600000	100000	fifa11-club
+fr	Lens	208	Maoulida	31	2000000	150000	fifa11-club
+fr	Lens	210	Eduardo	30	2200000	150000	fifa11-club
+fr	Lens	209	Jemaa	26	3100000	250000	fifa11-club
+fr	Lens	211	Kasraoui	27	500000	50000	fifa11-club
+fr	Lens	212	Aurier	17	800000	50000	fifa11-club
+fr	Lens	213	Sartre	27	400000	50000	fifa11-unique
+fr	Lens	217	Kapo	24	1000000	100000	audited-retained
+fr	Lens	215	Milovanovic	26	900000	50000	audited-retained
+fr	Lens	216	Roudet	29	500000	50000	fifa11-club
+fr	Lens	214	Monnet-Paquet	22	800000	50000	fifa11-unique
+fr	Lens	218	Veselinovic	22	1300000	100000	audited-retained
+fr	Lens	219	Sow	21	900000	50000	fifa11-club
+fr	Lens	432	Queudrue	23	2800000	200000	audited-addition
+fr	Lens	433	Akale	29	1200000	100000	audited-addition
+fr	Lens	434	Joseph-Monrose	20	800000	50000	audited-addition
+fr	Nancy	220	Gregorini	31	2600000	200000	fifa11-club
+fr	Nancy	224	Lemaitre	27	2900000	200000	fifa11-club
+fr	Nancy	221	Chretien	26	2100000	150000	fifa11-club
+fr	Nancy	223	Sami	25	2300000	150000	fifa11-club
+fr	Nancy	222	A. Luiz	30	1300000	100000	fifa11-club
+fr	Nancy	228	Feret	28	4500000	350000	fifa11-club
+fr	Nancy	227	Traore	25	4800000	350000	fifa11-club
+fr	Nancy	226	Diakite	21	4400000	350000	fifa11-club
+fr	Nancy	225	Bakar	21	5200000	400000	fifa11-club
+fr	Nancy	229	Hadji	30	2500000	200000	appearance-db
+fr	Nancy	230	Efoulou	26	3500000	250000	fifa11-club
+fr	Nancy	231	Bracigliano	30	900000	50000	fifa11-club
+fr	Nancy	237	Brison	27	1300000	100000	fifa11-club
+fr	Nancy	232	Helder	22	1400000	100000	fifa11-unique
+fr	Nancy	233	L. Luiz	30	600000	50000	fifa11-club
+fr	Nancy	236	N'Diaye	20	2000000	150000	fifa11-club
+fr	Nancy	235	Vahirua	30	1100000	100000	fifa11-club
+fr	Nancy	234	Cuvillier	24	1400000	100000	fifa11-club
+fr	Nancy	238	Gunnarsson	19	1700000	150000	audited-retained
+fr	Nancy	239	Correa	27	1100000	100000	audited-retained
+fr	Nancy	435	Berenguer	29	1500000	100000	audited-addition
+fr	Nancy	436	Jeannot	18	1000000	100000	audited-addition
+fr	Paris SG	240	Coupet	37	1700000	150000	fifa11-club
+fr	Paris SG	243	Sakho	20	15200000	1150000	fifa11-club
+fr	Paris SG	242	Camara	31	4600000	350000	fifa11-club
+fr	Paris SG	244	Armand	30	5100000	400000	fifa11-club
+fr	Paris SG	241	Ceara	30	3000000	200000	fifa11-club
+fr	Paris SG	256	Nene	29	14100000	1050000	fifa11-club
+fr	Paris SG	245	Giuly	34	4100000	300000	fifa11-club
+fr	Paris SG	248	Sessegnon	26	9000000	700000	fifa11-club
+fr	Paris SG	246	Makelele	37	1800000	150000	fifa11-club
+fr	Paris SG	249	Hoarau	26	18700000	1400000	fifa11-club
+fr	Paris SG	250	Erding	23	12000000	900000	fifa11-club
+fr	Paris SG	251	Grondin	26	2200000	150000	fifa11-unique
+fr	Paris SG	257	Tiene	28	2700000	200000	fifa11-club
+fr	Paris SG	252	Makonda	20	3400000	250000	fifa11-club
+fr	Paris SG	253	Traore	34	1100000	100000	fifa11-club
+fr	Paris SG	247	Clement	26	6000000	450000	fifa11-club
+fr	Paris SG	254	Chantome	22	4300000	300000	fifa11-club
+fr	Paris SG	258	Boli	22	4300000	300000	fifa11-unique
+fr	Paris SG	259	Bodmer	27	3600000	250000	fifa11-club
+fr	Paris SG	255	Luyindula	31	2300000	150000	fifa11-club
+fr	Paris SG	437	Edel	24	3400000	250000	audited-addition
+fr	Paris SG	438	Jallet	26	4900000	350000	audited-addition
+fr	Paris SG	439	Bahebeck	17	2000000	150000	audited-addition
+fr	Toulouse	260	Pele	27	3500000	250000	fifa11-club
+fr	Toulouse	262	Cetto	28	3000000	200000	fifa11-club
+fr	Toulouse	263	Fofana	25	3800000	300000	fifa11-club
+fr	Toulouse	264	M'Bengue	22	4000000	300000	fifa11-club
+fr	Toulouse	261	Congre	25	2600000	200000	fifa11-club
+fr	Toulouse	268	Sissoko	21	7900000	600000	fifa11-club
+fr	Toulouse	265	Capoue	22	6900000	500000	fifa11-club
+fr	Toulouse	266	Braaten	28	3200000	250000	fifa11-club
+fr	Toulouse	267	Didot	27	3500000	250000	fifa11-club
+fr	Toulouse	269	Santander	19	9600000	700000	fifa11-club
+fr	Toulouse	270	Larsen	28	6000000	450000	fifa11-club
+fr	Toulouse	271	Blondel	29	1000000	100000	audited-retained
+fr	Toulouse	273	Gunino	21	2100000	150000	fifa11-club
+fr	Toulouse	272	Abdennour	33	800000	50000	audited-retained
+fr	Toulouse	275	Devaux	25	2400000	200000	fifa11-club
+fr	Toulouse	278	Tabanou	21	2000000	150000	fifa11-club
+fr	Toulouse	274	Machado	24	1600000	100000	fifa11-club
+fr	Toulouse	276	Pentecote	24	2100000	150000	fifa11-club
+fr	Toulouse	279	Soukouna	20	2300000	150000	fifa11-club
+fr	Toulouse	277	Tafer	19	2200000	150000	fifa11-club
+fr	Toulouse	440	Ahamada	19	1900000	150000	audited-addition
+fr	Toulouse	441	Akpa Akpro	18	2100000	150000	audited-addition
+fr	Toulouse	442	Regattin	19	2100000	150000	audited-addition
+fr	Nice	280	Ospina	22	2400000	200000	fifa11-club
+fr	Nice	283	Quartey	22	3200000	250000	fifa11-club
+fr	Nice	284	Paisley	33	1300000	100000	fifa11-club
+fr	Nice	282	Civelli	26	2100000	150000	fifa11-club
+fr	Nice	281	Diakite	25	1700000	150000	fifa11-club
+fr	Nice	290	Mounier	22	3800000	300000	fifa11-club
+fr	Nice	286	Echouafni	21	4000000	300000	audited-retained
+fr	Nice	285	Fae	26	3000000	200000	fifa11-club
+fr	Nice	287	Hellebuyck	31	2000000	150000	fifa11-club
+fr	Nice	288	Saada	26	1700000	150000	fifa11-club
+fr	Nice	289	Bagayoko	31	1500000	100000	fifa11-club
+fr	Nice	291	Letizi	37	400000	50000	fifa11-club
+fr	Nice	294	Pejcinovic	22	800000	50000	fifa11-club
+fr	Nice	292	Cantareil	27	700000	50000	fifa11-club
+fr	Nice	296	Sae	32	500000	50000	audited-retained
+fr	Nice	295	Sable	29	700000	50000	fifa11-club
+fr	Nice	297	Edelson	24	1000000	100000	fifa11-club
+fr	Nice	293	Digard	24	1000000	100000	fifa11-club
+fr	Nice	299	Pote	25	1500000	100000	fifa11-club
+fr	Nice	298	Quansah	19	1100000	100000	fifa11-club
+fr	Nice	443	Traore	22	1500000	100000	audited-addition
+fr	Nice	444	Ljuboja	31	2300000	150000	audited-addition
+fr	Sochaux	300	Richert	35	2300000	150000	fifa11-club
+fr	Sochaux	305	Perquis	26	3200000	250000	fifa11-club
+fr	Sochaux	301	Stevanovic	26	3200000	250000	audited-retained
+fr	Sochaux	302	Faty	26	2800000	200000	fifa11-club
+fr	Sochaux	303	Brechet	31	1800000	150000	fifa11-club
+fr	Sochaux	307	Boudebouz	20	7200000	550000	fifa11-club
+fr	Sochaux	316	Martin	22	6000000	450000	fifa11-club
+fr	Sochaux	308	Maurice-Belay	25	4800000	350000	fifa11-club
+fr	Sochaux	306	Anin	24	3700000	300000	fifa11-club
+fr	Sochaux	309	Maiga	22	8000000	600000	fifa11-club
+fr	Sochaux	310	Ideye	21	9400000	700000	fifa11-club
+fr	Sochaux	304	Mikari	27	2600000	200000	fifa11-club
+fr	Sochaux	315	Sauget	30	1500000	100000	fifa11-club
+fr	Sochaux	313	Jokic	30	1100000	100000	audited-retained
+fr	Sochaux	312	Carlao	24	1700000	150000	fifa11-club
+fr	Sochaux	317	Tulasne	22	3000000	200000	fifa11-club
+fr	Sochaux	314	Pitau	33	900000	50000	fifa11-unique
+fr	Sochaux	311	Nogueira	22	1700000	150000	fifa11-club
+fr	Sochaux	319	Butin	22	3100000	250000	fifa11-club
+fr	Sochaux	318	Santos	31	1500000	100000	audited-retained
+fr	Sochaux	445	Dreyer	21	2000000	150000	audited-addition
+fr	Sochaux	446	Poujol	23	1800000	150000	audited-addition
+fr	St-Etienne	447	Janot	32	2700000	200000	audited-addition
+fr	St-Etienne	321	Perrin	25	3000000	200000	fifa11-club
+fr	St-Etienne	448	Andreu	21	800000	50000	audited-addition
+fr	St-Etienne	323	Bayal	24	2700000	200000	fifa11-club
+fr	St-Etienne	324	Ebondo	26	2500000	200000	fifa11-club
+fr	St-Etienne	325	Guilavogui	19	5500000	400000	fifa11-club
+fr	St-Etienne	326	Matuidi	23	4200000	300000	fifa11-club
+fr	St-Etienne	327	Sako	22	3400000	250000	fifa11-club
+fr	St-Etienne	329	Payet	23	12200000	900000	fifa11-club
+fr	St-Etienne	330	Bergessio	26	5400000	400000	fifa11-club
+fr	St-Etienne	328	Sanogo	27	3600000	250000	fifa11-club
+fr	St-Etienne	331	Coulibaly	22	1400000	100000	fifa11-club
+fr	St-Etienne	334	Bocanegra	31	800000	50000	fifa11-club
+fr	St-Etienne	336	M. Marchal	30	900000	50000	fifa11-club
+fr	St-Etienne	332	S. Marchal	30	800000	50000	fifa11-club
+fr	St-Etienne	338	Nery	19	1300000	100000	fifa11-club
+fr	St-Etienne	337	Monsoreau	29	700000	50000	fifa11-club
+fr	St-Etienne	339	Batlles	34	800000	50000	fifa11-club
+fr	St-Etienne	335	Alonso	28	1600000	100000	appearance-db
+fr	St-Etienne	333	Riviere	20	1900000	150000	fifa11-club
+fr	St-Etienne	449	Landrin	33	1500000	100000	audited-addition
+fr	Caen	340	Bosmel	22	2400000	200000	fifa11-club
+fr	Caen	344	Tafforeau	33	1300000	100000	fifa11-club
+fr	Caen	343	Marcq	21	3300000	250000	fifa11-club
+fr	Caen	342	Gillet	30	1500000	100000	audited-retained
+fr	Caen	341	Boucansaud	28	1500000	100000	audited-retained
+fr	Caen	345	Deroin	31	2000000	150000	fifa11-club
+fr	Caen	346	Nivet	33	1500000	100000	fifa11-club
+fr	Caen	348	Leca	30	1400000	100000	fifa11-club
+fr	Caen	347	Hamouma	23	1900000	150000	fifa11-club
+fr	Caen	358	El-Arabi	23	7900000	600000	fifa11-club
+fr	Caen	349	K. Traore	30	1700000	150000	fifa11-club
+fr	Caen	351	Perquis	24	1100000	100000	fifa11-club
+fr	Caen	352	Thebaux	25	1500000	100000	fifa11-club
+fr	Caen	354	Zubar	31	900000	50000	audited-retained
+fr	Caen	356	Heurtaux	22	1200000	100000	fifa11-club
+fr	Caen	353	Bertoli	29	800000	50000	audited-retained
+fr	Caen	357	Yatabare	21	1800000	150000	fifa11-club
+fr	Caen	355	Seube	31	700000	50000	fifa11-club
+fr	Caen	350	Nabab	22	3100000	250000	fifa11-club
+fr	Caen	359	Traore	30	1300000	100000	fifa11-club
+fr	Caen	450	Raineau	24	1700000	150000	audited-addition
+fr	Caen	451	Moulin	24	1800000	150000	audited-addition
+fr	Caen	452	M. Niang	16	2000000	150000	audited-addition
+fr	Brest	372	Elana	30	2400000	200000	fifa11-club
+fr	Brest	365	Baysse	22	4000000	300000	fifa11-club
+fr	Brest	363	Lorenzi	26	3200000	250000	fifa11-club
+fr	Brest	364	Daf	33	1300000	100000	fifa11-club
+fr	Brest	362	Kantari	25	2300000	150000	fifa11-club
+fr	Brest	361	Apanga	28	1500000	100000	fifa11-club
+fr	Brest	366	Poyet	29	3700000	300000	fifa11-club
+fr	Brest	370	Soumah	23	1900000	150000	fifa11-club
+fr	Brest	367	Ferradj	22	1500000	100000	fifa11-club
+fr	Brest	378	Roux	22	2700000	200000	fifa11-club
+fr	Brest	369	Toure	26	2300000	150000	fifa11-club
+fr	Brest	360	Cappone	31	500000	50000	fifa11-unique
+fr	Brest	371	Deneuve	25	600000	50000	fifa11-club
+fr	Brest	373	Martial	19	900000	50000	fifa11-club
+fr	Brest	368	Micola	21	1500000	100000	fifa11-club
+fr	Brest	375	Lesoimier	27	1200000	100000	fifa11-club
+fr	Brest	376	Grougi	27	1000000	100000	fifa11-club
+fr	Brest	374	Ewolo	31	600000	50000	fifa11-club
+fr	Brest	377	Sissoko	21	1000000	100000	audited-retained
+fr	Brest	379	Ayite	25	1000000	100000	appearance-db
+fr	Brest	453	Licka	23	2500000	200000	audited-addition
+fr	Brest	454	Bigne	33	700000	50000	audited-addition
+fr	Arles	380	Puydebois	25	1100000	100000	audited-retained
+fr	Arles	381	Soro	24	1300000	100000	fifa11-club
+fr	Arles	382	Pavon	30	800000	50000	fifa11-club
+fr	Arles	383	Laurenti	27	700000	50000	fifa11-club
+fr	Arles	386	Ndiaye	30	1200000	100000	fifa11-club
+fr	Arles	387	Ayasse	23	1900000	150000	fifa11-club
+fr	Arles	385	Meriem	30	1100000	100000	fifa11-club
+fr	Arles	384	Ait Ben Idir	26	900000	50000	fifa11-club
+fr	Arles	388	Piocelle	31	400000	50000	fifa11-club
+fr	Arles	389	Charisteas	30	1300000	100000	fifa11-club
+fr	Arles	390	Djedje	24	1300000	100000	fifa11-club
+fr	Arles	399	Hubert	22	400000	50000	fifa11-unique
+fr	Arles	393	Mejia	28	500000	50000	fifa11-club
+fr	Arles	391	Loutre	26	400000	50000	audited-retained
+fr	Arles	392	Maire	31	200000	50000	fifa11-unique
+fr	Arles	395	Correia	21	400000	50000	fifa11-unique
+fr	Arles	398	Ghilas	26	700000	50000	fifa11-club
+fr	Arles	396	K. Diawara	34	300000	50000	fifa11-club
+fr	Arles	397	Diarra	34	200000	50000	fifa11-club
+fr	Arles	394	Germain	25	300000	50000	fifa11-club
+fr	Arles	320	Plante	29	2200000	150000	fifa11-club
+fr	Arles	455	Balde	23	2000000	150000	audited-addition
+fr	Arles	456	Kermorgant	28	800000	50000	audited-addition
+fr	Arles	457	Cabella	20	2200000	150000	audited-addition
