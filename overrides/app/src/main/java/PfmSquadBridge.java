@@ -91,6 +91,7 @@ public final class PfmSquadBridge {
 
     public static boolean available(){
         try{
+            try{Class.forName("pfm.android.NativeLegacyRosterSync").getMethod("reconcile",android.content.Context.class).invoke(null,pfm.android.AndroidRuntime.context());}catch(Throwable ignored){}
             try{pfmRosterIntegrity32.repairAll();}catch(Throwable ignored){}
             dw t=userTeam();
             return t!=null&&squadCount(t)>0;

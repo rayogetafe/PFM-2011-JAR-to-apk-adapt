@@ -19,7 +19,7 @@ public final class PfmMatchdayBridge {
     private static ci at(dw t,int i){try{short[] o=order(t);ci[] p=players();int id=o[i]&65535;return p!=null&&id<p.length?p[id]:null;}catch(Throwable x){return null;}}
     private static int minutes(dw t,int i){try{return pfmAvailable70.minutesForRosterIndex(t,i,round());}catch(Throwable x){return i<11?90:0;}}
 
-    public static boolean available(){return team()!=null&&count(team())>=11;}
+    public static boolean available(){try{Class.forName("pfm.android.NativeLegacyRosterSync").getMethod("reconcile",android.content.Context.class).invoke(null,pfm.android.AndroidRuntime.context());}catch(Throwable ignored){}return team()!=null&&count(team())>=11;}
     public static boolean live(){try{return PfmSquadBridge.liveMatchActive();}catch(Throwable t){return false;}}
     public static String opponent(){try{return PfmSeasonBridge.nextMatch();}catch(Throwable t){return "Next match";}}
 

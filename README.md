@@ -165,6 +165,12 @@ opening the screen or restarting cannot duplicate a player. A full 25-player
 legacy roster is reported as pending instead of being overwritten; the native
 career remains the source of truth while this transition limit exists.
 
+v59 additionally reconciles that source of truth whenever the squad or
+matchday bridge is opened after a stock `GAME LOADED` event. It verifies the
+actual player's name, age, position and attributes instead of trusting a stale
+numeric id, fixing imported players disappearing when the legacy save restores
+its older 24-player roster.
+
 ## Badge audit
 
 [`overrides/badges_v40_manifest.tsv`](overrides/badges_v40_manifest.tsv) is the
