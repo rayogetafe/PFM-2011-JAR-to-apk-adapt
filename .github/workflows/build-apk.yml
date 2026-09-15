@@ -269,6 +269,8 @@ jobs:
           grep -q 'pfm_global_offers_v53' "$PROJECT/app/src/main/java/pfm/android/NativeTransferNegotiations.java"
           grep -q 'writeAtomic' "$PROJECT/app/src/main/java/pfm/android/NativeCareerStore.java"
           grep -q 'unexpected import size' "$PROJECT/app/src/main/java/pfm/android/NativeCareerStore.java"
+          grep -q 'contractUntil' "$PROJECT/app/src/main/java/pfm/android/NativeCareerStore.java"
+          grep -q 'old.schema<SCHEMA' "$PROJECT/app/src/main/java/pfm/android/NativeCareerStore.java"
           grep -q 'NATIVE CAREER DATA' "$PROJECT/app/src/main/java/pfm/android/NativeWorldCompetition.java"
           grep -q 'ALL TOP-5 LEAGUES' "$PROJECT/app/src/main/java/pfm/android/NativeWorldCompetition.java"
           grep -q 'int\[\] result=score(code,seed,h,a,hs,as)' "$PROJECT/app/src/main/java/pfm/android/NativeWorldCenter.java"
@@ -297,8 +299,8 @@ jobs:
             exit 1
           fi
 
-          sed -i -E 's/versionCode [0-9]+/versionCode 134/' "$PROJECT/app/build.gradle"
-          sed -i -E "s/versionName '[^']+'/versionName '0.84-android-port.38-v54-native-career-schema'/" "$PROJECT/app/build.gradle"
+          sed -i -E 's/versionCode [0-9]+/versionCode 135/' "$PROJECT/app/build.gradle"
+          sed -i -E "s/versionName '[^']+'/versionName '0.84-android-port.38-v55-native-contracts-finance'/" "$PROJECT/app/build.gradle"
 
       - name: Restore stable debug signing key
         shell: bash
@@ -346,7 +348,7 @@ jobs:
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
-          name: PFM-2011-Android-Alpha084-v54-native-career-schema
+          name: PFM-2011-Android-Alpha084-v55-native-contracts-finance
           path: ${{ env.PROJECT }}/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
           retention-days: 30

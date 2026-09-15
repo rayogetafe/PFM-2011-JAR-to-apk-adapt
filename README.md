@@ -4,8 +4,16 @@ Android adaptation of the Play Football Manager 2011 Alpha 0.84 J2ME core.
 
 ## Current build
 
-`v54-native-career-schema` continues from v53 on the historical
+`v55-native-contracts-finance` continues from v54 on the historical
 `v28-build` line.  It keeps v39's match-statistics changes and adds:
+
+- automatic, validated schema migration from native career v1 to v2 while
+  retaining the v1 file as the rollback backup;
+- one contract for every player, containing annual wage and expiry season;
+- transfer balance and annual wage budget for every club, with the user's
+  opening balance imported from the live legacy career;
+- integrity checks now reject invalid finance, expired-on-import contracts,
+  missing ownership and duplicate entities before activating the new file;
 
 - a single native career schema for clubs, players, ownership, nationality,
   age, ability, value and wage, with stable IDs for all 98 clubs and 2,281
