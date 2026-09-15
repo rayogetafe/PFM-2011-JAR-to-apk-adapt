@@ -242,6 +242,7 @@ jobs:
           python3 tools/audit_v41_build.py "$PROJECT/v41-base.jar" "$PROJECT/app/libs/pfm_core_android.jar" overrides/roster_v41_plan.json
           python3 tools/build_v42_world_asset.py "$PROJECT/app/libs/pfm_core_android.jar" overrides/nationalities_v42.tsv "$PROJECT/app/src/main/assets/world_v42.tsv"
           python3 tools/audit_v44_world_sim.py "$PROJECT/app/src/main/assets/world_v42.tsv"
+          python3 tools/audit_v48_world_rotation.py "$PROJECT/app/src/main/assets/world_v42.tsv"
           mkdir -p "$PROJECT/v42-stage/resources"
           cp overrides/nationalities_v42.tsv "$PROJECT/v42-stage/resources/nationalities_v42.tsv"
           (cd "$PROJECT/v42-stage" && zip -q -u "$CORE_JAR" resources/nationalities_v42.tsv)
@@ -256,7 +257,7 @@ jobs:
           grep -q $'morale\tstyle\tformation\tvalue\twage' "$PROJECT/app/src/main/assets/world_v42.tsv"
           grep -q 'GLOBAL PLAYER MARKET' "$PROJECT/app/src/main/java/pfm/android/NativeWorldCompetition.java"
           grep -q 'cross-league bids are intentionally disabled' "$PROJECT/app/src/main/java/pfm/android/NativeGlobalMarket.java"
-          grep -q 'new ArrayList<P>(order.subList(0,used))' "$PROJECT/app/src/main/java/pfm/android/NativeWorldCenter.java"
+          grep -q 'ArrayList<P> used=new ArrayList<P>(xi)' "$PROJECT/app/src/main/java/pfm/android/NativeWorldCenter.java"
           grep -q 'ArrayAdapter<NativeWorldCenter.T>' "$PROJECT/app/src/main/java/pfm/android/NativeWorldCompetition.java"
           ! grep -q 'ArrayAdapter<View>' "$PROJECT/app/src/main/java/pfm/android/NativeWorldCompetition.java"
           test -s "$PROJECT/app/src/main/java/pfmNationality42.java"
@@ -281,8 +282,8 @@ jobs:
             exit 1
           fi
 
-          sed -i -E 's/versionCode [0-9]+/versionCode 127/' "$PROJECT/app/build.gradle"
-          sed -i -E "s/versionName '[^']+'/versionName '0.84-android-port.38-v47-global-market-foundation'/" "$PROJECT/app/build.gradle"
+          sed -i -E 's/versionCode [0-9]+/versionCode 128/' "$PROJECT/app/build.gradle"
+          sed -i -E "s/versionName '[^']+'/versionName '0.84-android-port.38-v48-world-squad-rotation'/" "$PROJECT/app/build.gradle"
 
       - name: Restore stable debug signing key
         shell: bash
@@ -330,7 +331,7 @@ jobs:
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
-          name: PFM-2011-Android-Alpha084-v47-global-market-foundation
+          name: PFM-2011-Android-Alpha084-v48-world-squad-rotation
           path: ${{ env.PROJECT }}/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
           retention-days: 30

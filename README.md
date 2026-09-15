@@ -4,8 +4,16 @@ Android adaptation of the Play Football Manager 2011 Alpha 0.84 J2ME core.
 
 ## Current build
 
-`v47-global-market-foundation` continues from v46 on the historical
+`v48-world-squad-rotation` continues from v47 on the historical
 `v28-build` line.  It keeps v39's match-statistics changes and adds:
+
+- position-balanced parallel-league selection (1 GK, 4 DEF, 4 MID, 2 FW),
+  with strength, resistance, accumulated fatigue and controlled variation;
+- three matchday substitutes and recovery for unused players, replacing the
+  unrealistic permanent `38 appearances / 0 appearances` split;
+- separate starts and appearances in world statistics and player profiles;
+- a 98-club full-season rotation audit requiring at least 18 used players and
+  preventing any outfield selection from starting every match;
 
 - a read-only Global Player Market covering every player in the four parallel
   leagues, with player/club/nationality search and position filters;
