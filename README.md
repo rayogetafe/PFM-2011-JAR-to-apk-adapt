@@ -4,8 +4,21 @@ Android adaptation of the Play Football Manager 2011 Alpha 0.84 J2ME core.
 
 ## Current build
 
-`v48-world-squad-rotation` continues from v47 on the historical
+`v49-lineup-driven-world-engine` continues from v48 on the historical
 `v28-build` line.  It keeps v39's match-statistics changes and adds:
+
+- one shared matchday selection object now drives both the score calculation
+  and the player ledger; v48 incorrectly rotated statistics after calculating
+  the result from a static XI;
+- hierarchical appearances: first-team quality has substantially more weight,
+  planned rest is occasional, and only 1-3 substitutes are used per fixture;
+- the 98-club audit rejects the former flat distribution and currently yields
+  appearance percentiles of 8 / 22 / 33 (10th / median / 90th);
+- rotated or weakened lineups now alter match strength before each of the
+  stock-shaped scoring rolls, so season tables respond to actual selections;
+- every new career receives a random persisted world seed: repeated viewing
+  keeps already-generated results stable, while a new run produces genuinely
+  different fixtures, scores and final tables;
 
 - position-balanced parallel-league selection (1 GK, 4 DEF, 4 MID, 2 FW),
   with strength, resistance, accumulated fatigue and controlled variation;
