@@ -39,7 +39,7 @@ final class NativeCareerStore {
             int buyerSize=0,sellerSize=0;long payroll=0;
             for(Player x:c.players){if(x.owner.equals(buyer.id)){buyerSize++;payroll+=x.contractWage;}if(x.owner.equals(seller.id))sellerSize++;}
             if(buyerSize>=30)return "Squad limit reached (30)";if(sellerSize<=18)return "Seller cannot fall below 18 players";
-            if(fee<row.ask)return "Seller has not accepted this fee";if(fee>buyer.balance)return "Insufficient transfer budget";
+            if(fee<NativeGlobalMarket.quoted(row.ask))return "Seller has not accepted this fee";if(fee>buyer.balance)return "Insufficient transfer budget";
             if(years<1||years>5)return "Contract length must be 1–5 years";if(wage<player.wage*90L/100L)return "Player rejects a wage below 90% of his current basis";
             if(payroll+wage>buyer.wageBudget)return "Annual wage budget would be exceeded";
             buyer.balance-=fee;seller.balance=(int)Math.min(Integer.MAX_VALUE,(long)seller.balance+fee);player.owner=buyer.id;player.contractWage=wage;player.contractUntil=c.season+years;

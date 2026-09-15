@@ -273,6 +273,8 @@ jobs:
           grep -q 'old.schema<SCHEMA' "$PROJECT/app/src/main/java/pfm/android/NativeCareerStore.java"
           grep -q 'Transaction rolled back' "$PROJECT/app/src/main/java/pfm/android/NativeCareerStore.java"
           grep -q 'COMPLETE TRANSFER' "$PROJECT/app/src/main/java/pfm/android/NativeTransferNegotiations.java"
+          grep -q 'Tap to negotiate contract' "$PROJECT/app/src/main/java/pfm/android/NativeTransferNegotiations.java"
+          grep -q 'static int quoted' "$PROJECT/app/src/main/java/pfm/android/NativeGlobalMarket.java"
           grep -q 'p.uid=q\[1\]' "$PROJECT/app/src/main/java/pfm/android/NativeWorldCenter.java"
           grep -q 'NATIVE CAREER DATA' "$PROJECT/app/src/main/java/pfm/android/NativeWorldCompetition.java"
           grep -q 'ALL TOP-5 LEAGUES' "$PROJECT/app/src/main/java/pfm/android/NativeWorldCompetition.java"
@@ -302,8 +304,8 @@ jobs:
             exit 1
           fi
 
-          sed -i -E 's/versionCode [0-9]+/versionCode 136/' "$PROJECT/app/build.gradle"
-          sed -i -E "s/versionName '[^']+'/versionName '0.84-android-port.38-v56-atomic-native-transfers'/" "$PROJECT/app/build.gradle"
+          sed -i -E 's/versionCode [0-9]+/versionCode 137/' "$PROJECT/app/build.gradle"
+          sed -i -E "s/versionName '[^']+'/versionName '0.84-android-port.38-v57-visible-ask-contract-entry'/" "$PROJECT/app/build.gradle"
 
       - name: Restore stable debug signing key
         shell: bash
@@ -351,7 +353,7 @@ jobs:
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
-          name: PFM-2011-Android-Alpha084-v56-atomic-native-transfers
+          name: PFM-2011-Android-Alpha084-v57-visible-ask-contract-entry
           path: ${{ env.PROJECT }}/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
           retention-days: 30

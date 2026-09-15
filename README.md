@@ -4,8 +4,15 @@ Android adaptation of the Play Football Manager 2011 Alpha 0.84 J2ME core.
 
 ## Current build
 
-`v56-atomic-native-transfers` continues from v55 on the historical
+`v57-visible-ask-contract-entry` continues from v56 on the historical
 `v28-build` line.  It keeps v39's match-statistics changes and adds:
+
+- the seller decision and final transaction now use the same £0.1m-rounded
+  asking price shown to the user, removing invisible rounding counteroffers;
+- a provisionally accepted bid permanently changes the player-profile action
+  from Prepare bid to Contract;
+- accepted rows in Negotiations are tappable and reopen the contract stage,
+  so closing the original response dialog no longer loses the next action;
 
 - accepted bids proceed to a 1–5 year player-contract stage with editable
   annual wage and explicit player/wage-budget validation;
