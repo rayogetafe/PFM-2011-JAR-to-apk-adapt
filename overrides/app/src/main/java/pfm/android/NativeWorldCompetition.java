@@ -21,11 +21,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Locale;
 
-/** Complete read-only competition browser for the four non-active top-five leagues. */
+/** Complete read-only competition browser plus an all-five-league market entry point. */
 public final class NativeWorldCompetition {
     private static final String[] MODES={"TABLE","CALENDAR","STATISTICS","CLUBS","HISTORY"};
     private NativeWorldCompetition() {}
