@@ -6,15 +6,16 @@ import java.util.*;
 /** Deterministic, once-per-window AI-to-AI transfer batch. */
 final class NativeAiMarket {
     private NativeAiMarket() {}
-    private static int played(){try{return ((Number)Class.forName("PfmSeasonBridge").getMethod("playedMatches").invoke(null)).intValue();}catch(Throwable t){return 0;}}
     private static int count(List<NativeCareerStore.Player> ps,int pos){int n=0;for(NativeCareerStore.Player p:ps)if(p.position==pos)n++;return n;}
     private static long payroll(List<NativeCareerStore.Player> ps){long n=0;for(NativeCareerStore.Player p:ps)n+=p.contractWage;return n;}
     private static int weakest(List<NativeCareerStore.Player> ps,int pos){int n=0,sum=0,min=100;for(NativeCareerStore.Player p:ps)if(p.position==pos){n++;sum+=p.overall;min=Math.min(min,p.overall);}return n==0?40:Math.min(sum/n,min+5);}
 
     static synchronized int run(Context context)throws Exception{
         NativeCareerStore.Career c=NativeCareerStore.mutable(context);
-        int window=c.season*2+(played()>=18?1:0);
-        if(c.aiWindow>=window)return 0;
+        int window=NativeTransferCalendar.windowId(c.season);
+        if(window<0)return 0;
+        int legacyWindow=c.season*2+NativeTransferCalendar.phase();
+        if(c.aiWindow==window||c.aiWindow==legacyWindow)return 0;
         NativeCareerStore.Club user=NativeCareerStore.userClub(c);
         final int seed=window;
         HashMap<String,NativeCareerStore.Club> clubs=new HashMap<String,NativeCareerStore.Club>();

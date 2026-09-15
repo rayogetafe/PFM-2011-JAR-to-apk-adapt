@@ -311,14 +311,16 @@ jobs:
           grep -q 'transferHistory' "$PROJECT/app/src/main/java/pfm/android/NativeCareerStore.java"
           grep -q 'once-per-window AI-to-AI' "$PROJECT/app/src/main/java/pfm/android/NativeAiMarket.java"
           grep -q 'aiWindow' "$PROJECT/app/src/main/java/pfm/android/NativeCareerStore.java"
+          grep -q 'One calendar shared by user and AI transfers' "$PROJECT/app/src/main/java/pfm/android/NativeTransferCalendar.java"
+          grep -q 'Transfer window is closed' "$PROJECT/app/src/main/java/pfm/android/NativeCareerStore.java"
 
           if grep -q 'directLegacyMenuSelectAndFire' "$GAME"; then
             echo 'ERROR: old v13 ambiguous reflection bridge leaked into v23' >&2
             exit 1
           fi
 
-          sed -i -E 's/versionCode [0-9]+/versionCode 144/' "$PROJECT/app/build.gradle"
-          sed -i -E "s/versionName '[^']+'/versionName '0.84-android-port.38-v64-ai-transfer-market'/" "$PROJECT/app/build.gradle"
+          sed -i -E 's/versionCode [0-9]+/versionCode 145/' "$PROJECT/app/build.gradle"
+          sed -i -E "s/versionName '[^']+'/versionName '0.84-android-port.38-v65-transfer-windows'/" "$PROJECT/app/build.gradle"
 
       - name: Restore stable debug signing key
         shell: bash
@@ -366,7 +368,7 @@ jobs:
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
-          name: PFM-2011-Android-Alpha084-v64-ai-transfer-market
+          name: PFM-2011-Android-Alpha084-v65-transfer-windows
           path: ${{ env.PROJECT }}/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
           retention-days: 30

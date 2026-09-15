@@ -215,6 +215,15 @@ enforcing 18–30 player squads, transfer funds and wage budgets. The user's clu
 and every club in the active legacy league are excluded until their matchday
 rosters are fully native; all completed AI moves appear in Transfer Activity.
 
+## Shared transfer windows (v65)
+
+User purchases, outgoing sales and AI-to-AI deals now use the same league-round
+calendar: the summer window runs through round 3 and the winter window spans
+five rounds around the season midpoint. Search, shortlist and preliminary bids
+remain available while closed, but ownership and finance changes are blocked.
+Installing an update late in a season no longer triggers a catch-up AI batch;
+existing v64 window markers are recognized to avoid duplicate activity.
+
 ## Badge audit
 
 [`overrides/badges_v40_manifest.tsv`](overrides/badges_v40_manifest.tsv) is the
