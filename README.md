@@ -4,8 +4,17 @@ Android adaptation of the Play Football Manager 2011 Alpha 0.84 J2ME core.
 
 ## Current build
 
-`v46-world-engine-recalibration` continues from v45 on the historical
+`v47-global-market-foundation` continues from v46 on the historical
 `v28-build` line.  It keeps v39's match-statistics changes and adds:
+
+- a read-only Global Player Market covering every player in the four parallel
+  leagues, with player/club/nationality search and position filters;
+- sorting by database value, overall, age or name, plus detailed value, wage
+  basis and current-budget affordability in each player profile;
+- original database financial fields in the world sidecar, establishing a
+  single auditable economic input before cross-league bids and AI transfers;
+- cross-league transactions deliberately remain disabled until persistent
+  ownership, replacement recruitment and save migration are implemented;
 
 - an isolated port of the original `bb` quick-match strength and scoring
   formula for the four parallel leagues, including XI attributes and morale;

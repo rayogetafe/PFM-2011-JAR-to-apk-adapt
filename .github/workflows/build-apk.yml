@@ -249,10 +249,13 @@ jobs:
           test "$(grep -c $'^P\t' "$PROJECT/app/src/main/assets/world_v42.tsv")" -eq 2281
           test -s "$PROJECT/app/src/main/java/pfm/android/NativeWorldCenter.java"
           test -s "$PROJECT/app/src/main/java/pfm/android/NativeWorldCompetition.java"
+          test -s "$PROJECT/app/src/main/java/pfm/android/NativeGlobalMarket.java"
           grep -q 'Pure-data port of bb.c(dw)' "$PROJECT/app/src/main/java/pfm/android/NativeWorldCenter.java"
           grep -q 'static int attackPct' "$PROJECT/app/src/main/java/pfm/android/NativeWorldCenter.java"
           grep -q 'static int tempo' "$PROJECT/app/src/main/java/pfm/android/NativeWorldCenter.java"
-          grep -q $'morale\tstyle\tformation' "$PROJECT/app/src/main/assets/world_v42.tsv"
+          grep -q $'morale\tstyle\tformation\tvalue\twage' "$PROJECT/app/src/main/assets/world_v42.tsv"
+          grep -q 'GLOBAL PLAYER MARKET' "$PROJECT/app/src/main/java/pfm/android/NativeWorldCompetition.java"
+          grep -q 'cross-league bids are intentionally disabled' "$PROJECT/app/src/main/java/pfm/android/NativeGlobalMarket.java"
           grep -q 'new ArrayList<P>(order.subList(0,used))' "$PROJECT/app/src/main/java/pfm/android/NativeWorldCenter.java"
           grep -q 'ArrayAdapter<NativeWorldCenter.T>' "$PROJECT/app/src/main/java/pfm/android/NativeWorldCompetition.java"
           ! grep -q 'ArrayAdapter<View>' "$PROJECT/app/src/main/java/pfm/android/NativeWorldCompetition.java"
@@ -278,8 +281,8 @@ jobs:
             exit 1
           fi
 
-          sed -i -E 's/versionCode [0-9]+/versionCode 126/' "$PROJECT/app/build.gradle"
-          sed -i -E "s/versionName '[^']+'/versionName '0.84-android-port.38-v46-world-engine-recalibration'/" "$PROJECT/app/build.gradle"
+          sed -i -E 's/versionCode [0-9]+/versionCode 127/' "$PROJECT/app/build.gradle"
+          sed -i -E "s/versionName '[^']+'/versionName '0.84-android-port.38-v47-global-market-foundation'/" "$PROJECT/app/build.gradle"
 
       - name: Restore stable debug signing key
         shell: bash
@@ -327,7 +330,7 @@ jobs:
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
-          name: PFM-2011-Android-Alpha084-v46-world-engine-recalibration
+          name: PFM-2011-Android-Alpha084-v47-global-market-foundation
           path: ${{ env.PROJECT }}/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
           retention-days: 30
