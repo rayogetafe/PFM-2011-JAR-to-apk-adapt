@@ -205,6 +205,16 @@ and contract length. The view can switch between the user's transactions and
 all world activity, providing the UI and audit boundary needed before AI clubs
 begin trading with one another.
 
+## AI world transfer market (v64)
+
+Career schema v5 runs a deterministic AI transfer batch once per half-season
+window and records the processed window atomically, preventing duplicate deals
+when screens are reopened. Up to eight cross-league moves target a buyer's weak
+position while protecting each seller's key players and positional depth,
+enforcing 18–30 player squads, transfer funds and wage budgets. The user's club
+and every club in the active legacy league are excluded until their matchday
+rosters are fully native; all completed AI moves appear in Transfer Activity.
+
 ## Badge audit
 
 [`overrides/badges_v40_manifest.tsv`](overrides/badges_v40_manifest.tsv) is the
