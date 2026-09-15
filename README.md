@@ -4,8 +4,18 @@ Android adaptation of the Play Football Manager 2011 Alpha 0.84 J2ME core.
 
 ## Current build
 
-`v55-native-contracts-finance` continues from v54 on the historical
+`v56-atomic-native-transfers` continues from v55 on the historical
 `v28-build` line.  It keeps v39's match-statistics changes and adds:
+
+- accepted bids proceed to a 1–5 year player-contract stage with editable
+  annual wage and explicit player/wage-budget validation;
+- one atomic transaction changes buyer and seller balances, player ownership,
+  contract terms and the permanent deal journal only after a full audit;
+- native rosters accept up to 30 players and never allow a seller below 18;
+- stable player identities survive club changes, and persisted ownership is
+  reapplied to the native league and market views after reopening the career;
+- v56 deliberately does not inject the purchase into the legacy matchday XI;
+  that two-way adapter is the next migration stage;
 
 - automatic, validated schema migration from native career v1 to v2 while
   retaining the v1 file as the rollback backup;
