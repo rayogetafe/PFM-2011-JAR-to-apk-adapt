@@ -1,0 +1,37 @@
+package pfm.android;
+
+import android.app.*;
+import android.content.*;
+import android.text.InputType;
+import android.widget.*;
+import java.util.*;
+
+/** Persistent, career-scoped negotiation state. No ownership mutation occurs here. */
+final class NativeTransferNegotiations {
+    private static final String PREFS="pfm_global_offers_v53";
+    private NativeTransferNegotiations() {}
+    private static android.content.SharedPreferences prefs(Context c){return c.getSharedPreferences(PREFS,0);}
+    private static String key(NativeGlobalMarket.R r){return "s"+NativeWorldCenter.slot()+"_y"+NativeWorldCenter.season()+"_"+r.key();}
+    static String status(Context c,NativeGlobalMarket.R r){return prefs(c).getString(key(r)+"_status","");}
+    static int offer(Context c,NativeGlobalMarket.R r){return prefs(c).getInt(key(r)+"_offer",0);}
+    private static void save(Context c,NativeGlobalMarket.R r,int offer,String status){prefs(c).edit().putInt(key(r)+"_offer",offer).putString(key(r)+"_status",status).apply();}
+
+    static void prepare(Activity a,NativeGlobalMarket.R r,int cash,Runnable refresh){
+        int suggested=Math.max(r.p.value,r.ask*90/100);
+        LinearLayout box=new LinearLayout(a);box.setOrientation(LinearLayout.VERTICAL);box.setPadding(NativeGlobalMarket.dp(a,18),0,NativeGlobalMarket.dp(a,18),0);
+        TextView note=NativeGlobalMarket.tx(a,"Value "+NativeGlobalMarket.money(r.p.value)+"   Seller estimate "+NativeGlobalMarket.money(r.ask)+"\nBudget "+NativeGlobalMarket.money(cash)+"\nEnter transfer fee in £ millions:",14f,false);box.addView(note);
+        EditText input=new EditText(a);input.setInputType(InputType.TYPE_CLASS_NUMBER|InputType.TYPE_NUMBER_FLAG_DECIMAL);input.setText(String.format(Locale.US,"%.1f",suggested/1000000.0));input.setSelectAllOnFocus(true);box.addView(input);
+        AlertDialog d=new AlertDialog.Builder(a).setTitle("Prepare bid — "+r.p.name).setView(box).setNegativeButton("Cancel",null).setPositiveButton("SUBMIT",null).create();
+        d.setOnShowListener(v->d.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v2->{
+            int amount;try{amount=(int)Math.round(Double.parseDouble(input.getText().toString().replace(',','.'))*1000000.0);}catch(Throwable t){input.setError("Enter a valid amount");return;}
+            if(amount<=0){input.setError("Offer must be positive");return;}if(amount>cash){input.setError("Offer exceeds your current budget");return;}
+            String result;if(r.notForSale)result="REJECTED — exceptional replacement risk";else if(amount>=r.ask)result="PROVISIONALLY ACCEPTED — contract stage required";else if(amount*100L>=r.ask*85L)result="COUNTEROFFER — "+NativeGlobalMarket.money(r.ask);else result="REJECTED — offer too low";
+            save(a,r,amount,result);d.dismiss();refresh.run();new AlertDialog.Builder(a).setTitle(r.p.name).setMessage("Your offer: "+NativeGlobalMarket.money(amount)+"\nClub response: "+result+"\n\nNo budget or ownership change has been made yet.").setPositiveButton("Close",null).show();
+        }));d.show();
+    }
+
+    static void show(Activity a,ArrayList<NativeGlobalMarket.R> all){
+        ArrayList<String> rows=new ArrayList<String>();for(NativeGlobalMarket.R r:all){String s=status(a,r);if(s.length()>0)rows.add(r.p.name+" · "+r.team.name+"\nOffer "+NativeGlobalMarket.money(offer(a,r))+"   "+s);}
+        if(rows.isEmpty())rows.add("No negotiations in this career season.");ListView list=new ListView(a);list.setAdapter(new ArrayAdapter<String>(a,android.R.layout.simple_list_item_1,rows));new AlertDialog.Builder(a).setTitle("Negotiations").setView(list).setPositiveButton("Close",null).show();
+    }
+}

@@ -4,8 +4,15 @@ Android adaptation of the Play Football Manager 2011 Alpha 0.84 J2ME core.
 
 ## Current build
 
-`v52-youth-assets-bid-planner` continues from v51 on the historical
+`v53-persistent-negotiations` continues from v52 on the historical
 `v28-build` line.  It keeps v39's match-statistics changes and adds:
+
+- custom transfer-fee entry with budget and input validation;
+- seller responses distinguish a low-offer rejection, counteroffer and
+  provisional acceptance while retaining the audited asking-price model;
+- negotiations persist per career slot and season and are available from a
+  dedicated market list; this stage intentionally makes no ownership or
+  budget mutation before contracts and atomic save migration are ready;
 
 - prospect protection adds a controlled 8-20 percentage points of seller
   resistance for high-upside players aged 22 or under, preventing cases such
