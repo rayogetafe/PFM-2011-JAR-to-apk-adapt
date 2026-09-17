@@ -224,6 +224,16 @@ remain available while closed, but ownership and finance changes are blocked.
 Installing an update late in a season no longer triggers a catch-up AI batch;
 existing v64 window markers are recognized to avoid duplicate activity.
 
+## Atomic native season rollover (v66)
+
+Career schema v6 follows the legacy season counter with one validated atomic
+transaction. Each elapsed season ages every native player by one, resets morale
+to 55 and reopens the AI transfer-window marker for the new campaign. AI clubs
+renew expired contracts deterministically; expired user contracts remain on a
+safe grace status and are highlighted as `RENEW NOW` in Contract Center until
+the manager renews them. Existing ownership, finances and transfer history are
+preserved throughout the rollover.
+
 ## Badge audit
 
 [`overrides/badges_v40_manifest.tsv`](overrides/badges_v40_manifest.tsv) is the
