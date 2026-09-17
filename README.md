@@ -234,6 +234,16 @@ safe grace status and are highlighted as `RENEW NOW` in Contract Center until
 the manager renews them. Existing ownership, finances and transfer history are
 preserved throughout the rollover.
 
+## Native career isolation (v67)
+
+Native state now carries a persisted per-run identity in addition to the legacy
+save-slot number. Starting a new career in a reused slot rebuilds the world and
+creates a clean ownership, finance and transfer journal instead of inheriting
+the previous club's snapshot. Before replacement, only players previously
+injected by the native transfer bridge are removed from the live legacy squad;
+stock players remain untouched. Club and league identity checks also repair
+v66 snapshots that already crossed from one career into another.
+
 ## Badge audit
 
 [`overrides/badges_v40_manifest.tsv`](overrides/badges_v40_manifest.tsv) is the
