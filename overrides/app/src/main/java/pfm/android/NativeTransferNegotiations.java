@@ -11,7 +11,7 @@ final class NativeTransferNegotiations {
     private static final String PREFS="pfm_global_offers_v53";
     private NativeTransferNegotiations() {}
     private static android.content.SharedPreferences prefs(Context c){return c.getSharedPreferences(PREFS,0);}
-    private static String key(NativeGlobalMarket.R r){return "s"+NativeWorldCenter.slot()+"_y"+NativeWorldCenter.season()+"_"+r.key();}
+    private static String key(NativeGlobalMarket.R r){return "c"+NativeWorldCenter.identity()+"_s"+NativeWorldCenter.slot()+"_y"+NativeWorldCenter.season()+"_"+r.key();}
     static String status(Context c,NativeGlobalMarket.R r){return prefs(c).getString(key(r)+"_status","");}
     static int offer(Context c,NativeGlobalMarket.R r){return prefs(c).getInt(key(r)+"_offer",0);}
     private static void save(Context c,NativeGlobalMarket.R r,int offer,String status){prefs(c).edit().putInt(key(r)+"_offer",offer).putString(key(r)+"_status",status).apply();}

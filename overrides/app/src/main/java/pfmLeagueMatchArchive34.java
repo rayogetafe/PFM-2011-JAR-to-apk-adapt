@@ -22,7 +22,7 @@ public final class pfmLeagueMatchArchive34 {
     private static int id(ci p){try{ci[] a=(ci[])f(cp.class,"a",ci[].class).get(null);for(int i=0;i<a.length;i++)if(a[i]==p)return i;}catch(Throwable ignored){}return -1;}
     private static int teamId(dw t){return ub(t,"n");}
     private static int roundOne(){try{return pfmMatchPost35.completedRoundOne();}catch(Throwable x){return 1;}}
-    private static String prefix(int round){int season=0,slot=0;try{season=pfm2.getSeason();slot=pfm2.getSlot();}catch(Throwable ignored){}return "m_"+slot+'_'+season+'_'+round+'_';}
+    private static String prefix(int round){int season=0,slot=0,career=0;try{season=pfm2.getSeason();slot=pfm2.getSlot();career=pfm.android.NativeWorldCenter.identity();}catch(Throwable ignored){}return "m_"+career+'_'+slot+'_'+season+'_'+round+'_';}
     private static String key(int round,dw h,dw a){return prefix(round)+teamId(h)+'_'+teamId(a);}
     private static int minuteInt(Object x){String s=String.valueOf(x).trim();StringBuilder b=new StringBuilder();for(int i=0;i<s.length();i++)if(Character.isDigit(s.charAt(i)))b.append(s.charAt(i));try{return Math.max(1,Math.min(90,Integer.parseInt(b.toString())));}catch(Throwable ignored){return 45;}}
     private static String minute(Object x){return String.valueOf(minuteInt(x));}

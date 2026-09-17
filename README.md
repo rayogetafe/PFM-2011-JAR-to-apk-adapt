@@ -244,6 +244,16 @@ injected by the native transfer bridge are removed from the live legacy squad;
 stock players remain untouched. Club and league identity checks also repair
 v66 snapshots that already crossed from one career into another.
 
+## Full per-career persistence isolation (v68)
+
+The career nonce now scopes every native user-facing persistent dataset:
+negotiations, shortlist entries, match reports and goalkeeper ledgers can no
+longer reappear in another career that reuses the same slot and season. A fresh
+career starts with an empty native deal journal. Its AI market is armed only
+after the first completed round, rather than generating a batch merely because
+the market screen was opened, and AI selection includes the career nonce so
+separate careers no longer produce an identical transfer package.
+
 ## Badge audit
 
 [`overrides/badges_v40_manifest.tsv`](overrides/badges_v40_manifest.tsv) is the

@@ -8,7 +8,7 @@ public final class pfmGoalkeeperStats31 {
     private static final String PREFS="pfm_goalkeepers_v31";
     private pfmGoalkeeperStats31() {}
     private static SharedPreferences prefs(){return AndroidRuntime.context().getSharedPreferences(PREFS,Context.MODE_PRIVATE);}
-    private static String prefix(){return "s"+pfm2.getSlot()+"y"+pfm2.getSeason()+"_";}
+    private static String prefix(){return "c"+pfm.android.NativeWorldCenter.identity()+"s"+pfm2.getSlot()+"y"+pfm2.getSeason()+"_";}
     private static Field field(Class<?> c,String n,Class<?> t)throws Exception{for(Field f:c.getDeclaredFields())if(f.getName().equals(n)&&f.getType()==t){f.setAccessible(true);return f;}throw new NoSuchFieldException(n);}
     private static int teamId(dw t){try{return field(dw.class,"n",Byte.TYPE).getByte(t)&255;}catch(Throwable x){return -1;}}
     private static int pos(ci p){try{return field(ci.class,"b",Byte.TYPE).getByte(p)&255;}catch(Throwable x){return -1;}}

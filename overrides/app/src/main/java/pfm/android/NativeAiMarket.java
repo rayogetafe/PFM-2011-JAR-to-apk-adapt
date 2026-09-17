@@ -12,12 +12,13 @@ final class NativeAiMarket {
 
     static synchronized int run(Context context)throws Exception{
         NativeCareerStore.Career c=NativeCareerStore.mutable(context);
+        if(!NativeCareerStore.aiReady(context))return 0;
         int window=NativeTransferCalendar.windowId(c.season);
         if(window<0)return 0;
         int legacyWindow=c.season*2+NativeTransferCalendar.phase();
         if(c.aiWindow==window||c.aiWindow==legacyWindow)return 0;
         NativeCareerStore.Club user=NativeCareerStore.userClub(c);
-        final int seed=window;
+        final int seed=window^NativeWorldCenter.identity();
         HashMap<String,NativeCareerStore.Club> clubs=new HashMap<String,NativeCareerStore.Club>();
         HashMap<String,ArrayList<NativeCareerStore.Player>> squads=new HashMap<String,ArrayList<NativeCareerStore.Player>>();
         for(NativeCareerStore.Club club:c.clubs){clubs.put(club.id,club);squads.put(club.id,new ArrayList<NativeCareerStore.Player>());}
