@@ -266,6 +266,19 @@ depth and younger first-team assets, while older surplus players need fewer
 players ahead of them. Fees now reflect age and replacement value, wages can
 rise on transfer, and contract lengths vary from two to four years by age.
 
+## Calendar-paced world market (v70)
+
+AI deals are no longer generated as one batch. Summer business begins during
+the post-season transition and continues through rounds 0–3; winter business is
+released in five portions around the midpoint. Reopening a native screen cannot
+repeat a portion. Buyer ordering balances activity between the four parallel
+native leagues and limits repeated buying or selling by one club, while club
+strength matching produces appropriate mid-table and lower-table recruitment
+instead of always chasing the highest-rated affordable player. A two-season
+player cooldown prevents implausible annual ping-pong transfers. The original
+0/2/5/8/12 settings remain and the slider adds 25, 50, 80 and 120 deals per
+window for broader world-market simulations.
+
 ## Badge audit
 
 [`overrides/badges_v40_manifest.tsv`](overrides/badges_v40_manifest.tsv) is the

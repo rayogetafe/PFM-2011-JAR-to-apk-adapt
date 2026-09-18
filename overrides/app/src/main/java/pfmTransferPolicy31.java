@@ -6,12 +6,13 @@ import pfm.android.AndroidRuntime;
 public final class pfmTransferPolicy31 {
     private static final String PREFS="pfm_career_policy_v31";
     private static final String KEY="transfer_frequency";
-    private static final int[] WINDOW_CAP={0,2,5,8,12};
+    /* Keep the original five choices, then add useful full-world volumes. */
+    private static final int[] WINDOW_CAP={0,2,5,8,12,25,50,80,120};
     private pfmTransferPolicy31() {}
 
     private static SharedPreferences prefs(){return AndroidRuntime.context().getSharedPreferences(PREFS,Context.MODE_PRIVATE);}
-    public static int get(){try{return Math.max(0,Math.min(4,prefs().getInt(KEY,2)));}catch(Throwable t){return 2;}}
-    public static boolean set(int value){try{int v=Math.max(0,Math.min(4,value));return prefs().edit().putInt(KEY,v).commit()&&get()==v;}catch(Throwable t){return false;}}
+    public static int get(){try{return Math.max(0,Math.min(WINDOW_CAP.length-1,prefs().getInt(KEY,2)));}catch(Throwable t){return 2;}}
+    public static boolean set(int value){try{int v=Math.max(0,Math.min(WINDOW_CAP.length-1,value));return prefs().edit().putInt(KEY,v).commit()&&get()==v;}catch(Throwable t){return false;}}
     public static int chance(){return WINDOW_CAP[get()];}
     public static int windowCap(){return WINDOW_CAP[get()];}
 

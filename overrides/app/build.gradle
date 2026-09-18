@@ -19,7 +19,7 @@ android {
         applicationId 'pfm.android.careerlab'
         minSdk 23
         targetSdk 35
-        versionCode 87
+        versionCode 88
         versionName '0.84-android-port.4'
     }
 

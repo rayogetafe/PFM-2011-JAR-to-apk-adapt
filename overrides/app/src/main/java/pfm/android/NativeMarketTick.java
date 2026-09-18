@@ -7,7 +7,7 @@ public final class NativeMarketTick {
         try{
             android.content.Context c=AndroidRuntime.context();
             NativeWorldCenter.load(c);
-            NativeCareerStore.runAiMarket(c);
+            NativeAiMarket.run(c,true);
         }catch(Throwable ignored){}
     }
 }
