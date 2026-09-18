@@ -297,7 +297,7 @@ jobs:
           grep -q 'rosterAudit' "$LEAGUE_BRIDGE"
           grep -q 'Player or club name' "$NATIVE_LEAGUE"
           grep -q 'matchReport' "$LEAGUE_BRIDGE"
-          grep -q 'snapshotAfterLoad' "$TRANSFER_POLICY"
+          grep -q 'native transfers now own' "$TRANSFER_POLICY"
           grep -q 'pfm_native_legacy_ids_v58' "$PROJECT/app/src/main/java/PfmNativeRosterAdapter.java"
           grep -q 'Legacy matchday sync' "$PROJECT/app/src/main/java/pfm/android/NativeCareerStore.java"
           grep -q 'NativeLegacyRosterSync' "$PROJECT/app/src/main/java/PfmSquadBridge.java"
