@@ -254,6 +254,18 @@ after the first completed round, rather than generating a batch merely because
 the market screen was opened, and AI selection includes the career nonce so
 separate careers no longer produce an identical transfer package.
 
+## Unified native transfer market (v69)
+
+The original autonomous `bb.a()`/poach market is disabled: it can no longer
+move a legacy player or write mail without a matching native transaction. The
+same matchday hook now runs the native AI market, and only an atomically
+committed deal posts the familiar `BIG:` or `CHANGES THE TEAM` message into the
+stock inbox. The Settings slider controls a per-window cap of 0, 2, 5, 8 or 12
+AI deals. Buyers target their weakest position; sellers protect positional
+depth and younger first-team assets, while older surplus players need fewer
+players ahead of them. Fees now reflect age and replacement value, wages can
+rise on transfer, and contract lengths vary from two to four years by age.
+
 ## Badge audit
 
 [`overrides/badges_v40_manifest.tsv`](overrides/badges_v40_manifest.tsv) is the

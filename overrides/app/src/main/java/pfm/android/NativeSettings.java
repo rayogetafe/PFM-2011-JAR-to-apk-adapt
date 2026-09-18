@@ -39,7 +39,7 @@ public final class NativeSettings {
     private static int readTransfers(){try{return ((Integer)Class.forName("PfmSettingsBridge").getMethod("getTransferFrequency").invoke(null)).intValue();}catch(Throwable t){return 2;}}
     private static boolean writeTransfers(int value){try{return Boolean.TRUE.equals(Class.forName("PfmSettingsBridge").getMethod("setTransferFrequency",Integer.TYPE).invoke(null,Integer.valueOf(value)));}catch(Throwable t){return false;}}
     private static boolean careerMode(){try{return Boolean.TRUE.equals(Class.forName("PfmSettingsBridge").getMethod("careerMode").invoke(null));}catch(Throwable t){return false;}}
-    private static String transferLabel(int v){String[] a={"OFF — no AI career transfers","LOW — about 12% market tick chance","REALISTIC — stock 30% rate","HIGH — about 50%","VERY HIGH — about 70%"};return a[Math.max(0,Math.min(4,v))];}
+    private static String transferLabel(int v){String[] a={"OFF — no AI transfers","LOW — up to 2 deals per window","REALISTIC — up to 5 deals per window","HIGH — up to 8 deals per window","VERY HIGH — up to 12 deals per window"};return a[Math.max(0,Math.min(4,v))];}
 
     public static void show(Activity a) {
         final Boolean initial=readAuto();
@@ -84,7 +84,7 @@ public final class NativeSettings {
         final int transferInitial=readTransfers();
         TextView transferStatus=new TextView(a);transferStatus.setText(careerMode()?transferLabel(transferInitial):"SEASON MODE — transfers are disabled");transferStatus.setTextSize(14f);box.addView(transferStatus);
         SeekBar transfer=new SeekBar(a);transfer.setMax(4);transfer.setProgress(transferInitial);transfer.setEnabled(careerMode());box.addView(transfer,new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT));
-        TextView transferNote=new TextView(a);transferNote.setText("Five levels control AI market activity without changing prices or transfer rules. Season Mode always keeps transfers off.");transferNote.setTextSize(13f);box.addView(transferNote);
+        TextView transferNote=new TextView(a);transferNote.setText("Controls the maximum number of committed native AI deals in each transfer window. Season Mode always keeps transfers off.");transferNote.setTextSize(13f);box.addView(transferNote);
         transfer.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener(){public void onProgressChanged(SeekBar b,int v,boolean user){transferStatus.setText(transferLabel(v));}public void onStartTrackingTouch(SeekBar b){}public void onStopTrackingTouch(SeekBar b){int v=b.getProgress();if(!writeTransfers(v)){b.setProgress(readTransfers());Toast.makeText(a,"Could not save transfer frequency",Toast.LENGTH_SHORT).show();}else Toast.makeText(a,"Transfer frequency: "+transferLabel(v),Toast.LENGTH_SHORT).show();}});
 
         auto.setOnCheckedChangeListener((button,checked) -> {
