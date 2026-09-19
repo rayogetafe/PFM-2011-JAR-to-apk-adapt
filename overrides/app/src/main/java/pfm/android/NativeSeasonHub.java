@@ -70,6 +70,7 @@ public final class NativeSeasonHub {
 
         Button leagueCenter=new Button(a);leagueCenter.setText("LEAGUE CENTER • ALL MATCHES / CLUBS");leagueCenter.setOnClickListener(v->NativeLeagueCenter.show(a));root.addView(leagueCenter,new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT));
         Button worldCenter=new Button(a);worldCenter.setText("WORLD COMPETITIONS • TOP 5 LEAGUES");worldCenter.setOnClickListener(v->NativeWorldCompetition.show(a));root.addView(worldCenter,new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT));
+        Button europeCenter=new Button(a);europeCenter.setText("EUROPEAN QUALIFICATION • CHAMPIONS / EUROPA");europeCenter.setOnClickListener(v->NativeEuropeCenter.show(a));root.addView(europeCenter,new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT));
 
         LinearLayout tabs=new LinearLayout(a);tabs.setOrientation(LinearLayout.HORIZONTAL);
         final Button tableBtn=new Button(a);tableBtn.setText("TABLE");

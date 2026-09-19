@@ -279,6 +279,22 @@ player cooldown prevents implausible annual ping-pong transfers. The original
 0/2/5/8/12 settings remain and the slider adds 25, 50, 80 and 120 deals per
 window for broader world-market simulations.
 
+## European qualification foundation (v71)
+
+The Season Center now exposes a European Qualification view built from the
+live active-league table and the synchronized tables of the other four top-five
+leagues. It separates Champions League and Europa League positions, uses the
+2010/11 country allocations, and changes from a live projection to next-season
+qualification after the domestic calendar is complete. This stage deliberately
+labels the result as the verified top-five allocation: the original JAR has no
+hidden club rosters beyond those leagues, so the remaining European entrants
+will be added only with an audited external squad database.
+
+That extended registry is also the dependency for the next transfer-model
+layer: country-to-country affinity, rivalry restrictions, player destination
+preference, and loyalty/iconic-player resistance will be applied once every
+participant has a stable club, country and rivalry identity.
+
 ## Badge audit
 
 [`overrides/badges_v40_manifest.tsv`](overrides/badges_v40_manifest.tsv) is the
