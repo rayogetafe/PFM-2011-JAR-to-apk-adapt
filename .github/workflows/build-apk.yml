@@ -331,14 +331,22 @@ jobs:
           test -s "$PROJECT/app/src/main/java/pfm/android/NativeEuropeCenter.java"
           grep -q 'European Qualification' "$PROJECT/app/src/main/java/pfm/android/NativeEuropeCenter.java"
           grep -q 'NativeEuropeCenter.show' "$PROJECT/app/src/main/java/pfm/android/NativeSeasonHub.java"
+          test -s "$PROJECT/app/src/main/java/pfm/android/NativeEuropeanRegistry.java"
+          grep -q 'EUROPEAN CLUB REGISTRY' "$PROJECT/app/src/main/java/pfm/android/NativeEuropeCenter.java"
+          test "$(tail -n +2 "$PROJECT/app/src/main/assets/europe_clubs_v72.tsv" | wc -l)" -eq 129
+          test "$(find "$PROJECT/app/src/main/assets/europe_badges_v72" -type f | wc -l)" -eq 129
+          test "$(tail -n +2 "$PROJECT/app/src/main/assets/transfer_domestic_share_v72.csv" | wc -l)" -eq 14
+          test "$(tail -n +2 "$PROJECT/app/src/main/assets/transfer_international_affinity_v72.csv" | wc -l)" -eq 110
+          grep -q $'eu_romania_steaua-bucuresti\tRomania\tSteaua București' "$PROJECT/app/src/main/assets/europe_clubs_v72.tsv"
+          grep -q $'eu_romania_astra-ploiesti\tRomania\tAstra Ploiești' "$PROJECT/app/src/main/assets/europe_clubs_v72.tsv"
 
           if grep -q 'directLegacyMenuSelectAndFire' "$GAME"; then
             echo 'ERROR: old v13 ambiguous reflection bridge leaked into v23' >&2
             exit 1
           fi
 
-          sed -i -E 's/versionCode [0-9]+/versionCode 151/' "$PROJECT/app/build.gradle"
-          sed -i -E "s/versionName '[^']+'/versionName '0.84-android-port.44-v71-european-qualification'/" "$PROJECT/app/build.gradle"
+          sed -i -E 's/versionCode [0-9]+/versionCode 152/' "$PROJECT/app/build.gradle"
+          sed -i -E "s/versionName '[^']+'/versionName '0.84-android-port.45-v72-european-registry'/" "$PROJECT/app/build.gradle"
 
       - name: Restore stable debug signing key
         shell: bash
@@ -386,7 +394,7 @@ jobs:
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
-          name: PFM-2011-Android-Alpha084-v71-european-qualification
+          name: PFM-2011-Android-Alpha084-v72-european-registry
           path: ${{ env.PROJECT }}/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
           retention-days: 30

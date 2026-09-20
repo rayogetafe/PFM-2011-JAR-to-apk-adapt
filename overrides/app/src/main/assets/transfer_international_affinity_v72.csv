@@ -1,0 +1,111 @@
+﻿origin,destination,conditional_pct
+England,Spain,18
+England,France,16
+England,Scotland / Ireland,14
+England,Italy,12
+England,Germany,10
+England,Netherlands / Belgium,8
+England,Portugal,5
+England,Other Europe,10
+England,Outside Europe,7
+Spain,England,22
+Spain,Portugal,14
+Spain,Italy,13
+Spain,France,10
+Spain,Germany,8
+Spain,South America,12
+Spain,Netherlands / Belgium,5
+Spain,Other Europe,10
+Spain,Outside Europe,6
+Italy,Spain,17
+Italy,England,16
+Italy,Balkans,14
+Italy,France,10
+Italy,Germany,9
+Italy,South America,10
+Italy,Austria / Switzerland,6
+Italy,Other Europe,12
+Italy,Outside Europe,6
+Germany,England,18
+Germany,Austria / Switzerland,18
+Germany,Netherlands / Belgium,13
+Germany,France,12
+Germany,Spain,10
+Germany,Italy,9
+Germany,Scandinavia / Eastern Europe,10
+Germany,Other Europe,7
+Germany,Outside Europe,3
+France,England,28
+France,Belgium / Switzerland,14
+France,Spain,12
+France,Italy,10
+France,Germany,10
+France,Netherlands,6
+France,Portugal,4
+France,Francophone Africa,4
+France,Other Europe,8
+France,Outside Europe,4
+Portugal,Spain,25
+Portugal,France,14
+Portugal,England,14
+Portugal,Brazil,12
+Portugal,Italy,8
+Portugal,Netherlands / Belgium,7
+Portugal,Germany,5
+Portugal,Other Europe,10
+Portugal,Outside Europe,5
+Netherlands,England,24
+Netherlands,Germany,18
+Netherlands,Belgium,15
+Netherlands,Spain,10
+Netherlands,Italy,8
+Netherlands,France,7
+Netherlands,Portugal,5
+Netherlands,Scandinavia,5
+Netherlands,Other Europe,5
+Netherlands,Outside Europe,3
+Belgium,France,22
+Belgium,Netherlands,20
+Belgium,England,17
+Belgium,Germany,10
+Belgium,Spain,7
+Belgium,Italy,6
+Belgium,Portugal,4
+Belgium,Other Europe,10
+Belgium,Outside Europe,4
+Balkans,Italy,22
+Balkans,Germany,18
+Balkans,Austria / Switzerland,12
+Balkans,France,9
+Balkans,England,8
+Balkans,Spain,7
+Balkans,Eastern Europe / Balkans,10
+Balkans,Other Europe,10
+Balkans,Outside Europe,4
+Eastern Europe,Germany,20
+Eastern Europe,Italy,13
+Eastern Europe,England,12
+Eastern Europe,France,10
+Eastern Europe,Spain,7
+Eastern Europe,Austria / Switzerland,10
+Eastern Europe,Eastern Europe / Balkans,15
+Eastern Europe,Other Europe,10
+Eastern Europe,Outside Europe,3
+Scandinavia,England,24
+Scandinavia,Germany,20
+Scandinavia,Netherlands / Belgium,16
+Scandinavia,France,8
+Scandinavia,Spain,5
+Scandinavia,Italy,5
+Scandinavia,Other Scandinavia,12
+Scandinavia,Other Europe,7
+Scandinavia,Outside Europe,3
+South America,Spain,30
+South America,Portugal,18
+South America,Italy,15
+South America,England,10
+South America,France,8
+South America,Germany,5
+South America,Netherlands / Belgium,4
+South America,Other Europe,5
+South America,Outside Europe,5
