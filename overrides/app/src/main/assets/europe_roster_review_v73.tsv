@@ -1,0 +1,2322 @@
+club_id	player_name	identity_key	review_status
+eu_austria_austria-wien	Roland Linz	rolandlinz	DRAFT
+eu_austria_austria-wien	Milenko Ačimovič	milenkoacimovic	DRAFT
+eu_austria_austria-wien	Aleksandar Dragović	aleksandardragovic	DRAFT
+eu_austria_austria-wien	Zlatko Junuzović	zlatkojunuzovic	DRAFT
+eu_austria_austria-wien	Peter Hlinka	peterhlinka	DRAFT
+eu_austria_austria-wien	Julian Baumgartlinger	julianbaumgartlinger	DRAFT
+eu_austria_austria-wien	Georg Margreitter	georgmargreitter	DRAFT
+eu_austria_austria-wien	Petr Voříšek	petrvorisek	DRAFT
+eu_austria_austria-wien	Fernando Troyansky	fernandotroyansky	DRAFT
+eu_austria_austria-wien	Szabolcs Sáfár	szabolcssafar	DRAFT
+eu_austria_austria-wien	Heinz Lindner	heinzlindner	DRAFT
+eu_austria_austria-wien	Manuel Ortlechner	manuelortlechner	DRAFT
+eu_austria_austria-wien	Markus Suttner	markussuttner	DRAFT
+eu_austria_austria-wien	Florian Klein	florianklein	DRAFT
+eu_austria_austria-wien	Tomáš Jun	tomasjun	DRAFT
+eu_austria_austria-wien	Nacer Barazite	nacerbarazite	DRAFT
+eu_austria_rapid-wien	Steffen Hofmann	steffenhofmann	DRAFT
+eu_austria_rapid-wien	Hamdi Salihi	hamdisalihi	DRAFT
+eu_austria_rapid-wien	Jan Vennegoor of Hesselink	janvennegoorofhesselink	DRAFT
+eu_austria_rapid-wien	Markus Heikkinen	markusheikkinen	DRAFT
+eu_austria_rapid-wien	Veli Kavlak	velikavlak	DRAFT
+eu_austria_rapid-wien	Ragnvald Soma	ragnvaldsoma	DRAFT
+eu_austria_rapid-wien	Christoph Saurer	christophsaurer	DRAFT
+eu_austria_rapid-wien	Christopher Drazan	christopherdrazan	DRAFT
+eu_austria_rapid-wien	Mario Sonnleitner	mariosonnleitner	DRAFT
+eu_austria_rapid-wien	Yaşin Pehlivan	yasinpehlivan	DRAFT
+eu_austria_rapid-wien	Christopher Trimmel	christophertrimmel	DRAFT
+eu_austria_rapid-wien	Atdhe Nuhiu	atdhenuhiu	DRAFT
+eu_austria_rapid-wien	Markus Katzer	markuskatzer	DRAFT
+eu_austria_rapid-wien	Thomas Hinum	thomashinum	DRAFT
+eu_austria_rapid-wien	Jürgen Patocka	jurgenpatocka	DRAFT
+eu_austria_rapid-wien	Tanju Kayhan	tanjukayhan	DRAFT
+eu_austria_rapid-wien	Andreas Dober	andreasdober	DRAFT
+eu_austria_rapid-wien	René Gartler	renegartler	DRAFT
+eu_austria_rapid-wien	Hannes Eder	hanneseder	DRAFT
+eu_austria_rapid-wien	Stefan Kulovits	stefankulovits	DRAFT
+eu_austria_red-bull-salzburg	Christoph Leitgeb	christophleitgeb	DRAFT
+eu_austria_red-bull-salzburg	Ibrahim Sekagya	ibrahimsekagya	DRAFT
+eu_austria_red-bull-salzburg	Rabiu Afolabi	rabiuafolabi	DRAFT
+eu_austria_red-bull-salzburg	David Mendes da Silva	davidmendesdasilva	DRAFT
+eu_austria_red-bull-salzburg	Jakob Jantscher	jakobjantscher	DRAFT
+eu_austria_red-bull-salzburg	Dušan Švento	dusansvento	DRAFT
+eu_austria_red-bull-salzburg	Gonzalo Zárate	gonzalozarate	DRAFT
+eu_austria_red-bull-salzburg	Johan Vonlanthen	johanvonlanthen	DRAFT
+eu_austria_red-bull-salzburg	Nikola Pokrivač	nikolapokrivac	DRAFT
+eu_austria_red-bull-salzburg	Simon Cziommer	simoncziommer	DRAFT
+eu_austria_red-bull-salzburg	Franz Schiemer	franzschiemer	DRAFT
+eu_austria_red-bull-salzburg	Roman Wallner	romanwallner	DRAFT
+eu_austria_red-bull-salzburg	Andreas Ulmer	andreasulmer	DRAFT
+eu_austria_red-bull-salzburg	Christian Schwegler	christianschwegler	DRAFT
+eu_austria_red-bull-salzburg	Louis Clément Ngwat-Mahop	louisclementngwatmahop	DRAFT
+eu_austria_red-bull-salzburg	Milan Dudić	milandudic	DRAFT
+eu_austria_red-bull-salzburg	Thomas Augustinussen	thomasaugustinussen	CROSS_CLUB
+eu_austria_red-bull-salzburg	Robin Nelisse	robinnelisse	DRAFT
+eu_austria_red-bull-salzburg	Stefan Hierländer	stefanhierlander	DRAFT
+eu_austria_sturm-graz	Andreas Hölzl	andreasholzl	DRAFT
+eu_austria_sturm-graz	Imre Szabics	imreszabics	DRAFT
+eu_austria_sturm-graz	Samir Muratović	samirmuratovic	DRAFT
+eu_austria_sturm-graz	Mario Kienzl	mariokienzl	DRAFT
+eu_austria_sturm-graz	Joachim Standfest	joachimstandfest	DRAFT
+eu_austria_sturm-graz	Manuel Weber	manuelweber	DRAFT
+eu_austria_sturm-graz	Klaus Salmutter	klaussalmutter	DRAFT
+eu_austria_sturm-graz	Mario Haas	mariohaas	DRAFT
+eu_austria_sturm-graz	Timo Perthel	timoperthel	DRAFT
+eu_austria_sturm-graz	Thomas Burgstaller	thomasburgstaller	DRAFT
+eu_austria_sturm-graz	Christian Gratzei	christiangratzei	DRAFT
+eu_austria_sturm-graz	Gordon Schildenfeld	gordonschildenfeld	DRAFT
+eu_austria_sturm-graz	Ferdinand Feldhofer	ferdinandfeldhofer	DRAFT
+eu_austria_sturm-graz	Mario Klem	marioklem	DRAFT
+eu_austria_sturm-graz	Haris Bukva	harisbukva	DRAFT
+eu_austria_sturm-graz	Roman Kienast	romankienast	DRAFT
+eu_austria_sturm-graz	Patrick Wolf	patrickwolf	DRAFT
+eu_azerbaijan_neftci-pfk	Rauf Mehdiyev	raufmehdiyev	DRAFT
+eu_azerbaijan_neftci-pfk	Paulius Grybauskas	pauliusgrybauskas	DRAFT
+eu_azerbaijan_neftci-pfk	Emil Balayev	emilbalayev	DRAFT
+eu_azerbaijan_neftci-pfk	Ruslan Abishov	ruslanabishov	DRAFT
+eu_azerbaijan_neftci-pfk	Igor Mitreski	igormitreski	DRAFT
+eu_azerbaijan_neftci-pfk	Mahir Shukurov	mahirshukurov	DRAFT
+eu_azerbaijan_neftci-pfk	Rail Melikov	railmelikov	DRAFT
+eu_azerbaijan_neftci-pfk	Slavčo Georgievski	slavcogeorgievski	DRAFT
+eu_azerbaijan_neftci-pfk	Flavinho	flavinho	DRAFT
+eu_azerbaijan_neftci-pfk	Rashad Abdullayev	rashadabdullayev	DRAFT
+eu_azerbaijan_neftci-pfk	Rodriguinho	rodriguinho	DRAFT
+eu_azerbaijan_neftci-pfk	Elmar Bakhshiyev	elmarbakhshiyev	DRAFT
+eu_azerbaijan_neftci-pfk	Amit Guluzade	amitguluzade	DRAFT
+eu_azerbaijan_neftci-pfk	Yacine Hima	yacinehima	DRAFT
+eu_azerbaijan_neftci-pfk	Vladimir Burduli	vladimirburduli	DRAFT
+eu_azerbaijan_neftci-pfk	Bahodir Nasimov	bahodirnasimov	DRAFT
+eu_azerbaijan_neftci-pfk	Émile Mpenza	emilempenza	DRAFT
+eu_azerbaijan_neftci-pfk	Farid Guliyev	faridguliyev	DRAFT
+eu_azerbaijan_neftci-pfk	Ruslan Gurbanov	ruslangurbanov	DRAFT
+eu_azerbaijan_qarabag-fk	Farhad Valiyev	farhadvaliyev	DRAFT
+eu_azerbaijan_qarabag-fk	Bojan Pavlović	bojanpavlovic	DRAFT
+eu_azerbaijan_qarabag-fk	Sahil Kerimov	sahilkerimov	DRAFT
+eu_azerbaijan_qarabag-fk	Rashad Sadygov	rashadsadygov	DRAFT
+eu_azerbaijan_qarabag-fk	Admir Teli	admirteli	DRAFT
+eu_azerbaijan_qarabag-fk	Zaur Hashimov	zaurhashimov	DRAFT
+eu_azerbaijan_qarabag-fk	Aftandil Hajiyev	aftandilhajiyev	DRAFT
+eu_azerbaijan_qarabag-fk	Ilgar Gurbanov	ilgargurbanov	DRAFT
+eu_azerbaijan_qarabag-fk	Maksim Medvedev	maksimmedvedev	DRAFT
+eu_azerbaijan_qarabag-fk	Samir Abasov	samirabasov	DRAFT
+eu_azerbaijan_qarabag-fk	Namig Yusifov	namigyusifov	DRAFT
+eu_azerbaijan_qarabag-fk	Elvin Mammadov	elvinmammadov	DRAFT
+eu_azerbaijan_qarabag-fk	Devran Ayhan	devranayhan	DRAFT
+eu_azerbaijan_qarabag-fk	Emin Imamaliyev	eminimamaliyev	DRAFT
+eu_azerbaijan_qarabag-fk	Nderim Nexhipi	nderimnexhipi	DRAFT
+eu_azerbaijan_qarabag-fk	Vugar Nadirov	vugarnadirov	DRAFT
+eu_azerbaijan_qarabag-fk	Afran Ismayilov	afranismayilov	DRAFT
+eu_azerbaijan_qarabag-fk	Andrejs Rubins	andrejsrubins	DRAFT
+eu_azerbaijan_qarabag-fk	Giorgi Adamia	giorgiadamia	DRAFT
+eu_azerbaijan_qarabag-fk	Rauf Aliyev	raufaliyev	DRAFT
+eu_azerbaijan_qarabag-fk	Tural Isgandarov	turalisgandarov	DRAFT
+eu_belarus_bate-borisov	Sergey Veremko	sergeyveremko	DRAFT
+eu_belarus_bate-borisov	Aleksandr Gutor	aleksandrgutor	DRAFT
+eu_belarus_bate-borisov	Roman Stepanov	romanstepanov	DRAFT
+eu_belarus_bate-borisov	Aleksandr Yurevich	aleksandryurevich	DRAFT
+eu_belarus_bate-borisov	Sergey Sosnovskiy	sergeysosnovskiy	DRAFT
+eu_belarus_bate-borisov	Maksim Bordachev	maksimbordachev	DRAFT
+eu_belarus_bate-borisov	Igor Shitov	igorshitov	CROSS_CLUB
+eu_belarus_bate-borisov	Aleksandr Pavlov	aleksandrpavlov	DRAFT
+eu_belarus_bate-borisov	Dmitri Likhtarovich	dmitrilikhtarovich	DRAFT
+eu_belarus_bate-borisov	Renan Bressan	renanbressan	DRAFT
+eu_belarus_bate-borisov	Pavel Nekhaychik	pavelnekhaychik	DRAFT
+eu_belarus_bate-borisov	Igor Stasevich	igorstasevich	DRAFT
+eu_belarus_bate-borisov	Aleksandr Volodko	aleksandrvolodko	DRAFT
+eu_belarus_bate-borisov	Aleksandr Karnitskiy	aleksandrkarnitskiy	DRAFT
+eu_belarus_bate-borisov	Vitali Rodionov	vitalirodionov	DRAFT
+eu_belarus_bate-borisov	Maksim Skavysh	maksimskavysh	DRAFT
+eu_belarus_bate-borisov	Artem Kontsevoy	artemkontsevoy	DRAFT
+eu_belarus_bate-borisov	Aleksandr Alumona	aleksandralumona	DRAFT
+eu_belarus_dinamo-minsk	Aleksandar Čanović	aleksandarcanovic	DRAFT
+eu_belarus_dinamo-minsk	Aleksandr Sulima	aleksandrsulima	DRAFT
+eu_belarus_dinamo-minsk	Andrey Gorbunov	andreygorbunov	DRAFT
+eu_belarus_dinamo-minsk	Vitaliy Marakhovskiy	vitaliymarakhovskiy	DRAFT
+eu_belarus_dinamo-minsk	Aleksey Gavrilovich	alekseygavrilovich	DRAFT
+eu_belarus_dinamo-minsk	Dmitriy Molosh	dmitriymolosh	DRAFT
+eu_belarus_dinamo-minsk	Oleg Veretilo	olegveretilo	DRAFT
+eu_belarus_dinamo-minsk	Igor Shitov	igorshitov	CROSS_CLUB
+eu_belarus_dinamo-minsk	Mikhail Afanasyev	mikhailafanasyev	DRAFT
+eu_belarus_dinamo-minsk	Oleg Strakhanovich	olegstrakhanovich	DRAFT
+eu_belarus_dinamo-minsk	Vyacheslav Hleb	vyacheslavhleb	DRAFT
+eu_belarus_dinamo-minsk	Andrey Chukhley	andreychukhley	DRAFT
+eu_belarus_dinamo-minsk	Sergey Kislyak	sergeykislyak	DRAFT
+eu_belarus_dinamo-minsk	Anton Matveenko	antonmatveenko	DRAFT
+eu_belarus_dinamo-minsk	Leonid Kovel	leonidkovel	DRAFT
+eu_belarus_dinamo-minsk	Aleksandr Sazankov	aleksandrsazankov	DRAFT
+eu_belarus_dinamo-minsk	Rafael Ledesma	rafaelledesma	DRAFT
+eu_belarus_dinamo-minsk	Robert Zebelyan	robertzebelyan	DRAFT
+eu_belgium_club-brugge-kv	Ivan Perišić	ivanperisic	DRAFT
+eu_belgium_club-brugge-kv	Carl Hoefkens	carlhoefkens	DRAFT
+eu_belgium_club-brugge-kv	Marcos Camozzato	marcoscamozzato	DRAFT
+eu_belgium_club-brugge-kv	Nabil Dirar	nabildirar	DRAFT
+eu_belgium_club-brugge-kv	Wilfried Dalmat	wilfrieddalmat	DRAFT
+eu_belgium_club-brugge-kv	Dorge Kouemaha	dorgekouemaha	DRAFT
+eu_belgium_club-brugge-kv	Vadis Odjidja-Ofoe	vadisodjidjaofoe	DRAFT
+eu_belgium_club-brugge-kv	Ryan Donk	ryandonk	DRAFT
+eu_belgium_club-brugge-kv	Jeroen Simaeys	jeroensimaeys	DRAFT
+eu_belgium_club-brugge-kv	Jonathan Blondel	jonathanblondel	DRAFT
+eu_belgium_club-brugge-kv	Joseph Akpala	josephakpala	DRAFT
+eu_belgium_club-brugge-kv	Júnior Díaz	juniordiaz	CROSS_CLUB
+eu_belgium_club-brugge-kv	Karel Geraerts	karelgeraerts	DRAFT
+eu_belgium_club-brugge-kv	Peter van der Heyden	petervanderheyden	DRAFT
+eu_belgium_club-brugge-kv	Jorn Vermeulen	jornvermeulen	DRAFT
+eu_belgium_kaa-gent	Tim Smolders	timsmolders	DRAFT
+eu_belgium_kaa-gent	Marko Šuler	markosuler	DRAFT
+eu_belgium_kaa-gent	Bernd Thijs	berndthijs	DRAFT
+eu_belgium_kaa-gent	Stef Wils	stefwils	DRAFT
+eu_belgium_kaa-gent	Christophe Grondin	christophegrondin	DRAFT
+eu_belgium_kaa-gent	Christophe Lepoint	christophelepoint	DRAFT
+eu_belgium_kaa-gent	Elimane Coulibaly	elimanecoulibaly	DRAFT
+eu_belgium_kaa-gent	Erlend Hanstveit	erlendhanstveit	DRAFT
+eu_belgium_kaa-gent	Yassine El Ghanassy	yassineelghanassy	DRAFT
+eu_belgium_kaa-gent	Zlatan Ljubijankič	zlatanljubijankic	DRAFT
+eu_belgium_kaa-gent	Randall Azofeifa	randallazofeifa	DRAFT
+eu_belgium_kaa-gent	Stijn De Smet	stijndesmet	DRAFT
+eu_belgium_kaa-gent	Adriano Duarte	adrianoduarte	DRAFT
+eu_belgium_kaa-gent	Kenny Thompson	kennythompson	DRAFT
+eu_belgium_kaa-gent	Bojan Jorgačević	bojanjorgacevic	DRAFT
+eu_belgium_kaa-gent	Yaya Soumahoro	yayasoumahoro	DRAFT
+eu_belgium_krc-genk	João Carlos	joaocarlos	DRAFT
+eu_belgium_krc-genk	Elyaniv Barda	elyanivbarda	DRAFT
+eu_belgium_krc-genk	Thomas Buffel	thomasbuffel	DRAFT
+eu_belgium_krc-genk	Dániel Tőzsér	danieltozser	DRAFT
+eu_belgium_krc-genk	Kevin De Bruyne	kevindebruyne	DRAFT
+eu_belgium_krc-genk	Daniel Pudil	danielpudil	DRAFT
+eu_belgium_krc-genk	Fabien Camus	fabiencamus	DRAFT
+eu_belgium_krc-genk	Jelle Vossen	jellevossen	DRAFT
+eu_belgium_krc-genk	Anele Ngcongca	anelengcongca	DRAFT
+eu_belgium_krc-genk	Marvin Ogunjimi	marvinogunjimi	DRAFT
+eu_belgium_krc-genk	David Hubert	davidhubert	DRAFT
+eu_belgium_krc-genk	Torben Joneleit	torbenjoneleit	DRAFT
+eu_belgium_krc-genk	Dimitri Daeseleire	dimitridaeseleire	DRAFT
+eu_belgium_krc-genk	Timothy Durwael	timothydurwael	DRAFT
+eu_belgium_krc-genk	Thibaut Courtois	thibautcourtois	DRAFT
+eu_belgium_krc-genk	Eric Matoukou	ericmatoukou	DRAFT
+eu_belgium_ksc-lokeren	Mijat Marić	mijatmaric	DRAFT
+eu_belgium_ksc-lokeren	Ivan Leko	ivanleko	DRAFT
+eu_belgium_ksc-lokeren	Sepp De Roover	seppderoover	DRAFT
+eu_belgium_ksc-lokeren	Benjamin De Ceulaer	benjamindeceulaer	DRAFT
+eu_belgium_ksc-lokeren	Killian Overmeire	killianovermeire	DRAFT
+eu_belgium_ksc-lokeren	Koen Persoons	koenpersoons	DRAFT
+eu_belgium_ksc-lokeren	Sulejman Smajić	sulejmansmajic	DRAFT
+eu_belgium_ksc-lokeren	Geir Ludvig Fevang	geirludvigfevang	DRAFT
+eu_belgium_ksc-lokeren	Ibrahima Gueye	ibrahimagueye	DRAFT
+eu_belgium_ksc-lokeren	Hassan El Mouataz	hassanelmouataz	DRAFT
+eu_belgium_ksc-lokeren	Jérémy Perbet	jeremyperbet	DRAFT
+eu_belgium_ksc-lokeren	Sanharib Malki	sanharibmalki	DRAFT
+eu_belgium_ksc-lokeren	Benjamin Mokulu	benjaminmokulu	DRAFT
+eu_belgium_ksc-lokeren	Katuku Tshimanga	katukutshimanga	DRAFT
+eu_belgium_ksc-lokeren	Nill De Pauw	nilldepauw	DRAFT
+eu_belgium_ksc-lokeren	Tiko	tiko	DRAFT
+eu_belgium_ksc-lokeren	Marcel Mbayo	marcelmbayo	DRAFT
+eu_belgium_ksc-lokeren	Donovan Deekman	donovandeekman	DRAFT
+eu_belgium_ksc-lokeren	Vegard Braaten	vegardbraaten	DRAFT
+eu_belgium_ksc-lokeren	Laurens De Bock	laurensdebock	DRAFT
+eu_belgium_rsc-anderlecht	Mbark Boussoufa	mbarkboussoufa	DRAFT
+eu_belgium_rsc-anderlecht	Lucas Biglia	lucasbiglia	DRAFT
+eu_belgium_rsc-anderlecht	Jan Polák	janpolak	DRAFT
+eu_belgium_rsc-anderlecht	Roland Juhász	rolandjuhasz	DRAFT
+eu_belgium_rsc-anderlecht	Jonathan Legear	jonathanlegear	DRAFT
+eu_belgium_rsc-anderlecht	Matías Suárez	matiassuarez	DRAFT
+eu_belgium_rsc-anderlecht	Olivier Deschacht	olivierdeschacht	DRAFT
+eu_belgium_rsc-anderlecht	Ondřej Mazuch	ondrejmazuch	DRAFT
+eu_belgium_rsc-anderlecht	Cheikhou Kouyaté	cheikhoukouyate	DRAFT
+eu_belgium_rsc-anderlecht	Tom De Sutter	tomdesutter	DRAFT
+eu_belgium_rsc-anderlecht	Guillaume Gillet	guillaumegillet	DRAFT
+eu_belgium_rsc-anderlecht	Sacha Kljestan	sachakljestan	DRAFT
+eu_belgium_rsc-anderlecht	Kanu	kanu	DRAFT
+eu_belgium_rsc-anderlecht	Marcin Wasilewski	marcinwasilewski	DRAFT
+eu_belgium_rsc-anderlecht	Victor Bernárdez	victorbernardez	DRAFT
+eu_belgium_rsc-anderlecht	Nemanja Rnić	nemanjarnic	DRAFT
+eu_belgium_rsc-anderlecht	Jan Lecjaks	janlecjaks	DRAFT
+eu_belgium_standard-liege	Axel Witsel	axelwitsel	DRAFT
+eu_belgium_standard-liege	Steven Defour	stevendefour	DRAFT
+eu_belgium_standard-liege	Mohamed Tchité	mohamedtchite	DRAFT
+eu_belgium_standard-liege	Franck Berrier	franckberrier	DRAFT
+eu_belgium_standard-liege	Sébastien Pocognoli	sebastienpocognoli	DRAFT
+eu_belgium_standard-liege	Tom De Mul	tomdemul	DRAFT
+eu_belgium_standard-liege	Eliaquim Mangala	eliaquimmangala	DRAFT
+eu_belgium_standard-liege	Mbaye Leye	mbayeleye	DRAFT
+eu_belgium_standard-liege	Mehdi Carcela-Gonzalez	mehdicarcelagonzalez	DRAFT
+eu_belgium_standard-liege	Victor Ramos	victorramos	DRAFT
+eu_belgium_standard-liege	Luigi Pieroni	luigipieroni	DRAFT
+eu_belgium_standard-liege	Aloys Nong	aloysnong	DRAFT
+eu_belgium_standard-liege	Laurent Ciman	laurentciman	DRAFT
+eu_belgium_standard-liege	Cyriac	cyriac	DRAFT
+eu_belgium_standard-liege	Felipe	felipe	DRAFT
+eu_belgium_standard-liege	Grégory Dufer	gregorydufer	DRAFT
+eu_belgium_standard-liege	Koen Daerden	koendaerden	DRAFT
+eu_belgium_standard-liege	Réginal Goreux	reginalgoreux	DRAFT
+eu_belgium_standard-liege	Arnor Angeli	arnorangeli	DRAFT
+eu_bulgaria_cska-sofia	Ivan Karadzhov	ivankaradzhov	DRAFT
+eu_bulgaria_cska-sofia	Raïs M'Bolhi	raismbolhi	DRAFT
+eu_bulgaria_cska-sofia	Blagoy Makendzhiev	blagoymakendzhiev	DRAFT
+eu_bulgaria_cska-sofia	Apostol Popov	apostolpopov	DRAFT
+eu_bulgaria_cska-sofia	Kostadin Stoyanov	kostadinstoyanov	DRAFT
+eu_bulgaria_cska-sofia	Ivan Bandalovski	ivanbandalovski	DRAFT
+eu_bulgaria_cska-sofia	Pavel Vidanov	pavelvidanov	DRAFT
+eu_bulgaria_cska-sofia	Yordan Minev	yordanminev	DRAFT
+eu_bulgaria_cska-sofia	Marquinhos	marquinhos	DRAFT
+eu_bulgaria_cska-sofia	Todor Yanchev	todoryanchev	DRAFT
+eu_bulgaria_cska-sofia	Boris Galchev	borisgalchev	DRAFT
+eu_bulgaria_cska-sofia	Kosta Yanev	kostayanev	DRAFT
+eu_bulgaria_cska-sofia	William Tiero	williamtiero	DRAFT
+eu_bulgaria_cska-sofia	Spas Delev	spasdelev	DRAFT
+eu_bulgaria_cska-sofia	Aleksandar Tonev	aleksandartonev	DRAFT
+eu_bulgaria_cska-sofia	Cillian Sheridan	cilliansheridan	DRAFT
+eu_bulgaria_cska-sofia	Emil Gargorov	emilgargorov	DRAFT
+eu_bulgaria_cska-sofia	Dimitar Iliev	dimitariliev	DRAFT
+eu_bulgaria_cska-sofia	Stanislav Kostov	stanislavkostov	DRAFT
+eu_bulgaria_cska-sofia	Michel Platini	michelplatini	DRAFT
+eu_bulgaria_levski-sofia	Bozhidar Mitrev	bozhidarmitrev	DRAFT
+eu_bulgaria_levski-sofia	Georgi Petkov	georgipetkov	DRAFT
+eu_bulgaria_levski-sofia	Plamen Iliev	plameniliev	DRAFT
+eu_bulgaria_levski-sofia	Kiril Akalski	kirilakalski	DRAFT
+eu_bulgaria_levski-sofia	Yordan Miliev	yordanmiliev	DRAFT
+eu_bulgaria_levski-sofia	Ivo Ivanov	ivoivanov	DRAFT
+eu_bulgaria_levski-sofia	Chakib Benzoukane	chakibbenzoukane	DRAFT
+eu_bulgaria_levski-sofia	Stefan Stanchev	stefanstanchev	DRAFT
+eu_bulgaria_levski-sofia	Elin Topuzakov	elintopuzakov	DRAFT
+eu_bulgaria_levski-sofia	Veselin Minev	veselinminev	DRAFT
+eu_bulgaria_levski-sofia	Dustley Mulder	dustleymulder	DRAFT
+eu_bulgaria_levski-sofia	Serginho Greene	serginhogreene	DRAFT
+eu_bulgaria_levski-sofia	Michael Tawiah	michaeltawiah	DRAFT
+eu_bulgaria_levski-sofia	Vladimir Gadzhev	vladimirgadzhev	DRAFT
+eu_bulgaria_levski-sofia	Darko Tasevski	darkotasevski	DRAFT
+eu_bulgaria_levski-sofia	Hristo Yovov	hristoyovov	DRAFT
+eu_bulgaria_levski-sofia	Joãozinho	joaozinho	CROSS_CLUB
+eu_bulgaria_levski-sofia	Daniel Mladenov	danielmladenov	DRAFT
+eu_bulgaria_levski-sofia	Garra Dembélé	garradembele	DRAFT
+eu_bulgaria_levski-sofia	Jeanvion Yulu-Matondo	jeanvionyulumatondo	DRAFT
+eu_bulgaria_levski-sofia	Ismail Isa	ismailisa	DRAFT
+eu_bulgaria_levski-sofia	Georgi Hristov	georgihristov	CROSS_CLUB
+eu_bulgaria_litex-lovech	Vinícius	vinicius	DRAFT
+eu_bulgaria_litex-lovech	Ilko Pirgov	ilkopirgov	DRAFT
+eu_bulgaria_litex-lovech	Petar Zanev	petarzanev	DRAFT
+eu_bulgaria_litex-lovech	Nikolay Bodurov	nikolaybodurov	DRAFT
+eu_bulgaria_litex-lovech	Plamen Nikolov	plamennikolov	DRAFT
+eu_bulgaria_litex-lovech	Džemal Berberović	dzemalberberovic	DRAFT
+eu_bulgaria_litex-lovech	Mihail Venkov	mihailvenkov	DRAFT
+eu_bulgaria_litex-lovech	Alexandre Barthe	alexandrebarthe	DRAFT
+eu_bulgaria_litex-lovech	Hristo Yanev	hristoyanev	DRAFT
+eu_bulgaria_litex-lovech	Nebojša Jelenković	nebojsajelenkovic	DRAFT
+eu_bulgaria_litex-lovech	Georgi Milanov	georgimilanov	DRAFT
+eu_bulgaria_litex-lovech	Momchil Tsvetanov	momchiltsvetanov	DRAFT
+eu_bulgaria_litex-lovech	Tom	tom	DRAFT
+eu_bulgaria_litex-lovech	Sandrinho	sandrinho	DRAFT
+eu_bulgaria_litex-lovech	Wellington Brito da Silva	wellingtonbritodasilva	DRAFT
+eu_bulgaria_litex-lovech	Doka Madureira	dokamadureira	DRAFT
+eu_bulgaria_litex-lovech	Wilfried Niflore	wilfriedniflore	DRAFT
+eu_bulgaria_litex-lovech	Svetoslav Todorov	svetoslavtodorov	DRAFT
+eu_bulgaria_litex-lovech	Ivelin Popov	ivelinpopov	DRAFT
+eu_bulgaria_ludogorets-razgrad	Miroslav Grigorov	miroslavgrigorov	DRAFT
+eu_bulgaria_ludogorets-razgrad	Uroš Golubović	urosgolubovic	DRAFT
+eu_bulgaria_ludogorets-razgrad	Emil Mihaylov	emilmihaylov	DRAFT
+eu_bulgaria_ludogorets-razgrad	Georgi Hristov	georgihristov	CROSS_CLUB
+eu_bulgaria_ludogorets-razgrad	Radoslav Anev	radoslavanev	DRAFT
+eu_bulgaria_ludogorets-razgrad	Daniel Gramatikov	danielgramatikov	DRAFT
+eu_bulgaria_ludogorets-razgrad	Grigor Georgiev	grigorgeorgiev	DRAFT
+eu_bulgaria_ludogorets-razgrad	Diyan Dimov	diyandimov	DRAFT
+eu_bulgaria_ludogorets-razgrad	Shener Remzi	shenerremzi	DRAFT
+eu_bulgaria_ludogorets-razgrad	Dimo Atanasov	dimoatanasov	DRAFT
+eu_bulgaria_ludogorets-razgrad	Nikolay Dyulgerov	nikolaydyulgerov	DRAFT
+eu_bulgaria_ludogorets-razgrad	Todor Kolev	todorkolev	DRAFT
+eu_bulgaria_ludogorets-razgrad	Hristo Nikolov	hristonikolov	DRAFT
+eu_bulgaria_ludogorets-razgrad	Suvad Grabus	suvadgrabus	DRAFT
+eu_bulgaria_ludogorets-razgrad	Ivan Stoyanov	ivanstoyanov	DRAFT
+eu_bulgaria_ludogorets-razgrad	Miroslav Ivanov	miroslavivanov	DRAFT
+eu_croatia_dinamo-zagreb	Tomislav Butina	tomislavbutina	DRAFT
+eu_croatia_dinamo-zagreb	Filip Lončarić	filiploncaric	DRAFT
+eu_croatia_dinamo-zagreb	Luis Ibáñez	luisibanez	DRAFT
+eu_croatia_dinamo-zagreb	Leonard Mesarić	leonardmesaric	DRAFT
+eu_croatia_dinamo-zagreb	Igor Bišćan	igorbiscan	DRAFT
+eu_croatia_dinamo-zagreb	Dario Šimić	dariosimic	DRAFT
+eu_croatia_dinamo-zagreb	Tomislav Barbarić	tomislavbarbaric	DRAFT
+eu_croatia_dinamo-zagreb	Etto	etto	DRAFT
+eu_croatia_dinamo-zagreb	Adrián Calello	adriancalello	DRAFT
+eu_croatia_dinamo-zagreb	Mathias Chago	mathiaschago	DRAFT
+eu_croatia_dinamo-zagreb	Milan Badelj	milanbadelj	DRAFT
+eu_croatia_dinamo-zagreb	Sammir	sammir	DRAFT
+eu_croatia_dinamo-zagreb	Pedro Morales	pedromorales	DRAFT
+eu_croatia_dinamo-zagreb	Arijan Ademi	arijanademi	DRAFT
+eu_croatia_dinamo-zagreb	Mateo Kovačić	mateokovacic	DRAFT
+eu_croatia_dinamo-zagreb	Ante Rukavina	anterukavina	DRAFT
+eu_croatia_dinamo-zagreb	Fatos Bećiraj	fatosbeciraj	DRAFT
+eu_croatia_dinamo-zagreb	Jakub Sylvestr	jakubsylvestr	DRAFT
+eu_croatia_dinamo-zagreb	Andrej Kramarić	andrejkramaric	DRAFT
+eu_croatia_dinamo-zagreb	Dodô	dodo	DRAFT
+eu_croatia_dinamo-zagreb	Ivan Tomečak	ivantomecak	DRAFT
+eu_croatia_dinamo-zagreb	Šime Vrsaljko	simevrsaljko	DRAFT
+eu_croatia_hnk-rijeka	Robert Lisjak	robertlisjak	DRAFT
+eu_croatia_hnk-rijeka	Tomislav Pelin	tomislavpelin	DRAFT
+eu_croatia_hnk-rijeka	Dino Raspor	dinoraspor	DRAFT
+eu_croatia_hnk-rijeka	Fausto Budicin	faustobudicin	DRAFT
+eu_croatia_hnk-rijeka	Igor Čagalj	igorcagalj	DRAFT
+eu_croatia_hnk-rijeka	Kristijan Čaval	kristijancaval	DRAFT
+eu_croatia_hnk-rijeka	Andro Švrljuga	androsvrljuga	DRAFT
+eu_croatia_hnk-rijeka	Vlade Lazarevski	vladelazarevski	DRAFT
+eu_croatia_hnk-rijeka	Neven Vukman	nevenvukman	DRAFT
+eu_croatia_hnk-rijeka	Milan Đurišić	milanurisic	DRAFT
+eu_croatia_hnk-rijeka	Hrvoje Štrok	hrvojestrok	DRAFT
+eu_croatia_hnk-rijeka	Antonini Čulina	antoniniculina	DRAFT
+eu_croatia_hnk-rijeka	Alen Pamić	alenpamic	DRAFT
+eu_croatia_hnk-rijeka	Sergio Zijler	sergiozijler	DRAFT
+eu_croatia_hnk-rijeka	Radomir Đalović	radomiralovic	DRAFT
+eu_croatia_hnk-rijeka	Ivan Rodić	ivanrodic	DRAFT
+eu_croatia_hnk-rijeka	Duje Baković	dujebakovic	DRAFT
+eu_croatia_hnk-rijeka	Vedran Turkalj	vedranturkalj	DRAFT
+eu_croatia_hajduk-split	Danijel Subašić	danijelsubasic	DRAFT
+eu_croatia_hajduk-split	Lovre Kalinić	lovrekalinic	DRAFT
+eu_croatia_hajduk-split	Jurica Buljat	juricabuljat	DRAFT
+eu_croatia_hajduk-split	Hrvoje Vejić	hrvojevejic	DRAFT
+eu_croatia_hajduk-split	Mario Maloča	mariomaloca	DRAFT
+eu_croatia_hajduk-split	Ivan Strinić	ivanstrinic	CROSS_CLUB
+eu_croatia_hajduk-split	Srđan Andrić	sranandric	DRAFT
+eu_croatia_hajduk-split	Marin Ljubičić	marinljubicic	DRAFT
+eu_croatia_hajduk-split	Krešo Ljubičić	kresoljubicic	DRAFT
+eu_croatia_hajduk-split	Dinko Trebotić	dinkotrebotic	DRAFT
+eu_croatia_hajduk-split	Franko Andrijašević	frankoandrijasevic	DRAFT
+eu_croatia_hajduk-split	Marin Tomasov	marintomasov	DRAFT
+eu_croatia_hajduk-split	Anas Sharbini	anassharbini	DRAFT
+eu_croatia_hajduk-split	Ahmad Sharbini	ahmadsharbini	DRAFT
+eu_croatia_hajduk-split	Mirko Oremuš	mirkooremus	DRAFT
+eu_croatia_hajduk-split	Senijad Ibričić	senijadibricic	DRAFT
+eu_croatia_hajduk-split	Ante Vukušić	antevukusic	DRAFT
+eu_croatia_hajduk-split	Duje Čop	dujecop	DRAFT
+eu_croatia_hajduk-split	Mario Brkljača	mariobrkljaca	DRAFT
+eu_croatia_hajduk-split	Ivan Jakov Džoni	ivanjakovdzoni	DRAFT
+eu_cyprus_aek-larnaca	Marco Fortin	marcofortin	DRAFT
+eu_cyprus_aek-larnaca	Alexandre Negri	alexandrenegri	DRAFT
+eu_cyprus_aek-larnaca	Kevin Hofland	kevinhofland	DRAFT
+eu_cyprus_aek-larnaca	Jason Demetriou	jasondemetriou	DRAFT
+eu_cyprus_aek-larnaca	Marios Nicolaou	mariosnicolaou	DRAFT
+eu_cyprus_aek-larnaca	Nestoras Mitidis	nestorasmitidis	DRAFT
+eu_cyprus_aek-larnaca	Murat Akın	muratakn	DRAFT
+eu_cyprus_aek-larnaca	Gonzalo García	gonzalogarcia	DRAFT
+eu_cyprus_aek-larnaca	Gregoor van Dijk	gregoorvandijk	DRAFT
+eu_cyprus_aek-larnaca	Miljan Mrdaković	miljanmrdakovic	DRAFT
+eu_cyprus_aek-larnaca	Nordin Wooter	nordinwooter	DRAFT
+eu_cyprus_aek-larnaca	Edwin Linssen	edwinlinssen	DRAFT
+eu_cyprus_aek-larnaca	Gorka Pintado	gorkapintado	DRAFT
+eu_cyprus_aek-larnaca	Ander Murillo	andermurillo	DRAFT
+eu_cyprus_aek-larnaca	David Català	davidcatala	DRAFT
+eu_cyprus_aek-larnaca	Héctor Martínez	hectormartinez	DRAFT
+eu_cyprus_apoel	Dionysis Chiotis	dionysischiotis	DRAFT
+eu_cyprus_apoel	Anastasios Kissas	anastasioskissas	DRAFT
+eu_cyprus_apoel	Paulo Jorge	paulojorge	DRAFT
+eu_cyprus_apoel	Marcelo Oliveira	marcelooliveira	DRAFT
+eu_cyprus_apoel	Nuno Morais	nunomorais	DRAFT
+eu_cyprus_apoel	Marios Ilia	mariosilia	DRAFT
+eu_cyprus_apoel	Savvas Poursaitidis	savvaspoursaitidis	DRAFT
+eu_cyprus_apoel	Athos Solomou	athossolomou	DRAFT
+eu_cyprus_apoel	Constantinos Charalambides	constantinoscharalambides	DRAFT
+eu_cyprus_apoel	Nektarios Alexandrou	nektariosalexandrou	DRAFT
+eu_cyprus_apoel	Hélio Pinto	heliopinto	DRAFT
+eu_cyprus_apoel	Gustavo Manduca	gustavomanduca	DRAFT
+eu_cyprus_apoel	Ivan Tričkovski	ivantrickovski	DRAFT
+eu_cyprus_apoel	Aílton Almeida	ailtonalmeida	DRAFT
+eu_cyprus_apoel	Esteban Solari	estebansolari	DRAFT
+eu_cyprus_apoel	Marcin Żewłakow	marcinzewakow	DRAFT
+eu_cyprus_apoel	Nenad Mirosavljević	nenadmirosavljevic	DRAFT
+eu_cyprus_apoel	Marios Elia	marioselia	DRAFT
+eu_cyprus_anorthosis-famagusta	Matuš Kozáčik	matuskozacik	DRAFT
+eu_cyprus_anorthosis-famagusta	Wojciech Kowalewski	wojciechkowalewski	DRAFT
+eu_cyprus_anorthosis-famagusta	Gavriil Konstantinou	gavriilkonstantinou	DRAFT
+eu_cyprus_anorthosis-famagusta	Nikolas Asprogenous	nikolasasprogenous	DRAFT
+eu_cyprus_anorthosis-famagusta	Marcos Argüello	marcosarguello	DRAFT
+eu_cyprus_anorthosis-famagusta	Civard Sprockel	civardsprockel	DRAFT
+eu_cyprus_anorthosis-famagusta	Pablo Frontini	pablofrontini	DRAFT
+eu_cyprus_anorthosis-famagusta	Georgios Georgiou	georgiosgeorgiou	DRAFT
+eu_cyprus_anorthosis-famagusta	Jürgen Colin	jurgencolin	DRAFT
+eu_cyprus_anorthosis-famagusta	Nikolaos Katsavakis	nikolaoskatsavakis	DRAFT
+eu_cyprus_anorthosis-famagusta	Valentinos Sielis	valentinossielis	DRAFT
+eu_cyprus_anorthosis-famagusta	Vincent Laban	vincentlaban	DRAFT
+eu_cyprus_anorthosis-famagusta	Jan Rezek	janrezek	CROSS_CLUB
+eu_cyprus_anorthosis-famagusta	Ricardo Laborde	ricardolaborde	DRAFT
+eu_cyprus_anorthosis-famagusta	Hawar Mulla Mohammed	hawarmullamohammed	DRAFT
+eu_cyprus_anorthosis-famagusta	Cafu	cafu	DRAFT
+eu_cyprus_anorthosis-famagusta	Semedo	semedo	DRAFT
+eu_cyprus_anorthosis-famagusta	Andreas Makris	andreasmakris	DRAFT
+eu_cyprus_apollon-limassol	Aleš Chvalovský	aleschvalovsky	DRAFT
+eu_cyprus_apollon-limassol	Sofronis Avgousti	sofronisavgousti	DRAFT
+eu_cyprus_apollon-limassol	Bruno Vale	brunovale	DRAFT
+eu_cyprus_apollon-limassol	Bruno Luz	brunoluz	DRAFT
+eu_cyprus_apollon-limassol	Nasief Morris	nasiefmorris	DRAFT
+eu_cyprus_apollon-limassol	Giorgos Merkis	giorgosmerkis	DRAFT
+eu_cyprus_apollon-limassol	Marios Stylianou	mariosstylianou	DRAFT
+eu_cyprus_apollon-limassol	João Paulo	joaopaulo	CROSS_CLUB
+eu_cyprus_apollon-limassol	Gastón Sangoy	gastonsangoy	DRAFT
+eu_cyprus_apollon-limassol	Mustapha Bangura	mustaphabangura	DRAFT
+eu_cyprus_apollon-limassol	Haris Handžić	harishandzic	DRAFT
+eu_cyprus_apollon-limassol	Camel Meriem	camelmeriem	DRAFT
+eu_cyprus_apollon-limassol	Nuno Lopes	nunolopes	DRAFT
+eu_cyprus_apollon-limassol	Costas Maris	costasmaris	DRAFT
+eu_cyprus_apollon-limassol	Jatto Ceesay	jattoceesay	DRAFT
+eu_cyprus_apollon-limassol	Richard Kingson	richardkingson	DRAFT
+eu_cyprus_omonia-nicosia	Stefanos Kotsolis	stefanoskotsolis	DRAFT
+eu_cyprus_omonia-nicosia	Antonis Georgallidis	antonisgeorgallidis	DRAFT
+eu_cyprus_omonia-nicosia	Georgios Loizou	georgiosloizou	DRAFT
+eu_cyprus_omonia-nicosia	Dragoslav Jevrić	dragoslavjevric	DRAFT
+eu_cyprus_omonia-nicosia	Iago Bouzón	iagobouzon	DRAFT
+eu_cyprus_omonia-nicosia	Christos Karypidis	christoskarypidis	DRAFT
+eu_cyprus_omonia-nicosia	Leandro	leandro	CROSS_CLUB
+eu_cyprus_omonia-nicosia	Rasheed Alabi	rasheedalabi	DRAFT
+eu_cyprus_omonia-nicosia	Timo Wenzel	timowenzel	DRAFT
+eu_cyprus_omonia-nicosia	Elias Charalambous	eliascharalambous	DRAFT
+eu_cyprus_omonia-nicosia	Víctor Espasandín	victorespasandin	DRAFT
+eu_cyprus_omonia-nicosia	Yuval Shpungin	yuvalshpungin	DRAFT
+eu_cyprus_omonia-nicosia	Davidson Morais	davidsonmorais	DRAFT
+eu_cyprus_omonia-nicosia	Noel Kaseke	noelkaseke	DRAFT
+eu_cyprus_omonia-nicosia	Dimitrios Grammozis	dimitriosgrammozis	DRAFT
+eu_cyprus_omonia-nicosia	Konstantinos Makridis	konstantinosmakridis	DRAFT
+eu_cyprus_omonia-nicosia	Bruno Aguiar	brunoaguiar	DRAFT
+eu_cyprus_omonia-nicosia	José Manuel Rueda	josemanuelrueda	DRAFT
+eu_cyprus_omonia-nicosia	Andreas Avraam	andreasavraam	DRAFT
+eu_cyprus_omonia-nicosia	Stathis Aloneftis	stathisaloneftis	DRAFT
+eu_cyprus_omonia-nicosia	Giorgos Efrem	giorgosefrem	DRAFT
+eu_cyprus_omonia-nicosia	Dimitris Christofi	dimitrischristofi	DRAFT
+eu_cyprus_omonia-nicosia	Lomana LuaLua	lomanalualua	DRAFT
+eu_cyprus_omonia-nicosia	Hernán Rengifo	hernanrengifo	DRAFT
+eu_cyprus_omonia-nicosia	Michalis Konstantinou	michaliskonstantinou	DRAFT
+eu_czech_fk-jablonec	David Lafata	davidlafata	DRAFT
+eu_czech_fk-jablonec	Pavel Drsek	paveldrsek	DRAFT
+eu_czech_fk-jablonec	Matej Krajčík	matejkrajcik	DRAFT
+eu_czech_fk-jablonec	Karel Piták	karelpitak	DRAFT
+eu_czech_fk-jablonec	Luboš Loučka	lubosloucka	DRAFT
+eu_czech_fk-jablonec	Tomáš Pekhart	tomaspekhart	DRAFT
+eu_czech_fk-jablonec	Tomáš Jablonský	tomasjablonsky	DRAFT
+eu_czech_fk-jablonec	Michal Špit	michalspit	DRAFT
+eu_czech_fk-jablonec	Petr Pavlík	petrpavlik	DRAFT
+eu_czech_fk-jablonec	Jan Kovařík	jankovarik	DRAFT
+eu_czech_fk-jablonec	Marek Jarolím	marekjarolim	DRAFT
+eu_czech_fk-jablonec	Tomáš Čížek	tomascizek	DRAFT
+eu_czech_fk-jablonec	Jan Vošahlík	janvosahlik	DRAFT
+eu_czech_fk-jablonec	Vít Beneš	vitbenes	DRAFT
+eu_czech_fk-jablonec	Ondřej Vaněk	ondrejvanek	DRAFT
+eu_czech_fk-jablonec	Jiří Valenta	jirivalenta	DRAFT
+eu_czech_slavia-praha	Stanislav Vlček	stanislavvlcek	DRAFT
+eu_czech_slavia-praha	Jaroslav Černý	jaroslavcerny	DRAFT
+eu_czech_slavia-praha	Lukáš Jarolím	lukasjarolim	DRAFT
+eu_czech_slavia-praha	Adam Hloušek	adamhlousek	DRAFT
+eu_czech_slavia-praha	David Hubáček	davidhubacek	DRAFT
+eu_czech_slavia-praha	Karol Kisel	karolkisel	DRAFT
+eu_czech_slavia-praha	Tijani Belaïd	tijanibelaid	DRAFT
+eu_czech_slavia-praha	Benjamin Vomáčka	benjaminvomacka	DRAFT
+eu_czech_slavia-praha	Hocine Ragued	hocineragued	DRAFT
+eu_czech_slavia-praha	Josef Kaufman	josefkaufman	DRAFT
+eu_czech_slavia-praha	Petr Janda	petrjanda	DRAFT
+eu_czech_slavia-praha	Milan Černý	milancerny	DRAFT
+eu_czech_slavia-praha	Petr Trapp	petrtrapp	DRAFT
+eu_czech_slavia-praha	Jiří Koubský	jirikoubsky	DRAFT
+eu_czech_slavia-praha	Martin Vaniak	martinvaniak	DRAFT
+eu_czech_slavia-praha	Ondřej Čelůstka	ondrejcelustka	DRAFT
+eu_czech_slovan-liberec	Jiří Štajner	jiristajner	DRAFT
+eu_czech_slovan-liberec	Andrej Kerić	andrejkeric	DRAFT
+eu_czech_slovan-liberec	Jan Nezmar	jannezmar	DRAFT
+eu_czech_slovan-liberec	Miroslav Holeňák	miroslavholenak	DRAFT
+eu_czech_slovan-liberec	Petr Papoušek	petrpapousek	DRAFT
+eu_czech_slovan-liberec	Lovre Vulin	lovrevulin	DRAFT
+eu_czech_slovan-liberec	Miloš Bosančić	milosbosancic	DRAFT
+eu_czech_slovan-liberec	Marcel Gecov	marcelgecov	DRAFT
+eu_czech_slovan-liberec	Lukáš Vácha	lukasvacha	DRAFT
+eu_czech_slovan-liberec	Theodor Gebre Selassie	theodorgebreselassie	DRAFT
+eu_czech_slovan-liberec	Jiří Liška	jiriliska	DRAFT
+eu_czech_slovan-liberec	Ján Vlasko	janvlasko	DRAFT
+eu_czech_slovan-liberec	Radek Dejmek	radekdejmek	DRAFT
+eu_czech_slovan-liberec	Renato Kelić	renatokelic	DRAFT
+eu_czech_slovan-liberec	David Bičík	davidbicik	DRAFT
+eu_czech_slovan-liberec	Bořek Dočkal	borekdockal	DRAFT
+eu_czech_sparta-praha	Tomáš Řepka	tomasrepka	DRAFT
+eu_czech_sparta-praha	Bony Wilfried	bonywilfried	DRAFT
+eu_czech_sparta-praha	Erich Brabec	erichbrabec	DRAFT
+eu_czech_sparta-praha	Libor Sionko	liborsionko	DRAFT
+eu_czech_sparta-praha	Igor Žofčák	igorzofcak	CROSS_CLUB
+eu_czech_sparta-praha	Štěpán Vachoušek	stepanvachousek	DRAFT
+eu_czech_sparta-praha	Marek Matějovský	marekmatejovsky	DRAFT
+eu_czech_sparta-praha	Léonard Kweuke	leonardkweuke	DRAFT
+eu_czech_sparta-praha	Jiří Kladrubský	jirikladrubsky	CROSS_CLUB
+eu_czech_sparta-praha	Juraj Kucka	jurajkucka	DRAFT
+eu_czech_sparta-praha	Luboš Hušek	luboshusek	DRAFT
+eu_czech_sparta-praha	Martin Zeman	martinzeman	DRAFT
+eu_czech_sparta-praha	Manuel Pamić	manuelpamic	DRAFT
+eu_czech_sparta-praha	Ondřej Kušnír	ondrejkusnir	DRAFT
+eu_czech_sparta-praha	Kamil Vacek	kamilvacek	DRAFT
+eu_czech_sparta-praha	Niklas Hoheneder	niklashoheneder	DRAFT
+eu_czech_sparta-praha	Václav Kadlec	vaclavkadlec	DRAFT
+eu_czech_sparta-praha	Jiří Jeslínek	jirijeslinek	DRAFT
+eu_czech_sparta-praha	Miloš Lačný	miloslacny	DRAFT
+eu_czech_sparta-praha	Jan Krob	jankrob	DRAFT
+eu_czech_sparta-praha	Martin Jirouš	martinjirous	DRAFT
+eu_czech_sparta-praha	Lukáš Hejda	lukashejda	DRAFT
+eu_czech_viktoria-plzen	Pavel Horváth	pavelhorvath	DRAFT
+eu_czech_viktoria-plzen	Daniel Kolář	danielkolar	DRAFT
+eu_czech_viktoria-plzen	David Limberský	davidlimbersky	DRAFT
+eu_czech_viktoria-plzen	Tomáš Rada	tomasrada	DRAFT
+eu_czech_viktoria-plzen	David Bystroň	davidbystron	DRAFT
+eu_czech_viktoria-plzen	František Rajtoral	frantisekrajtoral	DRAFT
+eu_czech_viktoria-plzen	Jan Rezek	janrezek	CROSS_CLUB
+eu_czech_viktoria-plzen	David Střihavka	davidstrihavka	DRAFT
+eu_czech_viktoria-plzen	Milan Petržela	milanpetrzela	DRAFT
+eu_czech_viktoria-plzen	Petr Jiráček	petrjiracek	DRAFT
+eu_czech_viktoria-plzen	Jakub Navrátil	jakubnavratil	DRAFT
+eu_czech_viktoria-plzen	Marek Bakoš	marekbakos	DRAFT
+eu_czech_viktoria-plzen	František Ševinský	frantiseksevinsky	DRAFT
+eu_czech_viktoria-plzen	Antonín Presl	antoninpresl	DRAFT
+eu_czech_viktoria-plzen	Roman Pavlík	romanpavlik	DRAFT
+eu_czech_viktoria-plzen	Michal Ďuriš	michalduris	DRAFT
+eu_denmark_aab-aalborg	Kjetil Wæhler	kjetilwhler	DRAFT
+eu_denmark_aab-aalborg	Kasper Bøgelund	kasperbgelund	DRAFT
+eu_denmark_aab-aalborg	Jeppe Curth	jeppecurth	DRAFT
+eu_denmark_aab-aalborg	Rasmus Würtz	rasmuswurtz	DRAFT
+eu_denmark_aab-aalborg	Patrick Kristensen	patrickkristensen	DRAFT
+eu_denmark_aab-aalborg	Lasse Nielsen	lassenielsen	DRAFT
+eu_denmark_aab-aalborg	Marcus Tracy	marcustracy	DRAFT
+eu_denmark_aab-aalborg	Dennis Marshall	dennismarshall	DRAFT
+eu_denmark_aab-aalborg	Jones Kusi-Asare	joneskusiasare	DRAFT
+eu_denmark_aab-aalborg	Daniel Christensen	danielchristensen	DRAFT
+eu_denmark_aab-aalborg	Karim Zaza	karimzaza	DRAFT
+eu_denmark_aab-aalborg	Anders Due	andersdue	CROSS_CLUB
+eu_denmark_aab-aalborg	Thomas Augustinussen	thomasaugustinussen	CROSS_CLUB
+eu_denmark_aab-aalborg	Mathias Wichmann	mathiaswichmann	DRAFT
+eu_denmark_aab-aalborg	Louay Chanko	louaychanko	DRAFT
+eu_denmark_aab-aalborg	Ronnie Schwartz	ronnieschwartz	DRAFT
+eu_denmark_brndby-if	Michael Krohn-Dehli	michaelkrohndehli	DRAFT
+eu_denmark_brndby-if	Max von Schlebrügge	maxvonschlebrugge	DRAFT
+eu_denmark_brndby-if	Martin Bernburg	martinbernburg	DRAFT
+eu_denmark_brndby-if	Alexander Farnerud	alexanderfarnerud	DRAFT
+eu_denmark_brndby-if	Mikael Nilsson	mikaelnilsson	DRAFT
+eu_denmark_brndby-if	Mike Jensen	mikejensen	DRAFT
+eu_denmark_brndby-if	Ousman Jallow	ousmanjallow	DRAFT
+eu_denmark_brndby-if	Remco van der Schaaf	remcovanderschaaf	DRAFT
+eu_denmark_brndby-if	Stefán Gíslason	stefangislason	DRAFT
+eu_denmark_brndby-if	Jan Kristiansen	jankristiansen	DRAFT
+eu_denmark_brndby-if	Mikkel Bischoff	mikkelbischoff	DRAFT
+eu_denmark_brndby-if	Peter Madsen	petermadsen	DRAFT
+eu_denmark_brndby-if	Thomas Rasmussen	thomasrasmussen	DRAFT
+eu_denmark_brndby-if	Anders Randrup	andersrandrup	DRAFT
+eu_denmark_brndby-if	Jan Frederiksen	janfrederiksen	DRAFT
+eu_denmark_brndby-if	Paul Jatta	pauljatta	DRAFT
+eu_denmark_brndby-if	Nicolaj Agger	nicolajagger	DRAFT
+eu_denmark_esbjerg-fb	Tim Janssen	timjanssen	DRAFT
+eu_denmark_esbjerg-fb	Jesper Lange	jesperlange	DRAFT
+eu_denmark_esbjerg-fb	Søren Rieks	srenrieks	DRAFT
+eu_denmark_esbjerg-fb	Nicolai Høgh	nicolaihgh	DRAFT
+eu_denmark_esbjerg-fb	Jesper Jørgensen	jesperjrgensen	DRAFT
+eu_denmark_esbjerg-fb	Kevin Conboy	kevinconboy	DRAFT
+eu_denmark_esbjerg-fb	Peter Nymann	peternymann	DRAFT
+eu_denmark_esbjerg-fb	Arnór Smárason	arnorsmarason	DRAFT
+eu_denmark_esbjerg-fb	Fredrik Risp	fredrikrisp	DRAFT
+eu_denmark_esbjerg-fb	Martin Fribrock	martinfribrock	DRAFT
+eu_denmark_esbjerg-fb	Mikkel Vendelbo	mikkelvendelbo	DRAFT
+eu_denmark_esbjerg-fb	Thomas Gaardsøe	thomasgaardse	DRAFT
+eu_denmark_esbjerg-fb	Emmanuel Ukpai	emmanuelukpai	DRAFT
+eu_denmark_esbjerg-fb	Jeppe Mehl	jeppemehl	DRAFT
+eu_denmark_esbjerg-fb	Sebastian Andersen	sebastianandersen	DRAFT
+eu_denmark_esbjerg-fb	Kevin Bechmann Timm	kevinbechmanntimm	DRAFT
+eu_denmark_esbjerg-fb	Kian Hansen	kianhansen	DRAFT
+eu_denmark_fc-copenhagen	William Kvist	williamkvist	DRAFT
+eu_denmark_fc-copenhagen	Jesper Grønkjær	jespergrnkjr	DRAFT
+eu_denmark_fc-copenhagen	Dame N'Doye	damendoye	DRAFT
+eu_denmark_fc-copenhagen	Oscar Wendt	oscarwendt	DRAFT
+eu_denmark_fc-copenhagen	Sölvi Ottesen	solviottesen	DRAFT
+eu_denmark_fc-copenhagen	Martin Vingaard	martinvingaard	DRAFT
+eu_denmark_fc-copenhagen	Mathias Jørgensen	mathiasjrgensen	DRAFT
+eu_denmark_fc-copenhagen	Zdeněk Pospěch	zdenekpospech	DRAFT
+eu_denmark_fc-copenhagen	César Santin	cesarsantin	DRAFT
+eu_denmark_fc-copenhagen	Mikael Antonsson	mikaelantonsson	DRAFT
+eu_denmark_fc-copenhagen	Claudemir	claudemir	DRAFT
+eu_denmark_fc-copenhagen	Cristian Bolaños	cristianbolanos	DRAFT
+eu_denmark_fc-copenhagen	Martin Bergvold	martinbergvold	DRAFT
+eu_denmark_fc-copenhagen	Morten Nordstrand	mortennordstrand	DRAFT
+eu_denmark_fc-copenhagen	Hjalte Nørregaard	hjaltenrregaard	DRAFT
+eu_denmark_fc-copenhagen	Peter Larsson	peterlarsson	DRAFT
+eu_denmark_fc-copenhagen	Thomas Kristensen	thomaskristensen	DRAFT
+eu_denmark_fc-copenhagen	Thomas Delaney	thomasdelaney	DRAFT
+eu_denmark_fc-copenhagen	Søren Frederiksen	srenfrederiksen	DRAFT
+eu_denmark_fc-nordsjlland	Anders Due	andersdue	CROSS_CLUB
+eu_denmark_fc-nordsjlland	Nicolai Stokholm	nicolaistokholm	DRAFT
+eu_denmark_fc-nordsjlland	Andreas Laudrup	andreaslaudrup	DRAFT
+eu_denmark_fc-nordsjlland	Michael Parkhurst	michaelparkhurst	DRAFT
+eu_denmark_fc-nordsjlland	Rawez Lawan	rawezlawan	DRAFT
+eu_denmark_fc-nordsjlland	Bajram Fetai	bajramfetai	DRAFT
+eu_denmark_fc-nordsjlland	Patrice Bernier	patricebernier	DRAFT
+eu_denmark_fc-nordsjlland	Andreas Bjelland	andreasbjelland	DRAFT
+eu_denmark_fc-nordsjlland	Henrik Kildentoft	henrikkildentoft	DRAFT
+eu_denmark_fc-nordsjlland	Pierre Bengtsson	pierrebengtsson	DRAFT
+eu_denmark_fc-nordsjlland	Søren Christensen	srenchristensen	DRAFT
+eu_denmark_fc-nordsjlland	Matti Lund Nielsen	mattilundnielsen	DRAFT
+eu_denmark_fc-nordsjlland	Tobias Mikkelsen	tobiasmikkelsen	DRAFT
+eu_denmark_fc-nordsjlland	Andreas Granskov	andreasgranskov	DRAFT
+eu_denmark_fc-nordsjlland	Mads Thomsen	madsthomsen	DRAFT
+eu_denmark_odense-bk	Peter Utaka	peterutaka	DRAFT
+eu_denmark_odense-bk	Eric Djemba-Djemba	ericdjembadjemba	DRAFT
+eu_denmark_odense-bk	Atle Roar Håland	atleroarhaland	DRAFT
+eu_denmark_odense-bk	Chris Sørensen	chrissrensen	DRAFT
+eu_denmark_odense-bk	Espen Ruud	espenruud	DRAFT
+eu_denmark_odense-bk	Johan Absalonsen	johanabsalonsen	DRAFT
+eu_denmark_odense-bk	Anders Møller Christensen	andersmllerchristensen	DRAFT
+eu_denmark_odense-bk	Cacá	caca	DRAFT
+eu_denmark_odense-bk	Andreas Johansson	andreasjohansson	DRAFT
+eu_denmark_odense-bk	Hans Henrik Andreasen	hanshenrikandreasen	DRAFT
+eu_denmark_odense-bk	Rurik Gíslason	rurikgislason	DRAFT
+eu_denmark_odense-bk	Njogu Demba-Nyrén	njogudembanyren	DRAFT
+eu_denmark_odense-bk	Jonas Troest	jonastroest	DRAFT
+eu_denmark_odense-bk	Thomas Helveg	thomashelveg	DRAFT
+eu_denmark_odense-bk	Henrik Toft	henriktoft	DRAFT
+eu_denmark_odense-bk	Timmi Johansen	timmijohansen	DRAFT
+eu_finland_hjk-helsinki	Ville Wallén	villewallen	DRAFT
+eu_finland_hjk-helsinki	Tuomas Kansikas	tuomaskansikas	DRAFT
+eu_finland_hjk-helsinki	Sebastian Sorsa	sebastiansorsa	DRAFT
+eu_finland_hjk-helsinki	Rafinha	rafinha	DRAFT
+eu_finland_hjk-helsinki	Mathias Lindström	mathiaslindstrom	DRAFT
+eu_finland_hjk-helsinki	Cheyne Fowler	cheynefowler	DRAFT
+eu_finland_hjk-helsinki	Medo	medo	DRAFT
+eu_finland_hjk-helsinki	Dawda Bah	dawdabah	DRAFT
+eu_finland_hjk-helsinki	Aki Riihilahti	akiriihilahti	DRAFT
+eu_finland_hjk-helsinki	Juho Mäkelä	juhomakela	DRAFT
+eu_finland_hjk-helsinki	Akseli Pelvas	akselipelvas	DRAFT
+eu_finland_hjk-helsinki	Jarno Parikka	jarnoparikka	DRAFT
+eu_finland_hjk-helsinki	Teemu Pukki	teemupukki	DRAFT
+eu_finland_hjk-helsinki	Berat Sadik	beratsadik	DRAFT
+eu_finland_hjk-helsinki	Mikko Sumusalo	mikkosumusalo	DRAFT
+eu_finland_hjk-helsinki	Valtteri Moren	valtterimoren	DRAFT
+eu_finland_hjk-helsinki	Erfan Zeneli	erfanzeneli	DRAFT
+eu_finland_hjk-helsinki	Alexander Ring	alexanderring	DRAFT
+eu_greece_aek-athens	Sebastián Saja	sebastiansaja	DRAFT
+eu_greece_aek-athens	Rafik Djebbour	rafikdjebbour	DRAFT
+eu_greece_aek-athens	Ismael Blanco	ismaelblanco	DRAFT
+eu_greece_aek-athens	Nikos Liberopoulos	nikosliberopoulos	DRAFT
+eu_greece_aek-athens	Papa Bouba Diop	papaboubadiop	DRAFT
+eu_greece_aek-athens	Traianos Dellas	traianosdellas	DRAFT
+eu_greece_aek-athens	Pantelis Kafes	panteliskafes	DRAFT
+eu_greece_aek-athens	Roger Guerreiro	rogerguerreiro	DRAFT
+eu_greece_aek-athens	Christos Patsatzoglou	christospatsatzoglou	DRAFT
+eu_greece_aek-athens	Grigoris Makos	grigorismakos	DRAFT
+eu_greece_aek-athens	Nacho Scocco	nachoscocco	DRAFT
+eu_greece_aek-athens	Leonardo	leonardo	DRAFT
+eu_greece_aek-athens	Cristian Nasuti	cristiannasuti	DRAFT
+eu_greece_aek-athens	Giorgos Manolas	giorgosmanolas	DRAFT
+eu_greece_aek-athens	Nikos Georgeas	nikosgeorgeas	DRAFT
+eu_greece_aek-athens	Carlos Araujo	carlosaraujo	DRAFT
+eu_greece_aris-thessaloniki	Michalis Sifakis	michalissifakis	DRAFT
+eu_greece_aris-thessaloniki	Markos Vellidis	markosvellidis	DRAFT
+eu_greece_aris-thessaloniki	Michal Peškovič	michalpeskovic	DRAFT
+eu_greece_aris-thessaloniki	Ronaldo Guiaro	ronaldoguiaro	DRAFT
+eu_greece_aris-thessaloniki	Kristi Vangjeli	kristivangjeli	DRAFT
+eu_greece_aris-thessaloniki	Neto	neto	DRAFT
+eu_greece_aris-thessaloniki	Nikolaos Lazaridis	nikolaoslazaridis	DRAFT
+eu_greece_aris-thessaloniki	Juan Carlos Toja	juancarlostoja	DRAFT
+eu_greece_aris-thessaloniki	Ricardo Faty	ricardofaty	DRAFT
+eu_greece_aris-thessaloniki	Mehdi Nafti	mehdinafti	DRAFT
+eu_greece_aris-thessaloniki	Javito	javito	DRAFT
+eu_greece_aris-thessaloniki	Toni Calvo	tonicalvo	DRAFT
+eu_greece_aris-thessaloniki	Koke	koke	DRAFT
+eu_greece_aris-thessaloniki	Danijel Cesarec	danijelcesarec	DRAFT
+eu_greece_aris-thessaloniki	Nery Castillo	nerycastillo	DRAFT
+eu_greece_aris-thessaloniki	Carlos Ruiz	carlosruiz	DRAFT
+eu_greece_aris-thessaloniki	Sakata Daisuke	sakatadaisuke	DRAFT
+eu_greece_aris-thessaloniki	Kostas Mendrinos	kostasmendrinos	DRAFT
+eu_greece_asteras-tripolis	Matías Degra	matiasdegra	DRAFT
+eu_greece_asteras-tripolis	Nikos Anastasopoulos	nikosanastasopoulos	DRAFT
+eu_greece_asteras-tripolis	Rubén Pulido	rubenpulido	DRAFT
+eu_greece_asteras-tripolis	Sebastián Bartolini	sebastianbartolini	DRAFT
+eu_greece_asteras-tripolis	Bruno Urribarri	brunourribarri	DRAFT
+eu_greece_asteras-tripolis	Ximo Navarro	ximonavarro	DRAFT
+eu_greece_asteras-tripolis	Christos Pipinis	christospipinis	DRAFT
+eu_greece_asteras-tripolis	Horacio Cardozo	horaciocardozo	DRAFT
+eu_greece_asteras-tripolis	Fernando Usero	fernandousero	DRAFT
+eu_greece_asteras-tripolis	Sebastián Carrera	sebastiancarrera	DRAFT
+eu_greece_asteras-tripolis	Rogerio Martins	rogeriomartins	DRAFT
+eu_greece_asteras-tripolis	Frédéric Nimani	fredericnimani	DRAFT
+eu_greece_asteras-tripolis	Daniel Césarec	danielcesarec	DRAFT
+eu_greece_asteras-tripolis	Emmanuel Perrone	emmanuelperrone	DRAFT
+eu_greece_asteras-tripolis	Lucio Filomeno	luciofilomeno	DRAFT
+eu_greece_asteras-tripolis	Rayo	rayo	DRAFT
+eu_greece_olympiacos	Olof Mellberg	olofmellberg	DRAFT
+eu_greece_olympiacos	Albert Riera	albertriera	DRAFT
+eu_greece_olympiacos	Vassilis Torosidis	vassilistorosidis	DRAFT
+eu_greece_olympiacos	Ariel Ibagaza	arielibagaza	DRAFT
+eu_greece_olympiacos	Dudu Cearense	duducearense	DRAFT
+eu_greece_olympiacos	Marko Pantelić	markopantelic	DRAFT
+eu_greece_olympiacos	Moisés Hurtado	moiseshurtado	DRAFT
+eu_greece_olympiacos	Kostas Mitroglou	kostasmitroglou	DRAFT
+eu_greece_olympiacos	Raúl Bravo	raulbravo	DRAFT
+eu_greece_olympiacos	David Fuster	davidfuster	DRAFT
+eu_greece_olympiacos	Dennis Rommedahl	dennisrommedahl	DRAFT
+eu_greece_olympiacos	François Modesto	francoismodesto	DRAFT
+eu_greece_olympiacos	Kevin Mirallas	kevinmirallas	DRAFT
+eu_greece_olympiacos	Krisztián Németh	krisztiannemeth	DRAFT
+eu_greece_olympiacos	Georgios Galitsios	georgiosgalitsios	DRAFT
+eu_greece_olympiacos	José Holebas	joseholebas	DRAFT
+eu_greece_paok	Dimitris Salpigidis	dimitrissalpigidis	DRAFT
+eu_greece_paok	Vieirinha	vieirinha	DRAFT
+eu_greece_paok	Zlatan Muslimović	zlatanmuslimovic	DRAFT
+eu_greece_paok	Bruno Cirillo	brunocirillo	DRAFT
+eu_greece_paok	Lino	lino	DRAFT
+eu_greece_paok	Pablo García	pablogarcia	DRAFT
+eu_greece_paok	Nabil El Zhar	nabilelzhar	DRAFT
+eu_greece_paok	Mirko Savini	mirkosavini	DRAFT
+eu_greece_paok	Vitolo	vitolo	DRAFT
+eu_greece_paok	Cristiano	cristiano	DRAFT
+eu_greece_paok	Francisco Zuela	franciscozuela	DRAFT
+eu_greece_paok	Dario Krešić	dariokresic	DRAFT
+eu_greece_paok	Pablo Contreras	pablocontreras	DRAFT
+eu_greece_paok	Stelios Malezas	steliosmalezas	DRAFT
+eu_greece_paok	Kostas Chalkias	kostaschalkias	DRAFT
+eu_greece_paok	Stefanos Athanasiadis	stefanosathanasiadis	DRAFT
+eu_greece_panathinaikos	Djibril Cissé	djibrilcisse	DRAFT
+eu_greece_panathinaikos	Sidney Govou	sidneygovou	DRAFT
+eu_greece_panathinaikos	Gilberto Silva	gilbertosilva	DRAFT
+eu_greece_panathinaikos	Giorgos Karagounis	giorgoskaragounis	DRAFT
+eu_greece_panathinaikos	Kostas Katsouranis	kostaskatsouranis	DRAFT
+eu_greece_panathinaikos	Sebastián Leto	sebastianleto	DRAFT
+eu_greece_panathinaikos	Sotiris Ninis	sotirisninis	DRAFT
+eu_greece_panathinaikos	Jean-Alain Boumsong	jeanalainboumsong	DRAFT
+eu_greece_panathinaikos	Luis García	luisgarcia	DRAFT
+eu_greece_panathinaikos	Giourkas Seitaridis	giourkasseitaridis	DRAFT
+eu_greece_panathinaikos	Loukas Vyntra	loukasvyntra	DRAFT
+eu_greece_panathinaikos	Cédric Kanté	cedrickante	DRAFT
+eu_greece_panathinaikos	Nikos Spyropoulos	nikosspyropoulos	DRAFT
+eu_greece_panathinaikos	Damien Plessis	damienplessis	DRAFT
+eu_greece_panathinaikos	Alexandros Tzorvas	alexandrostzorvas	DRAFT
+eu_greece_panathinaikos	Orestis Karnezis	orestiskarnezis	DRAFT
+eu_greece_panathinaikos	Simão	simao	DRAFT
+eu_greece_panathinaikos	Lazaros Christodoulopoulos	lazaroschristodoulopoulos	DRAFT
+eu_hungary_debreceni-vsc	Vukašin Poleksić	vukasinpoleksic	DRAFT
+eu_hungary_debreceni-vsc	Nenad Novaković	nenadnovakovic	DRAFT
+eu_hungary_debreceni-vsc	Mindaugas Malinauskas	mindaugasmalinauskas	DRAFT
+eu_hungary_debreceni-vsc	László Bodnár	laszlobodnar	DRAFT
+eu_hungary_debreceni-vsc	Norbert Mészáros	norbertmeszaros	DRAFT
+eu_hungary_debreceni-vsc	Mirsad Mijadinoski	mirsadmijadinoski	DRAFT
+eu_hungary_debreceni-vsc	Ádám Komlósi	adamkomlosi	DRAFT
+eu_hungary_debreceni-vsc	Leandro	leandro	CROSS_CLUB
+eu_hungary_debreceni-vsc	Zoltán Kiss	zoltankiss	DRAFT
+eu_hungary_debreceni-vsc	Péter Szakály	peterszakaly	DRAFT
+eu_hungary_debreceni-vsc	József Varga	jozsefvarga	DRAFT
+eu_hungary_debreceni-vsc	Zoltán Szélesi	zoltanszelesi	DRAFT
+eu_hungary_debreceni-vsc	Adamo Coulibaly	adamocoulibaly	DRAFT
+eu_hungary_debreceni-vsc	Tibor Dombi	tibordombi	DRAFT
+eu_hungary_debreceni-vsc	László Rezes	laszlorezes	DRAFT
+eu_hungary_debreceni-vsc	Yannick Mbengono	yannickmbengono	DRAFT
+eu_hungary_debreceni-vsc	Péter Czvitkovics	peterczvitkovics	DRAFT
+eu_hungary_debreceni-vsc	Péter Kabát	peterkabat	DRAFT
+eu_hungary_debreceni-vsc	Balázs Farkas	balazsfarkas	DRAFT
+eu_hungary_debreceni-vsc	Eugène Salami	eugenesalami	DRAFT
+eu_hungary_ferencvaros	Marko Ranilović	markoranilovic	DRAFT
+eu_hungary_ferencvaros	Justin Haber	justinhaber	DRAFT
+eu_hungary_ferencvaros	Levente Jova	leventejova	DRAFT
+eu_hungary_ferencvaros	Csaba Csizmadia	csabacsizmadia	DRAFT
+eu_hungary_ferencvaros	Zoltán Balog	zoltanbalog	DRAFT
+eu_hungary_ferencvaros	Attila Dragóner	attiladragoner	DRAFT
+eu_hungary_ferencvaros	Dávid Kulcsár	davidkulcsar	DRAFT
+eu_hungary_ferencvaros	István Rodenbücher	istvanrodenbucher	DRAFT
+eu_hungary_ferencvaros	Junior	junior	DRAFT
+eu_hungary_ferencvaros	Adriano	adriano	DRAFT
+eu_hungary_ferencvaros	Andrezinho	andrezinho	DRAFT
+eu_hungary_ferencvaros	Béla Maróti	belamaroti	DRAFT
+eu_hungary_ferencvaros	György Józsi	gyorgyjozsi	DRAFT
+eu_hungary_ferencvaros	Dénes Rósa	denesrosa	DRAFT
+eu_hungary_ferencvaros	József Tóth	jozseftoth	DRAFT
+eu_hungary_ferencvaros	André Schembri	andreschembri	DRAFT
+eu_hungary_ferencvaros	Marek Heinz	marekheinz	DRAFT
+eu_hungary_ferencvaros	Liban Abdi	libanabdi	DRAFT
+eu_hungary_ferencvaros	Emil Miljkovic	emilmiljkovic	DRAFT
+eu_hungary_ferencvaros	Srdjan Stanic	srdjanstanic	DRAFT
+eu_hungary_videoton-fc	Mladen Božović	mladenbozovic	DRAFT
+eu_hungary_videoton-fc	Zsolt Sebők	zsoltsebok	DRAFT
+eu_hungary_videoton-fc	Tomáš Tujvel	tomastujvel	DRAFT
+eu_hungary_videoton-fc	Gábor Horváth	gaborhorvath	DRAFT
+eu_hungary_videoton-fc	Zoltán Lipták	zoltanliptak	DRAFT
+eu_hungary_videoton-fc	Tamás Vaskó	tamasvasko	DRAFT
+eu_hungary_videoton-fc	Marko Andić	markoandic	DRAFT
+eu_hungary_videoton-fc	Ádám Présinger	adampresinger	DRAFT
+eu_hungary_videoton-fc	András Gosztonyi	andrasgosztonyi	DRAFT
+eu_hungary_videoton-fc	Ákos Elek	akoselek	DRAFT
+eu_hungary_videoton-fc	György Sándor	gyorgysandor	DRAFT
+eu_hungary_videoton-fc	Attila Polonkai	attilapolonkai	DRAFT
+eu_hungary_videoton-fc	Dénes Szakály	denesszakaly	DRAFT
+eu_hungary_videoton-fc	Dušan Vasiljević	dusanvasiljevic	DRAFT
+eu_hungary_videoton-fc	Bojan Djordjic	bojandjordjic	CROSS_CLUB
+eu_hungary_videoton-fc	Andre Alves	andrealves	DRAFT
+eu_hungary_videoton-fc	Nemanja Nikolić	nemanjanikolic	DRAFT
+eu_hungary_videoton-fc	László Lencse	laszlolencse	DRAFT
+eu_hungary_videoton-fc	Goran Vujović	goranvujovic	DRAFT
+eu_hungary_videoton-fc	Martin Kayongo-Mutumba	martinkayongomutumba	DRAFT
+eu_ireland_shamrock-rovers	Gary Twigg	garytwigg	DRAFT
+eu_ireland_shamrock-rovers	Dan Murray	danmurray	DRAFT
+eu_ireland_shamrock-rovers	Danny Murphy	dannymurphy	DRAFT
+eu_ireland_shamrock-rovers	Patrick Kavanagh	patrickkavanagh	DRAFT
+eu_ireland_shamrock-rovers	William Dennehy	williamdennehy	DRAFT
+eu_ireland_shamrock-rovers	Aidan Price	aidanprice	DRAFT
+eu_ireland_shamrock-rovers	Craig Sives	craigsives	DRAFT
+eu_ireland_shamrock-rovers	Chris Turner	christurner	DRAFT
+eu_ireland_shamrock-rovers	Stephen Rice	stephenrice	DRAFT
+eu_ireland_shamrock-rovers	Thomas Stewart	thomasstewart	DRAFT
+eu_ireland_shamrock-rovers	Graham Barrett	grahambarrett	DRAFT
+eu_ireland_shamrock-rovers	Pat Flynn	patflynn	DRAFT
+eu_ireland_shamrock-rovers	Patrick Sullivan	patricksullivan	DRAFT
+eu_ireland_shamrock-rovers	Robert Bayly	robertbayly	DRAFT
+eu_ireland_shamrock-rovers	Sean O'Connor	seanoconnor	DRAFT
+eu_ireland_shamrock-rovers	Aidan Downes	aidandownes	DRAFT
+eu_ireland_shamrock-rovers	Dessie Baker	dessiebaker	DRAFT
+eu_ireland_shamrock-rovers	Stephen Bradley	stephenbradley	DRAFT
+eu_ireland_shamrock-rovers	Enda Stevens	endastevens	DRAFT
+eu_israel_hapoel-tel-aviv	Vincent Enyeama	vincentenyeama	DRAFT
+eu_israel_hapoel-tel-aviv	Itamar Nitzan	itamarnitzan	DRAFT
+eu_israel_hapoel-tel-aviv	Bevan Fransman	bevanfransman	DRAFT
+eu_israel_hapoel-tel-aviv	Dedi Ben-Dayan	dedibendayan	DRAFT
+eu_israel_hapoel-tel-aviv	Dani Bondar	danibondar	DRAFT
+eu_israel_hapoel-tel-aviv	Gal Shish	galshish	DRAFT
+eu_israel_hapoel-tel-aviv	Mário Pečalka	mariopecalka	CROSS_CLUB
+eu_israel_hapoel-tel-aviv	Eran Zahavi	eranzahavi	DRAFT
+eu_israel_hapoel-tel-aviv	Gil Vermouth	gilvermouth	DRAFT
+eu_israel_hapoel-tel-aviv	Avihai Yadin	avihaiyadin	DRAFT
+eu_israel_hapoel-tel-aviv	Walid Badir	walidbadir	DRAFT
+eu_israel_hapoel-tel-aviv	Yossi Shivhon	yossishivhon	DRAFT
+eu_israel_hapoel-tel-aviv	Elroey Cohen	elroeycohen	DRAFT
+eu_israel_hapoel-tel-aviv	Roei Gordana	roeigordana	DRAFT
+eu_israel_hapoel-tel-aviv	Ben Sahar	bensahar	DRAFT
+eu_israel_hapoel-tel-aviv	Toto Tamuz	tototamuz	DRAFT
+eu_israel_hapoel-tel-aviv	Salim Toama	salimtoama	DRAFT
+eu_israel_hapoel-tel-aviv	Itay Shechter	itayshechter	DRAFT
+eu_israel_maccabi-haifa	Nir Davidovich	nirdavidovich	DRAFT
+eu_israel_maccabi-haifa	Amir Edri	amiredri	DRAFT
+eu_israel_maccabi-haifa	Eyal Meshumar	eyalmeshumar	DRAFT
+eu_israel_maccabi-haifa	Arik Benado	arikbenado	DRAFT
+eu_israel_maccabi-haifa	Shay Maimon	shaymaimon	DRAFT
+eu_israel_maccabi-haifa	Tsepo Masilela	tsepomasilela	DRAFT
+eu_israel_maccabi-haifa	Taleb Tawatha	talebtawatha	DRAFT
+eu_israel_maccabi-haifa	Andriy Pylyavskyi	andriypylyavskyi	DRAFT
+eu_israel_maccabi-haifa	Ali Ottman	aliottman	DRAFT
+eu_israel_maccabi-haifa	Ignacio Canuto	ignaciocanuto	DRAFT
+eu_israel_maccabi-haifa	Idan Vered	idanvered	DRAFT
+eu_israel_maccabi-haifa	Lior Refaelov	liorrefaelov	DRAFT
+eu_israel_maccabi-haifa	Yaniv Katan	yanivkatan	DRAFT
+eu_israel_maccabi-haifa	Eyal Golasa	eyalgolasa	DRAFT
+eu_israel_maccabi-haifa	Adrien Silva	adriensilva	DRAFT
+eu_israel_maccabi-haifa	Tomer Hemed	tomerhemed	DRAFT
+eu_israel_maccabi-haifa	Vladimer Dvalishvili	vladimerdvalishvili	DRAFT
+eu_israel_maccabi-haifa	Mohammad Ghadir	mohammadghadir	DRAFT
+eu_israel_maccabi-tel-aviv	Liran Strauber	liranstrauber	DRAFT
+eu_israel_maccabi-tel-aviv	Guy Solomon	guysolomon	DRAFT
+eu_israel_maccabi-tel-aviv	Yoav Ziv	yoavziv	DRAFT
+eu_israel_maccabi-tel-aviv	Nivaldo	nivaldo	DRAFT
+eu_israel_maccabi-tel-aviv	Savo Pavićević	savopavicevic	DRAFT
+eu_israel_maccabi-tel-aviv	Avi Strool	avistrool	DRAFT
+eu_israel_maccabi-tel-aviv	Rony Gafni	ronygafni	DRAFT
+eu_israel_maccabi-tel-aviv	Gal Alberman	galalberman	DRAFT
+eu_israel_maccabi-tel-aviv	Haris Medunjanin	harismedunjanin	DRAFT
+eu_israel_maccabi-tel-aviv	Maor Buzaglo	maorbuzaglo	DRAFT
+eu_israel_maccabi-tel-aviv	Dor Micha	dormicha	DRAFT
+eu_israel_maccabi-tel-aviv	Sheran Yeini	sheranyeini	DRAFT
+eu_israel_maccabi-tel-aviv	Eliran Atar	eliranatar	DRAFT
+eu_israel_maccabi-tel-aviv	Barak Yitzhaki	barakyitzhaki	DRAFT
+eu_israel_maccabi-tel-aviv	Roberto Colautti	robertocolautti	DRAFT
+eu_israel_maccabi-tel-aviv	Rangelov	rangelov	DRAFT
+eu_israel_maccabi-tel-aviv	Moshe Logasi	moshelogasi	DRAFT
+eu_israel_maccabi-tel-aviv	Tamir Kahlon	tamirkahlon	DRAFT
+eu_moldova_sheriff-tiraspol	Vladislav Stoyanov	vladislavstoyanov	DRAFT
+eu_moldova_sheriff-tiraspol	Dmitri Stajila	dmitristajila	DRAFT
+eu_moldova_sheriff-tiraspol	Benjamin Balima	benjaminbalima	DRAFT
+eu_moldova_sheriff-tiraspol	Artiom Hacaturov	artiomhacaturov	DRAFT
+eu_moldova_sheriff-tiraspol	Miral Samardžić	miralsamardzic	DRAFT
+eu_moldova_sheriff-tiraspol	Alexandru Suvorov	alexandrusuvorov	DRAFT
+eu_moldova_sheriff-tiraspol	Vladimir Volkov	vladimirvolkov	DRAFT
+eu_moldova_sheriff-tiraspol	Jymmy França	jymmyfranca	DRAFT
+eu_moldova_sheriff-tiraspol	Marko Đalović	markoalovic	DRAFT
+eu_moldova_sheriff-tiraspol	Fred Benson	fredbenson	DRAFT
+eu_moldova_sheriff-tiraspol	Florent Rouamba	florentrouamba	DRAFT
+eu_moldova_sheriff-tiraspol	Nadson	nadson	DRAFT
+eu_moldova_sheriff-tiraspol	Wilfried Balima	wilfriedbalima	DRAFT
+eu_moldova_sheriff-tiraspol	Stanislav Ivanov	stanislavivanov	DRAFT
+eu_moldova_sheriff-tiraspol	Aleksandr Erokhin	aleksandrerokhin	DRAFT
+eu_moldova_sheriff-tiraspol	Mahamadou Traoré	mahamadoutraore	DRAFT
+eu_moldova_sheriff-tiraspol	Constantin Mandricenco	constantinmandricenco	DRAFT
+eu_moldova_sheriff-tiraspol	Serghei Gheorghiev	sergheigheorghiev	DRAFT
+eu_netherlands_az-alkmaar	Héctor Moreno	hectormoreno	DRAFT
+eu_netherlands_az-alkmaar	Stijn Schaars	stijnschaars	DRAFT
+eu_netherlands_az-alkmaar	Kolbeinn Sigþórsson	kolbeinnsigorsson	DRAFT
+eu_netherlands_az-alkmaar	Niklas Moisander	niklasmoisander	DRAFT
+eu_netherlands_az-alkmaar	Pontus Wernbloom	pontuswernbloom	DRAFT
+eu_netherlands_az-alkmaar	Ragnar Klavan	ragnarklavan	DRAFT
+eu_netherlands_az-alkmaar	Rasmus Elm	rasmuselm	DRAFT
+eu_netherlands_az-alkmaar	Dirk Marcellis	dirkmarcellis	DRAFT
+eu_netherlands_az-alkmaar	Erik Falkenburg	erikfalkenburg	DRAFT
+eu_netherlands_az-alkmaar	Kew Jaliens	kewjaliens	DRAFT
+eu_netherlands_az-alkmaar	Maarten Martens	maartenmartens	DRAFT
+eu_netherlands_az-alkmaar	Brett Holman	brettholman	DRAFT
+eu_netherlands_az-alkmaar	Jóhann Berg Guðmundsson	johannberggumundsson	DRAFT
+eu_netherlands_az-alkmaar	Simon Poulsen	simonpoulsen	DRAFT
+eu_netherlands_az-alkmaar	Gill Swerts	gillswerts	DRAFT
+eu_netherlands_az-alkmaar	Graziano Pellè	grazianopelle	DRAFT
+eu_netherlands_az-alkmaar	Jonathas	jonathas	DRAFT
+eu_netherlands_az-alkmaar	Nick van der Velden	nickvandervelden	DRAFT
+eu_netherlands_az-alkmaar	Nick Viergever	nickviergever	DRAFT
+eu_netherlands_az-alkmaar	Celso Ortiz	celsoortiz	DRAFT
+eu_netherlands_ajax	Maarten Stekelenburg	maartenstekelenburg	DRAFT
+eu_netherlands_ajax	Kenneth Vermeer	kennethvermeer	DRAFT
+eu_netherlands_ajax	Luis Suárez	luissuarez	DRAFT
+eu_netherlands_ajax	Jan Vertonghen	janvertonghen	DRAFT
+eu_netherlands_ajax	Gregory van der Wiel	gregoryvanderwiel	DRAFT
+eu_netherlands_ajax	Siem de Jong	siemdejong	DRAFT
+eu_netherlands_ajax	Christian Eriksen	christianeriksen	DRAFT
+eu_netherlands_ajax	Mounir El Hamdaoui	mounirelhamdaoui	DRAFT
+eu_netherlands_ajax	Toby Alderweireld	tobyalderweireld	DRAFT
+eu_netherlands_ajax	Demy de Zeeuw	demydezeeuw	DRAFT
+eu_netherlands_ajax	Urby Emanuelson	urbyemanuelson	DRAFT
+eu_netherlands_ajax	Eyong Enoh	eyongenoh	DRAFT
+eu_netherlands_ajax	Miralem Sulejmani	miralemsulejmani	DRAFT
+eu_netherlands_ajax	André Ooijer	andreooijer	DRAFT
+eu_netherlands_ajax	Nicolás Lodeiro	nicolaslodeiro	DRAFT
+eu_netherlands_ajax	Oleguer	oleguer	DRAFT
+eu_netherlands_ajax	Teemu Tainio	teemutainio	DRAFT
+eu_netherlands_ajax	Rasmus Lindgren	rasmuslindgren	DRAFT
+eu_netherlands_ajax	Vurnon Anita	vurnonanita	DRAFT
+eu_netherlands_ajax	Daley Blind	daleyblind	DRAFT
+eu_netherlands_fc-twente	Douglas	douglas	CROSS_CLUB
+eu_netherlands_fc-twente	Bryan Ruiz	bryanruiz	DRAFT
+eu_netherlands_fc-twente	Theo Janssen	theojanssen	DRAFT
+eu_netherlands_fc-twente	Marc Janko	marcjanko	DRAFT
+eu_netherlands_fc-twente	Peter Wisgerhof	peterwisgerhof	DRAFT
+eu_netherlands_fc-twente	Roberto Rosales	robertorosales	DRAFT
+eu_netherlands_fc-twente	Wout Brama	woutbrama	DRAFT
+eu_netherlands_fc-twente	Emir Bajrami	emirbajrami	DRAFT
+eu_netherlands_fc-twente	Denny Landzaat	dennylandzaat	DRAFT
+eu_netherlands_fc-twente	Luuk de Jong	luukdejong	DRAFT
+eu_netherlands_fc-twente	Bernard Parker	bernardparker	DRAFT
+eu_netherlands_fc-twente	Dwight Tiendalli	dwighttiendalli	DRAFT
+eu_netherlands_fc-twente	Rasmus Bengtsson	rasmusbengtsson	DRAFT
+eu_netherlands_fc-twente	Bart Buysse	bartbuysse	DRAFT
+eu_netherlands_fc-twente	Dario Vujicevic	dariovujicevic	DRAFT
+eu_netherlands_fc-twente	Nicky Kuiper	nickykuiper	DRAFT
+eu_netherlands_fc-utrecht	Dries Mertens	driesmertens	DRAFT
+eu_netherlands_fc-utrecht	Ricky van Wolfswinkel	rickyvanwolfswinkel	DRAFT
+eu_netherlands_fc-utrecht	Michael Silberbauer	michaelsilberbauer	DRAFT
+eu_netherlands_fc-utrecht	Nana Asare	nanaasare	DRAFT
+eu_netherlands_fc-utrecht	Jacob Mulenga	jacobmulenga	DRAFT
+eu_netherlands_fc-utrecht	Jan Wuytens	janwuytens	DRAFT
+eu_netherlands_fc-utrecht	Alje Schut	aljeschut	DRAFT
+eu_netherlands_fc-utrecht	Jacob Lensky	jacoblensky	DRAFT
+eu_netherlands_fc-utrecht	Mihai Neşu	mihainesu	DRAFT
+eu_netherlands_fc-utrecht	Tim Cornelisse	timcornelisse	DRAFT
+eu_netherlands_fc-utrecht	Sander Keller	sanderkeller	DRAFT
+eu_netherlands_fc-utrecht	Barry Maguire	barrymaguire	DRAFT
+eu_netherlands_fc-utrecht	Frank Demouge	frankdemouge	DRAFT
+eu_netherlands_fc-utrecht	Gianluca Nijholt	gianlucanijholt	DRAFT
+eu_netherlands_fc-utrecht	Tommy Oar	tommyoar	DRAFT
+eu_netherlands_fc-utrecht	Mark van der Maarel	markvandermaarel	DRAFT
+eu_netherlands_fc-utrecht	Erixon Danso	erixondanso	DRAFT
+eu_netherlands_fc-utrecht	Michael Zullo	michaelzullo	DRAFT
+eu_netherlands_fc-utrecht	Ismo Vorstermans	ismovorstermans	DRAFT
+eu_netherlands_fc-utrecht	Adam Sarota	adamsarota	DRAFT
+eu_netherlands_feyenoord	Georginio Wijnaldum	georginiowijnaldum	DRAFT
+eu_netherlands_feyenoord	Ron Vlaar	ronvlaar	DRAFT
+eu_netherlands_feyenoord	André Bahia	andrebahia	DRAFT
+eu_netherlands_feyenoord	Jon Dahl Tomasson	jondahltomasson	DRAFT
+eu_netherlands_feyenoord	Leroy Fer	leroyfer	DRAFT
+eu_netherlands_feyenoord	Karim El Ahmadi	karimelahmadi	DRAFT
+eu_netherlands_feyenoord	Fedor Smolov	fedorsmolov	DRAFT
+eu_netherlands_feyenoord	Luigi Bruins	luigibruins	DRAFT
+eu_netherlands_feyenoord	Sekou Cissé	sekoucisse	DRAFT
+eu_netherlands_feyenoord	Diego Biseswar	diegobiseswar	DRAFT
+eu_netherlands_feyenoord	Ruben Schaken	rubenschaken	DRAFT
+eu_netherlands_feyenoord	Stefan de Vrij	stefandevrij	DRAFT
+eu_netherlands_feyenoord	Michael Lumb	michaellumb	DRAFT
+eu_netherlands_feyenoord	Tim de Cler	timdecler	DRAFT
+eu_netherlands_feyenoord	Dani Fernández	danifernandez	DRAFT
+eu_netherlands_feyenoord	Kelvin Leerdam	kelvinleerdam	DRAFT
+eu_netherlands_feyenoord	Adil Auassar	adilauassar	DRAFT
+eu_netherlands_feyenoord	Manteiga	manteiga	DRAFT
+eu_netherlands_nec-nijmegen	Lasse Schöne	lasseschone	DRAFT
+eu_netherlands_nec-nijmegen	Thomas Chatelle	thomaschatelle	DRAFT
+eu_netherlands_nec-nijmegen	Leroy George	leroygeorge	DRAFT
+eu_netherlands_nec-nijmegen	Ramon Zomer	ramonzomer	DRAFT
+eu_netherlands_nec-nijmegen	Bas Sibum	bassibum	DRAFT
+eu_netherlands_nec-nijmegen	John Goossens	johngoossens	DRAFT
+eu_netherlands_nec-nijmegen	Lorenzo Davids	lorenzodavids	DRAFT
+eu_netherlands_nec-nijmegen	Rens van Eijden	rensvaneijden	DRAFT
+eu_netherlands_nec-nijmegen	Erton Fejzullahu	ertonfejzullahu	DRAFT
+eu_netherlands_nec-nijmegen	Niels Wellenberg	nielswellenberg	DRAFT
+eu_netherlands_nec-nijmegen	Mark Otten	markotten	DRAFT
+eu_netherlands_nec-nijmegen	Rick ten Voorde	ricktenvoorde	DRAFT
+eu_netherlands_nec-nijmegen	Adnan Secerovic	adnansecerovic	DRAFT
+eu_netherlands_nec-nijmegen	Jasper Cillessen	jaspercillessen	DRAFT
+eu_netherlands_nec-nijmegen	Björn Vleminckx	bjornvleminckx	DRAFT
+eu_netherlands_psv-eindhoven	Balázs Dzsudzsák	balazsdzsudzsak	DRAFT
+eu_netherlands_psv-eindhoven	Jeremain Lens	jeremainlens	DRAFT
+eu_netherlands_psv-eindhoven	Ibrahim Afellay	ibrahimafellay	DRAFT
+eu_netherlands_psv-eindhoven	Ola Toivonen	olatoivonen	DRAFT
+eu_netherlands_psv-eindhoven	Francisco Rodríguez	franciscorodriguez	DRAFT
+eu_netherlands_psv-eindhoven	Orlando Engelaar	orlandoengelaar	DRAFT
+eu_netherlands_psv-eindhoven	Danny Koevermans	dannykoevermans	DRAFT
+eu_netherlands_psv-eindhoven	Otman Bakkal	otmanbakkal	DRAFT
+eu_netherlands_psv-eindhoven	Atiba Hutchinson	atibahutchinson	DRAFT
+eu_netherlands_psv-eindhoven	Marcelo	marcelo	DRAFT
+eu_netherlands_psv-eindhoven	Stanislav Manolev	stanislavmanolev	DRAFT
+eu_netherlands_psv-eindhoven	Wilfred Bouma	wilfredbouma	DRAFT
+eu_netherlands_psv-eindhoven	Nordin Amrabat	nordinamrabat	DRAFT
+eu_netherlands_psv-eindhoven	Erik Pieters	erikpieters	DRAFT
+eu_netherlands_psv-eindhoven	Jagoš Vuković	jagosvukovic	DRAFT
+eu_netherlands_psv-eindhoven	Stefan Nijland	stefannijland	DRAFT
+eu_netherlands_psv-eindhoven	Jan Kromkamp	jankromkamp	DRAFT
+eu_netherlands_psv-eindhoven	Funso Ojo	funsoojo	DRAFT
+eu_netherlands_psv-eindhoven	Stijn Wuytens	stijnwuytens	DRAFT
+eu_netherlands_psv-eindhoven	Andreas Isaksson	andreasisaksson	DRAFT
+eu_netherlands_sc-heerenveen	Roy Beerens	roybeerens	DRAFT
+eu_netherlands_sc-heerenveen	Michel Breuer	michelbreuer	DRAFT
+eu_netherlands_sc-heerenveen	Oussama Assaidi	oussamaassaidi	DRAFT
+eu_netherlands_sc-heerenveen	Viktor Elm	viktorelm	DRAFT
+eu_netherlands_sc-heerenveen	Filip Đuričić	filipuricic	DRAFT
+eu_netherlands_sc-heerenveen	Christian Grindheim	christiangrindheim	DRAFT
+eu_netherlands_sc-heerenveen	Arnold Kruiswijk	arnoldkruiswijk	DRAFT
+eu_netherlands_sc-heerenveen	Bas Dost	basdost	DRAFT
+eu_netherlands_sc-heerenveen	Michal Papadopulos	michalpapadopulos	DRAFT
+eu_netherlands_sc-heerenveen	Mika Väyrynen	mikavayrynen	DRAFT
+eu_netherlands_sc-heerenveen	Geert Arend Roorda	geertarendroorda	DRAFT
+eu_netherlands_sc-heerenveen	Philip Haglund	philiphaglund	DRAFT
+eu_netherlands_sc-heerenveen	Youssef El-Akchaoui	youssefelakchaoui	DRAFT
+eu_netherlands_sc-heerenveen	Daryl Janmaat	daryljanmaat	DRAFT
+eu_netherlands_sc-heerenveen	Michal Švec	michalsvec	DRAFT
+eu_netherlands_sc-heerenveen	Tarik Elyounoussi	tarikelyounoussi	DRAFT
+eu_netherlands_sc-heerenveen	Calvin Jong-A-Pin	calvinjongapin	DRAFT
+eu_netherlands_sc-heerenveen	Milan Kopic	milankopic	DRAFT
+eu_netherlands_sc-heerenveen	Igor Đurić	igoruric	DRAFT
+eu_netherlands_sc-heerenveen	Samir Fazli	samirfazli	DRAFT
+eu_norway_molde-fk	Pape Paté Diouf	papepatediouf	DRAFT
+eu_norway_molde-fk	Magne Hoseth	magnehoseth	DRAFT
+eu_norway_molde-fk	Baye Djiby Fall	bayedjibyfall	DRAFT
+eu_norway_molde-fk	Emil Johansson	emiljohansson	DRAFT
+eu_norway_molde-fk	Makhtar Thioune	makhtarthioune	DRAFT
+eu_norway_molde-fk	Björn Runström	bjornrunstrom	DRAFT
+eu_norway_molde-fk	Daniel Berg Hestad	danielberghestad	DRAFT
+eu_norway_molde-fk	Mattias Moström	mattiasmostrom	DRAFT
+eu_norway_molde-fk	Thomas Holm	thomasholm	DRAFT
+eu_norway_molde-fk	Magne Simonsen	magnesimonsen	DRAFT
+eu_norway_molde-fk	Vegard Forren	vegardforren	DRAFT
+eu_norway_molde-fk	Aksel Berget Skjølsvik	akselbergetskjlsvik	DRAFT
+eu_norway_molde-fk	Christian Steen	christiansteen	DRAFT
+eu_norway_molde-fk	Kristoffer Vatshaug	kristoffervatshaug	DRAFT
+eu_norway_molde-fk	Marcus Andreasson	marcusandreasson	DRAFT
+eu_norway_molde-fk	Øyvind Gjerde	yvindgjerde	DRAFT
+eu_norway_molde-fk	Kristian Strandhagen	kristianstrandhagen	DRAFT
+eu_norway_rosenborg-bk	Per Ciljan Skjelbred	perciljanskjelbred	DRAFT
+eu_norway_rosenborg-bk	Anthony Annan	anthonyannan	DRAFT
+eu_norway_rosenborg-bk	Mikael Lustig	mikaellustig	DRAFT
+eu_norway_rosenborg-bk	Rade Prica	radeprica	DRAFT
+eu_norway_rosenborg-bk	Steffen Iversen	steffeniversen	DRAFT
+eu_norway_rosenborg-bk	Vadim Demidov	vadimdemidov	DRAFT
+eu_norway_rosenborg-bk	Markus Henriksen	markushenriksen	DRAFT
+eu_norway_rosenborg-bk	Mikael Dorsin	mikaeldorsin	DRAFT
+eu_norway_rosenborg-bk	Mattias Bjärsmyr	mattiasbjarsmyr	DRAFT
+eu_norway_rosenborg-bk	Bakary Sare	bakarysare	DRAFT
+eu_norway_rosenborg-bk	Trond Olsen	trondolsen	DRAFT
+eu_norway_rosenborg-bk	Fredrik Winsnes	fredrikwinsnes	DRAFT
+eu_norway_rosenborg-bk	Morten Moldskred	mortenmoldskred	DRAFT
+eu_norway_rosenborg-bk	Simen Wangberg	simenwangberg	DRAFT
+eu_norway_rosenborg-bk	Alejandro Lago	alejandrolago	DRAFT
+eu_norway_rosenborg-bk	Mushaga Bakenga	mushagabakenga	DRAFT
+eu_norway_rosenborg-bk	Roar Strand	roarstrand	DRAFT
+eu_norway_rosenborg-bk	Gjermund Åsen	gjermundasen	DRAFT
+eu_norway_rosenborg-bk	Michael Jamtfall	michaeljamtfall	DRAFT
+eu_norway_troms-il	Kara Mbodji	karambodji	DRAFT
+eu_norway_troms-il	Sigurd Rushfeldt	sigurdrushfeldt	DRAFT
+eu_norway_troms-il	Tom Høgli	tomhgli	DRAFT
+eu_norway_troms-il	Ruben Yttergård Jenssen	rubenyttergardjenssen	DRAFT
+eu_norway_troms-il	Miika Koppinen	miikakoppinen	DRAFT
+eu_norway_troms-il	Kayke	kayke	DRAFT
+eu_norway_troms-il	Fredrik Björck	fredrikbjorck	DRAFT
+eu_norway_troms-il	Remi Johansen	remijohansen	DRAFT
+eu_norway_troms-il	George Mourad	georgemourad	DRAFT
+eu_norway_troms-il	Kevin Larsen	kevinlarsen	DRAFT
+eu_norway_troms-il	Mohammed Ahamed	mohammedahamed	DRAFT
+eu_norway_troms-il	Hans Åge Yndestad	hansageyndestad	DRAFT
+eu_norway_troms-il	Helge Haugen	helgehaugen	DRAFT
+eu_norway_troms-il	Stevan Bates	stevanbates	DRAFT
+eu_norway_troms-il	Tommy Knarvik	tommyknarvik	DRAFT
+eu_norway_troms-il	Mads Reginiussen	madsreginiussen	DRAFT
+eu_norway_troms-il	Saliou Ciss	saliouciss	DRAFT
+eu_norway_troms-il	Thomas Drage	thomasdrage	DRAFT
+eu_norway_troms-il	Hans Julius Norbye	hansjuliusnorbye	DRAFT
+eu_norway_valerenga	Mohammed Fellah	mohammedfellah	DRAFT
+eu_norway_valerenga	André Muri	andremuri	DRAFT
+eu_norway_valerenga	Kristofer Hæstad	kristoferhstad	DRAFT
+eu_norway_valerenga	Luton Shelton	lutonshelton	DRAFT
+eu_norway_valerenga	Bojan Zajić	bojanzajic	DRAFT
+eu_norway_valerenga	Harmeet Singh	harmeetsingh	DRAFT
+eu_norway_valerenga	Bengt Sæternes	bengtsternes	DRAFT
+eu_norway_valerenga	Andreas Nordvik	andreasnordvik	DRAFT
+eu_norway_valerenga	Morten Berre	mortenberre	DRAFT
+eu_norway_valerenga	Stefan Strandberg	stefanstrandberg	DRAFT
+eu_norway_valerenga	Freddy dos Santos	freddydossantos	DRAFT
+eu_norway_valerenga	Dawda Leigh	dawdaleigh	DRAFT
+eu_norway_valerenga	Amin Nouri	aminnouri	DRAFT
+eu_norway_valerenga	Kristian Brix	kristianbrix	DRAFT
+eu_norway_valerenga	Birger Madsen	birgermadsen	DRAFT
+eu_norway_valerenga	Mostafa Abdellaoue	mostafaabdellaoue	DRAFT
+eu_norway_valerenga	Lars Iver Strand	larsiverstrand	DRAFT
+eu_norway_valerenga	Adnan Haidar	adnanhaidar	DRAFT
+eu_poland_lech-poznan	Krzysztof Kotorowski	krzysztofkotorowski	DRAFT
+eu_poland_lech-poznan	Jasmin Burić	jasminburic	DRAFT
+eu_poland_lech-poznan	Bartosz Bosacki	bartoszbosacki	DRAFT
+eu_poland_lech-poznan	Manuel Arboleda	manuelarboleda	DRAFT
+eu_poland_lech-poznan	Grzegorz Wojtkowiak	grzegorzwojtkowiak	DRAFT
+eu_poland_lech-poznan	Seweryn Gancarczyk	seweryngancarczyk	DRAFT
+eu_poland_lech-poznan	Luis Henriquez	luishenriquez	DRAFT
+eu_poland_lech-poznan	Marcin Kikut	marcinkikut	DRAFT
+eu_poland_lech-poznan	Dimitrije Injac	dimitrijeinjac	DRAFT
+eu_poland_lech-poznan	Tomasz Bandrowski	tomaszbandrowski	DRAFT
+eu_poland_lech-poznan	Semir Štilić	semirstilic	DRAFT
+eu_poland_lech-poznan	Sergei Krivets	sergeikrivets	DRAFT
+eu_poland_lech-poznan	Sławomir Peszko	sawomirpeszko	DRAFT
+eu_poland_lech-poznan	Artjoms Rudņevs	artjomsrudnevs	DRAFT
+eu_poland_lech-poznan	Joel Tshibamba	joeltshibamba	DRAFT
+eu_poland_lech-poznan	Artur Wichniarek	arturwichniarek	DRAFT
+eu_poland_lech-poznan	Jakub Wilk	jakubwilk	DRAFT
+eu_poland_lech-poznan	Mateusz Możdżeń	mateuszmozdzen	DRAFT
+eu_poland_legia-warsaw	Marijan Antolović	marijanantolovic	DRAFT
+eu_poland_legia-warsaw	Wojciech Skaba	wojciechskaba	DRAFT
+eu_poland_legia-warsaw	Dickson Choto	dicksonchoto	DRAFT
+eu_poland_legia-warsaw	Iñaki Astiz	inakiastiz	DRAFT
+eu_poland_legia-warsaw	Jakub Rzeźniczak	jakubrzezniczak	DRAFT
+eu_poland_legia-warsaw	Marcin Komorowski	marcinkomorowski	DRAFT
+eu_poland_legia-warsaw	Tomasz Kiełbowicz	tomaszkiebowicz	DRAFT
+eu_poland_legia-warsaw	Jakub Wawrzyniak	jakubwawrzyniak	DRAFT
+eu_poland_legia-warsaw	Ivica Vrdoljak	ivicavrdoljak	DRAFT
+eu_poland_legia-warsaw	Ariel Borysiuk	arielborysiuk	DRAFT
+eu_poland_legia-warsaw	Maciej Iwański	maciejiwanski	DRAFT
+eu_poland_legia-warsaw	Miroslav Radović	miroslavradovic	DRAFT
+eu_poland_legia-warsaw	Manú	manu	DRAFT
+eu_poland_legia-warsaw	Cabral	cabral	CROSS_CLUB
+eu_poland_legia-warsaw	Sebastian Szałachowski	sebastianszaachowski	DRAFT
+eu_poland_legia-warsaw	Michał Kucharczyk	michakucharczyk	DRAFT
+eu_poland_legia-warsaw	Takesure Chinyama	takesurechinyama	DRAFT
+eu_poland_legia-warsaw	Bruno Mezenga	brunomezenga	DRAFT
+eu_poland_wisa-krakow	Mariusz Pawełek	mariuszpaweek	DRAFT
+eu_poland_wisa-krakow	Sergei Pareiko	sergeipareiko	DRAFT
+eu_poland_wisa-krakow	Gordan Bunoza	gordanbunoza	DRAFT
+eu_poland_wisa-krakow	Osman Chávez	osmanchavez	DRAFT
+eu_poland_wisa-krakow	Arkadiusz Głowacki	arkadiuszgowacki	CROSS_CLUB
+eu_poland_wisa-krakow	Dragan Paljić	draganpaljic	DRAFT
+eu_poland_wisa-krakow	Junior Díaz	juniordiaz	CROSS_CLUB
+eu_poland_wisa-krakow	Cezary Wilk	cezarywilk	DRAFT
+eu_poland_wisa-krakow	Radosław Sobolewski	radosawsobolewski	DRAFT
+eu_poland_wisa-krakow	Łukasz Garguła	ukaszgargua	DRAFT
+eu_poland_wisa-krakow	Andraž Kirm	andrazkirm	DRAFT
+eu_poland_wisa-krakow	Patryk Małecki	patrykmaecki	DRAFT
+eu_poland_wisa-krakow	Tomáš Jirsák	tomasjirsak	DRAFT
+eu_poland_wisa-krakow	Maor Melikson	maormelikson	DRAFT
+eu_poland_wisa-krakow	Rafał Boguski	rafaboguski	DRAFT
+eu_poland_wisa-krakow	Paweł Brożek	pawebrozek	DRAFT
+eu_poland_wisa-krakow	Maciej Żurawski	maciejzurawski	DRAFT
+eu_poland_wisa-krakow	Nourdin Boukhari	nourdinboukhari	DRAFT
+eu_portugal_cd-nacional	Felipe Lopes	felipelopes	DRAFT
+eu_portugal_cd-nacional	Luís Alberto	luisalberto	DRAFT
+eu_portugal_cd-nacional	Thiago Gentil	thiagogentil	DRAFT
+eu_portugal_cd-nacional	Nejc Pečnik	nejcpecnik	DRAFT
+eu_portugal_cd-nacional	Patacas	patacas	DRAFT
+eu_portugal_cd-nacional	Mateus	mateus	DRAFT
+eu_portugal_cd-nacional	João Aurélio	joaoaurelio	DRAFT
+eu_portugal_cd-nacional	Kevin Amuneke	kevinamuneke	DRAFT
+eu_portugal_cd-nacional	Zarco Tomašević	zarcotomasevic	DRAFT
+eu_portugal_cd-nacional	Danielson	danielson	DRAFT
+eu_portugal_cd-nacional	Bruno Amaro	brunoamaro	DRAFT
+eu_portugal_cd-nacional	Rene Mihelič	renemihelic	DRAFT
+eu_portugal_cd-nacional	Bracalli	bracalli	DRAFT
+eu_portugal_cd-nacional	Diego Barcelos	diegobarcelos	DRAFT
+eu_portugal_cd-nacional	Edgar Costa	edgarcosta	DRAFT
+eu_portugal_cd-nacional	Skolnik	skolnik	DRAFT
+eu_portugal_cs-maritimo	Peçanha	pecanha	DRAFT
+eu_portugal_cs-maritimo	Marcelo Boeck	marceloboeck	DRAFT
+eu_portugal_cs-maritimo	Robson	robson	DRAFT
+eu_portugal_cs-maritimo	João Guilherme	joaoguilherme	DRAFT
+eu_portugal_cs-maritimo	Briguel	briguel	DRAFT
+eu_portugal_cs-maritimo	Alonso	alonso	DRAFT
+eu_portugal_cs-maritimo	Rafael Miranda	rafaelmiranda	DRAFT
+eu_portugal_cs-maritimo	Roberto Sousa	robertosousa	DRAFT
+eu_portugal_cs-maritimo	Djalma	djalma	DRAFT
+eu_portugal_cs-maritimo	Baba Diawara	babadiawara	DRAFT
+eu_portugal_cs-maritimo	Marquinho	marquinho	DRAFT
+eu_portugal_cs-maritimo	Kléber	kleber	DRAFT
+eu_portugal_cs-maritimo	Tchô	tcho	DRAFT
+eu_portugal_cs-maritimo	André Vilas Boas	andrevilasboas	DRAFT
+eu_portugal_cs-maritimo	Ricardo Esteves	ricardoesteves	DRAFT
+eu_portugal_cs-maritimo	Evangelos Mantzios	evangelosmantzios	DRAFT
+eu_portugal_estoril-praia	Mário Matos	mariomatos	DRAFT
+eu_portugal_estoril-praia	Cléber	cleber	DRAFT
+eu_portugal_estoril-praia	Lameirão	lameirao	DRAFT
+eu_portugal_estoril-praia	Filipe da Costa	filipedacosta	DRAFT
+eu_portugal_estoril-praia	Vinícius Reche	viniciusreche	DRAFT
+eu_portugal_estoril-praia	Eduardo	eduardo	DRAFT
+eu_portugal_estoril-praia	Alex Afonso	alexafonso	DRAFT
+eu_portugal_estoril-praia	Marco Silva	marcosilva	DRAFT
+eu_portugal_estoril-praia	Tiago Gomes	tiagogomes	DRAFT
+eu_portugal_estoril-praia	André Castro	andrecastro	DRAFT
+eu_portugal_estoril-praia	Jefferson	jefferson	DRAFT
+eu_portugal_estoril-praia	Luís Carlos	luiscarlos	DRAFT
+eu_portugal_estoril-praia	Steven Vitória	stevenvitoria	DRAFT
+eu_portugal_estoril-praia	João Coimbra	joaocoimbra	DRAFT
+eu_portugal_estoril-praia	Luís Leal	luisleal	DRAFT
+eu_portugal_estoril-praia	Licá	lica	DRAFT
+eu_portugal_fc-porto	Helton	helton	DRAFT
+eu_portugal_fc-porto	Beto	beto	DRAFT
+eu_portugal_fc-porto	Falcao	falcao	DRAFT
+eu_portugal_fc-porto	Hulk	hulk	DRAFT
+eu_portugal_fc-porto	João Moutinho	joaomoutinho	DRAFT
+eu_portugal_fc-porto	Álvaro Pereira	alvaropereira	DRAFT
+eu_portugal_fc-porto	Rolando	rolando	DRAFT
+eu_portugal_fc-porto	James Rodríguez	jamesrodriguez	DRAFT
+eu_portugal_fc-porto	Cristian Rodríguez	cristianrodriguez	DRAFT
+eu_portugal_fc-porto	Freddy Guarín	freddyguarin	DRAFT
+eu_portugal_fc-porto	Fernando	fernando	CROSS_CLUB
+eu_portugal_fc-porto	Rúben Micael	rubenmicael	DRAFT
+eu_portugal_fc-porto	Silvestre Varela	silvestrevarela	DRAFT
+eu_portugal_fc-porto	Fernando Belluschi	fernandobelluschi	DRAFT
+eu_portugal_fc-porto	Jorge Fucile	jorgefucile	DRAFT
+eu_portugal_fc-porto	Maicon	maicon	CROSS_CLUB
+eu_portugal_fc-porto	Walter	walter	DRAFT
+eu_portugal_fc-porto	Mariano González	marianogonzalez	DRAFT
+eu_portugal_fc-porto	Sereno	sereno	DRAFT
+eu_portugal_fc-porto	Ukra	ukra	DRAFT
+eu_portugal_fc-porto	Cristian Săpunaru	cristiansapunaru	DRAFT
+eu_portugal_fc-porto	Castro	castro	DRAFT
+eu_portugal_pacos-de-ferreira	Cássio	cassio	DRAFT
+eu_portugal_pacos-de-ferreira	Coelho	coelho	DRAFT
+eu_portugal_pacos-de-ferreira	Ricardo	ricardo	CROSS_CLUB
+eu_portugal_pacos-de-ferreira	Baiano	baiano	DRAFT
+eu_portugal_pacos-de-ferreira	Ozeia	ozeia	DRAFT
+eu_portugal_pacos-de-ferreira	Ricardo Dias	ricardodias	DRAFT
+eu_portugal_pacos-de-ferreira	Maykon	maykon	DRAFT
+eu_portugal_pacos-de-ferreira	André Leão	andreleao	DRAFT
+eu_portugal_pacos-de-ferreira	Manuel José	manueljose	DRAFT
+eu_portugal_pacos-de-ferreira	Filipe Anunciação	filipeanunciacao	DRAFT
+eu_portugal_pacos-de-ferreira	David Simão	davidsimao	DRAFT
+eu_portugal_pacos-de-ferreira	Nélson Oliveira	nelsonoliveira	DRAFT
+eu_portugal_pacos-de-ferreira	Pizzi	pizzi	DRAFT
+eu_portugal_pacos-de-ferreira	William	william	DRAFT
+eu_portugal_pacos-de-ferreira	Rondon	rondon	DRAFT
+eu_portugal_pacos-de-ferreira	Mario Rondón	mariorondon	DRAFT
+eu_portugal_rio-ave	Paulo Santos	paulosantos	DRAFT
+eu_portugal_rio-ave	Sílvio	silvio	CROSS_CLUB
+eu_portugal_rio-ave	Gaspar	gaspar	DRAFT
+eu_portugal_rio-ave	Ricardo Chaves	ricardochaves	DRAFT
+eu_portugal_rio-ave	Tiago Pinto	tiagopinto	DRAFT
+eu_portugal_rio-ave	José Gomes	josegomes	DRAFT
+eu_portugal_rio-ave	Braga	braga	DRAFT
+eu_portugal_rio-ave	Tarantini	tarantini	DRAFT
+eu_portugal_rio-ave	Wires	wires	DRAFT
+eu_portugal_rio-ave	Bruno Gama	brunogama	DRAFT
+eu_portugal_rio-ave	Saulo	saulo	DRAFT
+eu_portugal_rio-ave	João Tomás	joaotomas	DRAFT
+eu_portugal_rio-ave	Yazalde	yazalde	DRAFT
+eu_portugal_rio-ave	Sidnei	sidnei	CROSS_CLUB
+eu_portugal_rio-ave	Tiago Targino	tiagotargino	DRAFT
+eu_portugal_rio-ave	Kelvin	kelvin	DRAFT
+eu_portugal_sc-braga	Artur Moraes	arturmoraes	DRAFT
+eu_portugal_sc-braga	Quim	quim	DRAFT
+eu_portugal_sc-braga	Alberto Rodríguez	albertorodriguez	DRAFT
+eu_portugal_sc-braga	Moisés	moises	DRAFT
+eu_portugal_sc-braga	Miguel Garcia	miguelgarcia	DRAFT
+eu_portugal_sc-braga	Sílvio	silvio	CROSS_CLUB
+eu_portugal_sc-braga	Elderson Echiejile	eldersonechiejile	DRAFT
+eu_portugal_sc-braga	Salino	salino	DRAFT
+eu_portugal_sc-braga	Custódio	custodio	DRAFT
+eu_portugal_sc-braga	Hugo Viana	hugoviana	DRAFT
+eu_portugal_sc-braga	Luís Aguiar	luisaguiar	DRAFT
+eu_portugal_sc-braga	Mossoró	mossoro	DRAFT
+eu_portugal_sc-braga	Alan	alan	DRAFT
+eu_portugal_sc-braga	Hélder Barbosa	helderbarbosa	DRAFT
+eu_portugal_sc-braga	Paulo César	paulocesar	DRAFT
+eu_portugal_sc-braga	Albert Meyong	albertmeyong	DRAFT
+eu_portugal_sc-braga	Lima	lima	DRAFT
+eu_portugal_sc-braga	Keita	keita	CROSS_CLUB
+eu_portugal_sl-benfica	Roberto	roberto	DRAFT
+eu_portugal_sl-benfica	Júlio César	juliocesar	DRAFT
+eu_portugal_sl-benfica	Luisão	luisao	DRAFT
+eu_portugal_sl-benfica	David Luiz	davidluiz	DRAFT
+eu_portugal_sl-benfica	Fábio Coentrão	fabiocoentrao	DRAFT
+eu_portugal_sl-benfica	Maxi Pereira	maxipereira	DRAFT
+eu_portugal_sl-benfica	César Peixoto	cesarpeixoto	DRAFT
+eu_portugal_sl-benfica	Sidnei	sidnei	CROSS_CLUB
+eu_portugal_sl-benfica	Javi García	javigarcia	DRAFT
+eu_portugal_sl-benfica	Carlos Martins	carlosmartins	DRAFT
+eu_portugal_sl-benfica	Pablo Aimar	pabloaimar	DRAFT
+eu_portugal_sl-benfica	Nicolás Gaitán	nicolasgaitan	DRAFT
+eu_portugal_sl-benfica	Eduardo Salvio	eduardosalvio	DRAFT
+eu_portugal_sl-benfica	Rúben Amorim	rubenamorim	DRAFT
+eu_portugal_sl-benfica	Airton	airton	DRAFT
+eu_portugal_sl-benfica	Javier Saviola	javiersaviola	DRAFT
+eu_portugal_sl-benfica	Óscar Cardozo	oscarcardozo	DRAFT
+eu_portugal_sl-benfica	Nuno Gomes	nunogomes	DRAFT
+eu_portugal_sl-benfica	Alan Kardec	alankardec	DRAFT
+eu_portugal_sl-benfica	Weldon	weldon	DRAFT
+eu_portugal_sl-benfica	Fábio Faria	fabiofaria	DRAFT
+eu_portugal_sporting-cp	Rui Patrício	ruipatricio	DRAFT
+eu_portugal_sporting-cp	Timo Hildebrand	timohildebrand	DRAFT
+eu_portugal_sporting-cp	João Pereira	joaopereira	DRAFT
+eu_portugal_sporting-cp	Daniel Carriço	danielcarrico	DRAFT
+eu_portugal_sporting-cp	Anderson Polga	andersonpolga	DRAFT
+eu_portugal_sporting-cp	Evaldo	evaldo	DRAFT
+eu_portugal_sporting-cp	Abel	abel	DRAFT
+eu_portugal_sporting-cp	Caneira	caneira	DRAFT
+eu_portugal_sporting-cp	Pedro Mendes	pedromendes	DRAFT
+eu_portugal_sporting-cp	Maniche	maniche	DRAFT
+eu_portugal_sporting-cp	Matías Fernández	matiasfernandez	DRAFT
+eu_portugal_sporting-cp	Jaime Valdés	jaimevaldes	DRAFT
+eu_portugal_sporting-cp	Marat Izmailov	maratizmailov	DRAFT
+eu_portugal_sporting-cp	Simon Vukčević	simonvukcevic	DRAFT
+eu_portugal_sporting-cp	Zapater	zapater	DRAFT
+eu_portugal_sporting-cp	Liedson	liedson	DRAFT
+eu_portugal_sporting-cp	Hélder Postiga	helderpostiga	DRAFT
+eu_portugal_sporting-cp	Yannick Djaló	yannickdjalo	DRAFT
+eu_portugal_vitoria-sc	Nilson	nilson	DRAFT
+eu_portugal_vitoria-sc	Alex	alex	CROSS_CLUB
+eu_portugal_vitoria-sc	João Paulo	joaopaulo	CROSS_CLUB
+eu_portugal_vitoria-sc	Douglas	douglas	CROSS_CLUB
+eu_portugal_vitoria-sc	Anderson Santana	andersonsantana	DRAFT
+eu_portugal_vitoria-sc	Ricardo	ricardo	CROSS_CLUB
+eu_portugal_vitoria-sc	Flávio Meireles	flaviomeireles	DRAFT
+eu_portugal_vitoria-sc	João Alves	joaoalves	DRAFT
+eu_portugal_vitoria-sc	Rui Miguel	ruimiguel	DRAFT
+eu_portugal_vitoria-sc	Pereirinha	pereirinha	DRAFT
+eu_portugal_vitoria-sc	Jorge Ribeiro	jorgeribeiro	DRAFT
+eu_portugal_vitoria-sc	Targino	targino	DRAFT
+eu_portugal_vitoria-sc	Edgar Silva	edgarsilva	DRAFT
+eu_portugal_vitoria-sc	Maranhão	maranhao	DRAFT
+eu_portugal_vitoria-sc	Toscano	toscano	DRAFT
+eu_portugal_vitoria-sc	Bruno Teles	brunoteles	DRAFT
+eu_portugal_vitoria-setubal	Diego	diego	DRAFT
+eu_portugal_vitoria-setubal	Ricardo Batista	ricardobatista	DRAFT
+eu_portugal_vitoria-setubal	Aurélien Collin	aureliencollin	DRAFT
+eu_portugal_vitoria-setubal	Ricardo Silva	ricardosilva	DRAFT
+eu_portugal_vitoria-setubal	Miguelito	miguelito	DRAFT
+eu_portugal_vitoria-setubal	Joãozinho	joaozinho	CROSS_CLUB
+eu_portugal_vitoria-setubal	Hugo Leal	hugoleal	DRAFT
+eu_portugal_vitoria-setubal	Bruno Gallo	brunogallo	DRAFT
+eu_portugal_vitoria-setubal	Zé Pedro	zepedro	DRAFT
+eu_portugal_vitoria-setubal	Paulo Regula	pauloregula	DRAFT
+eu_portugal_vitoria-setubal	Jaílson	jailson	DRAFT
+eu_portugal_vitoria-setubal	Henrique	henrique	DRAFT
+eu_portugal_vitoria-setubal	Leandro Branco	leandrobranco	DRAFT
+eu_portugal_vitoria-setubal	Valdomiro	valdomiro	DRAFT
+eu_portugal_vitoria-setubal	Ney Santos	neysantos	DRAFT
+eu_portugal_vitoria-setubal	Keita	keita	CROSS_CLUB
+eu_romania_astra-ploiesti	Silviu Lung Jr.	silviulungjr	DRAFT
+eu_romania_astra-ploiesti	Miron	miron	DRAFT
+eu_romania_astra-ploiesti	Ovidiu Mihalache	ovidiumihalache	DRAFT
+eu_romania_astra-ploiesti	Alexandru Mățel	alexandrumatel	DRAFT
+eu_romania_astra-ploiesti	Valerică Găman	valericagaman	CROSS_CLUB
+eu_romania_astra-ploiesti	Takayuki Seto	takayukiseto	DRAFT
+eu_romania_astra-ploiesti	Florin Lovin	florinlovin	DRAFT
+eu_romania_astra-ploiesti	Nicolae Grigore	nicolaegrigore	DRAFT
+eu_romania_astra-ploiesti	Gabriel Enache	gabrielenache	DRAFT
+eu_romania_astra-ploiesti	Fatai Kehinde	fataikehinde	DRAFT
+eu_romania_astra-ploiesti	Mirko Ivanovski	mirkoivanovski	DRAFT
+eu_romania_astra-ploiesti	Bogdan Chipirliu	bogdanchipirliu	DRAFT
+eu_romania_astra-ploiesti	Ousmane N'Doye	ousmanendoye	CROSS_CLUB
+eu_romania_astra-ploiesti	Marian Cristescu	mariancristescu	DRAFT
+eu_romania_astra-ploiesti	Paulinho	paulinho	DRAFT
+eu_romania_astra-ploiesti	Liviu Ganea	liviuganea	CROSS_CLUB
+eu_romania_cfr-cluj	Nuno Claro	nunoclaro	DRAFT
+eu_romania_cfr-cluj	Mihai Mincă	mihaiminca	DRAFT
+eu_romania_cfr-cluj	Boris Pešković	borispeskovic	DRAFT
+eu_romania_cfr-cluj	Eduard Stăncioiu	eduardstancioiu	DRAFT
+eu_romania_cfr-cluj	Tony	tony	DRAFT
+eu_romania_cfr-cluj	Edimar	edimar	DRAFT
+eu_romania_cfr-cluj	Cristian Panin	cristianpanin	DRAFT
+eu_romania_cfr-cluj	Felice Piccolo	felicepiccolo	DRAFT
+eu_romania_cfr-cluj	Cadú	cadu	CROSS_CLUB
+eu_romania_cfr-cluj	Ionuț Rada	ionutrada	DRAFT
+eu_romania_cfr-cluj	Emmanuel Culio	emmanuelculio	DRAFT
+eu_romania_cfr-cluj	Sixto Peralta	sixtoperalta	DRAFT
+eu_romania_cfr-cluj	Roberto De Zerbi	robertodezerbi	DRAFT
+eu_romania_cfr-cluj	Rafael Bastos	rafaelbastos	DRAFT
+eu_romania_cfr-cluj	Gabriel Mureșan	gabrielmuresan	DRAFT
+eu_romania_cfr-cluj	Dominique Kivuvu	dominiquekivuvu	DRAFT
+eu_romania_cfr-cluj	Ioan Hora	ioanhora	DRAFT
+eu_romania_cfr-cluj	Emmanuel Koné	emmanuelkone	DRAFT
+eu_romania_cfr-cluj	Emil Dică	emildica	DRAFT
+eu_romania_cfr-cluj	Tomás Costa	tomascosta	DRAFT
+eu_romania_dinamo-bucuresti	Emilian Dolha	emiliandolha	DRAFT
+eu_romania_dinamo-bucuresti	Cristian Bălgrădean	cristianbalgradean	DRAFT
+eu_romania_dinamo-bucuresti	Kristijan Naumovski	kristijannaumovski	DRAFT
+eu_romania_dinamo-bucuresti	Cosmin Moți	cosminmoti	DRAFT
+eu_romania_dinamo-bucuresti	Dragoș Grigore	dragosgrigore	DRAFT
+eu_romania_dinamo-bucuresti	Valerică Găman	valericagaman	CROSS_CLUB
+eu_romania_dinamo-bucuresti	Cristian Pulhac	cristianpulhac	DRAFT
+eu_romania_dinamo-bucuresti	Cătălin Munteanu	catalinmunteanu	DRAFT
+eu_romania_dinamo-bucuresti	Djakaridja Koné	djakaridjakone	DRAFT
+eu_romania_dinamo-bucuresti	Andrei Mărgăritescu	andreimargaritescu	DRAFT
+eu_romania_dinamo-bucuresti	Elis Bakaj	elisbakaj	DRAFT
+eu_romania_dinamo-bucuresti	Ousmane N'Doye	ousmanendoye	CROSS_CLUB
+eu_romania_dinamo-bucuresti	Bogdan Pătrașcu	bogdanpatrascu	DRAFT
+eu_romania_dinamo-bucuresti	Gabriel Torje	gabrieltorje	DRAFT
+eu_romania_dinamo-bucuresti	Liviu Ganea	liviuganea	CROSS_CLUB
+eu_romania_dinamo-bucuresti	Ionel Dănciulescu	ioneldanciulescu	DRAFT
+eu_romania_dinamo-bucuresti	Marius Alexe	mariusalexe	DRAFT
+eu_romania_dinamo-bucuresti	Adrian Cristea	adriancristea	DRAFT
+eu_romania_dinamo-bucuresti	Marius Niculae	mariusniculae	DRAFT
+eu_romania_dinamo-bucuresti	Andrei Cristea	andreicristea	DRAFT
+eu_romania_dinamo-bucuresti	George Țucudean	georgetucudean	DRAFT
+eu_romania_fc-timisoara	Costel Pantilimon	costelpantilimon	DRAFT
+eu_romania_fc-timisoara	Pedro Taborda	pedrotaborda	DRAFT
+eu_romania_fc-timisoara	Cosmin Contra	cosmincontra	DRAFT
+eu_romania_fc-timisoara	Ioan Mera	ioanmera	DRAFT
+eu_romania_fc-timisoara	Cristian Scutaru	cristianscutaru	DRAFT
+eu_romania_fc-timisoara	Marian Cisovsky	mariancisovsky	DRAFT
+eu_romania_fc-timisoara	Laszlo Sepsi	laszlosepsi	DRAFT
+eu_romania_fc-timisoara	Alexandru Bourceanu	alexandrubourceanu	DRAFT
+eu_romania_fc-timisoara	Iulian Tameș	iuliantames	DRAFT
+eu_romania_fc-timisoara	Alexandru Curtean	alexandrucurtean	DRAFT
+eu_romania_fc-timisoara	Dare Vršič	darevrsic	DRAFT
+eu_romania_fc-timisoara	Ianis Zicu	ianiszicu	DRAFT
+eu_romania_fc-timisoara	Dorin Goga	doringoga	DRAFT
+eu_romania_fc-timisoara	Lukáš Magera	lukasmagera	DRAFT
+eu_romania_fc-timisoara	Mircea Axente	mirceaaxente	DRAFT
+eu_romania_fc-timisoara	Mansour Gueye	mansourgueye	DRAFT
+eu_romania_fc-timisoara	Alexandru Popovici	alexandrupopovici	DRAFT
+eu_romania_fc-timisoara	Adrian Poparadu	adrianpoparadu	DRAFT
+eu_romania_fc-timisoara	Helder	helder	DRAFT
+eu_romania_fc-timisoara	Cosmin Matei	cosminmatei	DRAFT
+eu_romania_otelul-galati	Branko Grahovac	brankograhovac	DRAFT
+eu_romania_otelul-galati	Cornel Râpă	cornelrapa	DRAFT
+eu_romania_otelul-galati	Adrian Sălăgeanu	adriansalageanu	DRAFT
+eu_romania_otelul-galati	Cristian Sârghi	cristiansarghi	DRAFT
+eu_romania_otelul-galati	Sergiu Costin	sergiucostin	DRAFT
+eu_romania_otelul-galati	Cornel Cernea	cornelcernea	DRAFT
+eu_romania_otelul-galati	Gabriel Giurgiu	gabrielgiurgiu	DRAFT
+eu_romania_otelul-galati	Ionuț Neagu	ionutneagu	DRAFT
+eu_romania_otelul-galati	Gabriel Paraschiv	gabrielparaschiv	DRAFT
+eu_romania_otelul-galati	Silviu Ilie	silviuilie	DRAFT
+eu_romania_otelul-galati	Liviu Antal	liviuantal	DRAFT
+eu_romania_otelul-galati	Laurențiu Buș	laurentiubus	DRAFT
+eu_romania_otelul-galati	Marius Pena	mariuspena	DRAFT
+eu_romania_otelul-galati	Bratislav Punoševac	bratislavpunosevac	DRAFT
+eu_romania_otelul-galati	Marius Matei	mariusmatei	DRAFT
+eu_romania_otelul-galati	John Ibeh	johnibeh	DRAFT
+eu_romania_otelul-galati	Cristian Ochiroșii	cristianochirosii	DRAFT
+eu_romania_otelul-galati	Gabriel Viglianti	gabrielviglianti	DRAFT
+eu_romania_rapid-bucuresti	Mircea Bornescu	mirceabornescu	DRAFT
+eu_romania_rapid-bucuresti	Dănuț Coman	danutcoman	DRAFT
+eu_romania_rapid-bucuresti	Marcos António	marcosantonio	DRAFT
+eu_romania_rapid-bucuresti	Marius Constantin	mariusconstantin	DRAFT
+eu_romania_rapid-bucuresti	Ovidiu Herea	ovidiuherea	DRAFT
+eu_romania_rapid-bucuresti	Vladimir Božović	vladimirbozovic	DRAFT
+eu_romania_rapid-bucuresti	Rui Duarte	ruiduarte	DRAFT
+eu_romania_rapid-bucuresti	Ezequias	ezequias	DRAFT
+eu_romania_rapid-bucuresti	Glauber	glauber	DRAFT
+eu_romania_rapid-bucuresti	Costin Lazăr	costinlazar	DRAFT
+eu_romania_rapid-bucuresti	Dan Alexa	danalexa	DRAFT
+eu_romania_rapid-bucuresti	Juliano Spadacio	julianospadacio	DRAFT
+eu_romania_rapid-bucuresti	Mihai Roman	mihairoman	DRAFT
+eu_romania_rapid-bucuresti	Cesinha	cesinha	DRAFT
+eu_romania_rapid-bucuresti	Ștefan Grigorie	stefangrigorie	DRAFT
+eu_romania_rapid-bucuresti	Romeo Surdu	romeosurdu	CROSS_CLUB
+eu_romania_rapid-bucuresti	Marius Bilașco	mariusbilasco	CROSS_CLUB
+eu_romania_rapid-bucuresti	Cassio Vargas	cassiovargas	DRAFT
+eu_romania_rapid-bucuresti	Daniel Pancu	danielpancu	CROSS_CLUB
+eu_romania_rapid-bucuresti	Sabrin Sburlea	sabrinsburlea	DRAFT
+eu_romania_sc-vaslui	Dušan Kuciak	dusankuciak	DRAFT
+eu_romania_sc-vaslui	Vytautas Černiauskas	vytautascerniauskas	DRAFT
+eu_romania_sc-vaslui	Claudiu Puia	claudiupuia	DRAFT
+eu_romania_sc-vaslui	Paul Papp	paulpapp	DRAFT
+eu_romania_sc-vaslui	David Rivas	davidrivas	DRAFT
+eu_romania_sc-vaslui	Richard Annang	richardannang	DRAFT
+eu_romania_sc-vaslui	Silviu Bălace	silviubalace	DRAFT
+eu_romania_sc-vaslui	Zhivko Milanov	zhivkomilanov	DRAFT
+eu_romania_sc-vaslui	Pavol Farkaš	pavolfarkas	DRAFT
+eu_romania_sc-vaslui	Wesley	wesley	DRAFT
+eu_romania_sc-vaslui	Lucian Sânmărtean	luciansanmartean	DRAFT
+eu_romania_sc-vaslui	Raul Costin	raulcostin	DRAFT
+eu_romania_sc-vaslui	Alejandro Campano	alejandrocampano	DRAFT
+eu_romania_sc-vaslui	Adailton	adailton	CROSS_CLUB
+eu_romania_sc-vaslui	Yero Bello	yerobello	DRAFT
+eu_romania_sc-vaslui	Mike Temwanjera	miketemwanjera	DRAFT
+eu_romania_sc-vaslui	Christian Pouga	christianpouga	DRAFT
+eu_romania_sc-vaslui	Daniel Pancu	danielpancu	CROSS_CLUB
+eu_romania_sc-vaslui	Genchev	genchev	DRAFT
+eu_romania_sc-vaslui	Gladstone	gladstone	DRAFT
+eu_romania_steaua-bucuresti	Ciprian Tătărușanu	cipriantatarusanu	DRAFT
+eu_romania_steaua-bucuresti	Răzvan Stanca	razvanstanca	DRAFT
+eu_romania_steaua-bucuresti	Iasmin Latovlevici	iasminlatovlevici	DRAFT
+eu_romania_steaua-bucuresti	Florin Gardoș	floringardos	DRAFT
+eu_romania_steaua-bucuresti	Ifeanyi Emeghara	ifeanyiemeghara	DRAFT
+eu_romania_steaua-bucuresti	George Galamaz	georgegalamaz	DRAFT
+eu_romania_steaua-bucuresti	Geraldo Alves	geraldoalves	DRAFT
+eu_romania_steaua-bucuresti	Pablo Brandán	pablobrandan	DRAFT
+eu_romania_steaua-bucuresti	Bănel Nicoliță	banelnicolita	DRAFT
+eu_romania_steaua-bucuresti	Cristian Tănase	cristiantanase	DRAFT
+eu_romania_steaua-bucuresti	Mihai Răduț	mihairadut	DRAFT
+eu_romania_steaua-bucuresti	Eric Bicfalvi	ericbicfalvi	DRAFT
+eu_romania_steaua-bucuresti	Ricardo Gomes	ricardogomes	DRAFT
+eu_romania_steaua-bucuresti	Janos Székely	janosszekely	DRAFT
+eu_romania_steaua-bucuresti	Romeo Surdu	romeosurdu	CROSS_CLUB
+eu_romania_steaua-bucuresti	Bogdan Stancu	bogdanstancu	DRAFT
+eu_romania_steaua-bucuresti	Pantelis Kapetanos	panteliskapetanos	DRAFT
+eu_romania_steaua-bucuresti	Marius Bilașco	mariusbilasco	CROSS_CLUB
+eu_russia_anzhi-makhachkala	Nicolae Josan	nicolaejosan	DRAFT
+eu_russia_anzhi-makhachkala	Igor Strelkov	igorstrelkov	DRAFT
+eu_russia_anzhi-makhachkala	Baye Ali Ibra Kébé	bayealiibrakebe	DRAFT
+eu_russia_anzhi-makhachkala	Otar Khizaneishvili	otarkhizaneishvili	DRAFT
+eu_russia_anzhi-makhachkala	Rasim Tagirbekov	rasimtagirbekov	DRAFT
+eu_russia_anzhi-makhachkala	Dmitriy Ivanov	dmitriyivanov	DRAFT
+eu_russia_anzhi-makhachkala	Mikhail Bakaev	mikhailbakaev	DRAFT
+eu_russia_anzhi-makhachkala	Zurabi Arziani	zurabiarziani	DRAFT
+eu_russia_anzhi-makhachkala	Isah Eliakwu	isaheliakwu	DRAFT
+eu_russia_anzhi-makhachkala	Magomed Magomedov	magomedmagomedov	DRAFT
+eu_russia_anzhi-makhachkala	David Tsoraev	davidtsoraev	DRAFT
+eu_russia_anzhi-makhachkala	Ali Gadzhibekov	aligadzhibekov	DRAFT
+eu_russia_anzhi-makhachkala	Jan Holenda	janholenda	DRAFT
+eu_russia_anzhi-makhachkala	Eldar Nizamutdinov	eldarnizamutdinov	DRAFT
+eu_russia_anzhi-makhachkala	Andrey Streltsov	andreystreltsov	DRAFT
+eu_russia_anzhi-makhachkala	Alexandr Prudnikov	alexandrprudnikov	DRAFT
+eu_russia_cska-moscow	Igor Akinfeev	igorakinfeev	DRAFT
+eu_russia_cska-moscow	Keisuke Honda	keisukehonda	DRAFT
+eu_russia_cska-moscow	Seydou Doumbia	seydoudoumbia	DRAFT
+eu_russia_cska-moscow	Sergey Ignashevich	sergeyignashevich	DRAFT
+eu_russia_cska-moscow	Vágner Love	vagnerlove	DRAFT
+eu_russia_cska-moscow	Zoran Tošić	zorantosic	DRAFT
+eu_russia_cska-moscow	Alan Dzagoev	alandzagoev	DRAFT
+eu_russia_cska-moscow	Mark González	markgonzalez	DRAFT
+eu_russia_cska-moscow	Vasiliy Berezutskiy	vasiliyberezutskiy	DRAFT
+eu_russia_cska-moscow	Alexey Berezutskiy	alexeyberezutskiy	DRAFT
+eu_russia_cska-moscow	Tomáš Necid	tomasnecid	DRAFT
+eu_russia_cska-moscow	Deividas Šemberas	deividassemberas	DRAFT
+eu_russia_cska-moscow	Georgiy Schennikov	georgiyschennikov	DRAFT
+eu_russia_cska-moscow	Chidi Odiah	chidiodiah	DRAFT
+eu_russia_cska-moscow	Pavel Mamaev	pavelmamaev	DRAFT
+eu_russia_cska-moscow	Evgeniy Aldonin	evgeniyaldonin	DRAFT
+eu_russia_cska-moscow	Elvir Rahimić	elvirrahimic	DRAFT
+eu_russia_cska-moscow	Kirill Nababkin	kirillnababkin	DRAFT
+eu_russia_dynamo-moscow	Vladimir Gabulov	vladimirgabulov	DRAFT
+eu_russia_dynamo-moscow	Igor Semshov	igorsemshov	DRAFT
+eu_russia_dynamo-moscow	Andriy Voronin	andriyvoronin	DRAFT
+eu_russia_dynamo-moscow	Kevin Kuranyi	kevinkuranyi	DRAFT
+eu_russia_dynamo-moscow	Denis Kolodin	deniskolodin	DRAFT
+eu_russia_dynamo-moscow	Aleksandr Samedov	aleksandrsamedov	DRAFT
+eu_russia_dynamo-moscow	Dmitriy Khokhlov	dmitriykhokhlov	DRAFT
+eu_russia_dynamo-moscow	Leandro Fernández	leandrofernandez	DRAFT
+eu_russia_dynamo-moscow	Luke Wilkshire	lukewilkshire	DRAFT
+eu_russia_dynamo-moscow	Aleksandr Kokorin	aleksandrkokorin	DRAFT
+eu_russia_dynamo-moscow	Aleksey Rebko	alekseyrebko	DRAFT
+eu_russia_dynamo-moscow	Tomislav Dujmović	tomislavdujmovic	DRAFT
+eu_russia_dynamo-moscow	Adrian Ropotan	adrianropotan	DRAFT
+eu_russia_dynamo-moscow	Alexandru Epureanu	alexandruepureanu	DRAFT
+eu_russia_dynamo-moscow	Edgaras Česnauskis	edgarascesnauskis	DRAFT
+eu_russia_dynamo-moscow	Marko Lomić	markolomic	DRAFT
+eu_russia_dynamo-moscow	Vladimir Granat	vladimirgranat	DRAFT
+eu_russia_dynamo-moscow	Marcin Kowalczyk	marcinkowalczyk	DRAFT
+eu_russia_fc-krasnodar	Evgeniy Gorodov	evgeniygorodov	DRAFT
+eu_russia_fc-krasnodar	Aleksandr Amisulashvili	aleksandramisulashvili	DRAFT
+eu_russia_fc-krasnodar	Nikola Drinčić	nikoladrincic	CROSS_CLUB
+eu_russia_fc-krasnodar	Aleksandr Kulchiy	aleksandrkulchiy	DRAFT
+eu_russia_fc-krasnodar	Joãozinho	joaozinho	CROSS_CLUB
+eu_russia_fc-krasnodar	Yura Movsisyan	yuramovsisyan	DRAFT
+eu_russia_fc-krasnodar	Marcos Pizzelli	marcospizzelli	DRAFT
+eu_russia_fc-krasnodar	Oleg Samsonov	olegsamsonov	DRAFT
+eu_russia_fc-krasnodar	Dušan Anđelković	dusananelkovic	DRAFT
+eu_russia_fc-krasnodar	Vladimir Tatarchuk Jr.	vladimirtatarchukjr	DRAFT
+eu_russia_fc-krasnodar	Igor Picuşceac	igorpicusceac	DRAFT
+eu_russia_fc-krasnodar	Andrey Mikhaylov	andreymikhaylov	DRAFT
+eu_russia_fc-krasnodar	Aleksandr Martynovich	aleksandrmartynovich	DRAFT
+eu_russia_fc-krasnodar	Marcio Abreu	marcioabreu	DRAFT
+eu_russia_fc-krasnodar	Wanderson	wanderson	DRAFT
+eu_russia_fc-krasnodar	Vladimir Koman	vladimirkoman	DRAFT
+eu_russia_kuban-krasnodar	Aleksandr Belenov	aleksandrbelenov	DRAFT
+eu_russia_kuban-krasnodar	Aleksandr Budakov	aleksandrbudakov	DRAFT
+eu_russia_kuban-krasnodar	Zelao	zelao	DRAFT
+eu_russia_kuban-krasnodar	Igor Armaș	igorarmas	DRAFT
+eu_russia_kuban-krasnodar	Aleksey Kozlov	alekseykozlov	DRAFT
+eu_russia_kuban-krasnodar	Roman Bugaev	romanbugaev	DRAFT
+eu_russia_kuban-krasnodar	Vladislav Kulik	vladislavkulik	DRAFT
+eu_russia_kuban-krasnodar	Gheorghe Bucur	gheorghebucur	DRAFT
+eu_russia_kuban-krasnodar	Lacina Traoré	lacinatraore	DRAFT
+eu_russia_kuban-krasnodar	Sergei Davydov	sergeidavydov	DRAFT
+eu_russia_kuban-krasnodar	Dacian Varga	dacianvarga	DRAFT
+eu_russia_kuban-krasnodar	Maksim Zhavnerchik	maksimzhavnerchik	DRAFT
+eu_russia_kuban-krasnodar	Aleksandr Kasaev	aleksandrkasaev	DRAFT
+eu_russia_kuban-krasnodar	Dmitri Khomich	dmitrikhomich	DRAFT
+eu_russia_kuban-krasnodar	Denis Zubko	deniszubko	DRAFT
+eu_russia_kuban-krasnodar	Nikola Nikezić	nikolanikezic	DRAFT
+eu_russia_lokomotiv-moscow	Guilherme	guilherme	DRAFT
+eu_russia_lokomotiv-moscow	Oleksandr Aliyev	oleksandraliyev	CROSS_CLUB
+eu_russia_lokomotiv-moscow	Dmitriy Sychev	dmitriysychev	DRAFT
+eu_russia_lokomotiv-moscow	Dmitriy Loskov	dmitriyloskov	DRAFT
+eu_russia_lokomotiv-moscow	Roman Shishkin	romanshishkin	DRAFT
+eu_russia_lokomotiv-moscow	Wagner	wagner	DRAFT
+eu_russia_lokomotiv-moscow	Dmitriy Torbinskiy	dmitriytorbinskiy	DRAFT
+eu_russia_lokomotiv-moscow	Maicon	maicon	CROSS_CLUB
+eu_russia_lokomotiv-moscow	Renat Yanbaev	renatyanbaev	DRAFT
+eu_russia_lokomotiv-moscow	Rodolfo	rodolfo	DRAFT
+eu_russia_lokomotiv-moscow	Denis Glushakov	denisglushakov	DRAFT
+eu_russia_lokomotiv-moscow	Dmitriy Sennikov	dmitriysennikov	DRAFT
+eu_russia_lokomotiv-moscow	Malkhaz Asatiani	malkhazasatiani	DRAFT
+eu_russia_lokomotiv-moscow	Dmitriy Tarasov	dmitriytarasov	DRAFT
+eu_russia_lokomotiv-moscow	Alan Gatagov	alangatagov	DRAFT
+eu_russia_lokomotiv-moscow	Dramane Traoré	dramanetraore	DRAFT
+eu_russia_lokomotiv-moscow	Haminu Draman	haminudraman	DRAFT
+eu_russia_lokomotiv-moscow	Igor Smolnikov	igorsmolnikov	DRAFT
+eu_russia_lokomotiv-moscow	Branko Ilič	brankoilic	DRAFT
+eu_russia_rubin-kazan	Sergey Ryzhikov	sergeyryzhikov	DRAFT
+eu_russia_rubin-kazan	Obafemi Martins	obafemimartins	DRAFT
+eu_russia_rubin-kazan	Aleksandr Ryazantsev	aleksandrryazantsev	DRAFT
+eu_russia_rubin-kazan	Carlos Eduardo	carloseduardo	DRAFT
+eu_russia_rubin-kazan	Cristian Ansaldi	cristianansaldi	DRAFT
+eu_russia_rubin-kazan	Salvatore Bocchetti	salvatorebocchetti	DRAFT
+eu_russia_rubin-kazan	Alan Kasaev	alankasaev	DRAFT
+eu_russia_rubin-kazan	Gökdeniz Karadeniz	gokdenizkaradeniz	DRAFT
+eu_russia_rubin-kazan	Sergey Kornilenko	sergeykornilenko	DRAFT
+eu_russia_rubin-kazan	César Navas	cesarnavas	DRAFT
+eu_russia_rubin-kazan	Christian Noboa	christiannoboa	DRAFT
+eu_russia_rubin-kazan	Aleksey Medvedev	alekseymedvedev	DRAFT
+eu_russia_rubin-kazan	Macbeth Sibaya	macbethsibaya	DRAFT
+eu_russia_rubin-kazan	Roman Sharonov	romansharonov	DRAFT
+eu_russia_rubin-kazan	Oleg Kuzmin	olegkuzmin	DRAFT
+eu_russia_rubin-kazan	Rafał Murawski	rafamurawski	DRAFT
+eu_russia_rubin-kazan	Vitaliy Kaleshin	vitaliykaleshin	DRAFT
+eu_russia_rubin-kazan	Bibras Natkho	bibrasnatkho	DRAFT
+eu_russia_spartak-moscow	Andriy Dykan	andriydykan	DRAFT
+eu_russia_spartak-moscow	Welliton	welliton	DRAFT
+eu_russia_spartak-moscow	Aiden McGeady	aidenmcgeady	DRAFT
+eu_russia_spartak-moscow	Nicolás Pareja	nicolaspareja	DRAFT
+eu_russia_spartak-moscow	Dmitriy Kombarov	dmitriykombarov	DRAFT
+eu_russia_spartak-moscow	Ari	ari	DRAFT
+eu_russia_spartak-moscow	Ibson	ibson	DRAFT
+eu_russia_spartak-moscow	Martin Stranzl	martinstranzl	DRAFT
+eu_russia_spartak-moscow	Kirill Kombarov	kirillkombarov	DRAFT
+eu_russia_spartak-moscow	Marek Suchý	mareksuchy	DRAFT
+eu_russia_spartak-moscow	Nikola Drinčić	nikoladrincic	CROSS_CLUB
+eu_russia_spartak-moscow	Sergey Parshivlyuk	sergeyparshivlyuk	DRAFT
+eu_russia_spartak-moscow	Ivan Saenko	ivansaenko	DRAFT
+eu_russia_spartak-moscow	Aleks	aleks	DRAFT
+eu_russia_spartak-moscow	Rafael Carioca	rafaelcarioca	DRAFT
+eu_russia_spartak-moscow	Evgeniy Makeev	evgeniymakeev	DRAFT
+eu_russia_spartak-moscow	Sergei Pesyakov	sergeipesyakov	DRAFT
+eu_russia_spartak-moscow	Nikita Bazhenov	nikitabazhenov	DRAFT
+eu_russia_zenit-st-petersburg	Vyacheslav Malafeev	vyacheslavmalafeev	DRAFT
+eu_russia_zenit-st-petersburg	Danny	danny	DRAFT
+eu_russia_zenit-st-petersburg	Aleksandr Kerzhakov	aleksandrkerzhakov	DRAFT
+eu_russia_zenit-st-petersburg	Bruno Alves	brunoalves	DRAFT
+eu_russia_zenit-st-petersburg	Nicolas Lombaerts	nicolaslombaerts	DRAFT
+eu_russia_zenit-st-petersburg	Aleksandr Anyukov	aleksandranyukov	DRAFT
+eu_russia_zenit-st-petersburg	Fernando Meira	fernandomeira	DRAFT
+eu_russia_zenit-st-petersburg	Tomáš Hubočan	tomashubocan	DRAFT
+eu_russia_zenit-st-petersburg	Vladimir Bystrov	vladimirbystrov	DRAFT
+eu_russia_zenit-st-petersburg	Aleksandr Bukharov	aleksandrbukharov	DRAFT
+eu_russia_zenit-st-petersburg	Konstantin Zyryanov	konstantinzyryanov	DRAFT
+eu_russia_zenit-st-petersburg	Sergey Semak	sergeysemak	DRAFT
+eu_russia_zenit-st-petersburg	Danko Lazović	dankolazovic	DRAFT
+eu_russia_zenit-st-petersburg	Alessandro Rosina	alessandrorosina	DRAFT
+eu_russia_zenit-st-petersburg	Igor Denisov	igordenisov	DRAFT
+eu_russia_zenit-st-petersburg	Roman Shirokov	romanshirokov	DRAFT
+eu_russia_zenit-st-petersburg	Szabolcs Huszti	szabolcshuszti	DRAFT
+eu_russia_zenit-st-petersburg	Aleksandar Luković	aleksandarlukovic	DRAFT
+eu_russia_zenit-st-petersburg	Ivica Križanac	ivicakrizanac	DRAFT
+eu_russia_zenit-st-petersburg	Viktor Fayzulin	viktorfayzulin	DRAFT
+eu_scotland_aberdeen	Paul Hartley	paulhartley	DRAFT
+eu_scotland_aberdeen	Zander Diamond	zanderdiamond	DRAFT
+eu_scotland_aberdeen	Andrius Velička	andriusvelicka	DRAFT
+eu_scotland_aberdeen	Sone Aluko	sonealuko	DRAFT
+eu_scotland_aberdeen	Rory McArdle	rorymcardle	DRAFT
+eu_scotland_aberdeen	Chris Maguire	chrismaguire	DRAFT
+eu_scotland_aberdeen	Josh Magennis	joshmagennis	DRAFT
+eu_scotland_aberdeen	Yoann Folly	yoannfolly	DRAFT
+eu_scotland_aberdeen	Andrew Considine	andrewconsidine	DRAFT
+eu_scotland_aberdeen	Darren Mackie	darrenmackie	DRAFT
+eu_scotland_aberdeen	Fraser Fyvie	fraserfyvie	DRAFT
+eu_scotland_aberdeen	Jerel Ifil	jerelifil	DRAFT
+eu_scotland_aberdeen	Michael Paton	michaelpaton	DRAFT
+eu_scotland_aberdeen	Derek Young	derekyoung	DRAFT
+eu_scotland_aberdeen	Scott Vernon	scottvernon	DRAFT
+eu_scotland_aberdeen	Mitchell Megginson	mitchellmegginson	DRAFT
+eu_scotland_aberdeen	Ryan Jack	ryanjack	DRAFT
+eu_scotland_celtic	Fraser Forster	fraserforster	DRAFT
+eu_scotland_celtic	Gary Hooper	garyhooper	DRAFT
+eu_scotland_celtic	Georgios Samaras	georgiossamaras	DRAFT
+eu_scotland_celtic	Ki Sung-yueng	kisungyueng	DRAFT
+eu_scotland_celtic	Anthony Stokes	anthonystokes	DRAFT
+eu_scotland_celtic	Niall McGinn	niallmcginn	DRAFT
+eu_scotland_celtic	Joe Ledley	joeledley	DRAFT
+eu_scotland_celtic	Andreas Hinkel	andreashinkel	DRAFT
+eu_scotland_celtic	Shaun Maloney	shaunmaloney	DRAFT
+eu_scotland_celtic	Scott Brown	scottbrown	DRAFT
+eu_scotland_celtic	Cha Du-ri	chaduri	DRAFT
+eu_scotland_celtic	Glenn Loovens	glennloovens	DRAFT
+eu_scotland_celtic	Jos Hooiveld	joshooiveld	DRAFT
+eu_scotland_celtic	Paddy McCourt	paddymccourt	DRAFT
+eu_scotland_celtic	Charlie Mulgrew	charliemulgrew	DRAFT
+eu_scotland_celtic	Thomas Rogne	thomasrogne	DRAFT
+eu_scotland_celtic	Daryl Murphy	darylmurphy	DRAFT
+eu_scotland_celtic	Mark Wilson	markwilson	DRAFT
+eu_scotland_celtic	Emilio Izaguirre	emilioizaguirre	DRAFT
+eu_scotland_heart-of-midlothian	Marian Kello	mariankello	DRAFT
+eu_scotland_heart-of-midlothian	Andrew Driver	andrewdriver	DRAFT
+eu_scotland_heart-of-midlothian	David Templeton	davidtempleton	DRAFT
+eu_scotland_heart-of-midlothian	Marius Žaliukas	mariuszaliukas	DRAFT
+eu_scotland_heart-of-midlothian	Lee Wallace	leewallace	DRAFT
+eu_scotland_heart-of-midlothian	Kevin Kyle	kevinkyle	DRAFT
+eu_scotland_heart-of-midlothian	Suso Santana	susosantana	DRAFT
+eu_scotland_heart-of-midlothian	Darren Barr	darrenbarr	DRAFT
+eu_scotland_heart-of-midlothian	Eggert Jónsson	eggertjonsson	DRAFT
+eu_scotland_heart-of-midlothian	Ismaël Bouzid	ismaelbouzid	DRAFT
+eu_scotland_heart-of-midlothian	Stephen Elliott	stephenelliott	DRAFT
+eu_scotland_heart-of-midlothian	Rubén Palazuelos	rubenpalazuelos	DRAFT
+eu_scotland_heart-of-midlothian	Calum Elliot	calumelliot	DRAFT
+eu_scotland_heart-of-midlothian	Ian Black	ianblack	DRAFT
+eu_scotland_heart-of-midlothian	Ryan Stevenson	ryanstevenson	DRAFT
+eu_scotland_heart-of-midlothian	Arvydas Novikovas	arvydasnovikovas	DRAFT
+eu_scotland_heart-of-midlothian	Craig Thomson	craigthomson	DRAFT
+eu_scotland_heart-of-midlothian	David Obua	davidobua	DRAFT
+eu_scotland_heart-of-midlothian	Dawid Kucharski	dawidkucharski	DRAFT
+eu_scotland_heart-of-midlothian	Jason Thomson	jasonthomson	DRAFT
+eu_scotland_heart-of-midlothian	Gary Glen	garyglen	DRAFT
+eu_scotland_rangers	Allan McGregor	allanmcgregor	DRAFT
+eu_scotland_rangers	Kenny Miller	kennymiller	DRAFT
+eu_scotland_rangers	Steven Naismith	stevennaismith	DRAFT
+eu_scotland_rangers	Madjid Bougherra	madjidbougherra	DRAFT
+eu_scotland_rangers	Nikica Jelavić	nikicajelavic	DRAFT
+eu_scotland_rangers	Steven Davis	stevendavis	DRAFT
+eu_scotland_rangers	Steven Whittaker	stevenwhittaker	DRAFT
+eu_scotland_rangers	Vladimir Weiss	vladimirweiss	DRAFT
+eu_scotland_rangers	Kyle Lafferty	kylelafferty	DRAFT
+eu_scotland_rangers	Saša Papac	sasapapac	DRAFT
+eu_scotland_rangers	Maurice Edu	mauriceedu	DRAFT
+eu_scotland_rangers	Andrew Webster	andrewwebster	DRAFT
+eu_scotland_rangers	David Weir	davidweir	DRAFT
+eu_scotland_rangers	James Beattie	jamesbeattie	DRAFT
+eu_scotland_rangers	Lee McCulloch	leemcculloch	DRAFT
+eu_scotland_rangers	John Fleck	johnfleck	DRAFT
+eu_scotland_rangers	Kirk Broadfoot	kirkbroadfoot	DRAFT
+eu_scotland_rangers	Richard Foster	richardfoster	DRAFT
+eu_scotland_rangers	Gregg Wylde	greggwylde	DRAFT
+eu_scotland_rangers	Steven Smith	stevensmith	DRAFT
+eu_serbia_partizan-belgrade	Vladimir Stojković	vladimirstojkovic	DRAFT
+eu_serbia_partizan-belgrade	Radiša Ilić	radisailic	DRAFT
+eu_serbia_partizan-belgrade	Mladen Krstajić	mladenkrstajic	DRAFT
+eu_serbia_partizan-belgrade	Stefan Savić	stefansavic	DRAFT
+eu_serbia_partizan-belgrade	Ivan Stevanović	ivanstevanovic	DRAFT
+eu_serbia_partizan-belgrade	Aleksandar Miljković	aleksandarmiljkovic	DRAFT
+eu_serbia_partizan-belgrade	Marko Jovanović	markojovanovic	DRAFT
+eu_serbia_partizan-belgrade	Zvonimir Vukić	zvonimirvukic	DRAFT
+eu_serbia_partizan-belgrade	Almami Moreira	almamimoreira	DRAFT
+eu_serbia_partizan-belgrade	Aleksandar Davidov	aleksandardavidov	DRAFT
+eu_serbia_partizan-belgrade	Darko Brašanac	darkobrasanac	DRAFT
+eu_serbia_partizan-belgrade	Ljubomir Fejsa	ljubomirfejsa	DRAFT
+eu_serbia_partizan-belgrade	Saša Ilić	sasailic	DRAFT
+eu_serbia_partizan-belgrade	Nemanja Tomić	nemanjatomic	DRAFT
+eu_serbia_partizan-belgrade	Ivica Iliev	ivicailiev	DRAFT
+eu_serbia_partizan-belgrade	Marko Šćepović	markoscepovic	DRAFT
+eu_serbia_partizan-belgrade	Prince Tagoe	princetagoe	DRAFT
+eu_serbia_partizan-belgrade	Pierre Boya	pierreboya	DRAFT
+eu_serbia_partizan-belgrade	Dominic Adiyiah	dominicadiyiah	DRAFT
+eu_serbia_partizan-belgrade	Lazar Marković	lazarmarkovic	DRAFT
+eu_serbia_red-star-belgrade	Boban Bajković	bobanbajkovic	DRAFT
+eu_serbia_red-star-belgrade	Marko Dmitrović	markodmitrovic	DRAFT
+eu_serbia_red-star-belgrade	Duško Tošić	duskotosic	DRAFT
+eu_serbia_red-star-belgrade	Marko Vešović	markovesovic	DRAFT
+eu_serbia_red-star-belgrade	Pavle Ninkov	pavleninkov	DRAFT
+eu_serbia_red-star-belgrade	Lee Addy	leeaddy	DRAFT
+eu_serbia_red-star-belgrade	Milan Vilotić	milanvilotic	DRAFT
+eu_serbia_red-star-belgrade	Nikola Mikić	nikolamikic	DRAFT
+eu_serbia_red-star-belgrade	Ognjen Koroman	ognjenkoroman	DRAFT
+eu_serbia_red-star-belgrade	Dejan Milovanović	dejanmilovanovic	DRAFT
+eu_serbia_red-star-belgrade	Darko Lazović	darkolazovic	DRAFT
+eu_serbia_red-star-belgrade	Srđan Mijailović	sranmijailovic	DRAFT
+eu_serbia_red-star-belgrade	Evandro	evandro	DRAFT
+eu_serbia_red-star-belgrade	Slavko Perović	slavkoperovic	DRAFT
+eu_serbia_red-star-belgrade	Andrija Kaluđerović	andrijakaluerovic	DRAFT
+eu_serbia_red-star-belgrade	Aleksandar Jevtić	aleksandarjevtic	DRAFT
+eu_serbia_red-star-belgrade	Miloš Trifunović	milostrifunovic	DRAFT
+eu_serbia_red-star-belgrade	Cadú	cadu	CROSS_CLUB
+eu_serbia_vojvodina-novi-sad	Željko Brkić	zeljkobrkic	DRAFT
+eu_serbia_vojvodina-novi-sad	Miroslav Vulićević	miroslavvulicevic	DRAFT
+eu_serbia_vojvodina-novi-sad	Daniel Mojsov	danielmojsov	DRAFT
+eu_serbia_vojvodina-novi-sad	Branislav Trajković	branislavtrajkovic	DRAFT
+eu_serbia_vojvodina-novi-sad	Milovan Milović	milovanmilovic	DRAFT
+eu_serbia_vojvodina-novi-sad	Janko Tumbasević	jankotumbasevic	DRAFT
+eu_serbia_vojvodina-novi-sad	Giorgi Merebashvili	giorgimerebashvili	DRAFT
+eu_serbia_vojvodina-novi-sad	Miroslav Stevanović	miroslavstevanovic	DRAFT
+eu_serbia_vojvodina-novi-sad	Aleksandar Katai	aleksandarkatai	DRAFT
+eu_serbia_vojvodina-novi-sad	Nikola Lazetić	nikolalazetic	DRAFT
+eu_serbia_vojvodina-novi-sad	Mario Đurovski	mariourovski	DRAFT
+eu_serbia_vojvodina-novi-sad	Nebojša Kosović	nebojsakosovic	DRAFT
+eu_serbia_vojvodina-novi-sad	Aboubakar Oumarou	aboubakaroumarou	DRAFT
+eu_serbia_vojvodina-novi-sad	Brana Ilić	branailic	DRAFT
+eu_serbia_vojvodina-novi-sad	Nemanja Bilbija	nemanjabilbija	DRAFT
+eu_serbia_vojvodina-novi-sad	Yaw Antwi	yawantwi	DRAFT
+eu_slovakia_msk-zilina	Martin Dúbravka	martindubravka	DRAFT
+eu_slovakia_msk-zilina	Ľubomír Guldan	lubomirguldan	DRAFT
+eu_slovakia_msk-zilina	Jozef Piaček	jozefpiacek	DRAFT
+eu_slovakia_msk-zilina	Vladimír Leitner	vladimirleitner	DRAFT
+eu_slovakia_msk-zilina	Mário Pečalka	mariopecalka	CROSS_CLUB
+eu_slovakia_msk-zilina	Ernest Mabouka	ernestmabouka	DRAFT
+eu_slovakia_msk-zilina	Bello Babatounde	bellobabatounde	DRAFT
+eu_slovakia_msk-zilina	Roman Gergel	romangergel	DRAFT
+eu_slovakia_msk-zilina	Róbert Jež	robertjez	DRAFT
+eu_slovakia_msk-zilina	Michal Škvarka	michalskvarka	DRAFT
+eu_slovakia_msk-zilina	Zdeno Štrba	zdenostrba	DRAFT
+eu_slovakia_msk-zilina	Artūrs Zjuzins	arturszjuzins	DRAFT
+eu_slovakia_msk-zilina	Momodou Ceesay	momodouceesay	DRAFT
+eu_slovakia_msk-zilina	Tomáš Oravec	tomasoravec	DRAFT
+eu_slovakia_msk-zilina	Admir Vladavić	admirvladavic	DRAFT
+eu_slovakia_msk-zilina	Tomáš Majtán	tomasmajtan	DRAFT
+eu_slovakia_msk-zilina	Emil Rilke	emilrilke	DRAFT
+eu_slovakia_slovan-bratislava	Matúš Putnocký	matusputnocky	DRAFT
+eu_slovakia_slovan-bratislava	Martin Dobrotka	martindobrotka	DRAFT
+eu_slovakia_slovan-bratislava	Kornel Saláta	kornelsalata	DRAFT
+eu_slovakia_slovan-bratislava	Lukáš Pauschek	lukaspauschek	DRAFT
+eu_slovakia_slovan-bratislava	Erik Čikoš	erikcikos	DRAFT
+eu_slovakia_slovan-bratislava	Radek Dosoudil	radekdosoudil	DRAFT
+eu_slovakia_slovan-bratislava	Martin Šebo	martinsebo	DRAFT
+eu_slovakia_slovan-bratislava	Juraj Halenár	jurajhalenar	DRAFT
+eu_slovakia_slovan-bratislava	Igor Žofčák	igorzofcak	CROSS_CLUB
+eu_slovakia_slovan-bratislava	Karim Guédé	karimguede	DRAFT
+eu_slovakia_slovan-bratislava	Marko Milinković	markomilinkovic	DRAFT
+eu_slovakia_slovan-bratislava	Jiří Kladrubský	jirikladrubsky	CROSS_CLUB
+eu_slovakia_slovan-bratislava	Filip Kiss	filipkiss	DRAFT
+eu_slovakia_slovan-bratislava	Mamadou Bagayoko	mamadoubagayoko	DRAFT
+eu_slovakia_slovan-bratislava	Lester Peltier	lesterpeltier	DRAFT
+eu_slovakia_slovan-bratislava	Róbert Vittek	robertvittek	DRAFT
+eu_slovakia_slovan-bratislava	Branislav Obžera	branislavobzera	DRAFT
+eu_slovakia_slovan-bratislava	Samuel Slovák	samuelslovak	DRAFT
+eu_slovenia_nk-maribor	Jasmin Handanović	jasminhandanovic	DRAFT
+eu_slovenia_nk-maribor	Marko Pridigar	markopridigar	DRAFT
+eu_slovenia_nk-maribor	Aleksander Rajčević	aleksanderrajcevic	DRAFT
+eu_slovenia_nk-maribor	Arghus	arghus	DRAFT
+eu_slovenia_nk-maribor	Mitja Viler	mitjaviler	DRAFT
+eu_slovenia_nk-maribor	Dejan Trajkovski	dejantrajkovski	DRAFT
+eu_slovenia_nk-maribor	Martin Milec	martinmilec	DRAFT
+eu_slovenia_nk-maribor	Aleš Mejač	alesmejac	DRAFT
+eu_slovenia_nk-maribor	Marcos Tavares	marcostavares	DRAFT
+eu_slovenia_nk-maribor	Dejan Mezga	dejanmezga	DRAFT
+eu_slovenia_nk-maribor	Goran Cvijanović	gorancvijanovic	DRAFT
+eu_slovenia_nk-maribor	Aleš Mertelj	alesmertelj	DRAFT
+eu_slovenia_nk-maribor	Robert Berić	robertberic	DRAFT
+eu_slovenia_nk-maribor	Etien Velikonja	etienvelikonja	DRAFT
+eu_slovenia_nk-maribor	Dalibor Volaš	daliborvolas	DRAFT
+eu_slovenia_nk-maribor	Agim Ibraimi	agimibraimi	DRAFT
+eu_slovenia_nk-maribor	Željko Filipović	zeljkofilipovic	DRAFT
+eu_slovenia_nk-maribor	Nejc Potokar	nejcpotokar	DRAFT
+eu_sweden_aik	Ivan Turina	ivanturina	DRAFT
+eu_sweden_aik	Daniel Örlund	danielorlund	DRAFT
+eu_sweden_aik	Nils-Eric Johansson	nilsericjohansson	DRAFT
+eu_sweden_aik	Per Karlsson	perkarlsson	DRAFT
+eu_sweden_aik	Niklas Backman	niklasbackman	DRAFT
+eu_sweden_aik	Martin Lorentzson	martinlorentzson	DRAFT
+eu_sweden_aik	Helgi Valur Daníelsson	helgivalurdanielsson	DRAFT
+eu_sweden_aik	Robert Åhman Persson	robertahmanpersson	DRAFT
+eu_sweden_aik	Daniel Tjernström	danieltjernstrom	DRAFT
+eu_sweden_aik	Dulee Johnson	duleejohnson	DRAFT
+eu_sweden_aik	Viktor Lundberg	viktorlundberg	DRAFT
+eu_sweden_aik	Mohamed Bangura	mohamedbangura	DRAFT
+eu_sweden_aik	Teteh Bangura	tetehbangura	DRAFT
+eu_sweden_aik	Goran Ljubojević	goranljubojevic	DRAFT
+eu_sweden_aik	Bojan Djordjić	bojandjordjic	CROSS_CLUB
+eu_sweden_aik	Kenny Pavey	kennypavey	DRAFT
+eu_sweden_helsingborgs-if	Erik Edman	erikedman	DRAFT
+eu_sweden_helsingborgs-if	Marcus Lantz	marcuslantz	DRAFT
+eu_sweden_helsingborgs-if	Alexander Gerndt	alexandergerndt	DRAFT
+eu_sweden_helsingborgs-if	Ardian Gashi	ardiangashi	DRAFT
+eu_sweden_helsingborgs-if	Joel Ekstrand	joelekstrand	DRAFT
+eu_sweden_helsingborgs-if	Mattias Lindström	mattiaslindstrom	DRAFT
+eu_sweden_helsingborgs-if	Christoffer Andersson	christofferandersson	DRAFT
+eu_sweden_helsingborgs-if	Marcus Nilsson	marcusnilsson	DRAFT
+eu_sweden_helsingborgs-if	Rasmus Jönsson	rasmusjonsson	DRAFT
+eu_sweden_helsingborgs-if	Erik Sundin	eriksundin	DRAFT
+eu_sweden_helsingborgs-if	Hannu Patronen	hannupatronen	DRAFT
+eu_sweden_helsingborgs-if	Markus Holgersson	markusholgersson	DRAFT
+eu_sweden_helsingborgs-if	May Mahlangu	maymahlangu	DRAFT
+eu_sweden_helsingborgs-if	Erik Wahlstedt	erikwahlstedt	DRAFT
+eu_sweden_helsingborgs-if	Porcellis	porcellis	DRAFT
+eu_sweden_helsingborgs-if	Fredrik Liverstam	fredrikliverstam	DRAFT
+eu_sweden_if-elfsborg	Stefan Ishizaki	stefanishizaki	DRAFT
+eu_sweden_if-elfsborg	Anders Svensson	anderssvensson	DRAFT
+eu_sweden_if-elfsborg	Daniel Nordmark	danielnordmark	DRAFT
+eu_sweden_if-elfsborg	Denni Avdic	denniavdic	DRAFT
+eu_sweden_if-elfsborg	Jon Jönsson	jonjonsson	DRAFT
+eu_sweden_if-elfsborg	Martin Ericsson	martinericsson	DRAFT
+eu_sweden_if-elfsborg	Johan Larsson	johanlarsson	DRAFT
+eu_sweden_if-elfsborg	Mathias Florén	mathiasfloren	DRAFT
+eu_sweden_if-elfsborg	Teddy Lučić	teddylucic	DRAFT
+eu_sweden_if-elfsborg	Amadou Jawo	amadoujawo	DRAFT
+eu_sweden_if-elfsborg	Daniel Mobaeck	danielmobaeck	DRAFT
+eu_sweden_if-elfsborg	James Keene	jameskeene	DRAFT
+eu_sweden_if-elfsborg	Johan Karlsson	johankarlsson	DRAFT
+eu_sweden_if-elfsborg	Andreas Klarström	andreasklarstrom	DRAFT
+eu_sweden_if-elfsborg	Niklas Hult	niklashult	DRAFT
+eu_sweden_if-elfsborg	Anders Wikström	anderswikstrom	DRAFT
+eu_sweden_if-elfsborg	Fredrik Berglund	fredrikberglund	DRAFT
+eu_sweden_if-elfsborg	Jari Ilola	jariilola	DRAFT
+eu_sweden_ifk-goteborg	Kim Christensen	kimchristensen	DRAFT
+eu_sweden_ifk-goteborg	Stefan Selakovic	stefanselakovic	DRAFT
+eu_sweden_ifk-goteborg	Ragnar Sigurdsson	ragnarsigurdsson	DRAFT
+eu_sweden_ifk-goteborg	Tobias Hysén	tobiashysen	DRAFT
+eu_sweden_ifk-goteborg	Adam Johansson	adamjohansson	DRAFT
+eu_sweden_ifk-goteborg	Mikael Dyrestam	mikaeldyrestam	DRAFT
+eu_sweden_ifk-goteborg	Robin Söder	robinsoder	DRAFT
+eu_sweden_ifk-goteborg	Sebastian Eriksson	sebastianeriksson	DRAFT
+eu_sweden_ifk-goteborg	Theódór Elmar Bjarnason	theodorelmarbjarnason	DRAFT
+eu_sweden_ifk-goteborg	Thomas Olsson	thomasolsson	DRAFT
+eu_sweden_ifk-goteborg	Hannes Stiller	hannesstiller	DRAFT
+eu_sweden_ifk-goteborg	Hjálmar Jónsson	hjalmarjonsson	DRAFT
+eu_sweden_ifk-goteborg	Jakob Johansson	jakobjohansson	DRAFT
+eu_sweden_ifk-goteborg	Karl Svensson	karlsvensson	DRAFT
+eu_sweden_ifk-goteborg	Tobias Sana	tobiassana	DRAFT
+eu_sweden_ifk-goteborg	Nicklas Carlsson	nicklascarlsson	DRAFT
+eu_sweden_ifk-goteborg	Pär Ericsson	parericsson	DRAFT
+eu_sweden_ifk-goteborg	Erik Lund	eriklund	DRAFT
+eu_sweden_ifk-goteborg	Niklas Bärkroth	niklasbarkroth	DRAFT
+eu_sweden_ifk-goteborg	Alexander Faltsetas	alexanderfaltsetas	DRAFT
+eu_sweden_malmo-ff	Johan Dahlin	johandahlin	DRAFT
+eu_sweden_malmo-ff	Daniel Andersson	danielandersson	DRAFT
+eu_sweden_malmo-ff	Guillermo Molins	guillermomolins	DRAFT
+eu_sweden_malmo-ff	Wilton Figueiredo	wiltonfigueiredo	DRAFT
+eu_sweden_malmo-ff	Daniel Larsson	daniellarsson	DRAFT
+eu_sweden_malmo-ff	Ivo Pekalski	ivopekalski	DRAFT
+eu_sweden_malmo-ff	Jiloan Hamad	jiloanhamad	DRAFT
+eu_sweden_malmo-ff	Jimmy Durmaz	jimmydurmaz	DRAFT
+eu_sweden_malmo-ff	Ricardinho	ricardinho	DRAFT
+eu_sweden_malmo-ff	Agon Mehmeti	agonmehmeti	DRAFT
+eu_sweden_malmo-ff	Jasmin Sudić	jasminsudic	DRAFT
+eu_sweden_malmo-ff	Miljan Mutavdžić	miljanmutavdzic	DRAFT
+eu_sweden_malmo-ff	Rick Kruys	rickkruys	DRAFT
+eu_sweden_malmo-ff	Markus Halsti	markushalsti	DRAFT
+eu_sweden_malmo-ff	Jeffrey Aubynn	jeffreyaubynn	DRAFT
+eu_sweden_malmo-ff	Joseph Elanga	josephelanga	DRAFT
+eu_sweden_malmo-ff	Pontus Jansson	pontusjansson	DRAFT
+eu_sweden_malmo-ff	Alexander Nilsson	alexandernilsson	DRAFT
+eu_switzerland_bsc-young-boys	Marco Wölfli	marcowolfli	DRAFT
+eu_switzerland_bsc-young-boys	Christoph Spycher	christophspycher	DRAFT
+eu_switzerland_bsc-young-boys	David Degen	daviddegen	DRAFT
+eu_switzerland_bsc-young-boys	Alberto Regazzoni	albertoregazzoni	DRAFT
+eu_switzerland_bsc-young-boys	Mario Raimondi	marioraimondi	DRAFT
+eu_switzerland_bsc-young-boys	Emiliano Dudar	emilianodudar	DRAFT
+eu_switzerland_bsc-young-boys	Moreno Costanzo	morenocostanzo	DRAFT
+eu_switzerland_bsc-young-boys	Alain Nef	alainnef	DRAFT
+eu_switzerland_bsc-young-boys	Marco Schneuwly	marcoschneuwly	DRAFT
+eu_switzerland_bsc-young-boys	Xavier Hochstrasser	xavierhochstrasser	DRAFT
+eu_switzerland_bsc-young-boys	François Affolter	francoisaffolter	DRAFT
+eu_switzerland_bsc-young-boys	Scott Sutter	scottsutter	DRAFT
+eu_switzerland_bsc-young-boys	Senad Lulić	senadlulic	DRAFT
+eu_switzerland_bsc-young-boys	Thierry Doubai	thierrydoubai	DRAFT
+eu_switzerland_bsc-young-boys	Christian Schneuwly	christianschneuwly	DRAFT
+eu_switzerland_fc-basel	Franco Costanzo	francocostanzo	DRAFT
+eu_switzerland_fc-basel	Alexander Frei	alexanderfrei	DRAFT
+eu_switzerland_fc-basel	Xherdan Shaqiri	xherdanshaqiri	DRAFT
+eu_switzerland_fc-basel	Benjamin Huggel	benjaminhuggel	DRAFT
+eu_switzerland_fc-basel	Gilles Yapi	gillesyapi	DRAFT
+eu_switzerland_fc-basel	Marco Streller	marcostreller	DRAFT
+eu_switzerland_fc-basel	Behrang Safari	behrangsafari	DRAFT
+eu_switzerland_fc-basel	Scott Chipperfield	scottchipperfield	DRAFT
+eu_switzerland_fc-basel	Valentin Stocker	valentinstocker	DRAFT
+eu_switzerland_fc-basel	Çağdaş Atan	cagdasatan	DRAFT
+eu_switzerland_fc-basel	Samuel Inkoom	samuelinkoom	CROSS_CLUB
+eu_switzerland_fc-basel	David Abraham	davidabraham	DRAFT
+eu_switzerland_fc-basel	Federico Almerares	federicoalmerares	DRAFT
+eu_switzerland_fc-basel	Reto Zanni	retozanni	DRAFT
+eu_switzerland_fc-basel	Cabral	cabral	CROSS_CLUB
+eu_switzerland_fc-basel	Beg Ferati	begferati	DRAFT
+eu_switzerland_fc-basel	Pascal Schürpf	pascalschurpf	DRAFT
+eu_switzerland_fc-sion	Andris Vaņins	andrisvanins	DRAFT
+eu_switzerland_fc-sion	George Ogăraru	georgeogararu	DRAFT
+eu_switzerland_fc-sion	Michael Dingsdag	michaeldingsdag	DRAFT
+eu_switzerland_fc-sion	Vilmos Vanczák	vilmosvanczak	DRAFT
+eu_switzerland_fc-sion	Adaílton	adailton	CROSS_CLUB
+eu_switzerland_fc-sion	Goran Obradović	goranobradovic	DRAFT
+eu_switzerland_fc-sion	Fabrizio Zambrella	fabriziozambrella	DRAFT
+eu_switzerland_fc-sion	Nicolas Marin	nicolasmarin	DRAFT
+eu_switzerland_fc-sion	Arnaud Bühler	arnaudbuhler	DRAFT
+eu_switzerland_fc-sion	Serey Die	sereydie	DRAFT
+eu_switzerland_fc-sion	Abdoul Karim Yoda	abdoulkarimyoda	DRAFT
+eu_switzerland_fc-sion	Enes Fermino	enesfermino	DRAFT
+eu_switzerland_fc-sion	Jonas Elmer	jonaselmer	DRAFT
+eu_switzerland_fc-sion	Giovanni Sio	giovannisio	DRAFT
+eu_switzerland_fc-sion	Moustapha Dabo	moustaphadabo	DRAFT
+eu_switzerland_fc-sion	Aleksandar Prijović	aleksandarprijovic	DRAFT
+eu_switzerland_fc-st-gallen	Daniel Lopar	daniellopar	DRAFT
+eu_switzerland_fc-st-gallen	Mario Frick	mariofrick	DRAFT
+eu_switzerland_fc-st-gallen	Daniel Imhof	danielimhof	DRAFT
+eu_switzerland_fc-st-gallen	Fabian Frei	fabianfrei	DRAFT
+eu_switzerland_fc-st-gallen	Tim Bakens	timbakens	DRAFT
+eu_switzerland_fc-st-gallen	Fernando	fernando	CROSS_CLUB
+eu_switzerland_fc-st-gallen	Philipp Muntwiler	philippmuntwiler	DRAFT
+eu_switzerland_fc-st-gallen	Kristian Nushi	kristiannushi	DRAFT
+eu_switzerland_fc-st-gallen	Lukas Schenkel	lukasschenkel	DRAFT
+eu_switzerland_fc-st-gallen	Nico Abegglen	nicoabegglen	DRAFT
+eu_switzerland_fc-st-gallen	Marco Hämmerli	marcohammerli	DRAFT
+eu_switzerland_fc-st-gallen	Adrian Winter	adrianwinter	DRAFT
+eu_switzerland_fc-st-gallen	Michael Lang	michaellang	DRAFT
+eu_switzerland_fc-st-gallen	Pa Modou Jagne	pamodoujagne	DRAFT
+eu_switzerland_fc-st-gallen	Moreno Merenda	morenomerenda	DRAFT
+eu_switzerland_fc-thun	David da Costa	daviddacosta	DRAFT
+eu_switzerland_fc-thun	Marc Schneider	marcschneider	DRAFT
+eu_switzerland_fc-thun	Milaim Rama	milaimrama	DRAFT
+eu_switzerland_fc-thun	Roland Bättig	rolandbattig	DRAFT
+eu_switzerland_fc-thun	Stipe Matić	stipematic	DRAFT
+eu_switzerland_fc-thun	Giuseppe Morello	giuseppemorello	DRAFT
+eu_switzerland_fc-thun	Muhamed Demiri	muhameddemiri	DRAFT
+eu_switzerland_fc-thun	Stefan Glarner	stefanglarner	DRAFT
+eu_switzerland_fc-thun	Benjamin Lüthi	benjaminluthi	DRAFT
+eu_switzerland_fc-thun	Ezequiel Scarione	ezequielscarione	DRAFT
+eu_switzerland_fc-thun	Stephan Andrist	stephanandrist	DRAFT
+eu_switzerland_fc-thun	Dennis Hediger	dennishediger	DRAFT
+eu_switzerland_fc-thun	Nelson Ferreira	nelsonferreira	DRAFT
+eu_switzerland_fc-thun	Marco Aratore	marcoaratore	DRAFT
+eu_switzerland_fc-zurich	Johnny Leoni	johnnyleoni	DRAFT
+eu_switzerland_fc-zurich	Yassine Chikhaoui	yassinechikhaoui	DRAFT
+eu_switzerland_fc-zurich	Ludovic Magnin	ludovicmagnin	DRAFT
+eu_switzerland_fc-zurich	Alexandre Alphonse	alexandrealphonse	DRAFT
+eu_switzerland_fc-zurich	Eric Hassli	erichassli	DRAFT
+eu_switzerland_fc-zurich	Xavier Margairaz	xaviermargairaz	DRAFT
+eu_switzerland_fc-zurich	Dušan Djurić	dusandjuric	DRAFT
+eu_switzerland_fc-zurich	Alain Rochat	alainrochat	DRAFT
+eu_switzerland_fc-zurich	Amine Chermiti	aminechermiti	DRAFT
+eu_switzerland_fc-zurich	Florian Stahel	florianstahel	DRAFT
+eu_switzerland_fc-zurich	Heinz Barmettler	heinzbarmettler	DRAFT
+eu_switzerland_fc-zurich	Silvan Aegerter	silvanaegerter	DRAFT
+eu_switzerland_fc-zurich	Marco Schönbächler	marcoschonbachler	DRAFT
+eu_switzerland_fc-zurich	Adrian Nikci	adriannikci	DRAFT
+eu_switzerland_fc-zurich	Milan Gajić	milangajic	DRAFT
+eu_switzerland_fc-zurich	Admir Mehmedi	admirmehmedi	DRAFT
+eu_switzerland_grasshopper-club-zurich	Boris Smiljanić	borissmiljanic	DRAFT
+eu_switzerland_grasshopper-club-zurich	Ricardo Cabanas	ricardocabanas	DRAFT
+eu_switzerland_grasshopper-club-zurich	Guillermo Vallori	guillermovallori	DRAFT
+eu_switzerland_grasshopper-club-zurich	Paulo Menezes	paulomenezes	DRAFT
+eu_switzerland_grasshopper-club-zurich	Veroljub Salatić	veroljubsalatic	DRAFT
+eu_switzerland_grasshopper-club-zurich	Davide Callà	davidecalla	DRAFT
+eu_switzerland_grasshopper-club-zurich	Vincenzo Rennella	vincenzorennella	DRAFT
+eu_switzerland_grasshopper-club-zurich	Alessandro Riedle	alessandroriedle	DRAFT
+eu_switzerland_grasshopper-club-zurich	Steven Lang	stevenlang	DRAFT
+eu_switzerland_grasshopper-club-zurich	Innocent Emeghara	innocentemeghara	DRAFT
+eu_switzerland_grasshopper-club-zurich	Kay Voser	kayvoser	DRAFT
+eu_switzerland_grasshopper-club-zurich	Nzuzi Toko	nzuzitoko	DRAFT
+eu_switzerland_grasshopper-club-zurich	Josip Colina	josipcolina	DRAFT
+eu_switzerland_grasshopper-club-zurich	Roman Bürki	romanburki	DRAFT
+eu_switzerland_grasshopper-club-zurich	Izet Hajrović	izethajrovic	DRAFT
+eu_switzerland_grasshopper-club-zurich	Amir Abrashi	amirabrashi	DRAFT
+eu_switzerland_lausanne-sport	Anthony Favre	anthonyfavre	DRAFT
+eu_switzerland_lausanne-sport	Guillaume Katz	guillaumekatz	DRAFT
+eu_switzerland_lausanne-sport	Jérôme Sonnerat	jeromesonnerat	DRAFT
+eu_switzerland_lausanne-sport	Mickaël Castejon	mickaelcastejon	DRAFT
+eu_switzerland_lausanne-sport	Abdoulaye Ba	abdoulayeba	DRAFT
+eu_switzerland_lausanne-sport	Stéphane Nater	stephanenater	DRAFT
+eu_switzerland_lausanne-sport	Alexandre Pasche	alexandrepasche	DRAFT
+eu_switzerland_lausanne-sport	Nicolas Marazzi	nicolasmarazzi	DRAFT
+eu_switzerland_lausanne-sport	Jocelyn Roux	jocelynroux	DRAFT
+eu_switzerland_lausanne-sport	Silvio	silvio	CROSS_CLUB
+eu_switzerland_lausanne-sport	Moustapha Tall	moustaphatall	DRAFT
+eu_switzerland_lausanne-sport	Matt Moussilou	mattmoussilou	DRAFT
+eu_switzerland_lausanne-sport	Yannis Tafer	yannistafer	DRAFT
+eu_switzerland_lausanne-sport	Yves Miéville	yvesmieville	DRAFT
+eu_switzerland_lausanne-sport	Raphaël Khelifi	raphaelkhelifi	DRAFT
+eu_switzerland_lausanne-sport	Gaëtan Karlen	gaetankarlen	DRAFT
+eu_turkey_besiktas	Hakan Arıkan	hakanarkan	DRAFT
+eu_turkey_besiktas	Cenk Gönen	cenkgonen	DRAFT
+eu_turkey_besiktas	Ricardo Quaresma	ricardoquaresma	DRAFT
+eu_turkey_besiktas	Guti	guti	DRAFT
+eu_turkey_besiktas	Nihat Kahveci	nihatkahveci	DRAFT
+eu_turkey_besiktas	Fabian Ernst	fabianernst	DRAFT
+eu_turkey_besiktas	İbrahim Toraman	ibrahimtoraman	DRAFT
+eu_turkey_besiktas	Matteo Ferrari	matteoferrari	DRAFT
+eu_turkey_besiktas	Rodrigo Tabata	rodrigotabata	DRAFT
+eu_turkey_besiktas	Bobô	bobo	DRAFT
+eu_turkey_besiktas	Fatih Tekke	fatihtekke	DRAFT
+eu_turkey_besiktas	Filip Hološko	filipholosko	DRAFT
+eu_turkey_besiktas	Roberto Hilbert	robertohilbert	DRAFT
+eu_turkey_besiktas	Mert Nobre	mertnobre	DRAFT
+eu_turkey_besiktas	Michael Fink	michaelfink	DRAFT
+eu_turkey_besiktas	Ekrem Dağ	ekremdag	DRAFT
+eu_turkey_besiktas	Yusuf Şimşek	yusufsimsek	DRAFT
+eu_turkey_besiktas	Mehmet Aurelio	mehmetaurelio	DRAFT
+eu_turkey_besiktas	İsmail Köybaşı	ismailkoybas	DRAFT
+eu_turkey_besiktas	Necip Uysal	necipuysal	DRAFT
+eu_turkey_besiktas	İbrahim Üzülmez	ibrahimuzulmez	DRAFT
+eu_turkey_bursaspor	Dimitar Ivankov	dimitarivankov	DRAFT
+eu_turkey_bursaspor	Sercan Yıldırım	sercanyldrm	DRAFT
+eu_turkey_bursaspor	Federico Insúa	federicoinsua	DRAFT
+eu_turkey_bursaspor	Milan Stepanov	milanstepanov	DRAFT
+eu_turkey_bursaspor	Ömer Erdoğan	omererdogan	DRAFT
+eu_turkey_bursaspor	Volkan Şen	volkansen	DRAFT
+eu_turkey_bursaspor	Ivan Ergić	ivanergic	DRAFT
+eu_turkey_bursaspor	Gökçek Vederson	gokcekvederson	DRAFT
+eu_turkey_bursaspor	Ozan İpek	ozanipek	DRAFT
+eu_turkey_bursaspor	Ali Tandoğan	alitandogan	DRAFT
+eu_turkey_bursaspor	Gustav Svensson	gustavsvensson	DRAFT
+eu_turkey_bursaspor	Hüseyin Çimşir	huseyincimsir	DRAFT
+eu_turkey_bursaspor	Pablo Batalla	pablobatalla	DRAFT
+eu_turkey_bursaspor	Turgay Bahadır	turgaybahadr	DRAFT
+eu_turkey_bursaspor	Giani Kiriță	gianikirita	DRAFT
+eu_turkey_bursaspor	Mustafa Keçeli	mustafakeceli	DRAFT
+eu_turkey_bursaspor	Bekir Ozan Has	bekirozanhas	DRAFT
+eu_turkey_bursaspor	İbrahim Öztürk	ibrahimozturk	DRAFT
+eu_turkey_bursaspor	Serdar Aziz	serdaraziz	DRAFT
+eu_turkey_fenerbahce	Volkan Demirel	volkandemirel	DRAFT
+eu_turkey_fenerbahce	Alex	alex	CROSS_CLUB
+eu_turkey_fenerbahce	Diego Lugano	diegolugano	DRAFT
+eu_turkey_fenerbahce	Emre Belözoğlu	emrebelozoglu	DRAFT
+eu_turkey_fenerbahce	Mamadou Niang	mamadouniang	DRAFT
+eu_turkey_fenerbahce	Gökhan Ünal	gokhanunal	DRAFT
+eu_turkey_fenerbahce	Dani Güiza	daniguiza	DRAFT
+eu_turkey_fenerbahce	Colin Kâzım-Richards	colinkazmrichards	DRAFT
+eu_turkey_fenerbahce	Semih Şentürk	semihsenturk	DRAFT
+eu_turkey_fenerbahce	Mehmet Topuz	mehmettopuz	DRAFT
+eu_turkey_fenerbahce	Miroslav Stoch	miroslavstoch	DRAFT
+eu_turkey_fenerbahce	André Santos	andresantos	DRAFT
+eu_turkey_fenerbahce	Fabio Bilica	fabiobilica	DRAFT
+eu_turkey_fenerbahce	Gökhan Gönül	gokhangonul	DRAFT
+eu_turkey_fenerbahce	Joseph Yobo	josephyobo	DRAFT
+eu_turkey_fenerbahce	Uğur Boral	ugurboral	DRAFT
+eu_turkey_fenerbahce	Issiar Dia	issiardia	DRAFT
+eu_turkey_fenerbahce	Caner Erkin	canererkin	DRAFT
+eu_turkey_fenerbahce	Özer Hurmacı	ozerhurmac	DRAFT
+eu_turkey_fenerbahce	Selçuk Şahin	selcuksahin	DRAFT
+eu_turkey_galatasaray	Ufuk Ceylan	ufukceylan	DRAFT
+eu_turkey_galatasaray	Aykut Erçetin	aykutercetin	DRAFT
+eu_turkey_galatasaray	Arda Turan	ardaturan	DRAFT
+eu_turkey_galatasaray	Zvjezdan Misimović	zvjezdanmisimovic	DRAFT
+eu_turkey_galatasaray	Elano	elano	DRAFT
+eu_turkey_galatasaray	Servet Çetin	servetcetin	DRAFT
+eu_turkey_galatasaray	Milan Baroš	milanbaros	DRAFT
+eu_turkey_galatasaray	Lucas Neill	lucasneill	DRAFT
+eu_turkey_galatasaray	Lorik Cana	lorikcana	DRAFT
+eu_turkey_galatasaray	Harry Kewell	harrykewell	DRAFT
+eu_turkey_galatasaray	Juan Pablo Pino	juanpablopino	DRAFT
+eu_turkey_galatasaray	Emiliano Insúa	emilianoinsua	DRAFT
+eu_turkey_galatasaray	Hakan Balta	hakanbalta	DRAFT
+eu_turkey_galatasaray	Sabri Sarıoğlu	sabrisaroglu	DRAFT
+eu_turkey_galatasaray	Gökhan Zan	gokhanzan	DRAFT
+eu_turkey_galatasaray	Serdar Özkan	serdarozkan	DRAFT
+eu_turkey_galatasaray	Barış Özbek	barsozbek	DRAFT
+eu_turkey_galatasaray	Mustafa Sarp	mustafasarp	DRAFT
+eu_turkey_galatasaray	Ayhan Akman	ayhanakman	DRAFT
+eu_turkey_trabzonspor	Onur Kıvrak	onurkvrak	DRAFT
+eu_turkey_trabzonspor	Ibrahima Yattara	ibrahimayattara	DRAFT
+eu_turkey_trabzonspor	Alanzinho	alanzinho	DRAFT
+eu_turkey_trabzonspor	Egemen Korkmaz	egemenkorkmaz	DRAFT
+eu_turkey_trabzonspor	Burak Yılmaz	burakylmaz	DRAFT
+eu_turkey_trabzonspor	Gustavo Colman	gustavocolman	DRAFT
+eu_turkey_trabzonspor	Jajá Coelho	jajacoelho	DRAFT
+eu_turkey_trabzonspor	Serkan Balcı	serkanbalc	DRAFT
+eu_turkey_trabzonspor	Sezer Badur	sezerbadur	DRAFT
+eu_turkey_trabzonspor	Umut Bulut	umutbulut	DRAFT
+eu_turkey_trabzonspor	Arkadiusz Głowacki	arkadiuszgowacki	CROSS_CLUB
+eu_turkey_trabzonspor	Giray Kaçar	giraykacar	DRAFT
+eu_turkey_trabzonspor	Tayfun Cora	tayfuncora	DRAFT
+eu_turkey_trabzonspor	Selçuk İnan	selcukinan	DRAFT
+eu_turkey_trabzonspor	Engin Baytar	enginbaytar	DRAFT
+eu_turkey_trabzonspor	Ceyhun Gülselam	ceyhungulselam	DRAFT
+eu_turkey_trabzonspor	Piotr Brożek	piotrbrozek	DRAFT
+eu_turkey_trabzonspor	Pawel Brożek	pawelbrozek	DRAFT
+eu_ukraine_dnipro-dnipropetrovsk	Jan Laštůvka	janlastuvka	DRAFT
+eu_ukraine_dnipro-dnipropetrovsk	Anton Kanibolotskyi	antonkanibolotskyi	DRAFT
+eu_ukraine_dnipro-dnipropetrovsk	Andriy Rusol	andriyrusol	DRAFT
+eu_ukraine_dnipro-dnipropetrovsk	Vitaliy Mandzyuk	vitaliymandzyuk	DRAFT
+eu_ukraine_dnipro-dnipropetrovsk	Samuel Inkoom	samuelinkoom	CROSS_CLUB
+eu_ukraine_dnipro-dnipropetrovsk	Ivan Strinić	ivanstrinic	CROSS_CLUB
+eu_ukraine_dnipro-dnipropetrovsk	Yevhen Cheberyachko	yevhencheberyachko	DRAFT
+eu_ukraine_dnipro-dnipropetrovsk	Ruslan Rotan	ruslanrotan	DRAFT
+eu_ukraine_dnipro-dnipropetrovsk	Serhiy Nazarenko	serhiynazarenko	DRAFT
+eu_ukraine_dnipro-dnipropetrovsk	Maksym Kalynychenko	maksymkalynychenko	DRAFT
+eu_ukraine_dnipro-dnipropetrovsk	Yevhen Konoplyanka	yevhenkonoplyanka	DRAFT
+eu_ukraine_dnipro-dnipropetrovsk	Giuliano	giuliano	DRAFT
+eu_ukraine_dnipro-dnipropetrovsk	Derek Boateng	derekboateng	DATE_CONFLICT
+eu_ukraine_dnipro-dnipropetrovsk	Jaba Kankava	jabakankava	DRAFT
+eu_ukraine_dnipro-dnipropetrovsk	Oleksandr Hladkyi	oleksandrhladkyi	DRAFT
+eu_ukraine_dnipro-dnipropetrovsk	Yevhen Seleznyov	yevhenseleznyov	DRAFT
+eu_ukraine_dnipro-dnipropetrovsk	Matheus	matheus	DRAFT
+eu_ukraine_dnipro-dnipropetrovsk	Mario Holek	marioholek	DRAFT
+eu_ukraine_dynamo-kyiv	Maksym Koval	maksymkoval	DRAFT
+eu_ukraine_dynamo-kyiv	Oleksandr Shovkovskyi	oleksandrshovkovskyi	DRAFT
+eu_ukraine_dynamo-kyiv	Denys Boyko	denysboyko	DRAFT
+eu_ukraine_dynamo-kyiv	Taras Mykhalyk	tarasmykhalyk	DRAFT
+eu_ukraine_dynamo-kyiv	Badr El Kaddouri	badrelkaddouri	DRAFT
+eu_ukraine_dynamo-kyiv	Yevhen Khacheridi	yevhenkhacheridi	DRAFT
+eu_ukraine_dynamo-kyiv	Goran Popov	goranpopov	DRAFT
+eu_ukraine_dynamo-kyiv	Yussuf Ayila	yussufayila	DRAFT
+eu_ukraine_dynamo-kyiv	Andriy Nesmachnyi	andriynesmachnyi	DRAFT
+eu_ukraine_dynamo-kyiv	Ognjen Vukojević	ognjenvukojevic	DRAFT
+eu_ukraine_dynamo-kyiv	Andriy Yarmolenko	andriyyarmolenko	DRAFT
+eu_ukraine_dynamo-kyiv	Roman Eremenko	romaneremenko	DRAFT
+eu_ukraine_dynamo-kyiv	Oleh Husyev	olehhusyev	DRAFT
+eu_ukraine_dynamo-kyiv	Denys Harmash	denysharmash	DRAFT
+eu_ukraine_dynamo-kyiv	Miloš Ninković	milosninkovic	DRAFT
+eu_ukraine_dynamo-kyiv	Oleksandr Aliyev	oleksandraliyev	CROSS_CLUB
+eu_ukraine_dynamo-kyiv	Facundo Bertoglio	facundobertoglio	DRAFT
+eu_ukraine_dynamo-kyiv	Artem Milevskyi	artemmilevskyi	DRAFT
+eu_ukraine_dynamo-kyiv	Andriy Shevchenko	andriyshevchenko	DRAFT
+eu_ukraine_dynamo-kyiv	Roman Zozulya	romanzozulya	DRAFT
+eu_ukraine_dynamo-kyiv	Artem Kravets	artemkravets	DRAFT
+eu_ukraine_karpaty-lviv	Andriy Tlumak	andriytlumak	DRAFT
+eu_ukraine_karpaty-lviv	Martin Bogatinov	martinbogatinov	DRAFT
+eu_ukraine_karpaty-lviv	Artem Fedetskyi	artemfedetskyi	DRAFT
+eu_ukraine_karpaty-lviv	Ivan Milošević	ivanmilosevic	DRAFT
+eu_ukraine_karpaty-lviv	Nemanja Tubić	nemanjatubic	DRAFT
+eu_ukraine_karpaty-lviv	Igor Oshchipko	igoroshchipko	DRAFT
+eu_ukraine_karpaty-lviv	Andriy Tkachuk	andriytkachuk	DRAFT
+eu_ukraine_karpaty-lviv	Samson Godwin	samsongodwin	DRAFT
+eu_ukraine_karpaty-lviv	Oleg Golodyuk	oleggolodyuk	DRAFT
+eu_ukraine_karpaty-lviv	Igor Khudobyak	igorkhudobyak	DRAFT
+eu_ukraine_karpaty-lviv	Mikhail Kopolovets	mikhailkopolovets	DRAFT
+eu_ukraine_karpaty-lviv	Lucas Pérez	lucasperez	DRAFT
+eu_ukraine_karpaty-lviv	Batista	batista	DRAFT
+eu_ukraine_karpaty-lviv	Sergei Kuznetsov	sergeikuznetsov	DRAFT
+eu_ukraine_karpaty-lviv	Denis Kozhanov	deniskozhanov	DRAFT
+eu_ukraine_karpaty-lviv	William Rocha	williamrocha	DRAFT
+eu_ukraine_karpaty-lviv	Gregor Balažic	gregorbalazic	DRAFT
+eu_ukraine_karpaty-lviv	Danilo Avelar	daniloavelar	DRAFT
+eu_ukraine_metalist-kharkiv	Vladimir Dišljenković	vladimirdisljenkovic	DRAFT
+eu_ukraine_metalist-kharkiv	Maksym Startsev	maksymstartsev	DRAFT
+eu_ukraine_metalist-kharkiv	Oleksandr Horyainov	oleksandrhoryainov	DRAFT
+eu_ukraine_metalist-kharkiv	Milan Obradović	milanobradovic	DRAFT
+eu_ukraine_metalist-kharkiv	Cristian Villagra	cristianvillagra	DRAFT
+eu_ukraine_metalist-kharkiv	Oleksandr Romanchuk	oleksandrromanchuk	DRAFT
+eu_ukraine_metalist-kharkiv	Papa Guèye	papagueye	DRAFT
+eu_ukraine_metalist-kharkiv	Vitalie Bordian	vitaliebordian	DRAFT
+eu_ukraine_metalist-kharkiv	Lukáš Štetina	lukasstetina	DRAFT
+eu_ukraine_metalist-kharkiv	Edmar	edmar	DRAFT
+eu_ukraine_metalist-kharkiv	Serhiy Valyayev	serhiyvalyayev	DRAFT
+eu_ukraine_metalist-kharkiv	Oleh Shelayev	olehshelayev	DRAFT
+eu_ukraine_metalist-kharkiv	Sani Kaita	sanikaita	DRAFT
+eu_ukraine_metalist-kharkiv	Denys Oliynyk	denysoliynyk	DRAFT
+eu_ukraine_metalist-kharkiv	Marko Dević	markodevic	DRAFT
+eu_ukraine_metalist-kharkiv	Taison	taison	DRAFT
+eu_ukraine_metalist-kharkiv	Andriy Vorobey	andriyvorobey	DRAFT
+eu_ukraine_metalist-kharkiv	Jonathan Cristaldo	jonathancristaldo	DRAFT
+eu_ukraine_metalist-kharkiv	Sebastián Blanco	sebastianblanco	DRAFT
+eu_ukraine_shakhtar-donetsk	Andriy Pyatov	andriypyatov	DRAFT
+eu_ukraine_shakhtar-donetsk	Oleksandr Rybka	oleksandrrybka	DRAFT
+eu_ukraine_shakhtar-donetsk	Dmytro Chygrynskiy	dmytrochygrynskiy	DRAFT
+eu_ukraine_shakhtar-donetsk	Yaroslav Rakitskiy	yaroslavrakitskiy	DRAFT
+eu_ukraine_shakhtar-donetsk	Olexandr Kucher	olexandrkucher	DRAFT
+eu_ukraine_shakhtar-donetsk	Darijo Srna	darijosrna	DRAFT
+eu_ukraine_shakhtar-donetsk	Razvan Raț	razvanrat	DRAFT
+eu_ukraine_shakhtar-donetsk	Tomáš Hübschman	tomashubschman	DRAFT
+eu_ukraine_shakhtar-donetsk	Fernandinho	fernandinho	DRAFT
+eu_ukraine_shakhtar-donetsk	Willian	willian	DRAFT
+eu_ukraine_shakhtar-donetsk	Jadson	jadson	DRAFT
+eu_ukraine_shakhtar-donetsk	Douglas Costa	douglascosta	DRAFT
+eu_ukraine_shakhtar-donetsk	Henrikh Mkhitaryan	henrikhmkhitaryan	DRAFT
+eu_ukraine_shakhtar-donetsk	Alex Teixeira	alexteixeira	DRAFT
+eu_ukraine_shakhtar-donetsk	Luiz Adriano	luizadriano	DRAFT
+eu_ukraine_shakhtar-donetsk	Eduardo da Silva	eduardodasilva	DRAFT
+eu_ukraine_shakhtar-donetsk	Marcelo Moreno	marcelomoreno	DRAFT
+eu_ukraine_shakhtar-donetsk	Vitaliy Vitsenets	vitaliyvitsenets	DRAFT
+eu_ukraine_shakhtar-donetsk	Ilsinho	ilsinho	DRAFT
+eu_ukraine_shakhtar-donetsk	Mariusz Lewandowski	mariuszlewandowski	DRAFT
+eu_ukraine_vorskla-poltava	Serhiy Dolhanskyi	serhiydolhanskyi	DRAFT
+eu_ukraine_vorskla-poltava	Ahmed Januzi	ahmedjanuzi	DRAFT
+eu_ukraine_vorskla-poltava	Jovan Markoski	jovanmarkoski	DRAFT
+eu_ukraine_vorskla-poltava	Roman Bezus	romanbezus	DRAFT
+eu_ukraine_vorskla-poltava	Armend Dallku	armenddallku	DRAFT
+eu_ukraine_vorskla-poltava	Volodymyr Chesnakov	volodymyrchesnakov	DRAFT
+eu_ukraine_vorskla-poltava	Pavlo Rebenok	pavlorebenok	DRAFT
+eu_ukraine_vorskla-poltava	Oleh Krasnopyorov	olehkrasnopyorov	DRAFT
+eu_ukraine_vorskla-poltava	Denis Kulakov	deniskulakov	DRAFT
+eu_ukraine_vorskla-poltava	Ivan Kryvosheienko	ivankryvosheienko	DRAFT
+eu_ukraine_vorskla-poltava	Vasyl Sachko	vasylsachko	DRAFT
+eu_ukraine_vorskla-poltava	Serhiy Zakarlyuka	serhiyzakarlyuka	DRAFT
+eu_ukraine_vorskla-poltava	Yevhen Selin	yevhenselin	DRAFT
+eu_ukraine_vorskla-poltava	Andriy Oberemko	andriyoberemko	DRAFT
+eu_ukraine_vorskla-poltava	Aleksandr Matveyev	aleksandrmatveyev	DRAFT
+eu_ukraine_vorskla-poltava	Dmytro Yesin	dmytroyesin	DRAFT
