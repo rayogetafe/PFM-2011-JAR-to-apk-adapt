@@ -1,0 +1,130 @@
+club_id	club	source_name	source_url	score	status
+eu_austria_austria-wien	Austria Wien	Austria Vídeň	https://www.eurofotbal.cz/kluby/rakousko/austria-viden/soupiska/2010-2011/	1.000	CONFIRMED
+eu_austria_rapid-wien	Rapid Wien	Rapid Vídeň	https://www.eurofotbal.cz/kluby/rakousko/rapid-viden/soupiska/2010-2011/	1.000	CONFIRMED
+eu_austria_red-bull-salzburg	Red Bull Salzburg	MANUALLY_MAPPED	https://www.eurofotbal.cz/kluby/rakousko/red-bull-salzburg/soupiska/2010-2011/	1.000	CONFIRMED
+eu_austria_sturm-graz	Sturm Graz	MANUALLY_MAPPED	https://www.eurofotbal.cz/kluby/rakousko/sk-sturm-graz/soupiska/2010-2011/	1.000	CONFIRMED
+eu_azerbaijan_neftci-pfk	Neftçi PFK	MANUALLY_MAPPED	https://www.eurofotbal.cz/kluby/azerbajdzan/neftci-baku/soupiska/2010-2011/	1.000	CONFIRMED
+eu_azerbaijan_qarabag-fk	Qarabağ FK	MANUALLY_MAPPED	https://www.eurofotbal.cz/kluby/azerbajdzan/qarabag-agdam/soupiska/2010-2011/	1.000	CONFIRMED
+eu_belarus_bate-borisov	BATE Borisov	BATE Borisov	https://www.eurofotbal.cz/kluby/belorusko/bate-borisov/soupiska/2010/	1.000	CONFIRMED
+eu_belarus_dinamo-minsk	Dinamo Minsk	Dinamo Minsk	https://www.eurofotbal.cz/kluby/belorusko/dinamo-minsk/soupiska/2010/	1.000	CONFIRMED
+eu_belgium_club-brugge-kv	Club Brugge KV	MANUALLY_MAPPED	https://www.eurofotbal.cz/kluby/belgie/club-bruggy/soupiska/2010-2011/	1.000	CONFIRMED
+eu_belgium_kaa-gent	KAA Gent	KAA Gent	https://www.eurofotbal.cz/kluby/belgie/kaa-gent/soupiska/2010-2011/	1.000	CONFIRMED
+eu_belgium_krc-genk	KRC Genk	KRC Genk	https://www.eurofotbal.cz/kluby/belgie/krc-genk/soupiska/2010-2011/	1.000	CONFIRMED
+eu_belgium_ksc-lokeren	KSC Lokeren	KSC Lokeren	https://www.eurofotbal.cz/kluby/belgie/ksc-lokeren/soupiska/2010-2011/	1.000	CONFIRMED
+eu_belgium_rsc-anderlecht	RSC Anderlecht	RSC Anderlecht	https://www.eurofotbal.cz/kluby/belgie/rsc-anderlecht/soupiska/2010-2011/	1.000	CONFIRMED
+eu_belgium_standard-liege	Standard Liège	MANUALLY_MAPPED	https://www.eurofotbal.cz/kluby/belgie/standard-lutych/soupiska/2010-2011/	1.000	CONFIRMED
+eu_bulgaria_cska-sofia	CSKA Sofia	CSKA Sofia	https://www.eurofotbal.cz/kluby/bulharsko/cska-sofia/soupiska/2010-2011/	1.000	CONFIRMED
+eu_bulgaria_levski-sofia	Levski Sofia	Levski Sofia	https://www.eurofotbal.cz/kluby/bulharsko/levski-sofia/soupiska/2010-2011/	1.000	CONFIRMED
+eu_bulgaria_ludogorets-razgrad	Ludogorets Razgrad	MANUALLY_MAPPED	https://www.eurofotbal.cz/kluby/bulharsko/ludogorec-razgrad/soupiska/2010-2011/	1.000	CONFIRMED
+eu_bulgaria_litex-lovech	Litex Lovech	MANUALLY_MAPPED	https://www.eurofotbal.cz/kluby/bulharsko/litex-lovec/soupiska/2010-2011/	1.000	CONFIRMED
+eu_croatia_dinamo-zagreb	Dinamo Zagreb	MANUALLY_MAPPED	https://www.eurofotbal.cz/kluby/chorvatsko/dinamo-zahreb/soupiska/2010-2011/	1.000	CONFIRMED
+eu_croatia_hnk-rijeka	HNK Rijeka	MANUALLY_MAPPED	https://www.eurofotbal.cz/kluby/chorvatsko/nk-rijeka/soupiska/2010-2011/	1.000	CONFIRMED
+eu_croatia_hajduk-split	Hajduk Split	Hajduk Split	https://www.eurofotbal.cz/kluby/chorvatsko/hajduk-split/soupiska/2010-2011/	1.000	CONFIRMED
+eu_cyprus_aek-larnaca	AEK Larnaca	MANUALLY_MAPPED	https://www.eurofotbal.cz/kluby/kypr/aek-larnaka/soupiska/2010-2011/	1.000	CONFIRMED
+eu_cyprus_apoel	APOEL	MANUALLY_MAPPED	https://www.eurofotbal.cz/kluby/kypr/apoel-nikosie/soupiska/2010-2011/	1.000	CONFIRMED
+eu_cyprus_apollon-limassol	Apollon Limassol	Apollon Limassol	https://www.eurofotbal.cz/kluby/kypr/apollon-limassol/soupiska/2010-2011/	1.000	CONFIRMED
+eu_cyprus_omonia-nicosia	Omonia Nicosia	MANUALLY_MAPPED	https://www.eurofotbal.cz/kluby/kypr/omonia-nikosie/soupiska/2010-2011/	1.000	CONFIRMED
+eu_cyprus_anorthosis-famagusta	Anorthosis Famagusta	Anorthosis Famagusta	https://www.eurofotbal.cz/kluby/kypr/anorthosis-famagusta/soupiska/2010-2011/	1.000	CONFIRMED
+eu_czech_slavia-praha	Slavia Praha	Slavia Praha	https://www.eurofotbal.cz/kluby/cesko/slavia-praha/soupiska/2010-2011/	1.000	CONFIRMED
+eu_czech_slovan-liberec	Slovan Liberec	Slovan Liberec	https://www.eurofotbal.cz/kluby/cesko/slovan-liberec/soupiska/2010-2011/	1.000	CONFIRMED
+eu_czech_sparta-praha	Sparta Praha	Sparta Praha	https://www.eurofotbal.cz/kluby/cesko/sparta-praha/soupiska/2010-2011/	1.000	CONFIRMED
+eu_czech_viktoria-plzen	Viktoria Plzeň	Viktoria Plzeň	https://www.eurofotbal.cz/kluby/cesko/viktoria-plzen/soupiska/2010-2011/	1.000	CONFIRMED
+eu_czech_fk-jablonec	FK Jablonec	FK Jablonec	https://www.eurofotbal.cz/kluby/cesko/fk-jablonec/soupiska/2010-2011/	1.000	CONFIRMED
+eu_denmark_aab-aalborg	AaB Aalborg	MANUALLY_MAPPED	https://www.eurofotbal.cz/kluby/dansko/aalborg-bk/soupiska/2010-2011/	1.000	CONFIRMED
+eu_denmark_esbjerg-fb	Esbjerg fB	Esbjerg fB	https://www.eurofotbal.cz/kluby/dansko/esbjerg-fb/soupiska/2010-2011/	1.000	CONFIRMED
+eu_denmark_fc-copenhagen	FC Copenhagen	FC Kodaň	https://www.eurofotbal.cz/kluby/dansko/fc-kodan/soupiska/2010-2011/	1.000	CONFIRMED
+eu_denmark_fc-nordsjlland	FC Nordsjælland	MANUALLY_MAPPED	https://www.eurofotbal.cz/kluby/dansko/fc-nordsjaelland/soupiska/2010-2011/	1.000	CONFIRMED
+eu_denmark_odense-bk	Odense BK	MANUALLY_MAPPED	https://www.eurofotbal.cz/kluby/dansko/odense-boldklub/soupiska/2010-2011/	1.000	CONFIRMED
+eu_denmark_brndby-if	Brøndby IF	MANUALLY_MAPPED	https://www.eurofotbal.cz/kluby/dansko/brondby-if/soupiska/2010-2011/	1.000	CONFIRMED
+eu_finland_hjk-helsinki	HJK Helsinki	MANUALLY_MAPPED	https://www.eurofotbal.cz/kluby/finsko/hjk-helsinky/soupiska/2010/	1.000	CONFIRMED
+eu_greece_aek-athens	AEK Athens	MANUALLY_MAPPED	https://www.eurofotbal.cz/kluby/recko/aek-ateny/soupiska/2010-2011/	1.000	CONFIRMED
+eu_greece_aris-thessaloniki	Aris Thessaloniki	MANUALLY_MAPPED	https://www.eurofotbal.cz/kluby/recko/aris-solun/soupiska/2010-2011/	1.000	CONFIRMED
+eu_greece_asteras-tripolis	Asteras Tripolis	Asteras Tripolis	https://www.eurofotbal.cz/kluby/recko/asteras-tripolis/soupiska/2010-2011/	1.000	CONFIRMED
+eu_greece_olympiacos	Olympiacos	MANUALLY_MAPPED	https://www.eurofotbal.cz/kluby/recko/olympiakos-pireus/soupiska/2010-2011/	1.000	CONFIRMED
+eu_greece_paok	PAOK	MANUALLY_MAPPED	https://www.eurofotbal.cz/kluby/recko/paok-solun/soupiska/2010-2011/	1.000	CONFIRMED
+eu_greece_panathinaikos	Panathinaikos	MANUALLY_MAPPED	https://www.eurofotbal.cz/kluby/recko/panathinaikos-fc/soupiska/2010-2011/	1.000	CONFIRMED
+eu_hungary_debreceni-vsc	Debreceni VSC	Debreceni VSC	https://www.eurofotbal.cz/kluby/madarsko/debreceni-vsc/soupiska/2010-2011/	1.000	CONFIRMED
+eu_hungary_videoton-fc	Videoton FC	MANUALLY_MAPPED	https://www.eurofotbal.cz/kluby/madarsko/videoton-fc-fehervar/soupiska/2010-2011/	1.000	CONFIRMED
+eu_hungary_ferencvaros	Ferencváros	MANUALLY_MAPPED	https://www.eurofotbal.cz/kluby/madarsko/ferencvarosi-tc/soupiska/2010-2011/	1.000	CONFIRMED
+eu_ireland_shamrock-rovers	Shamrock Rovers	Shamrock Rovers	https://www.eurofotbal.cz/kluby/irsko/shamrock-rovers/soupiska/2010/	1.000	CONFIRMED
+eu_israel_hapoel-tel-aviv	Hapoel Tel Aviv	Hapoel Tel-Aviv	https://www.eurofotbal.cz/kluby/izrael/hapoel-tel-aviv/soupiska/2010-2011/	1.000	CONFIRMED
+eu_israel_maccabi-haifa	Maccabi Haifa	Maccabi Haifa	https://www.eurofotbal.cz/kluby/izrael/maccabi-haifa/soupiska/2010-2011/	1.000	CONFIRMED
+eu_israel_maccabi-tel-aviv	Maccabi Tel Aviv	Maccabi Tel-Aviv	https://www.eurofotbal.cz/kluby/izrael/maccabi-tel-aviv/soupiska/2010-2011/	1.000	CONFIRMED
+eu_moldova_sheriff-tiraspol	Sheriff Tiraspol	Sheriff Tiraspol	https://www.eurofotbal.cz/kluby/moldavsko/sheriff-tiraspol/soupiska/2010-2011/	1.000	CONFIRMED
+eu_netherlands_az-alkmaar	AZ Alkmaar	AZ Alkmaar	https://www.eurofotbal.cz/kluby/nizozemsko/az-alkmaar/soupiska/2010-2011/	1.000	CONFIRMED
+eu_netherlands_ajax	Ajax	MANUALLY_MAPPED	https://www.eurofotbal.cz/kluby/nizozemsko/afc-ajax/soupiska/2010-2011/	1.000	CONFIRMED
+eu_netherlands_fc-twente	FC Twente	FC Twente	https://www.eurofotbal.cz/kluby/nizozemsko/fc-twente/soupiska/2010-2011/	1.000	CONFIRMED
+eu_netherlands_fc-utrecht	FC Utrecht	FC Utrecht	https://www.eurofotbal.cz/kluby/nizozemsko/fc-utrecht/soupiska/2010-2011/	1.000	CONFIRMED
+eu_netherlands_feyenoord	Feyenoord	MANUALLY_MAPPED	https://www.eurofotbal.cz/kluby/nizozemsko/feyenoord-rotterdam/soupiska/2010-2011/	1.000	CONFIRMED
+eu_netherlands_nec-nijmegen	NEC Nijmegen	NEC Nijmegen	https://www.eurofotbal.cz/kluby/nizozemsko/nec-nijmegen/soupiska/2010-2011/	1.000	CONFIRMED
+eu_netherlands_psv-eindhoven	PSV Eindhoven	PSV Eindhoven	https://www.eurofotbal.cz/kluby/nizozemsko/psv-eindhoven/soupiska/2010-2011/	1.000	CONFIRMED
+eu_netherlands_sc-heerenveen	SC Heerenveen	SC Heerenveen	https://www.eurofotbal.cz/kluby/nizozemsko/sc-heerenveen/soupiska/2010-2011/	1.000	CONFIRMED
+eu_norway_molde-fk	Molde FK	Molde FK	https://www.eurofotbal.cz/kluby/norsko/molde-fk/soupiska/2010/	1.000	CONFIRMED
+eu_norway_rosenborg-bk	Rosenborg BK	Rosenborg BK	https://www.eurofotbal.cz/kluby/norsko/rosenborg-bk/soupiska/2010/	1.000	CONFIRMED
+eu_norway_troms-il	Tromsø IL	Tromsø IL	https://www.eurofotbal.cz/kluby/norsko/tromso-il/soupiska/2010/	1.000	CONFIRMED
+eu_norway_valerenga	Vålerenga	MANUALLY_MAPPED	https://www.eurofotbal.cz/kluby/norsko/valerenga-if/soupiska/2010/	1.000	CONFIRMED
+eu_poland_lech-poznan	Lech Poznań	Lech Poznań	https://www.eurofotbal.cz/kluby/polsko/lech-poznan/soupiska/2010-2011/	1.000	CONFIRMED
+eu_poland_legia-warsaw	Legia Warsaw	MANUALLY_MAPPED	https://www.eurofotbal.cz/kluby/polsko/legia-varsava/soupiska/2010-2011/	1.000	CONFIRMED
+eu_poland_wisa-krakow	Wisła Kraków	Wisła Kraków	https://www.eurofotbal.cz/kluby/polsko/wisla-krakow/soupiska/2010-2011/	1.000	CONFIRMED
+eu_portugal_cd-nacional	CD Nacional	CD Nacional	https://www.eurofotbal.cz/kluby/portugalsko/cd-nacional/soupiska/2010-2011/	1.000	CONFIRMED
+eu_portugal_cs-maritimo	CS Marítimo	CS Marítimo	https://www.eurofotbal.cz/kluby/portugalsko/cs-maritimo/soupiska/2010-2011/	1.000	CONFIRMED
+eu_portugal_estoril-praia	Estoril Praia	Estoril Praia	https://www.eurofotbal.cz/kluby/portugalsko/estoril-praia/soupiska/2010-2011/	1.000	CONFIRMED
+eu_portugal_fc-porto	FC Porto	FC Porto	https://www.eurofotbal.cz/kluby/portugalsko/fc-porto/soupiska/2010-2011/	1.000	CONFIRMED
+eu_portugal_pacos-de-ferreira	Paços de Ferreira	MANUALLY_MAPPED	https://www.eurofotbal.cz/kluby/portugalsko/pacos-de-ferreira/soupiska/2010-2011/	1.000	CONFIRMED
+eu_portugal_rio-ave	Rio Ave	MANUALLY_MAPPED	https://www.eurofotbal.cz/kluby/portugalsko/rio-ave-fc/soupiska/2010-2011/	1.000	CONFIRMED
+eu_portugal_sc-braga	SC Braga	SC Braga	https://www.eurofotbal.cz/kluby/portugalsko/sc-braga/soupiska/2010-2011/	1.000	CONFIRMED
+eu_portugal_sl-benfica	SL Benfica	SL Benfica	https://www.eurofotbal.cz/kluby/portugalsko/sl-benfica/soupiska/2010-2011/	1.000	CONFIRMED
+eu_portugal_sporting-cp	Sporting CP	Sporting CP	https://www.eurofotbal.cz/kluby/portugalsko/sporting-cp/soupiska/2010-2011/	1.000	CONFIRMED
+eu_portugal_vitoria-sc	Vitória SC	MANUALLY_MAPPED	https://www.eurofotbal.cz/kluby/portugalsko/vitoria-sc-guimaraes/soupiska/2010-2011/	1.000	CONFIRMED
+eu_portugal_vitoria-setubal	Vitória Setúbal	MANUALLY_MAPPED	https://www.eurofotbal.cz/kluby/portugalsko/vitoria-fc-setubal/soupiska/2010-2011/	1.000	CONFIRMED
+eu_romania_astra-ploiesti	Astra Ploiești	MANUALLY_MAPPED	https://www.eurofotbal.cz/kluby/rumunsko/astra-giurgiu/soupiska/2010-2011/	1.000	CONFIRMED
+eu_romania_cfr-cluj	CFR Cluj	CFR Cluj	https://www.eurofotbal.cz/kluby/rumunsko/cfr-cluj/soupiska/2010-2011/	1.000	CONFIRMED
+eu_romania_dinamo-bucuresti	Dinamo București	MANUALLY_MAPPED	https://www.eurofotbal.cz/kluby/rumunsko/dinamo-bukurest/soupiska/2010-2011/	1.000	CONFIRMED
+eu_romania_otelul-galati	Oțelul Galați	Oţelul Galaţi	https://www.eurofotbal.cz/kluby/rumunsko/otelul-galati/soupiska/2010-2011/	1.000	CONFIRMED
+eu_romania_rapid-bucuresti	Rapid București	MANUALLY_MAPPED	https://www.eurofotbal.cz/kluby/rumunsko/rapid-1923/soupiska/2010-2011/	1.000	CONFIRMED
+eu_romania_steaua-bucuresti	Steaua București	MANUALLY_MAPPED	https://www.eurofotbal.cz/kluby/rumunsko/fcsb/soupiska/2010-2011/	1.000	CONFIRMED
+eu_romania_fc-timisoara	FC Timișoara	MANUALLY_MAPPED	https://www.eurofotbal.cz/kluby/rumunsko/politehnica-temesvar/soupiska/2010-2011/	1.000	CONFIRMED
+eu_romania_sc-vaslui	SC Vaslui	MANUALLY_MAPPED	https://www.eurofotbal.cz/kluby/rumunsko/fc-vaslui/soupiska/2010-2011/	1.000	CONFIRMED
+eu_russia_anzhi-makhachkala	Anzhi Makhachkala	MANUALLY_MAPPED	https://www.eurofotbal.cz/kluby/rusko/anzi-machackala/soupiska/2010/	1.000	CONFIRMED
+eu_russia_cska-moscow	CSKA Moscow	MANUALLY_MAPPED	https://www.eurofotbal.cz/kluby/rusko/cska-moskva/soupiska/2010/	1.000	CONFIRMED
+eu_russia_fc-krasnodar	FC Krasnodar	MANUALLY_MAPPED	https://www.eurofotbal.cz/kluby/rusko/fk-krasnodar/soupiska/2010/	1.000	CONFIRMED
+eu_russia_kuban-krasnodar	Kuban Krasnodar	MANUALLY_MAPPED	https://www.eurofotbal.cz/kluby/rusko/kuban-krasnodar/soupiska/2010/	1.000	CONFIRMED
+eu_russia_lokomotiv-moscow	Lokomotiv Moscow	MANUALLY_MAPPED	https://www.eurofotbal.cz/kluby/rusko/lokomotiv-moskva/soupiska/2010/	1.000	CONFIRMED
+eu_russia_rubin-kazan	Rubin Kazan	Rubin Kazaň	https://www.eurofotbal.cz/kluby/rusko/rubin-kazan/soupiska/2010/	1.000	CONFIRMED
+eu_russia_spartak-moscow	Spartak Moscow	MANUALLY_MAPPED	https://www.eurofotbal.cz/kluby/rusko/spartak-moskva/soupiska/2010/	1.000	CONFIRMED
+eu_russia_zenit-st-petersburg	Zenit St Petersburg	MANUALLY_MAPPED	https://www.eurofotbal.cz/kluby/rusko/zenit-petrohrad/soupiska/2010/	1.000	CONFIRMED
+eu_russia_dynamo-moscow	Dynamo Moscow	MANUALLY_MAPPED	https://www.eurofotbal.cz/kluby/rusko/dinamo-moskva/soupiska/2010/	1.000	CONFIRMED
+eu_scotland_aberdeen	Aberdeen	MANUALLY_MAPPED	https://www.eurofotbal.cz/kluby/skotsko/aberdeen-fc/soupiska/2010-2011/	1.000	CONFIRMED
+eu_scotland_celtic	Celtic	MANUALLY_MAPPED	https://www.eurofotbal.cz/kluby/skotsko/celtic-fc/soupiska/2010-2011/	1.000	CONFIRMED
+eu_scotland_rangers	Rangers	MANUALLY_MAPPED	https://www.eurofotbal.cz/kluby/skotsko/rangers-fc/soupiska/2010-2011/	1.000	CONFIRMED
+eu_scotland_heart-of-midlothian	Heart of Midlothian	Heart of Midlothian	https://www.eurofotbal.cz/kluby/skotsko/heart-of-midlothian/soupiska/2010-2011/	1.000	CONFIRMED
+eu_serbia_partizan-belgrade	Partizan Belgrade	MANUALLY_MAPPED	https://www.eurofotbal.cz/kluby/srbsko/fk-partizan/soupiska/2010-2011/	1.000	CONFIRMED
+eu_serbia_red-star-belgrade	Red Star Belgrade	MANUALLY_MAPPED	https://www.eurofotbal.cz/kluby/srbsko/fk-crvena-zvezda/soupiska/2010-2011/	1.000	CONFIRMED
+eu_serbia_vojvodina-novi-sad	Vojvodina Novi Sad	Vojvodina Novi Sad	https://www.eurofotbal.cz/kluby/srbsko/vojvodina-novi-sad/soupiska/2010-2011/	1.000	CONFIRMED
+eu_slovakia_msk-zilina	MŠK Žilina	MŠK Žilina	https://www.eurofotbal.cz/kluby/slovensko/msk-zilina/soupiska/2010-2011/	1.000	CONFIRMED
+eu_slovakia_slovan-bratislava	Slovan Bratislava	Slovan Bratislava	https://www.eurofotbal.cz/kluby/slovensko/slovan-bratislava/soupiska/2010-2011/	1.000	CONFIRMED
+eu_slovenia_nk-maribor	NK Maribor	NK Maribor	https://www.eurofotbal.cz/kluby/slovinsko/nk-maribor/soupiska/2010-2011/	1.000	CONFIRMED
+eu_sweden_aik	AIK	MANUALLY_MAPPED	https://www.eurofotbal.cz/kluby/svedsko/aik-solna/soupiska/2010/	1.000	CONFIRMED
+eu_sweden_helsingborgs-if	Helsingborgs IF	Helsingborgs IF	https://www.eurofotbal.cz/kluby/svedsko/helsingborgs-if/soupiska/2010/	1.000	CONFIRMED
+eu_sweden_if-elfsborg	IF Elfsborg	IF Elfsborg	https://www.eurofotbal.cz/kluby/svedsko/if-elfsborg/soupiska/2010/	1.000	CONFIRMED
+eu_sweden_malmo-ff	Malmö FF	Malmö FF	https://www.eurofotbal.cz/kluby/svedsko/malm-ff/soupiska/2010/	1.000	CONFIRMED
+eu_sweden_ifk-goteborg	IFK Göteborg	IFK Göteborg	https://www.eurofotbal.cz/kluby/svedsko/ifk-goteborg/soupiska/2010/	1.000	CONFIRMED
+eu_switzerland_bsc-young-boys	BSC Young Boys	BSC Young Boys	https://www.eurofotbal.cz/kluby/svycarsko/bsc-young-boys/soupiska/2010-2011/	1.000	CONFIRMED
+eu_switzerland_fc-basel	FC Basel	MANUALLY_MAPPED	https://www.eurofotbal.cz/kluby/svycarsko/fc-basilej/soupiska/2010-2011/	1.000	CONFIRMED
+eu_switzerland_fc-st-gallen	FC St. Gallen	FC St. Gallen	https://www.eurofotbal.cz/kluby/svycarsko/fc-st-gallen/soupiska/2010-2011/	1.000	CONFIRMED
+eu_switzerland_fc-thun	FC Thun	FC Thun	https://www.eurofotbal.cz/kluby/svycarsko/fc-thun/soupiska/2010-2011/	1.000	CONFIRMED
+eu_switzerland_fc-zurich	FC Zürich	MANUALLY_MAPPED	https://www.eurofotbal.cz/kluby/svycarsko/fc-curych/soupiska/2010-2011/	1.000	CONFIRMED
+eu_switzerland_lausanne-sport	Lausanne-Sport	Lausanne Sport	https://www.eurofotbal.cz/kluby/svycarsko/lausanne-sport/soupiska/2010-2011/	1.000	CONFIRMED
+eu_switzerland_grasshopper-club-zurich	Grasshopper Club Zürich	MANUALLY_MAPPED	https://www.eurofotbal.cz/kluby/svycarsko/grasshopper-curych/soupiska/2010-2011/	1.000	CONFIRMED
+eu_switzerland_fc-sion	FC Sion	FC Sion	https://www.eurofotbal.cz/kluby/svycarsko/fc-sion/soupiska/2010-2011/	1.000	CONFIRMED
+eu_turkey_besiktas	Beşiktaş	MANUALLY_MAPPED	https://www.eurofotbal.cz/kluby/turecko/besiktas-jk/soupiska/2010-2011/	1.000	CONFIRMED
+eu_turkey_bursaspor	Bursaspor	Bursaspor	https://www.eurofotbal.cz/kluby/turecko/bursaspor/soupiska/2010-2011/	1.000	CONFIRMED
+eu_turkey_fenerbahce	Fenerbahçe	MANUALLY_MAPPED	https://www.eurofotbal.cz/kluby/turecko/fenerbahce-sk/soupiska/2010-2011/	1.000	CONFIRMED
+eu_turkey_galatasaray	Galatasaray	MANUALLY_MAPPED	https://www.eurofotbal.cz/kluby/turecko/galatasaray-sk/soupiska/2010-2011/	1.000	CONFIRMED
+eu_turkey_trabzonspor	Trabzonspor	Trabzonspor	https://www.eurofotbal.cz/kluby/turecko/trabzonspor/soupiska/2010-2011/	1.000	CONFIRMED
+eu_ukraine_dynamo-kyiv	Dynamo Kyiv	MANUALLY_MAPPED	https://www.eurofotbal.cz/kluby/ukrajina/dynamo-kyjev/soupiska/2010-2011/	1.000	CONFIRMED
+eu_ukraine_karpaty-lviv	Karpaty Lviv	MANUALLY_MAPPED	https://www.eurofotbal.cz/kluby/ukrajina/karpaty-lvov/soupiska/2010-2011/	1.000	CONFIRMED
+eu_ukraine_metalist-kharkiv	Metalist Kharkiv	MANUALLY_MAPPED	https://www.eurofotbal.cz/kluby/ukrajina/metalist-charkov/soupiska/2010-2011/	1.000	CONFIRMED
+eu_ukraine_shakhtar-donetsk	Shakhtar Donetsk	MANUALLY_MAPPED	https://www.eurofotbal.cz/kluby/ukrajina/sachtar-doneck/soupiska/2010-2011/	1.000	CONFIRMED
+eu_ukraine_vorskla-poltava	Vorskla Poltava	Vorskla Poltava	https://www.eurofotbal.cz/kluby/ukrajina/vorskla-poltava/soupiska/2010-2011/	1.000	CONFIRMED
+eu_ukraine_dnipro-dnipropetrovsk	Dnipro Dnipropetrovsk	MANUALLY_MAPPED	https://www.eurofotbal.cz/kluby/ukrajina/dnepr-dnepropetrovsk/soupiska/2010-2011/	1.000	CONFIRMED

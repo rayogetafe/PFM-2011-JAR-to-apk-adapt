@@ -313,7 +313,7 @@ jobs:
           grep -q 'aiWindow' "$PROJECT/app/src/main/java/pfm/android/NativeCareerStore.java"
           grep -q 'One calendar shared by user and AI transfers' "$PROJECT/app/src/main/java/pfm/android/NativeTransferCalendar.java"
           grep -q 'Transfer window is closed' "$PROJECT/app/src/main/java/pfm/android/NativeCareerStore.java"
-          grep -q 'static final int SCHEMA=10' "$PROJECT/app/src/main/java/pfm/android/NativeCareerStore.java"
+          grep -q 'static final int SCHEMA=11' "$PROJECT/app/src/main/java/pfm/android/NativeCareerStore.java"
           grep -q 'private static void advance' "$PROJECT/app/src/main/java/pfm/android/NativeCareerStore.java"
           grep -q 'contractGrace' "$PROJECT/app/src/main/java/pfm/android/NativeCareerStore.java"
           grep -q 'RENEW NOW' "$PROJECT/app/src/main/java/pfm/android/NativeContracts.java"
@@ -335,10 +335,10 @@ jobs:
           grep -q 'EUROPEAN CLUB REGISTRY' "$PROJECT/app/src/main/java/pfm/android/NativeEuropeCenter.java"
           test "$(tail -n +2 "$PROJECT/app/src/main/assets/europe_clubs_v72.tsv" | wc -l)" -eq 129
           test "$(tail -n +2 "$PROJECT/app/src/main/assets/europe_roster_review_v73.tsv" | wc -l)" -eq 2321
-          test "$(grep -c $'^T\t' "$PROJECT/app/src/main/assets/europe_world_v74.tsv")" -eq 129
-          test "$(grep -c $'^P\t' "$PROJECT/app/src/main/assets/europe_world_v74.tsv")" -eq 2246
+          test "$(grep -c $'^T\t' "$PROJECT/app/src/main/assets/europe_world_v75.tsv")" -eq 129
+          test "$(grep -c $'^P\t' "$PROJECT/app/src/main/assets/europe_world_v75.tsv")" -eq 2579
           test -s "$PROJECT/app/src/main/java/pfm/android/NativeExternalWorld.java"
-          grep -q 'SCHEMA=10' "$PROJECT/app/src/main/java/pfm/android/NativeCareerStore.java"
+          grep -q 'SCHEMA=11' "$PROJECT/app/src/main/java/pfm/android/NativeCareerStore.java"
           grep -q $'eu_ukraine_dnipro-dnipropetrovsk\tDerek Boateng\tderekboateng\tDATE_CONFLICT' "$PROJECT/app/src/main/assets/europe_roster_review_v73.tsv"
           grep -q 'showRoster(a,x)' "$PROJECT/app/src/main/java/pfm/android/NativeEuropeanRegistry.java"
           test "$(find "$PROJECT/app/src/main/assets/europe_badges_v72" -type f | wc -l)" -eq 129
@@ -352,8 +352,8 @@ jobs:
             exit 1
           fi
 
-          sed -i -E 's/versionCode [0-9]+/versionCode 154/' "$PROJECT/app/build.gradle"
-          sed -i -E "s/versionName '[^']+'/versionName '0.84-android-port.47-v74-european-players'/" "$PROJECT/app/build.gradle"
+          sed -i -E 's/versionCode [0-9]+/versionCode 155/' "$PROJECT/app/build.gradle"
+          sed -i -E "s/versionName '[^']+'/versionName '0.84-android-port.48-v75-roster-audit'/" "$PROJECT/app/build.gradle"
 
       - name: Restore stable debug signing key
         shell: bash
@@ -401,7 +401,7 @@ jobs:
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
-          name: PFM-2011-Android-Alpha084-v74-european-players
+          name: PFM-2011-Android-Alpha084-v75-roster-audit
           path: ${{ env.PROJECT }}/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
           retention-days: 30
