@@ -35,6 +35,24 @@ def same_person(a, b):
     return first>=.73 and last>=.78 and difflib.SequenceMatcher(None,key(a),key(b)).ratio()>=.78
 
 
+FIRST_ALIASES={'aljaksandr':'aleksandr','alyaksey':'aleksey','andrey':'andrey','andrij':'andriy',
+ 'dzmitryj':'dmitriy','georgios':'giourkas','ihar':'igor','ihor':'igor','jaroslav':'yaroslav',
+ 'jevgenij':'yevhen','konstantinos':'kostas','pat':'patrick','sergej':'sergey','sjarhej':'sergey',
+ 'syarhey':'sergey','vitalij':'vitaliy','vasilij':'vasiliy','billy':'william'}
+def person_parts(s):
+    q=[key(x) for x in s.replace('-',' ').split() if key(x)]
+    if not q:return ('','')
+    first=FIRST_ALIASES.get(q[0],q[0]);last=q[-1]
+    for a,b in [('w','v'),('cz','ch'),('sz','sh'),('j','y'),('ij','iy')]:last=last.replace(a,b)
+    return first,last
+
+def identity_match(a,b):
+    if same_person(a,b):return True
+    af,al=person_parts(a);bf,bl=person_parts(b)
+    return (difflib.SequenceMatcher(None,af,bf).ratio()>=.82 and
+            difflib.SequenceMatcher(None,al,bl).ratio()>=.78)
+
+
 def read(p):
     with p.open(encoding="utf-8", newline="") as f:
         return list(csv.DictReader(f, delimiter="\t"))
@@ -44,6 +62,24 @@ def age(dob, calendar=False):
     d, m, y = map(int, dob.split("."))
     start = date(2010, 3 if calendar else 8, 1)
     return start.year-y-((start.month,start.day)<(m,d))
+
+
+STRONG={'Portugal':4,'Russia':4,'Ukraine':4,'Netherlands':4,'Turkey':4,
+        'Belgium':3,'Greece':3,'Scotland':3,'Austria':3,'Switzerland':3,
+        'Denmark':3,'Czech':3,'Romania':3,'Israel':3,'Croatia':3}
+def model_rating(club, apps, pos, years):
+    # Role is based on actual league appearances, not the order of a source row.
+    role=min(10,round(apps/4))
+    prime=1 if 23<=years<=30 else (-1 if years<=19 else 0)
+    keeper=1 if pos==0 and years>=25 else 0
+    return max(52,min(83,52+2*int(club['rep'])+STRONG.get(club['country'],2)+role+prime+keeper))
+
+def attributes(ovr,pos,identity):
+    noise=lambda tag,n:stable(identity+tag,n)-n//2
+    if pos==0:return max(35,ovr-17+noise('speed',7)),max(45,ovr+noise('stamina',7)),min(92,ovr+3+noise('quality',5))
+    if pos==1:return max(45,ovr-2+noise('speed',9)),min(92,ovr+2+noise('stamina',7)),min(92,ovr+noise('quality',7))
+    if pos==2:return max(45,ovr+noise('speed',9)),min(92,ovr+1+noise('stamina',7)),min(92,ovr+2+noise('quality',7))
+    return min(94,ovr+2+noise('speed',9)),max(45,ovr-1+noise('stamina',7)),min(94,ovr+1+noise('quality',7))
 
 
 def main():
@@ -65,7 +101,7 @@ def main():
     if args.fifa.exists():
         with args.fifa.open(encoding='utf-8-sig',newline='') as f:
             for c in csv.DictReader(f):fifa[key(c['NAME'])].append(c)
-    additions=Counter(); changes=Counter(); unmatched=[]; result=[]
+    additions=Counter(); changes=Counter(); unmatched=[]; result=[];audit=[]
     groups=defaultdict(list)
     for x in old:
         if x['type']=='P':groups[(x['league'],x['clubIndex'])].append(x)
@@ -78,9 +114,12 @@ def main():
             exact=[f for f in available if f['identity_key']==identity]
             if len(exact)==1: fact=exact[0]
             else:
-                near=sorted(((difflib.SequenceMatcher(None,identity,f['identity_key']).ratio(),f)
-                             for f in available if f['identity_key'] not in used),key=lambda x:x[0],reverse=True)
-                fact=near[0][1] if near and near[0][0]>=.86 and (len(near)==1 or near[0][0]-near[1][0]>=.06) else None
+                aliases=[f for f in available if f['identity_key'] not in used and identity_match(p['player'],f['player'])]
+                if len(aliases)==1: fact=aliases[0]
+                else:
+                    near=sorted(((difflib.SequenceMatcher(None,identity,f['identity_key']).ratio(),f)
+                                 for f in available if f['identity_key'] not in used),key=lambda x:x[0],reverse=True)
+                    fact=near[0][1] if near and near[0][0]>=.86 and (len(near)==1 or near[0][0]-near[1][0]>=.06) else None
             if fact and fact['identity_key'] not in used:
                 used.add(fact['identity_key'])
                 pos={'GK':0,'DEF':1,'MID':2,'ATT':3}[fact['position']]
@@ -90,12 +129,12 @@ def main():
                 if 16<=a<=45:
                     p['age']=str(a); changes['age']+=1
                 appearances=int(fact['appearances'])
-                floor=59+2*int(c['rep'])+min(8,appearances//5)
-                if fact['position']=='GK':floor+=1
-                if int(p['overall'])<floor:
-                    p['overall']=str(min(83,floor));changes['rating_floor']+=1
+                model=model_rating(c,appearances,pos,int(p['age']))
+                if 'FIFA11' not in p['provenance'] and int(p['overall'])!=model:
+                    p['overall']=str(model);changes['rating_model']+=1
                 p['provenance']='SEASON_APPS_FIFA11' if 'FIFA11' in p['provenance'] else 'SEASON_APPS_EST_RATING'
-            else: unmatched.append((c['name'],p['player']))
+            else:
+                unmatched.append((c['name'],p['player']));p['provenance']='UNVERIFIED_'+p['provenance']
             cards=fifa.get(identity,[])
             # A one-letter transliteration variant at the same club is safe;
             # FUT duplicate boosted cards are *not* independent observations.
@@ -110,7 +149,10 @@ def main():
                 p['overall']='80';p['position']='1';p['provenance']='FIFA11_ALIAS_SEASON_APPS'
             if c['id']=='eu_russia_zenit-st-petersburg' and identity=='aleksandrkerzhakov':
                 p['overall']='78';p['position']='3';p['provenance']='FIFA11_ALIAS_SEASON_APPS'
-            ovr=int(p['overall']);p['value']=str(max(250000,(ovr-50)**2*9000));p['wage']=str(max(50000,(int(p['value'])//18//10000)*10000))
+            ovr=int(p['overall']);spe,res,qua=attributes(ovr,int(p['position']),identity);p['speed']=str(spe);p['resistance']=str(res);p['quality']=str(qua);p['value']=str(max(250000,(ovr-50)**2*9000));p['wage']=str(max(50000,(int(p['value'])//18//10000)*10000))
+            audit.append(dict(club=c['name'],player=p['player'],status='SEASON_CONFIRMED' if fact else 'UNVERIFIED_SOURCE_GAP',
+                              appearances=fact['appearances'] if fact else '',source=fact['source_url'] if fact else '',
+                              position=p['position'],age=p['age'],overall=p['overall'],provenance=p['provenance']))
         existing={key(p['player']) for p in rows}
         # Guarantee two real keepers where the archive supports them.
         keepers=sorted((f for f in available if f['position']=='GK'),key=lambda f:int(f['appearances']),reverse=True)
@@ -124,20 +166,22 @@ def main():
         targets.extend(regulars)
         for f in targets:
             identity=f['identity_key']
-            if identity in existing or identity in topfive or identity in owners or any(same_person(f['player'],p['player']) for p in rows):continue
+            if identity in existing or identity in topfive or identity in owners or any(identity_match(f['player'],p['player']) for p in rows):continue
             if len(rows)>=26:break
             pos={'GK':0,'DEF':1,'MID':2,'ATT':3}[f['position']]
             if pos==0 and sum(p['position']=='0' for p in rows)>=2:continue
             if pos!=0 and sum(p['position']==str(pos) for p in rows)>=({1:9,2:10,3:7}[pos]):continue
             a=age(f['dob'],c['country'] in {'Russia','Norway','Sweden','Finland','Ireland','Belarus'})
             if a<16 or a>45:continue
-            apps=int(f['appearances']);ovr=min(83,59+int(c['rep'])*2+min(8,apps//5)+(1 if pos==0 else 0))
+            apps=int(f['appearances']);ovr=model_rating(c,apps,pos,a)
             cards=fifa.get(identity,[])
             if cards:ovr=max(ovr,min(int(card['RATING']) for card in cards))
             val=max(250000,(ovr-50)**2*9000)
             uid='eu:'+identity+':'+f['dob'].replace('.','')
-            p=dict(type='P',league=t['league'],clubIndex=t['clubIndex'],club=t['club'],playerIndex=str(len(rows)),player=f['player'],position=str(pos),age=str(a),overall=str(ovr),nationality='Unknown',speed=str(max(45,min(90,ovr+stable(identity+'speed',15)-7))),resistance=str(max(45,min(90,ovr+stable(identity+'stamina',13)-6))),quality=str(max(45,min(90,ovr+stable(identity+'quality',11)-5))),morale='55',style='0',formation='0',value=str(val),wage=str(max(50000,(val//18//10000)*10000)),uid=uid,provenance='SEASON_ARCHIVE_EST_RATING')
+            spe,res,qua=attributes(ovr,pos,identity)
+            p=dict(type='P',league=t['league'],clubIndex=t['clubIndex'],club=t['club'],playerIndex=str(len(rows)),player=f['player'],position=str(pos),age=str(a),overall=str(ovr),nationality='Unknown',speed=str(spe),resistance=str(res),quality=str(qua),morale='55',style='0',formation='0',value=str(val),wage=str(max(50000,(val//18//10000)*10000)),uid=uid,provenance='SEASON_ARCHIVE_EST_RATING')
             rows.append(p);owners[identity]=t['league']+':'+t['clubIndex'];existing.add(identity);additions['GK' if pos==0 else 'outfield']+=1
+            audit.append(dict(club=c['name'],player=p['player'],status='SEASON_CONFIRMED_ADDED',appearances=f['appearances'],source=f['source_url'],position=p['position'],age=p['age'],overall=p['overall'],provenance=p['provenance']))
         if not any(p['position']=='0' for p in rows):raise SystemExit('No verified goalkeeper: '+c['name'])
         if len(rows)>30:raise SystemExit('Oversized roster: '+c['name'])
         result.append(t)
@@ -147,6 +191,11 @@ def main():
         w=csv.DictWriter(f,fieldnames=fields,delimiter='\t',lineterminator='\n');w.writeheader();w.writerows(result)
     print('players',sum(x['type']=='P' for x in result),'additions',dict(additions),'changes',dict(changes),'unmatched',len(unmatched))
     print('unmatched examples',unmatched[:20])
+    with Path('tools/v76_unmatched.tsv').open('w',encoding='utf-8',newline='') as f:
+        w=csv.writer(f,delimiter='\t',lineterminator='\n');w.writerow(['club','player']);w.writerows(unmatched)
+    with Path('tools/v76_roster_audit.tsv').open('w',encoding='utf-8',newline='') as f:
+        fields=['club','player','status','appearances','source','position','age','overall','provenance']
+        w=csv.DictWriter(f,fieldnames=fields,delimiter='\t',lineterminator='\n');w.writeheader();w.writerows(audit)
 
 
 if __name__=='__main__':main()
