@@ -8,7 +8,21 @@ import org.json.*;
 
 /** Versioned native career foundation. v1 is an audited, read-only import boundary. */
 final class NativeCareerStore {
-    static final int SCHEMA=13;
+    static final int SCHEMA=14;
+    private static final HashSet<String> RETIRED_INITIAL_PLAYERS=new HashSet<String>(Arrays.asList(
+        "eu:alehstrakhanovich:13101979|eu_belarus:1", "eu:aleksejberezuckij:20061982|eu_russia:1",
+        "eu:andreasgranskovhansen:05031989|eu_denmark:3", "eu:davidcorajev:07051983|eu_russia:0",
+        "eu:djibyfall:20041985|eu_norway:0", "eu:dmitrijchochlov:22121975|eu_russia:8",
+        "eu:dmytrocyhrynskyj:07111986|eu_ukraine:3", "eu:elmarbjarnason:04031987|eu_sweden:4",
+        "eu:gillesyapiyapo:30011982|eu_switzerland:1", "eu:ibrakebe:29121978|eu_russia:0",
+        "eu:ignacioscocco:29051985|eu_greece:0", "eu:ilsinho|eu_ukraine:3",
+        "eu:jaroslavrakickyj:03081989|eu_ukraine:3", "eu:luisgarciasanz:24061978|eu_greece:5",
+        "eu:marcionobre:06111980|eu_turkey:0", "eu:mariuszlewandowski|eu_ukraine:3",
+        "eu:maximilianopereira:08061984|eu_portugal:7", "eu:oleksandrrybka|eu_ukraine:3",
+        "eu:rickyfoster:31071985|eu_scotland:2", "eu:sercanyildirim:05041990|eu_turkey:1",
+        "eu:sergejdolganskij:15091975|eu_ukraine:4", "eu:sungyuengki:24011989|eu_scotland:1",
+        "eu:vitalijvicenec:03081990|eu_ukraine:3", "eu:wederson:22071981|eu_turkey:1",
+        "eu:zegomes:24091976|eu_portugal:5"));
     static class Club {String id,name,league;int sourceId,balance,wageBudget,activeFrom=2010;}
     static class Player {String id,name,owner,nationality,provenance;int sourceId,position,age,overall,spe,res,qua,morale,value,wage,contractWage,contractUntil;boolean contractGrace;}
     static class Deal {String player,from,to;int fee,wage,years,season;boolean ai;}
@@ -40,13 +54,13 @@ final class NativeCareerStore {
         HashSet<String> existingClubs=new HashSet<String>(),existingPlayers=new HashSet<String>();
         for(Club x:old.clubs){existingClubs.add(x.id);Club n=fc.get(x.id);if(n!=null){if(x.balance<=0)x.balance=n.balance;if(x.wageBudget<=0)x.wageBudget=n.wageBudget;}}
         HashSet<String> transferred=new HashSet<String>();for(Deal d:old.deals)transferred.add(d.player);
-        for(Player x:old.players){existingPlayers.add(x.id);Player n=fp.get(x.id);if(n!=null){if(x.contractWage<=0)x.contractWage=n.contractWage;if(x.contractUntil<=0)x.contractUntil=n.contractUntil;if(old.schema<9){x.spe=n.spe;x.res=n.res;x.qua=n.qua;x.morale=n.morale;}if(old.schema<=11&&x.id.startsWith("eu:")&&x.owner.equals(n.owner)){x.position=n.position;x.age=Math.min(50,n.age+Math.max(0,old.season-fresh.season));x.overall=n.overall;x.spe=n.spe;x.res=n.res;x.qua=n.qua;x.provenance=n.provenance;}else if(old.schema==12&&x.id.startsWith("eu:")&&x.owner.equals(n.owner)&&!transferred.contains(x.id)&&n.provenance.startsWith("SEASON_ROSTER")){x.position=n.position;x.age=Math.min(50,n.age+Math.max(0,old.season-fresh.season));x.provenance=n.provenance;}}if(x.provenance==null)x.provenance="LEGACY_TOP5";}
+        for(Player x:old.players){existingPlayers.add(x.id);Player n=fp.get(x.id);if(n!=null){if(x.contractWage<=0)x.contractWage=n.contractWage;if(x.contractUntil<=0)x.contractUntil=n.contractUntil;if(old.schema<9){x.spe=n.spe;x.res=n.res;x.qua=n.qua;x.morale=n.morale;}if(old.schema<=11&&x.id.startsWith("eu:")&&x.owner.equals(n.owner)){x.position=n.position;x.age=Math.min(50,n.age+Math.max(0,old.season-fresh.season));x.overall=n.overall;x.spe=n.spe;x.res=n.res;x.qua=n.qua;x.provenance=n.provenance;}else if((old.schema==12||old.schema==13)&&x.id.startsWith("eu:")&&x.owner.equals(n.owner)&&!transferred.contains(x.id)){x.position=n.position;x.age=Math.min(50,n.age+Math.max(0,old.season-fresh.season));x.provenance=n.provenance;}}if(x.provenance==null)x.provenance="LEGACY_TOP5";}
         if(old.schema<=9){
             for(Club x:fresh.clubs)if(x.league.startsWith("eu_")&&!existingClubs.contains(x.id))old.clubs.add(x);
             for(Player x:fresh.players)if(x.id.startsWith("eu:")&&!existingPlayers.contains(x.id))old.players.add(x);
         }
         if(old.schema==10||old.schema==11){HashMap<String,Integer> sizes=new HashMap<String,Integer>();for(Player x:old.players)sizes.put(x.owner,sizes.containsKey(x.owner)?sizes.get(x.owner)+1:1);for(Player x:fresh.players)if(x.id.startsWith("eu:")&&!existingPlayers.contains(x.id)&&sizes.containsKey(x.owner)&&sizes.get(x.owner)<30){x.age=Math.min(50,x.age+Math.max(0,old.season-fresh.season));x.contractUntil=old.season+2+Math.abs(x.id.hashCode()%4);old.players.add(x);sizes.put(x.owner,sizes.get(x.owner)+1);}}
-        if(old.schema==12&&!transferred.contains("eu:marioselia")){for(int i=old.players.size()-1;i>=0;i--){Player x=old.players.get(i);if("eu:marioselia".equals(x.id)&&"eu_cyprus:1".equals(x.owner))old.players.remove(i);}}
+        if(old.schema<=13){for(int i=old.players.size()-1;i>=0;i--){Player x=old.players.get(i);if(!transferred.contains(x.id)&&(RETIRED_INITIAL_PLAYERS.contains(x.id+"|"+x.owner)||("eu:marioselia".equals(x.id)&&"eu_cyprus:1".equals(x.owner))))old.players.remove(i);}}
         old.schema=SCHEMA;return old;
     }
     private static String read(File f)throws Exception{BufferedReader r=new BufferedReader(new InputStreamReader(new FileInputStream(f),"UTF-8"));StringBuilder b=new StringBuilder();char[] q=new char[8192];int n;while((n=r.read(q))>0)b.append(q,0,n);r.close();return b.toString();}

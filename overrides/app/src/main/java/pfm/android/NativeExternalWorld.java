@@ -12,7 +12,7 @@ final class NativeExternalWorld {
 
     static void load(Context context, HashMap<String,ArrayList<NativeWorldCenter.T>> leagues) throws Exception {
         BufferedReader reader = new BufferedReader(new InputStreamReader(
-                context.getAssets().open("europe_world_v77.tsv"), "UTF-8"));
+                context.getAssets().open("europe_world_v78.tsv"), "UTF-8"));
         try {
             String line;
             reader.readLine();
