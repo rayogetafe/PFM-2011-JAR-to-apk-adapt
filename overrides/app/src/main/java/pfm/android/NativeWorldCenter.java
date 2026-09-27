@@ -17,14 +17,10 @@ public final class NativeWorldCenter{
  static String active(){try{Field f=Class.forName("ea").getDeclaredField("a");f.setAccessible(true);int x=f.getInt(null);return x>=0&&x<C.length?C[x]:"";}catch(Throwable t){return "";}}
  static int progress(String code){int source="de".equals(active())?34:38,target="de".equals(code)?34:38;return Math.min(target,(played()*target+source/2)/source);}
  static int hash(int x){x^=x>>>16;x*=0x7feb352d;x^=x>>>15;x*=0x846ca68b;return x^(x>>>16);}
- /** Pure-data port of bb.c(dw): the stock quick-match strength calculation for the XI. */
- static int strength(T t){return strength(t,new ArrayList<P>(t.ps.subList(0,Math.min(11,t.ps.size()))));}static int strength(T t,ArrayList<P> xi){int sum=-3414;for(P p:xi)sum+=(p.qua*125+p.spe*85+p.res*75+p.mor*30+2600)/67;return Math.max(1,sum);}
- /** bb.b(dw), with the stock neutral AI tactic indices (0/0/0). */
- static int attackPct(T t){int[][] f={{55,45},{65,35},{50,50},{55,45},{70,30},{60,40},{50,50},{65,35},{60,40}};int form=Math.max(0,Math.min(8,t.form));int attack=f[form][0]*1000+(100-t.style)*1000+140*333,defence=f[form][1]*1000+t.style*1000+160*333;return attack*100/Math.max(1,attack+defence);}
- /** League opportunity tempo; applied inside the stock roll, never to completed scores. */
- static int tempo(String code){return "fr".equals(code)?400000:"it".equals(code)?340000:"es".equals(code)?330000:320000;}
- /** Pure-data port of bb.a(dw,dw,...): seven checks per half, fourteen total. */
- static int[] score(String code,int seed,T home,T away,S homeSel,S awaySel){int hs=strength(home,homeSel.xi)+50,as=strength(away,awaySel.xi),hp=attackPct(home),ap=attackPct(away),ha=hs*hp,hd=hs*(100-hp),aa=as*ap,ad=as*(100-ap),base=tempo(code),hg=0,ag=0;for(int segment=0;segment<14;segment++){int noise=(hash(seed+segment*1009)&0x7fffffff)%20000,den=ha+ad+noise+base;if((hash(seed+segment*1543+71)&0x7fffffff)%Math.max(1,den)<ha)hg++;noise=(hash(seed+segment*2017+991)&0x7fffffff)%20000;den=aa+hd+noise+base;if((hash(seed+segment*2617+313)&0x7fffffff)%Math.max(1,den)<aa)ag++;}return new int[]{hg,ag};}
+ static int strength(T t){return NativeMatchEngine.strength(new ArrayList<P>(t.ps.subList(0,Math.min(11,t.ps.size()))));}
+ static int strength(T t,ArrayList<P> xi){return NativeMatchEngine.strength(xi);}
+ static int attackPct(T t){return NativeMatchEngine.attackPct(t);}
+ static int[] score(String code,int seed,T home,T away,S homeSel,S awaySel){return NativeMatchEngine.score(seed,home,away,homeSel,awaySel);}
  static ArrayList<M> schedule(int n){ArrayList<M> out=new ArrayList<M>();int[] a=new int[n];for(int i=0;i<n;i++)a[i]=i;for(int leg=0;leg<2;leg++)for(int r=0;r<n-1;r++){for(int i=0;i<n/2;i++){M m=new M();m.r=leg*(n-1)+r+1;m.h=(leg==0?a[i]:a[n-1-i]);m.a=(leg==0?a[n-1-i]:a[i]);out.add(m);}int z=a[n-1];for(int i=n-1;i>1;i--)a[i]=a[i-1];a[1]=z;}return out;}
  static ArrayList<M> simulate(String code,int upto){careerSeed();return simulateAt(code,upto,season());}
  static ArrayList<M> simulateAt(String code,int upto,int seasonSeed){ArrayList<T> ts=leagues.get(code);for(T t:ts){t.p=t.w=t.d=t.l=t.gf=t.ga=t.pts=0;for(P p:t.ps)p.g=p.a=p.ap=p.st=p.rs=p.cs=p.ga=p.sv=p.fat=0;}ArrayList<M> ms=schedule(ts.size());for(M m:ms)if(m.r<=upto){T h=ts.get(m.h),a=ts.get(m.a);int seed=careerNonce+seasonSeed*10007+code.hashCode()*101+m.r*37+m.h*11+m.a;S hs=selection(h,seed),as=selection(a,seed+17);int[] result=score(code,seed,h,a,hs,as);m.hg=result[0];m.ag=result[1];h.p++;a.p++;h.gf+=m.hg;h.ga+=m.ag;a.gf+=m.ag;a.ga+=m.hg;if(m.hg>m.ag){h.w++;a.l++;h.pts+=3;}else if(m.hg<m.ag){a.w++;h.l++;a.pts+=3;}else{h.d++;a.d++;h.pts++;a.pts++;}stats(h,m.hg,m.ag,seed,hs);stats(a,m.ag,m.hg,seed+17,as);}return ms;}

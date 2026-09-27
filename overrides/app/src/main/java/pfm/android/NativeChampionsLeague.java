@@ -31,32 +31,38 @@ final class NativeChampionsLeague {
     }
     private static String prefix(){return NativeWorldCenter.identity()+"_2010_";}
     private static String key(int round,int group,int match){return prefix()+round+"_"+group+"_"+match;}
-    private static int ability(String id,HashMap<String,ArrayList<Integer>> byClub){
-        ArrayList<Integer> ratings=byClub.get(id);if(ratings==null||ratings.isEmpty())return 65;
-        Collections.sort(ratings,Collections.reverseOrder());int n=Math.min(11,ratings.size()),sum=0;for(int i=0;i<n;i++)sum+=ratings.get(i);return sum/n;
-    }
-    private static int[] score(int seed,int home,int away){
-        int hg=0,ag=0;for(int chance=0;chance<6;chance++){
-            int roll=NativeWorldCenter.hash(seed+chance*911)&0x7fffffff;
-            if(roll%100<Math.max(9,Math.min(49,24+(home-away)*2+4)))hg++;
-            roll=NativeWorldCenter.hash(seed+chance*1217+77)&0x7fffffff;
-            if(roll%100<Math.max(8,Math.min(46,24+(away-home)*2-4)))ag++;
-        }return new int[]{hg,ag};
+    private static HashMap<String,NativeWorldCenter.T> teams(NativeCareerStore.Career career){
+        HashMap<String,NativeWorldCenter.T> out=new HashMap<String,NativeWorldCenter.T>();
+        for(NativeCareerStore.Club club:career.clubs){
+            NativeWorldCenter.T team=new NativeWorldCenter.T();team.name=club.name;team.style=55;team.form=2;
+            ArrayList<NativeWorldCenter.T> source=NativeWorldCenter.leagues.get(club.league);
+            if(source!=null&&club.sourceId>=0&&club.sourceId<source.size()){
+                NativeWorldCenter.T original=source.get(club.sourceId);team.style=original.style;team.form=original.form;
+            }
+            out.put(club.id,team);
+        }
+        for(NativeCareerStore.Player player:career.players){
+            NativeWorldCenter.T team=out.get(player.owner);if(team==null)continue;
+            NativeWorldCenter.P p=new NativeWorldCenter.P();p.id=player.sourceId;p.uid=player.id;p.name=player.name;
+            p.pos=player.position;p.age=player.age;p.ovr=player.overall;p.spe=player.spe;p.res=player.res;
+            p.qua=player.qua;p.mor=player.morale;team.ps.add(p);
+        }
+        return out;
     }
     static synchronized void tick(Context context){
         try{
             NativeWorldCenter.load(context);ArrayList<ArrayList<String>> groups=groups(context);
             NativeCareerStore.Career career=NativeCareerStore.ensure(context);
-            HashSet<String> known=new HashSet<String>();for(NativeCareerStore.Club club:career.clubs)known.add(club.id);
-            HashMap<String,ArrayList<Integer>> ratings=new HashMap<String,ArrayList<Integer>>();
-            for(NativeCareerStore.Player player:career.players){ArrayList<Integer> list=ratings.get(player.owner);if(list==null){list=new ArrayList<Integer>();ratings.put(player.owner,list);}list.add(player.overall);}
-            for(ArrayList<String> group:groups)for(String id:group)if(!known.contains(id))throw new IOException("UCL club missing: "+id);
+            HashMap<String,NativeWorldCenter.T> teams=teams(career);
+            for(ArrayList<String> group:groups)for(String id:group)if(!teams.containsKey(id)||teams.get(id).ps.size()<11)throw new IOException("UCL squad missing: "+id);
             android.content.SharedPreferences prefs=context.getSharedPreferences(PREFS,0);android.content.SharedPreferences.Editor edit=prefs.edit();boolean changed=false;
             for(int round=0;round<completed();round++)for(int group=0;group<8;group++)for(int match=0;match<2;match++){
                 String k=key(round,group,match);if(prefs.contains(k))continue;
                 ArrayList<String> ids=groups.get(group);int h=PAIRS[round][match*2],a=PAIRS[round][match*2+1];
                 int seed=NativeWorldCenter.identity()+round*104729+group*1009+match*37;
-                int[] result=score(seed,ability(ids.get(h),ratings),ability(ids.get(a),ratings));
+                NativeWorldCenter.T home=teams.get(ids.get(h)),away=teams.get(ids.get(a));
+                NativeWorldCenter.S homeXI=NativeWorldCenter.selection(home,seed),awayXI=NativeWorldCenter.selection(away,seed+17);
+                int[] result=NativeMatchEngine.score(seed,home,away,homeXI,awayXI);
                 edit.putString(k,result[0]+":"+result[1]);changed=true;
             }
             if(changed)edit.commit();

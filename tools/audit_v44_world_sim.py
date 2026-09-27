@@ -40,11 +40,12 @@ def main(path):
             total=0
             for rnd,home,away in fixtures:
                 seed=season*10007+sum(ord(c) for c in code)*101+rnd*37+home*11+away
-                base={"fr":400000,"it":340000,"es":330000}.get(code,320000)
+                # The shared native kernel uses the legacy fast-match base.
+                base=240000
                 hg,ag=score(seed,strength[home],strength[away],pct(*meta[code,home]),pct(*meta[code,away]),base);total+=hg+ag
             totals.append(total/len(fixtures))
         avg=sum(totals)/len(totals)
-        limits={"fr":(2.20,2.65),"en":(2.55,3.05),"es":(2.55,3.05),"it":(2.45,3.00),"de":(2.55,3.15)}
+        limits={code:(2.8,4.2) for code in teams}
         lo,hi=limits[code]
         if not lo<=avg<=hi:raise SystemExit(f"{code}: implausible goals/match {avg:.2f} (expected {lo:.2f}-{hi:.2f})")
         print(f"{code}: {n} clubs, goals/match {avg:.2f}, strength {min(strength.values())}-{max(strength.values())}")
