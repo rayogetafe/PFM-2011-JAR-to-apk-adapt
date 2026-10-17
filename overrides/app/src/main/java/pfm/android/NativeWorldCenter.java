@@ -17,9 +17,6 @@ public final class NativeWorldCenter{
  static String active(){try{Field f=Class.forName("ea").getDeclaredField("a");f.setAccessible(true);int x=f.getInt(null);return x>=0&&x<C.length?C[x]:"";}catch(Throwable t){return "";}}
  static int progress(String code){int source="de".equals(active())?34:38,target="de".equals(code)?34:38;return Math.min(target,(played()*target+source/2)/source);}
  static int hash(int x){x^=x>>>16;x*=0x7feb352d;x^=x>>>15;x*=0x846ca68b;return x^(x>>>16);}
- static int strength(T t){return NativeMatchEngine.strength(new ArrayList<P>(t.ps.subList(0,Math.min(11,t.ps.size()))));}
- static int strength(T t,ArrayList<P> xi){return NativeMatchEngine.strength(xi);}
- static int attackPct(T t){return NativeMatchEngine.attackPct(t);}
  static int[] score(String code,int seed,T home,T away,S homeSel,S awaySel){return NativeMatchEngine.score(seed,home,away,homeSel,awaySel);}
  static ArrayList<M> schedule(int n){ArrayList<M> out=new ArrayList<M>();int[] a=new int[n];for(int i=0;i<n;i++)a[i]=i;for(int leg=0;leg<2;leg++)for(int r=0;r<n-1;r++){for(int i=0;i<n/2;i++){M m=new M();m.r=leg*(n-1)+r+1;m.h=(leg==0?a[i]:a[n-1-i]);m.a=(leg==0?a[n-1-i]:a[i]);out.add(m);}int z=a[n-1];for(int i=n-1;i>1;i--)a[i]=a[i-1];a[1]=z;}return out;}
  static ArrayList<M> simulate(String code,int upto){careerSeed();return simulateAt(code,upto,season());}
@@ -27,7 +24,7 @@ public final class NativeWorldCenter{
  static P pick(ArrayList<P> pool,int seed,boolean scorer){int total=0;for(P p:pool)total+=Math.max(1,p.ovr+(scorer&&p.pos==3?30:0));int x=(hash(seed)&0x7fffffff)%Math.max(1,total);for(P p:pool){x-=Math.max(1,p.ovr+(scorer&&p.pos==3?30:0));if(x<0)return p;}return pool.get(0);}
  static int selectScore(P p,int seed){return p.ovr*20-p.fat*2+(hash(seed+p.id*97)&31)-(((hash(seed+p.id*193)&255)%100<15)?400:0);}
  static void select(ArrayList<P> pool,ArrayList<P> picked,int position,int count,int seed){ArrayList<P> c=new ArrayList<P>();for(P p:pool)if(p.pos==position&&!picked.contains(p))c.add(p);Collections.sort(c,(x,y)->selectScore(y,seed)-selectScore(x,seed));for(int i=0;i<count&&i<c.size();i++)picked.add(c.get(i));}
- static S selection(T t,int seed){ArrayList<P> order=new ArrayList<P>(t.ps);S s=new S();select(order,s.xi,0,1,seed);select(order,s.xi,1,4,seed+11);select(order,s.xi,2,4,seed+23);select(order,s.xi,3,2,seed+37);ArrayList<P> ranked=new ArrayList<P>(order);Collections.sort(ranked,(x,y)->selectScore(y,seed+53)-selectScore(x,seed+53));for(P p:ranked)if(s.xi.size()<11&&!s.xi.contains(p))s.xi.add(p);s.used.addAll(s.xi);int target=Math.min(12+(((hash(seed+811)&255)%100<70)?1:0)+(((hash(seed+1231)&255)%100<40)?1:0),order.size());for(P p:ranked)if(s.used.size()<target&&!s.used.contains(p))s.used.add(p);return s;}
+ static S selection(T t,int seed){ArrayList<P> order=new ArrayList<P>(t.ps);S s=new S();select(order,s.xi,0,1,seed);select(order,s.xi,1,4,seed+11);select(order,s.xi,2,4,seed+23);select(order,s.xi,3,2,seed+37);ArrayList<P> ranked=new ArrayList<P>(order);Collections.sort(ranked,(x,y)->selectScore(y,seed+53)-selectScore(x,seed+53));for(P p:ranked)if(s.xi.size()<11&&p.pos>0&&!s.xi.contains(p))s.xi.add(p);s.used.addAll(s.xi);int target=Math.min(12+(((hash(seed+811)&255)%100<70)?1:0)+(((hash(seed+1231)&255)%100<40)?1:0),order.size());for(P p:ranked)if(s.used.size()<target&&p.pos>0&&!s.used.contains(p))s.used.add(p);return s;}
  static void stats(T t,int gf,int ga,int seed,S selection){
   ArrayList<P> order=new ArrayList<P>(t.ps);for(P p:order){int cut=p.nat.indexOf(" • ");if(cut>=0)p.nat=p.nat.substring(0,cut);}
   ArrayList<P> xi=selection.xi,used=selection.used;for(int i=0;i<used.size();i++){P p=used.get(i);p.ap++;if(xi.contains(p))p.st++;p.rs+=63+(gf-ga)*2+(p.ovr-t.ovr)/4+(Math.abs(hash(seed+i))%7);}
