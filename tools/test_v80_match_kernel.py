@@ -7,13 +7,15 @@ JAVA = ROOT / "overrides/app/src/main/java/pfm/android"
 kernel = (JAVA / "NativeMatchEngine.java").read_text(encoding="utf-8")
 world = (JAVA / "NativeWorldCenter.java").read_text(encoding="utf-8")
 ucl = (JAVA / "NativeChampionsLeague.java").read_text(encoding="utf-8")
+journal = (JAVA / "NativeMatchJournal.java").read_text(encoding="utf-8")
 
 assert "MatchEngine.goal(seed,minute,0,h,a)" in kernel
 assert "MatchEngine.goal(seed,minute,1,h,a)" in kernel
 assert "NativeMatchEngine.score(seed,home,away,homeSel,awaySel)" in world
-assert "NativeMatchEngine.score(seed,home,away,homeXI,awayXI)" in ucl
-assert "NativeWorldCenter.selection(home,seed)" in ucl
+assert "NativeMatchJournal.advance" in ucl
+assert "NativeMatchEngine.score(seed,home,away,hs,as)" in journal
+assert "NativeWorldCenter.selection(home,seed)" in journal
 assert "chance<6" not in ucl
 assert "tempo(String code)" not in world
-assert "if(prefs.contains(k))continue" in ucl  # Completed v79 games survive.
+assert "ucl-score-import" in journal  # Completed v79-v82 games survive.
 print("Competition routing OK: top-five and UCL use the shared minute model")

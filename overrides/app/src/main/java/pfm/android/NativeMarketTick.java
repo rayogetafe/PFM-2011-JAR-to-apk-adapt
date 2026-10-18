@@ -7,6 +7,7 @@ public final class NativeMarketTick {
         try{
             android.content.Context c=AndroidRuntime.context();
             NativeWorldCenter.load(c);
+            NativeMatchJournal.advance(c,NativeTransferCalendar.played());
             NativeAiMarket.run(c,true);
             NativeChampionsLeague.tick(c);
         }catch(Throwable ignored){}
