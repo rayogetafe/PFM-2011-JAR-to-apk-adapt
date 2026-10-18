@@ -237,6 +237,8 @@ jobs:
           python3 patches/v81_unified_match_engine.py "$PROJECT/app/libs/pfm_core_android.jar"
           python3 tools/test_v83_core_hook.py "$PROJECT/app/libs/pfm_core_android.jar"
           python3 patches/v83_match_journal.py "$PROJECT/app/libs/pfm_core_android.jar"
+          python3 tools/test_v84_core_hooks.py "$PROJECT/app/libs/pfm_core_android.jar"
+          python3 patches/v84_match_effects.py "$PROJECT/app/libs/pfm_core_android.jar"
           grep -q 'pfmSubTiming38' patches/v38_sub_timing.py
           python3 patches/v40_roster_depth.py "$PROJECT/app/libs/pfm_core_android.jar"
           grep -q '36 historical wide/second forwards' patches/v40_roster_depth.py
@@ -248,6 +250,7 @@ jobs:
           python3 tools/build_v42_world_asset.py "$PROJECT/app/libs/pfm_core_android.jar" overrides/nationalities_v42.tsv "$PROJECT/app/src/main/assets/world_v42.tsv"
           python3 tools/audit_v44_world_sim.py "$PROJECT/app/src/main/assets/world_v42.tsv"
           python3 tools/test_v82_ai_market.py "$PROJECT/app/src/main/assets/world_v42.tsv" 12
+          python3 tools/test_v84_effects.py
           python3 tools/test_v83_match_journal.py "$PROJECT/app/src/main/assets/world_v42.tsv" "$PROJECT/app/libs/pfm_core_android.jar"
           python3 tools/audit_v48_world_rotation.py "$PROJECT/app/src/main/assets/world_v42.tsv"
           python3 tools/audit_v51_player_economy.py "$PROJECT/app/src/main/assets/world_v42.tsv"
@@ -367,8 +370,8 @@ jobs:
             exit 1
           fi
 
-          sed -i -E 's/versionCode [0-9]+/versionCode 163/' "$PROJECT/app/build.gradle"
-          sed -i -E "s/versionName '[^']+'/versionName '0.84-android-port.56-v83-saved-match-journal'/" "$PROJECT/app/build.gradle"
+          sed -i -E 's/versionCode [0-9]+/versionCode 164/' "$PROJECT/app/build.gradle"
+          sed -i -E "s/versionName '[^']+'/versionName '0.84-android-port.57-v84-match-consequences'/" "$PROJECT/app/build.gradle"
 
       - name: Restore stable debug signing key
         shell: bash
@@ -412,12 +415,12 @@ jobs:
           sha256sum "$APK"
           keytool -printcert -jarfile "$APK" | grep -E 'Owner:|SHA256:' || true
           ls -lh "$APK"
-          cp "$APK" "$PROJECT/app/build/outputs/apk/debug/PFM-2011-v83-saved-match-journal.apk"
+          cp "$APK" "$PROJECT/app/build/outputs/apk/debug/PFM-2011-v84-match-consequences.apk"
 
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
-          name: PFM-2011-Android-Alpha084-v83-saved-match-journal
-          path: ${{ env.PROJECT }}/app/build/outputs/apk/debug/PFM-2011-v83-saved-match-journal.apk
+          name: PFM-2011-Android-Alpha084-v84-match-consequences
+          path: ${{ env.PROJECT }}/app/build/outputs/apk/debug/PFM-2011-v84-match-consequences.apk
           if-no-files-found: error
           retention-days: 30

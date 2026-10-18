@@ -21,11 +21,11 @@ def main():
         types=re.search(r' static class P\{.*? static class M\{.*? static HashMap',world,re.S).group().removesuffix(' static HashMap')
         fixture='package pfm.android;\nimport java.util.*;import android.content.Context;\npublic class NativeWorldCenter {\n'+types+'''
 static final String[] C={"en","es","it","de","fr"};
-static HashMap<String,ArrayList<T>> leagues=new HashMap<>();static int nonce,year=2010,played;
-static void load(Context c){}static int identity(){return nonce;}static int season(){return year;}
+static HashMap<String,ArrayList<T>> leagues=new HashMap<>();static int nonce,careerNonce,year=2010,played;
+static void load(Context c){careerNonce=nonce;}static int identity(){return nonce;}static int season(){return year;}
 '''+''.join(methods)+'\n}'
         stub=temp/'NativeWorldCenter.java';stub.write_text(fixture,encoding='utf-8')
-        sources=[*[p for p in (ROOT/'tools/tests/v83').rglob('*.java') if p.name!='VerifyJournalHook.java'],stub,*[JAVA/name for name in ('MatchJournal.java','NativeMatchJournal.java','NativeCompetitionCalendar.java','NativeMatchEngine.java','MatchEngine.java')]]
+        sources=[*[p for p in (ROOT/'tools/tests/v83').rglob('*.java') if not p.name.startswith('Verify')],stub,*[JAVA/name for name in ('MatchJournal.java','MatchEffects.java','NativeMatchJournal.java','NativeCompetitionCalendar.java','NativeMatchEngine.java','MatchEngine.java')]]
         subprocess.run([javac,'-encoding','UTF-8','-d',str(temp),*map(str,sources)],check=True)
         data=temp/'data';data.mkdir()
         subprocess.run([java,'-Xverify:all','-cp',str(temp),'pfm.android.JournalHarness',sys.argv[1],str(data)],cwd=ROOT,check=True)
@@ -37,5 +37,5 @@ static void load(Context c){}static int identity(){return nonce;}static int seas
                 'pfmLeagueMatchArchive34':'public static String report(int round,dw home,dw away){return "";}'
             }.items():
                 path=bridge/(name+'.java');path.write_text('public class '+name+'{'+body+'}',encoding='utf-8');stubs.append(path)
-            subprocess.run([javac,'-encoding','UTF-8','-cp',os.pathsep.join([sys.argv[2],str(temp)]),'-d',str(bridge),*map(str,stubs),str(ROOT/'tools/tests/v81/android/util/Log.java'),str(JAVA.parent.parent/'PfmJournalBridge83.java')],check=True)
+            subprocess.run([javac,'-encoding','UTF-8','-cp',os.pathsep.join([sys.argv[2],str(temp)]),'-d',str(bridge),*map(str,stubs),str(ROOT/'tools/tests/v81/android/util/Log.java'),str(JAVA.parent.parent/'PfmJournalBridge83.java'),str(JAVA.parent.parent/'PfmEffectsBridge84.java')],check=True)
 if __name__=='__main__':main()

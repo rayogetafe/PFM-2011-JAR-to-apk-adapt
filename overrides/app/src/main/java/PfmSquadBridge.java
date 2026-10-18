@@ -238,6 +238,8 @@ public final class PfmSquadBridge {
                 int rat10=pfmPlayerStats.averageRating10(id);
                 int fatigue=staticByte(pfmCondition60.class,"fatigue",id);
                 int injury=staticByte(pfmCondition60.class,"injury",id);
+                fatigue=PfmEffectsBridge84.fatigue(id,fatigue);
+                injury=PfmEffectsBridge84.injury(id,injury);
                 int suspension=0;
                 try{suspension=pfmDiscipline70.roundsOut(id);}catch(Throwable ignored){}
                 int yellow=staticByte(pfmDiscipline70.class,"yellow",id);

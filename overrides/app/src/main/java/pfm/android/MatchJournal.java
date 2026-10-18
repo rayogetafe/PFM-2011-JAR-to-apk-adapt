@@ -6,15 +6,17 @@ import java.util.zip.CRC32;
 
 /** Immutable fixture facts, isolated by career and season; no Android or match simulation. */
 public final class MatchJournal {
-    private static final int MAGIC=0x50464d53,VERSION=1,MAX_BYTES=64*1024*1024;
+    private static final int MAGIC=0x50464d53,VERSION=2,MAX_BYTES=64*1024*1024;
     public static final class PlayerFact {
         public String uid="",club="",name="";
         // Goals, assists, appearances, starts, rating sum, clean sheets, conceded, saves, fatigue after.
         public int[] stats=new int[9];
+        public int minutes,yellow,red,injury,fatigueDelta;
     }
     public static final class Match {
         public String id="",competition="",home="",away="",source="",report="";
         public int round,homeGoals,awayGoals,seed;
+        public int effectsVersion,clock,homeCredit,awayCredit;
         public ArrayList<PlayerFact> players=new ArrayList<PlayerFact>();
     }
     private final File file,backup;
@@ -33,6 +35,7 @@ public final class MatchJournal {
     public Match get(String id){Match m=matches.get(id);return m==null?null:copy(m);}
     public ArrayList<Match> competition(String competition){ArrayList<Match> out=new ArrayList<Match>();for(Match m:matches.values())if(m.competition.equals(competition))out.add(copy(m));return out;}
     public int size(){return matches.size();}
+    public ArrayList<Match> all(){ArrayList<Match> out=new ArrayList<Match>();for(Match m:matches.values())out.add(copy(m));return out;}
     public boolean put(Match match){
         if(matches.containsKey(match.id))return false;
         if(match.id.length()==0||match.competition.length()==0||match.home.equals(match.away)||match.round<1||match.homeGoals<0||match.awayGoals<0)throw new IllegalArgumentException("Invalid fixture facts");
@@ -52,14 +55,16 @@ public final class MatchJournal {
         }
     }
     private static Match copy(Match m){Match n=new Match();n.id=m.id;n.competition=m.competition;n.home=m.home;n.away=m.away;n.source=m.source;n.report=m.report;n.round=m.round;n.homeGoals=m.homeGoals;n.awayGoals=m.awayGoals;n.seed=m.seed;
-        for(PlayerFact p:m.players){PlayerFact q=new PlayerFact();q.uid=p.uid;q.club=p.club;q.name=p.name;q.stats=p.stats.clone();n.players.add(q);}return n;}
+        n.effectsVersion=m.effectsVersion;n.clock=m.clock;n.homeCredit=m.homeCredit;n.awayCredit=m.awayCredit;
+        for(PlayerFact p:m.players){PlayerFact q=new PlayerFact();q.uid=p.uid;q.club=p.club;q.name=p.name;q.stats=p.stats.clone();q.minutes=p.minutes;q.yellow=p.yellow;q.red=p.red;q.injury=p.injury;q.fatigueDelta=p.fatigueDelta;n.players.add(q);}return n;}
     private byte[] encode()throws IOException{
         ByteArrayOutputStream bytes=new ByteArrayOutputStream();DataOutputStream out=new DataOutputStream(bytes);
         out.writeInt(MAGIC);out.writeInt(VERSION);out.writeInt(career);out.writeInt(season);out.writeInt(matches.size());
         for(Match m:matches.values()){
             out.writeUTF(m.id);out.writeUTF(m.competition);out.writeUTF(m.home);out.writeUTF(m.away);out.writeUTF(m.source);out.writeUTF(m.report);
             out.writeInt(m.round);out.writeInt(m.homeGoals);out.writeInt(m.awayGoals);out.writeInt(m.seed);out.writeInt(m.players.size());
-            for(PlayerFact p:m.players){out.writeUTF(p.uid);out.writeUTF(p.club);out.writeUTF(p.name);for(int n:p.stats)out.writeInt(n);}
+            for(PlayerFact p:m.players){out.writeUTF(p.uid);out.writeUTF(p.club);out.writeUTF(p.name);for(int n:p.stats)out.writeInt(n);out.writeInt(p.minutes);out.writeInt(p.yellow);out.writeInt(p.red);out.writeInt(p.injury);out.writeInt(p.fatigueDelta);}
+            out.writeInt(m.effectsVersion);out.writeInt(m.clock);out.writeInt(m.homeCredit);out.writeInt(m.awayCredit);
         }
         out.flush();return bytes.toByteArray();
     }
@@ -79,10 +84,11 @@ public final class MatchJournal {
         if(!source.isFile())throw new FileNotFoundException(source.getName());
         byte[] bytes;try(DataInputStream in=new DataInputStream(new FileInputStream(source))){int length=count(in,MAX_BYTES);bytes=new byte[length];in.readFully(bytes);long expected=in.readLong();CRC32 crc=new CRC32();crc.update(bytes);if(crc.getValue()!=expected||in.read()!=-1)throw new IOException("Journal checksum mismatch");}
         try(DataInputStream in=new DataInputStream(new ByteArrayInputStream(bytes))){
-            if(in.readInt()!=MAGIC||in.readInt()!=VERSION||in.readInt()!=career||in.readInt()!=season)throw new IOException("Wrong journal identity or version");
+            if(in.readInt()!=MAGIC)throw new IOException("Wrong journal header");int version=in.readInt();if(version<1||version>VERSION||in.readInt()!=career||in.readInt()!=season)throw new IOException("Wrong journal identity or version");
             int count=count(in,10000);for(int i=0;i<count;i++){
                 Match m=new Match();m.id=in.readUTF();m.competition=in.readUTF();m.home=in.readUTF();m.away=in.readUTF();m.source=in.readUTF();m.report=in.readUTF();m.round=in.readInt();m.homeGoals=in.readInt();m.awayGoals=in.readInt();m.seed=in.readInt();
-                int players=count(in,100);for(int p=0;p<players;p++){PlayerFact fact=new PlayerFact();fact.uid=in.readUTF();fact.club=in.readUTF();fact.name=in.readUTF();for(int s=0;s<9;s++)fact.stats[s]=in.readInt();m.players.add(fact);}
+                int players=count(in,100);for(int p=0;p<players;p++){PlayerFact fact=new PlayerFact();fact.uid=in.readUTF();fact.club=in.readUTF();fact.name=in.readUTF();for(int s=0;s<9;s++)fact.stats[s]=in.readInt();if(version>=2){fact.minutes=in.readInt();fact.yellow=in.readInt();fact.red=in.readInt();fact.injury=in.readInt();fact.fatigueDelta=in.readInt();}m.players.add(fact);}
+                if(version>=2){m.effectsVersion=in.readInt();m.clock=in.readInt();m.homeCredit=in.readInt();m.awayCredit=in.readInt();}
                 if(matches.put(m.id,canonical(m))!=null)throw new IOException("Duplicate fixture in journal");
             }
             if(in.read()!=-1)throw new IOException("Trailing journal data");

@@ -13,7 +13,7 @@ def main():
     with tempfile.TemporaryDirectory(prefix='pfm-v81-core-',dir=ROOT/'artifacts') as temp:
         jar=Path(temp)/'core.jar';shutil.copyfile(sys.argv[1],jar);v81_unified_match_engine.main(str(jar))
         sources=[ROOT/'overrides/app/src/main/java/PfmMatchEngineBridge.java',ROOT/'overrides/app/src/main/java/pfm/android/MatchEngine.java',
-            ROOT/'tools/tests/v81/pfm/android/NativeWorldCenter.java',ROOT/'tools/tests/v81/android/util/Log.java']
+            ROOT/'tools/tests/v81/pfm/android/NativeWorldCenter.java',ROOT/'tools/tests/v81/android/util/Log.java',ROOT/'tools/tests/v81/PfmEffectsBridge84.java']
         subprocess.run([javac,'-encoding','UTF-8','-cp',str(jar),'-d',temp,*map(str,sources)],check=True)
         subprocess.run([javac,*exports,'-d',temp,str(ROOT/'tools/tests/v81/VerifyCore.java')],check=True)
         subprocess.run([javac,'-cp',temp,'-d',temp,str(ROOT/'tools/tests/v81/BridgeHarness.java')],check=True)

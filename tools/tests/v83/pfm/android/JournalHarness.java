@@ -26,7 +26,7 @@ public class JournalHarness {
             MatchJournal.Match m=new MatchJournal.Match();m.competition="league:"+code;m.home=code+":"+fixture.h;m.away=code+":"+fixture.a;m.round=fixture.r;m.id=NativeMatchJournal.key(m.competition,m.round,m.home,m.away);m.homeGoals=1;m.awayGoals=0;m.source="legacy-exact";out.add(m);
         }return out;
     }
-    static void restart()throws Exception{Field f=NativeMatchJournal.class.getDeclaredField("identity");f.setAccessible(true);f.setInt(null,Integer.MIN_VALUE);}
+    static void restart()throws Exception{Field f=NativeMatchJournal.class.getDeclaredField("identity");f.setAccessible(true);f.setInt(null,Integer.MIN_VALUE);Field effects=NativeMatchJournal.class.getDeclaredField("currentEffects");effects.setAccessible(true);effects.set(null,null);}
     static String frozen(MatchJournal.Match m){StringBuilder s=new StringBuilder(m.id+":"+m.homeGoals+":"+m.awayGoals+":"+m.report);for(MatchJournal.PlayerFact p:m.players)s.append(p.uid).append(p.name).append(p.club).append(Arrays.toString(p.stats));return s.toString();}
     static MatchJournal open(Context c,int nonce,int year)throws Exception{return new MatchJournal(new File(c.getFilesDir(),"match-journals"),nonce,year);}
     static void codec(File files)throws Exception{
@@ -44,7 +44,7 @@ public class JournalHarness {
         System.out.println("Journal codec: immutable copies, duplicate protection, UTF-8 names, identities, seasons, checksum and backup recovery verified");
     }
     public static void main(String[] args)throws Exception{
-        File files=new File(args[1]);Context context=new Context("overrides/app/src/main/assets",files);AndroidRuntime.current=context;codec(files);world(args[0],101);
+        File files=new File(args[1]);Context context=new Context("overrides/app/src/main/assets",files);AndroidRuntime.current=context;codec(files);EffectsHarness.run(files);world(args[0],101);
         NativeMatchJournal.advance(context,0);check(NativeCareerStore.ensures==0,"new-career bootstrap created career early");
         for(int r=1;r<=4;r++){NativeWorldCenter.played=r;NativeMatchJournal.advance(context,r);}
         MatchJournal j=open(context,101,2010);check(j.competition("ucl:2010").size()==16,"UCL calendar round 4");check(j.competition("league:en").size()==40,"active league import");
@@ -64,6 +64,9 @@ public class JournalHarness {
         MatchJournal.Match old=open(context,303,2010).get(NativeMatchJournal.key("ucl:2010",1,"it:0","eu_netherlands:2"));check(old!=null&&old.homeGoals==7&&old.awayGoals==6&&old.players.isEmpty(),"v82 UCL result replaced or line-up invented");
         world(args[0],404);long start=System.nanoTime();for(int round=1;round<=38;round++){NativeWorldCenter.played=round;NativeMatchJournal.advance(context,round);}
         MatchJournal full=open(context,404,2010);check(full.size()==1922,"full calendar fixture count "+full.size());
+        MatchEffects conditions=new MatchEffects();int injuries=0,cards=0;for(MatchJournal.Match m:full.all())if(m.effectsVersion>0){conditions.rest(m.clock);for(MatchJournal.PlayerFact p:m.players){if(p.stats[2]>0)check(conditions.available(p.uid,m.competition),"ineligible native participant "+m.id+" "+p.uid);injuries+=p.injury>0?1:0;cards+=p.yellow;}conditions.apply(m);}
+        MatchJournal.Match europe=full.competition("ucl:2010").get(0);MatchJournal.PlayerFact active=null;for(MatchJournal.Match m:full.competition("ucl:2010"))for(MatchJournal.PlayerFact p:m.players)if(p.club.startsWith("en:")&&p.stats[2]>0)active=p;check(active!=null,"no active league European participant");int activeId=Integer.parseInt(active.uid.substring(active.uid.lastIndexOf(':')+1));int[] overlay=NativeMatchJournal.legacyEffects(activeId);restart();check(Arrays.equals(overlay,NativeMatchJournal.legacyEffects(activeId)),"cold legacy overlay changed after restart");
+        System.out.println("Season effects: "+injuries+" injuries, "+cards+" yellows; all native participants eligible; cold legacy overlay replay verified");
         for(String code:NativeWorldCenter.C)check(full.competition("league:"+code).size()==(code.equals("de")?306:380),"incomplete league "+code);
         ArrayList<MatchJournal.Match> nativeMatches=full.competition("ucl:2010");for(String code:new String[]{"es","it","de","fr"})nativeMatches.addAll(full.competition("league:"+code));
         for(MatchJournal.Match m:nativeMatches){int hg=0,ag=0,hs=0,as=0;for(MatchJournal.PlayerFact p:m.players)if(p.club.equals(m.home)){hg+=p.stats[0];hs+=p.stats[3];}else{ag+=p.stats[0];as+=p.stats[3];}
@@ -76,8 +79,9 @@ public class JournalHarness {
 }
 class NativeCareerStore {
     static class Club {String id,name,league;int sourceId;}
-    static class Player {String id,name,owner,nationality;int sourceId,position,age,overall,spe,res,qua,morale;}
+    static class Player {String id,name,owner,nationality;int sourceId,position,age,overall,spe,res,qua,morale,contractWage;}
     static class Career {int season;String activeLeague;ArrayList<Club> clubs=new ArrayList<>();ArrayList<Player> players=new ArrayList<>();}
     static Career current;static int ensures;static Career ensure(Context c){ensures++;return current;}
+    static void applyMatchFinance(Context c,ArrayList<MatchJournal.Match> m,int season){}
 }
 class NativeTransferCalendar {static int total(){return NativeCareerStore.current.activeLeague.equals("de")?34:38;}static int played(){return NativeWorldCenter.played;}}

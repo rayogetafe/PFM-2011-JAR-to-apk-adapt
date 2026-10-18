@@ -46,9 +46,9 @@ public final class PfmMatchEngineBridge {
             boolean active=i<11;
             if(!detailed){int minutes=pfmAvailable70.minutesForRosterIndex(club,i,round);
                 active=i<11?minutes>0&&minute<=minutes:minutes>0&&minute>90-minutes;}
-            if(!active)continue;ci p=player(club,i);if(p==null)continue;
+            if(!active||PfmEffectsBridge84.injury(ids[i]&65535,0)>0)continue;ci p=player(club,i);if(p==null)continue;
             int id=ids[i]&65535,fat=fatigue!=null&&id<fatigue.length?fatigue[id]&255:0;
-            out.add(ub(p,"b"),ub(p,"e"),ub(p,"c"),ub(p,"d"),ub(p,"h"),fat);
+            out.add(ub(p,"b"),ub(p,"e"),ub(p,"c"),ub(p,"d"),ub(p,"h"),PfmEffectsBridge84.fatigue(id,fat));
         }
         return out;
     }
