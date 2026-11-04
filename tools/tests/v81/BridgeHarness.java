@@ -69,17 +69,17 @@ public class BridgeHarness {
     }
 }
 class ci {byte b,c=75,d=75,e=75,h=55;ci(int p){b=(byte)p;}}
-class dw {byte c=55,d=2,e=18,n;short[] a=new short[18];ci[] players=new ci[18];dw(int id){n=(byte)id;for(int i=0;i<18;i++){a[i]=(short)(id*18+i);players[i]=new ci(i==0||i==11?0:i<5||i==12||i==13?1:i<9||i<16?2:3);}}}
-class cp {static byte[] a={0,0,0,0,0};static int round;static ci a(dw t,int i){return t.players[i];}static int pfmPlayedForTable(){return round;}}
+class dw {byte c=55,d=2,e,n;short[] a;ci[] players;dw(int id){this(id,18);}dw(int id,int count){n=(byte)id;e=(byte)count;a=new short[count];players=new ci[count];for(int i=0;i<count;i++){a[i]=(short)(id*25+i);players[i]=new ci(i==0||i==11?0:i<5||i==12||i==13?1:i<9||i<16?2:3);cp.pool[id*25+i]=players[i];}}}
+class cp {static byte[] a={0,0,0,0,0};static ci[] pool=new ci[50];static int round;static ci a(dw t,int i){return pool[t.a[i]&65535];}static int pfmPlayedForTable(){return round;}}
 class bb {static int[] b={50},c={50},d={50};}
 class pfm2 {static int getSeason(){return 2010;}static int getSlot(){return 0;}}
 class PfmSeasonBridge {static String code="en";public static String leagueCode(){return code;}}
-class pfmCondition60 {static byte[] fatigue=new byte[36],injury=new byte[36];static int lastRound=-1;private static void ensure(){}private static void save(){}static int minutesForRosterIndex(dw t,int i,int r){return pfmAvailable70.minutesForRosterIndex(t,i,r);}}
-class pfmDiscipline70 {static byte[] yellow=new byte[36],red=new byte[36],suspension=new byte[36];static int lastRound=-1;private static void ensure(){}private static void save(){}static boolean suspended(int id){return suspension[id]>0;}static int roundsOut(int id){return suspension[id];}}
+class pfmCondition60 {static byte[] fatigue=new byte[50],injury=new byte[50];static int lastRound=-1;private static void ensure(){}private static void save(){}static int minutesForRosterIndex(dw t,int i,int r){return pfmAvailable70.minutesForRosterIndex(t,i,r);}}
+class pfmDiscipline70 {static byte[] yellow=new byte[50],red=new byte[50],suspension=new byte[50];static int lastRound=-1;private static void ensure(){}private static void save(){}static boolean suspended(int id){return suspension[id]>0;}static int roundsOut(int id){return suspension[id];}}
 class pfmRoundAccess60 {static int round(){return cp.round;}}
 class pfmMatchPost35 {static int completedRoundOne(){return cp.round+1;}}
 class pfmPlayerHistoryV2 {static dw user;static dw userTeam(){return user;}}
-class pfmAvailable70 {static int minutesForRosterIndex(dw t,int i,int round){return i<11?90:i==12?26:i==14?19:i==16?12:0;}}
+class pfmAvailable70 {static boolean outside;static int minutesForRosterIndex(dw t,int i,int round){return i<11?90:i==12?26:i==14?19:i==(outside?20:16)?12:0;}}
 class pfmSubstitutions {static int currentEventMinute;static StringBuffer appendLiveMinute(StringBuffer b,int minute){currentEventMinute=minute;return b.append(minute);}static ci pfmScorer(dw t,int minute){PfmMatchEngineBridge.prepareEventAndRound(minute);return PfmMatchEngineBridge.scorer(t,minute);}}
 class pfmMatchEvents {static ci liveScorer(dw t,int minute){return pfmSubstitutions.pfmScorer(t,minute);}}
 class cb {int p,q;}

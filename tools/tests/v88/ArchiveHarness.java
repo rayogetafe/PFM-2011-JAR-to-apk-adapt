@@ -6,10 +6,19 @@ import android.content.*;
 public class ArchiveHarness {
     static void check(boolean value,String why){if(!value)throw new AssertionError(why);}
     public static void main(String[] args)throws Exception{
-        dw h=new dw(0),a=new dw(1);pfmPlayerHistoryV2.user=h;cp.round=0;
+        dw h=new dw(0,25),a=new dw(1,25);pfmPlayerHistoryV2.user=h;cp.round=0;pfmAvailable70.outside=true;
         Method prepare=PfmMatchEngineBridge.class.getDeclaredMethod("game",dw.class,dw.class,Boolean.TYPE);prepare.setAccessible(true);prepare.invoke(null,h,a,true);
-        MatchEngine.Lineup[] sides=PfmMatchEngineBridge.currentLineups();sides[0].scripted(20,"legacy:1","RC");sides[0].scripted(30,"legacy:0","INJ");
+        MatchEngine.Lineup[] sides=PfmMatchEngineBridge.currentLineups();sides[0].scripted(20,"legacy:1","RC");sides[0].scripted(30,"legacy:0","INJ");sides[0].scripted(70,"legacy:12","INJ");
         Vector[] goals=BridgeHarness.goals();PfmMatchEngineBridge.fast(h,a,goals,0);PfmMatchEngineBridge.fast(h,a,goals,45);
+        Method participants=pfmLeagueMatchArchive34.class.getDeclaredMethod("participants",dw.class,Integer.TYPE,Integer.TYPE);participants.setAccessible(true);
+        int reportSubs=0;for(String[] row:(ArrayList<String[]>)participants.invoke(null,h,0,1))if(row[6].equals("0"))reportSubs++;
+        check(sides[0].substitutions==3&&reportSubs==3,"report invents a fourth substitute: engine="+sides[0].substitutions+", report="+reportSubs);
+        Method append=pfmLeagueMatchArchive34.class.getDeclaredMethod("appendSubs",StringBuilder.class,dw.class,Integer.TYPE,Integer.TYPE);append.setAccessible(true);StringBuilder subs=new StringBuilder();append.invoke(null,subs,h,0,1);
+        ArrayList<MatchEngine.Incident> executed=new ArrayList<>();for(MatchEngine.Incident event:sides[0].incidents)if(event.type.equals("SUB"))executed.add(event);
+        String[] archived=subs.toString().trim().split("\n");check(archived.length==executed.size(),"archive misses or invents substitution events");
+        boolean chain=false;for(int i=0;i<archived.length;i++){String[] row=archived[i].split("\t",-1);MatchEngine.Incident event=executed.get(i);check(Integer.parseInt(row[2])==event.minute&&row[5].equals(event.uid.substring(7))&&row[6].equals(event.other.substring(7)),"archive changed substitution owner/minute");if(row[5].equals("12")&&row[6].equals("13"))chain=true;}check(chain,"substitute-for-substitute replacement absent");
+        StringBuffer eventLog=new StringBuffer();PfmMatchEngineBridge.appendSubstitutions(eventLog,h,0);check(eventLog.toString().lines().filter(line->line.contains(" -> ")).count()==3,"text event log diverges from executed substitutions");
+        StringBuffer missing=new StringBuffer();PfmMatchEngineBridge.appendSubstitutions(missing,h,5);check(missing.toString().equals("NONE\n"),"absent facts invented planned substitutions");
         Field context=AndroidRuntime.class.getDeclaredField("current");context.setAccessible(true);Context c=new Context("",new java.io.File(args[0]));context.set(null,c);
         Method key=pfmLeagueMatchArchive34.class.getDeclaredMethod("key",Integer.TYPE,dw.class,dw.class);key.setAccessible(true);String k=(String)key.invoke(null,1,h,a);
         StringBuilder text=new StringBuilder("H\tHome\tAway\t0\t0\nM\t50\t50\t10\t10\t3\t3\t4\t4\t12\t12\t1\t1\t0\t0\t0\t0\n");
@@ -22,6 +31,7 @@ public class ArchiveHarness {
         boolean injured=false;for(MatchJournal.PlayerFact p:m.players)if(p.uid.endsWith(":0")){check(p.minutes==30&&p.injury>0,"injury/minutes lost in journal import");injured=true;}
         check(injured&&m.effectsVersion==0&&m.report.contains("LIVE EVENTS"),"domestic journal duplicated overlay effects or lost timeline");
         System.out.println("PASS: production archive retains red owner/minute, repeated archive is idempotent, domestic injury/minutes enter journal without duplicate overlay effects");
+        System.out.println("PASS: 25-player roster + keeper injury + substitute injury: engine/used players/archive/text log all show three actual substitutions; unused planned player has no appearance");
     }
 }
 class pfmRatingPost36 {static int adjusted;public static void adjust(int id,int amount){adjusted+=amount;}}

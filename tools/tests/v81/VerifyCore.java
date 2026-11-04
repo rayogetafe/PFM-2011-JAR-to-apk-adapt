@@ -8,7 +8,7 @@ import jdk.internal.org.objectweb.asm.tree.analysis.*;
 public class VerifyCore {
     public static void main(String[] args)throws Exception{
         try(ZipFile zip=new ZipFile(args[0])){
-            for(String name:new String[]{"bb","ca","pfmSubstitutions","pfmCondition60","pfmDiscipline70"}){
+            for(String name:new String[]{"bb","ca","pfmSubstitutions","pfmCondition60","pfmDiscipline70","pfmMatchEvents"}){
                 ClassNode node=new ClassNode();new ClassReader(zip.getInputStream(zip.getEntry(name+".class"))).accept(node,0);
                 int hooks=0;
                 for(MethodNode method:node.methods){
@@ -26,6 +26,10 @@ public class VerifyCore {
             for(MethodNode m:node.methods)for(AbstractInsnNode insn:m.instructions)if(insn instanceof FieldInsnNode){FieldInsnNode f=(FieldInsnNode)insn;
                 if(f.owner.equals("ca")){if(f.name.equals("scene")||f.name.equals("homeDisplay")||f.name.equals("records"))f.name="a";else if(f.name.equals("awayDisplay"))f.name="b";}}
             ClassWriter writer=new ClassWriter(0);node.accept(writer);Files.write(path,writer.toByteArray());
+            for(String name:new String[]{"cp","dw"}){path=Paths.get(args[1],name+".class");node=new ClassNode();new ClassReader(Files.readAllBytes(path)).accept(node,0);
+                if(name.equals("cp"))for(FieldNode f:node.fields)if(f.name.equals("pool"))f.name="a";
+                for(MethodNode m:node.methods)for(AbstractInsnNode insn:m.instructions)if(insn instanceof FieldInsnNode){FieldInsnNode f=(FieldInsnNode)insn;if(f.owner.equals("cp")&&f.name.equals("pool"))f.name="a";}
+                writer=new ClassWriter(0);node.accept(writer);Files.write(path,writer.toByteArray());}
         }
     }
 }
