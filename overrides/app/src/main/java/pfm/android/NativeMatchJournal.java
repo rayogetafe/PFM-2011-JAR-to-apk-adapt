@@ -65,15 +65,29 @@ public final class NativeMatchJournal {
         return selected;
     }
     static MatchJournal.Match capture(MatchJournal j,String competition,int round,String homeId,String awayId,int seed,HashMap<String,NativeWorldCenter.T> teams,HashMap<String,NativeWorldCenter.P> players,String source,MatchEffects effects,NativeCareerStore.Career career){
+        return capture(j,competition,round,homeId,awayId,seed,teams,players,source,effects,career,null,false);
+    }
+    static MatchJournal.Match capture(MatchJournal j,String competition,int round,String homeId,String awayId,int seed,HashMap<String,NativeWorldCenter.T> teams,HashMap<String,NativeWorldCenter.P> players,String source,MatchEffects effects,NativeCareerStore.Career career,MatchJournal.Match firstLeg,boolean neutralFinal){
         String id=key(competition,round,homeId,awayId);MatchJournal.Match old=j.get(id);if(old!=null){effects.apply(old);return old;}
         NativeWorldCenter.T home=teams.get(homeId),away=teams.get(awayId);if(home==null||away==null||home.ps.size()<11||away.ps.size()<11)throw new IllegalStateException("Fixture squad unavailable: "+id);
         NativeWorldCenter.S hs=eligible(home,homeId,competition,seed,effects,players),as=eligible(away,awayId,competition,seed+17,effects,players);
-        NativeMatchEngine.Result result=NativeMatchEngine.play(seed,home,away,hs,as,MatchEngine.profile(competition));MatchJournal.Match m=new MatchJournal.Match();m.id=id;m.competition=competition;m.round=round;m.home=homeId;m.away=awayId;m.homeGoals=result.homeGoals;m.awayGoals=result.awayGoals;m.seed=seed;m.source=source;
+        MatchEngine.Profile profile=neutralFinal?MatchEngine.NEUTRAL_VENUE:MatchEngine.profile(competition);
+        NativeMatchEngine.Result result=NativeMatchEngine.play(seed,home,away,hs,as,profile);
+        int decision=0;if(firstLeg!=null||neutralFinal){decision=neutralFinal?Integer.compare(result.homeGoals,result.awayGoals):UclKnockout.decision(firstLeg.homeGoals,firstLeg.awayGoals,result.homeGoals,result.awayGoals);
+            if(decision==0){NativeMatchEngine.extraTime(result,seed,profile);decision=neutralFinal?Integer.compare(result.homeGoals,result.awayGoals):UclKnockout.decision(firstLeg.homeGoals,firstLeg.awayGoals,result.homeGoals,result.awayGoals);}
+            if(decision==0){NativeMatchEngine.penalties(result,seed^0x741e);decision=Integer.compare(result.homePenalties,result.awayPenalties);}}
+        MatchJournal.Match m=new MatchJournal.Match();m.id=id;m.competition=competition;m.round=round;m.home=homeId;m.away=awayId;m.homeGoals=result.homeGoals;m.awayGoals=result.awayGoals;m.seed=seed;m.source=source;m.duration=result.duration;m.homePenalties=result.homePenalties;m.awayPenalties=result.awayPenalties;if(decision!=0)m.winner=decision>0?homeId:awayId;
         m.report=home.name+"  "+m.homeGoals+" – "+m.awayGoals+"  "+away.name;
+        if(neutralFinal)m.report+="\nFinal · neutral venue (Wembley)";
+        if(m.duration==120)m.report+="\nAfter extra time (120 minutes)";
+        if(m.homePenalties+m.awayPenalties>0)m.report+="\nPenalties: "+m.homePenalties+" – "+m.awayPenalties+" (excluded from player goals)";
+        if(firstLeg!=null)m.report+="\nAggregate: "+(firstLeg.awayGoals+m.homeGoals)+" – "+(firstLeg.homeGoals+m.awayGoals)+"; away goals: "+firstLeg.awayGoals+" – "+m.awayGoals;
+        if(m.winner.length()>0)m.report+="\nQualified / winner: "+(decision>0?home.name:away.name);
         facts(m,homeId,home,m.homeGoals,m.awayGoals,seed,hs,result.home);facts(m,awayId,away,m.awayGoals,m.homeGoals,seed+17,as,result.away);
         if(source.equals("native-v84")){m.clock=effects.clock;m.effectsVersion=2;MatchEffects.stamp(m,players);
             long hw=0,aw=0;for(NativeCareerStore.Player p:career.players){if(p.owner.equals(homeId))hw+=p.contractWage;if(p.owner.equals(awayId))aw+=p.contractWage;}
             m.homeCredit=MatchEffects.credit(competition.startsWith("ucl:"),true,m.homeGoals,m.awayGoals,home.ovr,hw,competition.equals("league:de")?34:38);m.awayCredit=MatchEffects.credit(competition.startsWith("ucl:"),false,m.awayGoals,m.homeGoals,away.ovr,aw,competition.equals("league:de")?34:38);}
+        if(neutralFinal&&m.effectsVersion>0)m.homeCredit=MatchEffects.credit(true,false,m.homeGoals,m.awayGoals,home.ovr,0,38);
         if(m.effectsVersion>0)for(MatchJournal.PlayerFact f:m.players){int[] base=legacyCondition.get(f.uid);f.stats[8]=Math.min(100,effects.fatigue(f.uid)+f.fatigueDelta+(base==null?0:base[0]));}
         j.put(m);effects.apply(m);return m;
     }
@@ -109,8 +123,10 @@ public final class NativeMatchJournal {
         MatchJournal j=journal(c,season);if(lastSeason==season&&completed<=lastRound)return;
         if(completed==0&&season==2010){lastSeason=season;lastRound=0;return;}
         boolean baseline=j.size()==0&&completed>1;String source=baseline?"reconstructed-v83":"native-v84";
+        if(season==2010&&j.metadata("ucl-v91-cutoff")==null){int cutoff=baseline?completed:0;for(MatchJournal.Match old:j.all())cutoff=Math.max(cutoff,old.clock);j.define("ucl-v91-cutoff",String.valueOf(cutoff));}
         NativeCareerStore.Career career=NativeCareerStore.ensure(c);HashMap<String,NativeWorldCenter.T> teams=teams(career);HashMap<String,NativeWorldCenter.P> players=new HashMap<String,NativeWorldCenter.P>();for(NativeWorldCenter.T team:teams.values())for(NativeWorldCenter.P p:team.ps)players.put(p.uid,p);
         ArrayList<ArrayList<String>> groups=NativeCompetitionCalendar.groups(c);MatchJournal ucl=season==2010?j:journal(c,2010);importUcl(c,ucl,groups,teams);
+        HashMap<String,String> associations=new HashMap<String,String>();for(NativeCareerStore.Club club:career.clubs)associations.put(club.id,club.league);
         MatchEffects effects=effects(c,j,season,completed);
         importLegacy(c,j,completed,career);
         for(int step=1;step<=completed;step++){
@@ -122,9 +138,18 @@ public final class NativeMatchJournal {
             }
             if(season==2010){int previous=NativeCompetitionCalendar.uclCompleted(step-1,total),now=NativeCompetitionCalendar.uclCompleted(step,total);
                 for(int r=previous;r<now;r++)for(int g=0;g<8;g++)for(int match=0;match<2;match++){int[] pairs=NativeCompetitionCalendar.UCL_PAIRS[r];capture(j,"ucl:2010",r+1,groups.get(g).get(pairs[match*2]),groups.get(g).get(pairs[match*2+1]),identity+r*104729+g*1009+match*37,teams,players,source,effects,career);}
+                knockouts(j,groups,associations,identity,step,total,teams,players,source,effects,career);
             }
         }
         j.save();if(ucl!=j)ucl.save();repairParticipation(j,career.activeLeague,completed);currentEffects=effects;effectsSeason=season;effectsIdentity=identity;NativeCareerStore.applyMatchFinance(c,j.all(),season);lastSeason=season;lastRound=completed;
+    }
+    static void knockouts(MatchJournal j,ArrayList<ArrayList<String>> groups,HashMap<String,String> associations,int nonce,int step,int total,HashMap<String,NativeWorldCenter.T> teams,HashMap<String,NativeWorldCenter.P> players,String source,MatchEffects effects,NativeCareerStore.Career career){
+                int before=UclKnockout.completed(step-1,total),after=UclKnockout.completed(step,total);
+                for(int k=before;k<after;k++){int stage=Math.min(3,k/2),round=k+7;ArrayList<String[]> ties=UclKnockout.draw(j,groups,associations,nonce^0x201011,stage);if(ties.isEmpty())throw new IllegalStateException("UCL previous stage incomplete");
+                    for(int t=0;t<ties.size();t++){String[] tie=ties.get(t);boolean second=k<6&&k%2==1;String home=second?tie[1]:tie[0],away=second?tie[0]:tie[1];MatchJournal.Match first=second?j.get(UclKnockout.key(round-1,away,home)):null;
+                        String koSource=j.metadata("ucl-v91-cutoff")!=null&&step<=Integer.parseInt(j.metadata("ucl-v91-cutoff"))?"reconstructed-v91":source;
+                        capture(j,"ucl:2010",round,home,away,nonce^round*104729^t*1009,teams,players,koSource,effects,career,first,k==6);}}
+                if(NativeCompetitionCalendar.uclCompleted(step,total)==6)for(int stage=0;stage<4;stage++)UclKnockout.draw(j,groups,associations,nonce^0x201011,stage);
     }
     /** Non-mutating legacy overlay. Domestic suspensions/cards stay in the domestic ledger. */
     public static int[] legacyEffects(int id){
@@ -151,13 +176,14 @@ public final class NativeMatchJournal {
         return fixtures;
     }
     static ArrayList<MatchJournal.Match> ucl(Context c)throws IOException{return journal(c,2010).competition("ucl:2010");}
+    static ArrayList<String[]> uclDraw(Context c,int stage)throws IOException{return UclKnockout.decode(journal(c,2010).metadata("ucl-draw-"+stage));}
     static MatchJournal.Match match(Context c,String competition,int round,String home,String away,int season)throws IOException{return journal(c,season).get(key(competition,round,home,away));}
     static void showReport(Activity a,MatchJournal.Match m){
         if(m==null)return;String title=m.report.split("\n",2)[0];if(title.startsWith("H\t")){String[] h=title.split("\t");title=h[1]+"  "+m.homeGoals+" – "+m.awayGoals+"  "+h[2];}
-        StringBuilder body=new StringBuilder();if(m.source.equals("reconstructed-v83"))body.append("Reconstructed at upgrade; original match details were not saved.\n\n");
+        StringBuilder body=new StringBuilder();if(m.source.startsWith("reconstructed-"))body.append("Reconstructed at upgrade; no retrospective fatigue, suspensions or finance applied.\n\n");
         for(int side=0;side<2;side++){String club=side==0?m.home:m.away;body.append(side==0?"HOME\n":"\nAWAY\n");
             for(MatchJournal.PlayerFact p:m.players)if(p.club.equals(club)&&p.stats[2]>0)body.append(p.name).append(p.stats[3]>0?" · XI":" · SUB").append("  G ").append(p.stats[0]).append(" A ").append(p.stats[1]).append(p.minutes>0?"  MIN "+p.minutes+" YC "+p.yellow+" RC "+p.red+(p.injury>0?" INJ "+p.injury+" rounds":""):"").append('\n');}
-        if(m.effectsVersion>=2)body.append("\nEVENTS\n").append(m.report.substring(m.report.indexOf('\n')>=0?m.report.indexOf('\n')+1:m.report.length()));
+        if(m.effectsVersion>=2||m.round>=7&&m.competition.equals("ucl:2010"))body.append("\nEVENTS\n").append(m.report.substring(m.report.indexOf('\n')>=0?m.report.indexOf('\n')+1:m.report.length()));
         else if(m.report.contains("\nLIVE EVENTS\n"))body.append(m.report.substring(m.report.indexOf("\nLIVE EVENTS\n")));
         if(m.effectsVersion>0){body.append("\nMatch finance (net, gameplay model): home £").append(m.homeCredit).append("; away £").append(m.awayCredit);if(m.effectsVersion==1)body.append("\nCards/injuries were post-match consequences in this older report.");body.append("\nBans are competition-specific.\n");}
         if(m.players.isEmpty())body.append("This historical result has no recorded line-up.");new AlertDialog.Builder(a).setTitle(title).setMessage(body.toString()).setPositiveButton("Close",null).show();

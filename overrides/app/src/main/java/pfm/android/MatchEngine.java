@@ -6,6 +6,8 @@ public final class MatchEngine {
     /** Immutable competition calibration, never an alternative simulation algorithm. */
     public static final class Profile {public final String code;public final double historicalRate,historicalDrawRate;final double homeScale,awayScale,zeroCycle,oneCycle,twoCycle;private Profile(String code,double home,double away){this(code,home,away,0,1,0,0,0,0);}private Profile(String code,double home,double away,int goals,int games,int draws,double zero,double one,double two){this.code=code;homeScale=home;awayScale=away;historicalRate=goals/(double)games;historicalDrawRate=draws/(double)games;zeroCycle=zero;oneCycle=one;twoCycle=two;}}
     public static final Profile DEFAULT=new Profile("neutral",1,1);
+    /** Same goal model at a neutral stadium: identical base intensity for both sides. */
+    public static final Profile NEUTRAL_VENUE=new Profile("neutral-venue",0.9,1.125);
     // 2010/11 home/away totals; fitted to expected event intensity, not to individual RNG outcomes.
     // Source totals and calibration/held-out verification live in tools/reference and test_v86_scoring.py.
     private static final Profile EN=new Profile("en",1.076150,0.978114,1063,380,111,0.090918,0.397663,0.314263),ES=new Profile("es",1.039024,0.880435,1042,380,79,0.105164,-0.524888,0.551434),IT=new Profile("it",0.898447,0.852025,955,380,97,0.125208,-0.316774,0.704416),DE=new Profile("de",1.137937,1.108136,894,306,63,-0.126113,0.170077,-0.950000),FR=new Profile("fr",0.831068,0.779695,890,380,130,0.243903,0.409416,-0.519981);
@@ -60,7 +62,7 @@ public final class MatchEngine {
     }
     /** Pure score-aware transition. The caller supplies the already committed prefix; no hidden RNG/session state. */
     public static int events(int seed,int minute,Team home,Team away,Profile profile,int homeGoals,int awayGoals){
-        if(minute<1||minute>90)throw new IllegalArgumentException("minute outside 1..90");
+        if(minute<1||minute>120||(minute>90&&(profile.zeroCycle!=0||profile.oneCycle!=0||profile.twoCycle!=0)))throw new IllegalArgumentException("minute outside profile period");
         if(homeGoals<0||awayGoals<0)throw new IllegalArgumentException("negative score prefix");
         double h=expectedGoals(home,away,true,profile)/90.0,a=expectedGoals(away,home,false,profile)/90.0;
         if((profile.zeroCycle!=0||profile.oneCycle!=0||profile.twoCycle!=0)&&homeGoals<=3&&awayGoals<=3){

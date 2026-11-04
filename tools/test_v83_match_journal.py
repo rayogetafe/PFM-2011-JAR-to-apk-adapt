@@ -30,7 +30,7 @@ def main():
         temp=Path(temp);world=(JAVA/'NativeWorldCenter.java').read_text(encoding='utf-8')
         fixture=world_fixture(world)
         stub=temp/'NativeWorldCenter.java';stub.write_text(fixture,encoding='utf-8')
-        sources=[*[p for p in (ROOT/'tools/tests/v83').rglob('*.java') if not p.name.startswith('Verify')],stub,*[JAVA/name for name in ('MatchJournal.java','MatchParticipation.java','MatchEffects.java','NativeMatchJournal.java','NativeCompetitionCalendar.java','NativeMatchEngine.java','MatchEngine.java')]]
+        sources=[*[p for p in (ROOT/'tools/tests/v83').rglob('*.java') if not p.name.startswith('Verify')],stub,*[JAVA/name for name in ('UclKnockout.java','MatchJournal.java','MatchParticipation.java','MatchEffects.java','NativeMatchJournal.java','NativeCompetitionCalendar.java','NativeMatchEngine.java','MatchEngine.java')]]
         subprocess.run([javac,'-encoding','UTF-8','-d',str(temp),*map(str,sources)],check=True)
         data=temp/'data';data.mkdir()
         subprocess.run([java,'-Xverify:all','-cp',str(temp),'pfm.android.JournalHarness',sys.argv[1],str(data)],cwd=ROOT,check=True)

@@ -6,7 +6,7 @@ import java.util.zip.CRC32;
 
 /** Immutable fixture facts, isolated by career and season; no Android or match simulation. */
 public final class MatchJournal {
-    private static final int MAGIC=0x50464d53,VERSION=3,MAX_BYTES=64*1024*1024;
+    private static final int MAGIC=0x50464d53,VERSION=4,MAX_BYTES=64*1024*1024;
     public static final class PlayerFact {
         public String uid="",club="",name="";
         // Goals, assists, appearances, starts, rating sum, clean sheets, conceded, saves, fatigue after.
@@ -17,6 +17,8 @@ public final class MatchJournal {
         public String id="",competition="",home="",away="",source="",report="";
         public int round,homeGoals,awayGoals,seed;
         public int effectsVersion,clock,homeCredit,awayCredit;
+        public int duration=90,homePenalties,awayPenalties;
+        public String winner="";
         public ArrayList<PlayerFact> players=new ArrayList<PlayerFact>();
     }
     private final File file,backup;
@@ -25,13 +27,16 @@ public final class MatchJournal {
     private final HashMap<String,String> strings=new HashMap<String,String>();
     private final HashMap<String,Integer> openingBans=new HashMap<String,Integer>();
     private boolean openingDefined;
+    private final TreeMap<String,String> metadata=new TreeMap<String,String>();
+    public String metadata(String key){return metadata.get(key);}
+    public void define(String key,String value){if(metadata.containsKey(key))return;metadata.put(key,value);dirty=true;}
     private boolean dirty,primaryValid;
     public MatchJournal(File directory,int career,int season)throws IOException{
         this.career=career;this.season=season;
         if(!directory.isDirectory()&&!directory.mkdirs())throw new IOException("Cannot create match journal directory");
         file=new File(directory,"matches-"+career+"-"+season+".bin");backup=new File(file.getPath()+".backup");
         if(file.exists()||backup.exists()){
-            try{read(file);primaryValid=true;}catch(IOException primary){matches.clear();strings.clear();openingBans.clear();openingDefined=false;try{read(backup);}catch(IOException fallback){throw new IOException("Match journal and backup unavailable",primary);}}
+            try{read(file);primaryValid=true;}catch(IOException primary){matches.clear();strings.clear();openingBans.clear();metadata.clear();openingDefined=false;try{read(backup);}catch(IOException fallback){throw new IOException("Match journal and backup unavailable",primary);}}
         }
     }
     public Match get(String id){Match m=matches.get(id);return m==null?null:copy(m);}
@@ -60,7 +65,7 @@ public final class MatchJournal {
         }
     }
     private static Match copy(Match m){Match n=new Match();n.id=m.id;n.competition=m.competition;n.home=m.home;n.away=m.away;n.source=m.source;n.report=m.report;n.round=m.round;n.homeGoals=m.homeGoals;n.awayGoals=m.awayGoals;n.seed=m.seed;
-        n.effectsVersion=m.effectsVersion;n.clock=m.clock;n.homeCredit=m.homeCredit;n.awayCredit=m.awayCredit;
+        n.effectsVersion=m.effectsVersion;n.clock=m.clock;n.homeCredit=m.homeCredit;n.awayCredit=m.awayCredit;n.duration=m.duration;n.homePenalties=m.homePenalties;n.awayPenalties=m.awayPenalties;n.winner=m.winner;
         for(PlayerFact p:m.players){PlayerFact q=new PlayerFact();q.uid=p.uid;q.club=p.club;q.name=p.name;q.stats=p.stats.clone();q.minutes=p.minutes;q.yellow=p.yellow;q.red=p.red;q.injury=p.injury;q.fatigueDelta=p.fatigueDelta;n.players.add(q);}return n;}
     private byte[] encode()throws IOException{
         ByteArrayOutputStream bytes=new ByteArrayOutputStream();DataOutputStream out=new DataOutputStream(bytes);
@@ -70,8 +75,10 @@ public final class MatchJournal {
             out.writeInt(m.round);out.writeInt(m.homeGoals);out.writeInt(m.awayGoals);out.writeInt(m.seed);out.writeInt(m.players.size());
             for(PlayerFact p:m.players){out.writeUTF(p.uid);out.writeUTF(p.club);out.writeUTF(p.name);for(int n:p.stats)out.writeInt(n);out.writeInt(p.minutes);out.writeInt(p.yellow);out.writeInt(p.red);out.writeInt(p.injury);out.writeInt(p.fatigueDelta);}
             out.writeInt(m.effectsVersion);out.writeInt(m.clock);out.writeInt(m.homeCredit);out.writeInt(m.awayCredit);
+            out.writeInt(m.duration);out.writeInt(m.homePenalties);out.writeInt(m.awayPenalties);out.writeUTF(m.winner);
         }
         out.writeBoolean(openingDefined);out.writeInt(openingBans.size());for(String key:new TreeSet<String>(openingBans.keySet())){out.writeUTF(key);out.writeInt(openingBans.get(key));}
+        out.writeInt(metadata.size());for(Map.Entry<String,String> entry:metadata.entrySet()){out.writeUTF(entry.getKey());out.writeUTF(entry.getValue());}
         out.flush();return bytes.toByteArray();
     }
     public void save()throws IOException{
@@ -95,9 +102,11 @@ public final class MatchJournal {
                 Match m=new Match();m.id=in.readUTF();m.competition=in.readUTF();m.home=in.readUTF();m.away=in.readUTF();m.source=in.readUTF();m.report=in.readUTF();m.round=in.readInt();m.homeGoals=in.readInt();m.awayGoals=in.readInt();m.seed=in.readInt();
                 int players=count(in,100);for(int p=0;p<players;p++){PlayerFact fact=new PlayerFact();fact.uid=in.readUTF();fact.club=in.readUTF();fact.name=in.readUTF();for(int s=0;s<9;s++)fact.stats[s]=in.readInt();if(version>=2){fact.minutes=in.readInt();fact.yellow=in.readInt();fact.red=in.readInt();fact.injury=in.readInt();fact.fatigueDelta=in.readInt();}m.players.add(fact);}
                 if(version>=2){m.effectsVersion=in.readInt();m.clock=in.readInt();m.homeCredit=in.readInt();m.awayCredit=in.readInt();}
+                if(version>=4){m.duration=in.readInt();m.homePenalties=in.readInt();m.awayPenalties=in.readInt();m.winner=in.readUTF();}
                 if(matches.put(m.id,canonical(m))!=null)throw new IOException("Duplicate fixture in journal");
             }
             if(version>=3){openingDefined=in.readBoolean();int bans=count(in,10000);for(int i=0;i<bans;i++){String key=in.readUTF();int ban=in.readInt();if(!key.startsWith("league:")||ban<1||ban>100||openingBans.put(key,ban)!=null)throw new IOException("Invalid opening ban");}}
+            if(version>=4){int properties=count(in,1000);for(int i=0;i<properties;i++)metadata.put(in.readUTF(),in.readUTF());}
             if(in.read()!=-1)throw new IOException("Trailing journal data");
         }
     }

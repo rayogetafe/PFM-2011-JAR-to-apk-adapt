@@ -32,6 +32,7 @@ public class ScoringHarness {
     }
     int previous=NativeCompetitionCalendar.uclCompleted(step-1,38),now=NativeCompetitionCalendar.uclCompleted(step,38);
     for(int r=previous;r<now;r++)for(int g=0;g<8;g++)for(int match=0;match<2;match++){int[] pairs=NativeCompetitionCalendar.UCL_PAIRS[r];NativeMatchJournal.capture(journal,"ucl:2010",r+1,groups.get(g).get(pairs[match*2]),groups.get(g).get(pairs[match*2+1]),NativeWorldCenter.nonce+r*104729+g*1009+match*37,teams,players,"native-v84",effects,career);}
+    HashMap<String,String> associations=new HashMap<>();for(NativeCareerStore.Club club:career.clubs)associations.put(club.id,club.league);NativeMatchJournal.knockouts(journal,groups,associations,NativeWorldCenter.nonce,step,38,teams,players,"native-v84",effects,career);
    }
    if((sample-start+1)%10==0)System.out.println("Progress: "+(sample-start+1)+" full seasons");
   }

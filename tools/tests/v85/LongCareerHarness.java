@@ -34,7 +34,7 @@ public class LongCareerHarness {
      for(MatchJournal.PlayerFact p:m.players){injuries+=p.injury>0?1:0;yellow+=p.yellow;red+=p.red;if(p.stats[2]>0){check(effects.available(p.uid,m.competition),"unavailable participant "+p.uid);fatigue+=p.stats[8];appearances++;peak=Math.max(peak,p.stats[8]);used.computeIfAbsent(p.club,k->new HashSet<>()).add(p.uid);}if(p.stats[3]>0){starts.put(p.uid,starts.getOrDefault(p.uid,0)+1);if(p.club.equals(m.home))hs++;else as++;if(p.uid.startsWith("cover:"))cover++;}}
      check(hs==11&&as==11,"not XI");effects.apply(m);if(m.competition.startsWith("league:")){String code=m.competition.substring(7);int[] rate=rates.computeIfAbsent(code,k->new int[3]);rate[0]++;rate[1]+=m.homeGoals;rate[2]+=m.awayGoals;}
     }
-    int expected=year==2010?1922:1826;check(j.size()==expected,"calendar count "+j.size());
+    int expected=year==2010?1951:1826;check(j.size()==expected,"calendar count "+j.size());
     expectedBans=effects.carryBans();ArrayList<Integer> use=new ArrayList<>();for(HashSet<String> ids:used.values())use.add(ids.size());Collections.sort(use);int max=0;for(int n:starts.values())max=Math.max(max,n);
     int nDeals=NativeCareerStore.current.deals.size()-dealsBefore,external=0,zero=0;long top=0,other=0;HashMap<String,NativeCareerStore.Club> clubs=new HashMap<>();for(NativeCareerStore.Club club:NativeCareerStore.current.clubs){clubs.put(club.id,club);check(club.balance>=0,"negative finance");if(club.league.startsWith("eu_"))other+=club.balance;else{top+=club.balance;if(club.balance==0)zero++;}}
     for(int i=dealsBefore;i<NativeCareerStore.current.deals.size();i++)if(clubs.get(NativeCareerStore.current.deals.get(i).to).league.startsWith("eu_"))external++;
