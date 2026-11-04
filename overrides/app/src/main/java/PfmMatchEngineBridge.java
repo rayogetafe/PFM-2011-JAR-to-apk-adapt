@@ -12,6 +12,7 @@ public final class PfmMatchEngineBridge {
     private static final Method playerAt=method(cp.class,"a",ci.class,dw.class,Integer.TYPE);
     private static Object live;
     private static int liveSeed,lastMinute,pendingMask,pendingMinute;
+    private static MatchEngine.Profile liveProfile=MatchEngine.DEFAULT;
     private static boolean reported;
 
     private static Method method(Class<?> c,String name,Class<?> result,Class<?>... args){
@@ -32,6 +33,7 @@ public final class PfmMatchEngineBridge {
         return MatchEngine.mix(NativeWorldCenter.identity()^pfm2.getSeason()*10007
             ^cp.pfmPlayedForTable()*104729^ub(home,"n")*1009^ub(away,"n")*65537);
     }
+    private static MatchEngine.Profile profile(){try{return MatchEngine.profile(String.valueOf(Class.forName("PfmSeasonBridge").getMethod("leagueCode").invoke(null)));}catch(Exception error){throw new IllegalStateException("Competition scoring profile unavailable",error);}}
     private static MatchEngine.Team snapshot(dw club,int minute,boolean detailed)throws Exception{
         MatchEngine.Team out=new MatchEngine.Team();out.style=ub(club,"c");out.formation=ub(club,"d");
         if(club==pfmPlayerHistoryV2.userTeam()){
@@ -76,6 +78,7 @@ public final class PfmMatchEngineBridge {
     public static void fast(dw home,dw away,Vector[] goals,int start){
         try{
             int key=seed(home,away),end=start<45?45:90,from=start+1;
+            MatchEngine.Profile profile=profile();
             if(live!=null&&key==liveSeed){
                 if(pendingMask!=0){for(int side=0;side<2;side++)if((pendingMask&(1<<side))!=0)
                     append(side==0?home:away,home,away,goals[side],pendingMinute);pendingMask=0;}
@@ -83,7 +86,7 @@ public final class PfmMatchEngineBridge {
             }
             for(int minute=from;minute<=end;minute++){
                 MatchEngine.Team h=snapshot(home,minute,false),a=snapshot(away,minute,false);
-                for(int side=0;side<2;side++)if(MatchEngine.goal(key,minute,side,h,a))
+                for(int side=0;side<2;side++)if(MatchEngine.goal(key,minute,side,h,a,profile))
                     append(side==0?home:away,home,away,goals[side],minute);
                 if(live!=null&&key==liveSeed)lastMinute=minute;
             }
@@ -95,12 +98,12 @@ public final class PfmMatchEngineBridge {
             int phase=ub(screen,"c");if(phase!=1&&phase!=3)return false;
             int minute=Math.min(90,field(ca.class,"n",Integer.TYPE).getInt(screen)+1);
             dw home=(dw)field(ca.class,"a",dw.class).get(screen),away=(dw)field(ca.class,"b",dw.class).get(screen);
-            if(live!=screen||(minute<=1&&lastMinute>1)){live=screen;liveSeed=seed(home,away);lastMinute=0;pendingMask=0;}
+            if(live!=screen||(minute<=1&&lastMinute>1)){live=screen;liveSeed=seed(home,away);liveProfile=profile();lastMinute=0;pendingMask=0;}
             if(field(ca.class,"t",Integer.TYPE).getInt(screen)>0)return false;
             if(pendingMask==0&&minute>lastMinute){
                 MatchEngine.Team h=snapshot(home,minute,true),a=snapshot(away,minute,true);
                 for(int m=lastMinute+1;m<=minute;m++){
-                    for(int side=0;side<2;side++)if(MatchEngine.goal(liveSeed,m,side,h,a))pendingMask|=1<<side;
+                    for(int side=0;side<2;side++)if(MatchEngine.goal(liveSeed,m,side,h,a,liveProfile))pendingMask|=1<<side;
                     lastMinute=m;if(pendingMask!=0){pendingMinute=m;break;}
                 }
             }

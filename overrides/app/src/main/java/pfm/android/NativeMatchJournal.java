@@ -44,7 +44,7 @@ public final class NativeMatchJournal {
         NativeWorldCenter.stats(team,gf,ga,seed,selection);
         for(NativeWorldCenter.P p:team.ps){MatchJournal.PlayerFact f=new MatchJournal.PlayerFact();f.uid=p.uid;f.club=club;f.name=selection.used.contains(p)?p.name:"";int[] old=before.get(p.uid);f.stats=stats(p);for(int i=0;i<8;i++)f.stats[i]-=old[i];m.players.add(f);}
     }
-    private static NativeWorldCenter.S eligible(NativeWorldCenter.T team,String club,String competition,int seed,MatchEffects effects,HashMap<String,NativeWorldCenter.P> players){
+    static NativeWorldCenter.S eligible(NativeWorldCenter.T team,String club,String competition,int seed,MatchEffects effects,HashMap<String,NativeWorldCenter.P> players){
         NativeWorldCenter.T fit=new NativeWorldCenter.T();
         for(NativeWorldCenter.P p:team.ps){int[] base=legacyCondition.get(p.uid);p.fat=Math.min(100,effects.fatigue(p.uid)+(base==null?0:base[0]));if(effects.available(p.uid,competition)&&(base==null||base[1]==0))fit.ps.add(p);}
         int keepers=0;for(NativeWorldCenter.P p:fit.ps)if(p.pos==0)keepers++;
@@ -56,7 +56,7 @@ public final class NativeMatchJournal {
         String id=key(competition,round,homeId,awayId);MatchJournal.Match old=j.get(id);if(old!=null){effects.apply(old);return old;}
         NativeWorldCenter.T home=teams.get(homeId),away=teams.get(awayId);if(home==null||away==null||home.ps.size()<11||away.ps.size()<11)throw new IllegalStateException("Fixture squad unavailable: "+id);
         NativeWorldCenter.S hs=eligible(home,homeId,competition,seed,effects,players),as=eligible(away,awayId,competition,seed+17,effects,players);
-        int[] result=NativeMatchEngine.score(seed,home,away,hs,as);MatchJournal.Match m=new MatchJournal.Match();m.id=id;m.competition=competition;m.round=round;m.home=homeId;m.away=awayId;m.homeGoals=result[0];m.awayGoals=result[1];m.seed=seed;m.source=source;
+        int[] result=NativeMatchEngine.score(seed,home,away,hs,as,competition);MatchJournal.Match m=new MatchJournal.Match();m.id=id;m.competition=competition;m.round=round;m.home=homeId;m.away=awayId;m.homeGoals=result[0];m.awayGoals=result[1];m.seed=seed;m.source=source;
         m.report=home.name+"  "+m.homeGoals+" – "+m.awayGoals+"  "+away.name;
         facts(m,homeId,home,m.homeGoals,m.awayGoals,seed,hs);facts(m,awayId,away,m.awayGoals,m.homeGoals,seed+17,as);
         if(source.equals("native-v84")){m.clock=effects.clock;minutes(m,homeId,hs);minutes(m,awayId,as);MatchEffects.stamp(m,players);

@@ -61,9 +61,9 @@ public final class MatchEngineTest {
             ArrayList<NativeWorldCenter.T> clubs=new ArrayList<>(leagues.get(code).values());int games=0,goals=0,draws=0,big=0;
             for(int season=0;season<10;season++)for(int h=0;h<clubs.size();h++)for(int a=0;a<clubs.size();a++)if(h!=a){
                 NativeWorldCenter.T home=clubs.get(h),away=clubs.get(a);
-                int[] g=NativeMatchEngine.score(MatchEngine.mix(season*10007+h*1009+a*37+code.hashCode()),home,away,selection(home),selection(away));
+                int[] g=NativeMatchEngine.score(MatchEngine.mix(season*10007+h*1009+a*37+code.hashCode()),home,away,selection(home),selection(away),code);
                 games++;goals+=g[0]+g[1];if(g[0]==g[1])draws++;if(Math.abs(g[0]-g[1])>=4)big++;}
-            double avg=(double)goals/games;check(avg>2.35&&avg<3.2,code+" inflated/low scoring "+avg);
+            double avg=(double)goals/games;check(avg>2.15&&avg<3.2,code+" inflated/low scoring "+avg);
             check((double)draws/games>0.16&&(double)draws/games<0.33,code+" draw balance");
             System.out.printf(Locale.US,"%s: %d matches, %.3f goals/match, %.1f%% draws, %.1f%% margins 4+%n",code,games,avg,draws*100.0/games,big*100.0/games);
         }

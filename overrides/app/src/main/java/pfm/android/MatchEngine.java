@@ -1,8 +1,15 @@
 package pfm.android;
 
-/** The sole goal model. Independent of Android, competition and presentation. */
+/** The sole goal model. Independent of Android and presentation; competition supplies immutable calibration. */
 public final class MatchEngine {
     private MatchEngine() {}
+    /** Immutable competition calibration, never an alternative simulation algorithm. */
+    public static final class Profile {public final String code;public final double historicalRate;final double homeScale,awayScale;private Profile(String code,double home,double away){this(code,home,away,0,1);}private Profile(String code,double home,double away,int goals,int games){this.code=code;homeScale=home;awayScale=away;historicalRate=goals/(double)games;}}
+    public static final Profile DEFAULT=new Profile("neutral",1,1);
+    // 2010/11 home/away totals; fitted to expected event intensity, not to individual RNG outcomes.
+    // Source totals and calibration/held-out verification live in tools/reference and test_v86_scoring.py.
+    private static final Profile EN=new Profile("en",1.076150,0.978114,1063,380),ES=new Profile("es",1.039024,0.880435,1042,380),IT=new Profile("it",0.898447,0.852025,955,380),DE=new Profile("de",1.137937,1.108136,894,306),FR=new Profile("fr",0.831068,0.779695,890,380);
+    public static Profile profile(String competition){String code=competition==null?"":competition;if(code.startsWith("league:"))code=code.substring(7);if(code.equals("en"))return EN;if(code.equals("es"))return ES;if(code.equals("it"))return IT;if(code.equals("de"))return DE;if(code.equals("fr"))return FR;return DEFAULT;}
     public static final class Team {
         private double attack, defence, midfield, keeper;
         private double aw, dw, mw, kw;
@@ -29,17 +36,23 @@ public final class MatchEngine {
         }
     }
     public static double expectedGoals(Team own,Team opponent,boolean home){
+        return expectedGoals(own,opponent,home,DEFAULT);
+    }
+    public static double expectedGoals(Team own,Team opponent,boolean home,Profile profile){
         double difference=(own.attack()-opponent.defence())*0.030
             +(own.midfield()-opponent.midfield())*0.010;
         double intent=own.intent()+opponent.intent()*0.65;
         double manpower=Math.log(Math.max(1,own.count)/11.0)*1.4
             -Math.log(Math.max(1,opponent.count)/11.0)*0.65;
-        return clamp((home?1.40:1.12)*Math.exp(difference+intent+manpower),0.08,5.5);
+        return clamp((home?1.40*profile.homeScale:1.12*profile.awayScale)*Math.exp(difference+intent+manpower),0.08,5.5);
     }
     /** One categorical goal trial per minute; mode never changes RNG. */
     public static boolean goal(int seed,int minute,int side,Team home,Team away){
+        return goal(seed,minute,side,home,away,DEFAULT);
+    }
+    public static boolean goal(int seed,int minute,int side,Team home,Team away,Profile profile){
         if(minute<1||minute>90)throw new IllegalArgumentException("minute outside 1..90");
-        double h=expectedGoals(home,away,true)/90.0,a=expectedGoals(away,home,false)/90.0;
+        double h=expectedGoals(home,away,true,profile)/90.0,a=expectedGoals(away,home,false,profile)/90.0;
         double roll=(mix(seed^minute*0x9e3779b9)&0xffffffffL)/4294967296.0;
         return side==0?roll<h:roll>=h&&roll<h+a;
     }

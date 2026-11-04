@@ -17,7 +17,7 @@ public final class NativeWorldCenter{
  static String active(){try{Field f=Class.forName("ea").getDeclaredField("a");f.setAccessible(true);int x=f.getInt(null);return x>=0&&x<C.length?C[x]:"";}catch(Throwable t){return "";}}
  static int progress(String code){int source="de".equals(active())?34:38,target="de".equals(code)?34:38;return Math.min(target,(played()*target+source/2)/source);}
  static int hash(int x){x^=x>>>16;x*=0x7feb352d;x^=x>>>15;x*=0x846ca68b;return x^(x>>>16);}
- static int[] score(String code,int seed,T home,T away,S homeSel,S awaySel){return NativeMatchEngine.score(seed,home,away,homeSel,awaySel);}
+ static int[] score(String code,int seed,T home,T away,S homeSel,S awaySel){return NativeMatchEngine.score(seed,home,away,homeSel,awaySel,code);}
  static ArrayList<M> schedule(int n){ArrayList<M> out=new ArrayList<M>();int[] a=new int[n];for(int i=0;i<n;i++)a[i]=i;for(int leg=0;leg<2;leg++)for(int r=0;r<n-1;r++){for(int i=0;i<n/2;i++){M m=new M();m.r=leg*(n-1)+r+1;m.h=(leg==0?a[i]:a[n-1-i]);m.a=(leg==0?a[n-1-i]:a[i]);out.add(m);}int z=a[n-1];for(int i=n-1;i>1;i--)a[i]=a[i-1];a[1]=z;}return out;}
  static ArrayList<M> simulate(String code,int upto){careerSeed();return simulateAt(code,upto,season());}
  static ArrayList<M> simulateAt(String code,int upto,int seasonSeed){try{return NativeMatchJournal.project(code,upto,seasonSeed);}catch(Exception error){android.util.Log.e("PFM-Journal","League history unavailable",error);if(app!=null)Toast.makeText(app,"Saved match history unavailable",Toast.LENGTH_LONG).show();ArrayList<M> fixtures=schedule(leagues.get(code).size());for(M m:fixtures)m.hg=m.ag=-1;for(T t:leagues.get(code))t.p=t.w=t.d=t.l=t.gf=t.ga=t.pts=0;return fixtures;}}

@@ -24,8 +24,11 @@ public class BridgeHarness {
         }
     }
     public static void main(String[] args)throws Exception{
+        Method profile=PfmMatchEngineBridge.class.getDeclaredMethod("profile");profile.setAccessible(true);
         dw home=new dw(0),away=new dw(1);pfmPlayerHistoryV2.user=home;ca screen=new ca(home,away);
         for(int round=0;round<1000;round++){
+            PfmSeasonBridge.code=new String[]{"en","es","it","de","fr"}[round/200];
+            check(((pfm.android.MatchEngine.Profile)profile.invoke(null)).code.equals(PfmSeasonBridge.code),"legacy adapter lost league profile");
             cp.round=round;Vector[] quick=goals();PfmMatchEngineBridge.fast(home,away,quick,0);PfmMatchEngineBridge.fast(home,away,quick,45);
             Vector[] full=goals();runLive(screen,1,90,full);
             check(Arrays.equals(new int[]{quick[0].size(),quick[1].size()},new int[]{full[0].size(),full[1].size()}),"live/quick result differs at "+round);
@@ -45,6 +48,7 @@ class dw {byte c=55,d=2,e=11,n;short[] a=new short[11];ci[] players=new ci[11];d
 class cp {static byte[] a={0,0,0,0,0};static int round;static ci a(dw t,int i){return t.players[i];}static int pfmPlayedForTable(){return round;}}
 class bb {static int[] b={50},c={50},d={50};}
 class pfm2 {static int getSeason(){return 2010;}}
+class PfmSeasonBridge {static String code="en";public static String leagueCode(){return code;}}
 class pfmCondition60 {static byte[] fatigue=new byte[22];}
 class pfmPlayerHistoryV2 {static dw user;static dw userTeam(){return user;}}
 class pfmAvailable70 {static int minutesForRosterIndex(dw t,int i,int round){return i<11?90:0;}}
