@@ -274,7 +274,7 @@ jobs:
           test -s "$PROJECT/app/src/main/java/pfm/android/NativeTransferNegotiations.java"
           test -s "$PROJECT/app/src/main/java/pfm/android/NativeCareerStore.java"
           grep -q 'Native roster adapter' "$PROJECT/app/src/main/java/pfm/android/NativeMatchEngine.java"
-          grep -q 'MatchEngine.goal' "$PROJECT/app/src/main/java/pfm/android/NativeMatchEngine.java"
+          grep -q 'MatchEngine.events' "$PROJECT/app/src/main/java/pfm/android/NativeMatchEngine.java"
           grep -q 'NativeMatchEngine.score' "$PROJECT/app/src/main/java/pfm/android/NativeWorldCenter.java"
           grep -q $'morale\tstyle\tformation\tvalue\twage' "$PROJECT/app/src/main/assets/world_v42.tsv"
           grep -q 'GLOBAL PLAYER MARKET' "$PROJECT/app/src/main/java/pfm/android/NativeWorldCompetition.java"

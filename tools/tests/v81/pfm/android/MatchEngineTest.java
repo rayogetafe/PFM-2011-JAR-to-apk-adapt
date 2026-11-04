@@ -64,7 +64,7 @@ public final class MatchEngineTest {
                 int[] g=NativeMatchEngine.score(MatchEngine.mix(season*10007+h*1009+a*37+code.hashCode()),home,away,selection(home),selection(away),code);
                 games++;goals+=g[0]+g[1];if(g[0]==g[1])draws++;if(Math.abs(g[0]-g[1])>=4)big++;}
             double avg=(double)goals/games;check(avg>2.15&&avg<3.2,code+" inflated/low scoring "+avg);
-            check((double)draws/games>0.16&&(double)draws/games<0.33,code+" draw balance");
+            check(Math.abs((double)draws/games-MatchEngine.profile(code).historicalDrawRate)<0.04,code+" historical draw balance");
             System.out.printf(Locale.US,"%s: %d matches, %.3f goals/match, %.1f%% draws, %.1f%% margins 4+%n",code,games,avg,draws*100.0/games,big*100.0/games);
         }
     }
