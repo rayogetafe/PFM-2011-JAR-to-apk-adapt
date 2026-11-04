@@ -34,6 +34,12 @@ jobs:
           echo "PROJECT=$PROJECT" >> "$GITHUB_ENV"
           unzip -t "$PROJECT/app/libs/pfm_core_android.jar" >/dev/null
 
+      - name: Set up Java 17 for regression checks
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
       - name: Apply Android native-port overrides
         shell: bash
         run: |
