@@ -4,26 +4,31 @@ import os, re, shutil, subprocess, sys, tempfile
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 JAVA=ROOT/'overrides/app/src/main/java/pfm/android'
+
+def world_fixture(world):
+    methods=[]
+    for name in ('hash','schedule','pick','selectScore','select','selection','stats'):
+        match=re.search(r' static [\w<>\[\], ]+ \b'+name+r'\(',world);assert match,name
+        start=match.start();at=world.index('{',start);depth=1;end=at+1
+        while depth:
+            if world[end]=='{':depth+=1
+            elif world[end]=='}':depth-=1
+            end+=1
+        methods.append(world[start:end])
+    types=re.search(r' static class P\{.*? static class M\{.*? static HashMap',world,re.S).group().removesuffix(' static HashMap')
+    return 'package pfm.android;\nimport java.util.*;import android.content.Context;\npublic class NativeWorldCenter {\n'+types+'''
+static final String[] C={"en","es","it","de","fr"};
+static HashMap<String,ArrayList<T>> leagues=new HashMap<>();static int nonce,careerNonce,year=2010,played;
+static void load(Context c){careerNonce=nonce;}static int identity(){return nonce;}static int season(){return year;}
+static int slot(){return 1;}static int played(){return played;}
+static ArrayList<String> allCodes(){ArrayList<String> c=new ArrayList<>(leagues.keySet());Collections.sort(c);return c;}
+'''+''.join(methods)+'\n}'
 def main():
     javac=shutil.which('javac') or str(Path(os.environ.get('ProgramFiles','C:/Program Files'))/'BellSoft/LibericaJDK-17/bin/javac.exe')
     java=str(Path(javac).with_name('java.exe' if os.name=='nt' else 'java'));(ROOT/'artifacts').mkdir(exist_ok=True)
     with tempfile.TemporaryDirectory(prefix='pfm-v83-',dir=ROOT/'artifacts') as temp:
         temp=Path(temp);world=(JAVA/'NativeWorldCenter.java').read_text(encoding='utf-8')
-        methods=[]
-        for name in ('hash','schedule','pick','selectScore','select','selection','stats'):
-            match=re.search(r' static [\w<>\[\], ]+ \b'+name+r'\(',world);assert match,name
-            start=match.start();at=world.index('{',start);depth=1;end=at+1
-            while depth:
-                if world[end]=='{':depth+=1
-                elif world[end]=='}':depth-=1
-                end+=1
-            methods.append(world[start:end])
-        types=re.search(r' static class P\{.*? static class M\{.*? static HashMap',world,re.S).group().removesuffix(' static HashMap')
-        fixture='package pfm.android;\nimport java.util.*;import android.content.Context;\npublic class NativeWorldCenter {\n'+types+'''
-static final String[] C={"en","es","it","de","fr"};
-static HashMap<String,ArrayList<T>> leagues=new HashMap<>();static int nonce,careerNonce,year=2010,played;
-static void load(Context c){careerNonce=nonce;}static int identity(){return nonce;}static int season(){return year;}
-'''+''.join(methods)+'\n}'
+        fixture=world_fixture(world)
         stub=temp/'NativeWorldCenter.java';stub.write_text(fixture,encoding='utf-8')
         sources=[*[p for p in (ROOT/'tools/tests/v83').rglob('*.java') if not p.name.startswith('Verify')],stub,*[JAVA/name for name in ('MatchJournal.java','MatchEffects.java','NativeMatchJournal.java','NativeCompetitionCalendar.java','NativeMatchEngine.java','MatchEngine.java')]]
         subprocess.run([javac,'-encoding','UTF-8','-d',str(temp),*map(str,sources)],check=True)

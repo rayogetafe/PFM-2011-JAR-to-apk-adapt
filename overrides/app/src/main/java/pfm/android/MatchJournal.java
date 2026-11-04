@@ -6,7 +6,7 @@ import java.util.zip.CRC32;
 
 /** Immutable fixture facts, isolated by career and season; no Android or match simulation. */
 public final class MatchJournal {
-    private static final int MAGIC=0x50464d53,VERSION=2,MAX_BYTES=64*1024*1024;
+    private static final int MAGIC=0x50464d53,VERSION=3,MAX_BYTES=64*1024*1024;
     public static final class PlayerFact {
         public String uid="",club="",name="";
         // Goals, assists, appearances, starts, rating sum, clean sheets, conceded, saves, fatigue after.
@@ -23,18 +23,23 @@ public final class MatchJournal {
     private final int career,season;
     private final LinkedHashMap<String,Match> matches=new LinkedHashMap<String,Match>();
     private final HashMap<String,String> strings=new HashMap<String,String>();
+    private final HashMap<String,Integer> openingBans=new HashMap<String,Integer>();
+    private boolean openingDefined;
     private boolean dirty,primaryValid;
     public MatchJournal(File directory,int career,int season)throws IOException{
         this.career=career;this.season=season;
         if(!directory.isDirectory()&&!directory.mkdirs())throw new IOException("Cannot create match journal directory");
         file=new File(directory,"matches-"+career+"-"+season+".bin");backup=new File(file.getPath()+".backup");
         if(file.exists()||backup.exists()){
-            try{read(file);primaryValid=true;}catch(IOException primary){matches.clear();strings.clear();try{read(backup);}catch(IOException fallback){throw new IOException("Match journal and backup unavailable",primary);}}
+            try{read(file);primaryValid=true;}catch(IOException primary){matches.clear();strings.clear();openingBans.clear();openingDefined=false;try{read(backup);}catch(IOException fallback){throw new IOException("Match journal and backup unavailable",primary);}}
         }
     }
     public Match get(String id){Match m=matches.get(id);return m==null?null:copy(m);}
     public ArrayList<Match> competition(String competition){ArrayList<Match> out=new ArrayList<Match>();for(Match m:matches.values())if(m.competition.equals(competition))out.add(copy(m));return out;}
     public int size(){return matches.size();}
+    public boolean openingDefined(){return openingDefined;}
+    public HashMap<String,Integer> openingBans(){return new HashMap<String,Integer>(openingBans);}
+    public void defineOpeningBans(Map<String,Integer> bans){if(openingDefined)return;for(Map.Entry<String,Integer> e:bans.entrySet()){if(!e.getKey().startsWith("league:")||e.getValue()<1||e.getValue()>100)throw new IllegalArgumentException("Invalid opening ban");openingBans.put(e.getKey(),e.getValue());}openingDefined=true;dirty=true;}
     public ArrayList<Match> all(){ArrayList<Match> out=new ArrayList<Match>();for(Match m:matches.values())out.add(copy(m));return out;}
     public boolean put(Match match){
         if(matches.containsKey(match.id))return false;
@@ -66,6 +71,7 @@ public final class MatchJournal {
             for(PlayerFact p:m.players){out.writeUTF(p.uid);out.writeUTF(p.club);out.writeUTF(p.name);for(int n:p.stats)out.writeInt(n);out.writeInt(p.minutes);out.writeInt(p.yellow);out.writeInt(p.red);out.writeInt(p.injury);out.writeInt(p.fatigueDelta);}
             out.writeInt(m.effectsVersion);out.writeInt(m.clock);out.writeInt(m.homeCredit);out.writeInt(m.awayCredit);
         }
+        out.writeBoolean(openingDefined);out.writeInt(openingBans.size());for(String key:new TreeSet<String>(openingBans.keySet())){out.writeUTF(key);out.writeInt(openingBans.get(key));}
         out.flush();return bytes.toByteArray();
     }
     public void save()throws IOException{
@@ -91,6 +97,7 @@ public final class MatchJournal {
                 if(version>=2){m.effectsVersion=in.readInt();m.clock=in.readInt();m.homeCredit=in.readInt();m.awayCredit=in.readInt();}
                 if(matches.put(m.id,canonical(m))!=null)throw new IOException("Duplicate fixture in journal");
             }
+            if(version>=3){openingDefined=in.readBoolean();int bans=count(in,10000);for(int i=0;i<bans;i++){String key=in.readUTF();int ban=in.readInt();if(!key.startsWith("league:")||ban<1||ban>100||openingBans.put(key,ban)!=null)throw new IOException("Invalid opening ban");}}
             if(in.read()!=-1)throw new IOException("Trailing journal data");
         }
     }

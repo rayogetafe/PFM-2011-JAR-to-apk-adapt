@@ -82,6 +82,16 @@ public final class NativeMatchJournal {
             m.report=teams.get(home).name+"  "+m.homeGoals+" – "+m.awayGoals+"  "+teams.get(away).name;j.put(m);
         }
     }
+    /** Only a genuinely new season receives carry-over. Existing v83/v84 seasons are never rewritten. */
+    private static MatchEffects effects(Context c,MatchJournal j,int season,int completed)throws IOException{
+        MatchEffects state=new MatchEffects(NativeTransferCalendar.total());
+        if(!j.openingDefined()){
+            HashMap<String,Integer> bans=new HashMap<String,Integer>();
+            if(j.size()==0&&completed<=1&&season>2010){MatchJournal previous=new MatchJournal(new File(c.getFilesDir(),"match-journals"),NativeWorldCenter.identity(),season-1);MatchEffects old=new MatchEffects(NativeTransferCalendar.total());old.openingBans(previous.openingBans());for(MatchJournal.Match m:previous.all())if(m.effectsVersion>0){old.rest(m.clock);old.apply(m);}bans=old.carryBans();}
+            j.defineOpeningBans(bans);
+        }
+        state.openingBans(j.openingBans());return state;
+    }
     public static synchronized void advance(Context c,int completed)throws Exception{
         context=c.getApplicationContext();NativeWorldCenter.load(c);int season=NativeWorldCenter.season(),total=NativeTransferCalendar.total();completed=Math.min(total,Math.max(0,completed));
         MatchJournal j=journal(c,season);if(lastSeason==season&&completed<=lastRound)return;
@@ -89,8 +99,8 @@ public final class NativeMatchJournal {
         boolean baseline=j.size()==0&&completed>1;String source=baseline?"reconstructed-v83":"native-v84";
         NativeCareerStore.Career career=NativeCareerStore.ensure(c);HashMap<String,NativeWorldCenter.T> teams=teams(career);HashMap<String,NativeWorldCenter.P> players=new HashMap<String,NativeWorldCenter.P>();for(NativeWorldCenter.T team:teams.values())for(NativeWorldCenter.P p:team.ps)players.put(p.uid,p);
         ArrayList<ArrayList<String>> groups=NativeCompetitionCalendar.groups(c);MatchJournal ucl=season==2010?j:journal(c,2010);importUcl(c,ucl,groups,teams);
+        MatchEffects effects=effects(c,j,season,completed);
         importLegacy(c,j,completed,career);
-        MatchEffects effects=new MatchEffects();
         for(int step=1;step<=completed;step++){
             effects.rest(step);
             for(String code:NativeWorldCenter.C)if(!code.equals(career.activeLeague)){
@@ -108,7 +118,7 @@ public final class NativeMatchJournal {
     public static int[] legacyEffects(int id){
         if(Boolean.TRUE.equals(restoring.get()))return new int[5];
         if(effectsIdentity!=NativeWorldCenter.careerNonce||effectsSeason!=NativeWorldCenter.season()||currentEffects==null){
-            restoring.set(Boolean.TRUE);try{Context c=AndroidRuntime.context();NativeWorldCenter.load(c);int season=NativeWorldCenter.season(),nonce=NativeWorldCenter.identity();MatchJournal j=new MatchJournal(new File(c.getFilesDir(),"match-journals"),nonce,season);MatchEffects state=new MatchEffects();
+            restoring.set(Boolean.TRUE);try{Context c=AndroidRuntime.context();NativeWorldCenter.load(c);int season=NativeWorldCenter.season(),nonce=NativeWorldCenter.identity();MatchJournal j=new MatchJournal(new File(c.getFilesDir(),"match-journals"),nonce,season);MatchEffects state=effects(c,j,season,NativeTransferCalendar.played());
                 ArrayList<MatchJournal.Match> records=j.all();Collections.sort(records,(a,b)->a.clock-b.clock);for(MatchJournal.Match m:records)if(m.effectsVersion>0){state.rest(m.clock);state.apply(m);}state.rest(NativeTransferCalendar.played());
                 HashMap<Integer,String> ids=new HashMap<Integer,String>();if(!records.isEmpty()){NativeCareerStore.Career career=NativeCareerStore.ensure(c);for(NativeCareerStore.Player p:career.players)if(p.id.startsWith(career.activeLeague+":"))ids.put(p.sourceId,p.id);for(Map.Entry<String,?> e:c.getSharedPreferences("pfm_native_legacy_ids_v58",0).getAll().entrySet())if(e.getValue() instanceof Integer)ids.put((Integer)e.getValue(),e.getKey());}
                 if(!records.isEmpty())NativeCareerStore.applyMatchFinance(c,records,season);if(currentEffects==null||effectsIdentity!=nonce||effectsSeason!=season||currentEffects.clock<=state.clock){legacyIds=ids;currentEffects=state;effectsSeason=season;effectsIdentity=nonce;}

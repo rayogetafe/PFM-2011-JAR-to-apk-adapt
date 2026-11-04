@@ -9,11 +9,16 @@ final class MatchEffects {
     final HashMap<String,Health> health=new HashMap<String,Health>();
     final HashMap<String,Discipline> discipline=new HashMap<String,Discipline>();
     private final HashSet<String> applied=new HashSet<String>();
+    private final int seasonRounds;
+    MatchEffects(){this(38);}
+    MatchEffects(int rounds){seasonRounds=Math.max(30,rounds);}
+    void openingBans(Map<String,Integer> bans){for(Map.Entry<String,Integer> e:bans.entrySet()){Discipline d=new Discipline();d.ban=e.getValue();discipline.put(e.getKey(),d);}}
+    HashMap<String,Integer> carryBans(){HashMap<String,Integer> bans=new HashMap<String,Integer>();for(Map.Entry<String,Discipline> e:discipline.entrySet())if(e.getKey().startsWith("league:")&&e.getValue().ban>0)bans.put(e.getKey(),e.getValue().ban);return bans;}
     int clock;
     Health health(String uid){Health h=health.get(uid);if(h==null){h=new Health();health.put(uid,h);}return h;}
     Discipline discipline(String competition,String uid){String key=competition+"|"+uid;Discipline d=discipline.get(key);if(d==null){d=new Discipline();discipline.put(key,d);}return d;}
     Discipline readDiscipline(String competition,String uid){Discipline d=discipline.get(competition+"|"+uid);return d==null?new Discipline():d;}
-    void rest(int step){if(step<=clock)return;int elapsed=step-clock;for(Health h:health.values())h.fatigue=Math.max(0,h.fatigue-7*elapsed);clock=step;}
+    void rest(int step){if(step<=clock)return;int recovery=(int)((long)step*7*38/seasonRounds-(long)clock*7*38/seasonRounds);for(Health h:health.values())h.fatigue=Math.max(0,h.fatigue-recovery);clock=step;}
     int injury(String uid){Health h=health.get(uid);return h==null?0:Math.max(0,h.injuryUntil-clock);}
     int fatigue(String uid){Health h=health.get(uid);return h==null?0:h.fatigue;}
     boolean available(String uid,String competition){Health h=health.get(uid);return (h==null||h.injuryUntil==0||h.injuryUntil<clock)&&discipline(competition,uid).ban==0;}
