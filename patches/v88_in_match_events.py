@@ -28,7 +28,7 @@ def replace(data,target,descriptor,owner,method,call_descriptor,arguments,stack,
             for _ in range(ac):
                 attr=cp[struct.unpack_from('>H',d,p)[0]];size=struct.unpack_from('>I',d,p+2)[0]
                 if is_method and mn==target and md==descriptor and attr=='Code':
-                    code=arguments+b'\xb8'+struct.pack('>H',ref)+(b'\xb1' if descriptor.endswith('V') else b'\xb0')
+                    code=arguments+b'\xb8'+struct.pack('>H',ref)+(b'\xb1' if descriptor.endswith('V') else b'\xac' if descriptor.endswith('I') else b'\xb0')
                     payload=struct.pack('>HHI',stack,locals_count,len(code))+code+b'\x00\x00\x00\x00'
                     d[p+2:p+6+size]=struct.pack('>I',len(payload))+payload;size=len(payload);changed+=1
                 p+=6+size

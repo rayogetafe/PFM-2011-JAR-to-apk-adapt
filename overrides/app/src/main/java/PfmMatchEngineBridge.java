@@ -15,20 +15,22 @@ public final class PfmMatchEngineBridge {
     private static MatchEngine.Profile liveProfile=MatchEngine.DEFAULT;
     private static boolean reported;
     private static final HashMap<Integer,Game> games=new HashMap<Integer,Game>();
-    private static final class Game {int round,seed,season,identity,notifiedHome,notifiedAway;boolean detailed;dw home,away;MatchEngine.Lineup h,a;String[] physicalHome,physicalAway;}
+    private static final class Game {int round,seed,season,identity,notifiedHome,notifiedAway;boolean detailed;dw home,away;MatchEngine.Lineup h,a;String[] physicalHome,physicalAway;java.util.HashSet<Integer> goals=new java.util.HashSet<Integer>();}
     private static Game current;
     private static boolean liveAwaiting;
     private static MatchEngine.Lineup lineup(dw club,int key)throws Exception{
-        MatchEngine.Lineup side=new MatchEngine.Lineup(key);MatchEngine.Team base=snapshot(club,1,true);side.style=base.style;side.formation=base.formation;side.tacticalBias=base.tacticalBias;
-        short[] ids=(short[])field(dw.class,"a",short[].class).get(club);int count=Math.min(18,Math.min(ub(club,"e"),ids.length));
-        byte[] fatigue=(byte[])field(pfmCondition60.class,"fatigue",byte[].class).get(null);
+        short[] ids=(short[])field(dw.class,"a",short[].class).get(club);int count=Math.min(25,Math.min(ub(club,"e"),ids.length));
+        java.util.ArrayList<MatchEngine.Member> xi=new java.util.ArrayList<MatchEngine.Member>(),reserves=new java.util.ArrayList<MatchEngine.Member>();
         for(int i=0;i<count;i++){int id=ids[i]&65535;ci p=player(club,i);if(p==null||id==65535)continue;int[] health=PfmEffectsBridge84.condition(id);if(PfmEffectsBridge84.injury(id,health[1])>0||pfmDiscipline70.suspended(id))continue;
-            int fat=health[0];side.add(new MatchEngine.Member("legacy:"+id,ub(p,"b"),ub(p,"e"),ub(p,"c"),ub(p,"d"),ub(p,"h"),PfmEffectsBridge84.fatigue(id,fat)),i<11);
-            if(i>=11){int minutes=pfmAvailable70.minutesForRosterIndex(club,i,cp.pfmPlayedForTable());if(minutes>0)side.plan(91-minutes,"legacy:"+id);}}
-        return side;
+            MatchEngine.Member member=new MatchEngine.Member("legacy:"+id,ub(p,"b"),ub(p,"e"),ub(p,"c"),ub(p,"d"),ub(p,"h"),PfmEffectsBridge84.fatigue(id,health[0]));(i<11?xi:reserves).add(member);}
+        MatchEngine.Lineup side=MatchEngine.lineup(key,xi,reserves);tactics(club,side);return side;
     }
+    public static MatchEngine.Lineup previewUser(){try{dw user=pfmPlayerHistoryV2.userTeam();if(live!=null&&current!=null&&current.detailed&&current.h.lastMinute<90){if(current.home==user)return current.h;if(current.away==user)return current.a;}
+        dw[] clubs=(dw[])field(cp.class,"a",dw[].class).get(null);int[][][] schedule=(int[][][])field(cp.class,"a",int[][][].class).get(null);int round=cp.pfmPlayedForTable();if(round<0||round>=schedule.length)return null;
+        for(int[] pair:schedule[round]){dw h=clubs[pair[0]],a=clubs[pair[1]];if(h==user||a==user)return lineup(user,seed(h,a)^(a==user?0x5bd1e995:0));}return null;
+    }catch(Exception error){return null;}}
     private static Game game(dw home,dw away,boolean fresh)throws Exception{int key=seed(home,away);Game g=games.get(key);
-        if(g==null||fresh){if(current!=null&&(current.round!=cp.pfmPlayedForTable()||current.season!=pfm2.getSeason()||current.identity!=NativeWorldCenter.identity()))games.clear();g=new Game();g.seed=key;g.round=cp.pfmPlayedForTable();g.season=pfm2.getSeason();g.identity=NativeWorldCenter.identity();g.home=home;g.away=away;g.h=lineup(home,key);g.a=lineup(away,key^0x5bd1e995);g.physicalHome=physical(home);g.physicalAway=physical(away);games.put(key,g);}current=g;return g;}
+        if(g==null||fresh){if(current!=null&&(current.round!=currentRound()||current.season!=pfm2.getSeason()||current.identity!=NativeWorldCenter.identity()))games.clear();g=new Game();g.seed=key;g.round=currentRound();g.season=pfm2.getSeason();g.identity=NativeWorldCenter.identity();g.home=home;g.away=away;g.h=lineup(home,key);g.a=lineup(away,key^0x5bd1e995);g.physicalHome=physical(home);g.physicalAway=physical(away);games.put(key,g);}current=g;return g;}
     private static String[] physical(dw club)throws Exception{short[] ids=(short[])field(dw.class,"a",short[].class).get(club);String[] out=new String[Math.min(11,ids.length)];for(int i=0;i<out.length;i++)out[i]="legacy:"+(ids[i]&65535);return out;}
     private static String[] sync(dw club,MatchEngine.Lineup side,String[] previous,int minute)throws Exception{String[] now=physical(club);short[] roster=(short[])field(dw.class,"a",short[].class).get(club);
         for(int i=0;i<now.length;i++)if(!now[i].equals(previous[i])){boolean reorder=false;for(String uid:previous)if(uid.equals(now[i]))reorder=true;if(reorder)continue;
@@ -38,6 +40,8 @@ public final class PfmMatchEngineBridge {
     public static MatchEngine.Lineup[] lineups(dw home,dw away,int round){for(Game g:games.values())if(g.home==home&&g.away==away&&g.round==round-1&&g.season==pfm2.getSeason()&&g.h.lastMinute==90)return new MatchEngine.Lineup[]{g.h,g.a};return new MatchEngine.Lineup[0];}
     public static MatchEngine.Lineup[] currentLineups(){return current==null?new MatchEngine.Lineup[0]:new MatchEngine.Lineup[]{current.h,current.a};}
     public static MatchEngine.Lineup completedLineup(dw club,int round){for(Game g:games.values())if(g.round==round-1&&g.season==pfm2.getSeason()&&g.identity==NativeWorldCenter.identity()&&g.h.lastMinute==90&&g.a.lastMinute==90){if(g.home==club)return g.h;if(g.away==club)return g.a;}return null;}
+    public static java.util.Map<Integer,MatchEngine.Member> completedParticipation(){java.util.HashMap<Integer,MatchEngine.Member> out=new java.util.HashMap<Integer,MatchEngine.Member>();try{for(Game g:games.values())if(g.season==pfm2.getSeason()&&g.identity==NativeWorldCenter.identity()&&g.h.lastMinute==90&&g.a.lastMinute==90)for(dw club:new dw[]{g.home,g.away}){MatchEngine.Lineup side=club==g.home?g.h:g.a;short[] ids=(short[])field(dw.class,"a",short[].class).get(club);for(int i=0;i<Math.min(ub(club,"e"),ids.length);i++){int id=ids[i]&65535;out.put(id,side.find("legacy:"+id));}}return out;}catch(Exception error){throw new IllegalStateException(error);}}
+    public static int completedRating(int id){try{Class<?> archive=Class.forName("pfmLeagueMatchArchive34");for(Game g:games.values())if(g.h.lastMinute==90&&g.a.lastMinute==90){String report=(String)archive.getMethod("report",Integer.TYPE,dw.class,dw.class).invoke(null,g.round+1,g.home,g.away);for(String line:report.split("\n")){String[] p=line.split("\t",-1);if(p.length>10&&p[0].equals("P")&&Integer.parseInt(p[10])==id)return Integer.parseInt(p[7]);}}}catch(Exception ignored){}return -1;}
     /** The text event log records executed substitutions, including goalkeeper and substitute-for-substitute changes. */
     public static void appendSubstitutions(StringBuffer out,dw club,int zeroRound){MatchEngine.Lineup side=completedLineup(club,zeroRound+1);boolean any=false;if(side!=null)for(MatchEngine.Incident e:side.incidents)if(e.type.equals("SUB")){out.append(e.minute).append("' ").append(name(club,e.uid)).append(" -> ").append(name(club,e.other)).append('\n');any=true;}if(!any)out.append("NONE\n");}
     public static MatchEngine.Member played(int id){for(MatchEngine.Lineup side:completedLineups()){MatchEngine.Member p=side.find("legacy:"+id);if(p!=null)return p;}return null;}
@@ -45,7 +49,7 @@ public final class PfmMatchEngineBridge {
     public static MatchEngine.Lineup[] completedLineups(){java.util.ArrayList<MatchEngine.Lineup> out=new java.util.ArrayList<MatchEngine.Lineup>();int newest=-1;for(Game g:games.values())newest=Math.max(newest,g.round);for(Game g:games.values())if(g.round==newest&&g.h.lastMinute==90){out.add(g.h);out.add(g.a);}return out.toArray(new MatchEngine.Lineup[0]);}
     public static String incidents(dw club){for(Game g:games.values())if(g.h.lastMinute==90&&(g.home==club||g.away==club)){MatchEngine.Lineup side=g.home==club?g.h:g.a;StringBuilder b=new StringBuilder();for(MatchEngine.Incident e:side.incidents)b.append(e.minute).append("' ").append(e.type).append(" · ").append(e.uid).append(e.other.length()==0?"":" → "+e.other).append('\n');return b.toString();}return "";}
     /** Scorer selection is restricted to the actual on-field state, including minute-of-exit. */
-    public static ci scorer(dw club,int minute){try{Game g=current;if(g==null||(g.home!=club&&g.away!=club))throw new IllegalStateException("Scorer without active match");MatchEngine.Lineup side=club==g.home?g.h:g.a;String uid=side.scorer(minute).uid;int id=Integer.parseInt(uid.substring(7));short[] ids=(short[])field(dw.class,"a",short[].class).get(club);for(int i=0;i<ids.length;i++)if((ids[i]&65535)==id){ci p=player(club,i);if(liveAwaiting){liveAwaiting=false;finish(g,minute);}return p;}throw new IllegalStateException("Active scorer missing from roster");}catch(Exception e){throw new IllegalStateException(e);}}
+    public static ci scorer(dw club,int minute){try{Game g=current;if(g==null||(g.home!=club&&g.away!=club))throw new IllegalStateException("Scorer without active match");MatchEngine.Lineup side=club==g.home?g.h:g.a;String uid=side.scorer(minute).uid;int id=Integer.parseInt(uid.substring(7));short[] ids=(short[])field(dw.class,"a",short[].class).get(club);for(int i=0;i<ids.length;i++)if((ids[i]&65535)==id){ci p=player(club,i);if(g.goals.add(minute*2+(club==g.home?0:1))){side.find(uid).goals++;(club==g.home?g.a:g.h).concede();}if(liveAwaiting){liveAwaiting=false;finish(g,minute);}return p;}throw new IllegalStateException("Active scorer missing from roster");}catch(Exception e){throw new IllegalStateException(e);}}
     private static void tactics(dw club,MatchEngine.Lineup side)throws Exception{
         side.style=ub(club,"c");side.formation=ub(club,"d");side.tacticalBias=0;
         if(club==pfmPlayerHistoryV2.userTeam()){byte[] settings=(byte[])field(cp.class,"a",byte[].class).get(null);int[] b=(int[])field(bb.class,"b",int[].class).get(null),c=(int[])field(bb.class,"c",int[].class).get(null),d=(int[])field(bb.class,"d",int[].class).get(null);side.tacticalBias=(150-b[settings[0]]-c[settings[3]]-d[settings[4]])*0.001;}
@@ -69,36 +73,17 @@ public final class PfmMatchEngineBridge {
     }
     private static int ub(Object o,String name)throws Exception{return field(o.getClass(),name,Byte.TYPE).getByte(o)&255;}
     private static ci player(dw t,int i)throws Exception{return (ci)playerAt.invoke(null,t,i);}
+    public static int currentRound(){return pfmRoundAccess60.round();}
     private static int seed(dw home,dw away)throws Exception{
         return MatchEngine.mix(NativeWorldCenter.identity()^pfm2.getSeason()*10007
-            ^cp.pfmPlayedForTable()*104729^ub(home,"n")*1009^ub(away,"n")*65537);
+            ^currentRound()*104729^ub(home,"n")*1009^ub(away,"n")*65537);
     }
     private static MatchEngine.Profile profile(){try{return MatchEngine.profile(String.valueOf(Class.forName("PfmSeasonBridge").getMethod("leagueCode").invoke(null)));}catch(Exception error){throw new IllegalStateException("Competition scoring profile unavailable",error);}}
-    private static MatchEngine.Team snapshot(dw club,int minute,boolean detailed)throws Exception{
-        MatchEngine.Team out=new MatchEngine.Team();out.style=ub(club,"c");out.formation=ub(club,"d");
-        if(club==pfmPlayerHistoryV2.userTeam()){
-            byte[] settings=(byte[])field(cp.class,"a",byte[].class).get(null);
-            int[] b=(int[])field(bb.class,"b",int[].class).get(null),c=(int[])field(bb.class,"c",int[].class).get(null),d=(int[])field(bb.class,"d",int[].class).get(null);
-            out.tacticalBias=(150-b[settings[0]]-c[settings[3]]-d[settings[4]])*0.001;
-        }
-        int count=ub(club,"e"),round=cp.pfmPlayedForTable();
-        short[] ids=(short[])field(dw.class,"a",short[].class).get(club);
-        byte[] fatigue=(byte[])field(pfmCondition60.class,"fatigue",byte[].class).get(null);
-        for(int i=0;i<Math.min(count,ids.length);i++){
-            boolean active=i<11;
-            if(!detailed){int minutes=pfmAvailable70.minutesForRosterIndex(club,i,round);
-                active=i<11?minutes>0&&minute<=minutes:minutes>0&&minute>90-minutes;}
-            if(!active||PfmEffectsBridge84.injury(ids[i]&65535,0)>0)continue;ci p=player(club,i);if(p==null)continue;
-            int id=ids[i]&65535,fat=fatigue!=null&&id<fatigue.length?fatigue[id]&255:0;
-            out.add(ub(p,"b"),ub(p,"e"),ub(p,"c"),ub(p,"d"),ub(p,"h"),PfmEffectsBridge84.fatigue(id,fat));
-        }
-        return out;
-    }
     /** The scorer ledger receives the exact event minute in every match mode. */
     public static int prepareEventAndRound(int minute){
         try{field(pfmSubstitutions.class,"currentEventMinute",Integer.TYPE).setInt(null,minute);}
         catch(Exception e){throw new IllegalStateException(e);}
-        return cp.pfmPlayedForTable();
+        return currentRound();
     }
     /** Celebration time does not consume football minutes or discard scheduled events. */
     public static int clockTick(Object screen){

@@ -137,16 +137,16 @@ jobs:
           grep -q 'NativeLineup.show' "$NATIVE_SQUAD"
           grep -q 'season.setText("SEASON")' "$NATIVE_SQUAD"
           grep -q 'NativeSeasonHub.show' "$NATIVE_SQUAD"
-          grep -q 'NativeSquadPolicy.show' "$NATIVE_SQUAD"
-          grep -q 'NativeTeamAnalytics.show' "$NATIVE_SQUAD"
-          grep -q 'NativePlayerCareer.show' "$NATIVE_SQUAD"
+          grep -q 'NativeSquadPolicy.show' "$PROJECT/app/src/main/java/pfm/android/NativeTeamMenu.java"
+          grep -q 'NativeTeamAnalytics.show' "$PROJECT/app/src/main/java/pfm/android/NativeTeamMenu.java"
+          grep -q 'NativePlayerCareer.show' "$PROJECT/app/src/main/java/pfm/android/NativeTeamMenu.java"
           grep -q 'TOP SCORERS' "$NATIVE_ANALYTICS"
           grep -q 'SQUAD DEPTH' "$NATIVE_ANALYTICS"
           grep -q 'Career totals' "$NATIVE_PLAYER_CAREER"
           grep -q 'Attribute change' "$NATIVE_PLAYER_CAREER"
-          grep -q 'Players used in starting XI' "$NATIVE_POLICY"
+          grep -q 'Players used in starting XI' "$PROJECT/app/src/main/java/pfm/android/MatchParticipation.java"
           grep -q 'playedMatches' "$NATIVE_POLICY"
-          grep -q 'stat integrity' "$NATIVE_POLICY"
+          grep -q 'squadWorkload' "$NATIVE_POLICY"
           grep -q 'AUTO ROTATION' "$NATIVE_POLICY"
           grep -q 'NativePause.begin' "$NATIVE_SQUAD"
           grep -q 'NativePause.begin' "$NATIVE_LINEUP"
@@ -160,7 +160,7 @@ jobs:
           grep -q 'leagueCode' "$SEASON_BRIDGE"
           grep -q 'CHAMPIONS LEAGUE' "$NATIVE_SEASON"
           grep -q 'NativeHistory.show' "$NATIVE_SEASON"
-          grep -q 'NativeLeagueCenter.show' "$NATIVE_SEASON"
+          grep -q 'NativeLeagueCenter.show' "$PROJECT/app/src/main/java/pfm/android/NativeTeamMenu.java"
           grep -q 'real 2010/11 target' "$NATIVE_LEAGUE"
           grep -q 'GK ledger:' "$NATIVE_LEAGUE"
           grep -q 'PfmSeasonBridge.teamName' "$HISTORY_BRIDGE"
@@ -247,6 +247,7 @@ jobs:
           python3 patches/v84_match_effects.py "$PROJECT/app/libs/pfm_core_android.jar"
           python3 patches/v88_in_match_events.py "$PROJECT/app/libs/pfm_core_android.jar"
           python3 patches/v89_actual_substitutions.py "$PROJECT/app/libs/pfm_core_android.jar"
+          python3 patches/v90_actual_participation.py "$PROJECT/app/libs/pfm_core_android.jar"
           grep -q 'pfmSubTiming38' patches/v38_sub_timing.py
           python3 patches/v40_roster_depth.py "$PROJECT/app/libs/pfm_core_android.jar"
           grep -q '36 historical wide/second forwards' patches/v40_roster_depth.py
@@ -261,6 +262,7 @@ jobs:
           python3 tools/test_v84_effects.py
           python3 tools/test_v83_match_journal.py "$PROJECT/app/src/main/assets/world_v42.tsv" "$PROJECT/app/libs/pfm_core_android.jar"
           python3 tools/test_v88_incidents.py
+          python3 tools/test_v90_participation.py
           python3 tools/test_v87_math.py
           python3 tools/test_v87_low_scores.py "$PROJECT/app/src/main/assets/world_v42.tsv" "$PROJECT/v88-distribution.txt" 30 2000
           python3 tools/test_v85_long_career.py "$PROJECT/app/src/main/assets/world_v42.tsv" "$PROJECT/v85-long-career.txt" 5 1
@@ -382,8 +384,8 @@ jobs:
             exit 1
           fi
 
-          sed -i -E 's/versionCode [0-9]+/versionCode 169/' "$PROJECT/app/build.gradle"
-          sed -i -E "s/versionName '[^']+'/versionName '0.84-android-port.62-v89-substitution-reports'/" "$PROJECT/app/build.gradle"
+          sed -i -E 's/versionCode [0-9]+/versionCode 170/' "$PROJECT/app/build.gradle"
+          sed -i -E "s/versionName '[^']+'/versionName '0.84-android-port.63-v90-participation-and-menus'/" "$PROJECT/app/build.gradle"
 
       - name: Restore stable debug signing key
         shell: bash
@@ -427,17 +429,17 @@ jobs:
           sha256sum "$APK"
           keytool -printcert -jarfile "$APK" | grep -E 'Owner:|SHA256:' || true
           ls -lh "$APK"
-          cp "$APK" "$PROJECT/app/build/outputs/apk/debug/PFM-2011-v89-substitution-reports.apk"
-          cp "$PROJECT/v85-long-career.txt" "$PROJECT/app/build/outputs/apk/debug/PFM-2011-v89-long-career-audit.txt"
-          cp "$PROJECT/v88-distribution.txt" "$PROJECT/app/build/outputs/apk/debug/PFM-2011-v89-distribution-audit.txt"
+          cp "$APK" "$PROJECT/app/build/outputs/apk/debug/PFM-2011-v90-participation-and-menus.apk"
+          cp "$PROJECT/v85-long-career.txt" "$PROJECT/app/build/outputs/apk/debug/PFM-2011-v90-long-career-audit.txt"
+          cp "$PROJECT/v88-distribution.txt" "$PROJECT/app/build/outputs/apk/debug/PFM-2011-v90-distribution-audit.txt"
 
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
-          name: PFM-2011-Android-Alpha084-v89-substitution-reports
+          name: PFM-2011-Android-Alpha084-v90-participation-and-menus
           path: |
-            ${{ env.PROJECT }}/app/build/outputs/apk/debug/PFM-2011-v89-substitution-reports.apk
-            ${{ env.PROJECT }}/app/build/outputs/apk/debug/PFM-2011-v89-long-career-audit.txt
-            ${{ env.PROJECT }}/app/build/outputs/apk/debug/PFM-2011-v89-distribution-audit.txt
+            ${{ env.PROJECT }}/app/build/outputs/apk/debug/PFM-2011-v90-participation-and-menus.apk
+            ${{ env.PROJECT }}/app/build/outputs/apk/debug/PFM-2011-v90-long-career-audit.txt
+            ${{ env.PROJECT }}/app/build/outputs/apk/debug/PFM-2011-v90-distribution-audit.txt
           if-no-files-found: error
           retention-days: 30

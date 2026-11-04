@@ -31,7 +31,11 @@ public final class pfmGoalkeeperStats31 {
             int round=snapshotRound();if(round<0)round=Math.max(0,cp.pfmPlayedForTable()-1);if(round<0)return;SharedPreferences p=prefs();String lastKey=prefix()+"last";int last=p.getInt(lastKey,-1);SharedPreferences.Editor e=p.edit();
             if(round<last){for(String k:p.getAll().keySet())if(k.startsWith(prefix()))e.remove(k);e.commit();last=-1;}
             if(round==last)return;dw[] teams=(dw[])field(cp.class,"a",dw[].class).get(null);ci[] players=(ci[])field(cp.class,"a",ci[].class).get(null);if(teams==null||players==null)return;
-            for(dw team:teams){if(team==null)continue;int id=startingKeeper(team);if(id<0||id>=players.length||players[id]==null)continue;int ga=opponentGoals(team,round);if(ga<0)continue;add(e,p,id,"st",1);add(e,p,id,"ga",ga);if(ga==0)add(e,p,id,"cs",1);add(e,p,id,"sv",modelledSaves(team,id,players[id],round,ga));}
+            for(dw team:teams){if(team==null)continue;pfm.android.MatchEngine.Lineup actual=PfmMatchEngineBridge.completedLineup(team,round+1);
+                if(actual!=null){java.util.ArrayList<pfm.android.MatchEngine.Member> keepers=new java.util.ArrayList<pfm.android.MatchEngine.Member>();int minutes=0;for(pfm.android.MatchEngine.Member member:actual.squad)if(member.position==0&&member.minutes>0){keepers.add(member);minutes+=member.minutes;}
+                    int saves=Math.max(0,pfmLeagueMatchArchive34.keeperSaves(round+1,team))*minutes/90,remaining=saves;
+                    for(int i=0;i<keepers.size();i++){pfm.android.MatchEngine.Member keeper=keepers.get(i);int id=Integer.parseInt(keeper.uid.substring(7)),share=i==keepers.size()-1?remaining:saves*keeper.minutes/Math.max(1,minutes);remaining-=share;if(keeper.starter)add(e,p,id,"st",1);add(e,p,id,"ga",keeper.conceded);if(keeper.minutes>=60&&keeper.conceded==0)add(e,p,id,"cs",1);add(e,p,id,"sv",share);}continue;}
+                int id=startingKeeper(team);if(id<0||id>=players.length||players[id]==null)continue;int ga=opponentGoals(team,round);if(ga<0)continue;add(e,p,id,"st",1);add(e,p,id,"ga",ga);if(ga==0)add(e,p,id,"cs",1);add(e,p,id,"sv",modelledSaves(team,id,players[id],round,ga));}
             e.putInt(prefix()+"tracked",get(p,"tracked")+1);e.putInt(lastKey,round).apply();
         }catch(Throwable ignored){}
     }

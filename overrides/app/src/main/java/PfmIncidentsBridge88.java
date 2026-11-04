@@ -18,8 +18,9 @@ public final class PfmIncidentsBridge88 {
         MatchEngine.Lineup[] sides=PfmMatchEngineBridge.lineups(home,away,m.round);if(sides.length==0)return;
         StringBuilder log=new StringBuilder("\nLIVE EVENTS\n");
         for(int s=0;s<2;s++){MatchEngine.Lineup side=sides[s];String club=s==0?m.home:m.away;
+            for(MatchJournal.PlayerFact fact:m.players)if(fact.club.equals(club)){MatchEngine.Member member=null;for(MatchEngine.Member p:side.squad)if(fact.uid.endsWith(":"+id(p)))member=p;if(member==null||member.minutes==0){java.util.Arrays.fill(fact.stats,0);fact.minutes=0;}}
             for(MatchEngine.Member p:side.squad)if(p.minutes>0){MatchJournal.PlayerFact f=null;for(MatchJournal.PlayerFact q:m.players)if(q.club.equals(club)&&q.uid.endsWith(":"+id(p)))f=q;
-                if(f==null){f=new MatchJournal.PlayerFact();f.uid="legacy:"+m.competition.substring(7)+":"+id(p);f.club=club;f.name=p.uid;m.players.add(f);}f.minutes=p.minutes;f.yellow=p.yellow;f.red=p.red;f.injury=p.injury;f.stats[2]=1;f.stats[3]=p.starter?1:0;}
+                if(f==null){f=new MatchJournal.PlayerFact();f.uid="legacy:"+m.competition.substring(7)+":"+id(p);f.club=club;f.name=p.uid;m.players.add(f);}f.minutes=p.minutes;f.yellow=p.yellow;f.red=p.red;f.injury=p.injury;f.stats[2]=1;f.stats[3]=p.starter?1:0;if(p.position==0){f.stats[6]=p.conceded;f.stats[5]=p.minutes>=60&&p.conceded==0?1:0;}}
             for(MatchEngine.Incident e:side.incidents){String name=e.uid,other=e.other;for(MatchJournal.PlayerFact p:m.players){if(p.club.equals(club)&&p.uid.endsWith(":"+e.uid.substring(7)))name=p.name;if(e.other.length()>0&&p.club.equals(club)&&p.uid.endsWith(":"+e.other.substring(7)))other=p.name;}
                 log.append(e.minute).append("' ").append(e.type).append(" · ").append(name);if(other.length()>0)log.append(" → ").append(other);log.append('\n');}}
         m.report+=log; // Domestic effects already live in their original ledgers; do not replay them via the overlay.

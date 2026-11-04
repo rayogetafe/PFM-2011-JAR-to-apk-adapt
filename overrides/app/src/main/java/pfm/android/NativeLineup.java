@@ -176,7 +176,7 @@ public final class NativeLineup {
         root.setOrientation(LinearLayout.VERTICAL);
         root.setPadding(dp(a,8),dp(a,2),dp(a,8),0);
 
-        String note="Full pre-match editor: reorder any two squad slots and choose the stock formation. XI 1–XI 11 start; B 1+ are bench/reserves.";
+        String note="Full pre-match editor: reorder any two squad slots and choose the stock formation. XI 1–XI 11 start. Seven eligible substitutes are chosen from the remaining players with positional cover.";
         if(autoRotation())note+="\nAuto rotation is ON and may rebuild the XI before the next matchday; it does not change formation.";
         TextView info=text(a,note,12.2f,false);
         info.setPadding(dp(a,6),dp(a,2),dp(a,6),dp(a,4));

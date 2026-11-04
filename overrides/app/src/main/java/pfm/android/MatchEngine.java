@@ -107,28 +107,43 @@ public final class MatchEngine {
         public final int minute;public final String type,uid,other;
         Incident(int minute,String type,String uid,String other){this.minute=minute;this.type=type;this.uid=uid;this.other=other;}
     }
+    /** The same balanced seven-player bench and automatic policy are used by every adapter. */
+    public static Lineup lineup(int seed,java.util.List<Member> starters,java.util.List<Member> reserves){
+        Lineup out=new Lineup(seed);for(Member p:starters)out.add(p,true);
+        java.util.ArrayList<Member> ranked=new java.util.ArrayList<Member>(reserves);
+        java.util.Collections.sort(ranked,new java.util.Comparator<Member>(){public int compare(Member a,Member b){int c=Double.compare(b.quality-b.fatigue*0.2,a.quality-a.fatigue*0.2);return c!=0?c:a.uid.compareTo(b.uid);}});
+        int[] want={1,2,2,2};for(int pos=0;pos<4;pos++)for(Member p:ranked)if(want[pos]>0&&p.position==pos&&out.find(p.uid)==null){out.add(p,false);want[pos]--;}
+        for(Member p:ranked)if(out.squad.size()<starters.size()+7&&out.find(p.uid)==null)out.add(p,false);
+        out.autoPlan();return out;
+    }
     /** Shared on-field state for native, quick, live and Skip. Events occur after that minute's play. */
     public static final class Lineup {
         public final java.util.ArrayList<Member> squad=new java.util.ArrayList<Member>();
         public final java.util.ArrayList<Incident> incidents=new java.util.ArrayList<Incident>();
         private final Member[] slots=new Member[11];private final java.util.HashSet<String> entered=new java.util.HashSet<String>();
-        private final java.util.HashMap<Integer,String> planned=new java.util.HashMap<Integer,String>();
+        private final java.util.TreeMap<Integer,java.util.ArrayList<String>> planned=new java.util.TreeMap<Integer,java.util.ArrayList<String>>();
         private final java.util.HashMap<Integer,String> forced=new java.util.HashMap<Integer,String>();
         public int substitutions,lastMinute;private final int seed;public int style=55,formation=2;public double tacticalBias;
         public Lineup(int seed){this.seed=seed;}
         public void add(Member p,boolean starter){if(find(p.uid)!=null)throw new IllegalArgumentException("Duplicate match participant");squad.add(p);if(starter){int slot=entered.size();if(slot>=11)throw new IllegalArgumentException("More than XI");slots[slot]=p;entered.add(p.uid);p.starter=true;p.entryMinute=1;}}
         public Member find(String uid){for(Member p:squad)if(p.uid.equals(uid))return p;return null;}
-        public void plan(int minute,String uid){if(minute<1||minute>90||find(uid)==null)throw new IllegalArgumentException("Invalid substitution plan");planned.put(minute,uid);}
+        public void plan(int minute,String uid){if(minute<1||minute>90||find(uid)==null)throw new IllegalArgumentException("Invalid substitution plan");java.util.ArrayList<String> at=planned.get(minute);if(at==null){at=new java.util.ArrayList<String>();planned.put(minute,at);}if(!at.contains(uid))at.add(uid);}
+        private void autoPlan(){int draw=(mix(seed^0x73a72f91)&0x7fffffff)%1000,target=draw<5?0:draw<45?1:draw<325?2:3;java.util.ArrayList<Member> options=new java.util.ArrayList<Member>();for(Member p:squad)if(!p.starter&&p.position>0)options.add(p);
+            java.util.Collections.sort(options,new java.util.Comparator<Member>(){public int compare(Member a,Member b){int x=mix(seed^a.uid.hashCode()^137)&0x7fffffff,y=mix(seed^b.uid.hashCode()^137)&0x7fffffff;return x!=y?Integer.compare(x,y):a.uid.compareTo(b.uid);}});
+            for(int i=0;i<target&&i<options.size();i++){int minute=55+i*10+(mix(seed^i*719^0x2b91)&0x7fffffff)%9;plan(minute,options.get(i).uid);}
+        }
+        public java.util.ArrayList<Incident> planPreview(){java.util.ArrayList<Incident> out=new java.util.ArrayList<Incident>();for(java.util.Map.Entry<Integer,java.util.ArrayList<String>> entry:planned.entrySet())for(String uid:entry.getValue())out.add(new Incident(entry.getKey(),"PLAN","",uid));return out;}
         private boolean active(Member p){for(Member q:slots)if(q==p)return true;return false;}
         public boolean active(String uid){Member p=find(uid);return p!=null&&active(p)&&p.red==0&&p.injury==0;}
         private Member reserve(int position){for(Member p:squad)if(p.position==position&&!entered.contains(p.uid)&&p.red==0&&p.injury==0)return p;return null;}
+        private int tacticalSlot(Member in,int minute){int best=-1;double value=-Double.MAX_VALUE;for(int i=0;i<slots.length;i++){Member p=slots[i];if(p==null||p.position!=in.position||p.red>0||p.injury>0||(!p.starter&&p.entryMinute==minute))continue;double score=p.minutes+p.fatigue*0.5+(100-p.resistance)*0.1-p.quality*0.05;if(score>value){value=score;best=i;}}return best;}
         private void substitute(int slot,Member in,int minute){Member out=slots[slot];if(in==null||substitutions>=3||entered.contains(in.uid)||out==null||out.red>0)return;if(out.exitMinute==0)out.exitMinute=minute-1;in.entryMinute=minute;slots[slot]=in;entered.add(in.uid);substitutions++;incidents.add(new Incident(minute,"SUB",out.uid,in.uid));}
         /** A renderer/user substitution is accepted once and cannot replace a sent-off player. */
         public boolean manual(String out,String in,int minute){Member p=find(out),q=find(in);if(p==null||q==null)return false;for(int i=0;i<11;i++)if(slots[i]==p){int old=substitutions;substitute(i,q,minute);return substitutions>old;}return false;}
         public boolean manualAt(int slot,String in,int minute){if(slot<0||slot>=11)return false;int old=substitutions;substitute(slot,find(in),minute);return substitutions>old;}
         public void begin(int minute){if(minute!=lastMinute+1)throw new IllegalStateException("Non-sequential football minute");
             for(int i=0;i<11;i++){Member p=slots[i];if(p!=null&&p.injury>0&&p.red==0){Member q=reserve(p.position);if(q==null&&p.position!=0){for(Member r:squad)if(r.position>0&&!entered.contains(r.uid)){q=r;break;}}substitute(i,q,minute);}}
-            Member in=find(planned.containsKey(minute)?planned.get(minute):"");if(in!=null&&!entered.contains(in.uid))for(int i=10;i>=0;i--)if(slots[i]!=null&&slots[i].position==in.position&&slots[i].red==0&&slots[i].injury==0){substitute(i,in,minute);break;}
+            java.util.ArrayList<String> at=planned.get(minute);if(at!=null)for(String uid:at){Member in=find(uid);if(in!=null&&!entered.contains(in.uid)){int slot=tacticalSlot(in,minute);if(slot>=0)substitute(slot,in,minute);}}
         }
         public Team team(){Team t=new Team();t.style=style;t.formation=formation;t.tacticalBias=tacticalBias;for(Member p:slots)if(p!=null&&p.red==0&&p.injury==0)t.add(p.position,p.quality,p.speed,p.resistance,p.morale,p.fatigue);return t;}
         private double random(Member p,int minute,int salt){return (mix(seed^p.uid.hashCode()^minute*0x632be5ab^salt)&0xffffffffL)/4294967296.0;}

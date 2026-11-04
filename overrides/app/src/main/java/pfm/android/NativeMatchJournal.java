@@ -17,7 +17,12 @@ public final class NativeMatchJournal {
     private static final ThreadLocal<Boolean> restoring=new ThreadLocal<Boolean>();
     private static volatile Map<Integer,String> legacyIds=new HashMap<Integer,String>();
     private static final HashMap<String,int[]> legacyCondition=new HashMap<String,int[]>();
+    private static String participationRepair="";
+    private static void repairParticipation(MatchJournal j,String code,int played)throws Exception{if(legacyIds.isEmpty())return;String key=identity+":"+NativeWorldCenter.season()+":"+j.size()+":"+played+":"+legacyIds.hashCode();if(key.equals(participationRepair))return;
+        Map<String,int[]> totals=MatchParticipation.completeTotals(j.all(),"league:"+code,played);if(totals.isEmpty())return;HashMap<Integer,int[]> ids=new HashMap<Integer,int[]>();for(Map.Entry<Integer,String> entry:legacyIds.entrySet())ids.put(entry.getKey(),totals.containsKey(entry.getValue())?totals.get(entry.getValue()):new int[4]);
+        try{Class.forName("PfmParticipationBridge90").getMethod("reconcile",Map.class).invoke(null,ids);participationRepair=key;}catch(ClassNotFoundException headless){/* Pure native audit has no domestic core ledger. */}}
     public static String key(String competition,int round,String home,String away){return competition+"|"+round+"|"+home+"|"+away;}
+    public static String squadWorkload(Context c){try{NativeWorldCenter.load(c);Class<?> bridge=Class.forName("PfmSeasonBridge");String club=String.valueOf(bridge.getMethod("clubId").invoke(null)),code=String.valueOf(bridge.getMethod("leagueCode").invoke(null));int played=((Integer)bridge.getMethod("playedMatches").invoke(null)).intValue();MatchJournal j=journal(c,NativeWorldCenter.season());repairParticipation(j,code,played);return MatchParticipation.summarize(j.all(),"league:"+code,club).text(played);}catch(Exception error){return "Recorded match workload is unavailable. No forecast is substituted for played matches.";}}
     private static MatchJournal journal(Context c,int season)throws IOException{
         int now=NativeWorldCenter.identity();if(identity!=now){journals.clear();identity=now;lastSeason=Integer.MIN_VALUE;lastRound=-1;currentEffects=null;legacyIds=new HashMap<Integer,String>();legacyCondition.clear();}
         MatchJournal j=journals.get(season);if(j==null){Iterator<Integer> years=journals.keySet().iterator();while(years.hasNext()){int y=years.next();if(y!=2010&&y!=NativeWorldCenter.season())years.remove();}j=new MatchJournal(new File(c.getFilesDir(),"match-journals"),now,season);journals.put(season,j);}return j;
@@ -56,9 +61,7 @@ public final class NativeMatchJournal {
         // Explicit temporary academy cover; never silently select injured players or rewrite career rosters.
         int cover=0,outfield=fit.ps.size()-keepers;while(outfield<10||keepers==0){NativeWorldCenter.P p=new NativeWorldCenter.P();p.pos=keepers==0?0:1+cover%3;p.uid="cover:"+NativeWorldCenter.season()+":"+club+":"+seed+":"+cover++;p.name=p.pos==0?"Academy goalkeeper":"Academy cover";p.nat="Academy";p.ovr=p.spe=p.res=p.qua=45;p.mor=55;p.id=p.uid.hashCode();fit.ps.add(p);team.ps.add(p);players.put(p.uid,p);if(p.pos==0)keepers++;else outfield++;}
         NativeWorldCenter.S selected=NativeWorldCenter.selection(fit,seed);
-        for(NativeWorldCenter.P p:selected.used)if(!selected.xi.contains(p))selected.bench.add(p);
-        for(NativeWorldCenter.P p:fit.ps)if(p.pos==0&&!selected.xi.contains(p)&&!selected.bench.contains(p)){selected.bench.add(p);break;}
-        for(NativeWorldCenter.P p:fit.ps)if(selected.bench.size()<7&&!selected.xi.contains(p)&&!selected.bench.contains(p))selected.bench.add(p);
+        for(NativeWorldCenter.P p:fit.ps)if(!selected.xi.contains(p))selected.bench.add(p);
         return selected;
     }
     static MatchJournal.Match capture(MatchJournal j,String competition,int round,String homeId,String awayId,int seed,HashMap<String,NativeWorldCenter.T> teams,HashMap<String,NativeWorldCenter.P> players,String source,MatchEffects effects,NativeCareerStore.Career career){
@@ -121,7 +124,7 @@ public final class NativeMatchJournal {
                 for(int r=previous;r<now;r++)for(int g=0;g<8;g++)for(int match=0;match<2;match++){int[] pairs=NativeCompetitionCalendar.UCL_PAIRS[r];capture(j,"ucl:2010",r+1,groups.get(g).get(pairs[match*2]),groups.get(g).get(pairs[match*2+1]),identity+r*104729+g*1009+match*37,teams,players,source,effects,career);}
             }
         }
-        j.save();if(ucl!=j)ucl.save();currentEffects=effects;effectsSeason=season;effectsIdentity=identity;NativeCareerStore.applyMatchFinance(c,j.all(),season);lastSeason=season;lastRound=completed;
+        j.save();if(ucl!=j)ucl.save();repairParticipation(j,career.activeLeague,completed);currentEffects=effects;effectsSeason=season;effectsIdentity=identity;NativeCareerStore.applyMatchFinance(c,j.all(),season);lastSeason=season;lastRound=completed;
     }
     /** Non-mutating legacy overlay. Domestic suspensions/cards stay in the domestic ledger. */
     public static int[] legacyEffects(int id){

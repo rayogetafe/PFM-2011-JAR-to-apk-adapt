@@ -68,9 +68,7 @@ public final class NativeSeasonHub {
         String roundText=ov.played>=ov.total?"Season complete":"Next: "+ov.next+"   •   "+(ov.played+1)+" / "+ov.total;
         TextView next=text(a,roundText,13f,false);next.setPadding(dp(a,7),dp(a,4),dp(a,7),dp(a,7));next.setBackgroundColor(0xfff2f2f2);root.addView(next);
 
-        Button leagueCenter=new Button(a);leagueCenter.setText("LEAGUE CENTER • ALL MATCHES / CLUBS");leagueCenter.setOnClickListener(v->NativeLeagueCenter.show(a));root.addView(leagueCenter,new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT));
-        Button worldCenter=new Button(a);worldCenter.setText("WORLD COMPETITIONS • TOP 5 LEAGUES");worldCenter.setOnClickListener(v->NativeWorldCompetition.show(a));root.addView(worldCenter,new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT));
-        Button europeCenter=new Button(a);europeCenter.setText("EUROPEAN QUALIFICATION • CHAMPIONS / EUROPA");europeCenter.setOnClickListener(v->NativeEuropeCenter.show(a));root.addView(europeCenter,new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT));
+        Button competitions=new Button(a);competitions.setText("COMPETITIONS · DOMESTIC / EUROPE");competitions.setOnClickListener(v->NativeTeamMenu.showCompetitions(a));root.addView(competitions,new LinearLayout.LayoutParams(-1,-2));
 
         LinearLayout tabs=new LinearLayout(a);tabs.setOrientation(LinearLayout.HORIZONTAL);
         final Button tableBtn=new Button(a);tableBtn.setText("TABLE");

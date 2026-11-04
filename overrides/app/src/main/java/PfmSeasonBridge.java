@@ -95,6 +95,7 @@ public final class PfmSeasonBridge {
     }
 
     public static int playedMatches(){return played();}
+    public static String clubId(){dw user=userTeam();return user==null?"":leagueCode()+":"+ub(user,"n");}
 
     public static int totalRounds(){
         try{int[][][] s=schedule();return s==null?0:s.length;}catch(Throwable t){return 0;}

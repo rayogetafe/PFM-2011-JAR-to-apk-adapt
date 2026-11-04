@@ -1,0 +1,13 @@
+{
+  "source": "https://dataviz.theanalyst.com/ad-hoc/rd-subs-tables-multi-2023-03-13/?viz=6",
+  "data_url": "https://dataviz.theanalyst.com/ad-hoc/rd-subs-tables-multi-2023-03-13/index.js",
+  "retrieved": "2026-11-04",
+  "script_sha256": "6e84e23e1dfc5412ef6d45561715e1a427f50028021b427fa4f242cb3e8438ba",
+  "scope": "Premier League; total substitutions include both teams",
+  "rows": [
+    {"season": "2009/2010", "games": 380, "substitutions": 1975, "per_team_match": 2.598684210526316},
+    {"season": "2010/2011", "games": 380, "substitutions": 1995, "per_team_match": 2.625},
+    {"season": "2011/2012", "games": 380, "substitutions": 2009, "per_team_match": 2.643421052631579}
+  ],
+  "model_note": "Automatic target-count probabilities approximate the era's mean; observed 0/1/2/3 frequencies are not individually fitted historical facts. Other leagues currently share this era policy."
+}

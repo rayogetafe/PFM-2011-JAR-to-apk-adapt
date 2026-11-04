@@ -9,6 +9,7 @@ public class ArchiveHarness {
         dw h=new dw(0,25),a=new dw(1,25);pfmPlayerHistoryV2.user=h;cp.round=0;pfmAvailable70.outside=true;
         Method prepare=PfmMatchEngineBridge.class.getDeclaredMethod("game",dw.class,dw.class,Boolean.TYPE);prepare.setAccessible(true);prepare.invoke(null,h,a,true);
         MatchEngine.Lineup[] sides=PfmMatchEngineBridge.currentLineups();sides[0].scripted(20,"legacy:1","RC");sides[0].scripted(30,"legacy:0","INJ");sides[0].scripted(70,"legacy:12","INJ");
+        Field plans=MatchEngine.Lineup.class.getDeclaredField("planned");plans.setAccessible(true);for(MatchEngine.Lineup side:sides)((Map<?,?>)plans.get(side)).clear();sides[0].plan(65,"legacy:12");sides[0].plan(72,"legacy:14");sides[1].plan(65,"legacy:37");sides[1].plan(72,"legacy:39");
         Vector[] goals=BridgeHarness.goals();PfmMatchEngineBridge.fast(h,a,goals,0);PfmMatchEngineBridge.fast(h,a,goals,45);
         Method participants=pfmLeagueMatchArchive34.class.getDeclaredMethod("participants",dw.class,Integer.TYPE,Integer.TYPE);participants.setAccessible(true);
         int reportSubs=0;for(String[] row:(ArrayList<String[]>)participants.invoke(null,h,0,1))if(row[6].equals("0"))reportSubs++;
@@ -30,6 +31,7 @@ public class ArchiveHarness {
         MatchJournal.Match m=new MatchJournal.Match();m.competition="league:en";m.home="en:0";m.away="en:1";m.round=1;m.report=first;MatchJournal.legacyDetails(m);PfmIncidentsBridge88.enrich(m,h,a);
         boolean injured=false;for(MatchJournal.PlayerFact p:m.players)if(p.uid.endsWith(":0")){check(p.minutes==30&&p.injury>0,"injury/minutes lost in journal import");injured=true;}
         check(injured&&m.effectsVersion==0&&m.report.contains("LIVE EVENTS"),"domestic journal duplicated overlay effects or lost timeline");
+        for(MatchEngine.Member keeper:sides[0].squad)if(keeper.position==0&&keeper.minutes>0)for(MatchJournal.PlayerFact fact:m.players)if(fact.club.equals(m.home)&&fact.uid.endsWith(":"+keeper.uid.substring(7)))check(fact.stats[6]==keeper.conceded,"journal charged goals after goalkeeper exit");
         System.out.println("PASS: production archive retains red owner/minute, repeated archive is idempotent, domestic injury/minutes enter journal without duplicate overlay effects");
         System.out.println("PASS: 25-player roster + keeper injury + substitute injury: engine/used players/archive/text log all show three actual substitutions; unused planned player has no appearance");
     }

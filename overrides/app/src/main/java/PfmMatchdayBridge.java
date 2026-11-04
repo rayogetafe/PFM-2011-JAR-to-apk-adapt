@@ -24,10 +24,20 @@ public final class PfmMatchdayBridge {
     public static String opponent(){try{return PfmSeasonBridge.nextMatch();}catch(Throwable t){return "Next match";}}
 
     /** TSV: slot, playerId, name, position, expectedMinutes, speed, resistance, quality, fatigue, status. */
-    public static String[] squadRows(){ArrayList<String> out=new ArrayList<String>();try{dw t=team();short[] o=order(t);int n=count(t);for(int i=0;i<n;i++){ci p=at(t,i);if(p==null)continue;int id=o[i]&65535;int fat=0,inj=0,susp=0;try{fat=field(pfmCondition60.class,"fatigue",byte[].class).get(null)==null?0:(((byte[])field(pfmCondition60.class,"fatigue",byte[].class).get(null))[id]&255);}catch(Throwable ignored){}try{inj=((byte[])field(pfmCondition60.class,"injury",byte[].class).get(null))[id]&255;}catch(Throwable ignored){}try{susp=pfmDiscipline70.roundsOut(id);}catch(Throwable ignored){}String status=inj>0?"INJ "+inj:(susp>0?"SUSP "+susp:"available");out.add(i+"\t"+id+"\t"+name(p)+"\t"+pos(ub(p,"b"))+"\t"+minutes(t,i)+"\t"+ub(p,"c")+"\t"+ub(p,"d")+"\t"+ub(p,"e")+"\t"+fat+"\t"+status);}}catch(Throwable ignored){}return out.toArray(new String[out.size()]);}
+    public static String[] squadRows(){ArrayList<String> out=new ArrayList<String>();try{dw t=team();short[] ids=order(t);int n=count(t);pfm.android.MatchEngine.Lineup preview=PfmMatchEngineBridge.previewUser();ArrayList<Integer> indices=new ArrayList<Integer>();
+        if(preview!=null)for(pfm.android.MatchEngine.Member member:preview.squad)for(int i=0;i<n;i++)if(member.uid.equals("legacy:"+(ids[i]&65535)))indices.add(i);
+        for(int i=0;i<n;i++)if(!indices.contains(i))indices.add(i);int slot=0;
+        for(int index:indices){ci p=at(t,index);if(p==null)continue;int id=ids[index]&65535;pfm.android.MatchEngine.Member member=preview==null?null:preview.find("legacy:"+id);int predicted=member!=null&&member.starter?90:0;
+            if(member!=null&&!member.starter)for(pfm.android.MatchEngine.Incident plan:preview.planPreview())if(plan.other.equals(member.uid))predicted=91-plan.minute;
+            int[] health=PfmEffectsBridge84.condition(id);int fat=PfmEffectsBridge84.fatigue(id,health[0]),inj=PfmEffectsBridge84.injury(id,health[1]),susp=pfmDiscipline70.roundsOut(id);String status=inj>0?"INJ "+inj:susp>0?"SUSP "+susp:member==null?"outside match squad":"available";
+            out.add((slot++)+"\t"+id+"\t"+name(p)+"\t"+pos(ub(p,"b"))+"\t"+predicted+"\t"+ub(p,"c")+"\t"+ub(p,"d")+"\t"+ub(p,"e")+"\t"+fat+"\t"+status);
+        }
+    }catch(Throwable ignored){}return out.toArray(new String[out.size()]);}
 
-    /** TSV: minute, outgoing player, incoming player, outgoing slot, incoming slot. */
-    public static String[] substitutionPlan(){ArrayList<String> out=new ArrayList<String>();try{dw t=team();int n=count(t);boolean[] used=new boolean[11];for(int i=11;i<n&&out.size()<3;i++){ci in=at(t,i);int inMinutes=minutes(t,i);if(in==null||ub(in,"b")==0||inMinutes<=0)continue;int minute=90-inMinutes,outSlot=-1;for(int j=0;j<11;j++){ci starter=at(t,j);if(!used[j]&&starter!=null&&ub(starter,"b")==ub(in,"b")&&minutes(t,j)==minute){outSlot=j;used[j]=true;break;}}out.add(minute+"\t"+(outSlot>=0?name(at(t,outSlot)):"Tactical change")+"\t"+name(in)+"\t"+outSlot+"\t"+i);}}catch(Throwable ignored){}return out.toArray(new String[out.size()]);}
+    /** Forecast from the same selected bench and requests as the engine; injuries/manual changes can alter it. */
+    public static String[] substitutionPlan(){ArrayList<String> out=new ArrayList<String>();try{dw t=team();short[] ids=order(t);pfm.android.MatchEngine.Lineup preview=PfmMatchEngineBridge.previewUser();if(preview==null)return new String[0];
+        for(pfm.android.MatchEngine.Incident plan:preview.planPreview())for(int i=0;i<count(t);i++)if(plan.other.equals("legacy:"+(ids[i]&65535)))out.add(plan.minute+"\tPosition-aware change\t"+name(at(t,i))+"\t-1\t"+i);
+    }catch(Throwable ignored){}return out.toArray(new String[out.size()]);}
 
     private static String eventStore(){int s=pfm2.getSlot();return s==1?"P2E002":(s==2?"P2E003":"P2E001");}
     private static String matchLine(String body){
