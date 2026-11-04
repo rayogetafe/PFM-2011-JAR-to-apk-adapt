@@ -121,7 +121,7 @@ public final class PfmMatchEngineBridge {
             MatchEngine.Profile profile=profile();
             if(live!=null&&key==liveSeed){
                 if(pendingMask!=0){for(int side=0;side<2;side++)if((pendingMask&(1<<side))!=0)
-                    append(side==0?home:away,home,away,goals[side],pendingMinute);pendingMask=0;}
+                    append(side==0?home:away,home,away,goals[side],pendingMinute);if(game.h.lastMinute<pendingMinute)finish(game,pendingMinute);pendingMask=0;}
                 from=Math.max(from,lastMinute+1);
             }
             for(int minute=from;minute<=end;minute++){

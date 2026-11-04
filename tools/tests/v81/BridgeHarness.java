@@ -58,6 +58,13 @@ public class BridgeHarness {
         PfmMatchEngineBridge.fast(home,away,controlled,27);PfmMatchEngineBridge.fast(home,away,controlled,45);check(PfmMatchEngineBridge.currentLineups()[0].find("legacy:1").minutes==20,"Skip revived a red card after rejected manual replacement");
         PfmMatchEngineBridge.currentLineups()[0].find("legacy:1").yellow=1;pfmDiscipline70.yellow[1]=4;pfmDiscipline70.suspension[1]=0;PfmIncidentsBridge88.discipline();check((pfmDiscipline70.suspension[1]&255)==3,"fifth yellow plus straight red differs from shared native ban rule");
         System.out.println("Manual legacy UI: red-card replacement and fourth substitution rejected; Skip preserves dismissal");
+        cp.round=1003;Arrays.fill(pfmDiscipline70.suspension,(byte)0);Vector[] reference=goals();PfmMatchEngineBridge.fast(home,away,reference,0);PfmMatchEngineBridge.fast(home,away,reference,45);String referenceFacts=details();
+        screen=new ca(home,away);Vector[] delayed=goals();f(screen,"a",Vector[].class).set(screen,delayed);f(f(screen,"a",af.class).get(screen),"b",bm.class).set(f(screen,"a",af.class).get(screen),null);bt.unavailable=true;
+        Field pending=PfmMatchEngineBridge.class.getDeclaredField("pendingMask");pending.setAccessible(true);int stalled=0;
+        for(int m=1;m<=90;m++){screen.n=m-1;screen.c=(byte)(m<=45?1:3);check(!PfmMatchEngineBridge.liveGoal(screen),"missing actor unexpectedly rendered a goal");if(pending.getInt(null)!=0){stalled=m;break;}}
+        check(stalled>0,"delayed-goal fixture has no goal");bt.unavailable=false;PfmMatchEngineBridge.fast(home,away,delayed,stalled-1);if(stalled<=45)PfmMatchEngineBridge.fast(home,away,delayed,45);
+        check(delayed[0].equals(reference[0])&&delayed[1].equals(reference[1])&&referenceFacts.equals(details()),"Skip lost pending goal/incident minute when renderer had no actor");
+        System.out.println("Pending render: Skip preserves a queued goal and completes its incident minute exactly once");
         System.out.println("Legacy adapter: 1000 quick/live/skip matches have identical goals, scorers and minutes; repeated UI frames and celebrations verified");
     }
 }
@@ -79,5 +86,5 @@ class cb {int p,q;}
 class aw {cb a=new cb();}
 class af extends aw {bm b=new bm();}
 class bm {}
-class bt {int m=1;bm a(){return new bm();}}
+class bt {static boolean unavailable;int m=1;bm a(){return unavailable?null:new bm();}}
 class ca {dw a,b;byte c=1;int n,m,t;Vector[] records;af scene=new af();bt homeDisplay=new bt(),awayDisplay=new bt();ca(dw h,dw aw){a=h;b=aw;}}
