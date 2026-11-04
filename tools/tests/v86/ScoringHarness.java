@@ -7,7 +7,10 @@ import java.util.*;
 public class ScoringHarness {
  static final String[] C={"en","es","it","de","fr"};
  static final int[] MATCHES={380,380,380,306,380},HOME={617,622,544,504,510},AWAY={446,420,411,390,380};
- static class Stats {int n,hg,ag,draw,zero,four;double neutralH,neutralA,expectedH,expectedA;}
+ static final int[] DRAWS={111,79,97,63,130},ZERO={25,27,34,14,44},ONE={52,35,43,34,63};
+ static class Stats {int n,hg,ag,draw,zero,four,one,two,three;double neutralH,neutralA,expectedH,expectedA;ArrayList<double[]> intensities=new ArrayList<>();}
+ static double measure(Stats stats,double zero,double one,double two,int index){double sum=0;for(double[] pair:stats.intensities)sum+=MatchEngine.distribution(pair[0],pair[1],zero,one,two)[index];return sum/stats.n;}
+ static double fit(Stats stats,double zero,double one,double target,int index){double lo=-0.95,hi=0.95;for(int k=0;k<24;k++){double mid=(lo+hi)/2,value=index==0?measure(stats,mid,0,0,0):index==3?measure(stats,zero,mid,0,3):measure(stats,zero,one,mid,10);if(value<target)lo=mid;else hi=mid;}return (lo+hi)/2;}
  public static void main(String[] args)throws Exception{
   int samples=Integer.parseInt(args[2]),start=Integer.parseInt(args[3]);Stats[] stats=new Stats[5];for(int i=0;i<5;i++)stats[i]=new Stats();
   File root=new File(args[1]);root.mkdirs();Context context=new Context("overrides/app/src/main/assets",root);AndroidRuntime.current=context;
@@ -24,7 +27,7 @@ public class ScoringHarness {
       NativeWorldCenter.T h=teams.get(hid),a=teams.get(aid);NativeWorldCenter.S hs=NativeMatchJournal.eligible(h,hid,"league:"+code,seed,effects,players),as=NativeMatchJournal.eligible(a,aid,"league:"+code,seed+17,effects,players);
       double[] neutral=NativeMatchEngine.expected(h,a,hs,as,MatchEngine.DEFAULT),expected=NativeMatchEngine.expected(h,a,hs,as,MatchEngine.profile(code));
       MatchJournal.Match m=NativeMatchJournal.capture(journal,"league:"+code,fixture.r,hid,aid,seed,teams,players,"native-v84",effects,career);
-      Stats s=stats[i];s.n++;s.hg+=m.homeGoals;s.ag+=m.awayGoals;if(m.homeGoals==m.awayGoals)s.draw++;if(m.homeGoals+m.awayGoals==0)s.zero++;if(m.homeGoals+m.awayGoals>=4)s.four++;s.neutralH+=neutral[0];s.neutralA+=neutral[1];s.expectedH+=expected[0];s.expectedA+=expected[1];
+      Stats s=stats[i];s.n++;s.hg+=m.homeGoals;s.ag+=m.awayGoals;if(m.homeGoals==m.awayGoals)s.draw++;if(m.homeGoals+m.awayGoals==0)s.zero++;if(m.homeGoals+m.awayGoals>=4)s.four++;if(m.homeGoals==1&&m.awayGoals==1)s.one++;if(m.homeGoals==2&&m.awayGoals==2)s.two++;if(m.homeGoals==3&&m.awayGoals==3)s.three++;s.neutralH+=neutral[0];s.neutralA+=neutral[1];s.expectedH+=expected[0];s.expectedA+=expected[1];s.intensities.add(expected);
      }
     }
     int previous=NativeCompetitionCalendar.uclCompleted(step-1,38),now=NativeCompetitionCalendar.uclCompleted(step,38);
@@ -32,13 +35,15 @@ public class ScoringHarness {
    }
    if((sample-start+1)%10==0)System.out.println("Progress: "+(sample-start+1)+" full seasons");
   }
-  System.out.println("league,matches,actualGPM,expectedGPM,targetGPM,homeGPM,awayGPM,drawPct,zeroPct,fourPlusPct,suggestedHomeScale,suggestedAwayScale");
+  System.out.println("league,matches,actualGPM,expectedGPM,targetGPM,homeGPM,awayGPM,drawPct,zeroPct,fourPlusPct,suggestedHomeScale,suggestedAwayScale,oneOnePct,twoTwoPct,threeThreePct");
   for(int i=0;i<5;i++){Stats s=stats[i];double target=(HOME[i]+AWAY[i])/(double)MATCHES[i];
-   System.out.printf(Locale.US,"%s,%d,%.4f,%.4f,%.4f,%.4f,%.4f,%.2f,%.2f,%.2f,%.6f,%.6f%n",C[i],s.n,(s.hg+s.ag)/(double)s.n,(s.expectedH+s.expectedA)/s.n,target,s.hg/(double)s.n,s.ag/(double)s.n,100.0*s.draw/s.n,100.0*s.zero/s.n,100.0*s.four/s.n,HOME[i]/(double)MATCHES[i]/(s.neutralH/s.n),AWAY[i]/(double)MATCHES[i]/(s.neutralA/s.n));
+   System.out.printf(Locale.US,"%s,%d,%.4f,%.4f,%.4f,%.4f,%.4f,%.2f,%.2f,%.2f,%.6f,%.6f,%.2f,%.2f,%.2f%n",C[i],s.n,(s.hg+s.ag)/(double)s.n,(s.expectedH+s.expectedA)/s.n,target,s.hg/(double)s.n,s.ag/(double)s.n,100.0*s.draw/s.n,100.0*s.zero/s.n,100.0*s.four/s.n,HOME[i]/(double)MATCHES[i]/(s.neutralH/s.n),AWAY[i]/(double)MATCHES[i]/(s.neutralA/s.n),100.0*s.one/s.n,100.0*s.two/s.n,100.0*s.three/s.n);
+   if(start<1000){double zero=fit(s,0,0,ZERO[i]/(double)MATCHES[i],0),one=fit(s,zero,0,ONE[i]/(double)MATCHES[i],3),two=fit(s,zero,one,DRAWS[i]/(double)MATCHES[i],10);System.out.printf(Locale.US,"FIT,%s,%.6f,%.6f,%.6f,draw %.4f,zero %.4f,one %.4f%n",C[i],zero,one,two,measure(s,zero,one,two,10),measure(s,zero,one,two,0),measure(s,zero,one,two,3));}
    if(start>=1000){JournalHarness.check(Math.abs((s.hg+s.ag)/(double)s.n-target)<0.065,"league mean outside historical tolerance "+C[i]);JournalHarness.check(Math.abs(s.hg/(double)s.n-HOME[i]/(double)MATCHES[i])<0.055&&Math.abs(s.ag/(double)s.n-AWAY[i]/(double)MATCHES[i])<0.055,"home/away balance "+C[i]);JournalHarness.check(Math.abs((s.expectedH+s.expectedA)/s.n-target)<0.02,"expected rate drift "+C[i]);}
+   if(start>=2000){JournalHarness.check(Math.abs(s.draw/(double)s.n-DRAWS[i]/(double)MATCHES[i])<0.015,"draw rate "+C[i]);JournalHarness.check(Math.abs(s.zero/(double)s.n-ZERO[i]/(double)MATCHES[i])<0.010,"zero rate "+C[i]);JournalHarness.check(Math.abs(s.one/(double)s.n-ONE[i]/(double)MATCHES[i])<0.012,"one-one rate "+C[i]);}
   }
   JournalHarness.check(MatchEngine.profile("ucl:2010")==MatchEngine.DEFAULT,"domestic profile leaked into UCL");
   JournalHarness.check(MatchEngine.profile("league:fr")==MatchEngine.profile("fr"),"competition key alias changed calibration");
-  if(start>=1000)System.out.println("PASS: held-out league scoring, expected intensity, home/away totals and UCL context isolation; "+samples+" seasons");
+  if(start>=1000)System.out.println("PASS: held-out league scoring, home/away totals"+(start>=2000?", draws, 0:0, 1:1":"")+" and UCL context isolation; "+samples+" seasons");
  }
 }

@@ -23,9 +23,9 @@ public class VerifyCore {
         }
         if(args.length>1){
             Path path=Paths.get(args[1],"ca.class");ClassNode node=new ClassNode();new ClassReader(Files.readAllBytes(path)).accept(node,0);
-            for(FieldNode f:node.fields){if(f.name.equals("scene")||f.name.equals("homeDisplay"))f.name="a";else if(f.name.equals("awayDisplay"))f.name="b";}
+            for(FieldNode f:node.fields){if(f.name.equals("scene")||f.name.equals("homeDisplay")||f.name.equals("records"))f.name="a";else if(f.name.equals("awayDisplay"))f.name="b";}
             for(MethodNode m:node.methods)for(AbstractInsnNode insn:m.instructions)if(insn instanceof FieldInsnNode){FieldInsnNode f=(FieldInsnNode)insn;
-                if(f.owner.equals("ca")){if(f.name.equals("scene")||f.name.equals("homeDisplay"))f.name="a";else if(f.name.equals("awayDisplay"))f.name="b";}}
+                if(f.owner.equals("ca")){if(f.name.equals("scene")||f.name.equals("homeDisplay")||f.name.equals("records"))f.name="a";else if(f.name.equals("awayDisplay"))f.name="b";}}
             ClassWriter writer=new ClassWriter(0);node.accept(writer);Files.write(path,writer.toByteArray());
         }
     }

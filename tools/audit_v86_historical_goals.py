@@ -5,7 +5,7 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 PATHS={'en':'tablese/eng','es':'tabless/span','it':'tablesi/ital','de':'tablesd/duit','fr':'tablesf/fran'}
 
-def audit(directory):
+def audit(directory,include_matrix=False):
     facts=[]
     for code,prefix in PATHS.items():
         for year in (2010,2011,2012):
@@ -26,6 +26,7 @@ def audit(directory):
                 if len(scores)==played and sum(int(h)+int(a) for h,a in scores)==gf:
                     fact.update(home_goals=sum(int(h) for h,a in scores),away_goals=sum(int(a) for h,a in scores),zero_zero=sum(h==a=='0' for h,a in scores),four_plus=sum(int(h)+int(a)>=4 for h,a in scores))
                     assert sum(h==a for h,a in scores)==fact['draws']
+                    if include_matrix:fact['low_scores']={f'{h}-{a}':sum(x==str(h) and y==str(a) for x,y in scores) for h in range(4) for a in range(4)}
                 else:raise AssertionError((code,year,'match list does not reconcile',len(scores)))
             facts.append(fact)
     return facts

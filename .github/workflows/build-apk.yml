@@ -258,7 +258,8 @@ jobs:
           python3 tools/test_v82_ai_market.py "$PROJECT/app/src/main/assets/world_v42.tsv" 12
           python3 tools/test_v84_effects.py
           python3 tools/test_v83_match_journal.py "$PROJECT/app/src/main/assets/world_v42.tsv" "$PROJECT/app/libs/pfm_core_android.jar"
-          python3 tools/test_v86_scoring.py "$PROJECT/app/src/main/assets/world_v42.tsv" "$PROJECT/v86-scoring.txt" 30 1000
+          python3 tools/test_v87_math.py
+          python3 tools/test_v87_low_scores.py "$PROJECT/app/src/main/assets/world_v42.tsv" "$PROJECT/v87-distribution.txt" 30 2000
           python3 tools/test_v85_long_career.py "$PROJECT/app/src/main/assets/world_v42.tsv" "$PROJECT/v85-long-career.txt" 5 1
           python3 tools/audit_v48_world_rotation.py "$PROJECT/app/src/main/assets/world_v42.tsv"
           python3 tools/audit_v51_player_economy.py "$PROJECT/app/src/main/assets/world_v42.tsv"
@@ -378,8 +379,8 @@ jobs:
             exit 1
           fi
 
-          sed -i -E 's/versionCode [0-9]+/versionCode 166/' "$PROJECT/app/build.gradle"
-          sed -i -E "s/versionName '[^']+'/versionName '0.84-android-port.59-v86-league-scoring'/" "$PROJECT/app/build.gradle"
+          sed -i -E 's/versionCode [0-9]+/versionCode 167/' "$PROJECT/app/build.gradle"
+          sed -i -E "s/versionName '[^']+'/versionName '0.84-android-port.60-v87-low-score-distribution'/" "$PROJECT/app/build.gradle"
 
       - name: Restore stable debug signing key
         shell: bash
@@ -423,17 +424,17 @@ jobs:
           sha256sum "$APK"
           keytool -printcert -jarfile "$APK" | grep -E 'Owner:|SHA256:' || true
           ls -lh "$APK"
-          cp "$APK" "$PROJECT/app/build/outputs/apk/debug/PFM-2011-v86-league-scoring.apk"
-          cp "$PROJECT/v85-long-career.txt" "$PROJECT/app/build/outputs/apk/debug/PFM-2011-v86-long-career-audit.txt"
-          cp "$PROJECT/v86-scoring.txt" "$PROJECT/app/build/outputs/apk/debug/PFM-2011-v86-scoring-audit.txt"
+          cp "$APK" "$PROJECT/app/build/outputs/apk/debug/PFM-2011-v87-low-score-distribution.apk"
+          cp "$PROJECT/v85-long-career.txt" "$PROJECT/app/build/outputs/apk/debug/PFM-2011-v87-long-career-audit.txt"
+          cp "$PROJECT/v87-distribution.txt" "$PROJECT/app/build/outputs/apk/debug/PFM-2011-v87-distribution-audit.txt"
 
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
-          name: PFM-2011-Android-Alpha084-v86-league-scoring
+          name: PFM-2011-Android-Alpha084-v87-low-score-distribution
           path: |
-            ${{ env.PROJECT }}/app/build/outputs/apk/debug/PFM-2011-v86-league-scoring.apk
-            ${{ env.PROJECT }}/app/build/outputs/apk/debug/PFM-2011-v86-long-career-audit.txt
-            ${{ env.PROJECT }}/app/build/outputs/apk/debug/PFM-2011-v86-scoring-audit.txt
+            ${{ env.PROJECT }}/app/build/outputs/apk/debug/PFM-2011-v87-low-score-distribution.apk
+            ${{ env.PROJECT }}/app/build/outputs/apk/debug/PFM-2011-v87-long-career-audit.txt
+            ${{ env.PROJECT }}/app/build/outputs/apk/debug/PFM-2011-v87-distribution-audit.txt
           if-no-files-found: error
           retention-days: 30

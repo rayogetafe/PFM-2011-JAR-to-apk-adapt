@@ -10,6 +10,7 @@ public class BridgeHarness {
     static Vector[] goals(){return new Vector[]{new Vector(),new Vector()};}
     static void check(boolean value,String message){if(!value)throw new AssertionError(message);}
     static void runLive(ca screen,int from,int to,Vector[] goals)throws Exception{
+        f(screen,"a",Vector[].class).set(screen,goals);
         for(int minute=from;minute<=to;minute++){
             screen.n=minute-1;screen.c=(byte)(minute<=45?1:3);
             if(PfmMatchEngineBridge.liveGoal(screen)){
@@ -59,4 +60,4 @@ class aw {cb a=new cb();}
 class af extends aw {bm b=new bm();}
 class bm {}
 class bt {int m=1;bm a(){return new bm();}}
-class ca {dw a,b;byte c=1;int n,m,t;af scene=new af();bt homeDisplay=new bt(),awayDisplay=new bt();ca(dw h,dw aw){a=h;b=aw;}}
+class ca {dw a,b;byte c=1;int n,m,t;Vector[] records;af scene=new af();bt homeDisplay=new bt(),awayDisplay=new bt();ca(dw h,dw aw){a=h;b=aw;}}

@@ -86,7 +86,8 @@ public final class PfmMatchEngineBridge {
             }
             for(int minute=from;minute<=end;minute++){
                 MatchEngine.Team h=snapshot(home,minute,false),a=snapshot(away,minute,false);
-                for(int side=0;side<2;side++)if(MatchEngine.goal(key,minute,side,h,a,profile))
+                int events=MatchEngine.events(key,minute,h,a,profile,goals[0].size()/2,goals[1].size()/2);
+                for(int side=0;side<2;side++)if((events&(1<<side))!=0)
                     append(side==0?home:away,home,away,goals[side],minute);
                 if(live!=null&&key==liveSeed)lastMinute=minute;
             }
@@ -102,8 +103,9 @@ public final class PfmMatchEngineBridge {
             if(field(ca.class,"t",Integer.TYPE).getInt(screen)>0)return false;
             if(pendingMask==0&&minute>lastMinute){
                 MatchEngine.Team h=snapshot(home,minute,true),a=snapshot(away,minute,true);
+                Vector[] goals=(Vector[])field(ca.class,"a",Vector[].class).get(screen);
                 for(int m=lastMinute+1;m<=minute;m++){
-                    for(int side=0;side<2;side++)if(MatchEngine.goal(liveSeed,m,side,h,a,liveProfile))pendingMask|=1<<side;
+                    pendingMask=MatchEngine.events(liveSeed,m,h,a,liveProfile,goals[0].size()/2,goals[1].size()/2);
                     lastMinute=m;if(pendingMask!=0){pendingMinute=m;break;}
                 }
             }
