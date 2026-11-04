@@ -35,7 +35,7 @@ public final class PfmIncidentsBridge88 {
     public static void discipline(){try{
         Class<?> c=pfmDiscipline70.class;call(c,"ensure");int round=pfmRoundAccess60.round()+1;Field last=field(c,"lastRound");if(round<=last.getInt(null))return;
         byte[] yellow=array(c,"yellow"),red=array(c,"red"),ban=array(c,"suspension");for(int i=0;i<ban.length;i++)ban[i]=(byte)Math.max(0,(ban[i]&255)-1);
-        for(MatchEngine.Lineup side:PfmMatchEngineBridge.completedLineups())for(MatchEngine.Member p:side.squad)if(p.minutes>0){int id=id(p);if(id<0||id>=ban.length)continue;int old=yellow[id]&255;add(yellow,id,p.yellow);add(red,id,p.red);int suspension=p.red>0?(p.yellow==2?1:2):p.yellow>0&&(old+p.yellow)/5>old/5?1:0;add(ban,id,suspension);}
+        for(MatchEngine.Lineup side:PfmMatchEngineBridge.completedLineups())for(MatchEngine.Member p:side.squad)if(p.minutes>0){int id=id(p);if(id<0||id>=ban.length)continue;int old=yellow[id]&255;add(yellow,id,p.yellow);add(red,id,p.red);int suspension=(p.red>0?(p.yellow==2?1:2):0)+(p.yellow<2&&p.yellow>0&&(old+p.yellow)/5>old/5?1:0);add(ban,id,suspension);}
         last.setInt(null,round);call(c,"save");
     }catch(Exception e){throw new IllegalStateException("In-match discipline commit failed",e);}}
 }

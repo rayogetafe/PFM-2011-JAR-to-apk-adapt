@@ -56,6 +56,7 @@ public class BridgeHarness {
         check(home.a[1]==off&&PfmMatchEngineBridge.currentLineups()[0].find("legacy:1").minutes==20,"legacy manual UI replaced a dismissed slot");
         PfmMatchEngineBridge.currentLineups()[0].substitutions=3;short original=home.a[3];home.a[3]=home.a[17];home.a[17]=original;runLive(screen,27,27,controlled);check(home.a[3]==original,"legacy manual UI allowed fourth substitution");
         PfmMatchEngineBridge.fast(home,away,controlled,27);PfmMatchEngineBridge.fast(home,away,controlled,45);check(PfmMatchEngineBridge.currentLineups()[0].find("legacy:1").minutes==20,"Skip revived a red card after rejected manual replacement");
+        PfmMatchEngineBridge.currentLineups()[0].find("legacy:1").yellow=1;pfmDiscipline70.yellow[1]=4;pfmDiscipline70.suspension[1]=0;PfmIncidentsBridge88.discipline();check((pfmDiscipline70.suspension[1]&255)==3,"fifth yellow plus straight red differs from shared native ban rule");
         System.out.println("Manual legacy UI: red-card replacement and fourth substitution rejected; Skip preserves dismissal");
         System.out.println("Legacy adapter: 1000 quick/live/skip matches have identical goals, scorers and minutes; repeated UI frames and celebrations verified");
     }
