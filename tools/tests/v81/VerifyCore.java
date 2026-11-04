@@ -8,16 +8,15 @@ import jdk.internal.org.objectweb.asm.tree.analysis.*;
 public class VerifyCore {
     public static void main(String[] args)throws Exception{
         try(ZipFile zip=new ZipFile(args[0])){
-            for(String name:new String[]{"bb","ca","pfmSubstitutions"}){
+            for(String name:new String[]{"bb","ca","pfmSubstitutions","pfmCondition60","pfmDiscipline70"}){
                 ClassNode node=new ClassNode();new ClassReader(zip.getInputStream(zip.getEntry(name+".class"))).accept(node,0);
                 int hooks=0;
                 for(MethodNode method:node.methods){
                     boolean changed=false;
-                    for(AbstractInsnNode insn:method.instructions)if(insn instanceof MethodInsnNode&&((MethodInsnNode)insn).owner.equals("PfmMatchEngineBridge"))hooks++;
-                    for(AbstractInsnNode insn:method.instructions)if(insn instanceof MethodInsnNode&&((MethodInsnNode)insn).owner.equals("PfmMatchEngineBridge"))changed=true;
+                    for(AbstractInsnNode insn:method.instructions)if(insn instanceof MethodInsnNode&&(((MethodInsnNode)insn).owner.equals("PfmMatchEngineBridge")||((MethodInsnNode)insn).owner.equals("PfmIncidentsBridge88"))){hooks++;changed=true;}
                     if(changed)new Analyzer<BasicValue>(new BasicVerifier()).analyze(node.name,method);
                 }
-                if(hooks!=(name.equals("ca")?2:1))throw new AssertionError(name+" hook count "+hooks);
+                if(hooks!=((name.equals("ca")||name.equals("pfmSubstitutions"))?2:1))throw new AssertionError(name+" hook count "+hooks);
                 System.out.println(name+": verified, unified engine hooks "+hooks);
             }
         }

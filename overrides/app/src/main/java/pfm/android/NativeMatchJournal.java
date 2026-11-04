@@ -39,10 +39,15 @@ public final class NativeMatchJournal {
         return out;
     }
     private static int[] stats(NativeWorldCenter.P p){return new int[]{p.g,p.a,p.ap,p.st,p.rs,p.cs,p.ga,p.sv,p.fat};}
-    private static void facts(MatchJournal.Match m,String club,NativeWorldCenter.T team,int gf,int ga,int seed,NativeWorldCenter.S selection){
-        HashMap<String,int[]> before=new HashMap<String,int[]>();for(NativeWorldCenter.P p:team.ps)before.put(p.uid,stats(p));
-        NativeWorldCenter.stats(team,gf,ga,seed,selection);
-        for(NativeWorldCenter.P p:team.ps){MatchJournal.PlayerFact f=new MatchJournal.PlayerFact();f.uid=p.uid;f.club=club;f.name=selection.used.contains(p)?p.name:"";int[] old=before.get(p.uid);f.stats=stats(p);for(int i=0;i<8;i++)f.stats[i]-=old[i];m.players.add(f);}
+    private static void facts(MatchJournal.Match m,String club,NativeWorldCenter.T team,int gf,int ga,int seed,NativeWorldCenter.S selection,MatchEngine.Lineup side){
+        for(NativeWorldCenter.P p:team.ps){MatchJournal.PlayerFact f=new MatchJournal.PlayerFact();f.uid=p.uid;f.club=club;MatchEngine.Member q=side.find(p.uid);f.stats[8]=p.fat;
+            if(q!=null&&q.minutes>0){f.name=p.name;f.minutes=q.minutes;f.yellow=q.yellow;f.red=q.red;f.injury=q.injury;f.stats[0]=q.goals;f.stats[1]=q.assists;f.stats[2]=1;f.stats[3]=q.starter?1:0;f.stats[4]=Math.max(10,63+(gf-ga)*2+(p.ovr-team.ovr)/4+(MatchEngine.mix(seed^p.uid.hashCode())&0x7fffffff)%7);
+                if(p.pos==0){f.stats[6]=q.conceded;f.stats[5]=q.minutes>=60&&q.conceded==0?1:0;f.stats[7]=Math.max(0,(2+(MatchEngine.mix(seed^p.id)&0x7fffffff)%5)*q.minutes/90-q.conceded/2);}
+                p.g+=f.stats[0];p.a+=f.stats[1];p.ap++;p.st+=f.stats[3];p.rs+=f.stats[4];p.cs+=f.stats[5];p.ga+=f.stats[6];p.sv+=f.stats[7];}
+            m.players.add(f);}
+        StringBuilder log=new StringBuilder();for(MatchEngine.Incident event:side.incidents){MatchEngine.Member p=side.find(event.uid);NativeWorldCenter.P named=null,other=null;for(NativeWorldCenter.P q:team.ps){if(q.uid.equals(event.uid))named=q;if(q.uid.equals(event.other))other=q;}
+            log.append(event.minute).append("' ").append(event.type).append(" · ").append(named==null?event.uid:named.name);if(other!=null)log.append(" → ").append(other.name);if(event.type.equals("INJ"))log.append(" (").append(p.injury).append(" rounds)");log.append('\n');}
+        if(log.length()>0)m.report+="\n"+team.name+"\n"+log;
     }
     static NativeWorldCenter.S eligible(NativeWorldCenter.T team,String club,String competition,int seed,MatchEffects effects,HashMap<String,NativeWorldCenter.P> players){
         NativeWorldCenter.T fit=new NativeWorldCenter.T();
@@ -50,16 +55,20 @@ public final class NativeMatchJournal {
         int keepers=0;for(NativeWorldCenter.P p:fit.ps)if(p.pos==0)keepers++;
         // Explicit temporary academy cover; never silently select injured players or rewrite career rosters.
         int cover=0,outfield=fit.ps.size()-keepers;while(outfield<10||keepers==0){NativeWorldCenter.P p=new NativeWorldCenter.P();p.pos=keepers==0?0:1+cover%3;p.uid="cover:"+NativeWorldCenter.season()+":"+club+":"+seed+":"+cover++;p.name=p.pos==0?"Academy goalkeeper":"Academy cover";p.nat="Academy";p.ovr=p.spe=p.res=p.qua=45;p.mor=55;p.id=p.uid.hashCode();fit.ps.add(p);team.ps.add(p);players.put(p.uid,p);if(p.pos==0)keepers++;else outfield++;}
-        return NativeWorldCenter.selection(fit,seed);
+        NativeWorldCenter.S selected=NativeWorldCenter.selection(fit,seed);
+        for(NativeWorldCenter.P p:selected.used)if(!selected.xi.contains(p))selected.bench.add(p);
+        for(NativeWorldCenter.P p:fit.ps)if(p.pos==0&&!selected.xi.contains(p)&&!selected.bench.contains(p)){selected.bench.add(p);break;}
+        for(NativeWorldCenter.P p:fit.ps)if(selected.bench.size()<7&&!selected.xi.contains(p)&&!selected.bench.contains(p))selected.bench.add(p);
+        return selected;
     }
     static MatchJournal.Match capture(MatchJournal j,String competition,int round,String homeId,String awayId,int seed,HashMap<String,NativeWorldCenter.T> teams,HashMap<String,NativeWorldCenter.P> players,String source,MatchEffects effects,NativeCareerStore.Career career){
         String id=key(competition,round,homeId,awayId);MatchJournal.Match old=j.get(id);if(old!=null){effects.apply(old);return old;}
         NativeWorldCenter.T home=teams.get(homeId),away=teams.get(awayId);if(home==null||away==null||home.ps.size()<11||away.ps.size()<11)throw new IllegalStateException("Fixture squad unavailable: "+id);
         NativeWorldCenter.S hs=eligible(home,homeId,competition,seed,effects,players),as=eligible(away,awayId,competition,seed+17,effects,players);
-        int[] result=NativeMatchEngine.score(seed,home,away,hs,as,competition);MatchJournal.Match m=new MatchJournal.Match();m.id=id;m.competition=competition;m.round=round;m.home=homeId;m.away=awayId;m.homeGoals=result[0];m.awayGoals=result[1];m.seed=seed;m.source=source;
+        NativeMatchEngine.Result result=NativeMatchEngine.play(seed,home,away,hs,as,MatchEngine.profile(competition));MatchJournal.Match m=new MatchJournal.Match();m.id=id;m.competition=competition;m.round=round;m.home=homeId;m.away=awayId;m.homeGoals=result.homeGoals;m.awayGoals=result.awayGoals;m.seed=seed;m.source=source;
         m.report=home.name+"  "+m.homeGoals+" – "+m.awayGoals+"  "+away.name;
-        facts(m,homeId,home,m.homeGoals,m.awayGoals,seed,hs);facts(m,awayId,away,m.awayGoals,m.homeGoals,seed+17,as);
-        if(source.equals("native-v84")){m.clock=effects.clock;minutes(m,homeId,hs);minutes(m,awayId,as);MatchEffects.stamp(m,players);
+        facts(m,homeId,home,m.homeGoals,m.awayGoals,seed,hs,result.home);facts(m,awayId,away,m.awayGoals,m.homeGoals,seed+17,as,result.away);
+        if(source.equals("native-v84")){m.clock=effects.clock;m.effectsVersion=2;MatchEffects.stamp(m,players);
             long hw=0,aw=0;for(NativeCareerStore.Player p:career.players){if(p.owner.equals(homeId))hw+=p.contractWage;if(p.owner.equals(awayId))aw+=p.contractWage;}
             m.homeCredit=MatchEffects.credit(competition.startsWith("ucl:"),true,m.homeGoals,m.awayGoals,home.ovr,hw,competition.equals("league:de")?34:38);m.awayCredit=MatchEffects.credit(competition.startsWith("ucl:"),false,m.awayGoals,m.homeGoals,away.ovr,aw,competition.equals("league:de")?34:38);}
         if(m.effectsVersion>0)for(MatchJournal.PlayerFact f:m.players){int[] base=legacyCondition.get(f.uid);f.stats[8]=Math.min(100,effects.fatigue(f.uid)+f.fatigueDelta+(base==null?0:base[0]));}
@@ -141,8 +150,13 @@ public final class NativeMatchJournal {
     static ArrayList<MatchJournal.Match> ucl(Context c)throws IOException{return journal(c,2010).competition("ucl:2010");}
     static MatchJournal.Match match(Context c,String competition,int round,String home,String away,int season)throws IOException{return journal(c,season).get(key(competition,round,home,away));}
     static void showReport(Activity a,MatchJournal.Match m){
-        if(m==null)return;String title=m.report;if(title.startsWith("H\t")){String[] h=title.split("\n")[0].split("\t");title=h[1]+"  "+m.homeGoals+" – "+m.awayGoals+"  "+h[2];}
-        StringBuilder body=new StringBuilder();if(m.source.equals("reconstructed-v83"))body.append("Reconstructed at upgrade; original match details were not saved.\n\n");for(int side=0;side<2;side++){String club=side==0?m.home:m.away;body.append(side==0?"HOME\n":"\nAWAY\n");for(MatchJournal.PlayerFact p:m.players)if(p.club.equals(club)&&p.stats[2]>0)body.append(p.name).append(p.stats[3]>0?" · XI":" · SUB").append("  G ").append(p.stats[0]).append(" A ").append(p.stats[1]).append(m.effectsVersion>0?"  MIN "+p.minutes+" YC "+p.yellow+" RC "+p.red+(p.injury>0?" INJ "+p.injury+" rounds":""):"").append('\n');}
-        if(m.effectsVersion>0)body.append("\nMatch finance (net, gameplay model): home £").append(m.homeCredit).append("; away £").append(m.awayCredit).append("\nCards/injuries are post-match consequences; bans are competition-specific.\n");if(m.players.isEmpty())body.append("This historical result has no recorded line-up.");new AlertDialog.Builder(a).setTitle(title).setMessage(body.toString()).setPositiveButton("Close",null).show();
+        if(m==null)return;String title=m.report.split("\n",2)[0];if(title.startsWith("H\t")){String[] h=title.split("\t");title=h[1]+"  "+m.homeGoals+" – "+m.awayGoals+"  "+h[2];}
+        StringBuilder body=new StringBuilder();if(m.source.equals("reconstructed-v83"))body.append("Reconstructed at upgrade; original match details were not saved.\n\n");
+        for(int side=0;side<2;side++){String club=side==0?m.home:m.away;body.append(side==0?"HOME\n":"\nAWAY\n");
+            for(MatchJournal.PlayerFact p:m.players)if(p.club.equals(club)&&p.stats[2]>0)body.append(p.name).append(p.stats[3]>0?" · XI":" · SUB").append("  G ").append(p.stats[0]).append(" A ").append(p.stats[1]).append(p.minutes>0?"  MIN "+p.minutes+" YC "+p.yellow+" RC "+p.red+(p.injury>0?" INJ "+p.injury+" rounds":""):"").append('\n');}
+        if(m.effectsVersion>=2)body.append("\nEVENTS\n").append(m.report.substring(m.report.indexOf('\n')>=0?m.report.indexOf('\n')+1:m.report.length()));
+        else if(m.report.contains("\nLIVE EVENTS\n"))body.append(m.report.substring(m.report.indexOf("\nLIVE EVENTS\n")));
+        if(m.effectsVersion>0){body.append("\nMatch finance (net, gameplay model): home £").append(m.homeCredit).append("; away £").append(m.awayCredit);if(m.effectsVersion==1)body.append("\nCards/injuries were post-match consequences in this older report.");body.append("\nBans are competition-specific.\n");}
+        if(m.players.isEmpty())body.append("This historical result has no recorded line-up.");new AlertDialog.Builder(a).setTitle(title).setMessage(body.toString()).setPositiveButton("Close",null).show();
     }
 }

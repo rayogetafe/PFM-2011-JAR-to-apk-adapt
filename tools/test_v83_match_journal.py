@@ -39,7 +39,8 @@ def main():
             for name,body in {
                 'PfmSeasonBridge':'public static String leagueCode(){return "en";}',
                 'pfmMatchPost35':'public static int completedRoundOne(){return 1;}',
-                'pfmLeagueMatchArchive34':'public static String report(int round,dw home,dw away){return "";}'
+                'pfmLeagueMatchArchive34':'public static String report(int round,dw home,dw away){return "";}',
+                'PfmIncidentsBridge88':'public static void enrich(pfm.android.MatchJournal.Match m,dw h,dw a){}'
             }.items():
                 path=bridge/(name+'.java');path.write_text('public class '+name+'{'+body+'}',encoding='utf-8');stubs.append(path)
             subprocess.run([javac,'-encoding','UTF-8','-cp',os.pathsep.join([sys.argv[2],str(temp)]),'-d',str(bridge),*map(str,stubs),str(ROOT/'tools/tests/v81/android/util/Log.java'),str(JAVA.parent.parent/'PfmJournalBridge83.java'),str(JAVA.parent.parent/'PfmEffectsBridge84.java')],check=True)

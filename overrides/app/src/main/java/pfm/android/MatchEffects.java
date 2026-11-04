@@ -37,9 +37,10 @@ final class MatchEffects {
     static int roll(int seed,String uid,int salt,int bound){return (MatchEngine.mix(seed^uid.hashCode()^salt)&0x7fffffff)%bound;}
     /** Post-match events, consistent with the legacy post-match discipline model (not live send-offs). */
     static void stamp(MatchJournal.Match m,Map<String,NativeWorldCenter.P> players){
-        m.effectsVersion=1;
+        if(m.effectsVersion<2)m.effectsVersion=1;
         for(MatchJournal.PlayerFact f:m.players){NativeWorldCenter.P p=players.get(f.uid);if(p==null||f.stats[2]==0)continue;
             f.fatigueDelta=Math.max(2,(f.minutes*(18-p.res/12)+89)/90);
+            if(m.effectsVersion>=2)continue; // v88 incidents were committed on the actual playing timeline.
             int yellow=p.pos==0?3:p.pos==1?21:p.pos==2?16:10;
             if(roll(m.seed,f.uid,271,100)<yellow)f.yellow=1;
             if(f.yellow>0&&roll(m.seed,f.uid,277,100)<4){f.yellow=2;f.red=1;}

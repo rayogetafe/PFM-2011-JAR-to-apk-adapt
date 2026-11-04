@@ -2,4 +2,5 @@
 public class PfmEffectsBridge84 {
     public static int injury(int id,int domestic){return domestic;}
     public static int fatigue(int id,int domestic){return domestic;}
+    public static int[] condition(int id){return new int[2];}
 }

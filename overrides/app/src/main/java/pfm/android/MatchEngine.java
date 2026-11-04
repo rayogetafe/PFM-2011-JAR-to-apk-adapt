@@ -97,5 +97,60 @@ public final class MatchEngine {
         result[10]=draw+base(h,a,0,0)*c.adjustment[0]+base(h,a,1,1)*c.adjustment[3]+base(h,a,2,2)*c.adjustment[6]+base(h,a,3,3)*c.adjustment[9];return result;
     }
     public static int mix(int x){x^=x>>>16;x*=0x7feb352d;x^=x>>>15;x*=0x846ca68b;return x^(x>>>16);}
+    /** Match-local participants. Identity and minute, never presentation mode, key incident RNG. */
+    public static final class Member {
+        public final String uid;public final int position,quality,speed,resistance,morale,fatigue;
+        public int minutes,yellow,red,injury,entryMinute,exitMinute,goals,assists,conceded;public boolean starter;
+        public Member(String uid,int pos,int qua,int spe,int res,int mor,int fat){this.uid=uid;position=pos;quality=qua;speed=spe;resistance=res;morale=mor;fatigue=fat;}
+    }
+    public static final class Incident {
+        public final int minute;public final String type,uid,other;
+        Incident(int minute,String type,String uid,String other){this.minute=minute;this.type=type;this.uid=uid;this.other=other;}
+    }
+    /** Shared on-field state for native, quick, live and Skip. Events occur after that minute's play. */
+    public static final class Lineup {
+        public final java.util.ArrayList<Member> squad=new java.util.ArrayList<Member>();
+        public final java.util.ArrayList<Incident> incidents=new java.util.ArrayList<Incident>();
+        private final Member[] slots=new Member[11];private final java.util.HashSet<String> entered=new java.util.HashSet<String>();
+        private final java.util.HashMap<Integer,String> planned=new java.util.HashMap<Integer,String>();
+        private final java.util.HashMap<Integer,String> forced=new java.util.HashMap<Integer,String>();
+        public int substitutions,lastMinute;private final int seed;public int style=55,formation=2;public double tacticalBias;
+        public Lineup(int seed){this.seed=seed;}
+        public void add(Member p,boolean starter){if(find(p.uid)!=null)throw new IllegalArgumentException("Duplicate match participant");squad.add(p);if(starter){int slot=entered.size();if(slot>=11)throw new IllegalArgumentException("More than XI");slots[slot]=p;entered.add(p.uid);p.starter=true;p.entryMinute=1;}}
+        public Member find(String uid){for(Member p:squad)if(p.uid.equals(uid))return p;return null;}
+        public void plan(int minute,String uid){if(minute<1||minute>90||find(uid)==null)throw new IllegalArgumentException("Invalid substitution plan");planned.put(minute,uid);}
+        private boolean active(Member p){for(Member q:slots)if(q==p)return true;return false;}
+        public boolean active(String uid){Member p=find(uid);return p!=null&&active(p)&&p.red==0&&p.injury==0;}
+        private Member reserve(int position){for(Member p:squad)if(p.position==position&&!entered.contains(p.uid)&&p.red==0&&p.injury==0)return p;return null;}
+        private void substitute(int slot,Member in,int minute){Member out=slots[slot];if(in==null||substitutions>=3||entered.contains(in.uid)||out==null||out.red>0)return;if(out.exitMinute==0)out.exitMinute=minute-1;in.entryMinute=minute;slots[slot]=in;entered.add(in.uid);substitutions++;incidents.add(new Incident(minute,"SUB",out.uid,in.uid));}
+        /** A renderer/user substitution is accepted once and cannot replace a sent-off player. */
+        public boolean manual(String out,String in,int minute){Member p=find(out),q=find(in);if(p==null||q==null)return false;for(int i=0;i<11;i++)if(slots[i]==p){int old=substitutions;substitute(i,q,minute);return substitutions>old;}return false;}
+        public boolean manualAt(int slot,String in,int minute){if(slot<0||slot>=11)return false;int old=substitutions;substitute(slot,find(in),minute);return substitutions>old;}
+        public void begin(int minute){if(minute!=lastMinute+1)throw new IllegalStateException("Non-sequential football minute");
+            for(int i=0;i<11;i++){Member p=slots[i];if(p!=null&&p.injury>0&&p.red==0){Member q=reserve(p.position);if(q==null&&p.position!=0){for(Member r:squad)if(r.position>0&&!entered.contains(r.uid)){q=r;break;}}substitute(i,q,minute);}}
+            Member in=find(planned.containsKey(minute)?planned.get(minute):"");if(in!=null&&!entered.contains(in.uid))for(int i=10;i>=0;i--)if(slots[i]!=null&&slots[i].position==in.position&&slots[i].red==0&&slots[i].injury==0){substitute(i,in,minute);break;}
+        }
+        public Team team(){Team t=new Team();t.style=style;t.formation=formation;t.tacticalBias=tacticalBias;for(Member p:slots)if(p!=null&&p.red==0&&p.injury==0)t.add(p.position,p.quality,p.speed,p.resistance,p.morale,p.fatigue);return t;}
+        private double random(Member p,int minute,int salt){return (mix(seed^p.uid.hashCode()^minute*0x632be5ab^salt)&0xffffffffL)/4294967296.0;}
+        /** Explicit scripted events are used only by focused tests; production uses the same transition below. */
+        public void scripted(int minute,String uid,String type){if(!type.equals("YC")&&!type.equals("RC")&&!type.equals("INJ"))throw new IllegalArgumentException("Invalid incident");forced.put(minute,uid+"\t"+type);}
+        public void end(int minute){if(minute!=lastMinute+1)throw new IllegalStateException("Duplicate incident minute");String script=forced.get(minute);
+            for(Member p:slots)if(p!=null&&p.red==0&&p.injury==0){p.minutes++;String type="";
+                if(script!=null&&script.startsWith(p.uid+"\t"))type=script.substring(p.uid.length()+1);
+                else {double y=p.position==0?0.00034:p.position==1?0.00262:p.position==2?0.00194:0.00117;
+                    if(random(p,minute,281)<0.0000334)type="RC";
+                    else if(random(p,minute,271)<(p.yellow==0?y:0.00046))type="YC";
+                    else if(random(p,minute,283)<(6+Math.max(0,p.fatigue-35)/3)/90000.0)type="INJ";}
+                if(type.equals("YC")){p.yellow++;if(p.yellow==2){p.red=1;p.exitMinute=minute;}}
+                if(type.equals("RC")){p.red=1;p.exitMinute=minute;}
+                if(type.equals("INJ")){p.injury=1+(mix(seed^p.uid.hashCode()^minute^293)&0x7fffffff)%4;p.exitMinute=minute;}
+                if(type.length()>0){incidents.add(new Incident(minute,type,p.uid,""));if(type.equals("YC")&&p.red>0)incidents.add(new Incident(minute,"2YC-RC",p.uid,""));}
+            }lastMinute=minute;
+        }
+        public Member scorer(int minute){int total=0;for(Member p:slots)if(p!=null&&p.red==0&&p.injury==0)total+=weight(p);if(total==0)throw new IllegalStateException("No eligible scorer");int draw=(mix(seed^minute*313^0x51ed270b)&0x7fffffff)%total;for(Member p:slots)if(p!=null&&p.red==0&&p.injury==0){draw-=weight(p);if(draw<0)return p;}throw new AssertionError();}
+        private int weight(Member p){return Math.max(1,(p.position==3?12:p.position==2?5:p.position==1?2:0)*Math.max(1,p.quality));}
+        public void goal(int minute){Member scorer=scorer(minute);scorer.goals++;if((mix(seed^minute*719)&0x7fffffff)%100<72){for(int i=0;i<slots.length;i++){Member p=slots[(i+minute)%slots.length];if(p!=null&&p!=scorer&&active(p.uid)&&p.position>0){p.assists++;break;}}}}
+        public void concede(){for(Member p:slots)if(p!=null&&p.position==0&&active(p.uid)){p.conceded++;break;}}
+    }
     private static double clamp(double x,double lo,double hi){return Math.max(lo,Math.min(hi,x));}
 }

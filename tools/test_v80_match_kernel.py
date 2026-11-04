@@ -13,11 +13,11 @@ bridge = (JAVA.parent.parent / "PfmMatchEngineBridge.java").read_text(encoding="
 assert "MatchEngine.events(seed,minute,h,a,profile,homeGoals,awayGoals)" in kernel
 assert "NativeMatchEngine.score(seed,home,away,homeSel,awaySel,code)" in world
 assert "NativeMatchJournal.advance" in ucl
-assert "NativeMatchEngine.score(seed,home,away,hs,as,competition)" in journal
+assert "NativeMatchEngine.play(seed,home,away,hs,as,MatchEngine.profile(competition))" in journal
 assert "eligible(home,homeId,competition,seed,effects,players)" in journal
 assert "chance<6" not in ucl
 assert "tempo(String code)" not in world
 assert "ucl-score-import" in journal  # Completed v79-v82 games survive.
-assert "MatchEngine.events(key,minute,h,a,profile,goals[0].size()/2,goals[1].size()/2)" in bridge
-assert "MatchEngine.events(liveSeed,m,h,a,liveProfile,goals[0].size()/2,goals[1].size()/2)" in bridge
+assert "advance(game,minute,goals[0].size()/2,goals[1].size()/2,profile)" in bridge
+assert "advance(current,m,goals[0].size()/2,goals[1].size()/2,liveProfile)" in bridge
 print("Competition routing OK: top-five and UCL use the shared minute model")

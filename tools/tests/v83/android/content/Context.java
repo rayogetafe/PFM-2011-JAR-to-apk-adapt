@@ -2,6 +2,7 @@ package android.content;
 import java.io.*;
 import java.util.*;
 public class Context {
+    public static final int MODE_PRIVATE=0;
     private final String root;private final File files;
     private final HashMap<String,SharedPreferences> preferences=new HashMap<>();
     public Context(String root,File files){this.root=root;this.files=files;}
