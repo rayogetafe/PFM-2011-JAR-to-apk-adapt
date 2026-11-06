@@ -28,7 +28,7 @@ def main(harness='pfm.android.LongCareerHarness',extra_sources=()):
         sources += list((ROOT/'tools/tests/v83/android').rglob('*.java'))+[ROOT/'tools/tests/v83/pfm/android/AndroidRuntime.java',ROOT/'tools/tests/v83/pfm/android/EffectsHarness.java',ROOT/'tools/tests/v83/PfmJournalBridge83.java']
         sources += list((ROOT/'tools/tests/v85').rglob('*.java'))
         sources += list(extra_sources)
-        sources += [JAVA/name for name in ('EuropeanPlaces.java','EuropaSeason.java','UclSeason.java','UclKnockout.java','MatchJournal.java','MatchParticipation.java','MatchEffects.java','NativeMatchJournal.java','NativeCompetitionCalendar.java','NativeMatchEngine.java','MatchEngine.java','NativeAiMarket.java','NativeTransferMarketModel.java','NativeTransferCalendar.java')]
+        sources += [JAVA/name for name in ('EuropeanQualification.java','EuropeanPlaces.java','EuropaSeason.java','UclSeason.java','UclKnockout.java','MatchJournal.java','MatchParticipation.java','MatchEffects.java','NativeMatchJournal.java','NativeCompetitionCalendar.java','NativeMatchEngine.java','MatchEngine.java','NativeAiMarket.java','NativeTransferMarketModel.java','NativeTransferCalendar.java')]
         subprocess.run([javac,'-encoding','UTF-8','-d',str(temp),*map(str,sources)],check=True)
         output=Path(sys.argv[2]) if len(sys.argv)>2 else ROOT/'artifacts/v85-long-career-baseline.txt'
         years=sys.argv[3] if len(sys.argv)>3 else '5';seeds=sys.argv[4] if len(sys.argv)>4 else '2'
