@@ -16,8 +16,8 @@ final class MatchEffects {
     HashMap<String,Integer> carryBans(){HashMap<String,Integer> bans=new HashMap<String,Integer>();for(Map.Entry<String,Discipline> e:discipline.entrySet())if(e.getKey().startsWith("league:")&&e.getValue().ban>0)bans.put(e.getKey(),e.getValue().ban);return bans;}
     int clock;
     Health health(String uid){Health h=health.get(uid);if(h==null){h=new Health();health.put(uid,h);}return h;}
-    Discipline discipline(String competition,String uid){String key=competition+"|"+uid;Discipline d=discipline.get(key);if(d==null){d=new Discipline();discipline.put(key,d);}return d;}
-    Discipline readDiscipline(String competition,String uid){Discipline d=discipline.get(competition+"|"+uid);return d==null?new Discipline():d;}
+    Discipline discipline(String competition,String uid){String key=(competition.startsWith("uel:")?"ucl:"+competition.substring(4):competition)+"|"+uid;Discipline d=discipline.get(key);if(d==null){d=new Discipline();discipline.put(key,d);}return d;}
+    Discipline readDiscipline(String competition,String uid){Discipline d=discipline.get((competition.startsWith("uel:")?"ucl:"+competition.substring(4):competition)+"|"+uid);return d==null?new Discipline():d;}
     void rest(int step){if(step<=clock)return;int recovery=(int)((long)step*7*38/seasonRounds-(long)clock*7*38/seasonRounds);for(Health h:health.values())h.fatigue=Math.max(0,h.fatigue-recovery);clock=step;}
     int injury(String uid){Health h=health.get(uid);return h==null?0:Math.max(0,h.injuryUntil-clock);}
     int fatigue(String uid){Health h=health.get(uid);return h==null?0:h.fatigue;}
@@ -30,7 +30,7 @@ final class MatchEffects {
             Discipline d=discipline(m.competition,p.uid);if(d.ban>0&&p.stats[2]==0)d.ban--;d.yellow+=p.yellow;d.red+=p.red;
             if(p.red>0)d.ban+=p.yellow==2?1:2;
             // Three yellows in Europe, five domestically; a two-yellow dismissal has its own ban.
-            int threshold=m.competition.startsWith("ucl:")?3:5;
+            int threshold=EuropeanPlaces.european(m.competition)?3:5;
             if(p.yellow<2&&p.yellow>0&&d.yellow/threshold>(d.yellow-p.yellow)/threshold)d.ban++;
         }
     }

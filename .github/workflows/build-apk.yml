@@ -265,6 +265,7 @@ jobs:
           python3 tools/test_v90_participation.py
           python3 tools/test_v91_ucl.py "$PROJECT/app/src/main/assets/world_v42.tsv"
           python3 tools/test_v92_ucl_seasons.py "$PROJECT/app/src/main/assets/world_v42.tsv"
+          python3 tools/test_v93_europa.py "$PROJECT/app/src/main/assets/world_v42.tsv"
           python3 tools/test_v87_math.py
           python3 tools/test_v87_low_scores.py "$PROJECT/app/src/main/assets/world_v42.tsv" "$PROJECT/v88-distribution.txt" 30 2000
           python3 tools/test_v85_long_career.py "$PROJECT/app/src/main/assets/world_v42.tsv" "$PROJECT/v85-long-career.txt" 5 1
@@ -386,8 +387,8 @@ jobs:
             exit 1
           fi
 
-          sed -i -E 's/versionCode [0-9]+/versionCode 172/' "$PROJECT/app/build.gradle"
-          sed -i -E "s/versionName '[^']+'/versionName '0.84-android-port.65-v92-recurring-ucl'/" "$PROJECT/app/build.gradle"
+          sed -i -E 's/versionCode [0-9]+/versionCode 173/' "$PROJECT/app/build.gradle"
+          sed -i -E "s/versionName '[^']+'/versionName '0.84-android-port.66-v93-europa-and-quotas'/" "$PROJECT/app/build.gradle"
 
       - name: Restore stable debug signing key
         shell: bash
@@ -431,21 +432,23 @@ jobs:
           sha256sum "$APK"
           keytool -printcert -jarfile "$APK" | grep -E 'Owner:|SHA256:' || true
           ls -lh "$APK"
-          cp "$APK" "$PROJECT/app/build/outputs/apk/debug/PFM-2011-v92-recurring-ucl.apk"
-          cp "$PROJECT/v85-long-career.txt" "$PROJECT/app/build/outputs/apk/debug/PFM-2011-v92-long-career-audit.txt"
-          cp "$PROJECT/v88-distribution.txt" "$PROJECT/app/build/outputs/apk/debug/PFM-2011-v92-distribution-audit.txt"
+          cp "$APK" "$PROJECT/app/build/outputs/apk/debug/PFM-2011-v93-europa-and-quotas.apk"
+          cp "$PROJECT/v85-long-career.txt" "$PROJECT/app/build/outputs/apk/debug/PFM-2011-v93-long-career-audit.txt"
+          cp "$PROJECT/v88-distribution.txt" "$PROJECT/app/build/outputs/apk/debug/PFM-2011-v93-distribution-audit.txt"
+          cp artifacts/v93-europa-audit.txt "$PROJECT/app/build/outputs/apk/debug/PFM-2011-v93-europa-audit.txt"
           cp artifacts/v92-ucl-seasons-audit.txt "$PROJECT/app/build/outputs/apk/debug/PFM-2011-v92-ucl-seasons-audit.txt"
           cp artifacts/v91-ucl-audit.txt "$PROJECT/app/build/outputs/apk/debug/PFM-2011-v91-ucl-audit.txt"
 
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
-          name: PFM-2011-Android-Alpha084-v92-recurring-ucl
+          name: PFM-2011-Android-Alpha084-v93-europa-and-quotas
           path: |
-            ${{ env.PROJECT }}/app/build/outputs/apk/debug/PFM-2011-v92-recurring-ucl.apk
-            ${{ env.PROJECT }}/app/build/outputs/apk/debug/PFM-2011-v92-long-career-audit.txt
-            ${{ env.PROJECT }}/app/build/outputs/apk/debug/PFM-2011-v92-distribution-audit.txt
+            ${{ env.PROJECT }}/app/build/outputs/apk/debug/PFM-2011-v93-europa-and-quotas.apk
+            ${{ env.PROJECT }}/app/build/outputs/apk/debug/PFM-2011-v93-long-career-audit.txt
+            ${{ env.PROJECT }}/app/build/outputs/apk/debug/PFM-2011-v93-distribution-audit.txt
             ${{ env.PROJECT }}/app/build/outputs/apk/debug/PFM-2011-v91-ucl-audit.txt
             ${{ env.PROJECT }}/app/build/outputs/apk/debug/PFM-2011-v92-ucl-seasons-audit.txt
+            ${{ env.PROJECT }}/app/build/outputs/apk/debug/PFM-2011-v93-europa-audit.txt
           if-no-files-found: error
           retention-days: 30

@@ -40,7 +40,7 @@ final class UclKnockout {
         }
         StringBuilder encoded=new StringBuilder();for(String[] pair:pairs)encoded.append(pair[0]).append(',').append(pair[1]).append(';');j.define("ucl-draw-"+stage,encoded.toString());return pairs;
     }
-    private static boolean pair(List<String> winners,List<String> seconds,Map<String,Integer> groups,Map<String,String> associations,int at,Set<String> used,ArrayList<String[]> out){
+    static boolean pair(List<String> winners,List<String> seconds,Map<String,Integer> groups,Map<String,String> associations,int at,Set<String> used,ArrayList<String[]> out){
         if(at==winners.size())return true;String winner=winners.get(at);
         for(String second:seconds)if(!used.contains(second)&&!groups.get(winner).equals(groups.get(second))&&!Objects.equals(associations.get(winner),associations.get(second))){used.add(second);out.add(new String[]{second,winner});if(pair(winners,seconds,groups,associations,at+1,used,out))return true;out.remove(out.size()-1);used.remove(second);}return false;
     }

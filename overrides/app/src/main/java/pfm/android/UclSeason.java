@@ -4,10 +4,10 @@ import java.util.*;
 
 /** Persisted qualification and group draw for recurring, fictional career seasons. */
 final class UclSeason {
-    private static double value(Map<String,Double> values,String id){Double value=values.get(id);return value==null?0:value;}
+    static double value(Map<String,Double> values,String id){Double value=values.get(id);return value==null?0:value;}
     static String competition(int year){return "ucl:"+year;}
     // Fixed career-era allocation, shared with the qualification screen; qualifying rounds are abstracted.
-    static int slots(String code){return code.equals("en")||code.equals("es")||code.equals("it")?4:3;}
+    static int slots(String code){return EuropeanPlaces.champions(code);}
     static final class Standing {String id;int played,points,gf,ga;Standing(String id){this.id=id;}}
     static ArrayList<Standing> standings(MatchJournal journal,String code,List<NativeCareerStore.Club> clubs){
         HashMap<String,Standing> rows=new HashMap<String,Standing>();for(NativeCareerStore.Club club:clubs)if(club.league.equals(code))rows.put(club.id,new Standing(club.id));
@@ -44,8 +44,8 @@ final class UclSeason {
         journal.define("ucl-groups",encode(groups));journal.define("ucl-qualification",estimated?"Estimated top-five entrants: previous final tables unavailable. External places estimated from squad strength and previous UCL results.":"Top-five entrants from previous final tables. External places estimated from squad strength and previous UCL results.");
         return groups;
     }
-    private static boolean assign(List<String> entrants,Map<String,String> associations,ArrayList<ArrayList<String>> groups,int at,Random random){
-        if(at==32)return true;String id=entrants.get(at),association=associations.get(id);int pot=at/8;ArrayList<Integer> order=new ArrayList<Integer>();for(int i=0;i<8;i++)order.add(i);Collections.shuffle(order,random);
+    static boolean assign(List<String> entrants,Map<String,String> associations,ArrayList<ArrayList<String>> groups,int at,Random random){
+        if(at==entrants.size())return true;String id=entrants.get(at),association=associations.get(id);int pot=at/groups.size();ArrayList<Integer> order=new ArrayList<Integer>();for(int i=0;i<groups.size();i++)order.add(i);Collections.shuffle(order,random);
         for(int g:order){ArrayList<String> group=groups.get(g);if(group.size()!=pot)continue;boolean clash=false;for(String old:group)if(association.equals(associations.get(old)))clash=true;if(clash)continue;group.add(id);if(assign(entrants,associations,groups,at+1,random))return true;group.remove(group.size()-1);}return false;
     }
     static String encode(List<? extends List<String>> groups){StringBuilder out=new StringBuilder();for(List<String> group:groups){for(int i=0;i<group.size();i++){if(i>0)out.append(',');out.append(group.get(i));}out.append(';');}return out.toString();}

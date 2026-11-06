@@ -18,7 +18,7 @@ public class ScoringHarness {
   for(int sample=start;sample<start+samples;sample++){
    JournalHarness.world(args[0],MatchEngine.mix(sample*10007+865001));NativeCareerStore.Career career=NativeCareerStore.current;
    HashMap<String,NativeWorldCenter.T> teams=NativeMatchJournal.teams(career);HashMap<String,NativeWorldCenter.P> players=new HashMap<>();for(NativeWorldCenter.T team:teams.values())for(NativeWorldCenter.P p:team.ps)players.put(p.uid,p);
-   MatchJournal journal=new MatchJournal(root,NativeWorldCenter.nonce,2010);MatchEffects effects=new MatchEffects(38);
+   MatchJournal journal=new MatchJournal(root,NativeWorldCenter.nonce,2010);MatchEffects effects=new MatchEffects(38);ArrayList<ArrayList<String>> europaGroups=EuropaSeason.prepare(journal,new MatchJournal(root,NativeWorldCenter.nonce,2009),career,groups,NativeWorldCenter.nonce^2010*10007^0x3e17);
    for(int step=1;step<=38;step++){
     effects.rest(step);
     for(int i=0;i<5;i++){String code=C[i];int previous=NativeCompetitionCalendar.parallelRound(step-1,38,code),now=NativeCompetitionCalendar.parallelRound(step,38,code);
@@ -32,7 +32,7 @@ public class ScoringHarness {
     }
     int previous=NativeCompetitionCalendar.uclCompleted(step-1,38),now=NativeCompetitionCalendar.uclCompleted(step,38);
     for(int r=previous;r<now;r++)for(int g=0;g<8;g++)for(int match=0;match<2;match++){int[] pairs=NativeCompetitionCalendar.UCL_PAIRS[r];NativeMatchJournal.capture(journal,"ucl:2010",r+1,groups.get(g).get(pairs[match*2]),groups.get(g).get(pairs[match*2+1]),NativeWorldCenter.nonce+r*104729+g*1009+match*37,teams,players,"native-v84",effects,career);}
-    HashMap<String,String> associations=new HashMap<>();for(NativeCareerStore.Club club:career.clubs)associations.put(club.id,club.league);NativeMatchJournal.knockouts(journal,groups,associations,NativeWorldCenter.nonce,step,38,teams,players,"native-v84",effects,career);
+    HashMap<String,String> associations=new HashMap<>();for(NativeCareerStore.Club club:career.clubs)associations.put(club.id,club.league);NativeMatchJournal.knockouts(journal,groups,associations,NativeWorldCenter.nonce,step,38,teams,players,"native-v84",effects,career);EuropaSeason.advance(journal,europaGroups,groups,associations,NativeWorldCenter.nonce,step,38,teams,players,"native-v84",effects,career);
    }
    if((sample-start+1)%10==0)System.out.println("Progress: "+(sample-start+1)+" full seasons");
   }

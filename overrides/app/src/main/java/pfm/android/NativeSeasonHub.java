@@ -111,7 +111,7 @@ public final class NativeSeasonHub {
     }
 
     private static TextView cell(Context c,String value,float size,boolean bold,int gravity){TextView v=text(c,value,size,bold);v.setGravity(gravity);v.setSingleLine(true);v.setPadding(dp(c,1),dp(c,1),dp(c,1),dp(c,1));return v;}
-    private static int zoneColor(String league,int rank,int count){int cl="en".equals(league)||"es".equals(league)||"it".equals(league)?4:("de".equals(league)||"fr".equals(league)?3:0);int el="fr".equals(league)?1:(cl>0?2:0);int releg="de".equals(league)?2:(cl>0?3:0);if(rank<=cl)return 0xffdcecff;if(rank<=cl+el)return 0xffffefc2;if(releg>0&&rank>count-releg)return 0xffffdddd;return Color.TRANSPARENT;}
+    private static int zoneColor(String league,int rank,int count){return EuropeanPlaces.zone(league,rank,count);}
     private static LinearLayout tableRow(Context c,String rank,String club,String p,String w,String d,String l,String gf,String ga,String gd,String pts,boolean bold,String badge){
         LinearLayout row=new LinearLayout(c);row.setOrientation(LinearLayout.HORIZONTAL);row.setPadding(dp(c,2),0,dp(c,2),0);
         float[] weights={.55f,3.8f,.62f,.62f,.62f,.62f,.68f,.68f,.82f,.82f};String[] values={rank,club,p,w,d,l,gf,ga,gd,pts};
