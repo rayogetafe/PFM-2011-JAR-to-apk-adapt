@@ -42,6 +42,7 @@ public final class MatchJournal {
     public Match get(String id){Match m=matches.get(id);return m==null?null:copy(m);}
     public ArrayList<Match> competition(String competition){ArrayList<Match> out=new ArrayList<Match>();for(Match m:matches.values())if(m.competition.equals(competition))out.add(copy(m));return out;}
     public int size(){return matches.size();}
+    public int season(){return season;}
     public boolean openingDefined(){return openingDefined;}
     public HashMap<String,Integer> openingBans(){return new HashMap<String,Integer>(openingBans);}
     public void defineOpeningBans(Map<String,Integer> bans){if(openingDefined)return;for(Map.Entry<String,Integer> e:bans.entrySet()){if(!e.getKey().startsWith("league:")||e.getValue()<1||e.getValue()>100)throw new IllegalArgumentException("Invalid opening ban");openingBans.put(e.getKey(),e.getValue());}openingDefined=true;dirty=true;}

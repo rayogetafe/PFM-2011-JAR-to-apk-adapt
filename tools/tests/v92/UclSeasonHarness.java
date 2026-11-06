@@ -1,0 +1,43 @@
+package pfm.android;
+import java.io.*;
+import java.nio.file.*;
+import java.util.*;
+import android.content.Context;
+
+public class UclSeasonHarness {
+    static void check(boolean value,String why){if(!value)throw new AssertionError(why);}
+    static HashSet<String> entrants(List<? extends List<String>> groups){HashSet<String> out=new HashSet<>();for(List<String> group:groups)out.addAll(group);return out;}
+    static void groups(ArrayList<ArrayList<String>> groups,NativeCareerStore.Career career){
+        check(groups.size()==8&&entrants(groups).size()==32,"group/entrant count");HashMap<String,String> country=new HashMap<>();for(NativeCareerStore.Club club:career.clubs)country.put(club.id,club.league);
+        for(ArrayList<String> group:groups){check(group.size()==4,"group size");HashSet<String> associations=new HashSet<>();for(String id:group)check(associations.add(country.get(id)),"same-association group clash");}
+    }
+    static void qualification(String world,File dir)throws Exception{
+        JournalHarness.world(world,920);NativeCareerStore.Career career=NativeCareerStore.current;MatchJournal previous=new MatchJournal(dir,920,2010);
+        for(String code:NativeWorldCenter.C)for(NativeWorldCenter.M fixture:NativeWorldCenter.schedule(NativeWorldCenter.leagues.get(code).size())){MatchJournal.Match m=new MatchJournal.Match();m.competition="league:"+code;m.round=fixture.r;m.home=code+":"+fixture.h;m.away=code+":"+fixture.a;m.homeGoals=1;m.id=NativeMatchJournal.key(m.competition,m.round,m.home,m.away);previous.put(m);}
+        ArrayList<UclSeason.Standing> en=UclSeason.standings(previous,"en",career.clubs);String champion=en.get(19).id;MatchJournal.Match finalMatch=new MatchJournal.Match();finalMatch.competition="ucl:2010";finalMatch.round=13;finalMatch.home=champion;finalMatch.away="es:0";finalMatch.winner=champion;finalMatch.id="final";previous.put(finalMatch);
+        HashSet<String> expected=new HashSet<>();for(String code:NativeWorldCenter.C){ArrayList<UclSeason.Standing> table=UclSeason.standings(previous,code,career.clubs);for(int i=0;i<UclSeason.slots(code);i++)expected.add(table.get(i).id);}expected.remove(en.get(3).id);expected.add(champion);
+        for(int seed=0;seed<100;seed++){MatchJournal next=new MatchJournal(dir,1000+seed,2011);ArrayList<ArrayList<String>> groups=UclSeason.prepare(next,previous,career,seed);groups(groups,career);HashSet<String> actual=entrants(groups);for(String id:expected)check(actual.contains(id),"qualified club omitted "+id);for(String id:actual)if(!id.startsWith("eu_"))check(expected.contains(id),"unqualified top-five club admitted "+id);check(!next.metadata("ucl-qualification").startsWith("Estimated top-five"),"full tables labelled estimated");}
+        MatchJournal frozen=new MatchJournal(dir,1200,2011);String before=UclSeason.encode(UclSeason.prepare(frozen,previous,career,1));frozen.save();for(NativeCareerStore.Player player:career.players)player.qua=99-player.qua/2;check(before.equals(UclSeason.encode(UclSeason.prepare(frozen,previous,career,987))),"summer changes redrew tournament");frozen=new MatchJournal(dir,1200,2011);check(before.equals(frozen.metadata("ucl-groups")),"draw did not persist");
+        MatchJournal missing=new MatchJournal(dir,1201,2012);UclSeason.prepare(missing,new MatchJournal(dir,1201,2011),career,9);check(missing.metadata("ucl-qualification").startsWith("Estimated top-five"),"missing final tables silently invented");
+        System.out.println("Qualification: 100 group draws, final-table places, titleholder replacement, country separation, frozen summer snapshot and labelled migration fallback verified");
+    }
+    public static void main(String[] args)throws Exception{
+        File root=new File(args[1]);root.mkdirs();qualification(args[0],new File(root,"qualification"));MatchJournal previous=null;
+        for(String active:new String[]{"en","de"}){
+            int nonce=active.equals("en")?922:923;File dir=new File(root,active);dir.mkdirs();Context c=new Context("overrides/app/src/main/assets",dir);AndroidRuntime.current=c;JournalHarness.world(args[0],nonce);NativeCareerStore.current.activeLeague=active;int total=active.equals("de")?34:38;String oldGroups="";HashMap<String,String> oldFacts=new HashMap<>();
+            for(int year=2010;year<=2012;year++){
+                NativeWorldCenter.year=year;NativeWorldCenter.played=0;NativeMatchJournal.advance(c,0);
+                if(year>2010){check(oldGroups.equals(UclSeason.encode(NativeMatchJournal.uclGroups(c,year))),"season transition redrew groups");groups(NativeMatchJournal.uclGroups(c,year),NativeCareerStore.current);check(NativeMatchJournal.ucl(c,year).isEmpty(),"new season inherited matches");}
+                for(int step=1;step<=total;step++){NativeWorldCenter.played=step;NativeMatchJournal.advance(c,step);if(step==12){MatchJournal saved=JournalHarness.open(c,nonce,year);int count=saved.size();String draw=saved.metadata("ucl-groups");JournalHarness.restart();NativeMatchJournal.advance(c,step);saved=JournalHarness.open(c,nonce,year);check(count==saved.size()&&Objects.equals(draw,saved.metadata("ucl-groups")),"mid-season restart changed draw/matches");}}
+                MatchJournal journal=JournalHarness.open(c,nonce,year);ArrayList<MatchJournal.Match> matches=journal.competition("ucl:"+year);check(matches.size()==125,"recurring competition incomplete "+year);check(journal.size()==1951,"calendar count");check(UclSeason.champion(journal).length()>0,"missing annual champion");for(MatchJournal.Match m:matches)check(m.effectsVersion>0,"new season match has no effects");
+                MatchJournal next=JournalHarness.open(c,nonce,year+1);oldGroups=next.metadata("ucl-groups");check(oldGroups!=null,"next draw not frozen at season end");
+                if(year>2010){MatchJournal history=JournalHarness.open(c,nonce,year-1);for(Map.Entry<String,String> e:oldFacts.entrySet())check(e.getValue().equals(JournalHarness.frozen(history.get(e.getKey()))),"older report changed");}oldFacts.clear();for(MatchJournal.Match m:journal.all())oldFacts.put(m.id,JournalHarness.frozen(m));
+                byte[] bytes=Files.readAllBytes(new File(dir,"match-journals/matches-"+nonce+"-"+year+".bin").toPath());NativeMatchJournal.ucl(c,year);NativeMatchJournal.uclGroups(c,year);NativeMatchJournal.uclDraw(c,year,3);check(Arrays.equals(bytes,Files.readAllBytes(new File(dir,"match-journals/matches-"+nonce+"-"+year+".bin").toPath())),"history projection wrote data");
+                if(year==2010)previous=journal;
+            }
+            System.out.println("Recurring calendar "+active+": three seasons, 375 UCL matches, cold restart, annual champion, frozen next draw and unchanged history verified");
+        }
+        File dir=new File(root,"migration");dir.mkdirs();Context c=new Context("overrides/app/src/main/assets",dir);AndroidRuntime.current=c;JournalHarness.world(args[0],924);NativeCareerStore.current.activeLeague="de";MatchJournal old2010=JournalHarness.open(c,924,2010);for(MatchJournal.Match m:previous.all())old2010.put(m);old2010.save();MatchJournal old2011=JournalHarness.open(c,924,2011);HashMap<String,String> before=new HashMap<>();for(MatchJournal.Match m:previous.all())if(m.competition.startsWith("league:")&&m.clock<=20){old2011.put(m);before.put(m.id,JournalHarness.frozen(m));}old2011.save();NativeWorldCenter.year=2011;NativeWorldCenter.played=20;JournalHarness.restart();NativeMatchJournal.advance(c,20);MatchJournal upgraded=JournalHarness.open(c,924,2011);for(Map.Entry<String,String> e:before.entrySet())check(e.getValue().equals(JournalHarness.frozen(upgraded.get(e.getKey()))),"migration changed league report");check(upgraded.competition("ucl:2011").size()==96,"migration group count");for(MatchJournal.Match m:upgraded.competition("ucl:2011"))check(m.effectsVersion==0&&m.homeCredit==0&&m.awayCredit==0,"retrospective migration effects");for(int step=21;step<=34;step++){NativeWorldCenter.played=step;NativeMatchJournal.advance(c,step);}upgraded=JournalHarness.open(c,924,2011);check(upgraded.competition("ucl:2011").size()==125,"migrated season not completed");for(MatchJournal.Match m:upgraded.competition("ucl:2011"))if(m.round>=7)check(m.effectsVersion>0,"future knockout lost effects");
+        System.out.println("PASS: v91 future-season migration preserves league facts, backfills without retroactive effects, and plays remaining knockouts normally");
+    }
+}

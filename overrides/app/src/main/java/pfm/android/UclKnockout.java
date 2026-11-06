@@ -18,20 +18,24 @@ final class UclKnockout {
             Collections.sort(sorted.subList(first,end),(a,b)->{int[] x=mini.get(a.id),y=mini.get(b.id);for(int i=0;i<3;i++)if(x[i]!=y[i])return y[i]-x[i];int d=(b.gf-b.ga)-(a.gf-a.ga);if(d!=0)return d;if(a.gf!=b.gf)return b.gf-a.gf;return a.id.compareTo(b.id);});first=end;
         }return sorted;
     }
-    static String key(int round,String home,String away){return COMP+"|"+round+"|"+home+"|"+away;}
+    static String key(int round,String home,String away){return key(COMP,round,home,away);}
+    static String key(String competition,int round,String home,String away){return competition+"|"+round+"|"+home+"|"+away;}
     /** Result is relative to the second-leg home side, including extra-time away goals. */
     static int decision(int firstHome,int firstAway,int secondHome,int secondAway){int home=firstAway+secondHome,away=firstHome+secondAway;if(home!=away)return home>away?1:-1;if(firstAway!=secondAway)return firstAway>secondAway?1:-1;return 0;}
     static ArrayList<String[]> draw(MatchJournal j,List<? extends List<String>> groups,Map<String,String> associations,int seed,int stage){
+        return draw(j,groups,associations,seed,stage,COMP);
+    }
+    static ArrayList<String[]> draw(MatchJournal j,List<? extends List<String>> groups,Map<String,String> associations,int seed,int stage,String competition){
         String stored=j.metadata("ucl-draw-"+stage);if(stored!=null)return decode(stored);
-        ArrayList<String[]> pairs=new ArrayList<String[]>();ArrayList<MatchJournal.Match> matches=j.competition(COMP);
+        ArrayList<String[]> pairs=new ArrayList<String[]>();ArrayList<MatchJournal.Match> matches=j.competition(competition);
         if(stage==0){ArrayList<String> winners=new ArrayList<String>(),seconds=new ArrayList<String>();HashMap<String,Integer> group=new HashMap<String,Integer>();
             for(int i=0;i<groups.size();i++){ArrayList<Row> rows=table(groups.get(i),matches);for(Row row:rows)if(row.played!=6)return pairs;winners.add(rows.get(0).id);seconds.add(rows.get(1).id);for(String id:groups.get(i))group.put(id,i);}
             Collections.shuffle(winners,new Random(seed));Collections.shuffle(seconds,new Random(seed^0x51ed270b));
             if(!pair(winners,seconds,group,associations,0,new HashSet<String>(),pairs))throw new IllegalStateException("No valid UCL last-16 draw");
         }else{
-            ArrayList<String[]> previous=draw(j,groups,associations,seed,stage-1);if(previous.isEmpty())return pairs;
+            ArrayList<String[]> previous=draw(j,groups,associations,seed,stage-1,competition);if(previous.isEmpty())return pairs;
             ArrayList<String> qualified=new ArrayList<String>();int round=stage*2+6;
-            for(String[] tie:previous){MatchJournal.Match m=j.get(key(round,tie[1],tie[0]));if(m==null||m.winner.length()==0)return pairs;qualified.add(m.winner);}
+            for(String[] tie:previous){MatchJournal.Match m=j.get(key(competition,round,tie[1],tie[0]));if(m==null||m.winner.length()==0)return pairs;qualified.add(m.winner);}
             Collections.shuffle(qualified,new Random(seed^stage*104729));for(int i=0;i<qualified.size();i+=2)pairs.add(new String[]{qualified.get(i),qualified.get(i+1)});
         }
         StringBuilder encoded=new StringBuilder();for(String[] pair:pairs)encoded.append(pair[0]).append(',').append(pair[1]).append(';');j.define("ucl-draw-"+stage,encoded.toString());return pairs;
