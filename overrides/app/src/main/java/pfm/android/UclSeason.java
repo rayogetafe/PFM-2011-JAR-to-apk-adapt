@@ -4,6 +4,7 @@ import java.util.*;
 
 /** Persisted qualification and group draw for recurring, fictional career seasons. */
 final class UclSeason {
+    private static double value(Map<String,Double> values,String id){Double value=values.get(id);return value==null?0:value;}
     static String competition(int year){return "ucl:"+year;}
     // Fixed career-era allocation, shared with the qualification screen; qualifying rounds are abstracted.
     static int slots(String code){return code.equals("en")||code.equals("es")||code.equals("it")?4:3;}
@@ -24,20 +25,20 @@ final class UclSeason {
         String champion=champion(previous);ArrayList<String> entrants=new ArrayList<String>();boolean estimated=false;
         for(String code:new String[]{"en","es","it","de","fr"}){
             ArrayList<Standing> table=standings(previous,code,career.clubs);int total=code.equals("de")?34:38;boolean complete=table.size()==(code.equals("de")?18:20);for(Standing row:table)if(row.played!=total)complete=false;
-            if(!complete){estimated=true;Collections.sort(table,(a,b)->{int d=Double.compare(strengths.getOrDefault(b.id,0.0),strengths.getOrDefault(a.id,0.0));return d!=0?d:a.id.compareTo(b.id);});}
+            if(!complete){estimated=true;Collections.sort(table,(a,b)->{int d=Double.compare(value(strengths,b.id),value(strengths,a.id));return d!=0?d:a.id.compareTo(b.id);});}
             int places=slots(code);for(int i=0;i<places;i++)entrants.add(table.get(i).id);
             if(code.equals(associations.get(champion))&&!entrants.contains(champion)){entrants.remove(entrants.size()-1);entrants.add(champion);}
         }
         // Other domestic leagues are not yet simulated: external places are explicitly estimated.
-        HashMap<String,Double> performance=new HashMap<String,Double>();for(MatchJournal.Match m:previous.competition(competition(previous.season()))){performance.put(m.home,performance.getOrDefault(m.home,0.0)+(m.homeGoals>m.awayGoals?3:m.homeGoals==m.awayGoals?1:0));performance.put(m.away,performance.getOrDefault(m.away,0.0)+(m.awayGoals>m.homeGoals?3:m.homeGoals==m.awayGoals?1:0));}
+        HashMap<String,Double> performance=new HashMap<String,Double>();for(MatchJournal.Match m:previous.competition(competition(previous.season()))){performance.put(m.home,value(performance,m.home)+(m.homeGoals>m.awayGoals?3:m.homeGoals==m.awayGoals?1:0));performance.put(m.away,value(performance,m.away)+(m.awayGoals>m.homeGoals?3:m.homeGoals==m.awayGoals?1:0));}
         ArrayList<String> external=new ArrayList<String>();for(NativeCareerStore.Club club:career.clubs)if(club.league.startsWith("eu_")&&club.activeFrom<=journal.season())external.add(club.id);
-        Collections.sort(external,(a,b)->{double x=strengths.getOrDefault(a,0.0)+performance.getOrDefault(a,0.0)*.3,y=strengths.getOrDefault(b,0.0)+performance.getOrDefault(b,0.0)*.3;int d=Double.compare(y,x);return d!=0?d:a.compareTo(b);});
+        Collections.sort(external,(a,b)->{double x=value(strengths,a)+value(performance,a)*.3,y=value(strengths,b)+value(performance,b)*.3;int d=Double.compare(y,x);return d!=0?d:a.compareTo(b);});
         if(external.contains(champion)&&!entrants.contains(champion))entrants.add(champion);
         HashSet<String> represented=new HashSet<String>();for(String id:entrants)represented.add(associations.get(id));
         for(String id:external)if(entrants.size()<32&&represented.add(associations.get(id)))entrants.add(id);
         for(String id:external)if(entrants.size()<32&&!entrants.contains(id))entrants.add(id);
         if(entrants.size()!=32||new HashSet<String>(entrants).size()!=32)throw new IllegalStateException("UCL requires 32 distinct entrants");
-        Collections.sort(entrants,(a,b)->{if(a.equals(champion))return b.equals(champion)?0:-1;if(b.equals(champion))return 1;int d=Double.compare(strengths.getOrDefault(b,0.0),strengths.getOrDefault(a,0.0));return d!=0?d:a.compareTo(b);});
+        Collections.sort(entrants,(a,b)->{if(a.equals(champion))return b.equals(champion)?0:-1;if(b.equals(champion))return 1;int d=Double.compare(value(strengths,b),value(strengths,a));return d!=0?d:a.compareTo(b);});
         ArrayList<ArrayList<String>> groups=new ArrayList<ArrayList<String>>();for(int g=0;g<8;g++)groups.add(new ArrayList<String>());
         if(!assign(entrants,associations,groups,0,new Random(seed)))throw new IllegalStateException("UCL group draw has no valid allocation");
         journal.define("ucl-groups",encode(groups));journal.define("ucl-qualification",estimated?"Estimated top-five entrants: previous final tables unavailable. External places estimated from squad strength and previous UCL results.":"Top-five entrants from previous final tables. External places estimated from squad strength and previous UCL results.");
