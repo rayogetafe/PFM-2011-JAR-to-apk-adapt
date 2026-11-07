@@ -128,15 +128,35 @@ public final class NativeMatchJournal {
             m.report=teams.get(home).name+"  "+m.homeGoals+" – "+m.awayGoals+"  "+teams.get(away).name;j.put(m);
         }
     }
-    /** Only a genuinely new season receives carry-over. Existing v83/v84 seasons are never rewritten. */
-    private static MatchEffects effects(Context c,MatchJournal j,int season,int completed)throws IOException{
-        MatchEffects state=new MatchEffects(NativeTransferCalendar.total());
-        if(!j.openingDefined()){
-            HashMap<String,Integer> bans=new HashMap<String,Integer>();
-            if(j.size()==0&&completed<=1&&season>2010){MatchJournal previous=new MatchJournal(new File(c.getFilesDir(),"match-journals"),NativeWorldCenter.identity(),season-1);MatchEffects old=new MatchEffects(NativeTransferCalendar.total());old.openingBans(previous.openingBans());for(MatchJournal.Match m:previous.all())if(m.effectsVersion>0){old.rest(m.clock);old.apply(m);}bans=old.carryBans();}
-            j.defineOpeningBans(bans);
+    private static MatchEffects effects(Context c, MatchJournal journal, int season, int completed) throws IOException {
+        int total = NativeTransferCalendar.total();
+        MatchEffects state = new MatchEffects(total);
+        if (!journal.openingDefined() || !journal.europeanOpeningDefined()) {
+            MatchEffects previousEffects = new MatchEffects(total);
+            // Older journals with played fixtures keep their original starting conditions.
+            if (journal.size() == 0 && completed <= 1 && season > 2010) {
+                MatchJournal previous = new MatchJournal(new File(c.getFilesDir(), "match-journals"),
+                        NativeWorldCenter.identity(), season - 1);
+                previousEffects.openingBans(previous.openingBans());
+                previousEffects.openingEuropeanBans(season - 1, previous.europeanOpeningBans());
+                replayEffects(previousEffects, previous.all());
+            }
+            journal.defineOpeningBans(previousEffects.carryBans());
+            journal.defineEuropeanOpeningBans(previousEffects.carryEuropeanBans(season - 1));
         }
-        state.openingBans(j.openingBans());return state;
+        state.openingBans(journal.openingBans());
+        state.openingEuropeanBans(season, journal.europeanOpeningBans());
+        return state;
+    }
+
+    private static void replayEffects(MatchEffects state, List<MatchJournal.Match> matches) {
+        Collections.sort(matches, (a, b) -> Integer.compare(a.clock, b.clock));
+        for (MatchJournal.Match match : matches) {
+            if (match.effectsVersion > 0) {
+                state.rest(match.clock);
+                state.apply(match);
+            }
+        }
     }
     public static synchronized void advance(Context c,int completed)throws Exception{
         context=c.getApplicationContext();NativeWorldCenter.load(c);int season=NativeWorldCenter.season(),total=NativeTransferCalendar.total();completed=Math.min(total,Math.max(0,completed));
@@ -195,8 +215,8 @@ public final class NativeMatchJournal {
         if(Boolean.TRUE.equals(restoring.get()))return new int[5];
         if(effectsIdentity!=NativeWorldCenter.careerNonce||effectsSeason!=NativeWorldCenter.season()||currentEffects==null){
             restoring.set(Boolean.TRUE);try{Context c=AndroidRuntime.context();NativeWorldCenter.load(c);int season=NativeWorldCenter.season(),nonce=NativeWorldCenter.identity();MatchJournal j=new MatchJournal(new File(c.getFilesDir(),"match-journals"),nonce,season);MatchEffects state=effects(c,j,season,NativeTransferCalendar.played());
-                ArrayList<MatchJournal.Match> records=j.all();Collections.sort(records,(a,b)->a.clock-b.clock);for(MatchJournal.Match m:records)if(m.effectsVersion>0){state.rest(m.clock);state.apply(m);}state.rest(NativeTransferCalendar.played());
-                HashMap<Integer,String> ids=new HashMap<Integer,String>();if(!records.isEmpty()){NativeCareerStore.Career career=NativeCareerStore.ensure(c);for(NativeCareerStore.Player p:career.players)if(p.id.startsWith(career.activeLeague+":"))ids.put(p.sourceId,p.id);for(Map.Entry<String,?> e:c.getSharedPreferences("pfm_native_legacy_ids_v58",0).getAll().entrySet())if(e.getValue() instanceof Integer)ids.put((Integer)e.getValue(),e.getKey());}
+                ArrayList<MatchJournal.Match> records=j.all();replayEffects(state,records);state.rest(NativeTransferCalendar.played());
+                HashMap<Integer,String> ids=new HashMap<Integer,String>();if(!records.isEmpty()||!j.europeanOpeningBans().isEmpty()){NativeCareerStore.Career career=NativeCareerStore.ensure(c);for(NativeCareerStore.Player p:career.players)if(p.id.startsWith(career.activeLeague+":"))ids.put(p.sourceId,p.id);for(Map.Entry<String,?> e:c.getSharedPreferences("pfm_native_legacy_ids_v58",0).getAll().entrySet())if(e.getValue() instanceof Integer)ids.put((Integer)e.getValue(),e.getKey());}
                 if(!records.isEmpty())NativeCareerStore.applyMatchFinance(c,records,season);if(currentEffects==null||effectsIdentity!=nonce||effectsSeason!=season||currentEffects.clock<=state.clock){legacyIds=ids;currentEffects=state;effectsSeason=season;effectsIdentity=nonce;}
             }catch(Exception e){throw new IllegalStateException("Saved match effects unavailable",e);}finally{restoring.remove();}
         }

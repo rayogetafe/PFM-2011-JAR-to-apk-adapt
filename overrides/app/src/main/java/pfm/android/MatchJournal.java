@@ -6,7 +6,7 @@ import java.util.zip.CRC32;
 
 /** Immutable fixture facts, isolated by career and season; no Android or match simulation. */
 public final class MatchJournal {
-    private static final int MAGIC=0x50464d53,VERSION=4,MAX_BYTES=64*1024*1024;
+    private static final int MAGIC=0x50464d53,VERSION=5,MAX_BYTES=64*1024*1024;
     public static final class PlayerFact {
         public String uid="",club="",name="";
         // Goals, assists, appearances, starts, rating sum, clean sheets, conceded, saves, fatigue after.
@@ -27,6 +27,8 @@ public final class MatchJournal {
     private final HashMap<String,String> strings=new HashMap<String,String>();
     private final HashMap<String,Integer> openingBans=new HashMap<String,Integer>();
     private boolean openingDefined;
+    private final HashMap<String, Integer> europeanOpeningBans = new HashMap<>();
+    private boolean europeanOpeningDefined;
     private final TreeMap<String,String> metadata=new TreeMap<String,String>();
     public String metadata(String key){return metadata.get(key);}
     public void define(String key,String value){if(metadata.containsKey(key))return;metadata.put(key,value);dirty=true;}
@@ -36,7 +38,7 @@ public final class MatchJournal {
         if(!directory.isDirectory()&&!directory.mkdirs())throw new IOException("Cannot create match journal directory");
         file=new File(directory,"matches-"+career+"-"+season+".bin");backup=new File(file.getPath()+".backup");
         if(file.exists()||backup.exists()){
-            try{read(file);primaryValid=true;}catch(IOException primary){matches.clear();strings.clear();openingBans.clear();metadata.clear();openingDefined=false;try{read(backup);}catch(IOException fallback){throw new IOException("Match journal and backup unavailable",primary);}}
+            try{read(file);primaryValid=true;}catch(IOException primary){matches.clear();strings.clear();openingBans.clear();metadata.clear();openingDefined=false;europeanOpeningBans.clear();europeanOpeningDefined=false;try{read(backup);}catch(IOException fallback){throw new IOException("Match journal and backup unavailable",primary);}}
         }
     }
     public Match get(String id){Match m=matches.get(id);return m==null?null:copy(m);}
@@ -46,6 +48,23 @@ public final class MatchJournal {
     public boolean openingDefined(){return openingDefined;}
     public HashMap<String,Integer> openingBans(){return new HashMap<String,Integer>(openingBans);}
     public void defineOpeningBans(Map<String,Integer> bans){if(openingDefined)return;for(Map.Entry<String,Integer> e:bans.entrySet()){if(!e.getKey().startsWith("league:")||e.getValue()<1||e.getValue()>100)throw new IllegalArgumentException("Invalid opening ban");openingBans.put(e.getKey(),e.getValue());}openingDefined=true;dirty=true;}
+    boolean europeanOpeningDefined() { return europeanOpeningDefined; }
+    Map<String, Integer> europeanOpeningBans() { return new HashMap<>(europeanOpeningBans); }
+    void defineEuropeanOpeningBans(Map<String, Integer> bans) {
+        if (europeanOpeningDefined) return;
+        for (Map.Entry<String, Integer> entry : bans.entrySet()) {
+            if (!validEuropeanBan(entry.getKey(), entry.getValue())) {
+                throw new IllegalArgumentException("Invalid European opening ban");
+            }
+        }
+        europeanOpeningBans.putAll(bans);
+        europeanOpeningDefined = true;
+        dirty = true;
+    }
+
+    private static boolean validEuropeanBan(String uid, int ban) {
+        return !uid.isEmpty() && ban >= 1 && ban <= 100;
+    }
     public ArrayList<Match> all(){ArrayList<Match> out=new ArrayList<Match>();for(Match m:matches.values())out.add(copy(m));return out;}
     public boolean put(Match match){
         if(matches.containsKey(match.id))return false;
@@ -80,6 +99,12 @@ public final class MatchJournal {
         }
         out.writeBoolean(openingDefined);out.writeInt(openingBans.size());for(String key:new TreeSet<String>(openingBans.keySet())){out.writeUTF(key);out.writeInt(openingBans.get(key));}
         out.writeInt(metadata.size());for(Map.Entry<String,String> entry:metadata.entrySet()){out.writeUTF(entry.getKey());out.writeUTF(entry.getValue());}
+        out.writeBoolean(europeanOpeningDefined);
+        out.writeInt(europeanOpeningBans.size());
+        for (String uid : new TreeSet<>(europeanOpeningBans.keySet())) {
+            out.writeUTF(uid);
+            out.writeInt(europeanOpeningBans.get(uid));
+        }
         out.flush();return bytes.toByteArray();
     }
     public void save()throws IOException{
@@ -108,6 +133,18 @@ public final class MatchJournal {
             }
             if(version>=3){openingDefined=in.readBoolean();int bans=count(in,10000);for(int i=0;i<bans;i++){String key=in.readUTF();int ban=in.readInt();if(!key.startsWith("league:")||ban<1||ban>100||openingBans.put(key,ban)!=null)throw new IOException("Invalid opening ban");}}
             if(version>=4){int properties=count(in,1000);for(int i=0;i<properties;i++)metadata.put(in.readUTF(),in.readUTF());}
+            if (version >= 5) {
+                europeanOpeningDefined = in.readBoolean();
+                int bans = count(in, 10000);
+                if (!europeanOpeningDefined && bans != 0) throw new IOException("Undefined European opening bans");
+                for (int i = 0; i < bans; i++) {
+                    String uid = in.readUTF();
+                    int ban = in.readInt();
+                    if (!validEuropeanBan(uid, ban) || europeanOpeningBans.put(uid, ban) != null) {
+                        throw new IOException("Invalid European opening ban");
+                    }
+                }
+            }
             if(in.read()!=-1)throw new IOException("Trailing journal data");
         }
     }

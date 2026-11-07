@@ -5,7 +5,7 @@ import java.util.*;
 /** Replayable consequences. The journal is the commit log; no second writable condition store. */
 final class MatchEffects {
     static final class Health {int fatigue,injuryUntil;}
-    static final class Discipline {int yellow,red,ban;}
+    static final class Discipline {int yellow,red,ban,dismissalBan;}
     final HashMap<String,Health> health=new HashMap<String,Health>();
     final HashMap<String,Discipline> discipline=new HashMap<String,Discipline>();
     private final HashSet<String> applied=new HashSet<String>();
@@ -14,6 +14,23 @@ final class MatchEffects {
     MatchEffects(int rounds){seasonRounds=Math.max(30,rounds);}
     void openingBans(Map<String,Integer> bans){for(Map.Entry<String,Integer> e:bans.entrySet()){Discipline d=new Discipline();d.ban=e.getValue();discipline.put(e.getKey(),d);}}
     HashMap<String,Integer> carryBans(){HashMap<String,Integer> bans=new HashMap<String,Integer>();for(Map.Entry<String,Discipline> e:discipline.entrySet())if(e.getKey().startsWith("league:")&&e.getValue().ban>0)bans.put(e.getKey(),e.getValue().ban);return bans;}
+    void openingEuropeanBans(int season, Map<String, Integer> bans) {
+        for (Map.Entry<String, Integer> entry : bans.entrySet()) {
+            Discipline player = discipline("ucl:" + season, entry.getKey());
+            player.ban = entry.getValue();
+            player.dismissalBan = entry.getValue();
+        }
+    }
+    Map<String, Integer> carryEuropeanBans(int season) {
+        Map<String, Integer> bans = new HashMap<>();
+        String prefix = "ucl:" + season + "|";
+        for (Map.Entry<String, Discipline> entry : discipline.entrySet()) {
+            if (entry.getKey().startsWith(prefix) && entry.getValue().dismissalBan > 0) {
+                bans.put(entry.getKey().substring(prefix.length()), entry.getValue().dismissalBan);
+            }
+        }
+        return bans;
+    }
     int clock;
     Health health(String uid){Health h=health.get(uid);if(h==null){h=new Health();health.put(uid,h);}return h;}
     Discipline discipline(String competition,String uid){String key=EuropeanPlaces.disciplineCompetition(competition)+"|"+uid;Discipline d=discipline.get(key);if(d==null){d=new Discipline();discipline.put(key,d);}return d;}
@@ -27,8 +44,19 @@ final class MatchEffects {
         for(MatchJournal.PlayerFact p:m.players){
             if(m.effectsVersion==0)continue; // No retroactive injuries, load, cards or money for v83/migration records.
             Health h=health(p.uid);h.fatigue=Math.min(100,Math.max(0,h.fatigue+p.fatigueDelta));if(p.injury>0)h.injuryUntil=Math.max(h.injuryUntil,m.clock+p.injury);
-            Discipline d=discipline(m.competition,p.uid);if(d.ban>0&&p.stats[2]==0)d.ban--;d.yellow+=p.yellow;d.red+=p.red;
-            if(p.red>0)d.ban+=p.yellow==2?1:2;
+            Discipline d = discipline(m.competition, p.uid);
+            if (d.ban > 0 && p.stats[2] == 0) {
+                d.ban--;
+                // Serve dismissal matches first if both sanctions were earned in one fixture.
+                if (d.dismissalBan > 0) d.dismissalBan--;
+            }
+            d.yellow += p.yellow;
+            d.red += p.red;
+            if (p.red > 0) {
+                int suspension = p.yellow == 2 ? 1 : 2;
+                d.ban += suspension;
+                if (EuropeanPlaces.european(m.competition)) d.dismissalBan += suspension;
+            }
             // Three yellows in Europe, five domestically; a two-yellow dismissal has its own ban.
             int threshold=EuropeanPlaces.european(m.competition)?3:5;
             if(p.yellow<2&&p.yellow>0&&d.yellow/threshold>(d.yellow-p.yellow)/threshold)d.ban++;
