@@ -103,14 +103,13 @@ public final class PfmMatchEngineBridge {
     }
     private static boolean isLiveMatch(dw home,dw away,Vector[] goals){
         return liveGame!=null&&liveGoals==goals&&liveGame.home==home&&liveGame.away==away
-            &&liveGame.round==currentRound()&&liveGame.season==pfm2.getSeason()
-            &&liveGame.identity==NativeWorldCenter.identity();
+            &&liveGame.round==currentRound()&&liveGame.season==pfm2.getSeason();
     }
     /** Called for each half, or for the remaining half when the user selects Skip. */
     public static void fast(dw home,dw away,Vector[] goals,int start){
         try{
             int end=start<45?45:90,from=start+1;
-            boolean resume=isLiveMatch(home,away,goals);
+            boolean resume=isLiveMatch(home,away,goals)&&liveGame.identity==NativeWorldCenter.identity();
             boolean fresh=start==0&&(current==null||current.h.lastMinute>0||current==liveGame);
             Game game=resume?liveGame:game(home,away,fresh);
             current=game;
