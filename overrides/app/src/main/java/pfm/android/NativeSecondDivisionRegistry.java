@@ -44,7 +44,10 @@ final class NativeSecondDivisionRegistry {
         division.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 List<String[]> rows = clubs.get(CODES[position]);
-                status.setText(rows.size() + " clubs · 2010/11 club directory\nCareer squads and fixtures pending.");
+                boolean championship = CODES[position].equals("en2");
+                status.setText(rows.size() + " clubs · 2010/11 club directory\n" +
+                        (championship ? "Tap a club for its August 2010 squad." : "Squad research pending."));
+                list.setOnItemClickListener(championship ? (p, v, index, rowId) -> showSquad(activity, rows.get(index)) : null);
                 list.setAdapter(new ArrayAdapter<String[]>(activity, android.R.layout.simple_list_item_1, rows) {
                     @Override public View getView(int index, View convertView, ViewGroup parent) {
                         LinearLayout row = (LinearLayout) convertView;
@@ -81,6 +84,39 @@ final class NativeSecondDivisionRegistry {
             }
         });
         dialog.show();
+    }
+
+    private static void showSquad(Activity activity, String[] club) {
+        List<String> players = new ArrayList<>();
+        try (BufferedReader in = new BufferedReader(new InputStreamReader(
+                activity.getAssets().open("championship_squads_2010.tsv"), "UTF-8"))) {
+            in.readLine();
+            for (String line; (line = in.readLine()) != null;) {
+                String[] player = line.split("\t", -1);
+                if (!club[0].equals(player[0])) continue;
+                String birthDate = player[4];
+                int age = 2010 - Integer.parseInt(birthDate.substring(0, 4));
+                if (birthDate.substring(5).compareTo("08-07") > 0) age--;
+                String rating = player[7].isEmpty() ? "match-based estimate" : "FIFA 11 + match estimate";
+                String existing = player[1].startsWith("espn:") ? "" : " · linked to career player";
+                players.add(player[2] + " · " + player[3] + " · " + age +
+                        "\nOVR " + player[6] + " · " + rating + existing);
+            }
+        } catch (IOException error) {
+            Toast.makeText(activity, "Championship squad unavailable", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        LinearLayout panel = new LinearLayout(activity);
+        panel.setOrientation(LinearLayout.VERTICAL);
+        TextView note = new TextView(activity);
+        note.setPadding(dp(activity, 12), dp(activity, 8), dp(activity, 12), dp(activity, 8));
+        note.setText(players.size() + " players from August 2010 match squads · ages on 7 August\nCareer fixtures pending.");
+        panel.addView(note);
+        ListView list = new ListView(activity);
+        list.setAdapter(new ArrayAdapter<>(activity, android.R.layout.simple_list_item_1, players));
+        panel.addView(list, new LinearLayout.LayoutParams(-1, -1));
+        new AlertDialog.Builder(activity).setTitle(club[2] + " · squad").setView(panel)
+                .setPositiveButton("Close", null).show();
     }
 
     private static int dp(Activity activity, int value) {
