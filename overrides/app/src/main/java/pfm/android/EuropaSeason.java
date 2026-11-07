@@ -12,14 +12,29 @@ final class EuropaSeason {
     static ArrayList<String> leaguePlaces(String code,MatchJournal previous,NativeCareerStore.Career career,Set<String> ucl,Map<String,Double> strengths,String holder){
         ArrayList<UclSeason.Standing> table=UclSeason.standings(previous,code,career.clubs);boolean complete=true;for(UclSeason.Standing row:table)if(row.played!=(code.equals("de")?34:38))complete=false;
         if(!complete)Collections.sort(table,(a,b)->{int d=Double.compare(UclSeason.value(strengths,b.id),UclSeason.value(strengths,a.id));return d!=0?d:a.id.compareTo(b.id);});
-        ArrayList<String> selected=new ArrayList<String>();for(UclSeason.Standing row:table)if(!ucl.contains(row.id)&&selected.size()<EuropeanPlaces.europa(code))selected.add(row.id);
-        if(!ucl.contains(holder)&&!selected.contains(holder))for(NativeCareerStore.Club club:career.clubs)if(club.id.equals(holder)&&club.league.equals(code)){selected.remove(selected.size()-1);selected.add(holder);}
+        ArrayList<String> selected = new ArrayList<>();
+        if (!ucl.contains(holder)) {
+            for (NativeCareerStore.Club club : career.clubs) {
+                if (club.id.equals(holder) && club.league.equals(code)) selected.add(holder);
+            }
+        }
+        String cupEntrant = DomesticCup.europaEntrant(previous, code, ucl);
+        if (!cupEntrant.isEmpty() && !selected.contains(cupEntrant)) selected.add(cupEntrant);
+        for (UclSeason.Standing row : table) {
+            if (selected.size() == EuropeanPlaces.europa(code)) break;
+            if (!ucl.contains(row.id) && !selected.contains(row.id)) selected.add(row.id);
+        }
         return selected;
     }
     static ArrayList<ArrayList<String>> prepare(MatchJournal j,MatchJournal previous,NativeCareerStore.Career career,ArrayList<ArrayList<String>> uclGroups,int seed){
         String frozen=j.metadata("uel-groups");if(frozen!=null)return UclSeason.decode(frozen);
         Set<String> ucl=entrants(uclGroups);HashMap<String,Double> strengths=UclSeason.strengths(career);HashMap<String,String> associations=new HashMap<String,String>();for(NativeCareerStore.Club club:career.clubs)associations.put(club.id,club.league);
-        String holder=champion(previous);ArrayList<String> selected=new ArrayList<String>();for(String code:new String[]{"en","es","it","de","fr"})selected.addAll(leaguePlaces(code,previous,career,ucl,strengths,holder));
+        String holder = champion(previous);
+        ArrayList<String> selected = new ArrayList<>();
+        for (String code : NativeWorldCenter.C) {
+            selected.addAll(leaguePlaces(code, previous, career, ucl, strengths, holder));
+            j.define("uel-cup-" + code, DomesticCup.europaEntrant(previous, code, ucl));
+        }
         ArrayList<String> external=new ArrayList<String>();for(NativeCareerStore.Club club:career.clubs)if(club.league.startsWith("eu_")&&club.activeFrom<=j.season()&&!ucl.contains(club.id))external.add(club.id);
         Collections.sort(external,(a,b)->{int d=Double.compare(UclSeason.value(strengths,b),UclSeason.value(strengths,a));return d!=0?d:a.compareTo(b);});
         if(external.contains(holder))selected.add(holder);

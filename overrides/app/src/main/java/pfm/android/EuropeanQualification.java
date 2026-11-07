@@ -25,7 +25,12 @@ final class EuropeanQualification {
         if(direct.size()!=22||leaguePath.size()!=10||championPath.size()!=10)throw new IllegalStateException("Incomplete qualifying paths");
         ArrayList<String[]> pairs=new ArrayList<String[]>();qualifyingDraw(leaguePath,country,strengths,seed,pairs);qualifyingDraw(championPath,country,strengths,seed^0x7941,pairs);
         HashSet<String> blocked=new HashSet<String>(direct);blocked.addAll(leaguePath);blocked.addAll(championPath);if(blocked.size()!=42)throw new IllegalStateException("Duplicate UCL qualification entrant");
-        String elHolder=EuropaSeason.champion(previous);ArrayList<String> base=new ArrayList<String>();for(String code:new String[]{"en","es","it","de","fr"})base.addAll(EuropaSeason.leaguePlaces(code,previous,career,blocked,strengths,elHolder));
+        String elHolder = EuropaSeason.champion(previous);
+        ArrayList<String> base = new ArrayList<>();
+        for (String code : NativeWorldCenter.C) {
+            base.addAll(EuropaSeason.leaguePlaces(code, previous, career, blocked, strengths, elHolder));
+            next.define("uel-cup-" + code, DomesticCup.europaEntrant(previous, code, blocked));
+        }
         if(external.contains(elHolder)&&!blocked.contains(elHolder))base.add(elHolder);
         HashMap<String,Integer> counts=new HashMap<String,Integer>();for(String id:base){String c=country.get(id);counts.put(c,counts.containsKey(c)?counts.get(c)+1:1);}
         for(int cap=1;base.size()<38&&cap<=4;cap++)for(String id:external){String c=country.get(id);int count=counts.containsKey(c)?counts.get(c):0;if(base.size()<38&&!blocked.contains(id)&&!base.contains(id)&&count<cap){base.add(id);counts.put(c,count+1);}}
