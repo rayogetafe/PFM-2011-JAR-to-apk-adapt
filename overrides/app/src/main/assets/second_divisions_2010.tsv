@@ -1,0 +1,107 @@
+id	division	name	parent_id	badge	source
+en2:0	en2	Barnsley		en2_0.png	Champ'ship/barnsley-fc.png
+en2:1	en2	Bristol City		en2_1.png	Champ'ship/bristol-city.png
+en2:2	en2	Burnley		en2_2.png	Champ'ship/burnley-fc.png
+en2:3	en2	Cardiff City		en2_3.png	Champ'ship/cardiff-city.png
+en2:4	en2	Coventry City		en2_4.png	Champ'ship/coventry-city.png
+en2:5	en2	Crystal Palace		en2_5.png	Champ'ship/crystal-palace.png
+en2:6	en2	Derby County		en2_6.png	Champ'ship/derby-county.png
+en2:7	en2	Doncaster Rovers		en2_7.png	Champ'ship/doncaster-rovers.png
+en2:8	en2	Hull City		en2_8.png	Champ'ship/hull-city-afc.png
+en2:9	en2	Ipswich Town		en2_9.png	Champ'ship/ipswich-town.png
+en2:10	en2	Leeds United		en2_10.png	Champ'ship/leeds-united.png
+en2:11	en2	Leicester City		en2_11.png	Champ'ship/leicester-city.png
+en2:12	en2	Middlesbrough		en2_12.png	Champ'ship/middlesbrough-fc.png
+en2:13	en2	Millwall		en2_13.png	Champ'ship/millwall-fc.png
+en2:14	en2	Norwich City		en2_14.png	Champ'ship/norwich-city.png
+en2:15	en2	Nottingham Forest		en2_15.png	Champ'ship/nottingham-forest.png
+en2:16	en2	Portsmouth		en2_16.png	Champ'ship/portsmouth-fc.png
+en2:17	en2	Preston North End		en2_17.png	Champ'ship/preston-north-end.png
+en2:18	en2	Queens Park Rangers		en2_18.png	Champ'ship/queens-park-rangers.png
+en2:19	en2	Reading		en2_19.png	Champ'ship/reading-fc-1998.png
+en2:20	en2	Scunthorpe United		en2_20.png	Champ'ship/scunthorpe-united.png
+en2:21	en2	Sheffield United		en2_21.png	Champ'ship/sheffield-united.png
+en2:22	en2	Swansea City		en2_22.png	Champ'ship/swansea-city.png
+en2:23	en2	Watford		en2_23.png	Champ'ship/watford-fc.png
+es2:0	es2	Alcorcón		es2_0.png	Segunda/ad-alcorcon.jpg
+es2:1	es2	Albacete		es2_1.png	Segunda/albacete-balompie.png
+es2:2	es2	Barcelona B	es:0	es2_2.png	Segunda/fc-barcelona-b.png
+es2:3	es2	Celta Vigo		es2_3.png	Segunda/rc-celta-de-vigo.png
+es2:4	es2	Cartagena		es2_4.png	Segunda/fc-cartagena.png
+es2:5	es2	Córdoba		es2_5.png	Segunda/cordoba-cf.png
+es2:6	es2	Elche		es2_6.png	Segunda/elche-cf.png
+es2:7	es2	Gimnàstic de Tarragona		es2_7.png	Segunda/gimnastic-de-tarragona.jpg
+es2:8	es2	Girona		es2_8.png	Segunda/girona.jpg
+es2:9	es2	Granada		es2_9.png	Segunda/granada-cf.png
+es2:10	es2	Huesca		es2_10.png	Segunda/sd-huesca.jpg
+es2:11	es2	Las Palmas		es2_11.png	Segunda/ud-las-palmas.png
+es2:12	es2	Numancia		es2_12.png	Segunda/cd-numancia.png
+es2:13	es2	Ponferradina		es2_13.png	Segunda/sd-ponferradina.jpg
+es2:14	es2	Rayo Vallecano		es2_14.png	Segunda/rayo-vallecano.png
+es2:15	es2	Real Betis		es2_15.png	Segunda/real-betis.png
+es2:16	es2	Real Valladolid		es2_16.png	Segunda/real-valladolid.png
+es2:17	es2	Recreativo de Huelva		es2_17.png	Segunda/recreativo-de-huelva.png
+es2:18	es2	UD Salamanca		es2_18.png	Segunda/salamanca.jpg
+es2:19	es2	Tenerife		es2_19.png	Segunda/cd-tenerife.png
+es2:20	es2	Villarreal B	es:4	es2_20.png	Segunda/villarreal-cf-b.png
+es2:21	es2	Xerez		es2_21.png	Segunda/xerez-cd.png
+it2:0	it2	AlbinoLeffe		it2_0.png	Serie B/uc-albinoleffe.png
+it2:1	it2	Ascoli		it2_1.png	Serie B/ascoli-calcio.png
+it2:2	it2	Atalanta		it2_2.png	Serie B/atalanta-bc.png
+it2:3	it2	Cittadella		it2_3.png	Serie B/as-cittadella.png
+it2:4	it2	Crotone		it2_4.png	Serie B/Crotone.png
+it2:5	it2	Empoli		it2_5.png	Serie B/empoli-fc.png
+it2:6	it2	Frosinone		it2_6.png	Serie B/frosinone-calcio.png
+it2:7	it2	Grosseto		it2_7.png	Serie B/grossetto.jpg
+it2:8	it2	Livorno		it2_8.png	Serie B/us-livorno-1915.png
+it2:9	it2	Modena		it2_9.png	Serie B/modena-fc.png
+it2:10	it2	Novara		it2_10.png	Serie B/Novara_Calcio.png
+it2:11	it2	Padova		it2_11.png	Serie B/padova.png
+it2:12	it2	Pescara		it2_12.png	Serie B/pescara-calcio.png
+it2:13	it2	Piacenza		it2_13.png	Serie B/piacenza-calcio.png
+it2:14	it2	Portogruaro		it2_14.png	Serie B/portogruaro-calcio.png
+it2:15	it2	Reggina		it2_15.png	Serie B/reggina.png
+it2:16	it2	Sassuolo		it2_16.png	Serie B/us-sassuolo.png
+it2:17	it2	Siena		it2_17.png	Serie B/siena-fc.jpg
+it2:18	it2	Torino		it2_18.png	Serie B/torino-fc.png
+it2:19	it2	Triestina		it2_19.png	Serie B/triestina.png
+it2:20	it2	Varese		it2_20.png	Serie B/varese-fc.png
+it2:21	it2	Vicenza		it2_21.png	Serie B/lr-vicenza.png
+de2:0	de2	1860 München		de2_0.png	2.Bundesliga/tsv-1860-munchen.png
+de2:1	de2	Alemannia Aachen		de2_1.png	2.Bundesliga/alemannia-aachen.png
+de2:2	de2	Arminia Bielefeld		de2_2.png	2.Bundesliga/arminia-bielefeld.png
+de2:3	de2	FC Augsburg		de2_3.png	2.Bundesliga/fc-augsburg.png
+de2:4	de2	VfL Bochum		de2_4.png	2.Bundesliga/vfl-bochum.png
+de2:5	de2	MSV Duisburg		de2_5.png	2.Bundesliga/msv-duisburg.png
+de2:6	de2	Energie Cottbus		de2_6.png	2.Bundesliga/energie-cottbus.png
+de2:7	de2	Erzgebirge Aue		de2_7.png	2.Bundesliga/erzgebirge-aue.png
+de2:8	de2	Fortuna Düsseldorf		de2_8.png	2.Bundesliga/fortuna-dusseldorf.png
+de2:9	de2	FSV Frankfurt		de2_9.png	2.Bundesliga/fsv-frankfurt.png
+de2:10	de2	Greuther Fürth		de2_10.png	2.Bundesliga/greuther-furth.png
+de2:11	de2	Hertha BSC		de2_11.png	2.Bundesliga/hertha-bsc.png
+de2:12	de2	FC Ingolstadt 04		de2_12.png	2.Bundesliga/fc-ingolstadt.png
+de2:13	de2	Karlsruher SC		de2_13.png	2.Bundesliga/karlsruher-sc.png
+de2:14	de2	Rot-Weiß Oberhausen		de2_14.png	2.Bundesliga/rot-weiss-oberhausen.png
+de2:15	de2	VfL Osnabrück		de2_15.png	2.Bundesliga/vfl-osnabruck.png
+de2:16	de2	SC Paderborn 07		de2_16.png	2.Bundesliga/sc-paderborn.png
+de2:17	de2	Union Berlin		de2_17.png	2.Bundesliga/union-berlin.png
+fr2:0	fr2	AC Ajaccio		fr2_0.png	Ligue 2/ac-ajaccio.png
+fr2:1	fr2	Angers SCO		fr2_1.png	Ligue 2/angers-sco.png
+fr2:2	fr2	US Boulogne		fr2_2.png	Ligue 2/us-boulogne.png
+fr2:3	fr2	Châteauroux		fr2_3.png	Ligue 2/lb-chateauroux.png
+fr2:4	fr2	Clermont Foot		fr2_4.png	Ligue 2/clermont-foot.png
+fr2:5	fr2	Dijon FCO		fr2_5.png	Ligue 2/dijon.png
+fr2:6	fr2	Évian Thonon Gaillard		fr2_6.png	Ligue 2/thonon-evian.png
+fr2:7	fr2	Grenoble Foot 38		fr2_7.png	Ligue 2/grenoble-foot.png
+fr2:8	fr2	FC Istres		fr2_8.png	Ligue 2/fc-istres.png
+fr2:9	fr2	Stade Lavallois		fr2_9.png	Ligue 2/stade-lavallois-mayenne.png
+fr2:10	fr2	Le Havre AC		fr2_10.png	Ligue 2/le-havre-ac.png
+fr2:11	fr2	Le Mans FC		fr2_11.png	Ligue 2/le-mans-fc.png
+fr2:12	fr2	FC Metz		fr2_12.png	Ligue 2/fc-metz.png
+fr2:13	fr2	FC Nantes		fr2_13.png	Ligue 2/fc-nantes.png
+fr2:14	fr2	Nîmes Olympique		fr2_14.png	Ligue 2/nimes-olympique.png
+fr2:15	fr2	Stade de Reims		fr2_15.png	Ligue 2/stade-de-reims.png
+fr2:16	fr2	CS Sedan Ardennes		fr2_16.png	Ligue 2/sedan.png
+fr2:17	fr2	Tours FC		fr2_17.png	Ligue 2/tours-fc.png
+fr2:18	fr2	Troyes AC		fr2_18.png	Ligue 2/es-troyes.png
+fr2:19	fr2	Vannes OC		fr2_19.png	Ligue 2/vannes-oc.png
