@@ -22,7 +22,8 @@ final class NativeTransferMarketModel {
     private Profile profile(NativeCareerStore.Club c){return c.league.startsWith("eu_")?profiles.get(c.name):null;}
     String country(NativeCareerStore.Club c){
         Profile p=profile(c);if(p!=null)return p.country;
-        if(c.league.equals("en"))return "England";if(c.league.equals("es"))return "Spain";if(c.league.equals("it"))return "Italy";if(c.league.equals("de"))return "Germany";if(c.league.equals("fr"))return "France";
+        String league = EuropeanPlaces.association(c.league);
+        if(league.equals("en"))return "England";if(league.equals("es"))return "Spain";if(league.equals("it"))return "Italy";if(league.equals("de"))return "Germany";if(league.equals("fr"))return "France";
         throw new IllegalStateException("Missing transfer profile: "+c.name);
     }
     private static String region(String country){

@@ -94,9 +94,7 @@ final class NativeSecondDivisionRegistry {
             for (String line; (line = in.readLine()) != null;) {
                 String[] player = line.split("\t", -1);
                 if (!club[0].equals(player[0])) continue;
-                String birthDate = player[4];
-                int age = 2010 - Integer.parseInt(birthDate.substring(0, 4));
-                if (birthDate.substring(5).compareTo("08-07") > 0) age--;
+                int age = NativeChampionship.ageAtStart(player[4]);
                 String rating = player[7].isEmpty() ? "match-based estimate" : "FIFA 11 + match estimate";
                 String existing = player[1].startsWith("espn:") ? "" : " · linked to career player";
                 players.add(player[2] + " · " + player[3] + " · " + age +
@@ -110,7 +108,7 @@ final class NativeSecondDivisionRegistry {
         panel.setOrientation(LinearLayout.VERTICAL);
         TextView note = new TextView(activity);
         note.setPadding(dp(activity, 12), dp(activity, 8), dp(activity, 12), dp(activity, 8));
-        note.setText(players.size() + " players from August 2010 match squads · ages on 7 August\nCareer fixtures pending.");
+        note.setText(players.size() + " players from August 2010 match squads · ages on 7 August\nHistorical reference · use Championship in the league selector for live squads.");
         panel.addView(note);
         ListView list = new ListView(activity);
         list.setAdapter(new ArrayAdapter<>(activity, android.R.layout.simple_list_item_1, players));

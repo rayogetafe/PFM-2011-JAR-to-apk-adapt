@@ -9,7 +9,7 @@ def main():
     (ROOT/'artifacts').mkdir(exist_ok=True)
     with tempfile.TemporaryDirectory(prefix='pfm-v82-',dir=ROOT/'artifacts') as temp:
         sources=[*list((ROOT/'tools/tests/v82').rglob('*.java')),prod/'NativeAiMarket.java',prod/'MatchEngine.java']
-        if (prod/'NativeTransferMarketModel.java').exists():sources.append(prod/'NativeTransferMarketModel.java')
+        if (prod/'NativeTransferMarketModel.java').exists():sources.extend([prod/'NativeTransferMarketModel.java',prod/'EuropeanPlaces.java'])
         subprocess.run([javac,'-encoding','UTF-8','-d',temp,*map(str,sources)],check=True)
         subprocess.run([java,'-cp',temp,'pfm.android.MarketHarness',*sys.argv[1:]],cwd=ROOT,check=True)
 if __name__=='__main__':main()

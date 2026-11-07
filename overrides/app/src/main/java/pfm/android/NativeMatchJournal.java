@@ -95,7 +95,8 @@ public final class NativeMatchJournal {
                     if (player.owner.equals(homeId)) homePayroll += player.contractWage;
                     if (player.owner.equals(awayId)) awayPayroll += player.contractWage;
                 }
-                int leagueRounds = competition.equals("league:de") ? 34 : 38;
+                int leagueRounds = competition.startsWith("league:") ?
+                        NativeCompetitionCalendar.leagueRounds(competition.substring(7)) : 38;
                 boolean european = EuropeanPlaces.european(competition);
                 m.homeCredit = MatchEffects.credit(european, true, m.homeGoals, m.awayGoals, home.ovr, homePayroll, leagueRounds);
                 m.awayCredit = MatchEffects.credit(european, false, m.awayGoals, m.homeGoals, away.ovr, awayPayroll, leagueRounds);
@@ -181,12 +182,19 @@ public final class NativeMatchJournal {
         HashMap<String,String> associations=new HashMap<String,String>();for(NativeCareerStore.Club club:career.clubs)associations.put(club.id,EuropeanPlaces.association(club.league));
         MatchEffects effects=effects(c,j,season,completed);
         importLegacy(c,j,completed,career);
+        Map<String, ArrayList<NativeWorldCenter.M>> parallel = new LinkedHashMap<>();
+        for (String code : NativeWorldCenter.C) {
+            ArrayList<NativeWorldCenter.T> clubs = NativeWorldCenter.leagues.get(code);
+            if (clubs != null && !code.equals(career.activeLeague)) parallel.put(code, NativeWorldCenter.schedule(clubs.size()));
+        }
+        if (NativeChampionship.active(career, season)) {
+            parallel.put(NativeChampionship.CODE, NativeWorldCenter.schedule(NativeChampionship.CLUBS));
+        }
         for(int step=1;step<=completed;step++){
             effects.rest(step);
-            for(String code:NativeWorldCenter.C)if(!code.equals(career.activeLeague)){
-                ArrayList<NativeWorldCenter.T> clubs=NativeWorldCenter.leagues.get(code);if(clubs==null)continue;
+            for(String code:parallel.keySet()){
                 int previous=NativeCompetitionCalendar.parallelRound(step-1,total,code),now=NativeCompetitionCalendar.parallelRound(step,total,code);
-                for(NativeWorldCenter.M fixture:NativeWorldCenter.schedule(clubs.size()))if(fixture.r>previous&&fixture.r<=now){int seed=identity+season*10007+code.hashCode()*101+fixture.r*37+fixture.h*11+fixture.a;capture(j,"league:"+code,fixture.r,code+":"+fixture.h,code+":"+fixture.a,seed,teams,players,source,effects,career);}
+                for(NativeWorldCenter.M fixture:parallel.get(code))if(fixture.r>previous&&fixture.r<=now){int seed=identity+season*10007+code.hashCode()*101+fixture.r*37+fixture.h*11+fixture.a;capture(j,"league:"+code,fixture.r,code+":"+fixture.h,code+":"+fixture.a,seed,teams,players,source,effects,career);}
             }
             EuropeanQualification.advance(j,identity,step,total,teams,players,source,effects,career);
             if(EuropeanQualification.planned(j)){groups=UclSeason.decode(j.metadata("ucl-groups"));europaGroups=UclSeason.decode(j.metadata("uel-groups"));}

@@ -4,9 +4,9 @@ import java.util.*;
 import java.io.*;
 class NativeCareerStore {
  static class Club implements Serializable {String id,name,league;int sourceId,balance,wageBudget,activeFrom=2010;}
- static class Player implements Serializable {String id,name,owner,nationality;int sourceId,position,age,overall,spe,res,qua,morale,value,contractWage,contractUntil;boolean contractGrace;}
+ static class Player implements Serializable {String id,name,owner,nationality,provenance;int sourceId,position,age,overall,spe,res,qua,morale,value,wage,contractWage,contractUntil;boolean contractGrace;}
  static class Deal implements Serializable {String player,from,to;int fee,wage,years,season;boolean ai;}
- static class Career implements Serializable {int season,aiWindow=-1,aiCountWindow=-1,aiCount;String activeLeague,userClub;ArrayList<Club> clubs=new ArrayList<>();ArrayList<Player> players=new ArrayList<>();ArrayList<Deal> deals=new ArrayList<>();HashSet<String> matchReceipts=new HashSet<>();boolean matchBudgetPending;}
+ static class Career implements Serializable {int schema,slot,created,season,aiWindow=-1,aiCountWindow=-1,aiCount;String activeLeague,userClub;ArrayList<Club> clubs=new ArrayList<>();ArrayList<Player> players=new ArrayList<>();ArrayList<Deal> deals=new ArrayList<>();HashSet<String> matchReceipts=new HashSet<>();boolean matchBudgetPending;}
  static Career current;static int ensures;
  static Career ensure(Context c){ensures++;if(current.season<NativeWorldCenter.year)advance(current,NativeWorldCenter.year);return current;}
  static Career mutable(Context c){return ensure(c);}static boolean aiReady(Context c){return true;}
@@ -16,5 +16,9 @@ class NativeCareerStore {
  static String commitAi(Context c,Career state){current=state;return "OK";}static void postMail(Career c,Deal d){}
  /* FINANCE */
  /* ADVANCE */
+ static final int SCHEMA=14;
+ private static String activeLeague(){return current.activeLeague;}
+ private static String userClub(){return current.userClub;}
+ /* CHAMPIONSHIP */
 }
 class NativeGlobalMarket {static int quoted(int n){return Math.max(100000,((n+50000)/100000)*100000);}}
