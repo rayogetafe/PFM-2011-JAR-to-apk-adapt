@@ -11,7 +11,9 @@ public final class PfmMatchEngineBridge {
     private static final HashMap<String,Field> fields=new HashMap<String,Field>();
     private static final Method playerAt=method(cp.class,"a",ci.class,dw.class,Integer.TYPE);
     private static Object live;
-    private static int liveSeed,lastMinute,pendingMask,pendingMinute;
+    private static Vector[] liveGoals;
+    private static Game liveGame;
+    private static int lastMinute,pendingMask,pendingMinute;
     private static MatchEngine.Profile liveProfile=MatchEngine.DEFAULT;
     private static boolean reported;
     private static final HashMap<Integer,Game> games=new HashMap<Integer,Game>();
@@ -99,25 +101,33 @@ public final class PfmMatchEngineBridge {
         if(scorer==null)throw new IllegalStateException("No eligible scorer at "+minute);
         goals.addElement(scorer);goals.addElement(Integer.toString(minute));
     }
+    private static boolean isLiveMatch(dw home,dw away,Vector[] goals){
+        return liveGame!=null&&liveGoals==goals&&liveGame.home==home&&liveGame.away==away
+            &&liveGame.round==currentRound()&&liveGame.season==pfm2.getSeason()
+            &&liveGame.identity==NativeWorldCenter.identity();
+    }
     /** Called for each half, or for the remaining half when the user selects Skip. */
     public static void fast(dw home,dw away,Vector[] goals,int start){
         try{
-            int key=seed(home,away),end=start<45?45:90,from=start+1;
-            Game game=game(home,away,start==0&&(current==null||current.h.lastMinute>0));
+            int end=start<45?45:90,from=start+1;
+            boolean resume=isLiveMatch(home,away,goals);
+            boolean fresh=start==0&&(current==null||current.h.lastMinute>0||current==liveGame);
+            Game game=resume?liveGame:game(home,away,fresh);
+            current=game;
             game.detailed=false;
-            if(start==0&&game.h.lastMinute==0&&liveSeed==key&&lastMinute>0){live=null;lastMinute=0;pendingMask=0;liveAwaiting=false;}
-            MatchEngine.Profile profile=profile();
-            if(live!=null&&key==liveSeed){
+            MatchEngine.Profile profile=resume?liveProfile:profile();
+            if(resume){
                 if(pendingMask!=0){for(int side=0;side<2;side++)if((pendingMask&(1<<side))!=0)
                     append(side==0?home:away,home,away,goals[side],pendingMinute);if(game.h.lastMinute<pendingMinute)finish(game,pendingMinute);pendingMask=0;}
-                from=Math.max(from,lastMinute+1);
+                // The celebration can show minute zero after the first goal has already been booked.
+                from=lastMinute+1;
             }
             for(int minute=from;minute<=end;minute++){
                 int events=advance(game,minute,goals[0].size()/2,goals[1].size()/2,profile);
                 for(int side=0;side<2;side++)if((events&(1<<side))!=0)
                     append(side==0?home:away,home,away,goals[side],minute);
                 finish(game,minute);
-                if(live!=null&&key==liveSeed)lastMinute=minute;
+                if(resume)lastMinute=minute;
             }
         }catch(Exception e){throw new IllegalStateException("Unified fast match failed",e);}
     }
@@ -127,11 +137,15 @@ public final class PfmMatchEngineBridge {
             int phase=ub(screen,"c");if(phase!=1&&phase!=3)return false;
             int minute=Math.min(90,field(ca.class,"n",Integer.TYPE).getInt(screen)+1);
             dw home=(dw)field(ca.class,"a",dw.class).get(screen),away=(dw)field(ca.class,"b",dw.class).get(screen);
-            if(live!=screen||(minute<=1&&lastMinute>1)){live=screen;liveSeed=seed(home,away);liveProfile=profile();lastMinute=0;pendingMask=0;liveAwaiting=false;game(home,away,true);}
+            Vector[] goals=(Vector[])field(ca.class,"a",Vector[].class).get(screen);
+            if(live!=screen||!isLiveMatch(home,away,goals)){
+                liveGame=game(home,away,true);live=screen;liveGoals=goals;liveProfile=profile();
+                lastMinute=0;pendingMask=0;liveAwaiting=false;
+            }
             if(field(ca.class,"t",Integer.TYPE).getInt(screen)>0)return false;
+            current=liveGame;
             current.detailed=true;
             if(pendingMask==0&&minute>lastMinute){
-                Vector[] goals=(Vector[])field(ca.class,"a",Vector[].class).get(screen);
                 for(int m=lastMinute+1;m<=minute;m++){
                     // Scorers must still be active in this minute; retire incidents at the next minute boundary.
                     if(current.h.lastMinute<m-1)finish(current,m-1);

@@ -9,7 +9,7 @@ public class BridgeHarness {
     }
     static Vector[] goals(){return new Vector[]{new Vector(),new Vector()};}
     static void check(boolean value,String message){if(!value)throw new AssertionError(message);}
-    static String details(){StringBuilder b=new StringBuilder();for(pfm.android.MatchEngine.Lineup s:PfmMatchEngineBridge.currentLineups()){for(pfm.android.MatchEngine.Member p:s.squad)b.append(p.uid+":"+p.minutes+":"+p.yellow+":"+p.red+":"+p.injury+";");for(pfm.android.MatchEngine.Incident e:s.incidents)b.append(e.minute+":"+e.type+":"+e.uid+":"+e.other+";");}return b.toString();}
+    static String details(){StringBuilder b=new StringBuilder();for(pfm.android.MatchEngine.Lineup s:PfmMatchEngineBridge.currentLineups()){for(pfm.android.MatchEngine.Member p:s.squad)b.append(p.uid+":"+p.minutes+":"+p.yellow+":"+p.red+":"+p.injury+":"+p.goals+":"+p.conceded+";");for(pfm.android.MatchEngine.Incident e:s.incidents)b.append(e.minute+":"+e.type+":"+e.uid+":"+e.other+";");}return b.toString();}
     static void runLive(ca screen,int from,int to,Vector[] goals)throws Exception{
         f(screen,"a",Vector[].class).set(screen,goals);
         for(int minute=from;minute<=to;minute++){
@@ -28,6 +28,7 @@ public class BridgeHarness {
     public static void main(String[] args)throws Exception{
         Method profile=PfmMatchEngineBridge.class.getDeclaredMethod("profile");profile.setAccessible(true);
         dw home=new dw(0),away=new dw(1);pfmPlayerHistoryV2.user=home;ca screen=new ca(home,away);
+        int firstMinuteCelebrations=0, secondHalfCelebrations=0;
         for(int round=0;round<1000;round++){
             PfmSeasonBridge.code=new String[]{"en","es","it","de","fr"}[round/200];
             check(((pfm.android.MatchEngine.Profile)profile.invoke(null)).code.equals(PfmSeasonBridge.code),"legacy adapter lost league profile");
@@ -42,7 +43,26 @@ public class BridgeHarness {
             PfmMatchEngineBridge.fast(home,away,skip,37);PfmMatchEngineBridge.fast(home,away,skip,45);
             check(skip[0].equals(quick[0])&&skip[1].equals(quick[1]),"skip duplicate/missing event at "+round);
             check(facts.equals(details()),"Skip lost or repeated incident facts");
+            int firstGoal=91;
+            for(Vector side:quick)if(!side.isEmpty())firstGoal=Math.min(firstGoal,Integer.parseInt((String)side.get(1)));
+            if(firstGoal<=90){
+                Vector[] celebration=goals();
+                runLive(screen,1,firstGoal,celebration);
+                // The goal is already in the score vectors. The next animation frame still displays the preceding minute.
+                screen.t=1;
+                screen.n=firstGoal-1;
+                check(!PfmMatchEngineBridge.liveGoal(screen),"goal replayed in a celebration frame");
+                PfmMatchEngineBridge.fast(home,away,celebration,screen.n);
+                if(screen.n<45)PfmMatchEngineBridge.fast(home,away,celebration,45);
+                check(celebration[0].equals(quick[0])&&celebration[1].equals(quick[1]),"Finalize changed result/scorers during "+firstGoal+"' celebration at round "+round);
+                check(facts.equals(details()),"Finalize changed scorer or keeper totals, minutes or incidents");
+                if(firstGoal==1)firstMinuteCelebrations++;
+                if(firstGoal>45)secondHalfCelebrations++;
+                screen.t=0;
+            }
         }
+        check(firstMinuteCelebrations>0&&secondHalfCelebrations>0,"missing early or second-half celebration fixture");
+        System.out.println("Finalize during goal celebration: "+firstMinuteCelebrations+" first-minute and "+secondHalfCelebrations+" second-half cases");
         screen.m=100;screen.t=2;check(PfmMatchEngineBridge.clockTick(screen)==100,"celebration consumed clock");
         screen.t=0;check(PfmMatchEngineBridge.clockTick(screen)==101,"clock did not resume");
         PfmIncidentsBridge88.condition();PfmIncidentsBridge88.discipline();
