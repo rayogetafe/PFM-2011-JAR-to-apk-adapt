@@ -41,13 +41,14 @@ final class EuropaSeason {
         HashMap<String,Integer> counts=new HashMap<String,Integer>();for(String id:selected){String a=associations.get(id);counts.put(a,counts.containsKey(a)?counts.get(a)+1:1);}
         for(int cap=1;selected.size()<48&&cap<=4;cap++)for(String id:external){String a=associations.get(id);int count=counts.containsKey(a)?counts.get(a):0;if(selected.size()<48&&!selected.contains(id)&&count<cap){selected.add(id);counts.put(a,count+1);}}
         if(selected.size()!=48||new HashSet<String>(selected).size()!=48)throw new IllegalStateException("Europa requires 48 distinct entrants");
-        return freeze(j,selected,career,strengths,holder,seed);
+        return freeze(j, selected, career, EuropeanQualification.holderFirst(holder,
+                EuropeanQualification.seedingOrder(Collections.emptyMap(), strengths)), seed);
     }
-    static ArrayList<ArrayList<String>> freeze(MatchJournal j,ArrayList<String> selected,NativeCareerStore.Career career,Map<String,Double> strengths,String holder,int seed){
+    static ArrayList<ArrayList<String>> freeze(MatchJournal j,ArrayList<String> selected,NativeCareerStore.Career career,Comparator<String> order,int seed){
         if(j.metadata("uel-groups")!=null)return UclSeason.decode(j.metadata("uel-groups"));
         if(selected.size()!=48||new HashSet<String>(selected).size()!=48)throw new IllegalStateException("Europa requires 48 distinct entrants");
         HashMap<String,String> associations=new HashMap<String,String>();for(NativeCareerStore.Club club:career.clubs)associations.put(club.id,club.league);
-        Collections.sort(selected,(a,b)->{if(a.equals(holder))return b.equals(holder)?0:-1;if(b.equals(holder))return 1;int d=Double.compare(UclSeason.value(strengths,b),UclSeason.value(strengths,a));return d!=0?d:a.compareTo(b);});
+        Collections.sort(selected, order);
         ArrayList<ArrayList<String>> groups=new ArrayList<ArrayList<String>>();for(int g=0;g<12;g++)groups.add(new ArrayList<String>());if(!UclSeason.assign(selected,associations,groups,0,new Random(seed)))throw new IllegalStateException("Europa group draw failed");
         j.define("uel-groups",UclSeason.encode(groups));j.define("uel-qualification",j.season()==2010?"Estimated inaugural 2010/11 entrants; historical group draw is not reproduced.":"Three league-table places per top-five league, excluding UCL entrants. External places estimated; cup qualifying rounds abstracted.");return groups;
     }

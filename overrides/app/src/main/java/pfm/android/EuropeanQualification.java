@@ -1,5 +1,6 @@
 package pfm.android;
 
+import java.io.IOException;
 import java.util.*;
 
 /** Frozen decisive UCL qualifying round. Earlier external rounds remain an estimated selection. */
@@ -12,7 +13,7 @@ final class EuropeanQualification {
     static Set<String> candidates(MatchJournal j){HashSet<String> ids=new HashSet<String>(ids(j.metadata("uclq-direct")));for(String[] pair:pairs(j)){ids.add(pair[0]);ids.add(pair[1]);}return ids;}
     private static Comparator<String> ranked(final Map<String,Double> strengths){return (a,b)->{int d=Double.compare(UclSeason.value(strengths,b),UclSeason.value(strengths,a));return d!=0?d:a.compareTo(b);};}
     private static ArrayList<UclSeason.Standing> table(MatchJournal previous,NativeCareerStore.Career career,String code,Map<String,Double> strengths){ArrayList<UclSeason.Standing> table=UclSeason.standings(previous,code,career.clubs);boolean full=true;for(UclSeason.Standing row:table)if(row.played!=(code.equals("de")?34:38))full=false;if(!full)Collections.sort(table,(a,b)->ranked(strengths).compare(a.id,b.id));return table;}
-    static void prepare(MatchJournal next,MatchJournal previous,NativeCareerStore.Career career,int seed){
+    static void prepare(MatchJournal next,MatchJournal previous,NativeCareerStore.Career career,int seed) throws IOException {
         if(planned(next)||next.metadata("ucl-groups")!=null)return;
         HashMap<String,Double> strengths=UclSeason.strengths(career);HashMap<String,String> country=new HashMap<String,String>();for(NativeCareerStore.Club club:career.clubs)country.put(club.id,club.league);
         String holder=UclSeason.champion(previous);ArrayList<String> direct=new ArrayList<String>(),leaguePath=new ArrayList<String>();boolean estimated=false;
@@ -23,7 +24,9 @@ final class EuropeanQualification {
         HashSet<String> runners=new HashSet<String>();for(String id:external)if(leaguePath.size()<10&&directCountries.contains(country.get(id))&&!direct.contains(id)&&runners.add(country.get(id)))leaguePath.add(id);
         ArrayList<String> championPath=new ArrayList<String>();HashSet<String> champions=new HashSet<String>();for(String id:external)if(championPath.size()<10&&!directCountries.contains(country.get(id))&&champions.add(country.get(id)))championPath.add(id);
         if(direct.size()!=22||leaguePath.size()!=10||championPath.size()!=10)throw new IllegalStateException("Incomplete qualifying paths");
-        ArrayList<String[]> pairs=new ArrayList<String[]>();qualifyingDraw(leaguePath,country,strengths,seed,pairs);qualifyingDraw(championPath,country,strengths,seed^0x7941,pairs);
+        Map<String, Integer> points = seedingPoints(previous);
+        Comparator<String> seeding = seedingOrder(points, strengths);
+        ArrayList<String[]> pairs=new ArrayList<String[]>();qualifyingDraw(leaguePath,country,seeding,seed,pairs);qualifyingDraw(championPath,country,seeding,seed^0x7941,pairs);
         HashSet<String> blocked=new HashSet<String>(direct);blocked.addAll(leaguePath);blocked.addAll(championPath);if(blocked.size()!=42)throw new IllegalStateException("Duplicate UCL qualification entrant");
         String elHolder = EuropaSeason.champion(previous);
         ArrayList<String> base = new ArrayList<>();
@@ -37,17 +40,82 @@ final class EuropeanQualification {
         if(base.size()!=38)throw new IllegalStateException("Europa base requires 38 entrants");
         StringBuilder draw=new StringBuilder();for(String[] pair:pairs)draw.append(pair[0]).append(',').append(pair[1]).append(';');next.define("uclq-direct",encode(direct));next.define("uclq-pairs",draw.toString());next.define("uelq-base",encode(base));next.define("uclq-holder",holder);next.define("uelq-holder",elHolder);
         StringBuilder frozenStrength=new StringBuilder();for(String id:new TreeSet<String>(strengths.keySet()))frozenStrength.append(id).append(',').append(strengths.get(id)).append(';');next.define("uclq-strengths",frozenStrength.toString());
+        StringBuilder frozenPoints = new StringBuilder();
+        for (Map.Entry<String, Integer> entry : new TreeMap<>(points).entrySet()) {
+            frozenPoints.append(entry.getKey()).append(',').append(entry.getValue()).append(';');
+        }
+        next.define("europe-seeding-points", frozenPoints.toString());
         next.define("ucl-qualification",(estimated?"Estimated top-five entries: final tables unavailable. ":"Top-five entries from final tables. ")+"22 direct group places + 10 two-leg playoff winners. External paths estimated; earlier rounds abstracted.");next.define("uel-qualification","38 fixed entrants + 10 UCL playoff losers. Cup and earlier external qualifying rounds abstracted.");
     }
-    private static void qualifyingDraw(ArrayList<String> clubs,Map<String,String> country,Map<String,Double> strengths,int seed,ArrayList<String[]> out){Collections.sort(clubs,ranked(strengths));ArrayList<String> seeded=new ArrayList<String>(clubs.subList(0,5)),unseeded=new ArrayList<String>(clubs.subList(5,10));Collections.shuffle(seeded,new Random(seed));Collections.shuffle(unseeded,new Random(seed^0x71af));HashMap<String,Integer> distinct=new HashMap<String,Integer>();for(int i=0;i<clubs.size();i++)distinct.put(clubs.get(i),i);if(!UclKnockout.pair(seeded,unseeded,distinct,country,0,new HashSet<String>(),out))throw new IllegalStateException("No qualifying draw");}
+    private static void qualifyingDraw(ArrayList<String> clubs,Map<String,String> country,Comparator<String> order,int seed,ArrayList<String[]> out){Collections.sort(clubs,order);ArrayList<String> seeded=new ArrayList<String>(clubs.subList(0,5)),unseeded=new ArrayList<String>(clubs.subList(5,10));Collections.shuffle(seeded,new Random(seed));Collections.shuffle(unseeded,new Random(seed^0x71af));HashMap<String,Integer> distinct=new HashMap<String,Integer>();for(int i=0;i<clubs.size();i++)distinct.put(clubs.get(i),i);if(!UclKnockout.pair(seeded,unseeded,distinct,country,0,new HashSet<String>(),out))throw new IllegalStateException("No qualifying draw");}
+
+    // Integer half-points: wins/draws are 4/2 in the main tournaments and 2/1 in qualifying.
+    static Map<String, Integer> seedingPoints(MatchJournal previous) throws IOException {
+        Map<String, Integer> points = new HashMap<>();
+        for (int year = previous.season(); year >= Math.max(2010, previous.season() - 4); year--) {
+            MatchJournal archive = year == previous.season() ? previous : previous.openSeason(year);
+            for (String competition : new String[]{UclSeason.competition(year), EuropaSeason.competition(year), competition(year)}) {
+                int win = competition.equals(competition(year)) ? 2 : 4;
+                for (MatchJournal.Match match : archive.competition(competition)) {
+                    if (match.homeGoals == match.awayGoals) {
+                        addPoints(points, match.home, win / 2);
+                        addPoints(points, match.away, win / 2);
+                    } else {
+                        addPoints(points, match.homeGoals > match.awayGoals ? match.home : match.away, win);
+                    }
+                }
+            }
+        }
+        return points;
+    }
+
+    private static void addPoints(Map<String, Integer> points, String club, int earned) {
+        points.put(club, points.containsKey(club) ? points.get(club) + earned : earned);
+    }
+
+    static Map<String, Integer> frozenSeedingPoints(MatchJournal journal) {
+        Map<String, Integer> points = new HashMap<>();
+        for (String entry : ids(journal.metadata("europe-seeding-points"))) {
+            String[] values = entry.split(",");
+            points.put(values[0], Integer.parseInt(values[1]));
+        }
+        return points;
+    }
+
+    static Map<String, Double> frozenStrengths(MatchJournal journal) {
+        Map<String, Double> strengths = new HashMap<>();
+        for (String entry : ids(journal.metadata("uclq-strengths"))) {
+            String[] values = entry.split(",");
+            strengths.put(values[0], Double.parseDouble(values[1]));
+        }
+        return strengths;
+    }
+
+    static Comparator<String> seedingOrder(Map<String, Integer> points, Map<String, Double> strengths) {
+        Comparator<String> squadOrder = ranked(strengths);
+        return (a, b) -> {
+            int left = points.containsKey(a) ? points.get(a) : 0;
+            int right = points.containsKey(b) ? points.get(b) : 0;
+            int difference = Integer.compare(right, left);
+            return difference == 0 ? squadOrder.compare(a, b) : difference;
+        };
+    }
     static void advance(MatchJournal j,int nonce,int step,int total,HashMap<String,NativeWorldCenter.T> teams,HashMap<String,NativeWorldCenter.P> players,String source,MatchEffects effects,NativeCareerStore.Career career){
         if(!planned(j))return;int before=(step-1)*38/total,now=step*38/total;for(int leg=0;leg<2;leg++)if(before<leg+1&&now>=leg+1){int n=0;for(String[] pair:pairs(j)){String home=leg==0?pair[0]:pair[1],away=leg==0?pair[1]:pair[0];MatchJournal.Match first=leg==1?j.get(UclKnockout.key(competition(j.season()),1,away,home)):null;String cutoff=j.metadata("uclq-cutoff");String applied=cutoff!=null&&step<=Integer.parseInt(cutoff)?"reconstructed-v94":source;NativeMatchJournal.capture(j,competition(j.season()),leg+1,home,away,nonce^j.season()*1000003^leg*104729^n++*1009,teams,players,applied,effects,career,first,false);}if(leg==1)finish(j,nonce,career);}
     }
     private static void finish(MatchJournal j,int nonce,NativeCareerStore.Career career){
         if(j.metadata("ucl-groups")!=null&&j.metadata("uel-groups")!=null)return;
         ArrayList<String> qualified=ids(j.metadata("uclq-direct")),losers=new ArrayList<String>();for(String[] pair:pairs(j)){MatchJournal.Match m=j.get(UclKnockout.key(competition(j.season()),2,pair[1],pair[0]));if(m==null||m.winner.length()==0)throw new IllegalStateException("Qualifying tie unresolved");qualified.add(m.winner);losers.add(m.winner.equals(pair[0])?pair[1]:pair[0]);}
-        HashMap<String,Double> strengths=new HashMap<String,Double>();for(String entry:j.metadata("uclq-strengths").split(";")){String[] values=entry.split(",");strengths.put(values[0],Double.parseDouble(values[1]));}HashMap<String,String> country=new HashMap<String,String>();for(NativeCareerStore.Club club:career.clubs)country.put(club.id,club.league);
-        String holder=j.metadata("uclq-holder");Collections.sort(qualified,(a,b)->{if(a.equals(holder))return b.equals(holder)?0:-1;if(b.equals(holder))return 1;return ranked(strengths).compare(a,b);});ArrayList<ArrayList<String>> groups=new ArrayList<ArrayList<String>>();for(int g=0;g<8;g++)groups.add(new ArrayList<String>());if(!UclSeason.assign(qualified,country,groups,0,new Random(nonce^j.season()*10007)))throw new IllegalStateException("Qualified UCL group draw failed");j.define("ucl-groups",UclSeason.encode(groups));
-        ArrayList<String> europa=ids(j.metadata("uelq-base"));europa.addAll(losers);EuropaSeason.freeze(j,europa,career,strengths,j.metadata("uelq-holder"),nonce^j.season()*10007^0x3e17);j.define("uel-from-uclq",encode(losers));
+        Comparator<String> order = seedingOrder(frozenSeedingPoints(j), frozenStrengths(j));
+        HashMap<String,String> country=new HashMap<String,String>();for(NativeCareerStore.Club club:career.clubs)country.put(club.id,club.league);
+        String holder=j.metadata("uclq-holder");Collections.sort(qualified,holderFirst(holder,order));ArrayList<ArrayList<String>> groups=new ArrayList<ArrayList<String>>();for(int g=0;g<8;g++)groups.add(new ArrayList<String>());if(!UclSeason.assign(qualified,country,groups,0,new Random(nonce^j.season()*10007)))throw new IllegalStateException("Qualified UCL group draw failed");j.define("ucl-groups",UclSeason.encode(groups));
+        ArrayList<String> europa=ids(j.metadata("uelq-base"));europa.addAll(losers);EuropaSeason.freeze(j,europa,career,holderFirst(j.metadata("uelq-holder"),order),nonce^j.season()*10007^0x3e17);j.define("uel-from-uclq",encode(losers));
+    }
+
+    static Comparator<String> holderFirst(String holder, Comparator<String> order) {
+        return (a, b) -> {
+            int priority = Boolean.compare(b.equals(holder), a.equals(holder));
+            return priority == 0 ? order.compare(a, b) : priority;
+        };
     }
 }

@@ -245,6 +245,16 @@ public final class NativeMatchJournal {
         return journal(c, year);
     }
     static ArrayList<String[]> qualifyingPairs(Context c,int year)throws IOException{return EuropeanQualification.pairs(journal(c,year));}
+    static Map<String, Integer> qualifyingSeeding(Context c, int year) throws IOException {
+        MatchJournal draw = journal(c, year);
+        if (draw.metadata("europe-seeding-points") == null) return null;
+        Map<String, Integer> points = EuropeanQualification.frozenSeedingPoints(draw);
+        ArrayList<String> clubs = new ArrayList<>(points.keySet());
+        Collections.sort(clubs, EuropeanQualification.seedingOrder(points, EuropeanQualification.frozenStrengths(draw)));
+        Map<String, Integer> ranking = new LinkedHashMap<>();
+        for (String club : clubs) ranking.put(club, points.get(club));
+        return ranking;
+    }
     static ArrayList<String> directUcl(Context c,int year)throws IOException{return EuropeanQualification.ids(journal(c,year).metadata("uclq-direct"));}
     static ArrayList<MatchJournal.Match> qualifyingMatches(Context c,int year)throws IOException{return journal(c,year).competition(EuropeanQualification.competition(year));}
     static ArrayList<MatchJournal.Match> europa(Context c,int year)throws IOException{return journal(c,year).competition(EuropaSeason.competition(year));}
