@@ -3,6 +3,13 @@ package pfm.android;
 /** Single allocation policy for qualification, entrants and table legends. Cup places use league fallback. */
 final class EuropeanPlaces {
     static boolean topFive(String code){return code.equals("en")||code.equals("es")||code.equals("it")||code.equals("de")||code.equals("fr");}
+    static String association(String league) {
+        if (league.length() == 3 && league.charAt(2) == '2') {
+            String country = league.substring(0, 2);
+            if (topFive(country)) return country;
+        }
+        return league;
+    }
     static int champions(String code){return !topFive(code)?0:code.equals("en")||code.equals("es")||code.equals("it")?4:3;}
     static int europa(String code){return topFive(code)?3:0;}
     static boolean european(String competition){return competition.startsWith("ucl:")||competition.startsWith("uel:")||competition.startsWith("uclq:");}

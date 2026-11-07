@@ -178,7 +178,7 @@ public final class NativeMatchJournal {
         if(j.metadata("uel-v93-cutoff")==null){int cutoff=baseline?completed:0;for(MatchJournal.Match old:j.all())cutoff=Math.max(cutoff,old.clock);j.define("uel-v93-cutoff",String.valueOf(cutoff));}
         ArrayList<ArrayList<String>> europaGroups=EuropeanQualification.planned(j)?UclSeason.decode(j.metadata("uel-groups")):EuropaSeason.prepare(j,journal(c,season-1),career,groups,identity^season*10007^0x3e17);
         String competition=UclSeason.competition(season);
-        HashMap<String,String> associations=new HashMap<String,String>();for(NativeCareerStore.Club club:career.clubs)associations.put(club.id,club.league);
+        HashMap<String,String> associations=new HashMap<String,String>();for(NativeCareerStore.Club club:career.clubs)associations.put(club.id,EuropeanPlaces.association(club.league));
         MatchEffects effects=effects(c,j,season,completed);
         importLegacy(c,j,completed,career);
         for(int step=1;step<=completed;step++){

@@ -15,7 +15,7 @@ final class EuropaSeason {
         ArrayList<String> selected = new ArrayList<>();
         if (!ucl.contains(holder)) {
             for (NativeCareerStore.Club club : career.clubs) {
-                if (club.id.equals(holder) && club.league.equals(code)) selected.add(holder);
+                if (club.id.equals(holder) && EuropeanPlaces.association(club.league).equals(code)) selected.add(holder);
             }
         }
         String cupEntrant = DomesticCup.europaEntrant(previous, code, ucl);
@@ -28,7 +28,7 @@ final class EuropaSeason {
     }
     static ArrayList<ArrayList<String>> prepare(MatchJournal j,MatchJournal previous,NativeCareerStore.Career career,ArrayList<ArrayList<String>> uclGroups,int seed){
         String frozen=j.metadata("uel-groups");if(frozen!=null)return UclSeason.decode(frozen);
-        Set<String> ucl=entrants(uclGroups);HashMap<String,Double> strengths=UclSeason.strengths(career);HashMap<String,String> associations=new HashMap<String,String>();for(NativeCareerStore.Club club:career.clubs)associations.put(club.id,club.league);
+        Set<String> ucl=entrants(uclGroups);HashMap<String,Double> strengths=UclSeason.strengths(career);HashMap<String,String> associations=new HashMap<String,String>();for(NativeCareerStore.Club club:career.clubs)associations.put(club.id,EuropeanPlaces.association(club.league));
         String holder = champion(previous);
         ArrayList<String> selected = new ArrayList<>();
         for (String code : NativeWorldCenter.C) {
@@ -47,7 +47,7 @@ final class EuropaSeason {
     static ArrayList<ArrayList<String>> freeze(MatchJournal j,ArrayList<String> selected,NativeCareerStore.Career career,Comparator<String> order,int seed){
         if(j.metadata("uel-groups")!=null)return UclSeason.decode(j.metadata("uel-groups"));
         if(selected.size()!=48||new HashSet<String>(selected).size()!=48)throw new IllegalStateException("Europa requires 48 distinct entrants");
-        HashMap<String,String> associations=new HashMap<String,String>();for(NativeCareerStore.Club club:career.clubs)associations.put(club.id,club.league);
+        HashMap<String,String> associations=new HashMap<String,String>();for(NativeCareerStore.Club club:career.clubs)associations.put(club.id,EuropeanPlaces.association(club.league));
         Collections.sort(selected, order);
         ArrayList<ArrayList<String>> groups=new ArrayList<ArrayList<String>>();for(int g=0;g<12;g++)groups.add(new ArrayList<String>());if(!UclSeason.assign(selected,associations,groups,0,new Random(seed)))throw new IllegalStateException("Europa group draw failed");
         j.define("uel-groups",UclSeason.encode(groups));j.define("uel-qualification",j.season()==2010?"Estimated inaugural 2010/11 entrants; historical group draw is not reproduced.":"Three league-table places per top-five league, excluding UCL entrants. External places estimated; cup qualifying rounds abstracted.");return groups;

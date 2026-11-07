@@ -26,6 +26,8 @@ final class NativeDomesticCups {
             root.addView(year);
             root.addView(league);
             league.setSelection(Math.max(0, Arrays.asList(NativeWorldCenter.C).indexOf(career.activeLeague)));
+            Button entrants = new Button(activity);
+            root.addView(entrants);
             ListView list = new ListView(activity);
             root.addView(list, new LinearLayout.LayoutParams(-1, 0, 1));
             Runnable refresh = () -> {
@@ -34,8 +36,24 @@ final class NativeDomesticCups {
                 String code = NativeWorldCenter.C[selectedLeague];
                 List<String> lines = new ArrayList<>();
                 List<MatchJournal.Match> reports = new ArrayList<>();
+                entrants.setText("Entrants · draw pending");
+                entrants.setEnabled(false);
                 try {
                     MatchJournal journal = NativeMatchJournal.domesticCupJournal(activity, selectedYear);
+                    DomesticCup.Bracket cup = DomesticCup.bracket(journal, code);
+                    if (cup != null) {
+                        ArrayList<String> clubNames = new ArrayList<>();
+                        for (String id : cup.entrants) clubNames.add(names.containsKey(id) ? names.get(id) : id);
+                        Collections.sort(clubNames, String.CASE_INSENSITIVE_ORDER);
+                        entrants.setText("Entrants · " + clubNames.size() + " clubs");
+                        entrants.setEnabled(true);
+                        entrants.setOnClickListener(v -> new AlertDialog.Builder(activity)
+                                .setTitle("Cup entrants · " + selectedYear + "/" + (selectedYear + 1))
+                                .setItems(clubNames.toArray(new String[0]), null).setPositiveButton("Close", null).show());
+                    } else {
+                        lines.add("Draw pending");
+                        reports.add(null);
+                    }
                     MatchJournal.Match finalResult = DomesticCup.finalResult(journal, code);
                     if (finalResult != null) {
                         lines.add("CUP WINNER  •  " + names.get(finalResult.winner));
@@ -47,12 +65,12 @@ final class NativeDomesticCups {
                         reports.add(null);
                     }
                     int total = career.activeLeague.equals("de") ? 34 : 38;
-                    for (int stage = 0; stage < DomesticCup.ROUNDS.length; stage++) {
-                        int round = stage + 1;
-                        int leagueRound = NativeCompetitionCalendar.sourceRound(DomesticCup.ROUNDS[stage], total);
-                        lines.add(DomesticCup.STAGES[stage] + "  •  after league round " + leagueRound);
+                    List<MatchJournal.Match> matches = journal.competition(DomesticCup.competition(code));
+                    for (int round = 1; cup != null && round <= cup.rounds; round++) {
+                        int leagueRound = NativeCompetitionCalendar.sourceRound(cup.mark(round), total);
+                        lines.add(cup.stage(round) + "  •  after league round " + leagueRound);
                         reports.add(null);
-                        List<String[]> pairs = DomesticCup.fixtures(journal, code, round);
+                        List<String[]> pairs = cup.fixtures(matches, round);
                         if (pairs.isEmpty()) {
                             lines.add("Draw pending");
                             reports.add(null);

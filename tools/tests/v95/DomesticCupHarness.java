@@ -21,6 +21,7 @@ public class DomesticCupHarness {
         MatchJournal next = JournalHarness.open(context, 950, 2011);
         Set<String> champions = EuropeanQualification.candidates(next);
         Set<String> europa = new HashSet<>(EuropeanQualification.ids(next.metadata("uelq-base")));
+        int[] legacyDates = {6, 13, 20, 28, 36};
         for (String league : NativeWorldCenter.C) {
             List<MatchJournal.Match> matches = season.competition(DomesticCup.competition(league));
             check(matches.size() == (league.equals("de") ? 17 : 19), "cup fixture count");
@@ -29,7 +30,7 @@ public class DomesticCupHarness {
                 check(!eliminated.contains(match.home) && !eliminated.contains(match.away), "eliminated club returned");
                 check(match.winner.equals(match.home) || match.winner.equals(match.away), "unresolved tie");
                 eliminated.add(match.winner.equals(match.home) ? match.away : match.home);
-                check(match.clock == NativeCompetitionCalendar.sourceRound(DomesticCup.ROUNDS[match.round - 1], 34),
+                check(match.clock == NativeCompetitionCalendar.sourceRound(legacyDates[match.round - 1], 34),
                         "cup scheduled on wrong round");
                 check(match.effectsVersion > 0 && match.homeCredit == 0 && match.awayCredit == 0, "cup effects or budget");
             }

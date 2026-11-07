@@ -268,6 +268,7 @@ jobs:
           python3 tools/test_v93_europa.py "$PROJECT/app/src/main/assets/world_v42.tsv"
           python3 tools/test_v94_qualifying.py "$PROJECT/app/src/main/assets/world_v42.tsv"
           python3 tools/test_v95_domestic_cup.py "$PROJECT/app/src/main/assets/world_v42.tsv"
+          python3 tools/test_v99_cup_brackets.py "$PROJECT/app/src/main/assets/world_v42.tsv"
           python3 tools/test_v96_european_bans.py "$PROJECT/app/src/main/assets/world_v42.tsv"
           python3 tools/test_v97_european_seeding.py "$PROJECT/app/src/main/assets/world_v42.tsv"
           python3 tools/test_v87_math.py
@@ -391,8 +392,8 @@ jobs:
             exit 1
           fi
 
-          sed -i -E 's/versionCode [0-9]+/versionCode 178/' "$PROJECT/app/build.gradle"
-          sed -i -E "s/versionName '[^']+'/versionName '0.84-android-port.71-v98-finalize-goal-fix'/" "$PROJECT/app/build.gradle"
+          sed -i -E 's/versionCode [0-9]+/versionCode 179/' "$PROJECT/app/build.gradle"
+          sed -i -E "s/versionName '[^']+'/versionName '0.84-android-port.72-v99-cup-brackets'/" "$PROJECT/app/build.gradle"
 
       - name: Restore stable debug signing key
         shell: bash
@@ -436,12 +437,13 @@ jobs:
           sha256sum "$APK"
           keytool -printcert -jarfile "$APK" | grep -E 'Owner:|SHA256:' || true
           ls -lh "$APK"
-          cp "$APK" "$PROJECT/app/build/outputs/apk/debug/PFM-2011-v98-finalize-goal-fix.apk"
-          cp "$PROJECT/v85-long-career.txt" "$PROJECT/app/build/outputs/apk/debug/PFM-2011-v98-long-career-audit.txt"
-          cp "$PROJECT/v88-distribution.txt" "$PROJECT/app/build/outputs/apk/debug/PFM-2011-v98-distribution-audit.txt"
+          cp "$APK" "$PROJECT/app/build/outputs/apk/debug/PFM-2011-v99-cup-brackets.apk"
+          cp "$PROJECT/v85-long-career.txt" "$PROJECT/app/build/outputs/apk/debug/PFM-2011-v99-long-career-audit.txt"
+          cp "$PROJECT/v88-distribution.txt" "$PROJECT/app/build/outputs/apk/debug/PFM-2011-v99-distribution-audit.txt"
           cp artifacts/v96-european-bans-audit.txt "$PROJECT/app/build/outputs/apk/debug/PFM-2011-v96-european-bans-audit.txt"
           cp artifacts/v97-european-seeding-audit.txt "$PROJECT/app/build/outputs/apk/debug/PFM-2011-v97-european-seeding-audit.txt"
           cp artifacts/v95-cup-audit.txt "$PROJECT/app/build/outputs/apk/debug/PFM-2011-v95-cup-audit.txt"
+          cp artifacts/v99-cup-brackets-audit.txt "$PROJECT/app/build/outputs/apk/debug/PFM-2011-v99-cup-brackets-audit.txt"
           cp artifacts/v94-qualifying-audit.txt "$PROJECT/app/build/outputs/apk/debug/PFM-2011-v94-qualifying-audit.txt"
           cp artifacts/v93-europa-audit.txt "$PROJECT/app/build/outputs/apk/debug/PFM-2011-v93-europa-audit.txt"
           cp artifacts/v92-ucl-seasons-audit.txt "$PROJECT/app/build/outputs/apk/debug/PFM-2011-v92-ucl-seasons-audit.txt"
@@ -450,11 +452,11 @@ jobs:
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
-          name: PFM-2011-Android-Alpha084-v98-finalize-goal-fix
+          name: PFM-2011-Android-Alpha084-v99-cup-brackets
           path: |
-            ${{ env.PROJECT }}/app/build/outputs/apk/debug/PFM-2011-v98-finalize-goal-fix.apk
-            ${{ env.PROJECT }}/app/build/outputs/apk/debug/PFM-2011-v98-long-career-audit.txt
-            ${{ env.PROJECT }}/app/build/outputs/apk/debug/PFM-2011-v98-distribution-audit.txt
+            ${{ env.PROJECT }}/app/build/outputs/apk/debug/PFM-2011-v99-cup-brackets.apk
+            ${{ env.PROJECT }}/app/build/outputs/apk/debug/PFM-2011-v99-long-career-audit.txt
+            ${{ env.PROJECT }}/app/build/outputs/apk/debug/PFM-2011-v99-distribution-audit.txt
             ${{ env.PROJECT }}/app/build/outputs/apk/debug/PFM-2011-v96-european-bans-audit.txt
             ${{ env.PROJECT }}/app/build/outputs/apk/debug/PFM-2011-v97-european-seeding-audit.txt
             ${{ env.PROJECT }}/app/build/outputs/apk/debug/PFM-2011-v91-ucl-audit.txt
@@ -462,5 +464,6 @@ jobs:
             ${{ env.PROJECT }}/app/build/outputs/apk/debug/PFM-2011-v93-europa-audit.txt
             ${{ env.PROJECT }}/app/build/outputs/apk/debug/PFM-2011-v94-qualifying-audit.txt
             ${{ env.PROJECT }}/app/build/outputs/apk/debug/PFM-2011-v95-cup-audit.txt
+            ${{ env.PROJECT }}/app/build/outputs/apk/debug/PFM-2011-v99-cup-brackets-audit.txt
           if-no-files-found: error
           retention-days: 30

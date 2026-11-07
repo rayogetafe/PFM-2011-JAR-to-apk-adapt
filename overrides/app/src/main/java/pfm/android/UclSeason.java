@@ -21,7 +21,7 @@ final class UclSeason {
     static String champion(MatchJournal previous){for(MatchJournal.Match m:previous.competition(competition(previous.season())))if(m.round==13&&m.winner.length()>0)return m.winner;return "";}
     static ArrayList<ArrayList<String>> prepare(MatchJournal journal,MatchJournal previous,NativeCareerStore.Career career,int seed){
         String frozen=journal.metadata("ucl-groups");if(frozen!=null)return decode(frozen);
-        HashMap<String,Double> strengths=strengths(career);HashMap<String,String> associations=new HashMap<String,String>();for(NativeCareerStore.Club club:career.clubs)associations.put(club.id,club.league);
+        HashMap<String,Double> strengths=strengths(career);HashMap<String,String> associations=new HashMap<String,String>();for(NativeCareerStore.Club club:career.clubs)associations.put(club.id,EuropeanPlaces.association(club.league));
         String champion=champion(previous);ArrayList<String> entrants=new ArrayList<String>();boolean estimated=false;
         for(String code:new String[]{"en","es","it","de","fr"}){
             ArrayList<Standing> table=standings(previous,code,career.clubs);int total=code.equals("de")?34:38;boolean complete=table.size()==(code.equals("de")?18:20);for(Standing row:table)if(row.played!=total)complete=false;
