@@ -73,6 +73,7 @@ public final class PfmEnglishSeasonBridge {
 
     /** Repair v105's seed points without replaying the matches or changing the division. */
     public static void afterLeagueLoad() {
+        PfmDomesticReplay.afterCoreLoad();
         invoke(cp.class, "b", void.class);
         try {
             if (pfm2.getMode() == 1 && get(ea.class, "a", int.class).getInt(null) == 0 &&

@@ -49,6 +49,17 @@ public class JournalHarness {
         for(int r=1;r<=4;r++){NativeWorldCenter.played=r;NativeMatchJournal.advance(context,r);}
         MatchJournal j=open(context,101,2010);check(j.competition("ucl:2010").size()==16,"UCL calendar round 4");check(j.competition("league:en").size()==40,"active league import");
         for(MatchJournal.Match m:j.competition("league:en"))check(m.homeGoals==1&&m.awayGoals==0,"active score resimulated");
+        MatchJournal.Match background = j.competition("ucl:2010").get(0);
+        MatchJournal.Match saved = j.competition("league:en").get(0);
+        NativeWorldCenter.played=3;
+        NativeMatchJournal.restoreActiveLeague(context,"en",3);
+        MatchJournal rewound=open(context,101,2010);
+        check(rewound.competition("league:en").size()==30 && frozen(saved).equals(frozen(rewound.get(saved.id))) &&
+                frozen(background).equals(frozen(rewound.get(background.id))), "reload changed saved or background results");
+        NativeWorldCenter.played=4;
+        NativeMatchJournal.advance(context,4);
+        j=open(context,101,2010);
+        check(j.competition("league:en").size()==40,"replayed round was not imported");
         MatchJournal.Match first=j.competition("league:es").get(0);String before=frozen(first);String uid=first.players.get(0).uid;
         NativeCareerStore.Player changed=null;for(NativeCareerStore.Player p:NativeCareerStore.current.players)if(p.id.equals(uid)){changed=p;break;}check(changed!=null,"snapshot identity");changed.owner="eu_portugal:0";changed.name="Transferred Player";changed.qua=99;
         byte[] disk=Files.readAllBytes(new File(files,"match-journals/matches-101-2010.bin").toPath());NativeMatchJournal.advance(context,4);check(Arrays.equals(disk,Files.readAllBytes(new File(files,"match-journals/matches-101-2010.bin").toPath())),"reopening wrote a second match");

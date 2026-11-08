@@ -87,13 +87,34 @@ public class BridgeHarness {
         System.out.println("Pending render: Skip preserves a queued goal and completes its incident minute exactly once");
         cp.presentationExtra=1;check(PfmMatchEngineBridge.currentRound()==cp.round,"presentation round changed football identity");Vector[] closing=goals();PfmMatchEngineBridge.fast(home,away,closing,0);PfmMatchEngineBridge.fast(home,away,closing,45);check(reference[0].equals(closing[0])&&reference[1].equals(closing[1]),"closing-season display counter re-rolled match");cp.presentationExtra=0;
         System.out.println("Legacy adapter: 1000 quick/live/skip matches have identical goals, scorers and minutes; repeated UI frames and celebrations verified");
+        pfm2.mode=1;
+        Method seed=PfmMatchEngineBridge.class.getDeclaredMethod("seed",dw.class,dw.class);
+        seed.setAccessible(true);
+        Object firstSeed=seed.invoke(null,home,away), secondSeed=seed.invoke(null,away,home);
+        check(firstSeed.equals(seed.invoke(null,home,away)), "seed changed inside the attempt");
+        String firstDraw=null;
+        boolean changed=false;
+        for(int attempt=0;attempt<12;attempt++){
+            PfmMatchEngineBridge.newLeagueAttempt();
+            if(attempt==0) check(!firstSeed.equals(seed.invoke(null,home,away)) &&
+                    !secondSeed.equals(seed.invoke(null,away,home)), "a fixture retained its seed after loading");
+            Vector[] trial=goals();PfmMatchEngineBridge.fast(home,away,trial,0);PfmMatchEngineBridge.fast(home,away,trial,45);
+            String detail=details();
+            if(firstDraw==null)firstDraw=detail;
+            else if(!firstDraw.equals(detail))changed=true;
+            Vector[] liveTrial=goals();runLive(new ca(home,away),1,37,liveTrial);
+            PfmMatchEngineBridge.fast(home,away,liveTrial,37);PfmMatchEngineBridge.fast(home,away,liveTrial,45);
+            check(liveTrial[0].equals(trial[0])&&liveTrial[1].equals(trial[1])&&detail.equals(details()),"Finalize rerolled a new attempt");
+        }
+        check(changed,"reloaded rounds never produced a different draw");
+        System.out.println("PASS: career reload changes the seed for every league fixture while Finalize preserves the current draw");
     }
 }
 class ci {byte b,c=75,d=75,e=75,h=55;ci(int p){b=(byte)p;}}
 class dw {byte c=55,d=2,e,n;short[] a;ci[] players;dw(int id){this(id,18);}dw(int id,int count){n=(byte)id;e=(byte)count;a=new short[count];players=new ci[count];cp.clubs[id]=this;for(int i=0;i<count;i++){a[i]=(short)(id*25+i);players[i]=new ci(i==0||i==11?0:i<5||i==12||i==13?1:i<9||i<16?2:3);cp.pool[id*25+i]=players[i];}}}
 class cp {static byte[] a={0,0,0,0,0};static ci[] pool=new ci[50];static dw[] clubs=new dw[2];static int round,presentationExtra;static ci a(dw t,int i){return pool[t.a[i]&65535];}static int pfmPlayedForTable(){return round+presentationExtra;}}
 class bb {static int[] b={50},c={50},d={50};}
-class pfm2 {static int getSeason(){return 2010;}static int getSlot(){return 0;}}
+class pfm2 {static int mode;static int getMode(){return mode;}static int getSeason(){return 2010;}static int getSlot(){return 0;}}
 class PfmSeasonBridge {static String code="en";public static String leagueCode(){return code;}}
 class pfmCondition60 {static byte[] fatigue=new byte[50],injury=new byte[50];static int lastRound=-1;private static void ensure(){}private static void save(){}static int minutesForRosterIndex(dw t,int i,int r){return pfmAvailable70.minutesForRosterIndex(t,i,r);}}
 class pfmDiscipline70 {static byte[] yellow=new byte[50],red=new byte[50],suspension=new byte[50];static int lastRound=-1;private static void ensure(){}private static void save(){}static boolean suspended(int id){return suspension[id]>0;}static int roundsOut(int id){return suspension[id];}}

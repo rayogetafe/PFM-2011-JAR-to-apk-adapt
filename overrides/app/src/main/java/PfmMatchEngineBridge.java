@@ -17,6 +17,8 @@ public final class PfmMatchEngineBridge {
     private static MatchEngine.Profile liveProfile=MatchEngine.DEFAULT;
     private static boolean reported;
     private static final HashMap<Integer,Game> games=new HashMap<Integer,Game>();
+    private static final java.util.Random attemptRandom = new java.util.Random();
+    private static int attemptSalt = attemptRandom.nextInt();
     private static final class Game {int round,seed,season,identity,notifiedHome,notifiedAway;boolean detailed;dw home,away;MatchEngine.Lineup h,a;String[] physicalHome,physicalAway;java.util.HashSet<Integer> goals=new java.util.HashSet<Integer>();}
     private static Game current;
     private static boolean liveAwaiting;
@@ -76,9 +78,20 @@ public final class PfmMatchEngineBridge {
     private static int ub(Object o,String name)throws Exception{return field(o.getClass(),name,Byte.TYPE).getByte(o)&255;}
     private static ci player(dw t,int i)throws Exception{return (ci)playerAt.invoke(null,t,i);}
     public static int currentRound(){return pfmRoundAccess60.round();}
+    public static void newLeagueAttempt(){
+        int salt;
+        do { salt = attemptRandom.nextInt(); } while (salt == attemptSalt);
+        attemptSalt = salt;
+        games.clear();
+        live = null;
+        liveGoals = null;
+        liveGame = current = null;
+        pendingMask = lastMinute = 0;
+        liveAwaiting = false;
+    }
     private static int seed(dw home,dw away)throws Exception{
         return MatchEngine.mix(NativeWorldCenter.identity()^pfm2.getSeason()*10007
-            ^currentRound()*104729^ub(home,"n")*1009^ub(away,"n")*65537);
+            ^currentRound()*104729^ub(home,"n")*1009^ub(away,"n")*65537^(pfm2.getMode()==1?attemptSalt:0));
     }
     private static MatchEngine.Profile profile(){try{return MatchEngine.profile(String.valueOf(Class.forName("PfmSeasonBridge").getMethod("leagueCode").invoke(null)));}catch(Exception error){throw new IllegalStateException("Competition scoring profile unavailable",error);}}
     /** The scorer ledger receives the exact event minute in every match mode. */

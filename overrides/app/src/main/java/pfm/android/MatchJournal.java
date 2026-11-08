@@ -75,6 +75,36 @@ public final class MatchJournal {
         for(PlayerFact p:match.players)if(p.uid==null||p.uid.length()==0||p.stats==null||p.stats.length!=9)throw new IllegalArgumentException("Invalid player facts");
         matches.put(match.id,canonical(copy(match)));dirty=true;return true;
     }
+    boolean discardLeagueAfter(String league, int played) {
+        return discardMatches("league:" + league, played);
+    }
+    void discardCompetition(String competition) {
+        discardMatches(competition, 0);
+    }
+    private boolean discardMatches(String competition, int played) {
+        boolean changed = false;
+        Iterator<Match> iterator = matches.values().iterator();
+        while (iterator.hasNext()) {
+            Match match = iterator.next();
+            if (match.round <= played || !competition.equals(match.competition)) continue;
+            iterator.remove();
+            changed = true;
+        }
+        dirty |= changed;
+        return changed;
+    }
+    void forget(String key) { dirty |= metadata.remove(key) != null; }
+    void forgetProvisionalEuropeanDraw() {
+        if (!matches.isEmpty()) return;
+        Iterator<String> iterator = metadata.keySet().iterator();
+        while (iterator.hasNext()) {
+            String key = iterator.next();
+            if (key.startsWith("ucl") || key.startsWith("uel") || key.equals("europe-seeding-points")) {
+                iterator.remove();
+                dirty = true;
+            }
+        }
+    }
     private String canonical(String s){String old=strings.get(s);if(old!=null)return old;strings.put(s,s);return s;}
     private Match canonical(Match m){m.id=canonical(m.id);m.competition=canonical(m.competition);m.home=canonical(m.home);m.away=canonical(m.away);m.source=canonical(m.source);m.report=canonical(m.report);for(PlayerFact p:m.players){p.uid=canonical(p.uid);p.club=canonical(p.club);p.name=canonical(p.name);}return m;}
     /** Decode the original archived report without inventing absent participant data. */

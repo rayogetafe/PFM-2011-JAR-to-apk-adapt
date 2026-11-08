@@ -27,6 +27,22 @@ public final class NativeMatchJournal {
         int now=NativeWorldCenter.identity();if(identity!=now){journals.clear();identity=now;lastSeason=Integer.MIN_VALUE;lastRound=-1;currentEffects=null;legacyIds=new HashMap<Integer,String>();legacyCondition.clear();}
         MatchJournal j=journals.get(season);if(j==null){Iterator<Integer> years=journals.keySet().iterator();while(years.hasNext()){int y=years.next();if(y!=2010&&y!=NativeWorldCenter.season())years.remove();}j=new MatchJournal(new File(c.getFilesDir(),"match-journals"),now,season);journals.put(season,j);}return j;
     }
+    public static synchronized void restoreActiveLeague(Context c, String league, int played) throws IOException {
+        NativeWorldCenter.load(c);
+        int season = NativeWorldCenter.season();
+        MatchJournal journal = journal(c, season);
+        if (journal.discardLeagueAfter(league, played)) {
+            if (NativeChampionship.CODE.equals(league)) ChampionshipPlayoffs.discard(journal);
+            if ("en".equals(league)) journal.forget(NativeEnglishDivisions.FINAL_PREMIER_ORDER);
+            journal.save();
+            MatchJournal next = journal(c, season + 1);
+            next.forgetProvisionalEuropeanDraw();
+            next.save();
+        }
+        lastRound = -1;
+        currentEffects = null;
+        participationRepair = "";
+    }
     static HashMap<String,NativeWorldCenter.T> teams(NativeCareerStore.Career career){
         HashMap<String,NativeWorldCenter.T> out=new HashMap<String,NativeWorldCenter.T>();
         for(NativeCareerStore.Club club:career.clubs){
@@ -238,7 +254,9 @@ public final class NativeMatchJournal {
         if(Boolean.TRUE.equals(restoring.get()))return new int[5];
         if(effectsIdentity!=NativeWorldCenter.careerNonce||effectsSeason!=NativeWorldCenter.season()||currentEffects==null){
             restoring.set(Boolean.TRUE);try{Context c=AndroidRuntime.context();NativeWorldCenter.load(c);int season=NativeWorldCenter.season(),nonce=NativeWorldCenter.identity();MatchJournal j=new MatchJournal(new File(c.getFilesDir(),"match-journals"),nonce,season);MatchEffects state=effects(c,j,season,NativeTransferCalendar.played(),null);
-                ArrayList<MatchJournal.Match> records=j.all();replayEffects(state,records);state.rest(NativeTransferCalendar.played());
+                ArrayList<MatchJournal.Match> records=j.all();int played=NativeTransferCalendar.played();
+                if(played<NativeTransferCalendar.total())for(Iterator<MatchJournal.Match> it=records.iterator();it.hasNext();)if(it.next().clock>played)it.remove();
+                replayEffects(state,records);state.rest(played);
                 HashMap<Integer,String> ids=new HashMap<Integer,String>();if(!records.isEmpty()||!j.europeanOpeningBans().isEmpty()){NativeCareerStore.Career career=NativeCareerStore.ensure(c);for(NativeCareerStore.Player p:career.players)if(p.id.startsWith((NativeEnglishDivisions.includes(career.activeLeague)?"en":career.activeLeague)+":"))ids.put(p.sourceId,p.id);for(Map.Entry<String,?> e:EnglishLegacyIds.players(c,NativeWorldCenter.season()).getAll().entrySet())if(e.getValue() instanceof Integer)ids.put((Integer)e.getValue(),e.getKey());}
                 if(!records.isEmpty())NativeCareerStore.applyMatchFinance(c,records,season);if(currentEffects==null||effectsIdentity!=nonce||effectsSeason!=season||currentEffects.clock<=state.clock){legacyIds=ids;currentEffects=state;effectsSeason=season;effectsIdentity=nonce;}
             }catch(Exception e){throw new IllegalStateException("Saved match effects unavailable",e);}finally{restoring.remove();}

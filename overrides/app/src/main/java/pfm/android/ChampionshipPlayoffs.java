@@ -9,6 +9,12 @@ final class ChampionshipPlayoffs {
     private static final String SOURCE = "en2-playoff-source";
     private static final int FINAL = 3;
 
+    static void discard(MatchJournal journal) {
+        journal.discardCompetition(COMPETITION);
+        journal.forget(TABLE);
+        journal.forget(SOURCE);
+    }
+
     static void complete(MatchJournal journal, int nonce, int total,
                          HashMap<String, NativeWorldCenter.T> teams, HashMap<String, NativeWorldCenter.P> players,
                          String source, MatchEffects effects, NativeCareerStore.Career career) {

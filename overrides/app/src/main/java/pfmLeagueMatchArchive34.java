@@ -108,4 +108,19 @@ public final class pfmLeagueMatchArchive34 {
 
     public static int keeperSaves(int round,dw team){try{String wanted=teamName(team);for(Map.Entry<String,?> e:prefs().getAll().entrySet()){if(!e.getKey().startsWith(prefix(round))||!(e.getValue() instanceof String))continue;String[] h=null,m=null;for(String[] p:parse((String)e.getValue())){if("H".equals(p[0]))h=p;else if("M".equals(p[0]))m=p;}if(h==null||m==null||h.length<5||m.length<7)continue;if(wanted.equals(h[1]))return Math.max(0,Integer.parseInt(m[6])-Integer.parseInt(h[4]));if(wanted.equals(h[2]))return Math.max(0,Integer.parseInt(m[5])-Integer.parseInt(h[3]));}}catch(Throwable ignored){}return -1;}
     public static String report(int round,dw home,dw away){try{return prefs().getString(key(round,home,away),"");}catch(Throwable x){return "";}}
+    static void discardAfter(int played) {
+        String scope = prefix(0);
+        scope = scope.substring(0, scope.length() - 2);
+        SharedPreferences p = prefs();
+        SharedPreferences.Editor edit = p.edit();
+        for (String key : p.getAll().keySet()) {
+            if (!key.startsWith(scope)) continue;
+            int end = key.indexOf('_', scope.length());
+            if (end < 0) continue;
+            try {
+                if (Integer.parseInt(key.substring(scope.length(), end)) > played) edit.remove(key);
+            } catch (NumberFormatException ignored) {}
+        }
+        edit.commit();
+    }
 }

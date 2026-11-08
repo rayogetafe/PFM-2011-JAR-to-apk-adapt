@@ -1,6 +1,8 @@
 import android.content.Context;
 import android.content.SharedPreferences;
 import java.lang.reflect.Field;
+import java.io.*;
+import java.util.*;
 import pfm.android.AndroidRuntime;
 
 /** Per-save-slot goalkeeper ledger. CS/GA and saves agree with the archived match flow. */
@@ -9,6 +11,40 @@ public final class pfmGoalkeeperStats31 {
     private pfmGoalkeeperStats31() {}
     private static SharedPreferences prefs(){return AndroidRuntime.context().getSharedPreferences(PREFS,Context.MODE_PRIVATE);}
     private static String prefix(){return "c"+pfm.android.NativeWorldCenter.identity()+"s"+pfm2.getSlot()+"y"+pfm2.getSeason()+"_";}
+    private static String checkpointPrefix(){
+        int slot = pfm2.getSlot();
+        int career = AndroidRuntime.context().getSharedPreferences("pfm_world_careers", 0).getInt("slot_" + slot + "_nonce", 0);
+        return "c"+career+"s"+slot+"y"+pfm2.getSeason()+"_";
+    }
+    static void writeCheckpoint(DataOutputStream out) throws IOException {
+        String scope = checkpointPrefix();
+        Map<String, Integer> values = new TreeMap<>();
+        for (Map.Entry<String, ?> entry : prefs().getAll().entrySet()) {
+            if (entry.getKey().startsWith(scope) && entry.getValue() instanceof Integer) {
+                values.put(entry.getKey().substring(scope.length()), (Integer) entry.getValue());
+            }
+        }
+        out.writeInt(values.size());
+        for (Map.Entry<String, Integer> entry : values.entrySet()) {
+            out.writeUTF(entry.getKey());
+            out.writeInt(entry.getValue());
+        }
+    }
+    static Map<String, Integer> readCheckpoint(DataInputStream in) throws IOException {
+        int count = in.readInt();
+        if (count < 0 || count > 40000) throw new IOException("Invalid goalkeeper checkpoint size");
+        Map<String, Integer> values = new HashMap<>();
+        for (int i = 0; i < count; i++) values.put(in.readUTF(), in.readInt());
+        return values;
+    }
+    static void restoreCheckpoint(Map<String, Integer> values) {
+        String scope = checkpointPrefix();
+        SharedPreferences p = prefs();
+        SharedPreferences.Editor edit = p.edit();
+        for (String key : p.getAll().keySet()) if (key.startsWith(scope)) edit.remove(key);
+        for (Map.Entry<String, Integer> entry : values.entrySet()) edit.putInt(scope + entry.getKey(), entry.getValue());
+        edit.commit();
+    }
     private static Field field(Class<?> c,String n,Class<?> t)throws Exception{for(Field f:c.getDeclaredFields())if(f.getName().equals(n)&&f.getType()==t){f.setAccessible(true);return f;}throw new NoSuchFieldException(n);}
     private static int teamId(dw t){try{return field(dw.class,"n",Byte.TYPE).getByte(t)&255;}catch(Throwable x){return -1;}}
     private static int pos(ci p){try{return field(ci.class,"b",Byte.TYPE).getByte(p)&255;}catch(Throwable x){return -1;}}

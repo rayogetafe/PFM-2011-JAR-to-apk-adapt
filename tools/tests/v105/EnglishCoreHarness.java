@@ -3,6 +3,8 @@ import java.io.*;
 import java.lang.reflect.Field;
 import java.util.*;
 import pfm.android.NativeEnglishCareer;
+import pfm.android.AndroidRuntime;
+import pfm.android.compat.rms.RecordStore;
 
 /** Drives the real legacy league reader and writer, with an isolated preference store. */
 public final class EnglishCoreHarness {
@@ -32,7 +34,46 @@ public final class EnglishCoreHarness {
         verify(upper, upperSlots);
         check(lowerSlots.getInt("user-gk", -1) == upperSlots.getInt("user-gk", -2), "lost player identity across divisions");
         checkLedgers();
+        checkDomesticCheckpoint();
         System.out.println("PASS: real core saves and reloads both English divisions, 30-player squad, 38/46 rounds, same user club and player slot");
+    }
+
+    private static void checkDomesticCheckpoint() throws Exception {
+        File directory = java.nio.file.Files.createTempDirectory(new File("artifacts").toPath(), "pfm-replay-test").toFile();
+        android.content.Context context = new android.content.Context("", directory);
+        field(AndroidRuntime.class, "current", android.content.Context.class).set(null, context);
+        field(pfm2.class, "mode", int.class).setInt(null, 1);
+        int slot = pfm2.getSlot();
+        context.getSharedPreferences("pfm_world_careers", 0).edit().putInt("slot_" + slot + "_nonce", 31).commit();
+        String scope = "c31s" + slot + "y" + pfm2.getSeason() + "_";
+        SharedPreferences keeper = context.getSharedPreferences("pfm_goalkeepers_v31", 0);
+        keeper.edit().putInt(scope + "p4_st", 7).commit();
+        RecordStore fatigue = RecordStore.openRecordStore("P2F00" + (slot + 1), true);
+        byte[] before = {3, 7, 11}, changed = {8, 9};
+        fatigue.setRecord(1, before, 0, before.length);
+        fatigue.closeRecordStore();
+        byte[] save = {0, 4, 9, 12};
+        RecordStore game = RecordStore.openRecordStore("P2S00" + (slot + 1), true);
+        int id = game.addRecord(save, 0, save.length);  // v106 save without an attached checkpoint
+        check(Arrays.equals(PfmDomesticReplay.read(game, id), save), "older save bytes changed");
+        check(PfmDomesticReplay.checkpointStart(game.getRecord(id)) == save.length, "old save was not upgraded");
+        fatigue = RecordStore.openRecordStore("P2F00" + (slot + 1), true);
+        fatigue.setRecord(1, changed, 0, changed.length);
+        fatigue.closeRecordStore();
+        keeper.edit().putInt(scope + "p4_st", 8).putInt(scope + "p5_st", 1).commit();
+        check(Arrays.equals(PfmDomesticReplay.read(game, id), save), "checkpoint leaked into the core save");
+        fatigue = RecordStore.openRecordStore("P2F00" + (slot + 1), true);
+        check(Arrays.equals(fatigue.getRecord(1), before) && keeper.getInt(scope + "p4_st", 0) == 7 &&
+                keeper.getInt(scope + "p5_st", 0) == 0, "unsaved league effects survived reload");
+        fatigue.setRecord(1, changed, 0, changed.length);
+        fatigue.closeRecordStore();
+        PfmDomesticReplay.set(game, id, save, 0, save.length);
+        check(Arrays.equals(PfmDomesticReplay.read(game, id), save), "saved result cannot be read");
+        fatigue = RecordStore.openRecordStore("P2F00" + (slot + 1), true);
+        check(Arrays.equals(fatigue.getRecord(1), changed), "committed effects were not kept");
+        fatigue.closeRecordStore();
+        game.closeRecordStore();
+        System.out.println("PASS: legacy saves upgrade and restore domestic ledgers and goalkeeper stats with the saved attempt");
     }
 
     private static void verifyLoadedPoints() throws Exception {
