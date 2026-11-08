@@ -14,8 +14,8 @@ public final class EnglishCoreHarness {
         try (DataInputStream input = new DataInputStream(EnglishCoreHarness.class.getResourceAsStream("/resources/england.bin"))) {
             cp.a(input, true);
         }
-        SharedPreferences oldSlots = new SharedPreferences();
-        SharedPreferences lowerSlots = new SharedPreferences();
+        SharedPreferences oldSlots = new SharedPreferences.Memory();
+        SharedPreferences lowerSlots = new SharedPreferences.Memory();
         NativeEnglishCareer.Opening lower = division(24, "en2");
         PfmEnglishSeasonBridge.install(lower, oldSlots, lowerSlots);
         verify(lower, lowerSlots);
@@ -26,7 +26,7 @@ public final class EnglishCoreHarness {
                 "second_division_badges/en2_12.png".equals(PfmEnglishSeasonBridge.matchBadgePath("en2:12")),
                 "badge lookup used a legacy slot");
 
-        SharedPreferences upperSlots = new SharedPreferences();
+        SharedPreferences upperSlots = new SharedPreferences.Memory();
         NativeEnglishCareer.Opening upper = division(20, "en");
         PfmEnglishSeasonBridge.install(upper, lowerSlots, upperSlots);
         verify(upper, upperSlots);
@@ -52,28 +52,59 @@ public final class EnglishCoreHarness {
         byte[] before = {3, 7, 11}, changed = {8, 9};
         fatigue.setRecord(1, before, 0, before.length);
         fatigue.closeRecordStore();
-        byte[] save = {0, 4, 9, 12};
+        ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+        check(cp.a(new DataOutputStream(buffer)), "could not create a career save");
+        byte[] save = buffer.toByteArray();
         RecordStore game = RecordStore.openRecordStore("P2S00" + (slot + 1), true);
         int id = game.addRecord(save, 0, save.length);  // v106 save without an attached checkpoint
-        check(Arrays.equals(PfmDomesticReplay.read(game, id), save), "older save bytes changed");
-        check(PfmDomesticReplay.checkpointStart(game.getRecord(id)) == save.length, "old save was not upgraded");
+        loadCareer(game, id, save);
+        check(Arrays.equals(game.getRecord(id), save), "opening an older save rewrote the career");
+        PfmDomesticReplay.set(game, id, save, 0, save.length);
+        byte[] withCheckpoint = game.getRecord(id);
+        check(PfmDomesticReplay.checkpointStart(withCheckpoint) == save.length, "career checkpoint missing");
         fatigue = RecordStore.openRecordStore("P2F00" + (slot + 1), true);
         fatigue.setRecord(1, changed, 0, changed.length);
         fatigue.closeRecordStore();
         keeper.edit().putInt(scope + "p4_st", 8).putInt(scope + "p5_st", 1).commit();
-        check(Arrays.equals(PfmDomesticReplay.read(game, id), save), "checkpoint leaked into the core save");
+        loadCareer(game, id, save);
         fatigue = RecordStore.openRecordStore("P2F00" + (slot + 1), true);
         check(Arrays.equals(fatigue.getRecord(1), before) && keeper.getInt(scope + "p4_st", 0) == 7 &&
                 keeper.getInt(scope + "p5_st", 0) == 0, "unsaved league effects survived reload");
         fatigue.setRecord(1, changed, 0, changed.length);
         fatigue.closeRecordStore();
         PfmDomesticReplay.set(game, id, save, 0, save.length);
-        check(Arrays.equals(PfmDomesticReplay.read(game, id), save), "saved result cannot be read");
+        loadCareer(game, id, save);
         fatigue = RecordStore.openRecordStore("P2F00" + (slot + 1), true);
         check(Arrays.equals(fatigue.getRecord(1), changed), "committed effects were not kept");
         fatigue.closeRecordStore();
+        byte[] brokenCheckpoint = withCheckpoint.clone();
+        brokenCheckpoint[save.length] = 0x7f;
+        game.setRecord(id, brokenCheckpoint, 0, brokenCheckpoint.length);
+        loadCareer(game, id, save);
+        check(Arrays.equals(game.getRecord(id), brokenCheckpoint), "loading rewrote the stored career");
+        // A failing ledger must not block a healthy ledger or loading the career.
+        File blockedLedger = new File(directory, "rms/P2F00" + (slot + 1) + ".rms");
+        check(blockedLedger.delete() && blockedLedger.mkdir() &&
+                new File(blockedLedger, "blocked").createNewFile(), "could not block the ledger for the test");
+        keeper.edit().putInt(scope + "p4_st", 9).commit();
+        game.setRecord(id, withCheckpoint, 0, withCheckpoint.length);
+        loadCareer(game, id, save);
+        check(keeper.getInt(scope + "p4_st", 0) == 7, "a failing ledger prevented goalkeeper restore");
+        PfmDomesticReplay.set(game, id, save, 0, save.length);
+        check(Arrays.equals(game.getRecord(id), save), "a failing ledger prevented the primary save");
         game.closeRecordStore();
-        System.out.println("PASS: legacy saves upgrade and restore domestic ledgers and goalkeeper stats with the saved attempt");
+        System.out.println("PASS: legacy and v107 saves load through the game loader with valid, corrupt or unavailable domestic ledgers");
+    }
+
+    private static void loadCareer(RecordStore game, int id, byte[] expected) throws Exception {
+        pfmLoadFixV2.beforeDeserialize();
+        byte[] core = PfmDomesticReplay.read(game, id);
+        check(Arrays.equals(core, expected), "checkpoint leaked into the legacy career");
+        try (DataInputStream input = new DataInputStream(new ByteArrayInputStream(core))) {
+            pfmLoadFixV2.loadGame(input, false);
+            check(input.available() == 0, "game loader did not consume the saved career");
+        }
+        check(pfmAccess50.name(pfmPlayerHistoryV2.userTeam()).equals("User club"), "load lost the saved user club");
     }
 
     private static void verifyLoadedPoints() throws Exception {

@@ -71,7 +71,7 @@ public class JournalHarness {
         NativeWorldCenter.year=2011;NativeCareerStore.current.season=2011;NativeWorldCenter.played=1;NativeMatchJournal.advance(context,1);check(open(context,101,2011).size()>0,"season rollover");
         int currentCount=open(context,101,2011).size();NativeMatchJournal.project("es",38,2010);check(open(context,101,2010).size()==count&&open(context,101,2011).size()==currentCount,"history view simulated matches");
         world(args[0],202);NativeMatchJournal.advance(context,0);check(open(context,202,2010).size()==0,"new career inherited matches");
-        world(args[0],303);context.getSharedPreferences("pfm_ucl_groups_v79",0).put("303_2010_0_0_0","7:6");NativeWorldCenter.played=4;NativeMatchJournal.advance(context,4);
+        world(args[0],303);context.getSharedPreferences("pfm_ucl_groups_v79",0).edit().putString("303_2010_0_0_0","7:6").commit();NativeWorldCenter.played=4;NativeMatchJournal.advance(context,4);
         MatchJournal.Match old=open(context,303,2010).get(NativeMatchJournal.key("ucl:2010",1,"it:0","eu_netherlands:2"));check(old!=null&&old.homeGoals==7&&old.awayGoals==6&&old.players.isEmpty(),"v82 UCL result replaced or line-up invented");
         world(args[0],404);long start=System.nanoTime();for(int round=1;round<=38;round++){NativeWorldCenter.played=round;NativeMatchJournal.advance(context,round);}
         MatchJournal full=open(context,404,2010);check(full.size()==2249,"full calendar fixture count "+full.size());

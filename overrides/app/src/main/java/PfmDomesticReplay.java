@@ -15,38 +15,38 @@ public final class PfmDomesticReplay {
     private static final String[] LEDGERS = {"P2P", "P2F", "P2D", "P2X", "P2E", "P2H", "P2UH", "P2K"};
     private static final Class<?>[] CACHES = {pfmPlayerStats.class, pfmCondition60.class, pfmDiscipline70.class, pfmContrib80.class};
     private static boolean loadingCareer;
+    private static byte[] pendingCheckpoint;
 
     private PfmDomesticReplay() {}
 
-    public static int add(RecordStore store, byte[] bytes, int offset, int count) throws IOException {
-        if (pfm2.getMode() != 1) return store.addRecord(bytes, offset, count);
-        byte[] data = pack(bytes, offset, count);
-        return store.addRecord(data, 0, data.length);
+    public static int add(RecordStore store, byte[] bytes, int offset, int count) {
+        byte[] checkpoint = checkpointForSave(bytes, offset, count);
+        return checkpoint == null ? store.addRecord(bytes, offset, count) :
+                store.addRecord(checkpoint, 0, checkpoint.length);
     }
 
-    public static void set(RecordStore store, int id, byte[] bytes, int offset, int count) throws IOException {
-        if (pfm2.getMode() != 1) {
-            store.setRecord(id, bytes, offset, count);
-            return;
-        }
-        byte[] data = pack(bytes, offset, count);
-        store.setRecord(id, data, 0, data.length);
+    public static void set(RecordStore store, int id, byte[] bytes, int offset, int count) {
+        byte[] checkpoint = checkpointForSave(bytes, offset, count);
+        if (checkpoint == null) store.setRecord(id, bytes, offset, count);
+        else store.setRecord(id, checkpoint, 0, checkpoint.length);
     }
 
-    public static byte[] read(RecordStore store, int id) throws IOException {
+    public static byte[] read(RecordStore store, int id) {
         loadingCareer = false;
+        pendingCheckpoint = null;
         byte[] data = store.getRecord(id);
         if (pfm2.getMode() != 1) return data;
-        int start = checkpointStart(data);
-        if (start == data.length) {
-            byte[] upgraded = pack(data, 0, data.length);
-            store.setRecord(id, upgraded, 0, upgraded.length);
-            loadingCareer = true;
-            return data;
-        }
-        restore(new DataInputStream(new ByteArrayInputStream(data, start, data.length - start - 8)));
         loadingCareer = true;
-        return Arrays.copyOf(data, start);
+        try {
+            int start = checkpointStart(data);
+            if (start != data.length) {
+                pendingCheckpoint = Arrays.copyOfRange(data, start, data.length - 8);
+                return Arrays.copyOf(data, start);
+            }
+        } catch (IOException error) {
+            android.util.Log.e("PFM-Replay", "Ignoring an invalid domestic checkpoint footer", error);
+        }
+        return data;
     }
 
     static int checkpointStart(byte[] data) throws IOException {
@@ -56,6 +56,16 @@ public final class PfmDomesticReplay {
         if (footer.readInt() != MAGIC) return data.length;
         if (length <= 0 || length > data.length - 8) throw new IOException("Invalid domestic save checkpoint");
         return data.length - 8 - length;
+    }
+
+    private static byte[] checkpointForSave(byte[] bytes, int offset, int count) {
+        if (pfm2.getMode() != 1) return null;
+        try {
+            return pack(bytes, offset, count);
+        } catch (IOException | RuntimeException error) {
+            android.util.Log.e("PFM-Replay", "Saving career without its domestic checkpoint", error);
+            return null;
+        }
     }
 
     private static byte[] pack(byte[] bytes, int offset, int count) throws IOException {
@@ -86,7 +96,11 @@ public final class PfmDomesticReplay {
         Map<String, Integer> keepers = pfmGoalkeeperStats31.readCheckpoint(in);
         if (in.available() != 0) throw new IOException("Trailing domestic checkpoint bytes");
         for (int i = 0; i < records.length; i++) {
-            RecordStore.restoreCheckpoint(storeName(LEDGERS[i]), records[i]);
+            try {
+                RecordStore.restoreCheckpoint(storeName(LEDGERS[i]), records[i]);
+            } catch (IOException | RuntimeException error) {
+                android.util.Log.e("PFM-Replay", "Could not restore domestic ledger " + LEDGERS[i], error);
+            }
         }
         for (Class<?> cache : CACHES) {
             try {
@@ -103,9 +117,19 @@ public final class PfmDomesticReplay {
     private static String storeName(String ledger) { return ledger + "00" + (pfm2.getSlot() + 1); }
 
     static void afterCoreLoad() {
-        PfmMatchEngineBridge.newLeagueAttempt();
-        if (!loadingCareer) return;
+        boolean career = loadingCareer;
+        byte[] checkpoint = pendingCheckpoint;
         loadingCareer = false;
+        pendingCheckpoint = null;
+        PfmMatchEngineBridge.newLeagueAttempt();
+        if (!career) return;
+        if (checkpoint != null) {
+            try {
+                restore(new DataInputStream(new ByteArrayInputStream(checkpoint)));
+            } catch (IOException | RuntimeException error) {
+                android.util.Log.e("PFM-Replay", "Could not restore the domestic checkpoint", error);
+            }
+        }
         try {
             Context context = AndroidRuntime.context();
             int played = cp.pfmPlayedForTable(), slot = pfm2.getSlot(), year = pfm2.getSeason();

@@ -73,8 +73,12 @@ public final class PfmEnglishSeasonBridge {
 
     /** Repair v105's seed points without replaying the matches or changing the division. */
     public static void afterLeagueLoad() {
-        PfmDomesticReplay.afterCoreLoad();
         invoke(cp.class, "b", void.class);
+        try {
+            PfmDomesticReplay.afterCoreLoad();
+        } catch (RuntimeException | LinkageError error) {
+            android.util.Log.e("PFM-Replay", "Could not initialize the replay after loading", error);
+        }
         try {
             if (pfm2.getMode() == 1 && get(ea.class, "a", int.class).getInt(null) == 0 &&
                     EnglishLegacyIds.installed(AndroidRuntime.context(), pfm2.getSeason()) && repairPoints()) {
