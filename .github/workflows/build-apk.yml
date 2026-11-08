@@ -311,7 +311,7 @@ jobs:
           grep -q 'static int quoted' "$PROJECT/app/src/main/java/pfm/android/NativeGlobalMarket.java"
           grep -q 'p.uid=q\[1\]' "$PROJECT/app/src/main/java/pfm/android/NativeWorldCenter.java"
           grep -q 'NATIVE CAREER DATA' "$PROJECT/app/src/main/java/pfm/android/NativeWorldCompetition.java"
-          grep -q 'EUROPE + TOP-5' "$PROJECT/app/src/main/java/pfm/android/NativeWorldCompetition.java"
+          grep -q 'NativeChampionship.CODE' "$PROJECT/app/src/main/java/pfm/android/NativeWorldCompetition.java"
           grep -q 'NativeMatchJournal.project' "$PROJECT/app/src/main/java/pfm/android/NativeWorldCenter.java"
           grep -q 'NativeMatchEngine.Result result=NativeMatchEngine.play' "$PROJECT/app/src/main/java/pfm/android/NativeMatchJournal.java"
           grep -q 'pfm_world_careers' "$PROJECT/app/src/main/java/pfm/android/NativeWorldCenter.java"
