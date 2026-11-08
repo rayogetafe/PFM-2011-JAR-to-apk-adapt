@@ -25,9 +25,16 @@ jobs:
           echo "$sdk_root/platform-tools" >> "$GITHUB_PATH"
           yes | "$sdk_root/cmdline-tools/latest/bin/sdkmanager" --licenses >/dev/null || true
           "$sdk_root/cmdline-tools/latest/bin/sdkmanager" emulator 'system-images;android-30;google_apis;x86_64' 'platforms;android-35' 'build-tools;35.0.0'
-          echo no | "$sdk_root/cmdline-tools/latest/bin/avdmanager" create avd -n pfm -k 'system-images;android-30;google_apis;x86_64'
+          export ANDROID_USER_HOME="$RUNNER_TEMP/pfm-android"
+          export ANDROID_AVD_HOME="$ANDROID_USER_HOME/avd"
+          mkdir -p "$ANDROID_AVD_HOME"
+          echo no | "$sdk_root/cmdline-tools/latest/bin/avdmanager" create avd -f -n pfm -p "$ANDROID_AVD_HOME/pfm.avd" -k 'system-images;android-30;google_apis;x86_64'
+          "$ANDROID_HOME/emulator/emulator" -list-avds | grep -x pfm
           nohup "$ANDROID_HOME/emulator/emulator" -avd pfm -no-window -gpu swiftshader_indirect -no-audio -no-snapshot -no-boot-anim > /tmp/pfm-emulator.log 2>&1 </dev/null &
-          timeout 180 adb wait-for-device
+          emu=$!
+          sleep 5
+          kill -0 "$emu" || { cat /tmp/pfm-emulator.log; exit 1; }
+          timeout 120 adb wait-for-device || { cat /tmp/pfm-emulator.log; exit 1; }
           timeout 180 bash -c 'until [ "$(adb shell getprop sys.boot_completed | tr -d "\r")" = 1 ]; do sleep 2; done'
           adb shell input keyevent 82
       - name: Create a career on the device and load after a process restart
