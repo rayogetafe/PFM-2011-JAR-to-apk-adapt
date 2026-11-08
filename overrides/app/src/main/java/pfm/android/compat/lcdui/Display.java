@@ -16,6 +16,7 @@ import pfm.android.compat.midlet.MIDlet;
 public final class Display {
     private static final Display INSTANCE = new Display();
     private volatile Displayable current;
+    private volatile GameCanvas canvas;
     private Display() {}
     public static Display getDisplay(MIDlet ignored) { return INSTANCE; }
     public Displayable getCurrent() { return current; }
@@ -67,19 +68,27 @@ public final class Display {
         Displayable prev = current;
         if (next instanceof Alert) {
             current = next;
-            ((Alert)next).show(() -> current = prev);
+            ((Alert)next).show(() -> { if (current == next) current = prev; });
             return;
         }
         if (prev instanceof GameCanvas) ((GameCanvas)prev).markShown(false);
         if (prev != null) prev.hideNotify();
         current = next;
+        if (next instanceof GameCanvas) canvas = (GameCanvas) next;
         AndroidRuntime.main().post(() -> {
-            if (next instanceof GameCanvas) {
+            if (current == next && next instanceof GameCanvas) {
                 GameCanvas gc = (GameCanvas) next;
                 AndroidRuntime.activity().setContentView(buildAndroidRoot(gc));
                 gc.markShown(true);
                 gc.showNotifyFromDisplay();
             }
         });
+    }
+
+    public void release() {
+        GameCanvas previous = canvas;
+        canvas = null;
+        current = null;
+        if (previous != null) previous.release();
     }
 }

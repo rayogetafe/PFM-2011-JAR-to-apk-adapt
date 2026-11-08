@@ -27,6 +27,9 @@ def main(path):
     try:
         with zipfile.ZipFile(target, "w") as output:
             for item, data in entries:
+                if item.filename == "dd.class":
+                    data = allow_canvas_shutdown(data)
+                    seen.add(item.filename)
                 if item.filename in TARGETS:
                     for old, name, descriptor in TARGETS[item.filename]:
                         call = b"\xb6" + struct.pack(">H", old)
@@ -35,11 +38,23 @@ def main(path):
                         data = data.replace(call, b"\xb8" + struct.pack(">H", ref), 1)
                     seen.add(item.filename)
                 output.writestr(item, data)
-        assert seen == set(TARGETS)
+        assert seen == set(TARGETS) | {"dd.class"}
         os.replace(target, path)
     finally:
         if os.path.exists(target):
             os.unlink(target)
+
+
+def allow_canvas_shutdown(data):
+    initial = bytes.fromhex("2b b6 00 50 9a 00 10 14 00 12 b8 00 5a a7 ff f3 57 a7 ff ef")
+    frame = bytes.fromhex("2a b6 00 50 99 ff fc")
+    assert data.count(initial) == data.count(frame) == 1, "legacy game loop changed"
+    data, ref = add_methodref(data, "dd", "pfmAwaitVisibleFrame", "()Z")
+    call = b"\xb6" + struct.pack(">H", ref)
+    # Both false branches target the existing return at the end of dd.h().
+    # The original handler at byte 18 remains in place.
+    data = data.replace(initial, b"\x2b" + call + bytes.fromhex("99 01 99 a7 00 0d") + b"\x00" * 6 + initial[-4:])
+    return data.replace(frame, b"\x2a" + call + bytes.fromhex("99 01 77"))
 
 
 if __name__ == "__main__":

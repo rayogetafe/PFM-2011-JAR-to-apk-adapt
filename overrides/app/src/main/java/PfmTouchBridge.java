@@ -14,14 +14,12 @@ public final class PfmTouchBridge {
     private static final String TAG = "PFM_TOUCH";
     private static final Handler MAIN = new Handler(Looper.getMainLooper());
     private static final long VISUAL_SELECTION_DELAY_MS = 66L;
-    private static ed cachedUi;
     private static boolean activationPending;
     private static int routeGeneration;
 
     private PfmTouchBridge() {}
 
     private static ed ui() {
-        if (cachedUi != null) return cachedUi;
         try {
             Field[] fs = du.class.getDeclaredFields();
             for (int i=0;i<fs.length;i++) {
@@ -30,8 +28,7 @@ public final class PfmTouchBridge {
                     f.setAccessible(true);
                     Object x=f.get(null);
                     if (x instanceof ed) {
-                        cachedUi=(ed)x;
-                        return cachedUi;
+                        return (ed)x;
                     }
                 }
             }
@@ -129,7 +126,7 @@ public final class PfmTouchBridge {
             activationPending=true;
             MAIN.postDelayed(new Runnable() {
                 public void run() {
-                    dd.i=true;
+                    if (ui() == manager) dd.i=true;
                     activationPending=false;
                 }
             },VISUAL_SELECTION_DELAY_MS);

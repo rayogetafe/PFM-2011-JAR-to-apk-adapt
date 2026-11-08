@@ -38,12 +38,18 @@ public final class ColdLoad extends Instrumentation {
                 playAndSave(runtime);
                 result.putString("stream", "PASS: real first matchday played and saved on Android\n");
             } else {
-                int row = field("du", "v", boolean.class).getBoolean(null) ? 2 : 1;
-                Object main = awaitScreen(runtime, "dy", "a", "v");
-                fire(field("dy", "a", core("v")).get(main), row);
-                awaitScreen(runtime, "i", "a", "v");
-                checkRound();
+                loadRound(runtime);
+                runOnMainSync(activity::finish);
+                for (int i=0; i<50 && !activity.isDestroyed(); i++) Thread.sleep(100);
+                if (!activity.isDestroyed()) throw new AssertionError("original activity still open");
+                startActivitySync(intent);
+                Object restarted = field("bu", "a", core("du")).get(null);
+                if (runtime == restarted) throw new AssertionError("relaunch kept the detached game canvas");
+                enterMenu(restarted);
+                loadRound(restarted);
                 result.putString("stream", "PASS: Android Load Game reached the board after a process restart\n");
+                result.putString("stream", result.getString("stream") +
+                        "PASS: Load Game also works after recreating the Android activity in the same process\n");
             }
             finish(Activity.RESULT_OK, result);
         } catch (Throwable e) {
@@ -91,6 +97,13 @@ public final class ColdLoad extends Instrumentation {
         Object played = call("cp", null, "pfmPlayedForTable", none);
         if (!Integer.valueOf(1).equals(played)) throw new AssertionError("wrong saved round " + played);
     }
+    private void loadRound(Object runtime) throws Exception {
+        int row = field("du", "v", boolean.class).getBoolean(null) ? 2 : 1;
+        Object main = awaitScreen(runtime, "dy", "a", "v");
+        fire(field("dy", "a", core("v")).get(main), row);
+        awaitScreen(runtime, "i", "a", "v");
+        checkRound();
+    }
     private void playAndSave(Object runtime) throws Exception {
         call("pfm2", null, "slot0", none);
         call("pfm2", null, "setMode", new Class<?>[]{int.class}, 1);
@@ -100,6 +113,9 @@ public final class ColdLoad extends Instrumentation {
         call("cp", null, "a", new Class<?>[]{byte.class}, (byte)3);
         call("pfmRound", null, "startFirstRound", none);
         call("db", null, "b", new Class<?>[]{byte.class}, (byte)3);
+        Object main = awaitScreen(runtime, "dy", "a", "v");
+        Object manager = field("du", "a", core("ed")).get(null);
+        call("ed", manager, "c", new Class<?>[]{core("dv")}, field("dy", "a", core("v")).get(main));
         call("dd", runtime, "a", new Class<?>[]{byte.class}, (byte)22);
         Object match = awaitScreen(runtime, "ca", "a", "v");
         Field menu = field("ca", "a", core("v"));

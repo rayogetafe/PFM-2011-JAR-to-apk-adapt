@@ -28,7 +28,6 @@ public final class NativeMatchJournal {
         MatchJournal j=journals.get(season);if(j==null){Iterator<Integer> years=journals.keySet().iterator();while(years.hasNext()){int y=years.next();if(y!=2010&&y!=NativeWorldCenter.season())years.remove();}j=new MatchJournal(new File(c.getFilesDir(),"match-journals"),now,season);journals.put(season,j);}return j;
     }
     public static synchronized void restoreActiveLeague(Context c, String league, int played) throws IOException {
-        NativeWorldCenter.load(c);
         int season = NativeWorldCenter.season();
         MatchJournal journal = journal(c, season);
         if (journal.discardLeagueAfter(league, played)) {

@@ -12,7 +12,11 @@ import android.widget.TextView;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
+import java.util.Vector;
+import pfm.android.compat.lcdui.Display;
 
 public final class PfmActivity extends Activity {
     private static final String TAG = "PFM2011Android";
@@ -31,6 +35,7 @@ public final class PfmActivity extends Activity {
         AndroidRuntime.attach(this);
         installCrashScreen();
         try {
+            resetLegacyControllers();
             Class<?> c = Class.forName("midlet");
             gameMidlet = c.getDeclaredConstructor().newInstance();
             startApp = c.getDeclaredMethod("startApp");
@@ -41,6 +46,16 @@ public final class PfmActivity extends Activity {
             launched = true;
         } catch (Throwable t) {
             showFatal("PFM startup failed", unwrap(t));
+        }
+    }
+
+    private static void resetLegacyControllers() throws ReflectiveOperationException {
+        for (Field field : Class.forName("dd").getDeclaredFields()) {
+            if (field.getType() == Vector.class && Modifier.isStatic(field.getModifiers())) {
+                field.setAccessible(true);
+                ((Vector<?>) field.get(null)).clear();
+                return;
+            }
         }
     }
 
@@ -101,6 +116,7 @@ public final class PfmActivity extends Activity {
     }
 
     @Override protected void onDestroy() {
+        if (AndroidRuntime.activity() == this) Display.getDisplay(null).release();
         if (Thread.getDefaultUncaughtExceptionHandler() != previousHandler) {
             Thread.setDefaultUncaughtExceptionHandler(previousHandler);
         }

@@ -41,6 +41,8 @@ public class GameCanvas extends Displayable {
     private final GameView view;
     private final int[] pixelScratch=new int[LOGICAL_W*LOGICAL_H];
     private volatile boolean shown;
+    private volatile boolean released;
+    private volatile Thread renderThread;
     private volatile int keyStates;
     private volatile long syntheticBusyUntil;
 
@@ -54,6 +56,30 @@ public class GameCanvas extends Displayable {
     public final void markShown(boolean v){ shown=v; }
     public final void showNotifyFromDisplay(){ showNotify(); }
     public boolean isShown(){ return shown; }
+    public final boolean pfmAwaitVisibleFrame() {
+        renderThread = Thread.currentThread();
+        while (!released && !shown) {
+            try {
+                Thread.sleep(20);
+            } catch (InterruptedException interrupted) {
+                Thread.currentThread().interrupt();
+                return false;
+            }
+        }
+        return !released;
+    }
+
+    public final void release() {
+        released = true;
+        shown = false;
+        Thread thread = renderThread;
+        if (thread == null) return;
+        try {
+            thread.join(200);
+        } catch (InterruptedException interrupted) {
+            Thread.currentThread().interrupt();
+        }
+    }
     public int getWidth(){ return LOGICAL_W; }
     public int getHeight(){ return LOGICAL_H; }
     public void setFullScreenMode(boolean full){}
