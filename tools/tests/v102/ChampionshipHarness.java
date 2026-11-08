@@ -60,10 +60,55 @@ public class ChampionshipHarness {
             }
         }
         check(played.size() == 24 && played.values().stream().allMatch(n -> n == 46), "wrong round count per club");
+        List<UclSeason.Standing> standings = UclSeason.standings(season, NativeChampionship.CODE, career.clubs);
+        List<String> promotion = ChampionshipPlayoffs.promotionCandidates(season);
+        List<MatchJournal.Match> playoffs = season.competition(ChampionshipPlayoffs.COMPETITION);
+        check(playoffs.size() == 5 && promotion.size() == 3 && promotion.get(0).equals(standings.get(0).id) &&
+                promotion.get(1).equals(standings.get(1).id), "wrong promotion places");
+        Set<String> finalists = new HashSet<>();
+        for (int i = 0; i < 2; i++) {
+            MatchJournal.Match first = playoffs.get(i), second = playoffs.get(i + 2);
+            check(first.home.equals(standings.get(5 - i).id) && first.away.equals(standings.get(2 + i).id) &&
+                    second.home.equals(first.away) && second.away.equals(first.home), "wrong play-off pair or home order");
+            check(first.duration == 90 && first.winner.isEmpty() && second.clock == 40 &&
+                    second.report.contains("Aggregate:") && !second.report.contains("away goals"), "wrong semi-final rules");
+            check(finalists.add(second.winner) && (second.winner.equals(second.home) || second.winner.equals(second.away)),
+                    "unresolved semi-final");
+        }
+        MatchJournal.Match finalMatch = playoffs.get(4);
+        check(finalists.equals(new HashSet<>(Arrays.asList(finalMatch.home, finalMatch.away))) &&
+                finalMatch.report.contains("Wembley") && promotion.get(2).equals(finalMatch.winner), "wrong play-off final");
+        for (MatchJournal.Match m : playoffs) {
+            check(m.effectsVersion > 0 && m.homeCredit == 0 && m.awayCredit == 0, "wrong play-off match effects or costs");
+        }
+        MatchJournal.Match first = new MatchJournal.Match();
+        first.homeGoals = 2;
+        first.awayGoals = 1;
+        check(ChampionshipPlayoffs.aggregateDecision(first, 3, 2) == 0 &&
+                EuropeanPlaces.disciplineCompetition(ChampionshipPlayoffs.COMPETITION).equals("league:en2"),
+                "away-goals tie or discipline scope");
+
         int bytes = season.size();
         JournalHarness.restart();
         NativeMatchJournal.advance(context, 38);
-        check(JournalHarness.open(context, nonce, 2011).size() == bytes, "restart duplicated matches");
+        MatchJournal reopened = JournalHarness.open(context, nonce, 2011);
+        check(reopened.size() == bytes && promotion.equals(ChampionshipPlayoffs.promotionCandidates(reopened)) &&
+                JournalHarness.frozen(finalMatch).equals(JournalHarness.frozen(reopened.get(finalMatch.id))),
+                "restart changed matches or promotion outcome");
+
+        MatchJournal oldFinish = new MatchJournal(new File(args[1], "v102-finish"), nonce, 2011);
+        for (MatchJournal.Match m : matches) oldFinish.put(m);
+        HashMap<String, NativeWorldCenter.T> teams = NativeMatchJournal.teams(career);
+        HashMap<String, NativeWorldCenter.P> players = new HashMap<>();
+        for (NativeWorldCenter.T team : teams.values()) for (NativeWorldCenter.P p : team.ps) players.put(p.uid, p);
+        MatchEffects effects = new MatchEffects(38);
+        effects.rest(38);
+        ChampionshipPlayoffs.complete(oldFinish, nonce, 38, teams, players, "reconstructed-v103", effects, career);
+        ChampionshipPlayoffs.complete(oldFinish, nonce, 38, teams, players, "native-v84", effects, career);
+        check(oldFinish.competition(ChampionshipPlayoffs.COMPETITION).size() == 5 &&
+                effects.clock == 38 && oldFinish.competition(ChampionshipPlayoffs.COMPETITION).stream().allMatch(m -> m.effectsVersion == 0),
+                "backfilled play-offs created retroactive effects");
         System.out.println("PASS: 24 Championship clubs, 506 new players, existing ownership preserved, 552 fixtures and a 44-team English cup");
+        System.out.println("PASS: 5 play-off matches, positions 3-6, aggregate without away goals, Wembley final, three frozen promotion places");
     }
 }
