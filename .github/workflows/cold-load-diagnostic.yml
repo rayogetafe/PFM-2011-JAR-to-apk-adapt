@@ -20,8 +20,12 @@ jobs:
         run: |
           set -euxo pipefail
           sudo chmod a+rw /dev/kvm
-          sdkmanager emulator 'system-images;android-30;google_apis;x86_64' 'platforms;android-35' 'build-tools;35.0.0'
-          echo no | avdmanager create avd -n pfm -k 'system-images;android-30;google_apis;x86_64'
+          sdk_root="${ANDROID_SDK_ROOT:-$ANDROID_HOME}"
+          export PATH="$sdk_root/platform-tools:$PATH"
+          echo "$sdk_root/platform-tools" >> "$GITHUB_PATH"
+          yes | "$sdk_root/cmdline-tools/latest/bin/sdkmanager" --licenses >/dev/null || true
+          "$sdk_root/cmdline-tools/latest/bin/sdkmanager" emulator 'system-images;android-30;google_apis;x86_64' 'platforms;android-35' 'build-tools;35.0.0'
+          echo no | "$sdk_root/cmdline-tools/latest/bin/avdmanager" create avd -n pfm -k 'system-images;android-30;google_apis;x86_64'
           nohup "$ANDROID_HOME/emulator/emulator" -avd pfm -no-window -gpu swiftshader_indirect -no-audio -no-snapshot -no-boot-anim > /tmp/pfm-emulator.log 2>&1 </dev/null &
           timeout 180 adb wait-for-device
           timeout 180 bash -c 'until [ "$(adb shell getprop sys.boot_completed | tr -d "\r")" = 1 ]; do sleep 2; done'
