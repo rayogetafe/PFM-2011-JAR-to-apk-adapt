@@ -420,10 +420,22 @@ jobs:
           yes | "$ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager" --licenses >/dev/null || true
           "$ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager" "platforms;android-35" "build-tools;35.0.0"
 
-      - name: Set up Gradle 8.10.2
+      - name: Set up Gradle caching
         uses: gradle/actions/setup-gradle@v4
-        with:
-          gradle-version: '8.10.2'
+
+      - name: Install verified Gradle 8.10.2 distribution
+        shell: bash
+        run: |
+          set -euo pipefail
+          archive="$RUNNER_TEMP/gradle-8.10.2-bin.zip"
+          download_gradle() {
+            curl --fail --silent --show-error --location --retry 2 --connect-timeout 15 --max-time 90 \
+              "https://$1/distributions/gradle-8.10.2-bin.zip" -o "$archive" &&
+            echo "31c55713e40233a8303827ceb42ca48a47267a0ad4bab9177123121e71524c26  $archive" | sha256sum --check
+          }
+          download_gradle downloads.gradle.org || download_gradle services.gradle.org
+          unzip -q "$archive" -d "$RUNNER_TEMP"
+          echo "$RUNNER_TEMP/gradle-8.10.2/bin" >> "$GITHUB_PATH"
 
       - name: Build debug APK
         shell: bash
