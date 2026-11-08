@@ -52,11 +52,16 @@ def main(path):
                     assert data.count(old) == 1 and b"eg" in data, "legacy training allocation changed"
                     data = data.replace(old, b"\x10\x1e" + old[2:])
                     changed.add(item.filename)
+                if item.filename == "pfmRosterAccess50.class":
+                    old = b"\x10\x19\xa4\x00\x06\x10\x19"
+                    assert data.count(old) == 1, "legacy roster view limit changed"
+                    data = data.replace(old, b"\x10\x1e\xa4\x00\x06\x10\x1e")
+                    changed.add(item.filename)
                 if item.filename in LEDGERS:
                     data = widen_ledger(data, *LEDGERS[item.filename])
                     changed.add(item.filename)
                 output.writestr(item, data)
-        assert changed == {"pfm2.class", "dw.class", "cp.class", *LEDGERS}
+        assert changed == {"pfm2.class", "dw.class", "cp.class", "pfmRosterAccess50.class", *LEDGERS}
         os.replace(target, path)
     finally:
         if os.path.exists(target):

@@ -108,6 +108,7 @@ public final class EnglishCoreHarness {
         check(user == clubs[3] && pfmAccess50.name(user).equals("User club"), "user club identity changed");
         short[] roster = (short[]) field(dw.class, "a", short[].class).get(user);
         check(field(dw.class, "e", byte.class).getByte(user) == 30 && roster[0] == slots.getInt("user-gk", -1), "user squad lost");
+        check(pfmRosterAccess50.count(user) == 30, "roster view hides players");
         check(field(dw.class, "g", int.class).getInt(user) == 2000003, "user budget lost");
         check(slots.getString("club.3", "").equals(division.userId), "stable team ID lost");
         for (dw team : clubs) check(((byte[]) field(dw.class, "c", byte[].class).get(team)).length == calendar.length, "score ledger length");

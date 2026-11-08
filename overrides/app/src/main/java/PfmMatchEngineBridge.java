@@ -21,7 +21,7 @@ public final class PfmMatchEngineBridge {
     private static Game current;
     private static boolean liveAwaiting;
     private static MatchEngine.Lineup lineup(dw club,int key)throws Exception{
-        short[] ids=(short[])field(dw.class,"a",short[].class).get(club);int count=Math.min(25,Math.min(ub(club,"e"),ids.length));
+        short[] ids=(short[])field(dw.class,"a",short[].class).get(club);int count=Math.min(ub(club,"e"),ids.length);
         java.util.ArrayList<MatchEngine.Member> xi=new java.util.ArrayList<MatchEngine.Member>(),reserves=new java.util.ArrayList<MatchEngine.Member>();
         for(int i=0;i<count;i++){int id=ids[i]&65535;ci p=player(club,i);if(p==null||id==65535)continue;int[] health=PfmEffectsBridge84.condition(id);if(PfmEffectsBridge84.injury(id,health[1])>0||pfmDiscipline70.suspended(id))continue;
             MatchEngine.Member member=new MatchEngine.Member("legacy:"+id,ub(p,"b"),ub(p,"e"),ub(p,"c"),ub(p,"d"),ub(p,"h"),PfmEffectsBridge84.fatigue(id,health[0]));(i<11?xi:reserves).add(member);}
