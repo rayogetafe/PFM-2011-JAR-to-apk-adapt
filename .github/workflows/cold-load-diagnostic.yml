@@ -1,0 +1,65 @@
+name: Diagnose Android cold career load
+on:
+  push:
+    paths:
+      - '.github/workflows/cold-load-diagnostic.yml'
+jobs:
+  android:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: PFM-2011-Android-Alpha084-v108-load-game-fix
+          run-id: 42521198074
+          github-token: ${{ github.token }}
+          path: build
+      - name: Start Android
+        shell: bash
+        run: |
+          set -euxo pipefail
+          sudo chmod a+rw /dev/kvm
+          sdkmanager emulator 'system-images;android-30;google_apis;x86_64' 'platforms;android-35' 'build-tools;35.0.0'
+          echo no | avdmanager create avd -n pfm -k 'system-images;android-30;google_apis;x86_64'
+          nohup "$ANDROID_HOME/emulator/emulator" -avd pfm -no-window -gpu swiftshader_indirect -no-audio -no-snapshot -no-boot-anim > /tmp/pfm-emulator.log 2>&1 </dev/null &
+          timeout 180 adb wait-for-device
+          timeout 180 bash -c 'until [ "$(adb shell getprop sys.boot_completed | tr -d "\r")" = 1 ]; do sleep 2; done'
+          adb shell input keyevent 82
+      - name: Create a career on the device and load after a process restart
+        shell: bash
+        run: |
+          set -euxo pipefail
+          mkdir -p diagnostics test/classes test/dex
+          tools="$ANDROID_HOME/build-tools/35.0.0"
+          platform="$ANDROID_HOME/platforms/android-35/android.jar"
+          cat > test/AndroidManifest.xml <<'EOF'
+          <manifest xmlns:android="http://schemas.android.com/apk/res/android" package="pfm.diagnostic">
+            <uses-sdk android:minSdkVersion="23" android:targetSdkVersion="30"/>
+            <application android:debuggable="true"/>
+            <instrumentation android:name=".ColdLoad" android:targetPackage="pfm.android.careerlab"/>
+          </manifest>
+          EOF
+          javac --release 8 -cp "$platform" -d test/classes tools/tests/android/ColdLoad.java
+          "$tools/d8" --lib "$platform" --output test/dex test/classes/pfm/diagnostic/ColdLoad.class
+          "$tools/aapt2" link -I "$platform" --manifest test/AndroidManifest.xml -o test/unsigned.apk
+          zip -j test/unsigned.apk test/dex/classes.dex
+          base64 -d signing/pfm-debug.keystore.b64 > test/key
+          "$tools/apksigner" sign --ks test/key --ks-pass pass:pfmdebug --key-pass pass:pfmdebug --out test/diagnostic.apk test/unsigned.apk
+          adb install build/PFM-2011-v108-load-game-fix.apk
+          adb install test/diagnostic.apk
+          adb logcat -c
+          adb shell am instrument -w -e phase save pfm.diagnostic/.ColdLoad | tee diagnostics/save.txt
+          adb shell am force-stop pfm.android.careerlab
+          adb shell am instrument -w -e phase load pfm.diagnostic/.ColdLoad | tee diagnostics/load.txt
+          adb logcat -d -v threadtime > diagnostics/logcat.txt
+          adb exec-out screencap -p > diagnostics/final.png
+          grep 'PASS: Android Load Game' diagnostics/load.txt
+      - name: Upload observations
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: android-cold-load-diagnostics
+          path: |
+            diagnostics/
+            /tmp/pfm-emulator.log
