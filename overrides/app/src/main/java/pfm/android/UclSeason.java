@@ -9,9 +9,24 @@ final class UclSeason {
     // Fixed career-era allocation, shared with the qualification screen; qualifying rounds are abstracted.
     static int slots(String code){return EuropeanPlaces.champions(code);}
     static final class Standing {String id;int played,points,gf,ga;Standing(String id){this.id=id;}}
+    static String membersKey(String league){return "league-members-"+league;}
     static ArrayList<Standing> standings(MatchJournal journal,String code,List<NativeCareerStore.Club> clubs){
-        HashMap<String,Standing> rows=new HashMap<String,Standing>();for(NativeCareerStore.Club club:clubs)if(club.league.equals(code))rows.put(club.id,new Standing(club.id));
-        for(MatchJournal.Match m:journal.competition("league:"+code)){Standing h=rows.get(m.home),a=rows.get(m.away);if(h==null||a==null)continue;h.played++;a.played++;h.gf+=m.homeGoals;h.ga+=m.awayGoals;a.gf+=m.awayGoals;a.ga+=m.homeGoals;h.points+=m.homeGoals>m.awayGoals?3:m.homeGoals==m.awayGoals?1:0;a.points+=m.awayGoals>m.homeGoals?3:m.homeGoals==m.awayGoals?1:0;}
+        HashMap<String,Standing> rows=new HashMap<String,Standing>();String members=journal.metadata(membersKey(code));
+        List<MatchJournal.Match> matches = journal.competition("league:" + code);
+        if(members!=null){for(String id:members.split(";"))rows.put(id,new Standing(id));}
+        else {
+            int expected = "en".equals(code) ? 20 : "en2".equals(code) ? 24 : 0;
+            if (expected > 0 && !matches.isEmpty()) {
+                // Pre-v104 archives have fixture IDs but no explicit membership snapshot.
+                for (MatchJournal.Match match : matches) {
+                    rows.put(match.home, new Standing(match.home));
+                    rows.put(match.away, new Standing(match.away));
+                }
+                if (rows.size() != expected) rows.clear();
+            }
+            if (rows.isEmpty()) for(NativeCareerStore.Club club:clubs)if(club.league.equals(code))rows.put(club.id,new Standing(club.id));
+        }
+        for(MatchJournal.Match m:matches){Standing h=rows.get(m.home),a=rows.get(m.away);if(h==null||a==null)continue;h.played++;a.played++;h.gf+=m.homeGoals;h.ga+=m.awayGoals;a.gf+=m.awayGoals;a.ga+=m.homeGoals;h.points+=m.homeGoals>m.awayGoals?3:m.homeGoals==m.awayGoals?1:0;a.points+=m.awayGoals>m.homeGoals?3:m.homeGoals==m.awayGoals?1:0;}
         ArrayList<Standing> out=new ArrayList<Standing>(rows.values());Collections.sort(out,(a,b)->{if(a.points!=b.points)return b.points-a.points;int d=(b.gf-b.ga)-(a.gf-a.ga);if(d!=0)return d;if(a.gf!=b.gf)return b.gf-a.gf;return a.id.compareTo(b.id);});return out;
     }
     static HashMap<String,Double> strengths(NativeCareerStore.Career career){

@@ -108,7 +108,72 @@ public class ChampionshipHarness {
         check(oldFinish.competition(ChampionshipPlayoffs.COMPETITION).size() == 5 &&
                 effects.clock == 38 && oldFinish.competition(ChampionshipPlayoffs.COMPETITION).stream().allMatch(m -> m.effectsVersion == 0),
                 "backfilled play-offs created retroactive effects");
+
+        List<String> relegated = NativeEnglishDivisions.relegated(reopened, career);
+        check(relegated.size() == 3, "missing Premier League relegation places");
+        NativeEnglishDivisions.rollover(context, career, 2012);
+        check(leagueOf(career, promotion.get(0)).equals("en2"), "changed active English core membership");
+
+        career.activeLeague = "es";
+        career.userClub = NativeWorldCenter.leagues.get("es").get(0).name;
+        Map<String, String> owners = new HashMap<>();
+        for (NativeCareerStore.Player player : career.players) owners.put(player.id, player.owner);
+        NativeWorldCenter.year = 2012;
+        NativeWorldCenter.played = 0;
+        NativeMatchJournal.advance(context, 0);
+        MatchJournal next = JournalHarness.open(context, nonce, 2012);
+        List<String> premier = NativeEnglishDivisions.members(next, "en");
+        List<String> championship = NativeEnglishDivisions.members(next, "en2");
+        Set<String> englishClubs = new HashSet<>(premier);
+        englishClubs.addAll(championship);
+        check(premier.size() == 20 && championship.size() == 24 && englishClubs.size() == 44 &&
+                premier.containsAll(promotion) && championship.containsAll(relegated), "wrong opening division membership");
+        check(career.players.stream().allMatch(p -> p.owner.equals(owners.get(p.id))) &&
+                promotion.stream().allMatch(id -> leagueOf(career, id).equals("en")) &&
+                relegated.stream().allMatch(id -> leagueOf(career, id).equals("en2")), "club or player identity lost");
+        NativeCareerStore.Player promotedPlayer = career.players.stream().filter(p -> promotion.contains(p.owner)).findFirst().get();
+        Map<String, Integer> bans = new HashMap<>();
+        bans.put("league:en2|" + promotedPlayer.id, 2);
+        NativeEnglishDivisions.moveOpeningBans(bans, reopened, career);
+        check(bans.size() == 1 && bans.get("league:en|" + promotedPlayer.id) == 2, "promotion lost a suspension");
+        NativeWorldCenter.played = 1;
+        NativeMatchJournal.advance(context, 1);
+        next = JournalHarness.open(context, nonce, 2012);
+        check(next.competition("league:en").size() == 10 && next.competition("league:en2").size() == 12 &&
+                next.competition("league:en").stream().allMatch(m -> premier.contains(m.home) && premier.contains(m.away)) &&
+                next.competition("league:en2").stream().allMatch(m -> championship.contains(m.home) && championship.contains(m.away)),
+                "new fixtures use old divisions");
+        check(DomesticCup.bracket(next, "en").entrants.size() == 44, "English cup lost a promoted or relegated club");
+        check(NativeMatchJournal.leagueTeams("en2", 2011).stream().anyMatch(t -> t.clubId.equals(promotion.get(0))) &&
+                NativeMatchJournal.leagueTeams("en", 2012).stream().anyMatch(t -> t.clubId.equals(promotion.get(0))),
+                "history or live table lost the club");
+        int nextCount = next.size();
+        JournalHarness.restart();
+        NativeMatchJournal.advance(context, 1);
+        check(JournalHarness.open(context, nonce, 2012).size() == nextCount, "restart duplicated league fixtures");
+        for (int step = 2; step <= 38; step++) {
+            NativeWorldCenter.played = step;
+            NativeMatchJournal.advance(context, step);
+        }
+        next = JournalHarness.open(context, nonce, 2012);
+        List<String> promotedAgain = ChampionshipPlayoffs.promotionCandidates(next);
+        List<String> relegatedAgain = NativeEnglishDivisions.relegated(next, career);
+        check(next.competition("league:en").size() == 380 && next.competition("league:en2").size() == 552 &&
+                promotedAgain.size() == 3 && relegatedAgain.size() == 3, "mixed divisions could not finish the season");
+        NativeWorldCenter.year = 2013;
+        NativeWorldCenter.played = 0;
+        NativeMatchJournal.advance(context, 0);
+        MatchJournal secondOpening = JournalHarness.open(context, nonce, 2013);
+        check(NativeEnglishDivisions.members(secondOpening, "en").containsAll(promotedAgain) &&
+                NativeEnglishDivisions.members(secondOpening, "en2").containsAll(relegatedAgain) &&
+                premier.equals(NativeEnglishDivisions.members(next, "en")) &&
+                championship.equals(NativeEnglishDivisions.members(next, "en2")), "second exchange changed archived membership");
         System.out.println("PASS: 24 Championship clubs, 506 new players, existing ownership preserved, 552 fixtures and a 44-team English cup");
         System.out.println("PASS: 5 play-off matches, positions 3-6, aggregate without away goals, Wembley final, three frozen promotion places");
+        System.out.println("PASS: two successive three-club exchanges, stable ownership and history, next-season fixtures and active-England guard");
+    }
+
+    private static String leagueOf(NativeCareerStore.Career career, String id) {
+        return career.clubs.stream().filter(club -> club.id.equals(id)).findFirst().get().league;
     }
 }

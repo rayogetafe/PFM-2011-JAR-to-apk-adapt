@@ -31,7 +31,7 @@ public final class NativeMatchJournal {
         HashMap<String,NativeWorldCenter.T> out=new HashMap<String,NativeWorldCenter.T>();
         for(NativeCareerStore.Club club:career.clubs){
             NativeWorldCenter.T team=new NativeWorldCenter.T();team.id=club.sourceId;team.name=club.name;team.style=55;team.form=2;
-            ArrayList<NativeWorldCenter.T> source=NativeWorldCenter.leagues.get(club.league);
+            ArrayList<NativeWorldCenter.T> source=NativeWorldCenter.leagues.get(club.id.substring(0,club.id.lastIndexOf(':')));
             if(source!=null&&club.sourceId>=0&&club.sourceId<source.size()){NativeWorldCenter.T t=source.get(club.sourceId);team.style=t.style;team.form=t.form;}
             out.put(club.id,team);
         }
@@ -131,20 +131,23 @@ public final class NativeMatchJournal {
             m.report=teams.get(home).name+"  "+m.homeGoals+" – "+m.awayGoals+"  "+teams.get(away).name;j.put(m);
         }
     }
-    private static MatchEffects effects(Context c, MatchJournal journal, int season, int completed) throws IOException {
+    private static MatchEffects effects(Context c, MatchJournal journal, int season, int completed, NativeCareerStore.Career career) throws IOException {
         int total = NativeTransferCalendar.total();
         MatchEffects state = new MatchEffects(total);
         if (!journal.openingDefined() || !journal.europeanOpeningDefined()) {
             MatchEffects previousEffects = new MatchEffects(total);
+            MatchJournal previous = null;
             // Older journals with played fixtures keep their original starting conditions.
             if (journal.size() == 0 && completed <= 1 && season > 2010) {
-                MatchJournal previous = new MatchJournal(new File(c.getFilesDir(), "match-journals"),
+                previous = new MatchJournal(new File(c.getFilesDir(), "match-journals"),
                         NativeWorldCenter.identity(), season - 1);
                 previousEffects.openingBans(previous.openingBans());
                 previousEffects.openingEuropeanBans(season - 1, previous.europeanOpeningBans());
                 replayEffects(previousEffects, previous.all());
             }
-            journal.defineOpeningBans(previousEffects.carryBans());
+            Map<String, Integer> domesticBans = previousEffects.carryBans();
+            if (previous != null && career != null) NativeEnglishDivisions.moveOpeningBans(domesticBans, previous, career);
+            journal.defineOpeningBans(domesticBans);
             journal.defineEuropeanOpeningBans(previousEffects.carryEuropeanBans(season - 1));
         }
         state.openingBans(journal.openingBans());
@@ -173,7 +176,7 @@ public final class NativeMatchJournal {
             j.define("cup-v95-cutoff", String.valueOf(cutoff));
         }
         if(season==2010&&j.metadata("ucl-v91-cutoff")==null){int cutoff=baseline?completed:0;for(MatchJournal.Match old:j.all())cutoff=Math.max(cutoff,old.clock);j.define("ucl-v91-cutoff",String.valueOf(cutoff));}
-        NativeCareerStore.Career career=NativeCareerStore.ensure(c);HashMap<String,NativeWorldCenter.T> teams=teams(career);HashMap<String,NativeWorldCenter.P> players=new HashMap<String,NativeWorldCenter.P>();for(NativeWorldCenter.T team:teams.values())for(NativeWorldCenter.P p:team.ps)players.put(p.uid,p);
+        NativeCareerStore.Career career=NativeCareerStore.ensure(c);NativeEnglishDivisions.freeze(j,career);HashMap<String,NativeWorldCenter.T> teams=teams(career);HashMap<String,NativeWorldCenter.P> players=new HashMap<String,NativeWorldCenter.P>();for(NativeWorldCenter.T team:teams.values())for(NativeWorldCenter.P p:team.ps)players.put(p.uid,p);
         if(season>2010&&j.metadata("ucl-groups")==null&&j.metadata("uel-groups")==null){if(j.metadata("uclq-cutoff")==null){int cutoff=baseline?completed:0;for(MatchJournal.Match old:j.all())cutoff=Math.max(cutoff,old.clock);j.define("uclq-cutoff",String.valueOf(cutoff));}EuropeanQualification.prepare(j,journal(c,season-1),career,identity^season*10007);}
         ArrayList<ArrayList<String>> groups;
         if(season==2010){groups=NativeCompetitionCalendar.groups(c);importUcl(c,j,groups,teams);}
@@ -182,7 +185,7 @@ public final class NativeMatchJournal {
         ArrayList<ArrayList<String>> europaGroups=EuropeanQualification.planned(j)?UclSeason.decode(j.metadata("uel-groups")):EuropaSeason.prepare(j,journal(c,season-1),career,groups,identity^season*10007^0x3e17);
         String competition=UclSeason.competition(season);
         HashMap<String,String> associations=new HashMap<String,String>();for(NativeCareerStore.Club club:career.clubs)associations.put(club.id,EuropeanPlaces.association(club.league));
-        MatchEffects effects=effects(c,j,season,completed);
+        MatchEffects effects=effects(c,j,season,completed,career);
         importLegacy(c,j,completed,career);
         Map<String, ArrayList<NativeWorldCenter.M>> parallel = new LinkedHashMap<>();
         for (String code : NativeWorldCenter.C) {
@@ -192,6 +195,8 @@ public final class NativeMatchJournal {
         if (NativeChampionship.active(career, season)) {
             parallel.put(NativeChampionship.CODE, NativeWorldCenter.schedule(NativeChampionship.CLUBS));
         }
+        Map<String, List<String>> members = new HashMap<>();
+        for (String code : parallel.keySet()) members.put(code, NativeEnglishDivisions.members(j, code));
         boolean championshipFinished = completed == total && parallel.containsKey(NativeChampionship.CODE);
         boolean oldChampionshipFinish = championshipFinished && j.metadata(ChampionshipPlayoffs.TABLE) == null &&
                 j.competition("league:en2").size() == NativeChampionship.CLUBS * NativeChampionship.ROUNDS / 2;
@@ -199,7 +204,7 @@ public final class NativeMatchJournal {
             effects.rest(step);
             for(String code:parallel.keySet()){
                 int previous=NativeCompetitionCalendar.parallelRound(step-1,total,code),now=NativeCompetitionCalendar.parallelRound(step,total,code);
-                for(NativeWorldCenter.M fixture:parallel.get(code))if(fixture.r>previous&&fixture.r<=now){int seed=identity+season*10007+code.hashCode()*101+fixture.r*37+fixture.h*11+fixture.a;capture(j,"league:"+code,fixture.r,code+":"+fixture.h,code+":"+fixture.a,seed,teams,players,source,effects,career);}
+                for(NativeWorldCenter.M fixture:parallel.get(code))if(fixture.r>previous&&fixture.r<=now){int seed=identity+season*10007+code.hashCode()*101+fixture.r*37+fixture.h*11+fixture.a;capture(j,"league:"+code,fixture.r,members.get(code).get(fixture.h),members.get(code).get(fixture.a),seed,teams,players,source,effects,career);}
             }
             EuropeanQualification.advance(j,identity,step,total,teams,players,source,effects,career);
             if(EuropeanQualification.planned(j)){groups=UclSeason.decode(j.metadata("ucl-groups"));europaGroups=UclSeason.decode(j.metadata("uel-groups"));}
@@ -231,7 +236,7 @@ public final class NativeMatchJournal {
     public static int[] legacyEffects(int id){
         if(Boolean.TRUE.equals(restoring.get()))return new int[5];
         if(effectsIdentity!=NativeWorldCenter.careerNonce||effectsSeason!=NativeWorldCenter.season()||currentEffects==null){
-            restoring.set(Boolean.TRUE);try{Context c=AndroidRuntime.context();NativeWorldCenter.load(c);int season=NativeWorldCenter.season(),nonce=NativeWorldCenter.identity();MatchJournal j=new MatchJournal(new File(c.getFilesDir(),"match-journals"),nonce,season);MatchEffects state=effects(c,j,season,NativeTransferCalendar.played());
+            restoring.set(Boolean.TRUE);try{Context c=AndroidRuntime.context();NativeWorldCenter.load(c);int season=NativeWorldCenter.season(),nonce=NativeWorldCenter.identity();MatchJournal j=new MatchJournal(new File(c.getFilesDir(),"match-journals"),nonce,season);MatchEffects state=effects(c,j,season,NativeTransferCalendar.played(),null);
                 ArrayList<MatchJournal.Match> records=j.all();replayEffects(state,records);state.rest(NativeTransferCalendar.played());
                 HashMap<Integer,String> ids=new HashMap<Integer,String>();if(!records.isEmpty()||!j.europeanOpeningBans().isEmpty()){NativeCareerStore.Career career=NativeCareerStore.ensure(c);for(NativeCareerStore.Player p:career.players)if(p.id.startsWith(career.activeLeague+":"))ids.put(p.sourceId,p.id);for(Map.Entry<String,?> e:c.getSharedPreferences("pfm_native_legacy_ids_v58",0).getAll().entrySet())if(e.getValue() instanceof Integer)ids.put((Integer)e.getValue(),e.getKey());}
                 if(!records.isEmpty())NativeCareerStore.applyMatchFinance(c,records,season);if(currentEffects==null||effectsIdentity!=nonce||effectsSeason!=season||currentEffects.clock<=state.clock){legacyIds=ids;currentEffects=state;effectsSeason=season;effectsIdentity=nonce;}
@@ -239,13 +244,22 @@ public final class NativeMatchJournal {
         }
         String uid=legacyIds.get(id);MatchEffects snapshot=currentEffects;if(uid==null||snapshot==null)return new int[5];MatchEffects.Discipline d=snapshot.readDiscipline(UclSeason.competition(NativeWorldCenter.season()),uid);return new int[]{snapshot.fatigue(uid),snapshot.injury(uid),d.yellow,d.red,d.ban};
     }
-    static String conditionText(String uid){if(currentEffects==null)return "";MatchEffects.Discipline d=currentEffects.discipline(UclSeason.competition(NativeWorldCenter.season()),uid);String league="";for(Map.Entry<String,ArrayList<NativeWorldCenter.T>> entry:NativeWorldCenter.leagues.entrySet())for(NativeWorldCenter.T team:entry.getValue())for(NativeWorldCenter.P p:team.ps)if(uid.equals(p.uid))league=entry.getKey();MatchEffects.Discipline domestic=currentEffects.discipline("league:"+league,uid);return "\nFatigue: "+currentEffects.fatigue(uid)+"/100\nInjury: "+currentEffects.injury(uid)+" league rounds\nLeague: YC "+domestic.yellow+" RC "+domestic.red+"; ban "+domestic.ban+" matches\nEurope: YC "+d.yellow+" RC "+d.red+"; ban "+d.ban+" European matches";}
+    static String conditionText(String uid){if(currentEffects==null)return "";MatchEffects.Discipline d=currentEffects.discipline(UclSeason.competition(NativeWorldCenter.season()),uid);String league="";for(Map.Entry<String,ArrayList<NativeWorldCenter.T>> entry:NativeWorldCenter.leagues.entrySet())for(NativeWorldCenter.T team:entry.getValue())for(NativeWorldCenter.P p:team.ps)if(uid.equals(p.uid))league=team.league==null?entry.getKey():team.league;MatchEffects.Discipline domestic=currentEffects.discipline("league:"+league,uid);return "\nFatigue: "+currentEffects.fatigue(uid)+"/100\nInjury: "+currentEffects.injury(uid)+" league rounds\nLeague: YC "+domestic.yellow+" RC "+domestic.red+"; ban "+domestic.ban+" matches\nEurope: YC "+d.yellow+" RC "+d.red+"; ban "+d.ban+" European matches";}
     private static void add(NativeWorldCenter.T home,NativeWorldCenter.T away,int hg,int ag){home.p++;away.p++;home.gf+=hg;home.ga+=ag;away.gf+=ag;away.ga+=hg;if(hg>ag){home.w++;away.l++;home.pts+=3;}else if(hg<ag){away.w++;home.l++;away.pts+=3;}else{home.d++;away.d++;home.pts++;away.pts++;}}
+    static ArrayList<NativeWorldCenter.T> leagueTeams(String code, int season) throws IOException {
+        Context c = context == null ? AndroidRuntime.context() : context;
+        return leagueTeams(journal(c, season), code);
+    }
+    private static ArrayList<NativeWorldCenter.T> leagueTeams(MatchJournal journal, String code) {
+        ArrayList<NativeWorldCenter.T> teams = new ArrayList<>();
+        for (String id : NativeEnglishDivisions.members(journal, code)) teams.add(NativeEnglishDivisions.team(id));
+        return teams;
+    }
     static ArrayList<NativeWorldCenter.M> project(String code,int upto,int season)throws Exception{
         Context c=context==null?AndroidRuntime.context():context;if(season==NativeWorldCenter.season())advance(c,NativeTransferCalendar.played());
-        MatchJournal journal=journal(c,season);ArrayList<NativeWorldCenter.T> teams=NativeWorldCenter.leagues.get(code);HashMap<String,NativeWorldCenter.P> players=new HashMap<String,NativeWorldCenter.P>();
+        MatchJournal journal=journal(c,season);ArrayList<NativeWorldCenter.T> teams=leagueTeams(journal,code);HashMap<String,NativeWorldCenter.P> players=new HashMap<String,NativeWorldCenter.P>();
         for(NativeWorldCenter.T team:teams){team.p=team.w=team.d=team.l=team.gf=team.ga=team.pts=0;for(NativeWorldCenter.P p:team.ps){p.g=p.a=p.ap=p.st=p.rs=p.cs=p.ga=p.sv=p.fat=0;players.put(p.uid,p);}}
-        ArrayList<NativeWorldCenter.M> fixtures=NativeWorldCenter.schedule(teams.size());for(NativeWorldCenter.M fixture:fixtures){fixture.hg=fixture.ag=-1;if(fixture.r>upto)continue;MatchJournal.Match m=journal.get(key("league:"+code,fixture.r,code+":"+fixture.h,code+":"+fixture.a));if(m==null)continue;
+        ArrayList<NativeWorldCenter.M> fixtures=NativeWorldCenter.schedule(teams.size());for(NativeWorldCenter.M fixture:fixtures){fixture.hg=fixture.ag=-1;if(fixture.r>upto)continue;MatchJournal.Match m=journal.get(key("league:"+code,fixture.r,teams.get(fixture.h).clubId,teams.get(fixture.a).clubId));if(m==null)continue;
             fixture.hg=m.homeGoals;fixture.ag=m.awayGoals;add(teams.get(fixture.h),teams.get(fixture.a),fixture.hg,fixture.ag);
             for(MatchJournal.PlayerFact f:m.players){NativeWorldCenter.P p=players.get(f.uid);if(p==null)continue;int[] s=f.stats;p.g+=s[0];p.a+=s[1];p.ap+=s[2];p.st+=s[3];p.rs+=s[4];p.cs+=s[5];p.ga+=s[6];p.sv+=s[7];if(s[8]>=0)p.fat=s[8];}
         }

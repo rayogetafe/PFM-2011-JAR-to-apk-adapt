@@ -8,8 +8,8 @@ class NativeCareerStore {
  static class Deal implements Serializable {String player,from,to;int fee,wage,years,season;boolean ai;}
  static class Career implements Serializable {int schema,slot,created,season,aiWindow=-1,aiCountWindow=-1,aiCount;String activeLeague,userClub;ArrayList<Club> clubs=new ArrayList<>();ArrayList<Player> players=new ArrayList<>();ArrayList<Deal> deals=new ArrayList<>();HashSet<String> matchReceipts=new HashSet<>();boolean matchBudgetPending;}
  static Career current;static int ensures;
- static Career ensure(Context c){ensures++;if(current.season<NativeWorldCenter.year)advance(current,NativeWorldCenter.year);return current;}
- static Career mutable(Context c){return ensure(c);}static boolean aiReady(Context c){return true;}
+ static Career ensure(Context c)throws IOException{ensures++;if(current.season<NativeWorldCenter.year)advance(c,current,NativeWorldCenter.year);return current;}
+ static Career mutable(Context c)throws IOException{return ensure(c);}static boolean aiReady(Context c){return true;}
  static Club user(Career c){for(Club x:c.clubs)if(x.name.equals(c.userClub)&&x.league.equals(c.activeLeague))return x;return null;}
  static Club userClub(Career c){return user(c);}static int legacyBudget(){return LongCareerHarness.legacyBudget;}
  static void writeAtomic(Context c,Career state)throws Exception{current=state;}
