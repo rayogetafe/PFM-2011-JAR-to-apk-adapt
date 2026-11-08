@@ -42,6 +42,7 @@ public final class NativeEnglishCareer {
         NativeCareerStore.Career career = NativeCareerStore.englishOpening(context, previousYear, nonce);
         if (career == null) return null;
         MatchJournal previous = new MatchJournal(new File(context.getFilesDir(), "match-journals"), nonce, previousYear);
+        if ("en".equals(career.activeLeague) && previous.metadata(NativeEnglishDivisions.FINAL_PREMIER_ORDER) == null) return null;
         Set<String> premier = NativeEnglishDivisions.nextPremier(previous, career);
         if (premier.isEmpty()) return null;
         Opening opening = new Opening();
@@ -82,5 +83,15 @@ public final class NativeEnglishCareer {
         opening.clubs.addAll(selected.values());
         if (opening.clubs.size() != (top ? 20 : NativeChampionship.CLUBS)) throw new IOException("Wrong English division size");
         return opening;
+    }
+
+    public static void recordFinalPremier(Context context, int year, List<String> order) throws IOException {
+        int nonce = EnglishLegacyIds.nonce(context);
+        if (nonce == 0 || order.size() != 20) return;
+        MatchJournal journal = new MatchJournal(new File(context.getFilesDir(), "match-journals"), nonce, year);
+        Set<String> members = new HashSet<>(NativeEnglishDivisions.members(journal, "en"));
+        if (members.size() != 20 || !members.equals(new HashSet<>(order))) return;
+        journal.define(NativeEnglishDivisions.FINAL_PREMIER_ORDER, EuropeanQualification.encode(order));
+        journal.save();
     }
 }

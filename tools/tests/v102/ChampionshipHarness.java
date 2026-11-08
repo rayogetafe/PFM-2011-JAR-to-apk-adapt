@@ -109,7 +109,19 @@ public class ChampionshipHarness {
                 effects.clock == 38 && oldFinish.competition(ChampionshipPlayoffs.COMPETITION).stream().allMatch(m -> m.effectsVersion == 0),
                 "backfilled play-offs created retroactive effects");
 
+        List<String> finalTable = NativeEnglishDivisions.members(reopened, "en");
+        String blackpool = "en:19";
+        finalTable.remove(blackpool);
+        finalTable.add(14, blackpool);
+        context.getSharedPreferences("pfm_world_careers", 0).edit().putInt("slot_1_nonce", nonce).commit();
+        NativeEnglishCareer.recordFinalPremier(context, 2011, finalTable);
+        reopened = JournalHarness.open(context, nonce, 2011);
+        career.userClub = "Blackpool";
+        NativeEnglishCareer.Opening blackpoolOpening = NativeEnglishCareer.opening(context, 2011);
+        check(blackpoolOpening != null && blackpoolOpening.league.equals("en") && blackpoolOpening.userId.equals(blackpool),
+                "Blackpool was relegated from fifteenth place");
         List<String> relegated = NativeEnglishDivisions.relegated(reopened, career);
+        check(relegated.equals(finalTable.subList(17, 20)), "relegation ignored the visible final table");
         check(relegated.size() == 3, "missing Premier League relegation places");
         NativeEnglishDivisions.rollover(context, career, 2012);
         check(leagueOf(career, promotion.get(0)).equals("en2"), "changed active English core membership");

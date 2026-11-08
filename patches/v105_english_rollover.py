@@ -27,6 +27,14 @@ def widen_ledger(data, method, read_ref, limits):
     return data.replace(call, b"\xb8" + struct.pack(">H", ref))
 
 
+def bridge(data, pattern, method, descriptor="()V", prefix=b"", suffix=b""):
+    assert data.count(pattern) == 1, (method, "legacy call site changed")
+    data, ref = add_methodref(data, "PfmEnglishSeasonBridge", method, descriptor)
+    code = prefix + b"\xb8" + struct.pack(">H", ref) + suffix
+    assert len(code) <= len(pattern)
+    return data.replace(pattern, code + b"\x00" * (len(pattern) - len(code)), 1)
+
+
 def main(path):
     with zipfile.ZipFile(path) as source:
         entries = [(item, source.read(item.filename)) for item in source.infolist()]
@@ -38,9 +46,9 @@ def main(path):
             for item, data in entries:
                 if item.filename == "pfm2.class":
                     old = b"\xb8\x00\x85\xb8\x00\x3f"  # startFirstRound, then updateSeasonStrings
-                    assert data.count(old) == 1 and b"startFirstRound" in data, "legacy rollover call changed"
-                    data, ref = add_methodref(data, "PfmEnglishSeasonBridge", "startFirstRound", "()V")
-                    data = data.replace(old, b"\xb8" + struct.pack(">H", ref) + old[3:])
+                    data = bridge(data, old, "startFirstRound", suffix=old[3:])
+                    old = b"\xb8\x01\x5b\xb8\x00\x7f"  # startNewSeason, then sortSeededTable
+                    data = bridge(data, old, "beforeSeasonReset", suffix=old[3:])
                     changed.add(item.filename)
                 if item.filename == "dw.class":
                     old = b"\x2a\x10\x19\xbc\x09\xb5"  # constructor roster allocation
@@ -51,6 +59,13 @@ def main(path):
                     old = b"\x10\x19\xbd\x00\x47"  # the saved user squad's training records
                     assert data.count(old) == 1 and b"eg" in data, "legacy training allocation changed"
                     data = data.replace(old, b"\x10\x1e" + old[2:])
+                    data = bridge(data, b"\xb8\x00\xcb\xb1", "afterLeagueLoad", suffix=b"\xb1")
+                    changed.add(item.filename)
+                if item.filename == "ca.class":
+                    for team_field in (0x70, 0x76):
+                        team = bytes((0x2a, 0xb4, 0, team_field))
+                        old = b"\x10\x09" + team + b"\xb4\x00\xd1\x60\x1b\x60\xb8\x00\xd4"
+                        data = bridge(data, old, "matchBadge", "(Ldw;I)Lpfm/android/compat/lcdui/Image;", prefix=team + b"\x1b")
                     changed.add(item.filename)
                 if item.filename == "pfmRosterAccess50.class":
                     old = b"\x10\x19\xa4\x00\x06\x10\x19"
@@ -61,7 +76,7 @@ def main(path):
                     data = widen_ledger(data, *LEDGERS[item.filename])
                     changed.add(item.filename)
                 output.writestr(item, data)
-        assert changed == {"pfm2.class", "dw.class", "cp.class", "pfmRosterAccess50.class", *LEDGERS}
+        assert changed == {"pfm2.class", "dw.class", "cp.class", "ca.class", "pfmRosterAccess50.class", *LEDGERS}
         os.replace(target, path)
     finally:
         if os.path.exists(target):

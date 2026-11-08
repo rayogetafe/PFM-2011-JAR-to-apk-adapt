@@ -19,6 +19,10 @@ public final class EnglishCoreHarness {
         verify(lower, lowerSlots);
         reload();
         verify(lower, lowerSlots);
+        verifyLoadedPoints();
+        check("badges/en20.png".equals(PfmEnglishSeasonBridge.matchBadgePath("en:19")) &&
+                "second_division_badges/en2_12.png".equals(PfmEnglishSeasonBridge.matchBadgePath("en2:12")),
+                "badge lookup used a legacy slot");
 
         SharedPreferences upperSlots = new SharedPreferences();
         NativeEnglishCareer.Opening upper = division(20, "en");
@@ -29,6 +33,21 @@ public final class EnglishCoreHarness {
         check(lowerSlots.getInt("user-gk", -1) == upperSlots.getInt("user-gk", -2), "lost player identity across divisions");
         checkLedgers();
         System.out.println("PASS: real core saves and reloads both English divisions, 30-player squad, 38/46 rounds, same user club and player slot");
+    }
+
+    private static void verifyLoadedPoints() throws Exception {
+        dw[] clubs = (dw[]) field(cp.class, "a", dw[].class).get(null);
+        field(cp.class, "a", byte.class).setByte(null, (byte) 2);
+        Field points = field(dw.class, "h", byte.class), wins = field(dw.class, "i", byte.class);
+        Field losses = field(dw.class, "j", byte.class);
+        for (dw club : clubs) points.setByte(club, (byte) 22);
+        losses.setByte(clubs[3], (byte) 1);
+        wins.setByte(clubs[5], (byte) 2);
+        reload();
+        check(PfmEnglishSeasonBridge.repairPoints(), "seeded save was not repaired");
+        clubs = (dw[]) field(cp.class, "a", dw[].class).get(null);
+        check(points.getByte(clubs[3]) == 1 && points.getByte(clubs[5]) == 6 &&
+                !PfmEnglishSeasonBridge.repairPoints(), "played results lost or points repair was not idempotent");
     }
 
     private static void checkLedgers() throws Exception {
@@ -90,7 +109,15 @@ public final class EnglishCoreHarness {
         int count = division.clubs.size();
         check(clubs.length == count && calendar.length == 2 * (count - 1), "wrong calendar size");
         check(PfmSeasonBridge.leagueCode().equals(division.league), "wrong active competition bridge");
-        field(cp.class, "a", byte.class).setByte(null, (byte) (calendar.length - 1));
+        java.lang.reflect.Method selectRound = Arrays.stream(cp.class.getDeclaredMethods())
+                .filter(m -> m.getName().equals("b") && m.getReturnType() == void.class &&
+                        Arrays.equals(m.getParameterTypes(), new Class<?>[]{int.class})).findFirst().get();
+        Field userFixture = field(cp.class, "d", byte.class);
+        for (int round = 0; round < calendar.length; round++) {
+            selectRound.invoke(null, round);
+            int[] fixture = calendar[round][userFixture.getByte(null)];
+            check(fixture[0] == 3 || fixture[1] == 3, "user fixture is missing in round " + (round + 1));
+        }
         field(du.class, "t", boolean.class).setBoolean(null, true);
         check(cp.pfmPlayedForTable() == calendar.length, "final round is truncated");
         pfmRound.startFirstRound();

@@ -2,11 +2,13 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import java.io.*;
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 import pfm.android.AndroidRuntime;
 import pfm.android.EnglishLegacyIds;
 import pfm.android.NativeEnglishCareer;
+import pfm.android.compat.lcdui.Image;
 
 /** Projects the next active English division into the existing, saved matchday state. */
 public final class PfmEnglishSeasonBridge {
@@ -23,6 +25,8 @@ public final class PfmEnglishSeasonBridge {
                     install(opening, EnglishLegacyIds.players(context, year - 1),
                             EnglishLegacyIds.season(context, year));
                     pfmPlayerStats.startNewSeason();
+                    pfmTeams.clearSeedPoints();
+                    refreshStatsBaseline();
                     installed = true;
                 }
             }
@@ -34,14 +38,93 @@ public final class PfmEnglishSeasonBridge {
     }
 
     public static String clubId(int index, String fallback) {
+        return clubId(index, fallback, pfm2.getSeason());
+    }
+
+    private static String clubId(int index, String fallback, int year) {
         try {
             Context context = AndroidRuntime.context();
-            int year = pfm2.getSeason();
             if (get(ea.class, "a", int.class).getInt(null) == 0 && EnglishLegacyIds.installed(context, year)) {
                 return EnglishLegacyIds.season(context, year).getString("club." + index, fallback);
             }
         } catch (Exception ignored) {}
         return fallback;
+    }
+
+    /** pfm2 increments its year immediately before resetting the old table. */
+    public static void beforeSeasonReset() {
+        try {
+            if (pfm2.getMode() == 1 && get(ea.class, "a", int.class).getInt(null) == 0 &&
+                    PfmSeasonBridge.totalRounds() == 38 && cp.pfmPlayedForTable() == 38) {
+                int year = pfm2.getSeason() - 1;
+                byte[] ranks = (byte[]) get(cp.class, "c", byte[].class).get(null);
+                List<String> order = new ArrayList<>();
+                for (byte rank : ranks) {
+                    int index = rank & 255;
+                    order.add(clubId(index, "en:" + index, year));
+                }
+                NativeEnglishCareer.recordFinalPremier(AndroidRuntime.context(), year, order);
+            }
+        } catch (Exception error) {
+            android.util.Log.e("PFM-English", "Could not preserve the final Premier League table", error);
+        }
+        pfmSeasonStatsV22.startNewSeason();
+    }
+
+    /** Repair v105's seed points without replaying the matches or changing the division. */
+    public static void afterLeagueLoad() {
+        invoke(cp.class, "b", void.class);
+        try {
+            if (pfm2.getMode() == 1 && get(ea.class, "a", int.class).getInt(null) == 0 &&
+                    EnglishLegacyIds.installed(AndroidRuntime.context(), pfm2.getSeason()) && repairPoints()) {
+                refreshStatsBaseline();
+            }
+        } catch (Exception error) {
+            android.util.Log.e("PFM-English", "Could not repair loaded league points", error);
+        }
+    }
+
+    static boolean repairPoints() throws Exception {
+        dw[] teams = (dw[]) get(cp.class, "a", dw[].class).get(null);
+        int played = cp.pfmPlayedForTable();
+        Field points = get(dw.class, "h", byte.class), wins = get(dw.class, "i", byte.class);
+        Field losses = get(dw.class, "j", byte.class);
+        for (dw team : teams) if ((wins.getByte(team) & 255) + (losses.getByte(team) & 255) > played) return false;
+        boolean changed = false;
+        for (dw team : teams) {
+            int won = wins.getByte(team) & 255, lost = losses.getByte(team) & 255;
+            int actual = 3 * won + played - won - lost;
+            if ((points.getByte(team) & 255) == actual) continue;
+            points.setByte(team, (byte) actual);
+            changed = true;
+        }
+        if (changed) invoke(cp.class, "a", void.class);
+        return changed;
+    }
+
+    private static void refreshStatsBaseline() throws Exception {
+        pfmPlayerStats.ensureLoaded();
+        for (String name : new String[]{"snapshotTeamsOnly", "save"}) {
+            Method method = pfmPlayerStats.class.getDeclaredMethod(name);
+            method.setAccessible(true);
+            method.invoke(null);
+        }
+    }
+
+    public static Image matchBadge(dw team, int offset) {
+        int index = 0;
+        try {
+            index = get(dw.class, "n", byte.class).getByte(team) & 255;
+            String path = matchBadgePath(clubId(index, ""));
+            if (path != null) return Image.fitted(path, 47, 50);
+        } catch (Exception ignored) {}
+        return (Image) invoke(aq.class, "a", Image.class, 9 + index + offset);
+    }
+
+    static String matchBadgePath(String club) {
+        if (club.startsWith("en2:")) return "second_division_badges/en2_" + club.substring(4) + ".png";
+        if (club.startsWith("en:")) return "badges/en" + (Integer.parseInt(club.substring(3)) + 1) + ".png";
+        return null;
     }
 
     static void install(NativeEnglishCareer.Opening opening, SharedPreferences previous,
@@ -176,5 +259,20 @@ public final class PfmEnglishSeasonBridge {
             }
         }
         throw new NoSuchFieldException(owner.getName() + "." + name);
+    }
+
+    private static Object invoke(Class<?> owner, String name, Class<?> type, Object... args) {
+        Class<?>[] parameters = args.length == 0 ? new Class<?>[0] : new Class<?>[]{int.class};
+        try {
+            for (Method method : owner.getDeclaredMethods()) {
+                if (!method.getName().equals(name) || method.getReturnType() != type ||
+                        !Arrays.equals(method.getParameterTypes(), parameters)) continue;
+                method.setAccessible(true);
+                return method.invoke(null, args);
+            }
+        } catch (ReflectiveOperationException error) {
+            throw new IllegalStateException(owner.getName() + "." + name, error);
+        }
+        throw new IllegalStateException(owner.getName() + "." + name);
     }
 }

@@ -9,6 +9,7 @@ import java.util.*;
 final class NativeEnglishDivisions {
     static final String PREMIER = "en";
     static final String CHAMPIONSHIP = NativeChampionship.CODE;
+    static final String FINAL_PREMIER_ORDER = "english-final-premier-order";
 
     static boolean includes(String league) {
         return PREMIER.equals(league) || CHAMPIONSHIP.equals(league);
@@ -27,6 +28,10 @@ final class NativeEnglishDivisions {
     }
 
     static List<String> relegated(MatchJournal previous, NativeCareerStore.Career career) {
+        List<String> finalOrder = EuropeanQualification.ids(previous.metadata(FINAL_PREMIER_ORDER));
+        if (finalOrder.size() == 20 && new HashSet<>(finalOrder).equals(new HashSet<>(members(previous, PREMIER)))) {
+            return new ArrayList<>(finalOrder.subList(17, 20));
+        }
         List<UclSeason.Standing> standings = UclSeason.standings(previous, PREMIER, career.clubs);
         if (standings.size() != 20) return Collections.emptyList();
         for (UclSeason.Standing row : standings) if (row.played != 38) return Collections.emptyList();
