@@ -430,10 +430,11 @@ jobs:
           archive="$RUNNER_TEMP/gradle-8.10.2-bin.zip"
           download_gradle() {
             curl --fail --silent --show-error --location --retry 2 --connect-timeout 15 --max-time 90 \
-              "https://$1/distributions/gradle-8.10.2-bin.zip" -o "$archive" &&
+              "$1/gradle-8.10.2-bin.zip" -o "$archive" &&
             echo "31c55713e40233a8303827ceb42ca48a47267a0ad4bab9177123121e71524c26  $archive" | sha256sum --check
           }
-          download_gradle downloads.gradle.org || download_gradle services.gradle.org
+          download_gradle https://downloads.gradle.org/distributions ||
+            download_gradle https://repo.huaweicloud.com/gradle
           unzip -q "$archive" -d "$RUNNER_TEMP"
           echo "$RUNNER_TEMP/gradle-8.10.2/bin" >> "$GITHUB_PATH"
 
