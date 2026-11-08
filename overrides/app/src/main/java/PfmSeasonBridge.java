@@ -89,13 +89,15 @@ public final class PfmSeasonBridge {
     public static String leagueCode(){
         try{
             int league=field(ea.class,"a",Integer.TYPE).getInt(null);
+            if(league==0&&totalRounds()==46)return "en2";
             String[] codes={"en","es","it","de","fr","in"};
             return league>=0&&league<codes.length?codes[league]:"";
         }catch(Throwable ignored){return "";}
     }
 
     public static int playedMatches(){return played();}
-    public static String clubId(){dw user=userTeam();return user==null?"":leagueCode()+":"+ub(user,"n");}
+    public static String clubId(){dw user=userTeam();return user==null?"":stableClubId(ub(user,"n"));}
+    public static String stableClubId(int index){return PfmEnglishSeasonBridge.clubId(index,leagueCode()+":"+index);}
 
     public static int totalRounds(){
         try{int[][][] s=schedule();return s==null?0:s.length;}catch(Throwable t){return 0;}

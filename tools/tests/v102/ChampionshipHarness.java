@@ -113,6 +113,29 @@ public class ChampionshipHarness {
         check(relegated.size() == 3, "missing Premier League relegation places");
         NativeEnglishDivisions.rollover(context, career, 2012);
         check(leagueOf(career, promotion.get(0)).equals("en2"), "changed active English core membership");
+        context.getSharedPreferences("pfm_world_careers", 0).edit().putInt("slot_1_nonce", nonce).commit();
+        NativeCareerStore.Club relegatedUser = career.clubs.stream().filter(c -> c.id.equals(relegated.get(0))).findFirst().get();
+        career.userClub = relegatedUser.name;
+        NativeEnglishCareer.Opening lower = NativeEnglishCareer.opening(context, 2011);
+        check(lower != null && lower.league.equals("en2") && lower.userId.equals(relegatedUser.id) &&
+                lower.clubs.size() == 24 && lower.clubs.stream().anyMatch(c -> c.id.equals(relegatedUser.id) &&
+                        c.budget == relegatedUser.balance && c.players.stream().allMatch(p -> career.players.stream()
+                                .anyMatch(player -> player.id.equals(p.id) && player.owner.equals(c.id)))),
+                "active manager's club or roster lost on relegation");
+        Map<NativeCareerStore.Club, String> originalLeagues = new HashMap<>();
+        for (NativeCareerStore.Club club : career.clubs) originalLeagues.put(club, club.league);
+        Context installedCareer = new Context("overrides/app/src/main/assets", context.getFilesDir());
+        installedCareer.getSharedPreferences("pfm_world_careers", 0).edit().putInt("slot_1_nonce", nonce).commit();
+        EnglishLegacyIds.season(installedCareer, 2012).edit().putString("installed", "yes").commit();
+        NativeEnglishDivisions.rollover(installedCareer, career, 2012);
+        check(career.activeLeague.equals("en2") && leagueOf(career, relegatedUser.id).equals("en2"),
+                "legacy transition did not update the native career");
+        for (Map.Entry<NativeCareerStore.Club, String> entry : originalLeagues.entrySet()) entry.getKey().league = entry.getValue();
+        career.activeLeague = "en2";
+        career.userClub = career.clubs.stream().filter(c -> c.id.equals(promotion.get(2))).findFirst().get().name;
+        NativeEnglishCareer.Opening upper = NativeEnglishCareer.opening(context, 2011);
+        check(upper != null && upper.league.equals("en") && upper.userId.equals(promotion.get(2)) &&
+                upper.clubs.size() == 20, "active play-off winner did not return to Premier League");
 
         career.activeLeague = "es";
         career.userClub = NativeWorldCenter.leagues.get("es").get(0).name;

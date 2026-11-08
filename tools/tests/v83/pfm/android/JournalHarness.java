@@ -80,7 +80,7 @@ public class JournalHarness {
 class NativeCareerStore {
     static class Club {String id,name,league;int sourceId,activeFrom=2010;}
     static class Player {String id,name,owner,nationality;int sourceId,position,age,overall,spe,res,qua,morale,contractWage;}
-    static class Career {int season;String activeLeague;ArrayList<Club> clubs=new ArrayList<>();ArrayList<Player> players=new ArrayList<>();}
+    static class Career {int season;String activeLeague,userClub;ArrayList<Club> clubs=new ArrayList<>();ArrayList<Player> players=new ArrayList<>();}
     static Career current;static int ensures;static Career ensure(Context c){ensures++;return current;}
     static void applyMatchFinance(Context c,ArrayList<MatchJournal.Match> m,int season){}
 }

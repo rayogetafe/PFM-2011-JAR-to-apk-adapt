@@ -12,7 +12,7 @@ public final class PfmJournalBridge83 {
         dw[] teams=(dw[])field(cp.class,"a",dw[].class).get(null);int[][][] schedule=(int[][][])field(cp.class,"a",int[][][].class).get(null);
         String code=PfmSeasonBridge.leagueCode();ArrayList<MatchJournal.Match> out=new ArrayList<MatchJournal.Match>();
         for(int r=0;r<Math.min(through,schedule.length);r++)for(int[] fixture:schedule[r]){
-            dw h=teams[fixture[0]],a=teams[fixture[1]];MatchJournal.Match m=new MatchJournal.Match();m.competition="league:"+code;m.round=r+1;m.home=code+":"+id(h);m.away=code+":"+id(a);m.id=NativeMatchJournal.key(m.competition,m.round,m.home,m.away);m.homeGoals=score(h,r);m.awayGoals=score(a,r);m.source="legacy-score";
+            dw h=teams[fixture[0]],a=teams[fixture[1]];MatchJournal.Match m=new MatchJournal.Match();m.competition="league:"+code;m.round=r+1;m.home=PfmSeasonBridge.stableClubId(id(h));m.away=PfmSeasonBridge.stableClubId(id(a));m.id=NativeMatchJournal.key(m.competition,m.round,m.home,m.away);m.homeGoals=score(h,r);m.awayGoals=score(a,r);m.source="legacy-score";
             m.report=pfmLeagueMatchArchive34.report(r+1,h,a);
             MatchJournal.legacyDetails(m);
             PfmIncidentsBridge88.enrich(m,h,a);

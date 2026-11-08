@@ -36,7 +36,7 @@ final class NativeCareerStore {
     private static int legacyBudget(){try{return ((Number)Class.forName("PfmTransferBridge").getMethod("budget").invoke(null)).intValue();}catch(Throwable t){return 0;}}
     private static SharedPreferences identity(Context c){return c.getSharedPreferences("pfm_native_career_identity_v67",0);}
     private static String identityKey(){return "slot_"+NativeWorldCenter.slot();}
-    private static boolean sameCareer(Context c,Career old){int saved=identity(c).getInt(identityKey(),0),current=NativeWorldCenter.careerSeed();if(saved!=0&&saved!=current)return false;String league=activeLeague(),club=userClub();return league.equals(old.activeLeague)&&club.equalsIgnoreCase(old.userClub);}
+    private static boolean sameCareer(Context c,Career old){int saved=identity(c).getInt(identityKey(),0),current=NativeWorldCenter.careerSeed();if(saved!=0&&saved!=current)return false;String league=activeLeague(),club=userClub();return club.equalsIgnoreCase(old.userClub)&&(league.equals(old.activeLeague)||NativeEnglishDivisions.includes(league)&&NativeEnglishDivisions.includes(old.activeLeague)&&EnglishLegacyIds.installed(c,NativeWorldCenter.season()));}
     private static void markCareer(Context c,boolean fresh){String key=identityKey();SharedPreferences p=identity(c);SharedPreferences.Editor e=p.edit().putInt(key,NativeWorldCenter.careerSeed());if(fresh||!p.contains(key+"_aiAfter"))e.putInt(key+"_aiAfter",Math.max(-1,NativeWorldCenter.played()-(fresh?0:1)));e.commit();}
     static boolean aiReady(Context c){SharedPreferences p=identity(c);String key=identityKey();return p.getInt(key,0)==NativeWorldCenter.careerSeed()&&NativeWorldCenter.played()>p.getInt(key+"_aiAfter",-1);}
     private static void resetLegacy(){try{Class.forName("PfmNativeRosterAdapter").getMethod("resetCareer").invoke(null);}catch(Throwable ignored){}}
@@ -111,6 +111,13 @@ final class NativeCareerStore {
     private static Career readSnapshot(File snapshot) {
         try { return snapshot.exists() ? parse(read(snapshot)) : null; }
         catch (Exception ignored) { return null; }
+    }
+    static Career englishOpening(Context context, int year, int nonce) {
+        if (nonce == 0 || identity(context).getInt(identityKey(), 0) != nonce) return null;
+        Career saved = readSnapshot(file(context));
+        if (saved == null || saved.season != year || !NativeEnglishDivisions.includes(saved.activeLeague) ||
+                !NativeChampionship.active(saved, year) || !"OK".equals(validate(saved))) return null;
+        return saved;
     }
     private static Career restore(Context c, Career saved, boolean fromBackup) throws Exception {
         if (saved == null || !sameCareer(c, saved)) return null;
@@ -195,7 +202,7 @@ final class NativeCareerStore {
             buyer.balance-=fee;seller.balance=(int)Math.min(Integer.MAX_VALUE,(long)seller.balance+fee);player.owner=buyer.id;player.contractWage=wage;player.contractUntil=c.season+years;
             Deal d=new Deal();d.player=player.id;d.from=seller.id;d.to=buyer.id;d.fee=fee;d.wage=wage;d.years=years;d.season=c.season;c.deals.add(d);
             String audit=validate(c);if(!"OK".equals(audit))return "Transaction rolled back: "+audit;
-            writeAtomic(context,c);applyToWorld(c);postMail(c,d);for(String code:NativeWorldCenter.C)for(NativeWorldCenter.T t:NativeWorldCenter.leagues.get(code))if(t.ps.contains(row.p)){row.code=code;row.team=t;}
+            writeAtomic(context,c);applyToWorld(c);postMail(c,d);row.code=buyer.league;row.team=NativeEnglishDivisions.team(buyer.id);
             return "COMPLETED — native career ownership updated; "+syncLegacy(c);
         }catch(Throwable t){return "Transaction rolled back: "+String.valueOf(t.getMessage());}
     }
@@ -204,8 +211,8 @@ final class NativeCareerStore {
             Club buyer=user(c);if(buyer==null)return "legacy matchday sync unavailable";
             HashMap<String,Player> players=new HashMap<String,Player>();for(Player x:c.players)players.put(x.id,x);
             Class<?> bridge=Class.forName("PfmNativeRosterAdapter");java.lang.reflect.Method add=bridge.getMethod("importPlayer",String.class,String.class,Integer.TYPE,Integer.TYPE,Integer.TYPE,Integer.TYPE,Integer.TYPE,Integer.TYPE,Integer.TYPE,Integer.TYPE,Integer.TYPE),remove=bridge.getMethod("removePlayer",String.class,String.class,Integer.TYPE,Integer.TYPE,Integer.TYPE,Integer.TYPE,Integer.TYPE,Integer.TYPE);
-            int synced=0,known=0;String pending=null;
-            for(Deal d:c.deals)if(buyer.id.equals(d.to)||buyer.id.equals(d.from)){Player x=players.get(d.player);if(x==null){pending="native player unavailable";continue;}String result=buyer.id.equals(d.to)?String.valueOf(add.invoke(null,x.id,x.name,x.age,x.position,x.spe,x.res,x.qua,x.morale,x.value,x.contractWage,buyer.balance)):String.valueOf(remove.invoke(null,x.id,x.name,x.age,x.position,x.spe,x.res,x.qua,buyer.balance));if("SYNCED".equals(result)||"REMOVED".equals(result))synced++;else if("ALREADY_SYNCED".equals(result)||"ALREADY_REMOVED".equals(result))known++;else pending=result;}
+            int synced=0,known=0;String pending=null;boolean installed=EnglishLegacyIds.installed(AndroidRuntime.context(),c.season);
+            for(Deal d:c.deals)if((!installed||d.season>=c.season)&&(buyer.id.equals(d.to)||buyer.id.equals(d.from))){Player x=players.get(d.player);if(x==null){pending="native player unavailable";continue;}String result=buyer.id.equals(d.to)?String.valueOf(add.invoke(null,x.id,x.name,x.age,x.position,x.spe,x.res,x.qua,x.morale,x.value,x.contractWage,buyer.balance)):String.valueOf(remove.invoke(null,x.id,x.name,x.age,x.position,x.spe,x.res,x.qua,buyer.balance));if("SYNCED".equals(result)||"REMOVED".equals(result))synced++;else if("ALREADY_SYNCED".equals(result)||"ALREADY_REMOVED".equals(result))known++;else pending=result;}
             if(pending!=null)return "legacy matchday pending: "+pending;
             return "legacy matchday OK ("+(synced+known)+" native deal"+((synced+known)==1?"":"s")+(synced>0?", "+synced+" imported":"")+")";
         }catch(Throwable t){return "legacy matchday sync unavailable: "+t.getClass().getSimpleName();}

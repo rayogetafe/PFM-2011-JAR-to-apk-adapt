@@ -117,8 +117,8 @@ public final class NativeMatchJournal {
     private static void minutes(MatchJournal.Match m,String club,NativeWorldCenter.S s){HashMap<NativeWorldCenter.P,Integer> minutes=new HashMap<NativeWorldCenter.P,Integer>();for(NativeWorldCenter.P p:s.xi)minutes.put(p,90);ArrayList<NativeWorldCenter.P> xi=new ArrayList<NativeWorldCenter.P>(s.xi);int sub=0;for(NativeWorldCenter.P p:s.used)if(!s.xi.contains(p)&&p.pos!=0){int at=65+sub++*7;for(int i=xi.size()-1;i>=0;i--)if(xi.get(i).pos==p.pos){minutes.put(xi.get(i),at-1);minutes.put(p,91-at);xi.set(i,p);break;}}for(MatchJournal.PlayerFact f:m.players)if(f.club.equals(club))for(Map.Entry<NativeWorldCenter.P,Integer> e:minutes.entrySet())if(f.uid.equals(e.getKey().uid))f.minutes=e.getValue();}
     private static void importLegacy(Context c,MatchJournal j,int through,NativeCareerStore.Career career)throws Exception{
         @SuppressWarnings("unchecked") ArrayList<MatchJournal.Match> matches=(ArrayList<MatchJournal.Match>)Class.forName("PfmJournalBridge83").getMethod("matches",Integer.TYPE).invoke(null,through);
-        HashMap<Integer,String> ids=new HashMap<Integer,String>();for(NativeCareerStore.Player p:career.players)if(p.id.startsWith(career.activeLeague+":"))ids.put(p.sourceId,p.id);
-        for(Map.Entry<String,?> e:c.getSharedPreferences("pfm_native_legacy_ids_v58",0).getAll().entrySet())if(e.getValue() instanceof Integer)ids.put((Integer)e.getValue(),e.getKey());
+        HashMap<Integer,String> ids=new HashMap<Integer,String>();for(NativeCareerStore.Player p:career.players)if(p.id.startsWith((NativeEnglishDivisions.includes(career.activeLeague)?"en":career.activeLeague)+":"))ids.put(p.sourceId,p.id);
+        for(Map.Entry<String,?> e:EnglishLegacyIds.players(c,NativeWorldCenter.season()).getAll().entrySet())if(e.getValue() instanceof Integer)ids.put((Integer)e.getValue(),e.getKey());
         legacyIds=ids;
         legacyCondition.clear();for(Map.Entry<Integer,String> e:ids.entrySet())try{legacyCondition.put(e.getValue(),(int[])Class.forName("PfmEffectsBridge84").getMethod("condition",Integer.TYPE).invoke(null,e.getKey()));}catch(Exception ignored){}
         for(MatchJournal.Match m:matches){if(m.homeGoals==255||m.awayGoals==255)continue;for(MatchJournal.PlayerFact f:m.players){int id=Integer.parseInt(f.uid.substring(f.uid.lastIndexOf(':')+1));if(ids.containsKey(id))f.uid=ids.get(id);}j.put(m);}
@@ -192,12 +192,13 @@ public final class NativeMatchJournal {
             ArrayList<NativeWorldCenter.T> clubs = NativeWorldCenter.leagues.get(code);
             if (clubs != null && !code.equals(career.activeLeague)) parallel.put(code, NativeWorldCenter.schedule(clubs.size()));
         }
-        if (NativeChampionship.active(career, season)) {
+        boolean championshipActive = NativeChampionship.active(career, season);
+        if (championshipActive && !NativeChampionship.CODE.equals(career.activeLeague)) {
             parallel.put(NativeChampionship.CODE, NativeWorldCenter.schedule(NativeChampionship.CLUBS));
         }
         Map<String, List<String>> members = new HashMap<>();
         for (String code : parallel.keySet()) members.put(code, NativeEnglishDivisions.members(j, code));
-        boolean championshipFinished = completed == total && parallel.containsKey(NativeChampionship.CODE);
+        boolean championshipFinished = completed == total && championshipActive;
         boolean oldChampionshipFinish = championshipFinished && j.metadata(ChampionshipPlayoffs.TABLE) == null &&
                 j.competition("league:en2").size() == NativeChampionship.CLUBS * NativeChampionship.ROUNDS / 2;
         for(int step=1;step<=completed;step++){
@@ -238,7 +239,7 @@ public final class NativeMatchJournal {
         if(effectsIdentity!=NativeWorldCenter.careerNonce||effectsSeason!=NativeWorldCenter.season()||currentEffects==null){
             restoring.set(Boolean.TRUE);try{Context c=AndroidRuntime.context();NativeWorldCenter.load(c);int season=NativeWorldCenter.season(),nonce=NativeWorldCenter.identity();MatchJournal j=new MatchJournal(new File(c.getFilesDir(),"match-journals"),nonce,season);MatchEffects state=effects(c,j,season,NativeTransferCalendar.played(),null);
                 ArrayList<MatchJournal.Match> records=j.all();replayEffects(state,records);state.rest(NativeTransferCalendar.played());
-                HashMap<Integer,String> ids=new HashMap<Integer,String>();if(!records.isEmpty()||!j.europeanOpeningBans().isEmpty()){NativeCareerStore.Career career=NativeCareerStore.ensure(c);for(NativeCareerStore.Player p:career.players)if(p.id.startsWith(career.activeLeague+":"))ids.put(p.sourceId,p.id);for(Map.Entry<String,?> e:c.getSharedPreferences("pfm_native_legacy_ids_v58",0).getAll().entrySet())if(e.getValue() instanceof Integer)ids.put((Integer)e.getValue(),e.getKey());}
+                HashMap<Integer,String> ids=new HashMap<Integer,String>();if(!records.isEmpty()||!j.europeanOpeningBans().isEmpty()){NativeCareerStore.Career career=NativeCareerStore.ensure(c);for(NativeCareerStore.Player p:career.players)if(p.id.startsWith((NativeEnglishDivisions.includes(career.activeLeague)?"en":career.activeLeague)+":"))ids.put(p.sourceId,p.id);for(Map.Entry<String,?> e:EnglishLegacyIds.players(c,NativeWorldCenter.season()).getAll().entrySet())if(e.getValue() instanceof Integer)ids.put((Integer)e.getValue(),e.getKey());}
                 if(!records.isEmpty())NativeCareerStore.applyMatchFinance(c,records,season);if(currentEffects==null||effectsIdentity!=nonce||effectsSeason!=season||currentEffects.clock<=state.clock){legacyIds=ids;currentEffects=state;effectsSeason=season;effectsIdentity=nonce;}
             }catch(Exception e){throw new IllegalStateException("Saved match effects unavailable",e);}finally{restoring.remove();}
         }

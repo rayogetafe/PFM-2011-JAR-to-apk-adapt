@@ -19,6 +19,7 @@ class NativeCareerStore {
  static final int SCHEMA=14;
  private static String activeLeague(){return current.activeLeague;}
  private static String userClub(){return current.userClub;}
+ static Career englishOpening(Context c,int year,int nonce){return current.season==year?current:null;}
  /* CHAMPIONSHIP */
 }
 class NativeGlobalMarket {static int quoted(int n){return Math.max(100000,((n+50000)/100000)*100000);}}

@@ -36,7 +36,9 @@ final class NativeEnglishDivisions {
     }
 
     static void rollover(Context context, NativeCareerStore.Career career, int year) throws IOException {
-        if (includes(career.activeLeague) || !NativeChampionship.active(career, year - 1)) return;
+        if (!NativeChampionship.active(career, year - 1)) return;
+        boolean active = includes(career.activeLeague);
+        if (active && !EnglishLegacyIds.installed(context, year)) return;
         File directory = new File(context.getFilesDir(), "match-journals");
         int identity = NativeWorldCenter.identity();
         MatchJournal next = new MatchJournal(directory, identity, year);
@@ -52,23 +54,35 @@ final class NativeEnglishDivisions {
                     recordedClubs.size() != 20 + NativeChampionship.CLUBS || !recordedClubs.equals(all)) {
                 throw new IOException("Invalid English league membership");
             }
-            for (NativeCareerStore.Club club : career.clubs) {
-                if (includes(club.league)) club.league = premier.contains(club.id) ? PREMIER : CHAMPIONSHIP;
-            }
+            setPremier(career, premier);
             return;
         }
         // A season already played in an older release retains its fixtures and clubs.
         if (!next.competition("league:en").isEmpty() || !next.competition("league:en2").isEmpty()) return;
         MatchJournal previous = new MatchJournal(directory, identity, year - 1);
-        List<String> up = ChampionshipPlayoffs.promotionCandidates(previous);
-        List<String> down = relegated(previous, career);
-        if (up.size() != 3 || down.size() != 3) return;
-        if (!members(previous, CHAMPIONSHIP).containsAll(up) || !members(previous, PREMIER).containsAll(down)) {
+        Set<String> premier = nextPremier(previous, career);
+        if (!premier.isEmpty()) setPremier(career, premier);
+    }
+
+    static Set<String> nextPremier(MatchJournal previous, NativeCareerStore.Career career) throws IOException {
+        List<String> up = ChampionshipPlayoffs.promotionCandidates(previous), down = relegated(previous, career);
+        if (up.size() != 3 || down.size() != 3) return Collections.emptySet();
+        Set<String> premier = new LinkedHashSet<>(members(previous, PREMIER));
+        if (!members(previous, CHAMPIONSHIP).containsAll(up) || !premier.containsAll(down)) {
             throw new IOException("Invalid English promotion and relegation places");
         }
+        premier.removeAll(down);
+        premier.addAll(up);
+        if (premier.size() != 20) throw new IOException("Invalid Premier League size");
+        return premier;
+    }
+
+    private static void setPremier(NativeCareerStore.Career career, Set<String> premier) {
         for (NativeCareerStore.Club club : career.clubs) {
-            if (up.contains(club.id)) club.league = PREMIER;
-            if (down.contains(club.id)) club.league = CHAMPIONSHIP;
+            if (includes(club.league)) club.league = premier.contains(club.id) ? PREMIER : CHAMPIONSHIP;
+            if (includes(career.activeLeague) && includes(club.league) && club.name != null && club.name.equalsIgnoreCase(career.userClub)) {
+                career.activeLeague = club.league;
+            }
         }
     }
 
@@ -88,8 +102,27 @@ final class NativeEnglishDivisions {
         return ids;
     }
 
+    static String badge(Context context, String clubName, String league, int slot) {
+        if (includes(league)) {
+            if (NativeWorldCenter.leagues == null) NativeWorldCenter.load(context);
+            for (String origin : Arrays.asList(PREMIER, CHAMPIONSHIP)) {
+                List<NativeWorldCenter.T> clubs = NativeWorldCenter.leagues.get(origin);
+                if (clubs != null) for (NativeWorldCenter.T club : clubs) {
+                    if (!club.name.equalsIgnoreCase(clubName)) continue;
+                    return origin.equals(CHAMPIONSHIP) ? "second_division_badges/en2_" + club.id + ".png" :
+                            "badges/en" + (club.id + 1) + ".png";
+                }
+            }
+        }
+        return slot < 0 ? null : "badges/" + league + (slot + 1) + ".png";
+    }
+
+    static int championshipZone(int rank) {
+        return rank <= 2 ? 0xffdcefd8 : rank <= 6 ? 0xffdcecff : 0;
+    }
+
     static void moveOpeningBans(Map<String, Integer> bans, MatchJournal previous, NativeCareerStore.Career career) {
-        if (includes(career.activeLeague) || bans.isEmpty()) return;
+        if (bans.isEmpty()) return;
         Set<String> oldPremier = new HashSet<>(members(previous, PREMIER));
         Map<String, String> oldLeagues = new HashMap<>(), newLeagues = new HashMap<>();
         for (NativeCareerStore.Club club : career.clubs) {

@@ -30,14 +30,14 @@ def main():
         temp=Path(temp);world=(JAVA/'NativeWorldCenter.java').read_text(encoding='utf-8')
         fixture=world_fixture(world)
         stub=temp/'NativeWorldCenter.java';stub.write_text(fixture,encoding='utf-8')
-        sources=[*[p for p in (ROOT/'tools/tests/v83').rglob('*.java') if not p.name.startswith('Verify')],stub,*[JAVA/name for name in ('DomesticCup.java','EuropeanQualification.java','EuropeanPlaces.java','EuropaSeason.java','UclSeason.java','UclKnockout.java','MatchJournal.java','MatchParticipation.java','MatchEffects.java','NativeMatchJournal.java','NativeCompetitionCalendar.java','NativeChampionship.java','ChampionshipPlayoffs.java','NativeEnglishDivisions.java','NativeMatchEngine.java','MatchEngine.java')]]
+        sources=[*[p for p in (ROOT/'tools/tests/v83').rglob('*.java') if not p.name.startswith('Verify')],stub,*[JAVA/name for name in ('DomesticCup.java','EuropeanQualification.java','EuropeanPlaces.java','EuropaSeason.java','UclSeason.java','UclKnockout.java','MatchJournal.java','MatchParticipation.java','MatchEffects.java','NativeMatchJournal.java','NativeCompetitionCalendar.java','NativeChampionship.java','ChampionshipPlayoffs.java','NativeEnglishDivisions.java','EnglishLegacyIds.java','NativeMatchEngine.java','MatchEngine.java')]]
         subprocess.run([javac,'-encoding','UTF-8','-d',str(temp),*map(str,sources)],check=True)
         data=temp/'data';data.mkdir()
         subprocess.run([java,'-Xverify:all','-cp',str(temp),'pfm.android.JournalHarness',sys.argv[1],str(data)],cwd=ROOT,check=True)
         if len(sys.argv)>2:
             bridge=temp/'bridge';bridge.mkdir();stubs=[]
             for name,body in {
-                'PfmSeasonBridge':'public static String leagueCode(){return "en";}',
+                'PfmSeasonBridge':'public static String leagueCode(){return "en";} public static String stableClubId(int i){return "en:"+i;}',
                 'pfmMatchPost35':'public static int completedRoundOne(){return 1;}',
                 'pfmLeagueMatchArchive34':'public static String report(int round,dw home,dw away){return "";}',
                 'PfmIncidentsBridge88':'public static void enrich(pfm.android.MatchJournal.Match m,dw h,dw a){}'
