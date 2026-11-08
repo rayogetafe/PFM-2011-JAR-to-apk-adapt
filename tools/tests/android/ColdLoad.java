@@ -33,24 +33,16 @@ public final class ColdLoad extends Instrumentation {
             Intent intent = new Intent().setClassName(getTargetContext(), "pfm.android.PfmActivity").addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             Activity activity = startActivitySync(intent);
             Object runtime = field("bu", "a", core("du")).get(null);
-            Object mainMenu = enterMenu(runtime);
+            enterMenu(runtime);
             if ("save".equals(args.getString("phase"))) {
-                save();
-                result.putString("stream", "PASS: career fixture saved on Android\n");
+                playAndSave(runtime);
+                result.putString("stream", "PASS: real first matchday played and saved on Android\n");
             } else {
-                Object manager = field("du", "a", core("ed")).get(null);
-                Object menu = null;
-                for (Method m : core("ed").getMethods()) if (m.getName().equals("a") &&
-                        m.getParameterCount() == 0 && m.getReturnType() == core("dv")) menu = m.invoke(manager);
-                if (!core("v").isInstance(menu)) throw new AssertionError("main menu unavailable " + menu);
                 int row = field("du", "v", boolean.class).getBoolean(null) ? 2 : 1;
-                call("dv", menu, "e", new Class<?>[]{int.class}, row);
-                field("dd", "i", boolean.class).setBoolean(null, true);
-                for (int i=0; i<80 && !core("i").isInstance(field("dd", "a", core("bl")).get(runtime)); i++) Thread.sleep(100);
-                if (!core("i").isInstance(field("dd", "a", core("bl")).get(runtime)))
-                    throw new AssertionError("cold Load Game did not reach the career board");
-                Object played = call("cp", null, "pfmPlayedForTable", none);
-                if (!Integer.valueOf(1).equals(played)) throw new AssertionError("wrong saved round " + played);
+                Object main = awaitScreen(runtime, "dy", "a", "v");
+                fire(field("dy", "a", core("v")).get(main), row);
+                awaitScreen(runtime, "i", "a", "v");
+                checkRound();
                 result.putString("stream", "PASS: Android Load Game reached the board after a process restart\n");
             }
             finish(Activity.RESULT_OK, result);
@@ -70,7 +62,36 @@ public final class ColdLoad extends Instrumentation {
         }
         throw new AssertionError("could not reach the main menu " + active.get(runtime));
     }
-    private void save() throws Exception {
+    private Object awaitScreen(Object runtime, String type, String fieldName, String fieldType) throws Exception {
+        Field active = field("dd", "a", core("bl"));
+        Field component = field(type, fieldName, core(fieldType));
+        for (int i = 0; i < 150; i++) {
+            Object screen = active.get(runtime);
+            if (core(type).isInstance(screen) && component.get(screen) != null) return screen;
+            Thread.sleep(100);
+        }
+        throw new AssertionError("expected screen " + type + ", found " + active.get(runtime));
+    }
+    private void fire(Object menu, int row) throws Exception {
+        call("dv", menu, "e", new Class<?>[]{int.class}, row);
+        field("dd", "i", boolean.class).setBoolean(null, true);
+    }
+    private void awaitMatchPhase(Object match, int phase) throws Exception {
+        Field current = field("ca", "c", byte.class);
+        for (int i=0;i<150;i++) {
+            if (current.getByte(match) == phase) {
+                Thread.sleep(500);
+                return;
+            }
+            Thread.sleep(100);
+        }
+        throw new AssertionError("expected match phase " + phase + ", found " + current.getByte(match));
+    }
+    private void checkRound() throws Exception {
+        Object played = call("cp", null, "pfmPlayedForTable", none);
+        if (!Integer.valueOf(1).equals(played)) throw new AssertionError("wrong saved round " + played);
+    }
+    private void playAndSave(Object runtime) throws Exception {
         call("pfm2", null, "slot0", none);
         call("pfm2", null, "setMode", new Class<?>[]{int.class}, 1);
         try (DataInputStream in = new DataInputStream(core("cp").getResourceAsStream("/resources/england.bin"))) {
@@ -78,14 +99,23 @@ public final class ColdLoad extends Instrumentation {
         }
         call("cp", null, "a", new Class<?>[]{byte.class}, (byte)3);
         call("pfmRound", null, "startFirstRound", none);
-        field("cp", "a", byte.class).setByte(null, (byte)1);
-        ByteArrayOutputStream buffer = new ByteArrayOutputStream();
-        if (!Boolean.TRUE.equals(call("cp", null, "a", new Class<?>[]{DataOutputStream.class}, new DataOutputStream(buffer))))
-            throw new AssertionError("legacy save failed");
-        Object store = call("pfm2", null, "openStoreForSave", none);
-        byte[] bytes = buffer.toByteArray();
-        String rms = "pfm.android.compat.rms.RecordStore";
-        call("PfmDomesticReplay", null, "add", new Class<?>[]{core(rms), byte[].class, int.class, int.class}, store, bytes, 0, bytes.length);
-        call(rms, store, "closeRecordStore", none);
+        call("db", null, "b", new Class<?>[]{byte.class}, (byte)3);
+        call("dd", runtime, "a", new Class<?>[]{byte.class}, (byte)22);
+        Object match = awaitScreen(runtime, "ca", "a", "v");
+        Field menu = field("ca", "a", core("v"));
+        fire(menu.get(match), 0);
+        awaitMatchPhase(match, 1);
+        fire(menu.get(match), 1);
+        awaitMatchPhase(match, 4);
+        fire(menu.get(match), 1);
+        Object board = awaitScreen(runtime, "i", "a", "v");
+        checkRound();
+        fire(field("i", "a", core("v")).get(board), 6);
+        awaitScreen(runtime, "i", "b", "ei");
+        Object confirmation = field("i", "b", core("ei")).get(board);
+        call("i", board, "a", new Class<?>[]{Object.class, int.class}, confirmation, 0);
+        enterMenu(runtime);
+        File save = new File(getTargetContext().getFilesDir(), "rms/P2S001.rms");
+        if (save.length() < 1024) throw new AssertionError("Save Game did not write a career file");
     }
 }

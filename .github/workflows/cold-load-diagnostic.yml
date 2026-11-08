@@ -37,7 +37,7 @@ jobs:
           timeout 120 adb wait-for-device || { cat /tmp/pfm-emulator.log; exit 1; }
           timeout 180 bash -c 'until [ "$(adb shell getprop sys.boot_completed | tr -d "\r")" = 1 ]; do sleep 2; done'
           adb shell input keyevent 82
-      - name: Create a career on the device and load after a process restart
+      - name: Play, save and reload on Android
         shell: bash
         run: |
           set -euxo pipefail
@@ -65,6 +65,7 @@ jobs:
           adb shell am instrument -w -e phase load pfm.diagnostic/.ColdLoad | tee diagnostics/load.txt
           adb logcat -d -v threadtime > diagnostics/logcat.txt
           adb exec-out screencap -p > diagnostics/final.png
+          grep 'PASS: real first matchday' diagnostics/save.txt
           grep 'PASS: Android Load Game' diagnostics/load.txt
       - name: Upload observations
         if: always()
