@@ -245,10 +245,10 @@ jobs:
           python3 patches/v83_match_journal.py "$PROJECT/app/libs/pfm_core_android.jar"
           python3 tools/test_v84_core_hooks.py "$PROJECT/app/libs/pfm_core_android.jar"
           python3 patches/v84_match_effects.py "$PROJECT/app/libs/pfm_core_android.jar"
+          python3 patches/v105_english_rollover.py "$PROJECT/app/libs/pfm_core_android.jar"
           python3 patches/v88_in_match_events.py "$PROJECT/app/libs/pfm_core_android.jar"
           python3 patches/v89_actual_substitutions.py "$PROJECT/app/libs/pfm_core_android.jar"
           python3 patches/v90_actual_participation.py "$PROJECT/app/libs/pfm_core_android.jar"
-          python3 patches/v105_english_rollover.py "$PROJECT/app/libs/pfm_core_android.jar"
           grep -q 'pfmSubTiming38' patches/v38_sub_timing.py
           python3 patches/v40_roster_depth.py "$PROJECT/app/libs/pfm_core_android.jar"
           grep -q '36 historical wide/second forwards' patches/v40_roster_depth.py

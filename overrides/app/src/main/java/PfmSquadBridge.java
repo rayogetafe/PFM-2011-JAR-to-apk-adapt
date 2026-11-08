@@ -79,7 +79,7 @@ public final class PfmSquadBridge {
     }
 
     private static int staticByte(Class<?> c,String name,int id){
-        if(id<0||id>=512)return 0;
+        if(id<0||id>=PfmEnglishLedger.SLOTS)return 0;
         try{
             invokeEnsure(c);
             Field f=field(c,name,byte[].class);

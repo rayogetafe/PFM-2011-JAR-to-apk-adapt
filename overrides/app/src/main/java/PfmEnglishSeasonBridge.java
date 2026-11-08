@@ -22,6 +22,7 @@ public final class PfmEnglishSeasonBridge {
                 if (opening != null) {
                     install(opening, EnglishLegacyIds.players(context, year - 1),
                             EnglishLegacyIds.season(context, year));
+                    pfmPlayerStats.startNewSeason();
                     installed = true;
                 }
             }
@@ -96,7 +97,7 @@ public final class PfmEnglishSeasonBridge {
                 }
                 if (id < 0 || id >= players.size() || usedSlots.contains(id)) {
                     id = players.size();
-                    if (id >= Short.MAX_VALUE) throw new IOException("Legacy player index limit");
+                    if (id >= PfmEnglishLedger.SLOTS) throw new IOException("Legacy player index limit");
                     players.add(null);
                 }
                 usedSlots.add(id);

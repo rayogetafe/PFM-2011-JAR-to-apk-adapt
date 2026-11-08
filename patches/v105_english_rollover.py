@@ -8,6 +8,24 @@ import zipfile
 
 from v31_policy_stats_hooks import add_methodref
 
+SLOTS = 8192
+LEDGERS = {
+    "pfmCondition60.class": ("condition", 116, {512: (SLOTS, 15), 536: (24 + SLOTS, 2), 1048: (24 + 2 * SLOTS, 2)}),
+    "pfmDiscipline70.class": ("discipline", 85, {512: (SLOTS, 19), 1576: (40 + 3 * SLOTS, 2)}),
+    "pfmContrib80.class": ("contributions", 108, {512: (SLOTS, 20), 1568: (32 + 3 * SLOTS, 2)}),
+}
+
+
+def widen_ledger(data, method, read_ref, limits):
+    for old, (new, count) in limits.items():
+        opcode = b"\x11" + struct.pack(">H", old)
+        assert data.count(opcode) == count, (method, old, "legacy ledger size changed")
+        data = data.replace(opcode, b"\x11" + struct.pack(">H", new))
+    call = b"\xb6" + struct.pack(">H", read_ref)
+    assert data.count(call) == 1, (method, "legacy ledger reader changed")
+    data, ref = add_methodref(data, "PfmEnglishLedger", method, "(Lpfm/android/compat/rms/RecordStore;I)[B")
+    return data.replace(call, b"\xb8" + struct.pack(">H", ref))
+
 
 def main(path):
     with zipfile.ZipFile(path) as source:
@@ -34,8 +52,11 @@ def main(path):
                     assert data.count(old) == 1 and b"eg" in data, "legacy training allocation changed"
                     data = data.replace(old, b"\x10\x1e" + old[2:])
                     changed.add(item.filename)
+                if item.filename in LEDGERS:
+                    data = widen_ledger(data, *LEDGERS[item.filename])
+                    changed.add(item.filename)
                 output.writestr(item, data)
-        assert changed == {"pfm2.class", "dw.class", "cp.class"}
+        assert changed == {"pfm2.class", "dw.class", "cp.class", *LEDGERS}
         os.replace(target, path)
     finally:
         if os.path.exists(target):

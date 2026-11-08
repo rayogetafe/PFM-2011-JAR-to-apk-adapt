@@ -27,7 +27,34 @@ public final class EnglishCoreHarness {
         reload();
         verify(upper, upperSlots);
         check(lowerSlots.getInt("user-gk", -1) == upperSlots.getInt("user-gk", -2), "lost player identity across divisions");
+        checkLedgers();
         System.out.println("PASS: real core saves and reloads both English divisions, 30-player squad, 38/46 rounds, same user club and player slot");
+    }
+
+    private static void checkLedgers() throws Exception {
+        for (int header : new int[]{24, 32, 40}) {
+            int fields = header == 24 ? 2 : 3;
+            byte[] old = new byte[header + fields * 512];
+            old[4] = 9;
+            for (int field = 0; field < fields; field++) old[header + field * 512 + 511] = (byte) (field + 1);
+            byte[] expanded = PfmEnglishLedger.expand(old, header, fields);
+            check(expanded[4] == 9 && expanded.length == header + fields * PfmEnglishLedger.SLOTS, "ledger header lost");
+            for (int field = 0; field < fields; field++) {
+                check(expanded[header + field * PfmEnglishLedger.SLOTS + 511] == field + 1 &&
+                        expanded[header + field * PfmEnglishLedger.SLOTS + 512] == 0, "ledger fields were interleaved");
+            }
+        }
+        Class<?>[] ledgers = {pfmCondition60.class, pfmDiscipline70.class, pfmContrib80.class};
+        String[] values = {"fatigue", "suspension", "assists"};
+        for (int i = 0; i < ledgers.length; i++) {
+            java.lang.reflect.Method fresh = ledgers[i].getDeclaredMethod("fresh", int.class, int.class);
+            fresh.setAccessible(true);
+            fresh.invoke(null, pfm2.getSlot(), pfm2.getSeason());
+            byte[] ledger = (byte[]) field(ledgers[i], values[i], byte[].class).get(null);
+            check(ledger.length == PfmEnglishLedger.SLOTS, "real core ledger still capped at 512");
+            ledger[650] = 3;
+        }
+        check(pfmDiscipline70.roundsOut(650) == 3 && pfmContrib80.assists(650) == 3, "high player IDs ignored");
     }
 
     private static NativeEnglishCareer.Opening division(int count, String league) {
