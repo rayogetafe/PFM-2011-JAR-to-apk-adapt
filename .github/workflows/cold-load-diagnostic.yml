@@ -1,9 +1,5 @@
 name: Diagnose Android cold career load
 on:
-  push:
-    paths:
-      - '.github/workflows/cold-load-diagnostic.yml'
-      - 'tools/tests/android/ColdLoad.java'
   workflow_call:
     inputs:
       artifact:
@@ -17,9 +13,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/download-artifact@v4
         with:
-          name: ${{ inputs.artifact || 'PFM-2011-Android-Alpha084-v109-cold-load-fix' }}
-          run-id: ${{ inputs.artifact && github.run_id || 42524181743 }}
-          github-token: ${{ github.token }}
+          name: ${{ inputs.artifact }}
           path: build
       - name: Start Android
         shell: bash
