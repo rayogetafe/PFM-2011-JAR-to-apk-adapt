@@ -36,6 +36,7 @@ public final class ColdLoad extends Instrumentation {
             enterMenu(runtime);
             if ("save".equals(args.getString("phase"))) {
                 playAndSave(runtime);
+                loadRound(runtime);
                 result.putString("stream", "PASS: real first matchday played and saved on Android\n");
             } else {
                 loadRound(runtime);
@@ -116,6 +117,7 @@ public final class ColdLoad extends Instrumentation {
         Object main = awaitScreen(runtime, "dy", "a", "v");
         Object manager = field("du", "a", core("ed")).get(null);
         call("ed", manager, "c", new Class<?>[]{core("dv")}, field("dy", "a", core("v")).get(main));
+        field("ca", "b", byte.class).setByte(null, (byte)6); // Return to the career board after the match.
         call("dd", runtime, "a", new Class<?>[]{byte.class}, (byte)22);
         Object match = awaitScreen(runtime, "ca", "a", "v");
         Field menu = field("ca", "a", core("v"));
