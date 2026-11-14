@@ -110,6 +110,11 @@ public final class PfmEnglishSeasonBridge {
         return (Image) invoke(aq.class, "a", Image.class, legacyIndex);
     }
 
+    public static String startingClubLabel(int index) {
+        if (PfmSeasonBridge.totalRounds() == 46) return PfmSeasonBridge.teamName();
+        return m.b(index);
+    }
+
     public static void startFirstRound() {
         boolean installed = false;
         try {

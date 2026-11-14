@@ -11,12 +11,15 @@ from v31_policy_stats_hooks import add_methodref
 
 HOOKS = {
     # ea: after loading the country's initial league, route the career club picker.
-    "ea.class": ("2a 07 b6 00 67 b1", "chooseStartingClub", "(Lea;B)V", "2a 07", "b1"),
+    "ea.class": [("2a 07 b6 00 67 b1", "chooseStartingClub", "(Lea;B)V", "2a 07", "b1")],
     # dc: enter the normal new-club flow with the selected division already installed.
-    "dc.class": ("b8 00 2c b8 00 a6", "initializeStartingClub", "(B)Ldw;", "", "00 00 00"),
+    "dc.class": [
+        ("b8 00 2c b8 00 a6", "initializeStartingClub", "(B)Ldw;", "", "00 00 00"),
+        ("b8 00 3c 53 b8 00 2b", "startingClubLabel", "(I)Ljava/lang/String;", "", "53 b8 00 2b"),
+    ],
     # db: the club header is also built when loading a saved Championship career.
-    "db.class": ("10 09 60 1b 60 b8 00 6b b7 00 6f",
-                 "boardBadge", "(I)Lpfm/android/compat/lcdui/Image;", "10 09 60 1b 60", "b7 00 6f"),
+    "db.class": [("10 09 60 1b 60 b8 00 6b b7 00 6f",
+                  "boardBadge", "(I)Lpfm/android/compat/lcdui/Image;", "10 09 60 1b 60", "b7 00 6f")],
 }
 
 
@@ -30,13 +33,13 @@ def main(path):
         with zipfile.ZipFile(temporary, "w") as target:
             for item, data in entries:
                 if item.filename in HOOKS:
-                    old, method, descriptor, prefix, suffix = HOOKS[item.filename]
-                    original = bytes.fromhex(old)
-                    assert data.count(original) == 1, (item.filename, method)
-                    data, ref = add_methodref(data, "PfmEnglishSeasonBridge", method, descriptor)
-                    replacement = bytes.fromhex(prefix) + struct.pack(">BH", 0xb8, ref) + bytes.fromhex(suffix)
-                    assert len(original) == len(replacement), method
-                    data = data.replace(original, replacement)
+                    for old, method, descriptor, prefix, suffix in HOOKS[item.filename]:
+                        original = bytes.fromhex(old)
+                        assert data.count(original) == 1, (item.filename, method)
+                        data, ref = add_methodref(data, "PfmEnglishSeasonBridge", method, descriptor)
+                        replacement = bytes.fromhex(prefix) + struct.pack(">BH", 0xb8, ref) + bytes.fromhex(suffix)
+                        assert len(original) == len(replacement), method
+                        data = data.replace(original, replacement)
                     seen.add(item.filename)
                 target.writestr(item, data)
         assert seen == set(HOOKS)
