@@ -8,6 +8,8 @@ on:
       - 'PFM_Android_Alpha084_port_source.zip'
       - 'overrides/**'
       - 'patches/**'
+      - 'tools/tests/**'
+      - '.github/workflows/cold-load-diagnostic.yml'
       - 'signing/**'
       - '.github/workflows/build-apk.yml'
 
