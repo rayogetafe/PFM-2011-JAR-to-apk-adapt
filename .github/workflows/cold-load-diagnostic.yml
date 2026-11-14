@@ -60,9 +60,9 @@ jobs:
           adb install "$(find build -maxdepth 1 -name '*.apk' -print -quit)"
           adb install test/diagnostic.apk
           adb logcat -c
-          adb shell am instrument -w -e phase save pfm.diagnostic/.ColdLoad | tee diagnostics/save.txt
+          adb shell am instrument -w -e division championship -e phase save pfm.diagnostic/.ColdLoad | tee diagnostics/save.txt
           adb shell am force-stop pfm.android.careerlab
-          adb shell am instrument -w -e phase load pfm.diagnostic/.ColdLoad | tee diagnostics/load.txt
+          adb shell am instrument -w -e division championship -e phase load pfm.diagnostic/.ColdLoad | tee diagnostics/load.txt
           adb logcat -d -v threadtime > diagnostics/logcat.txt
           adb exec-out screencap -p > diagnostics/final.png
           grep 'PASS: real first matchday' diagnostics/save.txt

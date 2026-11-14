@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Instrumentation;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.accessibility.AccessibilityNodeInfo;
 import java.io.*;
 import java.lang.reflect.*;
 
@@ -97,6 +98,34 @@ public final class ColdLoad extends Instrumentation {
     private void checkRound() throws Exception {
         Object played = call("cp", null, "pfmPlayedForTable", none);
         if (!Integer.valueOf(1).equals(played)) throw new AssertionError("wrong saved round " + played);
+        checkClub();
+    }
+
+    private void checkClub() throws Exception {
+        if (!"championship".equals(args.getString("division"))) return;
+        if (!"en2:23".equals(call("PfmSeasonBridge", null, "clubId", none)) ||
+                !Integer.valueOf(46).equals(call("PfmSeasonBridge", null, "totalRounds", none))) {
+            throw new AssertionError("Championship club or calendar changed");
+        }
+    }
+
+    private void chooseDialogItem(String label) throws Exception {
+        for (int i = 0; i < 80; i++) {
+            AccessibilityNodeInfo root = getUiAutomation().getRootInActiveWindow();
+            if (root != null) {
+                for (AccessibilityNodeInfo node : root.findAccessibilityNodeInfosByText(label)) {
+                    if (node.getText() == null || !label.contentEquals(node.getText())) continue;
+                    if (node.performAction(AccessibilityNodeInfo.ACTION_CLICK)) return;
+                    AccessibilityNodeInfo parent = node.getParent();
+                    if (parent != null && parent.performAction(AccessibilityNodeInfo.ACTION_CLICK)) return;
+                }
+                for (AccessibilityNodeInfo list : root.findAccessibilityNodeInfosByViewId("android:id/select_dialog_listview")) {
+                    if (list.performAction(AccessibilityNodeInfo.ACTION_SCROLL_FORWARD)) break;
+                }
+            }
+            Thread.sleep(100);
+        }
+        throw new AssertionError("Unavailable new career choice: " + label);
     }
     private void loadRound(Object runtime) throws Exception {
         int row = field("du", "v", boolean.class).getBoolean(null) ? 2 : 1;
@@ -108,15 +137,26 @@ public final class ColdLoad extends Instrumentation {
     private void playAndSave(Object runtime) throws Exception {
         call("pfm2", null, "slot0", none);
         call("pfm2", null, "setMode", new Class<?>[]{int.class}, 1);
-        try (DataInputStream in = new DataInputStream(core("cp").getResourceAsStream("/resources/england.bin"))) {
-            call("cp", null, "a", new Class<?>[]{DataInputStream.class, boolean.class}, in, true);
-        }
-        call("cp", null, "a", new Class<?>[]{byte.class}, (byte)3);
-        call("pfmRound", null, "startFirstRound", none);
-        call("db", null, "b", new Class<?>[]{byte.class}, (byte)3);
-        Object main = awaitScreen(runtime, "dy", "a", "v");
         Object manager = field("du", "a", core("ed")).get(null);
+        Object main = awaitScreen(runtime, "dy", "a", "v");
         call("ed", manager, "c", new Class<?>[]{core("dv")}, field("dy", "a", core("v")).get(main));
+        if ("championship".equals(args.getString("division"))) {
+            call("dd", runtime, "a", new Class<?>[]{byte.class}, (byte)39);
+            Object countries = awaitScreen(runtime, "ea", "a", "v");
+            fire(field("ea", "a", core("v")).get(countries), 0);
+            chooseDialogItem("Championship");
+            chooseDialogItem("Watford");
+            Object board = awaitScreen(runtime, "i", "a", "v");
+            checkClub();
+            call("ed", manager, "c", new Class<?>[]{core("dv")}, field("i", "a", core("v")).get(board));
+        } else {
+            try (DataInputStream in = new DataInputStream(core("cp").getResourceAsStream("/resources/england.bin"))) {
+                call("cp", null, "a", new Class<?>[]{DataInputStream.class, boolean.class}, in, true);
+            }
+            call("cp", null, "a", new Class<?>[]{byte.class}, (byte)3);
+            call("pfmRound", null, "startFirstRound", none);
+            call("db", null, "b", new Class<?>[]{byte.class}, (byte)3);
+        }
         field("ca", "b", byte.class).setByte(null, (byte)6); // Return to the career board after the match.
         call("dd", runtime, "a", new Class<?>[]{byte.class}, (byte)22);
         Object match = awaitScreen(runtime, "ca", "a", "v");

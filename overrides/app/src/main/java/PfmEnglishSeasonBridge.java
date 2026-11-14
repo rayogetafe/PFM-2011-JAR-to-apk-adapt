@@ -1,4 +1,6 @@
 import android.content.Context;
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.SharedPreferences;
 import java.io.*;
 import java.lang.reflect.Field;
@@ -12,7 +14,101 @@ import pfm.android.compat.lcdui.Image;
 
 /** Projects the next active English division into the existing, saved matchday state. */
 public final class PfmEnglishSeasonBridge {
+    private static volatile NativeEnglishCareer.Opening startingChampionship;
     private PfmEnglishSeasonBridge() {}
+
+    public static void chooseStartingClub(ea screen, byte destination) {
+        startingChampionship = null;
+        if (pfm2.getMode() != 1 || !isEngland()) {
+            screen.a(destination);
+            return;
+        }
+        Activity activity = AndroidRuntime.activity();
+        activity.runOnUiThread(() -> new AlertDialog.Builder(activity).setTitle("English division")
+                .setItems(new String[]{"Premier League", "Championship"}, (dialog, choice) -> {
+                    if (choice == 0) screen.a(destination);
+                    else chooseChampionshipClub(activity, screen, destination);
+                }).setOnCancelListener(dialog -> screen.a((byte)38)).show());
+    }
+
+    private static boolean isEngland() {
+        try { return get(ea.class, "a", int.class).getInt(null) == 0; }
+        catch (ReflectiveOperationException error) { throw new IllegalStateException(error); }
+    }
+
+    private static void chooseChampionshipClub(Activity activity, ea screen, byte destination) {
+        try {
+            NativeEnglishCareer.Opening opening = NativeEnglishCareer.championshipStart(activity, 0);
+            String[] clubs = new String[opening.clubs.size()];
+            for (int i = 0; i < clubs.length; i++) clubs[i] = opening.clubs.get(i).name;
+            new AlertDialog.Builder(activity).setTitle("Choose a Championship club")
+                    .setItems(clubs, (dialog, choice) -> {
+                        opening.userId = opening.clubs.get(choice).id;
+                        startingChampionship = opening;
+                        dc.a = 1;
+                        putStartingClubIndex(choice);
+                        screen.a(destination);
+                    }).setOnCancelListener(dialog -> screen.a((byte)38)).show();
+        } catch (IOException error) {
+            android.util.Log.e("PFM-English", "Championship squads could not be opened", error);
+            new AlertDialog.Builder(activity).setMessage("Championship squads unavailable.")
+                    .setPositiveButton("OK", (dialog, which) -> screen.a(destination)).show();
+        }
+    }
+
+    private static void putStartingClubIndex(int choice) {
+        try { get(ch.class, "a", int.class).setInt(null, choice); }
+        catch (ReflectiveOperationException error) { throw new IllegalStateException(error); }
+    }
+
+    public static dw initializeStartingClub(byte index) {
+        NativeEnglishCareer.Opening opening = startingChampionship;
+        startingChampionship = null;
+        try {
+            Context context = AndroidRuntime.context();
+            if (opening == null) {
+                if (pfm2.getMode() == 1 && isEngland() && EnglishLegacyIds.installed(context, pfm2.getSeason())) {
+                    resetStartingIdentity(context);
+                }
+                cp.a(index);
+                return pfmPatch39.initUserTeam();
+            }
+            pfmLifecycle82.onUserTeamInit();
+            resetStartingIdentity(context);
+            SharedPreferences ids = EnglishLegacyIds.season(context, pfm2.getSeason());
+            install(opening, ids, ids);
+            pfmTeams.clearSeedPoints();
+            refreshStatsBaseline();
+            return pfmPatch38.initUserTeam();
+        } catch (Exception error) {
+            throw new IllegalStateException("Could not initialize the starting club", error);
+        }
+    }
+
+    private static void resetStartingIdentity(Context context) throws IOException {
+        String key = "slot_" + pfm2.getSlot();
+        SharedPreferences world = context.getSharedPreferences("pfm_world_careers", 0);
+        int previous = world.getInt(key + "_nonce", 0);
+        Random random = new Random();
+        int nonce;
+        do { nonce = random.nextInt(); } while (nonce == 0 || nonce == previous);
+        if (!world.edit().putInt(key + "_nonce", nonce).putInt(key + "_season", pfm2.getSeason())
+                .putInt(key + "_played", 0).commit()) throw new IOException("Career identity could not be saved");
+    }
+
+    public static Image boardBadge(int legacyIndex) {
+        if (PfmSeasonBridge.totalRounds() == 46) {
+            try {
+                int user = get(cp.class, "b", byte.class).getByte(null) & 255;
+                String path = matchBadgePath(clubId(user, ""));
+                if (path != null) return Image.fitted(path, 47, 50);
+                legacyIndex = 27 + user % 20;
+            } catch (Exception error) {
+                legacyIndex = 27;
+            }
+        }
+        return (Image) invoke(aq.class, "a", Image.class, legacyIndex);
+    }
 
     public static void startFirstRound() {
         boolean installed = false;
@@ -256,7 +352,7 @@ public final class PfmEnglishSeasonBridge {
         get(target.getClass(), name, type).set(target, value);
     }
 
-    private static Field get(Class<?> owner, String name, Class<?> type) throws Exception {
+    private static Field get(Class<?> owner, String name, Class<?> type) throws NoSuchFieldException {
         for (Field field : owner.getDeclaredFields()) {
             if (field.getName().equals(name) && field.getType() == type) {
                 field.setAccessible(true);

@@ -37,6 +37,38 @@ public final class NativeEnglishCareer {
         return rounds;
     }
 
+    public static Opening championshipStart(Context context, int clubIndex) throws IOException {
+        Map<String, ArrayList<NativeWorldCenter.T>> world = new HashMap<>();
+        NativeChampionship.load(context, world);
+        ArrayList<NativeWorldCenter.T> teams = world.get(NativeChampionship.CODE);
+        Opening opening = new Opening();
+        opening.league = NativeChampionship.CODE;
+        opening.userId = opening.league + ":" + teams.get(clubIndex).id;
+        for (NativeWorldCenter.T team : teams) {
+            Club club = new Club();
+            club.id = opening.league + ":" + team.id;
+            club.name = team.name;
+            long values = 0;
+            for (NativeWorldCenter.P source : team.ps) {
+                Player player = new Player();
+                player.id = source.uid;
+                player.name = source.name;
+                player.age = source.age;
+                player.position = source.pos;
+                player.speed = source.spe;
+                player.resistance = source.res;
+                player.quality = source.qua;
+                player.wage = source.wage;
+                player.value = source.value;
+                values += source.value;
+                club.players.add(player);
+            }
+            club.budget = (int) Math.max(2000000L, values / 4);
+            opening.clubs.add(club);
+        }
+        return opening;
+    }
+
     public static Opening opening(Context context, int previousYear) throws IOException {
         int nonce = EnglishLegacyIds.nonce(context);
         NativeCareerStore.Career career = NativeCareerStore.englishOpening(context, previousYear, nonce);

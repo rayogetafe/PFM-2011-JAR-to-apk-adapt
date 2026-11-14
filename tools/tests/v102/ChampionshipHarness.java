@@ -9,6 +9,10 @@ public class ChampionshipHarness {
     public static void main(String[] args) throws Exception {
         int nonce = 1020;
         Context context = new Context("overrides/app/src/main/assets", new File(args[1]));
+        NativeEnglishCareer.Opening start = NativeEnglishCareer.championshipStart(context, 23);
+        check("en2:23".equals(start.userId) && "Watford".equals(start.clubs.get(23).name) &&
+                start.clubs.size() == 24 && start.clubs.stream().mapToInt(club -> club.players.size()).sum() == 506,
+                "wrong new Championship career seed");
         AndroidRuntime.current = context;
         JournalHarness.world(args[0], nonce);
         NativeCareerStore.Career career = NativeCareerStore.current;
