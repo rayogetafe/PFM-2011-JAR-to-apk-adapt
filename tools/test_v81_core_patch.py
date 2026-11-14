@@ -26,6 +26,7 @@ def main():
         subprocess.run([java,*exports,'-cp',temp,'VerifyCore',str(jar),temp],check=True)
         subprocess.run([java,'-Xverify:all','-cp',temp,'BridgeHarness'],check=True)
         archive_sources=[ROOT/'overrides/app/src/main/java/pfmLeagueMatchArchive34.java',ROOT/'overrides/app/src/main/java/pfmGoalkeeperStats31.java',ROOT/'tools/tests/v88/ArchiveHarness.java',ROOT/'tools/tests/v83/pfm/android/AndroidRuntime.java',ROOT/'tools/tests/v83/android/content/Context.java',ROOT/'tools/tests/v83/android/content/SharedPreferences.java']
+        archive_sources.append(ROOT/'tools/tests/v83/android/app/Activity.java')
         subprocess.run([javac,'-encoding','UTF-8','-cp',os.pathsep.join([temp,str(jar)]),'-d',temp,*map(str,archive_sources)],check=True)
         subprocess.run([java,'-Xverify:all','-cp',os.pathsep.join([temp,str(jar)]),'ArchiveHarness',str(Path(temp)/'archive')],check=True)
         subprocess.run([javac,'-encoding','UTF-8','-cp',os.pathsep.join([temp,str(jar)]),'-d',temp,str(ROOT/'tools/tests/v90/ParticipationLedgerHarness.java')],check=True)
