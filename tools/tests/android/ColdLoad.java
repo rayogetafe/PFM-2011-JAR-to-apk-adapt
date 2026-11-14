@@ -2,6 +2,7 @@ package pfm.diagnostic;
 
 import android.app.Activity;
 import android.app.Instrumentation;
+import android.accessibilityservice.AccessibilityServiceInfo;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.accessibility.AccessibilityNodeInfo;
@@ -110,6 +111,9 @@ public final class ColdLoad extends Instrumentation {
     }
 
     private void chooseDialogItem(String label) throws Exception {
+        AccessibilityServiceInfo service = getUiAutomation().getServiceInfo();
+        service.flags |= AccessibilityServiceInfo.FLAG_REPORT_VIEW_IDS;
+        getUiAutomation().setServiceInfo(service);
         for (int i = 0; i < 80; i++) {
             AccessibilityNodeInfo root = getUiAutomation().getRootInActiveWindow();
             if (root != null) {
