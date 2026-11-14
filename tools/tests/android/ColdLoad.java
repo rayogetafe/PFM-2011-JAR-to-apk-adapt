@@ -152,6 +152,12 @@ public final class ColdLoad extends Instrumentation {
             chooseDialogItem("Watford");
             Object board = awaitScreen(runtime, "i", "a", "v");
             checkClub();
+            Object mailbox = field("du", "a", core("cr")).get(null);
+            Field welcome = field("cr", "a", core("ei"));
+            for (int i = 0; i < 40 && welcome.get(mailbox) == null; i++) Thread.sleep(50);
+            Object letter = welcome.get(mailbox);
+            if (letter == null) throw new AssertionError("Championship welcome letter did not open");
+            call("cr", mailbox, "a", new Class<?>[]{Object.class, int.class}, letter, 0);
             call("ed", manager, "c", new Class<?>[]{core("dv")}, field("i", "a", core("v")).get(board));
         } else {
             try (DataInputStream in = new DataInputStream(core("cp").getResourceAsStream("/resources/england.bin"))) {
