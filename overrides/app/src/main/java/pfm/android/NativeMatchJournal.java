@@ -120,6 +120,10 @@ public final class NativeMatchJournal {
                     m.homeCredit = championshipCredit(homeId, true, homePayroll, m.homeCredit);
                     m.awayCredit = championshipCredit(awayId, false, awayPayroll, m.awayCredit);
                 }
+                if ("league:de2".equals(competition)) {
+                    m.homeCredit = bundesliga2Credit(homeId, true, homePayroll);
+                    m.awayCredit = bundesliga2Credit(awayId, false, awayPayroll);
+                }
             }
         }
         if(neutralFinal&&!domesticCup&&!promotionPlayoff&&m.effectsVersion>0)m.homeCredit=MatchEffects.credit(true,false,m.homeGoals,m.awayGoals,home.ovr,0,38);
@@ -135,6 +139,13 @@ public final class NativeMatchJournal {
             return profile == null ? fallback : profile.matchCredit(home, payroll);
         } catch (IOException error) {
             throw new IllegalStateException("Could not load Championship finance", error);
+        }
+    }
+    private static int bundesliga2Credit(String club, boolean home, long payroll) {
+        try {
+            return NativeBundesliga2.matchCredit(ClubEconomy.profile(context, club), home, payroll);
+        } catch (IOException error) {
+            throw new IllegalStateException("Could not load 2. Bundesliga finance", error);
         }
     }
     private static int knockoutDecision(NativeMatchEngine.Result result, MatchJournal.Match firstLeg, boolean promotionPlayoff) {
@@ -223,6 +234,9 @@ public final class NativeMatchJournal {
         boolean championshipActive = NativeChampionship.active(career, season);
         if (championshipActive && !NativeChampionship.CODE.equals(career.activeLeague)) {
             parallel.put(NativeChampionship.CODE, NativeWorldCenter.schedule(NativeChampionship.CLUBS));
+        }
+        if (NativeBundesliga2.active(career, season)) {
+            parallel.put(NativeBundesliga2.CODE, NativeWorldCenter.schedule(NativeBundesliga2.CLUBS));
         }
         Map<String, List<String>> members = new HashMap<>();
         for (String code : parallel.keySet()) members.put(code, NativeEnglishDivisions.members(j, code));

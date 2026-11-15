@@ -9,6 +9,7 @@ final class NativeCompetitionCalendar {
     static final int[][] UCL_PAIRS={{0,3,1,2},{2,0,3,1},{0,1,2,3},{1,0,3,2},{3,0,2,1},{0,2,1,3}};
     static int leagueRounds(String code) {
         if (NativeChampionship.CODE.equals(code)) return NativeChampionship.ROUNDS;
+        if (NativeBundesliga2.CODE.equals(code)) return NativeBundesliga2.ROUNDS;
         return code.equals("de") ? 34 : 38;
     }
     static int parallelRound(int played,int sourceTotal,String code){int target=leagueRounds(code);return Math.min(target,(played*target+sourceTotal/2)/sourceTotal);}

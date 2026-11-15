@@ -3,6 +3,7 @@ package pfm.diagnostic;
 import android.app.Activity;
 import android.app.Instrumentation;
 import android.accessibilityservice.AccessibilityServiceInfo;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.accessibility.AccessibilityNodeInfo;
@@ -53,6 +54,11 @@ public final class ColdLoad extends Instrumentation {
                 result.putString("stream", "PASS: Android Load Game reached the board after a process restart\n");
                 result.putString("stream", result.getString("stream") +
                         "PASS: Load Game also works after recreating the Android activity in the same process\n");
+            }
+            if ("true".equals(args.getString("bundesliga2"))) {
+                checkBundesliga2();
+                result.putString("stream", result.getString("stream") +
+                        "PASS: 2. Bundesliga fixtures and all 36 German cup entrants on Android\n");
             }
             finish(Activity.RESULT_OK, result);
         } catch (Throwable e) {
@@ -107,6 +113,25 @@ public final class ColdLoad extends Instrumentation {
         if (!"en2:23".equals(call("PfmSeasonBridge", null, "clubId", none)) ||
                 !Integer.valueOf(46).equals(call("PfmSeasonBridge", null, "totalRounds", none))) {
             throw new AssertionError("Championship club or calendar changed");
+        }
+    }
+
+    private void checkBundesliga2() throws Exception {
+        Context context = getTargetContext();
+        call("pfm.android.NativeMatchJournal", null, "advance",
+                new Class<?>[]{Context.class, int.class}, context, 1);
+        int year = (Integer) call("pfm2", null, "getSeason", none);
+        int nonce = (Integer) call("pfm.android.NativeWorldCenter", null, "identity", none);
+        String journalClass = "pfm.android.MatchJournal";
+        Object journal = core(journalClass).getConstructor(File.class, int.class, int.class)
+                .newInstance(new File(context.getFilesDir(), "match-journals"), nonce, year);
+        java.util.List<?> fixtures = (java.util.List<?>) call(journalClass, journal, "competition",
+                new Class<?>[]{String.class}, "league:de2");
+        String cup = (String) call(journalClass, journal, "metadata",
+                new Class<?>[]{String.class}, "cup-entrants-de");
+        if (fixtures.size() != 9 || cup == null || cup.split(";").length != 36 ||
+                java.util.Arrays.stream(cup.split(";")).filter(id -> id.startsWith("de2:")).count() != 18) {
+            throw new AssertionError("German second division or cup was not initialized on Android");
         }
     }
 

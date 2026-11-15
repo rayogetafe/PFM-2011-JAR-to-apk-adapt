@@ -42,7 +42,66 @@ final class NativeCareerStore {
     private static void resetLegacy(){try{Class.forName("PfmNativeRosterAdapter").getMethod("resetCareer").invoke(null);}catch(Throwable ignored){}}
     static void postMail(Career c,Deal d){try{Player p=null;String from=d.from,to=d.to;for(Player x:c.players)if(x.id.equals(d.player))p=x;for(Club x:c.clubs){if(x.id.equals(d.from))from=x.name;if(x.id.equals(d.to))to=x.name;}if(p!=null)Class.forName("PfmNativeTransferMail").getMethod("post",String.class,String.class,String.class,String.class,Boolean.TYPE).invoke(null,p.name,from,to,NativeGlobalMarket.money(d.fee),p.overall>=85||d.fee>=15000000);}catch(Throwable ignored){}}
     private static boolean v67AiBootstrap(Career c){if(c.schema!=7||c.deals.isEmpty())return false;Club user=user(c);boolean ai=false;for(Deal d:c.deals){if(d.ai)ai=true;else if(user!=null&&(user.id.equals(d.from)||user.id.equals(d.to)))return false;}return ai;}
-    private static Career imported(Context context) throws IOException{Career c=new Career();c.schema=SCHEMA;c.slot=NativeWorldCenter.slot();c.season=NativeWorldCenter.season();c.created=(int)(System.currentTimeMillis()/1000L);c.activeLeague=activeLeague();c.userClub=userClub();for(String code:NativeWorldCenter.allCodes()){ArrayList<NativeWorldCenter.T> teams=NativeWorldCenter.leagues.get(code);if(teams==null)continue;for(NativeWorldCenter.T t:teams){Club club=new Club();club.id=code+":"+t.id;club.name=t.name;club.league=code;club.sourceId=t.id;club.activeFrom=NativeChampionship.CODE.equals(code)?championshipStart(c.season,NativeWorldCenter.played()):t.activeFrom;c.clubs.add(club);long wages=0,values=0;for(NativeWorldCenter.P p:t.ps){Player x=new Player();x.id=p.uid;x.name=p.name;x.owner=club.id;x.nationality=p.nat.split(" • ")[0];x.provenance=p.provenance==null?"LEGACY_TOP5":p.provenance;x.sourceId=p.id;x.position=p.pos;x.age=NativeChampionship.CODE.equals(code)?Math.min(50,p.age+Math.max(0,c.season-2010)):p.age;x.overall=p.ovr;x.spe=p.spe;x.res=p.res;x.qua=p.qua;x.morale=p.mor;x.value=p.value;x.wage=p.wage;x.contractWage=p.wage;x.contractUntil=c.season+2+Math.abs(x.id.hashCode()%4);wages+=p.wage;values+=p.value;c.players.add(x);}club.wageBudget=(int)Math.min(Integer.MAX_VALUE,Math.max(1000000L,wages*115L/100L));club.balance=(int)Math.min(500000000L,Math.max(2000000L,values/4L));if (NativeChampionship.CODE.equals(code)) club.balance = ClubEconomy.profile(context, club.id).openingCash();if(code.equals(c.activeLeague)&&t.name.equalsIgnoreCase(c.userClub))club.balance=Math.max(0,legacyBudget());}}return c;}
+    private static Career imported(Context context) throws IOException {
+        Career career = new Career();
+        career.schema = SCHEMA;
+        career.slot = NativeWorldCenter.slot();
+        career.season = NativeWorldCenter.season();
+        career.created = (int) (System.currentTimeMillis() / 1000L);
+        career.activeLeague = activeLeague();
+        career.userClub = userClub();
+        for (String code : NativeWorldCenter.allCodes()) {
+            boolean championship = NativeChampionship.CODE.equals(code);
+            boolean bundesliga2 = NativeBundesliga2.CODE.equals(code);
+            ArrayList<NativeWorldCenter.T> teams = NativeWorldCenter.leagues.get(code);
+            if (teams == null) continue;
+            for (NativeWorldCenter.T team : teams) {
+                Club club = new Club();
+                club.id = code + ":" + team.id;
+                club.sourceId = team.id;
+                club.name = team.name;
+                club.league = code;
+                club.activeFrom = championship || bundesliga2
+                        ? championshipStart(career.season, NativeWorldCenter.played()) : team.activeFrom;
+                career.clubs.add(club);
+                long wages = 0, values = 0;
+                for (NativeWorldCenter.P source : team.ps) {
+                    Player player = new Player();
+                    player.id = source.uid;
+                    player.name = source.name;
+                    player.owner = club.id;
+                    player.nationality = source.nat.split(" • ")[0];
+                    player.provenance = source.provenance == null ? "LEGACY_TOP5" : source.provenance;
+                    player.sourceId = source.id;
+                    player.position = source.pos;
+                    player.age = championship || bundesliga2
+                            ? Math.min(50, source.age + Math.max(0, career.season - 2010)) : source.age;
+                    player.overall = source.ovr;
+                    player.spe = source.spe;
+                    player.res = source.res;
+                    player.qua = source.qua;
+                    player.morale = source.mor;
+                    player.value = source.value;
+                    player.wage = player.contractWage = source.wage;
+                    player.contractUntil = career.season + 2 + Math.abs(player.id.hashCode() % 4);
+                    wages += source.wage;
+                    values += source.value;
+                    career.players.add(player);
+                }
+                club.wageBudget = (int) Math.min(Integer.MAX_VALUE, Math.max(1_000_000L, wages * 115L / 100L));
+                club.balance = (int) Math.min(500_000_000L, Math.max(2_000_000L, values / 4L));
+                if (championship || bundesliga2) {
+                    ClubEconomy.Profile ground = ClubEconomy.profile(context, club.id);
+                    if (ground == null) throw new IOException("Missing stadium profile for " + club.id);
+                    club.balance = bundesliga2 ? NativeBundesliga2.openingCash(ground) : ground.openingCash();
+                }
+                if (code.equals(career.activeLeague) && team.name.equalsIgnoreCase(career.userClub)) {
+                    club.balance = Math.max(0, legacyBudget());
+                }
+            }
+        }
+        return career;
+    }
     static int championshipStart(int season, int played) {
         return season + (played > 0 ? 1 : 0);
     }
@@ -64,11 +123,12 @@ final class NativeCareerStore {
         if(c.slot!=NativeWorldCenter.slot())return "wrong career slot";
         HashSet<String> players=new HashSet<>();
         HashMap<String,Integer> sizes=new HashMap<>();
-        int championship=0;
+        int championship=0,bundesliga2=0;
         for(Club club:c.clubs){
             if(club.id==null||sizes.put(club.id,0)!=null)return "duplicate club id";
             if(club.balance<0||club.wageBudget<=0)return "invalid club finance";
             if(NativeChampionship.CODE.equals(club.league))championship++;
+            if(NativeBundesliga2.CODE.equals(club.league))bundesliga2++;
         }
         for(Player x:c.players){
             if(x.id==null||!players.add(x.id))return "duplicate player id";
@@ -82,8 +142,9 @@ final class NativeCareerStore {
             if(n<minimum||n>30)return "roster outside permitted size";
         }
         if(championship!=0&&championship!=NativeChampionship.CLUBS)return "incomplete Championship";
-        int added=championship==0?0:NativeChampionship.PLAYERS;
-        if(c.clubs.size()!=227+championship||c.players.size()<4527+added||c.players.size()>4865+added)return "unexpected import size";
+        if(bundesliga2!=0&&bundesliga2!=NativeBundesliga2.CLUBS)return "incomplete 2. Bundesliga";
+        int added=(championship==0?0:NativeChampionship.PLAYERS)+(bundesliga2==0?0:NativeBundesliga2.PLAYERS);
+        if(c.clubs.size()!=227+championship+bundesliga2||c.players.size()<4527+added||c.players.size()>4865+added)return "unexpected import size";
         return "OK";
     }
     private static JSONObject json(Career c)throws Exception{JSONObject root=new JSONObject();root.put("schema",c.schema);root.put("slot",c.slot);root.put("season",c.season);root.put("created",c.created);root.put("aiWindow",c.aiWindow);root.put("aiCountWindow",c.aiCountWindow);root.put("aiCount",c.aiCount);root.put("activeLeague",c.activeLeague);root.put("userClub",c.userClub);JSONArray clubs=new JSONArray();for(Club x:c.clubs){JSONObject o=new JSONObject();o.put("id",x.id);o.put("name",x.name);o.put("league",x.league);o.put("sourceId",x.sourceId);o.put("balance",x.balance);o.put("wageBudget",x.wageBudget);o.put("activeFrom",x.activeFrom);clubs.put(o);}root.put("clubs",clubs);JSONArray players=new JSONArray();for(Player x:c.players){JSONObject o=new JSONObject();o.put("id",x.id);o.put("name",x.name);o.put("owner",x.owner);o.put("nationality",x.nationality);o.put("provenance",x.provenance);o.put("sourceId",x.sourceId);o.put("position",x.position);o.put("age",x.age);o.put("overall",x.overall);o.put("spe",x.spe);o.put("res",x.res);o.put("qua",x.qua);o.put("morale",x.morale);o.put("value",x.value);o.put("wage",x.wage);o.put("contractWage",x.contractWage);o.put("contractUntil",x.contractUntil);o.put("contractGrace",x.contractGrace);players.put(o);}root.put("players",players);JSONArray deals=new JSONArray();for(Deal x:c.deals){JSONObject o=new JSONObject();o.put("player",x.player);o.put("from",x.from);o.put("to",x.to);o.put("fee",x.fee);o.put("wage",x.wage);o.put("years",x.years);o.put("season",x.season);o.put("ai",x.ai);deals.put(o);}root.put("deals",deals);JSONArray receipts=new JSONArray();for(String id:c.matchReceipts)receipts.put(id);root.put("matchReceipts",receipts);root.put("matchBudgetPending",c.matchBudgetPending);return root;}
@@ -132,9 +193,11 @@ final class NativeCareerStore {
             changed = true;
         }
         if (!"OK".equals(validate(saved))) return null;
-        if (!hasChampionship(saved)) {
-            installChampionship(saved, imported(c));
-            if (!hasChampionship(saved)) throw new IOException("Championship seed unavailable");
+        if (!hasChampionship(saved) || !NativeBundesliga2.present(saved)) {
+            Career seed = imported(c);
+            installChampionship(saved, seed);
+            NativeBundesliga2.install(saved, seed);
+            requireSecondDivisions(saved);
             changed = true;
         }
         Club managed = user(saved);
@@ -162,17 +225,24 @@ final class NativeCareerStore {
             if (restored != null) return restored;
         }
         Career fresh=imported(c);
-        if (!hasChampionship(fresh)) throw new IOException("Championship seed unavailable");
+        requireSecondDivisions(fresh);
         if (fresh.season == 2010 && NativeWorldCenter.played() <= 1) {
-            for (Club club : fresh.clubs) if (NativeChampionship.CODE.equals(club.league)) club.activeFrom = 2010;
+            for (Club club : fresh.clubs) {
+                if (NativeChampionship.CODE.equals(club.league) || NativeBundesliga2.CODE.equals(club.league)) club.activeFrom = 2010;
+            }
         }
         writeAtomic(c,fresh);
         markCareer(c,true);
         return fresh;
     }
+    private static void requireSecondDivisions(Career career) throws IOException {
+        if (!hasChampionship(career) || !NativeBundesliga2.present(career)) {
+            throw new IOException("Second-division seed unavailable");
+        }
+    }
     private static Club user(Career c){for(Club x:c.clubs)if(x.league.equals(c.activeLeague)&&x.name.equalsIgnoreCase(c.userClub))return x;return null;}
     static ArrayList<Player> userPlayers(Context context)throws Exception{Career c=ensure(context);Club club=user(c);ArrayList<Player> out=new ArrayList<Player>();if(club!=null)for(Player x:c.players)if(club.id.equals(x.owner))out.add(x);return out;}
-    static ArrayList<SaleOffer> saleOffers(Context context,String playerId)throws Exception{if(!NativeTransferCalendar.open())return new ArrayList<SaleOffer>();Career c=ensure(context);Club seller=user(c);Player player=null;for(Player x:c.players)if(x.id.equals(playerId))player=x;ArrayList<SaleOffer> out=new ArrayList<SaleOffer>();if(seller==null||player==null||!seller.id.equals(player.owner))return out;final Player target=player;ArrayList<Club> candidates=new ArrayList<Club>();for(Club club:c.clubs){if(club.id.equals(seller.id)||club.league.equals(c.activeLeague)||NativeChampionship.CODE.equals(club.league)&&club.activeFrom>c.season)continue;int size=0;for(Player x:c.players)if(club.id.equals(x.owner))size++;int pct=85+(((player.id+":"+club.id).hashCode()&0x7fffffff)%26),fee=NativeGlobalMarket.quoted((int)Math.max(100000L,(long)player.value*pct/100L));if(size<30&&club.balance>=fee)candidates.add(club);}Collections.sort(candidates,(a,b)->Integer.compare((target.id+":"+a.id).hashCode()&0x7fffffff,(target.id+":"+b.id).hashCode()&0x7fffffff));for(int i=0;i<Math.min(3,candidates.size());i++){Club club=candidates.get(i);SaleOffer o=new SaleOffer();o.buyerId=club.id;o.buyerName=club.name;o.league=club.league;int pct=85+(((player.id+":"+club.id).hashCode()&0x7fffffff)%26);o.fee=NativeGlobalMarket.quoted((int)Math.max(100000L,(long)player.value*pct/100L));out.add(o);}return out;}
+    static ArrayList<SaleOffer> saleOffers(Context context,String playerId)throws Exception{if(!NativeTransferCalendar.open())return new ArrayList<SaleOffer>();Career c=ensure(context);Club seller=user(c);Player player=null;for(Player x:c.players)if(x.id.equals(playerId))player=x;ArrayList<SaleOffer> out=new ArrayList<SaleOffer>();if(seller==null||player==null||!seller.id.equals(player.owner))return out;final Player target=player;ArrayList<Club> candidates=new ArrayList<Club>();for(Club club:c.clubs){if(club.id.equals(seller.id)||club.league.equals(c.activeLeague)||club.activeFrom>c.season)continue;int size=0;for(Player x:c.players)if(club.id.equals(x.owner))size++;int pct=85+(((player.id+":"+club.id).hashCode()&0x7fffffff)%26),fee=NativeGlobalMarket.quoted((int)Math.max(100000L,(long)player.value*pct/100L));if(size<30&&club.balance>=fee)candidates.add(club);}Collections.sort(candidates,(a,b)->Integer.compare((target.id+":"+a.id).hashCode()&0x7fffffff,(target.id+":"+b.id).hashCode()&0x7fffffff));for(int i=0;i<Math.min(3,candidates.size());i++){Club club=candidates.get(i);SaleOffer o=new SaleOffer();o.buyerId=club.id;o.buyerName=club.name;o.league=club.league;int pct=85+(((player.id+":"+club.id).hashCode()&0x7fffffff)%26);o.fee=NativeGlobalMarket.quoted((int)Math.max(100000L,(long)player.value*pct/100L));out.add(o);}return out;}
     static synchronized String sell(Context context,String playerId,String buyerId,int fee){try{if(!NativeTransferCalendar.open())return "Transfer window is closed. "+NativeTransferCalendar.status();Career c=parse(json(ensure(context)).toString());Club seller=user(c),buyer=null;Player player=null;for(Club x:c.clubs)if(x.id.equals(buyerId))buyer=x;for(Player x:c.players)if(x.id.equals(playerId))player=x;if(seller==null||buyer==null||player==null||!seller.id.equals(player.owner))return "Sale parties could not be resolved";boolean valid=false;for(SaleOffer o:saleOffers(context,playerId))if(o.buyerId.equals(buyerId)&&o.fee==fee)valid=true;if(!valid)return "This offer is no longer available";int sellerSize=0,buyerSize=0;for(Player x:c.players){if(seller.id.equals(x.owner))sellerSize++;if(buyer.id.equals(x.owner))buyerSize++;}if(sellerSize<=18)return "Your squad cannot fall below 18 players";if(buyerSize>=30)return "Buyer squad limit reached";if(buyer.balance<fee)return "Buyer can no longer afford the fee";seller.balance=(int)Math.min(Integer.MAX_VALUE,(long)seller.balance+fee);buyer.balance-=fee;player.owner=buyer.id;Deal d=new Deal();d.player=player.id;d.from=seller.id;d.to=buyer.id;d.fee=fee;d.wage=player.contractWage;d.years=Math.max(1,player.contractUntil-c.season);d.season=c.season;c.deals.add(d);String audit=validate(c);if(!"OK".equals(audit))return "Sale rolled back: "+audit;writeAtomic(context,c);applyToWorld(c);postMail(c,d);return "SOLD — "+buyer.name+" for "+NativeGlobalMarket.money(fee)+"; "+syncLegacy(c);}catch(Throwable t){return "Sale rolled back: "+String.valueOf(t.getMessage());}}
     static ArrayList<String> transferHistory(Context context,boolean all)throws Exception{Career c=ensure(context);Club user=user(c);HashMap<String,String> clubs=new HashMap<String,String>(),players=new HashMap<String,String>();for(Club x:c.clubs)clubs.put(x.id,x.name);for(Player x:c.players)players.put(x.id,x.name);ArrayList<String> out=new ArrayList<String>();for(int i=c.deals.size()-1;i>=0;i--){Deal d=c.deals.get(i);boolean mine=user!=null&&(user.id.equals(d.from)||user.id.equals(d.to));if(!all&&!mine)continue;String direction=mine?(user.id.equals(d.to)?"BOUGHT":"SOLD"):("AI TRANSFER");out.add(d.season+"  •  "+direction+"\n"+players.get(d.player)+"   "+clubs.get(d.from)+" → "+clubs.get(d.to)+"\nFee "+NativeGlobalMarket.money(d.fee)+"   wage "+NativeGlobalMarket.money(d.wage)+"/yr   "+d.years+" year"+(d.years==1?"":"s"));}return out;}
     /** Receipts and money commit together; a saved journal can safely retry after a crash. */
@@ -225,6 +295,6 @@ final class NativeCareerStore {
             return "legacy matchday OK ("+(synced+known)+" native deal"+((synced+known)==1?"":"s")+(synced>0?", "+synced+" imported":"")+")";
         }catch(Throwable t){return "legacy matchday sync unavailable: "+t.getClass().getSimpleName();}
     }
-    static void applyToWorld(Career c){HashMap<String,NativeWorldCenter.P> players=new HashMap<String,NativeWorldCenter.P>();HashMap<String,NativeWorldCenter.T> clubs=new HashMap<String,NativeWorldCenter.T>();for(String code:NativeWorldCenter.allCodes()){ArrayList<NativeWorldCenter.T> ts=NativeWorldCenter.leagues.get(code);if(ts==null)continue;for(NativeWorldCenter.T t:ts){clubs.put(code+":"+t.id,t);for(NativeWorldCenter.P p:t.ps)players.put(p.uid,p);t.ps.clear();}}for(Club x:c.clubs){NativeWorldCenter.T t=clubs.get(x.id);if(t!=null){t.activeFrom=x.activeFrom;t.clubId=x.id;t.league=x.league;}}for(Player x:c.players){NativeWorldCenter.P p=players.get(x.id);NativeWorldCenter.T t=clubs.get(x.owner);if(p!=null&&t!=null){p.pos=x.position;p.age=x.age;p.ovr=x.overall;p.spe=x.spe;p.res=x.res;p.qua=x.qua;p.mor=x.morale;p.value=x.value;p.wage=x.wage;p.provenance=x.provenance;t.ps.add(p);}}for(NativeWorldCenter.T t:clubs.values()){int sum=0;for(NativeWorldCenter.P p:t.ps)sum+=p.ovr;t.ovr=t.ps.isEmpty()?70:sum/t.ps.size();}}
+    static void applyToWorld(Career c){HashMap<String,NativeWorldCenter.P> players=new HashMap<String,NativeWorldCenter.P>();HashMap<String,NativeWorldCenter.T> clubs=new HashMap<String,NativeWorldCenter.T>();for(String code:NativeWorldCenter.allCodes()){ArrayList<NativeWorldCenter.T> ts=NativeWorldCenter.leagues.get(code);if(ts==null)continue;for(NativeWorldCenter.T t:ts){clubs.put(code+":"+t.id,t);for(NativeWorldCenter.P p:t.ps)players.put(p.uid,p);t.ps.clear();}}for(Club x:c.clubs){NativeWorldCenter.T t=clubs.get(x.id);if(t!=null){t.activeFrom=x.activeFrom;t.balance=x.balance;t.wageBudget=x.wageBudget;t.clubId=x.id;t.league=x.league;}}for(Player x:c.players){NativeWorldCenter.P p=players.get(x.id);NativeWorldCenter.T t=clubs.get(x.owner);if(p!=null&&t!=null){p.pos=x.position;p.age=x.age;p.ovr=x.overall;p.spe=x.spe;p.res=x.res;p.qua=x.qua;p.mor=x.morale;p.value=x.value;p.wage=x.wage;p.provenance=x.provenance;t.ps.add(p);}}for(NativeWorldCenter.T t:clubs.values()){int sum=0;for(NativeWorldCenter.P p:t.ps)sum+=p.ovr;t.ovr=t.ps.isEmpty()?70:sum/t.ps.size();}}
     static void show(Activity a){try{Career c=ensure(a);String audit=validate(c);File f=file(a);Club user=user(c);long payroll=0;for(Player x:c.players)if(user!=null&&x.owner.equals(user.id))payroll+=x.contractWage;int aiDeals=0,grace=0;for(Deal d:c.deals)if(d.ai)aiDeals++;for(Player p:c.players)if(user!=null&&user.id.equals(p.owner)&&p.contractGrace)grace++;String finance=user==null?"unavailable":"£"+(user.balance/1000000.0)+"m; payroll £"+(payroll/1000000.0)+"m / £"+(user.wageBudget/1000000.0)+"m";String body="Schema: "+c.schema+"\nCareer slot: "+c.slot+"\nSeason source: "+c.season+"\nActive league: "+c.activeLeague+"\nUser club: "+c.userClub+"\nClubs: "+c.clubs.size()+"\nPlayers: "+c.players.size()+"\nContracts: "+c.players.size()+" (user grace: "+grace+")\nCompleted native deals: "+c.deals.size()+" (AI: "+aiDeals+")\nAI market window: "+c.aiWindow+"\nTransfer window: "+NativeTransferCalendar.status()+"\nLegacy matchday sync: "+syncLegacy(c)+"\nClub finance: "+finance+"\nOwnership + contract audit: "+audit+"\nSnapshot: "+f.getName()+" ("+(f.length()/1024)+" KB)\nBackup policy: atomic previous-version copy\n\nNative player identity, attributes, ownership, contracts and finances are authoritative. The legacy core remains the match engine during migration.";new AlertDialog.Builder(a).setTitle("Native career data").setMessage(body).setPositiveButton("Close",null).show();}catch(Throwable t){new AlertDialog.Builder(a).setTitle("Native career data error").setMessage(String.valueOf(t.getMessage())).setPositiveButton("Close",null).show();}}
 }
