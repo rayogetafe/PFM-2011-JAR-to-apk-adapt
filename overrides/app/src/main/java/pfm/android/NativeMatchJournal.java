@@ -116,6 +116,10 @@ public final class NativeMatchJournal {
                 boolean european = EuropeanPlaces.european(competition);
                 m.homeCredit = MatchEffects.credit(european, true, m.homeGoals, m.awayGoals, home.ovr, homePayroll, leagueRounds);
                 m.awayCredit = MatchEffects.credit(european, false, m.awayGoals, m.homeGoals, away.ovr, awayPayroll, leagueRounds);
+                if ("league:en2".equals(competition)) {
+                    m.homeCredit = championshipCredit(homeId, true, homePayroll, m.homeCredit);
+                    m.awayCredit = championshipCredit(awayId, false, awayPayroll, m.awayCredit);
+                }
             }
         }
         if(neutralFinal&&!domesticCup&&!promotionPlayoff&&m.effectsVersion>0)m.homeCredit=MatchEffects.credit(true,false,m.homeGoals,m.awayGoals,home.ovr,0,38);
@@ -123,6 +127,15 @@ public final class NativeMatchJournal {
         if(competition.startsWith("uclq:")&&m.effectsVersion>0){m.homeCredit=m.homeCredit/3;m.awayCredit=m.awayCredit/3;}
         if(m.effectsVersion>0)for(MatchJournal.PlayerFact f:m.players){int[] base=legacyCondition.get(f.uid);f.stats[8]=Math.min(100,effects.fatigue(f.uid)+f.fatigueDelta+(base==null?0:base[0]));}
         j.put(m);effects.apply(m);return m;
+    }
+
+    private static int championshipCredit(String club, boolean home, long payroll, int fallback) {
+        try {
+            ClubEconomy.Profile profile = ClubEconomy.profile(context, club);
+            return profile == null ? fallback : profile.matchCredit(home, payroll);
+        } catch (IOException error) {
+            throw new IllegalStateException("Could not load Championship finance", error);
+        }
     }
     private static int knockoutDecision(NativeMatchEngine.Result result, MatchJournal.Match firstLeg, boolean promotionPlayoff) {
         if (firstLeg == null) return Integer.compare(result.homeGoals, result.awayGoals);

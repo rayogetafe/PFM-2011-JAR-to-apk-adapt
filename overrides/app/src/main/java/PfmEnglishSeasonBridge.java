@@ -8,6 +8,7 @@ import java.lang.reflect.Method;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 import pfm.android.AndroidRuntime;
+import pfm.android.ClubEconomy;
 import pfm.android.EnglishLegacyIds;
 import pfm.android.NativeEnglishCareer;
 import pfm.android.compat.lcdui.Image;
@@ -268,6 +269,18 @@ public final class PfmEnglishSeasonBridge {
             if (incoming) {
                 put(team, "a", byte[].class, latin(club.name));
                 put(team, "b", byte[].class, latin(club.name));
+            }
+            if (club.id.startsWith("en2:")) {
+                String economyKey = "economy." + club.id;
+                ClubEconomy.Profile economy = ClubEconomy.profile(AndroidRuntime.context(), club.id);
+                if (economy == null) throw new IOException("Missing club economy: " + club.id);
+                if (incoming || previous.getInt(economyKey, 0) == 0) {
+                    put(team, "b", int.class, economy.capacity);
+                    put(team, "b", short.class, ClubEconomy.CHAMPIONSHIP_TICKET);
+                    put(team, "c", short.class, (short) 3_375);
+                }
+                if (incoming) for (String field : new String[]{"c", "d", "e", "f"}) put(team, field, int.class, 0);
+                saved.putInt(economyKey, 1);
             }
             put(team, "n", byte.class, (byte) i);
             for (String field : new String[]{"h", "i", "j", "k", "l", "f"}) put(team, field, byte.class, (byte) 0);

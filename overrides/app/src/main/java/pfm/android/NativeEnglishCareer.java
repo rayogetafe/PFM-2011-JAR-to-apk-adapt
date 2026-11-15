@@ -48,7 +48,6 @@ public final class NativeEnglishCareer {
             Club club = new Club();
             club.id = opening.league + ":" + team.id;
             club.name = team.name;
-            long values = 0;
             for (NativeWorldCenter.P source : team.ps) {
                 Player player = new Player();
                 player.id = source.uid;
@@ -60,10 +59,9 @@ public final class NativeEnglishCareer {
                 player.quality = source.qua;
                 player.wage = source.wage;
                 player.value = source.value;
-                values += source.value;
                 club.players.add(player);
             }
-            club.budget = (int) Math.max(2000000L, values / 4);
+            club.budget = ClubEconomy.profile(context, club.id).openingCash();
             opening.clubs.add(club);
         }
         return opening;

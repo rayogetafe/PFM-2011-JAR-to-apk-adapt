@@ -24,11 +24,11 @@ public class ChampionshipHarness {
         MatchJournal.Match original = old.competition("cup:en").get(0);
 
         NativeChampionship.load(context, NativeWorldCenter.leagues);
-        NativeCareerStore.Career seed = NativeCareerStore.imported();
+        NativeCareerStore.Career seed = NativeCareerStore.imported(context);
         check(NativeChampionship.active(seed, 2010), "new career cannot start in 2010");
         check(seed.clubs.size() == 251 && seed.players.size() == career.players.size() + 506, "wrong seed size");
         NativeWorldCenter.played = 6;
-        seed = NativeCareerStore.imported();
+        seed = NativeCareerStore.imported(context);
         NativeCareerStore.Player linked = career.players.stream().filter(p -> p.id.equals("en:14:299")).findFirst().get();
         linked.owner = "en:0"; // A previous career transfer must survive the import.
         String owner = linked.owner;
@@ -54,9 +54,18 @@ public class ChampionshipHarness {
         check(matches.size() == 552 && season.competition("cup:en").size() == 43 &&
                 DomesticCup.bracket(season, "en").entrants.size() == 44, "wrong Championship or cup calendar");
         Map<String, Integer> played = new HashMap<>();
+        Map<String, Integer> operatingResult = new HashMap<>();
+        Map<String, Long> payroll = new HashMap<>();
+        for (NativeCareerStore.Player player : career.players) {
+            payroll.merge(player.owner, (long) player.contractWage, Long::sum);
+        }
         for (MatchJournal.Match m : matches) {
             check(m.effectsVersion > 0 && m.clock > 0 && m.clock <= 38 &&
-                    m.homeCredit > 0 && m.awayCredit < 0, "Championship match lost consequences");
+                    ClubEconomy.profile(context, m.home).matchCredit(true, payroll.get(m.home)) == m.homeCredit &&
+                    ClubEconomy.profile(context, m.away).matchCredit(false, payroll.get(m.away)) == m.awayCredit,
+                    "Championship match lost its stadium or payroll costs");
+            operatingResult.merge(m.home, m.homeCredit, Integer::sum);
+            operatingResult.merge(m.away, m.awayCredit, Integer::sum);
             for (String club : Arrays.asList(m.home, m.away)) {
                 played.put(club, played.getOrDefault(club, 0) + 1);
                 check(m.players.stream().filter(p -> p.club.equals(club) && p.stats[3] > 0).count() == 11,
@@ -64,6 +73,9 @@ public class ChampionshipHarness {
             }
         }
         check(played.size() == 24 && played.values().stream().allMatch(n -> n == 46), "wrong round count per club");
+        System.out.printf("46-round Championship budget audit: QPR £%,d; club range £%,d to £%,d%n",
+                operatingResult.get("en2:18"), Collections.min(operatingResult.values()),
+                Collections.max(operatingResult.values()));
         List<UclSeason.Standing> standings = UclSeason.standings(season, NativeChampionship.CODE, career.clubs);
         List<String> promotion = ChampionshipPlayoffs.promotionCandidates(season);
         List<MatchJournal.Match> playoffs = season.competition(ChampionshipPlayoffs.COMPETITION);

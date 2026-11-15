@@ -4,11 +4,14 @@ import java.lang.reflect.Field;
 import java.util.*;
 import pfm.android.NativeEnglishCareer;
 import pfm.android.AndroidRuntime;
+import pfm.android.EnglishLegacyIds;
 import pfm.android.compat.rms.RecordStore;
 
 /** Drives the real legacy league reader and writer, with an isolated preference store. */
 public final class EnglishCoreHarness {
     public static void main(String[] args) throws Exception {
+        field(AndroidRuntime.class, "current", android.content.Context.class).set(null,
+                new android.content.Context("overrides/app/src/main/assets", new File("artifacts")));
         field(du.class, "a", cv.class).set(null, new cv());
         field(du.class, "a", cr.class).set(null, new cr(null));
         try (DataInputStream input = new DataInputStream(EnglishCoreHarness.class.getResourceAsStream("/resources/england.bin"))) {
@@ -19,8 +22,11 @@ public final class EnglishCoreHarness {
         NativeEnglishCareer.Opening lower = division(24, "en2");
         PfmEnglishSeasonBridge.install(lower, oldSlots, lowerSlots);
         verify(lower, lowerSlots);
+        checkStadiums();
         reload();
         verify(lower, lowerSlots);
+        checkStadiums();
+        checkMatchdayFinance(lowerSlots);
         verifyLoadedPoints();
         check("badges/en20.png".equals(PfmEnglishSeasonBridge.matchBadgePath("en:19")) &&
                 "second_division_badges/en2_12.png".equals(PfmEnglishSeasonBridge.matchBadgePath("en2:12")),
@@ -36,6 +42,46 @@ public final class EnglishCoreHarness {
         checkLedgers();
         checkDomesticCheckpoint();
         System.out.println("PASS: real core saves and reloads both English divisions, 30-player squad, 38/46 rounds, same user club and player slot");
+    }
+
+    private static void checkStadiums() throws Exception {
+        dw[] teams = (dw[]) field(cp.class, "a", dw[].class).get(null);
+        Field capacity = field(dw.class, "b", int.class);
+        check(capacity.getInt(teams[18]) == 18_360 && capacity.getInt(teams[20]) == 9_088 &&
+                capacity.getInt(teams[23]) == 19_900, "original stadium capacities were inherited from Premier League");
+    }
+
+    private static void checkMatchdayFinance(SharedPreferences slots) throws Exception {
+        AndroidRuntime.context().getSharedPreferences("pfm_world_careers", 0).edit()
+                .putInt("slot_" + pfm2.getSlot() + "_nonce", 112).commit();
+        SharedPreferences.Editor ids = EnglishLegacyIds.season(AndroidRuntime.context(), pfm2.getSeason()).edit();
+        for (Map.Entry<String, ?> slot : slots.getAll().entrySet()) {
+            if (slot.getValue() instanceof String) ids.putString(slot.getKey(), (String) slot.getValue());
+        }
+        ids.commit();
+        int[][][] fixtures = (int[][][]) field(cp.class, "a", int[][][].class).get(null);
+        dw[] clubs = (dw[]) field(cp.class, "a", dw[].class).get(null);
+        Field cash = field(dw.class, "g", int.class);
+        field(du.class, "a", Random.class).set(null, new Random(2010));
+        for (boolean home : new boolean[]{true, false}) {
+            int round = 0;
+            while (Arrays.stream(fixtures[round]).noneMatch(m -> m[home ? 0 : 1] == 18)) round++;
+            cp.a((byte) 18);
+            field(cp.class, "a", byte.class).setByte(null, (byte) round);
+            int before = cash.getInt(clubs[18]);
+            PfmChampionshipEconomy.settle(0);
+            int tickets = field(cp.class, "d", int.class).getInt(null);
+            int commercial = field(cp.class, "e", int.class).getInt(null);
+            int wages = field(cp.class, "g", int.class).getInt(null);
+            int costs = field(cp.class, "m", int.class).getInt(null);
+            check(home ? tickets > 150_000 && tickets <= 220_320 && costs == 55_080 : tickets == 0 && costs == 0,
+                    "QPR charged the wrong gate or stadium cost: home=" + home + ", tickets=" + tickets + ", misc=" + costs);
+            check(commercial >= 25_000 && wages > 0 && cash.getInt(clubs[18]) - before ==
+                    tickets + commercial - wages - costs, "Weekly Balance diverged from actual QPR cash");
+        }
+        cp.a((byte) 3);
+        field(cp.class, "a", byte.class).setByte(null, (byte) 0);
+        System.out.println("PASS: QPR home and away gate, stadium upkeep, distribution, wages and club cash agree");
     }
 
     private static void checkDomesticCheckpoint() throws Exception {
@@ -154,7 +200,7 @@ public final class EnglishCoreHarness {
         division.userId = "en:19";
         for (int i = 0; i < count; i++) {
             NativeEnglishCareer.Club club = new NativeEnglishCareer.Club();
-            club.id = i == 3 ? division.userId : league + ":" + (i + 40);
+            club.id = i == 3 ? division.userId : league + ":" + ("en2".equals(league) ? i : i + 40);
             club.name = i == 3 ? "User club" : league + " club " + i;
             club.budget = 2000000 + i;
             for (int j = 0; j < (i == 3 ? 30 : 18); j++) {
