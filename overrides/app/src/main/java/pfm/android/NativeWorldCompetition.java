@@ -41,10 +41,11 @@ public final class NativeWorldCompetition {
     private static String position(int p){return p==0?"GK":p==1?"DEF":p==2?"MID":"FW";}
     private static String norm(String s){return s==null?"":s.toLowerCase(Locale.US).replaceAll("[^a-z0-9]","");}
     private static String activeCode(){try{String code=String.valueOf(Class.forName("PfmSeasonBridge").getMethod("leagueCode").invoke(null));if(!code.isEmpty())return code;}catch(Exception ignored){}try{String[] rows=(String[])Class.forName("PfmSeasonBridge").getMethod("tableRows").invoke(null);String best="";int bestScore=0;for(String code:NativeWorldCenter.C){int score=0;for(NativeWorldCenter.T t:NativeWorldCenter.leagues.get(code))for(String row:rows)if(row!=null&&norm(row).contains(norm(t.name)))score++;if(score>bestScore){bestScore=score;best=code;}}if(bestScore>2)return best;}catch(Throwable ignored){}try{return String.valueOf(Class.forName("PfmSeasonBridge").getMethod("leagueCode").invoke(null));}catch(Throwable t){return NativeWorldCenter.active();}}
-    private static ArrayList<String> leagueCodes(){ArrayList<String> out=new ArrayList<String>();String active=activeCode();for(String c:NativeWorldCenter.C)if(!c.equals(active))out.add(c);if(NativeWorldCenter.leagues.containsKey(NativeChampionship.CODE))out.add(NativeChampionship.CODE);if(NativeWorldCenter.leagues.containsKey(NativeBundesliga2.CODE))out.add(NativeBundesliga2.CODE);return out;}
+    private static ArrayList<String> leagueCodes(){ArrayList<String> out=new ArrayList<String>();String active=activeCode();for(String c:NativeWorldCenter.C)if(!c.equals(active))out.add(c);if(NativeWorldCenter.leagues.containsKey(NativeChampionship.CODE))out.add(NativeChampionship.CODE);if(!NativeBundesliga2.CODE.equals(active)&&NativeWorldCenter.leagues.containsKey(NativeBundesliga2.CODE))out.add(NativeBundesliga2.CODE);return out;}
     private static String leagueName(String code){if(NativeChampionship.CODE.equals(code))return "Championship";if(NativeBundesliga2.CODE.equals(code))return NativeBundesliga2.NAME;for(int i=0;i<NativeWorldCenter.C.length;i++)if(NativeWorldCenter.C[i].equals(code))return NativeWorldCenter.N[i];return code;}
     private static int zone(String league,int rank,int count){
         if(NativeChampionship.CODE.equals(league))return rank<=2?0xffdcefd8:rank<=6?0xffdcecff:0xffffffff;
+        if(NativeGermanDivisions.includes(league))return NativeGermanDivisions.zone(league,rank);
         return EuropeanPlaces.zone(league,rank,count);
     }
     private static ImageView badge(Context c,String code,int id){ImageView v=new ImageView(c);try{InputStream in=c.getAssets().open(code.endsWith("2")?"second_division_badges/"+code+"_"+id+".png":"badges/"+code+(id+1)+".png");v.setImageBitmap(android.graphics.BitmapFactory.decodeStream(in));in.close();}catch(Throwable ignored){}v.setScaleType(ImageView.ScaleType.FIT_CENTER);return v;}
@@ -93,9 +94,32 @@ public final class NativeWorldCompetition {
             Toast.makeText(activity, "Play-off results unavailable", Toast.LENGTH_SHORT).show();
         }
     }
+    static void showGermanPlayoff(Activity activity, int season) {
+        try {
+            NativeWorldCenter.load(activity);
+            List<MatchJournal.Match> matches = NativeMatchJournal.championshipJournal(activity, season)
+                    .competition(NativeGermanDivisions.PLAYOFF);
+            List<String> lines = new ArrayList<>();
+            for (MatchJournal.Match match : matches) {
+                String score = match.report.split("\n", 2)[0];
+                lines.add("Leg " + match.round + " · " + score);
+            }
+            if (matches.isEmpty()) lines.add(season < year() ? "No saved play-off." : "Played after the final league round.");
+            else if (matches.size() == 2) {
+                String winner = matches.get(1).winner;
+                if (!winner.isEmpty()) lines.add("Bundesliga next season · " + NativeEnglishDivisions.team(winner).name);
+            }
+            new AlertDialog.Builder(activity).setTitle("Bundesliga promotion / relegation play-off")
+                    .setItems(lines.toArray(new String[0]), (dialog, index) -> {
+                        if (index < matches.size()) NativeMatchJournal.showReport(activity, matches.get(index));
+                    }).setPositiveButton("Close", null).show();
+        } catch (IOException error) {
+            Toast.makeText(activity, "Saved play-off unavailable", Toast.LENGTH_SHORT).show();
+        }
+    }
     private static void configureSub(Context c,Spinner sub,int mode,String code){ArrayList<String> values=new ArrayList<String>();if(mode==1)for(int i=1;i<=rounds(code);i++)values.add("MATCHDAY "+i);else if(mode==2)Collections.addAll(values,"GOALS","ASSISTS","RATING","APPEARANCES","GK CLEAN SHEETS");else if(mode==4){int last=year()-1;if(last<2010)values.add("NO COMPLETED SEASONS");else for(int y=2010;y<=last;y++)values.add(y+"/"+(y+1));}sub.setAdapter(new ArrayAdapter<String>(c,android.R.layout.simple_spinner_dropdown_item,values));}
     private static void addClubFinance(Activity activity, ListView list, NativeWorldCenter.T team) {
-        if (!NativeBundesliga2.CODE.equals(team.league)) return;
+        if (!NativeGermanDivisions.includes(team.league)) return;
         try {
             ClubEconomy.Profile ground = ClubEconomy.profile(activity, team.clubId);
             if (ground == null) return;
@@ -145,5 +169,5 @@ public final class NativeWorldCompetition {
         };
         league.setOnItemSelectedListener(new android.widget.AdapterView.OnItemSelectedListener(){public void onItemSelected(android.widget.AdapterView<?> p,View v,int n,long id){configureSub(a,sub,mode[0],codes.get(n));refresh[0].run();}public void onNothingSelected(android.widget.AdapterView<?> p){}});sub.setOnItemSelectedListener(new android.widget.AdapterView.OnItemSelectedListener(){public void onItemSelected(android.widget.AdapterView<?> p,View v,int n,long id){refresh[0].run();}public void onNothingSelected(android.widget.AdapterView<?> p){}});for(int i=0;i<buttons.length;i++){final int selected=i;buttons[i].setOnClickListener(v->{mode[0]=selected;configureSub(a,sub,selected,codes.get(league.getSelectedItemPosition()));refresh[0].run();});}configureSub(a,sub,0,codes.get(0));refresh[0].run();AlertDialog dialog=new AlertDialog.Builder(a).setTitle("Other Top-5 Leagues").setView(root).setNeutralButton("Second divisions",null).setPositiveButton("Close",null).create();dialog.setOnDismissListener(v->NativePause.end(paused));dialog.setOnShowListener(v->{dialog.getButton(AlertDialog.BUTTON_NEUTRAL).setOnClickListener(b->NativeSecondDivisionRegistry.show(a));Window w=dialog.getWindow();if(w!=null)w.setLayout(-1,Math.round(a.getResources().getDisplayMetrics().heightPixels*.95f));});dialog.show();
     }
-    private static void showTable(Activity a,ListView list,LinearLayout header,String code,ArrayList<NativeWorldCenter.T> teams,int season){int played=0,goals=0,drawn=0;for(NativeWorldCenter.T team:teams){played+=team.p;goals+=team.gf;drawn+=team.d;}int games=played/2;header.addView(text(a,"Goals: "+goals+" / "+games+" matches · "+(games==0?"n/a":String.format(Locale.US,"%.2f",goals/(double)games))+" per match"+(NativeChampionship.CODE.equals(code)?"":" · 2010/11 ref "+String.format(Locale.US,"%.2f",MatchEngine.profile(code).historicalRate))+"\nDraws: "+(drawn/2)+" / "+games+" ("+(games==0?"n/a":String.format(Locale.US,"%.1f%%",100.0*(drawn/2)/games))+")"+(NativeChampionship.CODE.equals(code)?"":" · 2010/11 ref "+String.format(Locale.US,"%.1f%%",100*MatchEngine.profile(code).historicalDrawRate)),10.5f,false));if(NativeChampionship.CODE.equals(code)){Button playoffs=new Button(a);playoffs.setText("PROMOTION PLAY-OFFS");playoffs.setOnClickListener(v->showPlayoffs(a,teams,season));header.addView(playoffs);}header.addView(tableRow(a,code,null,0,true));if (!NativeBundesliga2.CODE.equals(code)) {TextView legend=text(a,NativeChampionship.CODE.equals(code)?"Green: automatic places · Blue: play-off places":"Base places: Blue UCL · Gold UEL · Red relegation",9.2f,true);legend.setBackgroundColor(0xfff4f4f4);header.addView(legend);}final ArrayList<NativeWorldCenter.T> values=ordered(teams,code);list.setAdapter(new ArrayAdapter<NativeWorldCenter.T>(a,android.R.layout.simple_list_item_1,values){public View getView(int n,View old,ViewGroup parent){return tableRow(a,code,getItem(n),n+1,false);}});}
+    private static void showTable(Activity a,ListView list,LinearLayout header,String code,ArrayList<NativeWorldCenter.T> teams,int season){int played=0,goals=0,drawn=0;for(NativeWorldCenter.T team:teams){played+=team.p;goals+=team.gf;drawn+=team.d;}int games=played/2;header.addView(text(a,"Goals: "+goals+" / "+games+" matches · "+(games==0?"n/a":String.format(Locale.US,"%.2f",goals/(double)games))+" per match"+(NativeChampionship.CODE.equals(code)?"":" · 2010/11 ref "+String.format(Locale.US,"%.2f",MatchEngine.profile(code).historicalRate))+"\nDraws: "+(drawn/2)+" / "+games+" ("+(games==0?"n/a":String.format(Locale.US,"%.1f%%",100.0*(drawn/2)/games))+")"+(NativeChampionship.CODE.equals(code)?"":" · 2010/11 ref "+String.format(Locale.US,"%.1f%%",100*MatchEngine.profile(code).historicalDrawRate)),10.5f,false));if(NativeChampionship.CODE.equals(code)){Button playoffs=new Button(a);playoffs.setText("PROMOTION PLAY-OFFS");playoffs.setOnClickListener(v->showPlayoffs(a,teams,season));header.addView(playoffs);}if(NativeGermanDivisions.includes(code)){Button playoffs=new Button(a);playoffs.setText("BUNDESLIGA PLAY-OFF");playoffs.setOnClickListener(v->showGermanPlayoff(a,season));header.addView(playoffs);}header.addView(tableRow(a,code,null,0,true));{TextView legend=text(a,NativeChampionship.CODE.equals(code)?"Green: automatic places · Blue: play-off places":NativeGermanDivisions.includes(code)?NativeGermanDivisions.legend(code):"Base places: Blue UCL · Gold UEL · Red relegation",9.2f,true);legend.setBackgroundColor(0xfff4f4f4);header.addView(legend);}final ArrayList<NativeWorldCenter.T> values=ordered(teams,code);list.setAdapter(new ArrayAdapter<NativeWorldCenter.T>(a,android.R.layout.simple_list_item_1,values){public View getView(int n,View old,ViewGroup parent){return tableRow(a,code,getItem(n),n+1,false);}});}
 }

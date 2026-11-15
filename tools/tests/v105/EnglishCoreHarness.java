@@ -41,7 +41,57 @@ public final class EnglishCoreHarness {
         check(lowerSlots.getInt("user-gk", -1) == upperSlots.getInt("user-gk", -2), "lost player identity across divisions");
         checkLedgers();
         checkDomesticCheckpoint();
+        checkGermanCore();
         System.out.println("PASS: real core saves and reloads both English divisions, 30-player squad, 38/46 rounds, same user club and player slot");
+    }
+
+    private static void checkGermanCore() throws Exception {
+        android.content.Context context = new android.content.Context("overrides/app/src/main/assets", new File("artifacts"));
+        field(AndroidRuntime.class, "current", android.content.Context.class).set(null, context);
+        field(ea.class, "a", int.class).setInt(null, 3);
+        context.getSharedPreferences("pfm_world_careers", 0).edit().putInt("slot_" + pfm2.getSlot() + "_nonce", 115).commit();
+        try (DataInputStream input = new DataInputStream(EnglishCoreHarness.class.getResourceAsStream("/resources/germany.bin"))) {
+            cp.a(input, true);
+        }
+        SharedPreferences slots = EnglishLegacyIds.season(context, pfm2.getSeason());
+        NativeEnglishCareer.Opening lower = division(18, "de2");
+        PfmEnglishSeasonBridge.install(lower, slots, slots);
+        reload();
+        verify(lower, slots);
+        checkGermanFinance();
+        int player = slots.getInt("user-gk", -1);
+        NativeEnglishCareer.Opening upper = division(18, "de");
+        PfmEnglishSeasonBridge.install(upper, slots, slots);
+        reload();
+        verify(upper, slots);
+        check(slots.getInt("user-gk", -2) == player && "de".equals(slots.getString("league", "")),
+                "German promotion lost the same player or league marker");
+        check(PfmEnglishSeasonBridge.matchBadgePath("de2:3").equals("second_division_badges/de2_3.png") &&
+                PfmEnglishSeasonBridge.matchBadgePath("de:0").equals("badges/de1.png"), "German badges use wrong club IDs");
+        System.out.println("PASS: German active leagues save/reload at 34 rounds with the same club and player identity");
+    }
+
+    private static void checkGermanFinance() throws Exception {
+        int[][][] fixtures = (int[][][]) field(cp.class, "a", int[][][].class).get(null);
+        dw team = (dw) field(cp.class, "a", dw.class).get(null);
+        Field cash = field(dw.class, "g", int.class);
+        field(du.class, "a", Random.class).set(null, new Random(2010));
+        for (boolean home : new boolean[]{true, false}) {
+            int round = 0;
+            while (Arrays.stream(fixtures[round]).noneMatch(m -> m[home ? 0 : 1] == 3)) round++;
+            field(cp.class, "a", byte.class).setByte(null, (byte) round);
+            int before = cash.getInt(team);
+            PfmChampionshipEconomy.settle(0);
+            int tickets = field(cp.class, "d", int.class).getInt(null);
+            int commercial = field(cp.class, "e", int.class).getInt(null);
+            int wages = field(cp.class, "g", int.class).getInt(null);
+            int costs = field(cp.class, "m", int.class).getInt(null);
+            check(home ? tickets > 100_000 && costs == 61_320 : tickets == 0 && costs == 0,
+                    "Augsburg charged the wrong gate or stadium cost");
+            check(commercial >= 85_481 && wages == 6_000_000 / 34 &&
+                    cash.getInt(team) - before == tickets + commercial - wages - costs,
+                    "German Weekly Balance diverged from actual cash");
+        }
     }
 
     private static void checkStadiums() throws Exception {
@@ -197,10 +247,10 @@ public final class EnglishCoreHarness {
     private static NativeEnglishCareer.Opening division(int count, String league) {
         NativeEnglishCareer.Opening division = new NativeEnglishCareer.Opening();
         division.league = league;
-        division.userId = "en:19";
+        division.userId = league.startsWith("de") ? "de2:3" : "en:19";
         for (int i = 0; i < count; i++) {
             NativeEnglishCareer.Club club = new NativeEnglishCareer.Club();
-            club.id = i == 3 ? division.userId : league + ":" + ("en2".equals(league) ? i : i + 40);
+            club.id = i == 3 ? division.userId : league + ":" + ("en".equals(league) ? i + 40 : i);
             club.name = i == 3 ? "User club" : league + " club " + i;
             club.budget = 2000000 + i;
             for (int j = 0; j < (i == 3 ? 30 : 18); j++) {

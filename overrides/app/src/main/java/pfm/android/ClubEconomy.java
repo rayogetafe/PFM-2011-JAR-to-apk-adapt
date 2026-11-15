@@ -11,6 +11,7 @@ import java.util.Map;
 /** Historical club inputs and the matchday accounting scale shared by both engines. */
 public final class ClubEconomy {
     public static final short CHAMPIONSHIP_TICKET = 40;
+    public static final short BUNDESLIGA2_TICKET = 37;
     private static final int CHAMPIONSHIP_DISTRIBUTION = 25_000;
     private static Map<String, Profile> profiles;
 
@@ -42,6 +43,18 @@ public final class ClubEconomy {
 
     public static int distribution(String league) {
         return "en2".equals(league) ? CHAMPIONSHIP_DISTRIBUTION : 0;
+    }
+
+    public static int germanSecondTierAttendance(String club, Profile ground) {
+        return club.startsWith("de:") ? ground.attendance * 3 / 4 : ground.attendance;
+    }
+
+    public static int germanSecondTierDistribution(int attendance) {
+        return 65_000 + attendance;
+    }
+
+    public static int germanSecondTierPayroll(long annualPayroll) {
+        return (int) (annualPayroll / 34);
     }
 
     public static synchronized Profile profile(Context context, String club) throws IOException {

@@ -9,6 +9,10 @@ jobs:
   android:
     runs-on: ubuntu-latest
     timeout-minutes: 18
+    strategy:
+      fail-fast: false
+      matrix:
+        division: [championship, bundesliga2]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/download-artifact@v4
@@ -60,9 +64,9 @@ jobs:
           adb install "$(find build -maxdepth 1 -name '*.apk' -print -quit)"
           adb install test/diagnostic.apk
           adb logcat -c
-          adb shell am instrument -w -e division championship -e bundesliga2 true -e phase save pfm.diagnostic/.ColdLoad | tee diagnostics/save.txt
+          adb shell am instrument -w -e division ${{ matrix.division }} -e bundesliga2 true -e phase save pfm.diagnostic/.ColdLoad | tee diagnostics/save.txt
           adb shell am force-stop pfm.android.careerlab
-          adb shell am instrument -w -e division championship -e bundesliga2 true -e phase load pfm.diagnostic/.ColdLoad | tee diagnostics/load.txt
+          adb shell am instrument -w -e division ${{ matrix.division }} -e bundesliga2 true -e phase load pfm.diagnostic/.ColdLoad | tee diagnostics/load.txt
           adb logcat -d -v threadtime > diagnostics/logcat.txt
           adb exec-out screencap -p > diagnostics/final.png
           grep 'PASS: real first matchday' diagnostics/save.txt
@@ -74,7 +78,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: android-cold-load-diagnostics
+          name: android-cold-load-diagnostics-${{ matrix.division }}
           path: |
             diagnostics/
             /tmp/pfm-emulator.log

@@ -60,8 +60,12 @@ public final class NativeHistory {
             tableHead.setVisibility(tableMode[0]?View.VISIBLE:View.GONE);legend.setVisibility(tableMode[0]?View.VISIBLE:View.GONE);playerHead.setVisibility(tableMode[0]?View.GONE:View.VISIBLE);
             if(tableMode[0]){
                 final ArrayList<TableRow> rs=table(y);
-                legend.setText(NativeEnglishDivisions.includes(league)&&rs.size()==24?"GREEN · AUTOMATIC PROMOTION    BLUE · PLAY-OFFS":"CHAMPIONS LEAGUE     EUROPA LEAGUE     RELEGATION");
-                list.setAdapter(new ArrayAdapter<TableRow>(a,android.R.layout.simple_list_item_1,rs){@Override public View getView(int pos,View cv,ViewGroup parent){TableRow r=getItem(pos);String seasonLeague=NativeEnglishDivisions.includes(league)?(rs.size()==24?"en2":"en"):league;String badge=NativeEnglishDivisions.badge(a,r.club,seasonLeague,r.teamId);LinearLayout row=tableRow(a,String.valueOf(r.rank),r.club,String.valueOf(r.p),String.valueOf(r.w),String.valueOf(r.d),String.valueOf(r.l),String.valueOf(r.gf),String.valueOf(r.ga),(r.gd>0?"+":"")+r.gd,String.valueOf(r.pts),r.user,badge);GradientDrawable bg=new GradientDrawable();bg.setColor(zoneColor(seasonLeague,r.rank,rs.size()));if(r.user)bg.setStroke(dp(a,2),0xff2e7d32);row.setBackground(bg);return row;}});
+                final String seasonLeague = NativeEnglishDivisions.includes(league) ? (rs.size() == 24 ? "en2" : "en")
+                        : NativeGermanDivisions.includes(league) ? EnglishLegacyIds.season(a, y).getString("league", "de") : league;
+                legend.setText("en2".equals(seasonLeague) ? "GREEN · AUTOMATIC PROMOTION    BLUE · PLAY-OFFS"
+                        : NativeGermanDivisions.includes(seasonLeague) ? NativeGermanDivisions.legend(seasonLeague)
+                        : "CHAMPIONS LEAGUE     EUROPA LEAGUE     RELEGATION");
+                list.setAdapter(new ArrayAdapter<TableRow>(a,android.R.layout.simple_list_item_1,rs){@Override public View getView(int pos,View cv,ViewGroup parent){TableRow r=getItem(pos);String badge=NativeEnglishDivisions.badge(a,r.club,seasonLeague,r.teamId);LinearLayout row=tableRow(a,String.valueOf(r.rank),r.club,String.valueOf(r.p),String.valueOf(r.w),String.valueOf(r.d),String.valueOf(r.l),String.valueOf(r.gf),String.valueOf(r.ga),(r.gd>0?"+":"")+r.gd,String.valueOf(r.pts),r.user,badge);GradientDrawable bg=new GradientDrawable();bg.setColor(zoneColor(seasonLeague,r.rank,rs.size()));if(r.user)bg.setStroke(dp(a,2),0xff2e7d32);row.setBackground(bg);return row;}});
             }else{
                 final ArrayList<PlayerRow> rs=players(y);
                 list.setAdapter(new ArrayAdapter<PlayerRow>(a,android.R.layout.simple_list_item_1,rs){@Override public View getView(int pos,View cv,ViewGroup parent){PlayerRow r=getItem(pos);LinearLayout row=new LinearLayout(a);row.setOrientation(LinearLayout.VERTICAL);row.setPadding(dp(a,8),dp(a,4),dp(a,8),dp(a,4));row.addView(text(a,r.name,14f,true));row.addView(text(a,"ST "+r.st+"   AP "+r.ap+"   G "+r.g+"   RAT "+r.rating()+"   •   SPE "+r.spe+" RES "+r.res+" QUA "+r.qua,11.5f,false));return row;}});
@@ -73,7 +77,7 @@ public final class NativeHistory {
     }
 
     private static TextView cell(Context c,String value,float size,boolean bold,int gravity){TextView v=text(c,value,size,bold);v.setGravity(gravity);v.setSingleLine(true);v.setPadding(dp(c,1),dp(c,1),dp(c,1),dp(c,1));return v;}
-    private static int zoneColor(String league,int rank,int count){return NativeChampionship.CODE.equals(league)?NativeEnglishDivisions.championshipZone(rank):EuropeanPlaces.zone(league,rank,count);}
+    private static int zoneColor(String league,int rank,int count){return NativeChampionship.CODE.equals(league)?NativeEnglishDivisions.championshipZone(rank):NativeGermanDivisions.includes(league)?NativeGermanDivisions.zone(league,rank):EuropeanPlaces.zone(league,rank,count);}
     private static LinearLayout tableRow(Context c,String rank,String club,String p,String w,String d,String l,String gf,String ga,String gd,String pts,boolean bold,String badge){
         LinearLayout row=new LinearLayout(c);row.setOrientation(LinearLayout.HORIZONTAL);row.setPadding(dp(c,2),0,dp(c,2),0);
         float[] weights={.55f,3.8f,.62f,.62f,.62f,.62f,.68f,.68f,.82f,.82f};String[] values={rank,club,p,w,d,l,gf,ga,gd,pts};

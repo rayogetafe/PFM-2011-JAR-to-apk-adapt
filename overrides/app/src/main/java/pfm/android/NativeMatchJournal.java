@@ -33,6 +33,7 @@ public final class NativeMatchJournal {
         if (journal.discardLeagueAfter(league, played)) {
             if (NativeChampionship.CODE.equals(league)) ChampionshipPlayoffs.discard(journal);
             if ("en".equals(league)) journal.forget(NativeEnglishDivisions.FINAL_PREMIER_ORDER);
+            if (NativeGermanDivisions.includes(league)) journal.discardCompetition(NativeGermanDivisions.PLAYOFF);
             journal.save();
             MatchJournal next = journal(c, season + 1);
             next.forgetProvisionalEuropeanDraw();
@@ -88,6 +89,7 @@ public final class NativeMatchJournal {
         NativeWorldCenter.S hs=eligible(home,homeId,competition,seed,effects,players),as=eligible(away,awayId,competition,seed+17,effects,players);
         boolean domesticCup = competition.startsWith("cup:");
         boolean promotionPlayoff = ChampionshipPlayoffs.COMPETITION.equals(competition);
+        boolean germanPlayoff = NativeGermanDivisions.PLAYOFF.equals(competition);
         MatchEngine.Profile profile=neutralFinal?MatchEngine.NEUTRAL_VENUE:MatchEngine.profile(competition);
         NativeMatchEngine.Result result=NativeMatchEngine.play(seed,home,away,hs,as,profile);
         int decision=0;if(firstLeg!=null||neutralFinal||domesticCup){decision=knockoutDecision(result,firstLeg,promotionPlayoff);
@@ -105,7 +107,7 @@ public final class NativeMatchJournal {
             m.clock = effects.clock;
             m.effectsVersion = 2;
             MatchEffects.stamp(m, players);
-            if (!domesticCup && !promotionPlayoff) {
+            if (!domesticCup && !promotionPlayoff && !germanPlayoff) {
                 long homePayroll = 0, awayPayroll = 0;
                 for (NativeCareerStore.Player player : career.players) {
                     if (player.owner.equals(homeId)) homePayroll += player.contractWage;
@@ -143,7 +145,9 @@ public final class NativeMatchJournal {
     }
     private static int bundesliga2Credit(String club, boolean home, long payroll) {
         try {
-            return NativeBundesliga2.matchCredit(ClubEconomy.profile(context, club), home, payroll);
+            ClubEconomy.Profile ground = ClubEconomy.profile(context, club);
+            if (ground == null) throw new IOException("Missing stadium profile for " + club);
+            return NativeBundesliga2.matchCredit(ground, ClubEconomy.germanSecondTierAttendance(club, ground), home, payroll);
         } catch (IOException error) {
             throw new IllegalStateException("Could not load 2. Bundesliga finance", error);
         }
@@ -185,7 +189,10 @@ public final class NativeMatchJournal {
                 replayEffects(previousEffects, previous.all());
             }
             Map<String, Integer> domesticBans = previousEffects.carryBans();
-            if (previous != null && career != null) NativeEnglishDivisions.moveOpeningBans(domesticBans, previous, career);
+            if (previous != null && career != null) {
+                NativeEnglishDivisions.moveOpeningBans(domesticBans, previous, career);
+                NativeEnglishDivisions.moveOpeningBans(domesticBans, previous, career, "de", "de2");
+            }
             journal.defineOpeningBans(domesticBans);
             journal.defineEuropeanOpeningBans(previousEffects.carryEuropeanBans(season - 1));
         }
@@ -235,7 +242,9 @@ public final class NativeMatchJournal {
         if (championshipActive && !NativeChampionship.CODE.equals(career.activeLeague)) {
             parallel.put(NativeChampionship.CODE, NativeWorldCenter.schedule(NativeChampionship.CLUBS));
         }
-        if (NativeBundesliga2.active(career, season)) {
+        boolean germanActive = NativeBundesliga2.active(career, season);
+        NativeGermanDivisions.freeze(j, career);
+        if (germanActive && !NativeBundesliga2.CODE.equals(career.activeLeague)) {
             parallel.put(NativeBundesliga2.CODE, NativeWorldCenter.schedule(NativeBundesliga2.CLUBS));
         }
         Map<String, List<String>> members = new HashMap<>();
@@ -261,6 +270,9 @@ public final class NativeMatchJournal {
         if (championshipFinished) {
             ChampionshipPlayoffs.complete(j, identity, total, teams, players,
                     oldChampionshipFinish ? "reconstructed-v103" : source, effects, career);
+        }
+        if (completed == total && germanActive) {
+            NativeGermanDivisions.complete(j, identity, total, teams, players, source, effects, career);
         }
         j.save();
         if(completed==total){MatchJournal next=journal(c,season+1);if(next.metadata("ucl-groups")!=null||next.metadata("uel-groups")!=null){ArrayList<ArrayList<String>> nextUcl=UclSeason.prepare(next,j,career,identity^(season+1)*10007);EuropaSeason.prepare(next,j,career,nextUcl,identity^(season+1)*10007^0x3e17);}else EuropeanQualification.prepare(next,j,career,identity^(season+1)*10007);next.save();}
@@ -352,7 +364,7 @@ public final class NativeMatchJournal {
         StringBuilder body=new StringBuilder();if(m.source.startsWith("reconstructed-"))body.append("Reconstructed at upgrade; no retrospective fatigue, suspensions or finance applied.\n\n");
         for(int side=0;side<2;side++){String club=side==0?m.home:m.away;body.append(side==0?"HOME\n":"\nAWAY\n");
             for(MatchJournal.PlayerFact p:m.players)if(p.club.equals(club)&&p.stats[2]>0)body.append(p.name).append(p.stats[3]>0?" · XI":" · SUB").append("  G ").append(p.stats[0]).append(" A ").append(p.stats[1]).append(p.minutes>0?"  MIN "+p.minutes+" YC "+p.yellow+" RC "+p.red+(p.injury>0?" INJ "+p.injury+" rounds":""):"").append('\n');}
-        if(m.effectsVersion>=2||m.competition.startsWith("uclq:")||m.competition.startsWith("cup:")||ChampionshipPlayoffs.COMPETITION.equals(m.competition)||m.round>=7&&EuropeanPlaces.european(m.competition))body.append("\nEVENTS\n").append(m.report.substring(m.report.indexOf('\n')>=0?m.report.indexOf('\n')+1:m.report.length()));
+        if(m.effectsVersion>=2||m.competition.startsWith("uclq:")||m.competition.startsWith("cup:")||ChampionshipPlayoffs.COMPETITION.equals(m.competition)||NativeGermanDivisions.PLAYOFF.equals(m.competition)||m.round>=7&&EuropeanPlaces.european(m.competition))body.append("\nEVENTS\n").append(m.report.substring(m.report.indexOf('\n')>=0?m.report.indexOf('\n')+1:m.report.length()));
         else if(m.report.contains("\nLIVE EVENTS\n"))body.append(m.report.substring(m.report.indexOf("\nLIVE EVENTS\n")));
         if(m.effectsVersion>0){body.append("\nMatch finance (net, gameplay model): home £").append(m.homeCredit).append("; away £").append(m.awayCredit);if(m.effectsVersion==1)body.append("\nCards/injuries were post-match consequences in this older report.");body.append("\nBans are competition-specific.\n");}
         if(m.players.isEmpty())body.append("This historical result has no recorded line-up.");new AlertDialog.Builder(a).setTitle(title).setMessage(body.toString()).setPositiveButton("Close",null).show();

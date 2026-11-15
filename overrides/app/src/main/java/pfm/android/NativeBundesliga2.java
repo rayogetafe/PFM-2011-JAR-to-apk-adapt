@@ -126,9 +126,13 @@ final class NativeBundesliga2 {
     }
 
     static int matchCredit(ClubEconomy.Profile ground, boolean home, long annualPayroll) {
-        int matchday = home ? 11 * ground.attendance - 2 * ground.capacity : 0;
-        int mediaAndSponsorship = 65_000 + ground.attendance;
-        return mediaAndSponsorship + matchday - (int) (annualPayroll / ROUNDS);
+        return matchCredit(ground, ground.attendance, home, annualPayroll);
+    }
+
+    static int matchCredit(ClubEconomy.Profile ground, int attendance, boolean home, long annualPayroll) {
+        int matchday = home ? 11 * attendance - 2 * ground.capacity : 0;
+        return ClubEconomy.germanSecondTierDistribution(attendance) + matchday -
+                ClubEconomy.germanSecondTierPayroll(annualPayroll);
     }
 
     private static int index(String club) {

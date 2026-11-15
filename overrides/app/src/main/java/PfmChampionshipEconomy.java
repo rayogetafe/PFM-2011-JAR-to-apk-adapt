@@ -4,7 +4,7 @@ import java.lang.reflect.Method;
 import pfm.android.AndroidRuntime;
 import pfm.android.ClubEconomy;
 
-/** Uses the same Championship operating scale for legacy matchdays and background rounds. */
+/** Applies second-division accounting to legacy matchdays. */
 public final class PfmChampionshipEconomy {
     private static final Field CLUB_NUMBER = field(dw.class, "n", byte.class);
     private static final Field CAPACITY = field(dw.class, "b", int.class);
@@ -14,6 +14,14 @@ public final class PfmChampionshipEconomy {
     private static final Field USER = field(cp.class, "a", dw.class);
     private static final Field CLUBS = field(cp.class, "a", dw[].class);
     private static final Field COMMERCIAL = field(cp.class, "e", int.class);
+    private static final Field WAGE_REPORT = field(cp.class, "g", int.class);
+    private static final Field UPKEEP_REPORT = field(cp.class, "m", int.class);
+    private static final Field ROUND = field(cp.class, "a", byte.class);
+    private static final Field CALENDAR = field(cp.class, "a", int[][][].class);
+    private static final Field ROSTER = field(dw.class, "a", short[].class);
+    private static final Field ROSTER_SIZE = field(dw.class, "e", byte.class);
+    private static final Field PLAYERS = field(cp.class, "a", ci[].class);
+    private static final Field SALARY = field(ci.class, "a", int.class);
     private static final Method STOCK_DEMAND = method("b", int.class, int.class, int.class);
     private static final Method STOCK_SETTLEMENT = method("a", void.class, int.class);
 
@@ -22,12 +30,16 @@ public final class PfmChampionshipEconomy {
     public static int demand(int fixture, int influence) {
         try {
             int stock = (Integer) STOCK_DEMAND.invoke(null, fixture, influence);
-            if (!isChampionship()) return stock;
+            String league = PfmSeasonBridge.leagueCode();
+            if (!"en2".equals(league) && !"de2".equals(league)) return stock;
             dw home = (dw) HOME.get(null);
             ClubEconomy.Profile profile = profile(home);
             if (profile == null) return stock;
             int seats = CAPACITY.getInt(home);
             int baseline = profile.attendanceAt(seats);
+            if ("de2".equals(league)) {
+                baseline = baseline * ClubEconomy.germanSecondTierAttendance(clubId(home), profile) / profile.attendance;
+            }
             int variation = Math.max(-baseline / 10, Math.min(baseline / 10, (stock - seats / 3) / 5));
             // The legacy caller adds its own match-to-match fluctuation and clamps to capacity.
             return Math.max(1, (baseline + variation) * 20 / 21);
@@ -38,7 +50,10 @@ public final class PfmChampionshipEconomy {
 
     public static int aiDemand(int fixture, int influence) {
         try {
-            if (isChampionship() && profile((dw) HOME.get(null)) != null) {
+            String league = PfmSeasonBridge.leagueCode();
+            if ("de2".equals(league)) {
+                TICKET.setShort(HOME.get(null), ClubEconomy.BUNDESLIGA2_TICKET);
+            } else if ("en2".equals(league) && profile((dw) HOME.get(null)) != null) {
                 TICKET.setShort(HOME.get(null), ClubEconomy.CHAMPIONSHIP_TICKET);
             }
             return (Integer) STOCK_DEMAND.invoke(null, fixture, influence);
@@ -50,7 +65,12 @@ public final class PfmChampionshipEconomy {
     public static void settle(int result) {
         try {
             STOCK_SETTLEMENT.invoke(null, result);
-            if (!isChampionship()) return;
+            String league = PfmSeasonBridge.leagueCode();
+            if ("de2".equals(league)) {
+                settleGermanRound();
+                return;
+            }
+            if (!"en2".equals(league)) return;
             int distribution = ClubEconomy.distribution("en2");
             for (dw club : (dw[]) CLUBS.get(null)) {
                 if (profile(club) == null) continue;
@@ -62,13 +82,44 @@ public final class PfmChampionshipEconomy {
         }
     }
 
-    private static ClubEconomy.Profile profile(dw team) throws IllegalAccessException, IOException {
-        String club = PfmEnglishSeasonBridge.clubId(CLUB_NUMBER.getByte(team) & 255, "");
-        return ClubEconomy.profile(AndroidRuntime.context(), club);
+    private static void settleGermanRound() throws ReflectiveOperationException, IOException {
+        dw[] clubs = (dw[]) CLUBS.get(null);
+        ci[] players = (ci[]) PLAYERS.get(null);
+        int[][][] calendar = (int[][][]) CALENDAR.get(null);
+        boolean[] atHome = new boolean[clubs.length];
+        for (int[] fixture : calendar[ROUND.getByte(null) & 255]) atHome[fixture[0]] = true;
+        dw user = (dw) USER.get(null);
+        for (int i = 0; i < clubs.length; i++) {
+            dw club = clubs[i];
+            ClubEconomy.Profile ground = profile(club);
+            if (ground == null) throw new IOException("Missing German club finance: " + clubId(club));
+            int distribution = ClubEconomy.germanSecondTierDistribution(
+                    ClubEconomy.germanSecondTierAttendance(clubId(club), ground));
+            long annualWages = 0;
+            int stockWages = 0;
+            short[] roster = (short[]) ROSTER.get(club);
+            for (int j = 0; j < (ROSTER_SIZE.getByte(club) & 255); j++) {
+                int salary = SALARY.getInt(players[roster[j] & 65535]);
+                annualWages += salary;
+                stockWages += salary / 52;
+            }
+            int wages = ClubEconomy.germanSecondTierPayroll(annualWages);
+            int upkeepReduction = atHome[i] ? CAPACITY.getInt(club) : 0;
+            CASH.setInt(club, CASH.getInt(club) + distribution + upkeepReduction - (wages - stockWages));
+            if (club == user) {
+                COMMERCIAL.setInt(null, COMMERCIAL.getInt(null) + distribution);
+                WAGE_REPORT.setInt(null, wages);
+                UPKEEP_REPORT.setInt(null, UPKEEP_REPORT.getInt(null) - upkeepReduction);
+            }
+        }
     }
 
-    private static boolean isChampionship() {
-        return PfmSeasonBridge.totalRounds() == 46 && "en2".equals(PfmSeasonBridge.leagueCode());
+    private static ClubEconomy.Profile profile(dw team) throws IllegalAccessException, IOException {
+        return ClubEconomy.profile(AndroidRuntime.context(), clubId(team));
+    }
+
+    private static String clubId(dw team) throws IllegalAccessException {
+        return PfmEnglishSeasonBridge.clubId(CLUB_NUMBER.getByte(team) & 255, "");
     }
 
     private static Field field(Class<?> owner, String name, Class<?> type) {

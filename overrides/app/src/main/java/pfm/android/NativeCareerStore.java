@@ -36,7 +36,7 @@ final class NativeCareerStore {
     private static int legacyBudget(){try{return ((Number)Class.forName("PfmTransferBridge").getMethod("budget").invoke(null)).intValue();}catch(Throwable t){return 0;}}
     private static SharedPreferences identity(Context c){return c.getSharedPreferences("pfm_native_career_identity_v67",0);}
     private static String identityKey(){return "slot_"+NativeWorldCenter.slot();}
-    private static boolean sameCareer(Context c,Career old){int saved=identity(c).getInt(identityKey(),0),current=NativeWorldCenter.careerSeed();if(saved!=0&&saved!=current)return false;String league=activeLeague(),club=userClub();return club.equalsIgnoreCase(old.userClub)&&(league.equals(old.activeLeague)||NativeEnglishDivisions.includes(league)&&NativeEnglishDivisions.includes(old.activeLeague)&&EnglishLegacyIds.installed(c,NativeWorldCenter.season()));}
+    private static boolean sameCareer(Context c,Career old){int saved=identity(c).getInt(identityKey(),0),current=NativeWorldCenter.careerSeed();if(saved!=0&&saved!=current)return false;String league=activeLeague(),club=userClub();return club.equalsIgnoreCase(old.userClub)&&(league.equals(old.activeLeague)||EuropeanPlaces.association(league).equals(EuropeanPlaces.association(old.activeLeague))&&(NativeEnglishDivisions.includes(league)||NativeGermanDivisions.includes(league))&&EnglishLegacyIds.installed(c,NativeWorldCenter.season()));}
     private static void markCareer(Context c,boolean fresh){String key=identityKey();SharedPreferences p=identity(c);SharedPreferences.Editor e=p.edit().putInt(key,NativeWorldCenter.careerSeed());if(fresh||!p.contains(key+"_aiAfter"))e.putInt(key+"_aiAfter",Math.max(-1,NativeWorldCenter.played()-(fresh?0:1)));e.commit();}
     static boolean aiReady(Context c){SharedPreferences p=identity(c);String key=identityKey();return p.getInt(key,0)==NativeWorldCenter.careerSeed()&&NativeWorldCenter.played()>p.getInt(key+"_aiAfter",-1);}
     private static void resetLegacy(){try{Class.forName("PfmNativeRosterAdapter").getMethod("resetCareer").invoke(null);}catch(Throwable ignored){}}
@@ -168,16 +168,21 @@ final class NativeCareerStore {
     }
     private static String read(File f)throws Exception{BufferedReader r=new BufferedReader(new InputStreamReader(new FileInputStream(f),"UTF-8"));StringBuilder b=new StringBuilder();char[] q=new char[8192];int n;while((n=r.read(q))>0)b.append(q,0,n);r.close();return b.toString();}
     private static void writeAtomic(Context c,Career career)throws Exception{File target=file(c),bak=backup(c),tmp=new File(target.getParentFile(),target.getName()+".tmp");FileOutputStream out=new FileOutputStream(tmp);byte[] data=json(career).toString().getBytes("UTF-8");out.write(data);out.flush();out.getFD().sync();out.close();Career check=parse(read(tmp));String audit=validate(check);if(!"OK".equals(audit)){tmp.delete();throw new IOException(audit);}if(target.exists()){if(bak.exists())bak.delete();if(!target.renameTo(bak))throw new IOException("backup rename failed");}if(!tmp.renameTo(target)){if(bak.exists())bak.renameTo(target);throw new IOException("atomic rename failed");}}
-    private static void advance(Context context,Career c,int targetSeason)throws IOException{Club user=null;for(Club club:c.clubs)if(club.league.equals(c.activeLeague)&&club.name.equalsIgnoreCase(c.userClub))user=club;while(c.season<targetSeason){NativeEnglishDivisions.rollover(context,c,c.season+1);c.season++;for(Player p:c.players){p.age=Math.min(50,p.age+1);p.morale=55;if(p.contractUntil<c.season){if(user!=null&&user.id.equals(p.owner)){p.contractUntil=c.season;p.contractGrace=true;}else{p.contractUntil=c.season+1+((p.id.hashCode()&0x7fffffff)%3);p.contractGrace=false;}}}c.aiWindow=-1;}}
+    private static void advance(Context context,Career c,int targetSeason)throws IOException{Club user=null;for(Club club:c.clubs)if(club.league.equals(c.activeLeague)&&club.name.equalsIgnoreCase(c.userClub))user=club;while(c.season<targetSeason){NativeEnglishDivisions.rollover(context,c,c.season+1);NativeGermanDivisions.rollover(context,c,c.season+1);c.season++;for(Player p:c.players){p.age=Math.min(50,p.age+1);p.morale=55;if(p.contractUntil<c.season){if(user!=null&&user.id.equals(p.owner)){p.contractUntil=c.season;p.contractGrace=true;}else{p.contractUntil=c.season+1+((p.id.hashCode()&0x7fffffff)%3);p.contractGrace=false;}}}c.aiWindow=-1;}}
     private static Career readSnapshot(File snapshot) {
         try { return snapshot.exists() ? parse(read(snapshot)) : null; }
         catch (Exception ignored) { return null; }
     }
     static Career englishOpening(Context context, int year, int nonce) {
+        return divisionOpening(context, year, nonce, "en");
+    }
+
+    static Career divisionOpening(Context context, int year, int nonce, String country) {
         if (nonce == 0 || identity(context).getInt(identityKey(), 0) != nonce) return null;
         Career saved = readSnapshot(file(context));
-        if (saved == null || saved.season != year || !NativeEnglishDivisions.includes(saved.activeLeague) ||
-                !NativeChampionship.active(saved, year) || !"OK".equals(validate(saved))) return null;
+        if (saved == null || saved.season != year || !country.equals(EuropeanPlaces.association(saved.activeLeague)) ||
+                !("de".equals(country) ? NativeBundesliga2.active(saved, year) : NativeChampionship.active(saved, year)) ||
+                !"OK".equals(validate(saved))) return null;
         return saved;
     }
     private static Career restore(Context c, Career saved, boolean fromBackup) throws Exception {
@@ -201,7 +206,8 @@ final class NativeCareerStore {
             changed = true;
         }
         Club managed = user(saved);
-        if (managed != null && NativeChampionship.CODE.equals(saved.activeLeague) && !saved.matchBudgetPending) {
+        if (managed != null && (NativeChampionship.CODE.equals(saved.activeLeague) ||
+                NativeGermanDivisions.includes(saved.activeLeague)) && !saved.matchBudgetPending) {
             int balance = Math.max(0, legacyBudget());
             if (managed.balance != balance) {
                 managed.balance = balance;

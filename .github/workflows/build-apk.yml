@@ -280,6 +280,7 @@ jobs:
           python3 tools/test_v101_championship_squads.py "$PROJECT/app/src/main/assets"
           python3 tools/test_v113_bundesliga2_registry.py "$PROJECT/app/src/main/assets"
           python3 tools/test_v114_bundesliga2.py "$PROJECT/app/src/main/assets/world_v42.tsv"
+          python3 tools/test_v115_german_career.py "$PROJECT/app/src/main/assets/world_v42.tsv"
           python3 tools/test_v102_championship.py "$PROJECT/app/src/main/assets/world_v42.tsv"
           python3 tools/test_v96_european_bans.py "$PROJECT/app/src/main/assets/world_v42.tsv"
           python3 tools/test_v97_european_seeding.py "$PROJECT/app/src/main/assets/world_v42.tsv"
@@ -404,8 +405,8 @@ jobs:
             exit 1
           fi
 
-          sed -i -E 's/versionCode [0-9]+/versionCode 194/' "$PROJECT/app/build.gradle"
-          sed -i -E "s/versionName '[^']+'/versionName '0.84-android-port.87-v114-bundesliga2-career'/" "$PROJECT/app/build.gradle"
+          sed -i -E 's/versionCode [0-9]+/versionCode 195/' "$PROJECT/app/build.gradle"
+          sed -i -E "s/versionName '[^']+'/versionName '0.84-android-port.88-v115-german-promotion'/" "$PROJECT/app/build.gradle"
 
       - name: Restore stable debug signing key
         shell: bash
@@ -462,9 +463,9 @@ jobs:
           sha256sum "$APK"
           keytool -printcert -jarfile "$APK" | grep -E 'Owner:|SHA256:' || true
           ls -lh "$APK"
-          cp "$APK" "$PROJECT/app/build/outputs/apk/debug/PFM-2011-v114-bundesliga2-career.apk"
-          cp "$PROJECT/v85-long-career.txt" "$PROJECT/app/build/outputs/apk/debug/PFM-2011-v114-long-career-audit.txt"
-          cp "$PROJECT/v88-distribution.txt" "$PROJECT/app/build/outputs/apk/debug/PFM-2011-v114-distribution-audit.txt"
+          cp "$APK" "$PROJECT/app/build/outputs/apk/debug/PFM-2011-v115-german-promotion.apk"
+          cp "$PROJECT/v85-long-career.txt" "$PROJECT/app/build/outputs/apk/debug/PFM-2011-v115-long-career-audit.txt"
+          cp "$PROJECT/v88-distribution.txt" "$PROJECT/app/build/outputs/apk/debug/PFM-2011-v115-distribution-audit.txt"
           cp artifacts/v96-european-bans-audit.txt "$PROJECT/app/build/outputs/apk/debug/PFM-2011-v96-european-bans-audit.txt"
           cp artifacts/v97-european-seeding-audit.txt "$PROJECT/app/build/outputs/apk/debug/PFM-2011-v97-european-seeding-audit.txt"
           cp artifacts/v95-cup-audit.txt "$PROJECT/app/build/outputs/apk/debug/PFM-2011-v95-cup-audit.txt"
@@ -495,11 +496,11 @@ jobs:
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
-          name: PFM-2011-Android-Alpha084-v114-bundesliga2-career
+          name: PFM-2011-Android-Alpha084-v115-german-promotion
           path: |
-            ${{ env.PROJECT }}/app/build/outputs/apk/debug/PFM-2011-v114-bundesliga2-career.apk
-            ${{ env.PROJECT }}/app/build/outputs/apk/debug/PFM-2011-v114-long-career-audit.txt
-            ${{ env.PROJECT }}/app/build/outputs/apk/debug/PFM-2011-v114-distribution-audit.txt
+            ${{ env.PROJECT }}/app/build/outputs/apk/debug/PFM-2011-v115-german-promotion.apk
+            ${{ env.PROJECT }}/app/build/outputs/apk/debug/PFM-2011-v115-long-career-audit.txt
+            ${{ env.PROJECT }}/app/build/outputs/apk/debug/PFM-2011-v115-distribution-audit.txt
             ${{ env.PROJECT }}/app/build/outputs/apk/debug/PFM-2011-v96-european-bans-audit.txt
             ${{ env.PROJECT }}/app/build/outputs/apk/debug/PFM-2011-v97-european-seeding-audit.txt
             ${{ env.PROJECT }}/app/build/outputs/apk/debug/PFM-2011-v91-ucl-audit.txt
@@ -515,4 +516,4 @@ jobs:
     needs: build
     uses: ./.github/workflows/cold-load-diagnostic.yml
     with:
-      artifact: PFM-2011-Android-Alpha084-v114-bundesliga2-career
+      artifact: PFM-2011-Android-Alpha084-v115-german-promotion

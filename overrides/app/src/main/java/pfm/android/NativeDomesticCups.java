@@ -64,7 +64,7 @@ final class NativeDomesticCups {
                         lines.add("EUROPA LEAGUE CUP PLACE  •  " + names.get(cupEntrant));
                         reports.add(null);
                     }
-                    int total = career.activeLeague.equals("de") ? 34 : 38;
+                    int total = NativeCompetitionCalendar.leagueRounds(career.activeLeague);
                     List<MatchJournal.Match> matches = journal.competition(DomesticCup.competition(code));
                     for (int round = 1; cup != null && round <= cup.rounds; round++) {
                         int leagueRound = NativeCompetitionCalendar.sourceRound(cup.mark(round), total);

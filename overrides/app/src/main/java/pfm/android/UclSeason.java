@@ -15,7 +15,7 @@ final class UclSeason {
         List<MatchJournal.Match> matches = journal.competition("league:" + code);
         if(members!=null){for(String id:members.split(";"))rows.put(id,new Standing(id));}
         else {
-            int expected = "en".equals(code) ? 20 : "en2".equals(code) ? 24 : 0;
+            int expected = "en".equals(code) ? 20 : "en2".equals(code) ? 24 : NativeGermanDivisions.includes(code) ? 18 : 0;
             if (expected > 0 && !matches.isEmpty()) {
                 // Pre-v104 archives have fixture IDs but no explicit membership snapshot.
                 for (MatchJournal.Match match : matches) {

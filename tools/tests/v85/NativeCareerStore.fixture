@@ -20,6 +20,7 @@ class NativeCareerStore {
  private static String activeLeague(){return current.activeLeague;}
  private static String userClub(){return current.userClub;}
  static Career englishOpening(Context c,int year,int nonce){return current.season==year?current:null;}
+ static Career divisionOpening(Context c,int year,int nonce,String country){return englishOpening(c,year,nonce);}
  /* CHAMPIONSHIP */
  /* VALIDATION */
 }

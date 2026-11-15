@@ -108,14 +108,15 @@ final class NativeEnglishDivisions {
     }
 
     static String badge(Context context, String clubName, String league, int slot) {
-        if (includes(league)) {
+        if (includes(league) || NativeGermanDivisions.includes(league)) {
             if (NativeWorldCenter.leagues == null) NativeWorldCenter.load(context);
-            for (String origin : Arrays.asList(PREMIER, CHAMPIONSHIP)) {
+            String country = EuropeanPlaces.association(league);
+            for (String origin : Arrays.asList(country, country + "2")) {
                 List<NativeWorldCenter.T> clubs = NativeWorldCenter.leagues.get(origin);
                 if (clubs != null) for (NativeWorldCenter.T club : clubs) {
                     if (!club.name.equalsIgnoreCase(clubName)) continue;
-                    return origin.equals(CHAMPIONSHIP) ? "second_division_badges/en2_" + club.id + ".png" :
-                            "badges/en" + (club.id + 1) + ".png";
+                    return origin.endsWith("2") ? "second_division_badges/" + origin + "_" + club.id + ".png" :
+                            "badges/" + origin + (club.id + 1) + ".png";
                 }
             }
         }
@@ -127,12 +128,17 @@ final class NativeEnglishDivisions {
     }
 
     static void moveOpeningBans(Map<String, Integer> bans, MatchJournal previous, NativeCareerStore.Career career) {
+        moveOpeningBans(bans, previous, career, PREMIER, CHAMPIONSHIP);
+    }
+
+    static void moveOpeningBans(Map<String, Integer> bans, MatchJournal previous, NativeCareerStore.Career career,
+                                String top, String lower) {
         if (bans.isEmpty()) return;
-        Set<String> oldPremier = new HashSet<>(members(previous, PREMIER));
+        Set<String> oldPremier = new HashSet<>(members(previous, top));
         Map<String, String> oldLeagues = new HashMap<>(), newLeagues = new HashMap<>();
         for (NativeCareerStore.Club club : career.clubs) {
-            if (!includes(club.league)) continue;
-            String oldLeague = oldPremier.contains(club.id) ? PREMIER : CHAMPIONSHIP;
+            if (!top.equals(club.league) && !lower.equals(club.league)) continue;
+            String oldLeague = oldPremier.contains(club.id) ? top : lower;
             if (!club.league.equals(oldLeague)) {
                 oldLeagues.put(club.id, oldLeague);
                 newLeagues.put(club.id, club.league);

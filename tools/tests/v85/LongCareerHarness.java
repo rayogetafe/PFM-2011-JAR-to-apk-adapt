@@ -8,7 +8,7 @@ public class LongCareerHarness {
  public static int legacyBudget=10000000;
  static HashMap<Integer,Integer> windows=new HashMap<>();
  public static int played(){return NativeWorldCenter.played;}
- public static int total(){return NativeCareerStore.current.activeLeague.equals("de")?34:38;}
+ public static int total(){return NativeGermanDivisions.includes(NativeCareerStore.current.activeLeague)?34:38;}
  static void check(boolean value,String why){if(!value)throw new AssertionError(why);}
  static long money(){long sum=0;for(NativeCareerStore.Club c:NativeCareerStore.current.clubs)sum+=c.balance;return sum;}
  static void economics(String path)throws Exception{

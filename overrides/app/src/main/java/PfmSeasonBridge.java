@@ -90,6 +90,14 @@ public final class PfmSeasonBridge {
         try{
             int league=field(ea.class,"a",Integer.TYPE).getInt(null);
             if(league==0&&totalRounds()==46)return "en2";
+            if (league == 3) {
+                try {
+                    return pfm.android.EnglishLegacyIds.season(pfm.android.AndroidRuntime.context(), pfm2.getSeason())
+                            .getString("league", "de");
+                } catch (RuntimeException unavailable) {
+                    return "de";
+                }
+            }
             String[] codes={"en","es","it","de","fr","in"};
             return league>=0&&league<codes.length?codes[league]:"";
         }catch(Throwable ignored){return "";}

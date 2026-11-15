@@ -109,10 +109,12 @@ public final class ColdLoad extends Instrumentation {
     }
 
     private void checkClub() throws Exception {
-        if (!"championship".equals(args.getString("division"))) return;
-        if (!"en2:23".equals(call("PfmSeasonBridge", null, "clubId", none)) ||
-                !Integer.valueOf(46).equals(call("PfmSeasonBridge", null, "totalRounds", none))) {
-            throw new AssertionError("Championship club or calendar changed");
+        boolean german = "bundesliga2".equals(args.getString("division"));
+        if (!german && !"championship".equals(args.getString("division"))) return;
+        String club = String.valueOf(call("PfmSeasonBridge", null, "clubId", none));
+        int rounds = (Integer) call("PfmSeasonBridge", null, "totalRounds", none);
+        if (!(german ? "de2:11" : "en2:23").equals(club) || rounds != (german ? 34 : 46)) {
+            throw new AssertionError("Selected club or calendar changed: " + club + ", " + rounds);
         }
     }
 
@@ -169,19 +171,20 @@ public final class ColdLoad extends Instrumentation {
         Object manager = field("du", "a", core("ed")).get(null);
         Object main = awaitScreen(runtime, "dy", "a", "v");
         call("ed", manager, "c", new Class<?>[]{core("dv")}, field("dy", "a", core("v")).get(main));
-        if ("championship".equals(args.getString("division"))) {
+        boolean german = "bundesliga2".equals(args.getString("division"));
+        if (german || "championship".equals(args.getString("division"))) {
             call("dd", runtime, "a", new Class<?>[]{byte.class}, (byte)39);
             Object countries = awaitScreen(runtime, "ea", "a", "v");
-            fire(field("ea", "a", core("v")).get(countries), 0);
-            chooseDialogItem("Championship");
-            chooseDialogItem("Watford");
+            fire(field("ea", "a", core("v")).get(countries), german ? 3 : 0);
+            chooseDialogItem(german ? "2. Bundesliga" : "Championship");
+            chooseDialogItem(german ? "Hertha BSC" : "Watford");
             Object board = awaitScreen(runtime, "i", "a", "v");
             checkClub();
             Object mailbox = field("du", "a", core("cr")).get(null);
             Field welcome = field("cr", "a", core("ei"));
             for (int i = 0; i < 40 && welcome.get(mailbox) == null; i++) Thread.sleep(50);
             Object letter = welcome.get(mailbox);
-            if (letter == null) throw new AssertionError("Championship welcome letter did not open");
+            if (letter == null) throw new AssertionError("Welcome letter did not open");
             call("cr", mailbox, "a", new Class<?>[]{Object.class, int.class}, letter, 0);
             call("ed", manager, "c", new Class<?>[]{core("dv")}, field("i", "a", core("v")).get(board));
         } else {

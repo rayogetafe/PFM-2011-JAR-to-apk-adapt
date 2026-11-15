@@ -38,11 +38,17 @@ public final class NativeEnglishCareer {
     }
 
     public static Opening championshipStart(Context context, int clubIndex) throws IOException {
+        return secondDivisionStart(context, clubIndex, "en2");
+    }
+
+    public static Opening secondDivisionStart(Context context, int clubIndex, String league) throws IOException {
         Map<String, ArrayList<NativeWorldCenter.T>> world = new HashMap<>();
-        NativeChampionship.load(context, world);
-        ArrayList<NativeWorldCenter.T> teams = world.get(NativeChampionship.CODE);
+        boolean german = "de2".equals(league);
+        if (german) NativeBundesliga2.load(context, world);
+        else NativeChampionship.load(context, world);
+        ArrayList<NativeWorldCenter.T> teams = world.get(league);
         Opening opening = new Opening();
-        opening.league = NativeChampionship.CODE;
+        opening.league = league;
         opening.userId = opening.league + ":" + teams.get(clubIndex).id;
         for (NativeWorldCenter.T team : teams) {
             Club club = new Club();
@@ -61,33 +67,41 @@ public final class NativeEnglishCareer {
                 player.value = source.value;
                 club.players.add(player);
             }
-            club.budget = ClubEconomy.profile(context, club.id).openingCash();
+            ClubEconomy.Profile ground = ClubEconomy.profile(context, club.id);
+            club.budget = german ? NativeBundesliga2.openingCash(ground) : ground.openingCash();
             opening.clubs.add(club);
         }
         return opening;
     }
 
     public static Opening opening(Context context, int previousYear) throws IOException {
+        return opening(context, previousYear, "en");
+    }
+
+    public static Opening opening(Context context, int previousYear, String country) throws IOException {
         int nonce = EnglishLegacyIds.nonce(context);
-        NativeCareerStore.Career career = NativeCareerStore.englishOpening(context, previousYear, nonce);
+        boolean german = "de".equals(country);
+        NativeCareerStore.Career career = german ? NativeCareerStore.divisionOpening(context, previousYear, nonce, country)
+                : NativeCareerStore.englishOpening(context, previousYear, nonce);
         if (career == null) return null;
         MatchJournal previous = new MatchJournal(new File(context.getFilesDir(), "match-journals"), nonce, previousYear);
         if ("en".equals(career.activeLeague) && previous.metadata(NativeEnglishDivisions.FINAL_PREMIER_ORDER) == null) return null;
-        Set<String> premier = NativeEnglishDivisions.nextPremier(previous, career);
+        Set<String> premier = german ? NativeGermanDivisions.nextTop(previous, career, nonce)
+                : NativeEnglishDivisions.nextPremier(previous, career);
         if (premier.isEmpty()) return null;
         Opening opening = new Opening();
         for (NativeCareerStore.Club club : career.clubs) {
-            if (NativeEnglishDivisions.includes(club.league) && club.name.equalsIgnoreCase(career.userClub)) {
+            if (country.equals(EuropeanPlaces.association(club.league)) && club.name.equalsIgnoreCase(career.userClub)) {
                 opening.userId = club.id;
                 break;
             }
         }
-        if (opening.userId == null) throw new IOException("English career club unavailable");
+        if (opening.userId == null) throw new IOException("Career club unavailable");
         boolean top = premier.contains(opening.userId);
-        opening.league = top ? "en" : "en2";
+        opening.league = top ? country : country + "2";
         Map<String, Club> selected = new LinkedHashMap<>();
         for (NativeCareerStore.Club source : career.clubs) {
-            if (!NativeEnglishDivisions.includes(source.league) || premier.contains(source.id) != top) continue;
+            if (!country.equals(EuropeanPlaces.association(source.league)) || premier.contains(source.id) != top) continue;
             Club club = new Club();
             club.id = source.id;
             club.name = source.name;
@@ -100,7 +114,7 @@ public final class NativeEnglishCareer {
             Player player = new Player();
             player.id = source.id;
             player.name = source.name;
-            if (source.id.startsWith("en:")) player.originalSlot = source.sourceId;
+            if (source.id.startsWith(country + ":")) player.originalSlot = source.sourceId;
             player.age = Math.min(50, source.age + 1);
             player.position = source.position;
             player.speed = source.spe;
@@ -111,7 +125,9 @@ public final class NativeEnglishCareer {
             club.players.add(player);
         }
         opening.clubs.addAll(selected.values());
-        if (opening.clubs.size() != (top ? 20 : NativeChampionship.CLUBS)) throw new IOException("Wrong English division size");
+        if (opening.clubs.size() != (german ? NativeBundesliga2.CLUBS : top ? 20 : NativeChampionship.CLUBS)) {
+            throw new IOException("Wrong division size");
+        }
         return opening;
     }
 
