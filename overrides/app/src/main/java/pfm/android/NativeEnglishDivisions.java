@@ -108,7 +108,7 @@ final class NativeEnglishDivisions {
     }
 
     static String badge(Context context, String clubName, String league, int slot) {
-        if (includes(league) || NativeGermanDivisions.includes(league)) {
+        if (includes(league) || NativeGermanDivisions.includes(league) || NativeFrenchDivisions.includes(league)) {
             if (NativeWorldCenter.leagues == null) NativeWorldCenter.load(context);
             String country = EuropeanPlaces.association(league);
             for (String origin : Arrays.asList(country, country + "2")) {

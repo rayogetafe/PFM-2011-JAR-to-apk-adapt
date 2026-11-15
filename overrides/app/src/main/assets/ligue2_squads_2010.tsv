@@ -1,0 +1,406 @@
+club	uid	name	pos	dob	nat	ovr	anchor	games	starts	fixture
+fr2:0	espn:22203	Thierry Debès	GK	1974-01-13	France	71		5	5	300207
+fr2:0	espn:29921	Yoann Poulard	DF	1976-07-01	France	69	68	5	5	300207
+fr2:0	espn:117791	Anthony Lippini	DF	1988-11-07	France	67		5	5	300207
+fr2:0	espn:84916	Fousseni Diawara	DF	1980-08-28	Mali	66	65	5	5	300207
+fr2:0	espn:150277	Karim El Hany	MF	1988-01-12	France	65		5	5	300207
+fr2:0	espn:30421	Jean-François Rivière	FW	1977-02-28	France	64	62	5	5	300207
+fr2:0	espn:86261	Fabrice Begeorgi	FW	1987-04-20	France	69		5	4	300207
+fr2:0	espn:123683	Benjamin André	MF	1990-08-03	France	67		5	4	300207
+fr2:0	espn:121927	Jean-Baptiste Pierazzi	MF	1985-06-17	France	65	64	5	4	300207
+fr2:0	espn:35102	Carl Medjani	DF	1985-05-15	Algeria	63	61	5	4	300207
+fr2:0	espn:88949	Christian Kinkela	MF	1982-05-25	DR Congo	69		5	3	300207
+fr2:0	espn:121984	Richard Socrier	FW	1979-03-28	Guadeloupe	68	68	3	3	300207
+fr2:0	espn:138571	Andy Delort	FW	1991-10-09	Algeria	62		5	0	300207
+fr2:0	espn:89056	Laurent Bernardi	GK	1988-05-09	France	56		5	0	300207
+fr2:0	espn:143541	Toufik Guerabis	FW	1991-07-31	France	56		4	0	299977
+fr2:0	espn:124246	Remi Cilia	DF	1989-09-11	France	57		3	0	300207
+fr2:0	fr2player:julienviale:1982-02-13	Julien Viale	FW	1982-02-13	France	62	62	0	0	n/a
+fr2:0	fr2player:thomasderuda:1986-07-13	Thomas Deruda	MF	1986-07-13	France	56	56	0	0	n/a
+fr2:1	espn:84882	Claudiu Keșerü	FW	1986-12-02	Romania	68	67	5	5	300147
+fr2:1	espn:30313	David De Freitas	MF	1979-09-30	France	67	66	5	5	300147
+fr2:1	espn:85009	Nicolas Gillet	DF	1976-11-08	France	67	67	5	5	300147
+fr2:1	espn:84481	Jérémy Henin	DF	1977-11-12	France	66	64	5	5	300147
+fr2:1	espn:35843	Karim Djellabi	MF	1983-05-31	Algeria	63	61	5	5	300147
+fr2:1	espn:121947	Mickaël Stephan	MF	1975-12-17	France	59	57	5	5	300147
+fr2:1	espn:101442	Yves Deroff	DF	1978-08-29	France	64	63	4	4	300147
+fr2:1	espn:101357	Nicolas Florentin	FW	1978-02-16	France	68	69	5	3	300147
+fr2:1	espn:101419	Sébastien Renouard	MF	1984-06-11	France	65	65	5	3	300147
+fr2:1	espn:150280	Jérôme Hiaumet	GK	1979-04-12	France	64		5	3	300147
+fr2:1	espn:126790	Gaëtan Charbonnier	FW	1988-12-27	France	67		4	3	300147
+fr2:1	espn:145023	Férébory Doré	FW	1989-01-21	Congo	66		5	2	300147
+fr2:1	espn:106999	Emmanuel Bourgaud	MF	1987-10-25	France	58	58	3	2	300147
+fr2:1	espn:69454	Grégory Malicki	GK	1973-11-23	France	68		2	2	299893
+fr2:1	espn:100351	Charles Diers	MF	1981-06-06	France	63	62	2	2	299893
+fr2:1	espn:105017	Matar Fall	DF	1982-03-18	Senegal	63		2	1	299893
+fr2:1	espn:122982	Vincent Manceau	DF	1989-07-10	France	62		5	0	300147
+fr2:1	espn:88903	Malik Couturier	DF	1982-01-21	France	60	59	5	0	300147
+fr2:1	espn:150279	Alexandre Letellier	GK	1990-12-11	France	55		3	0	300147
+fr2:1	fr2player:olivierauriac:1983-09-14	Olivier Auriac	MF	1983-09-14	France	67	67	0	0	n/a
+fr2:2	espn:30342	Grégory Thil	FW	1980-03-15	France	70		5	5	299942
+fr2:2	espn:95041	Bakary Soumaré	DF	1985-11-09	Mali	69		5	5	299942
+fr2:2	espn:121981	Cédric Fabien	DF	1982-01-31	French Guiana	69		5	5	299942
+fr2:2	espn:105054	Florian Bague	GK	1984-07-27	France	69		5	5	299942
+fr2:2	espn:150282	Vincent Pajot	MF	1990-08-19	France	68		5	5	299942
+fr2:2	espn:101414	Laurent Agouazi	MF	1984-03-16	Algeria	67		5	5	299942
+fr2:2	espn:101428	Vincent Bessat	MF	1985-11-08	France	68		6	4	299942
+fr2:2	espn:84467	Yoann Lachor	DF	1976-01-17	France	71		5	4	299942
+fr2:2	espn:38897	Fatih Atik	FW	1984-06-25	France	69		5	4	299942
+fr2:2	espn:121968	Anthony Lecointe	DF	1980-10-05	France	67		5	4	299942
+fr2:2	espn:105052	Guillaume Ducatel	MF	1979-01-21	France	67		5	3	299942
+fr2:2	espn:125898	Ovidy Karuru	MF	1989-01-23	Zimbabwe	64		4	2	299942
+fr2:2	espn:121975	Jérémy Blayac	FW	1983-06-13	France	62		2	2	299893
+fr2:2	espn:84898	Daniel Moreira	FW	1977-08-08	France	61		3	1	299901
+fr2:2	espn:93639	Guillaume Borne	DF	1988-02-12	France	58		3	1	299901
+fr2:2	espn:122111	Zargo Touré	MF	1989-11-11	Senegal	64		2	1	299942
+fr2:2	espn:41549	Ibrahim Koné	GK	1989-12-05	Ivory Coast	55		4	0	299901
+fr2:2	espn:35801	Nicolas Rabuel	DF	1978-01-15	France	59		3	0	299901
+fr2:2	espn:151359	Yassin Chadili	MF	1988-08-10	France	56		2	0	299942
+fr2:2	espn:122006	Mustafa Yatabaré	FW	1986-01-26	Mali	64		1	0	299942
+fr2:2	espn:101449	Stéphane Cassard	GK	1972-11-11	France	58		1	0	299942
+fr2:2	espn:143726	Juan Lorca	FW	1985-01-15	Chile	57		1	0	299875
+fr2:3	espn:121988	Vincent Fernandez	GK	1975-01-31	France	71		5	5	299876
+fr2:3	espn:30314	Julien Cordonnier	DF	1980-06-27	France	69		5	5	299876
+fr2:3	espn:138513	Romain Reynaud	DF	1983-03-02	France	69		5	5	299876
+fr2:3	espn:84949	Rudy Haddad	MF	1985-02-05	France	69		5	5	299876
+fr2:3	espn:102407	Anthony Scaramozzino	DF	1985-04-30	France	68		5	5	299876
+fr2:3	espn:121994	Thiago Xavier	MF	1983-12-27	Brazil	68		5	5	299876
+fr2:3	espn:140216	Tristan Lahaye	DF	1983-02-16	France	68		5	5	299876
+fr2:3	espn:134281	Amara Baby	MF	1989-02-23	Senegal	67		5	5	299876
+fr2:3	espn:104572	Kévin Dupuis	FW	1987-01-14	France	66		4	4	299868
+fr2:3	espn:132962	Romain Grange	MF	1988-07-21	France	66		5	3	299876
+fr2:3	espn:119371	Emmanuel Imorou	DF	1988-09-16	Benin	64		5	2	299876
+fr2:3	espn:122067	Jérome Lafourcade	FW	1984-01-15	France	64		4	2	299876
+fr2:3	espn:144029	Christopher Maboulou	MF	1990-03-19	France	60		2	1	299877
+fr2:3	espn:105030	Sofyane Cherfa	DF	1984-08-13	Algeria	64		5	0	299876
+fr2:3	espn:94009	Alexandre Bouchard	GK	1988-05-01	France	55		5	0	299876
+fr2:3	espn:113291	Gauthier Pinaud	MF	1988-01-08	France	60		4	0	299876
+fr2:3	espn:146497	Camaldine Abraw	FW	1990-08-15	Togo	56		2	0	299876
+fr2:3	fr2player:ahmedkashi:1988-11-18	Ahmed Kashi	MF	1988-11-18	Algeria	62		0	0	n/a
+fr2:4	espn:89026	Nicolas Haquin	FW	1980-12-15	France	70		5	5	299902
+fr2:4	espn:101452	Eugène Ekobo	DF	1981-02-15	Cameroon	69		5	5	299902
+fr2:4	espn:34019	Nicolas Bayod	MF	1982-03-07	France	68		5	5	299902
+fr2:4	espn:150040	Romain Alessandrini	FW	1989-04-03	France	68		5	5	299902
+fr2:4	espn:113445	Sloan Privat	FW	1989-07-24	French Guiana	68		5	5	299902
+fr2:4	espn:86306	Mickaël Fabre	GK	1984-07-15	France	67		5	5	299902
+fr2:4	espn:138512	Jacques Salze	DF	1987-04-20	France	66		5	5	299902
+fr2:4	espn:100389	Bruce Abdoulaye	DF	1982-04-15	Congo	69		4	4	300024
+fr2:4	espn:105048	Damien Perrinelle	DF	1983-09-12	France	69		4	4	299902
+fr2:4	espn:138515	Marvin Esor	DF	1989-07-21	France	66		4	4	299902
+fr2:4	espn:122000	Jérôme Cellier	DF	1984-02-08	France	62		3	3	299902
+fr2:4	espn:88971	Steven Pinto-Borges	MF	1986-03-26	France	62		3	3	300124
+fr2:4	espn:122001	Franck Chaussidière	MF	1978-08-01	France	67		4	2	299902
+fr2:4	espn:42383	Fabien Farnolle	GK	1985-02-05	Benin	59		5	0	299902
+fr2:4	espn:150449	Yvan Erichot	DF	1990-03-25	France	57		5	0	299902
+fr2:4	espn:150288	Cédric Lubasa	FW	1983-09-30	DR Congo	61		4	0	300024
+fr2:4	espn:150287	Florent Sauvadet	MF	1989-01-31	France	60		4	0	299902
+fr2:4	espn:150289	Mehdi Namli	MF	1987-01-23	Morocco	61		3	0	299902
+fr2:4	espn:85076	Rachid Hamdani	MF	1985-04-08	Morocco	62		2	0	299902
+fr2:5	espn:121941	Jean-Daniel Padovani	GK	1980-01-17	France	70		5	5	300085
+fr2:5	espn:97380	Sebastián Ribas	FW	1988-03-11	Uruguay	68		5	5	300085
+fr2:5	espn:140996	Chaher Zarour	DF	1983-03-14	France	66		5	5	300085
+fr2:5	espn:150294	Benjamin Corgnet	MF	1987-04-06	France	68		5	4	300085
+fr2:5	espn:150291	Eric Bauthéac	MF	1987-08-24	France	68		5	4	300085
+fr2:5	espn:88909	Christophe Mandanne	FW	1985-02-07	France	66		5	4	300085
+fr2:5	espn:86244	Alexis Zywiecki	DF	1984-04-10	France	66		4	4	300085
+fr2:5	espn:84925	Mickaël Isabey	MF	1975-02-20	France	66	65	5	3	300085
+fr2:5	espn:150292	Florent Ogier	DF	1989-03-21	France	62		5	3	300085
+fr2:5	espn:93640	Kévin Bru	MF	1988-12-12	Mauritius	61		5	3	300085
+fr2:5	espn:9815	Stéphane Morisot	DF	1978-01-11	France	68		4	3	300085
+fr2:5	espn:150293	Steven Paulle	DF	1986-02-10	France	67		4	3	300085
+fr2:5	espn:136564	Charley Fomen	DF	1989-07-09	Cameroon	65		4	3	299866
+fr2:5	espn:86235	Lesly Malouda	MF	1983-11-16	France	63		2	2	300109
+fr2:5	espn:150290	Jérôme Martin	MF	1986-06-01	France	59		2	2	300085
+fr2:5	espn:146616	Malek Chergui	FW	1988-07-02	France	57		3	1	300085
+fr2:5	espn:138553	Youcef Touati	MF	1989-03-29	France	56		2	1	299866
+fr2:5	espn:100884	Franck Grandel	GK	1978-03-17	Guadeloupe	58		5	0	300085
+fr2:5	espn:150296	Raphaël Cacérès	FW	1987-09-01	France	62		2	0	300109
+fr2:5	espn:138554	Nicolas Belvito	FW	1986-12-18	France	56		2	0	299913
+fr2:5	espn:138555	Florin Berenguer	MF	1989-04-01	France	60		1	0	300085
+fr2:6	espn:86350	Bertrand Laquait	GK	1977-04-13	France	70		5	5	299876
+fr2:6	espn:112105	Aldo Angoula	DF	1981-05-04	France	69		5	5	299876
+fr2:6	espn:150306	Cédric Cambon	DF	1986-09-20	France	67		5	5	299876
+fr2:6	espn:101446	Guillaume Lacour	MF	1980-08-02	France	67	66	5	5	299876
+fr2:6	espn:111910	Oumar Pouye	MF	1988-06-19	Senegal	67		5	5	299876
+fr2:6	espn:42463	Mathieu Lafon	MF	1984-03-01	France	66		5	5	299876
+fr2:6	espn:150298	Kévin Bérigaud	FW	1988-05-09	France	68		5	4	299876
+fr2:6	espn:150303	Pierre Bouby	MF	1983-10-17	France	66		5	4	299876
+fr2:6	espn:101382	Youssef Adnane	FW	1985-07-16	Morocco	64	63	5	4	299876
+fr2:6	espn:150301	Brice Dja Djédjé	MF	1990-12-23	Ivory Coast	64		4	4	299876
+fr2:6	espn:150302	Eric Tié Bi	MF	1990-07-20	France	64		5	3	299876
+fr2:6	espn:150305	Pape Ibra M'Boup	MF	1987-08-19	Senegal	59		5	2	299876
+fr2:6	espn:101421	Nicolas Farina	FW	1986-08-09	France	56	53	4	2	300065
+fr2:6	espn:150299	Johann Durand	GK	1981-06-17	France	59		6	1	299876
+fr2:6	espn:150304	Jonathan Roufosse	MF	1983-04-10	France	63		5	1	299876
+fr2:6	espn:84965	Guillaume Rippert	DF	1985-04-30	France	61	61	3	1	300065
+fr2:6	espn:87109	Cédric Barbosa	MF	1976-03-06	France	66	66	1	0	299876
+fr2:6	espn:122017	Felipe Saad	DF	1983-09-11	Brazil	60		1	0	300126
+fr2:6	espn:7666	Hervé Bugnet	FW	1981-08-24	France	57		1	0	300127
+fr2:6	espn:141385	Mohammed Rabiu	MF	1989-12-31	Ghana	57		1	0	299876
+fr2:7	espn:84938	Jody Viviani	GK	1982-01-25	France	70		5	5	300199
+fr2:7	espn:84604	Nicolas Dieuze	MF	1979-02-07	France	70		5	5	300199
+fr2:7	espn:103482	Sandy Paillot	DF	1987-02-27	France	68	70	5	5	300199
+fr2:7	espn:42003	Jimmy Mainfroi	DF	1983-03-28	France	66	66	5	5	300199
+fr2:7	espn:138410	Hugo Cianci	DF	1989-06-09	France	65		5	5	300199
+fr2:7	espn:124834	François Marque	DF	1983-07-31	France	62	60	5	5	300199
+fr2:7	espn:116185	Helton Dos Reis	MF	1988-05-01	France	66		5	4	300199
+fr2:7	espn:123255	Yoric Ravet	FW	1989-09-12	France	63		5	4	300199
+fr2:7	espn:140804	Atila Turan	MF	1992-04-10	Turkey	63		4	3	299957
+fr2:7	espn:132058	Yohann Lasimant	FW	1989-09-04	France	65		5	2	300199
+fr2:7	espn:30473	Jimmy Juan	MF	1983-06-10	France	60	59	4	2	300199
+fr2:7	espn:143174	Jackson Mendy	DF	1987-05-25	Senegal	65		2	2	300199
+fr2:7	espn:101460	Pascal Johansen	MF	1979-04-28	France	63		2	2	300199
+fr2:7	espn:146636	Saphir Taïder	MF	1992-02-29	Algeria	62		4	1	299957
+fr2:7	espn:86047	Josip Tadić	FW	1987-08-22	Croatia	57		3	1	300051
+fr2:7	espn:84987	Daisuke Matsui	MF	1981-05-11	Japan	62		2	1	299957
+fr2:7	espn:120496	Brice Maubleu	GK	1989-12-01	France	55		5	0	300199
+fr2:7	espn:138409	Jonathan Tinhan	MF	1989-06-01	France	60		4	0	300199
+fr2:7	espn:142127	Mehdi Bourabia	MF	1991-08-07	Morocco	57		1	0	300199
+fr2:8	espn:36661	Gary Coulibaly	MF	1986-03-30	France	69		5	5	299942
+fr2:8	espn:137393	Mamadou Doumbia	DF	1980-12-03	Ivory Coast	65		5	5	299942
+fr2:8	espn:137389	Mickaël Menetrier	GK	1978-08-23	France	65		5	5	299942
+fr2:8	espn:137395	Romain Ciaravino	MF	1984-01-24	France	64		5	5	299942
+fr2:8	espn:22217	Nassim Akrour	FW	1974-07-10	Algeria	70		5	4	299942
+fr2:8	espn:121958	Julian Palmieri	MF	1986-12-17	France	68		5	4	299942
+fr2:8	espn:140754	Florian Lejeune	DF	1991-05-20	France	66		5	4	299942
+fr2:8	espn:30285	Amor Kehiha	MF	1977-09-05	France	68		4	4	299942
+fr2:8	espn:21982	Martial Robin	DF	1977-08-27	France	68		4	4	299942
+fr2:8	espn:138522	Riad Nouri	MF	1985-06-07	France	68		4	4	299942
+fr2:8	espn:85494	Abdelnasser Ouadah	MF	1975-09-13	Algeria	63		4	3	299942
+fr2:8	espn:122546	Driss Fettouhi	MF	1989-09-30	Morocco	66		5	2	299942
+fr2:8	espn:146495	Jordan Massengo	MF	1990-01-31	Congo	62		5	2	299942
+fr2:8	espn:104659	Claude Dielna	DF	1987-12-14	France	62		3	1	299866
+fr2:8	espn:86252	Nicolas Flégeau	DF	1985-06-09	France	62		3	1	299942
+fr2:8	espn:150308	Fabien Barrillon	DF	1988-04-09	France	61		2	1	299900
+fr2:8	espn:138828	Paul Kessany	MF	1985-03-16	Gabon	63		1	1	299900
+fr2:8	espn:93641	Denis Petrić	GK	1988-05-24	Serbia	61		5	0	299942
+fr2:8	espn:121929	Dimitri Lesueur	FW	1987-01-25	France	60		3	0	299866
+fr2:8	espn:138559	Nicolas De Préville	FW	1991-01-08	France	58		2	0	299942
+fr2:9	espn:21983	Fabrice Levrat	MF	1979-10-18	France	68		6	5	299998
+fr2:9	espn:137413	Yohann Chapuis	DF	1975-01-15	France	71		5	5	299998
+fr2:9	espn:30723	Arnaud Balijon	GK	1983-06-17	France	69		5	5	299998
+fr2:9	espn:122071	Jérôme Lebouc	MF	1979-12-26	France	69		5	5	299998
+fr2:9	espn:150326	Anthony Losilla	DF	1986-03-10	France	68		5	5	299998
+fr2:9	espn:88911	Ghislain Gimbert	FW	1985-08-07	France	68		5	5	299998
+fr2:9	espn:122056	Jérémy Stinat	DF	1978-12-15	France	67		5	5	299998
+fr2:9	espn:100393	Pierre Talmont	DF	1977-04-02	France	70		6	4	299998
+fr2:9	espn:32380	Mathieu Puig	MF	1978-05-28	France	64		5	4	299998
+fr2:9	espn:100390	Christophe Coué	DF	1982-03-23	France	64		4	3	300096
+fr2:9	espn:42549	Fabien Lamatina	MF	1985-07-03	France	62		3	3	300184
+fr2:9	espn:150327	Vincent Créhin	FW	1989-01-21	France	61		6	2	299998
+fr2:9	espn:86207	Ludovic Genest	FW	1987-09-18	France	66		5	2	299998
+fr2:9	espn:119384	Distel Zola	MF	1989-02-05	DR Congo	64		5	2	299998
+fr2:9	espn:138574	Gaëtan Belaud	MF	1986-09-16	France	65		4	2	300096
+fr2:9	espn:121960	Frédéric Mendy	FW	1981-11-06	Senegal	65		3	1	299998
+fr2:9	espn:145022	Maxime Hautbois	GK	1991-01-03	France	56		1	1	300184
+fr2:9	espn:150329	Benjamin Graton	DF	1988-05-01	France	55		4	0	299998
+fr2:9	espn:137411	Matthieu Pichot	GK	1989-09-20	France	56		3	0	299998
+fr2:9	espn:146614	Lindsay Rose	DF	1992-02-08	Mauritius	60		2	0	299998
+fr2:9	espn:100364	Romain Jacuzzi	FW	1984-12-16	France	58		1	0	300096
+fr2:10	espn:84856	Benjamin Genton	DF	1980-05-20	France	69		5	5	299902
+fr2:10	espn:84968	Mody Traoré	DF	1980-07-14	France	67		5	5	299902
+fr2:10	espn:84624	Alexandre Bonnet	MF	1986-10-17	France	69		5	4	299902
+fr2:10	espn:144516	Jonathan Rivierez	DF	1989-05-18	Martinique	68		5	4	299902
+fr2:10	espn:112549	Loïc Nestor	DF	1989-05-20	France	68		5	4	299902
+fr2:10	espn:84868	Mamadou Diallo	FW	1982-04-17	Mali	68		5	4	299902
+fr2:10	espn:104708	Julien François	MF	1979-09-21	France	69		4	4	299902
+fr2:10	espn:137396	Walid Mesloub	FW	1985-09-04	Algeria	68		4	4	299902
+fr2:10	espn:106076	Jean-Pascal Fontaine	MF	1989-03-11	France	64		4	4	299902
+fr2:10	espn:121575	Hassan Alla	MF	1980-11-24	Morocco	67		5	3	299902
+fr2:10	espn:119375	Mike Vanhamel	GK	1989-11-16	Belgium	59		5	3	299902
+fr2:10	espn:126186	Gueïda Fofana	MF	1991-05-16	France	67		4	3	299902
+fr2:10	espn:99197	Brice Jovial	FW	1984-01-25	Guadeloupe	67		4	2	299902
+fr2:10	espn:89090	Johnny Placide	GK	1988-01-29	Haiti	65		3	2	299902
+fr2:10	espn:135216	Ryan Mendes	FW	1990-01-08	Cape Verde	64		4	1	300162
+fr2:10	espn:105034	Selim Bouadla	MF	1988-08-26	France	63		4	1	299902
+fr2:10	espn:88987	Abasse Ba	DF	1976-07-12	Senegal	61		4	1	299902
+fr2:10	espn:135548	Maxime Le Marchand	DF	1989-10-11	France	62		3	1	300113
+fr2:10	espn:150450	Zacharie Boucher	GK	1992-03-07	France	55		2	0	300168
+fr2:11	espn:84983	Grégory Cerdan	DF	1982-07-28	France	72	72	5	5	300199
+fr2:11	espn:95898	Didier Ovono	GK	1983-01-23	Gabon	70		5	5	300199
+fr2:11	espn:84956	Frédéric Thomas	MF	1980-08-10	France	68	68	5	5	300199
+fr2:11	espn:86217	Cyriaque Louvion	DF	1987-07-24	France	67	67	5	5	300199
+fr2:11	espn:86220	Ludovic Baal	DF	1986-05-24	France	67	66	5	5	300199
+fr2:11	espn:136683	Fousseyni Cisse	FW	1989-07-17	France	68		5	4	300199
+fr2:11	espn:150310	Joffrey Cuffaut	DF	1988-03-15	France	68		5	4	300199
+fr2:11	espn:101385	Samuel Bouhours	DF	1987-06-26	France	67		4	4	300199
+fr2:11	espn:69271	Thorstein Helstad	FW	1977-04-28	Norway	72	73	5	3	300199
+fr2:11	espn:132056	Sébastien Corchia	DF	1990-11-01	France	67		4	3	300199
+fr2:11	espn:113326	Moussa Narry	MF	1986-04-19	Ghana	67		3	3	299868
+fr2:11	espn:150311	Jonathan Béhé	FW	1989-01-13	France	60		5	2	300199
+fr2:11	espn:114594	Khaled Adénon	DF	1985-07-28	Benin	66		4	2	300199
+fr2:11	espn:114000	Brahim El Bahri	MF	1986-03-26	Morocco	62		4	2	299868
+fr2:11	espn:21350	Fredrik Strømstad	MF	1982-01-20	Norway	58		2	1	300177
+fr2:11	espn:136682	Georgi Makaridze	GK	1990-03-31	Georgia	55		3	0	299868
+fr2:11	espn:146799	Pierre Gibaud	DF	1988-04-22	France	56		2	0	300199
+fr2:11	espn:86389	Roland Lamah	MF	1987-12-31	Belgium	68	70	1	0	300199
+fr2:11	espn:99794	Idir Ouali	FW	1988-05-21	Algeria	60		1	0	300199
+fr2:11	espn:88247	Abdourahmane Dieye	FW	1988-02-14	France	59		1	0	299868
+fr2:11	espn:136567	Patrick Ekeng	MF	1990-03-26	Cameroon	55		1	0	299868
+fr2:12	espn:138552	David Fleurival	MF	1984-02-19	Guadeloupe	69		5	5	300207
+fr2:12	espn:86211	Romain Brégerie	DF	1986-08-09	France	68		5	5	300207
+fr2:12	espn:99169	Mario Mutsch	DF	1984-09-03	Luxembourg	62	60	5	5	300207
+fr2:12	espn:113079	Rudy Gestede	FW	1988-10-10	Benin	62		5	4	300207
+fr2:12	espn:85079	Ludovic Guerriero	MF	1985-01-05	France	69		4	4	299887
+fr2:12	espn:74697	Adama Tamboura	DF	1985-05-18	Mali	67	66	4	4	300207
+fr2:12	espn:95010	Kévin Diaz	MF	1988-08-18	France	62		4	4	300207
+fr2:12	espn:122955	Fallou Diagne	DF	1989-08-14	Senegal	66		5	3	300207
+fr2:12	espn:101409	Cheikh Gueye	DF	1986-12-30	Senegal	67		4	3	299887
+fr2:12	espn:101401	Christophe Marichez	GK	1974-12-12	France	62		3	3	300157
+fr2:12	espn:138561	Diafra Sakho	FW	1989-12-24	Senegal	65		5	2	300207
+fr2:12	espn:101431	Joris Delle	GK	1990-03-29	France	64		5	2	300207
+fr2:12	espn:150314	Merlin Tandjigora	MF	1990-04-06	Gabon	58		4	2	299887
+fr2:12	espn:101432	Thibault Bourgeois	FW	1990-01-05	France	59		3	2	299887
+fr2:12	espn:12439	Nuno Frechaut	DF	1977-09-24	Portugal	65	65	2	2	300207
+fr2:12	espn:133318	Olivier Cassan	MF	1984-06-01	France	60		3	1	300207
+fr2:12	espn:150316	Gaëtan Bussmann	DF	1991-02-02	France	59		3	1	300207
+fr2:12	espn:102307	Youssef Mokhtari	FW	1979-03-05	Morocco	59		3	1	300157
+fr2:12	espn:137404	Yeni N'Gbakoto	MF	1992-01-23	DR Congo	62		1	1	300207
+fr2:12	espn:13720	Stéphane Borbiconi	DF	1979-03-22	France	59		1	1	300126
+fr2:12	espn:150312	Kalidou Koulibaly	DF	1991-06-20	Senegal	59		2	0	299887
+fr2:12	espn:138562	Anthony Mfa Mezui	GK	1991-03-07	Gabon	55		2	0	300207
+fr2:12	espn:88962	Tenema N'Diaye	FW	1981-02-13	Mali	62		1	0	300207
+fr2:12	espn:150313	Djemel N'Ganvala	MF	1991-01-29	Belgium	55		1	0	300207
+fr2:13	espn:84897	Bruno Cheyrou	MF	1978-05-10	France	71	71	5	5	300059
+fr2:13	espn:105426	Filip Đorđević	FW	1987-09-28	Serbia	68		5	5	300059
+fr2:13	espn:86280	Jean-Jacques Pierre	DF	1981-01-23	Haiti	66		5	5	300059
+fr2:13	espn:144607	Papy Djilobodji	DF	1988-12-01	Senegal	66		5	5	300059
+fr2:13	espn:150319	Yong-Jae Lee	FW	1991-06-08	South Korea	66		5	4	300059
+fr2:13	espn:85093	Guy N'Dy Assembé	GK	1986-02-28	Cameroon	69		4	4	300059
+fr2:13	espn:86229	Jonathan Martins Pereira	DF	1986-01-30	France	68		4	4	300096
+fr2:13	espn:85017	Moncef Zerka	FW	1981-08-30	Morocco	63	63	5	3	300059
+fr2:13	espn:95473	Damian Tixier	DF	1980-06-23	France	64		4	3	300096
+fr2:13	espn:67713	Papa Malick Ba	MF	1980-11-11	Senegal	62		4	3	300096
+fr2:13	espn:150318	Lionel Carole	DF	1991-04-12	France	61		5	2	300059
+fr2:13	espn:113826	Christian Bekamenga	FW	1986-05-09	Cameroon	59		5	2	300059
+fr2:13	espn:121926	Stéphane Darbion	MF	1984-03-22	France	64	64	3	2	300059
+fr2:13	espn:96603	William Vainqueur	MF	1988-11-19	France	64		2	2	299889
+fr2:13	espn:140481	Ismaël Keita	MF	1990-07-08	Mali	62		5	1	300059
+fr2:13	espn:71579	Ľuboš Kamenár	GK	1987-06-17	Slovakia	57		5	1	300059
+fr2:13	espn:138563	Vincent Sasso	DF	1991-02-16	France	61		3	1	300059
+fr2:13	espn:101430	Vivian	DF	1982-04-05	Brazil	66		1	1	300059
+fr2:13	espn:42150	Djamel Abdoun	MF	1986-02-14	Algeria	57		1	1	300096
+fr2:13	espn:101391	Omar Benzerga	MF	1990-03-13	Algeria	57		1	1	299833
+fr2:13	espn:138564	Loïc Nego	DF	1991-01-15	Hungary	58		1	0	300059
+fr2:13	espn:88222	Khassimirou Diop	MF	1986-12-28	France	56		1	0	300059
+fr2:13	espn:132286	Erwin Zelazny	GK	1991-09-22	France	55		1	0	299833
+fr2:13	fr2player:aureliencapoue:1982-02-28	Aurélien Capoue	MF	1982-02-28	Guadeloupe	70	70	0	0	n/a
+fr2:14	espn:122042	Mehdi Mostefa	MF	1983-08-30	Algeria	69		5	5	300085
+fr2:14	espn:119508	Komlan Amewou	MF	1983-12-15	Togo	67		5	5	300085
+fr2:14	espn:122101	Abderraouf Zarabi	DF	1979-03-26	Algeria	61	58	5	5	300085
+fr2:14	espn:138568	Miodrag Stošić	DF	1981-02-24	Serbia	70		5	4	300085
+fr2:14	espn:25195	Steve Haguy	FW	1981-04-24	Guadeloupe	70		5	4	300085
+fr2:14	espn:122036	Benoît Poulain	DF	1987-07-27	France	68		5	4	300085
+fr2:14	espn:138567	Yohan Bocognano	DF	1990-06-12	France	62		5	4	300085
+fr2:14	espn:57925	Johann Cavalli	MF	1981-09-12	France	60	59	5	4	300085
+fr2:14	espn:102399	Alphousseyni Keita	MF	1985-11-13	Mali	66	66	4	3	300085
+fr2:14	espn:97463	Jean Jacques Mandrichi	FW	1984-06-03	France	59		4	2	300085
+fr2:14	espn:138414	Benjamin Moukandjo	FW	1988-11-12	Cameroon	61		2	2	299877
+fr2:14	espn:93615	Yannick Boli	FW	1988-01-13	Ivory Coast	58		5	1	300085
+fr2:14	espn:11032	Moussa Sidibé	DF	1981-08-22	Mali	63		3	1	300085
+fr2:14	espn:137406	Salaheddine Sbai	DF	1985-08-21	Morocco	57		3	1	300085
+fr2:14	espn:133777	Romain Thibault	FW	1991-01-06	France	58		1	1	300007
+fr2:14	espn:138569	Haidar Al Shaïbani	GK	1984-03-31	Canada	56		5	0	300085
+fr2:14	espn:86214	Madimoussa Traore	FW	1986-06-11	France	58		4	0	299957
+fr2:14	fr2player:olivierdavidas:1981-11-08	Olivier Davidas	MF	1981-11-08	France	67	67	0	0	n/a
+fr2:14	fr2player:davidgigliotti:1985-05-30	David Gigliotti	FW	1985-05-30	France	66	66	0	0	n/a
+fr2:14	fr2player:paulnoelettori:1990-07-04	Paul-Noel Ettori	GK	1990-07-04	France	59		0	0	n/a
+fr2:15	espn:121581	Cédric Fauré	FW	1979-02-14	France	71	71	5	5	300093
+fr2:15	espn:101958	Grzegorz Krychowiak	MF	1990-01-29	Poland	68		5	5	300093
+fr2:15	espn:122047	Johan Liébus	GK	1978-11-05	France	66		5	5	300093
+fr2:15	espn:101456	Anthony Weber	DF	1987-06-11	France	64		5	5	300093
+fr2:15	espn:32852	Alexandre Barbier	DF	1979-07-07	France	63	61	5	5	300093
+fr2:15	espn:100896	Mickaël Tacalfred	DF	1981-04-23	Guadeloupe	62	59	5	5	300093
+fr2:15	espn:122053	Thomas Gamiette	MF	1986-06-21	Guadeloupe	69		5	4	300093
+fr2:15	espn:122118	Odaïr Fortes	MF	1987-03-31	Cape Verde	68		5	3	300093
+fr2:15	espn:41562	Florent Ghisolfi	MF	1985-02-28	France	58	56	5	3	300093
+fr2:15	espn:130479	Romain Amalfitano	MF	1989-08-27	France	67		4	3	300162
+fr2:15	espn:150323	Ludovic Gamboa	FW	1986-01-14	France	64		4	3	300093
+fr2:15	espn:130515	Matthieu Fontaine	DF	1987-04-09	France	64		4	3	300093
+fr2:15	espn:101378	Julien Toudic	FW	1985-12-19	France	65	64	3	2	300093
+fr2:15	espn:90837	Lucas Déaux	MF	1988-12-26	France	64		5	1	300093
+fr2:15	espn:131454	Christopher Glombard	DF	1989-07-05	Benin	63		4	1	300093
+fr2:15	espn:89074	Joachim Ichane	DF	1986-06-27	France	62		3	1	300093
+fr2:15	espn:150451	Aïssa Mandi	DF	1991-10-22	Algeria	56		3	1	300162
+fr2:15	espn:98056	Emmanuel Martin	GK	1989-10-15	France	55		5	0	300093
+fr2:15	fr2player:johannramare:1984-06-05	Johann Ramaré	MF	1984-06-05	France	67	67	0	0	n/a
+fr2:16	espn:101360	Benoît Costil	GK	1987-07-03	France	69		5	5	300147
+fr2:16	espn:98965	Ismaël Traoré	DF	1986-08-18	Ivory Coast	69		5	5	300147
+fr2:16	espn:69455	Nicolas Fauvergue	FW	1984-10-13	France	69	69	5	5	300147
+fr2:16	espn:98411	Lossemy Karaboué	FW	1988-03-18	France	68		5	5	300147
+fr2:16	espn:121585	Pierrick Valdivia	MF	1988-04-18	France	68		5	5	300147
+fr2:16	espn:93459	Damien Tibéri	MF	1985-08-23	France	67		5	5	300147
+fr2:16	espn:137409	Kassim Abdallah	DF	1987-04-09	Comoros	69		4	4	299901
+fr2:16	espn:35799	Yohan Eudeline	FW	1982-06-23	France	64	62	4	4	300147
+fr2:16	espn:85107	Marcus Mokaké	FW	1981-11-30	Cameroon	69		5	3	300147
+fr2:16	espn:79651	Alexis Allart	FW	1986-08-07	France	67		5	3	300147
+fr2:16	espn:84473	Jérôme Le Moigne	MF	1983-02-15	France	69		3	3	300147
+fr2:16	espn:118160	Stanislas Oliveira	MF	1988-03-27	Portugal	65		5	2	300147
+fr2:16	espn:147092	Mickaël Le Bihan	DF	1990-05-16	France	59		5	1	300147
+fr2:16	espn:150325	Wesley Lautoa	DF	1987-08-25	New Caledonia	64		4	1	300147
+fr2:16	espn:86281	Vincent Briant	GK	1986-09-09	France	56		5	0	300147
+fr2:16	espn:131749	Yoann Court	MF	1990-01-14	France	60		3	0	299901
+fr2:16	espn:150324	Matija Smrekar	FW	1989-04-08	Croatia	58		2	0	300147
+fr2:16	espn:142354	Florentin Pogba	DF	1990-08-19	Guinea	58		1	0	300147
+fr2:17	espn:137423	Karim Saïdi	DF	1983-03-24	Tunisia	69		5	5	299998
+fr2:17	espn:120738	Abraham Guié Guié	FW	1986-07-25	Ivory Coast	68		5	5	299998
+fr2:17	espn:84885	Bocundji Ca	MF	1986-12-28	Guinea-Bissau	68	68	5	5	299998
+fr2:17	espn:105038	Romain Genevois	DF	1987-10-28	Haiti	68		5	5	299998
+fr2:17	espn:101412	Julien Cardy	MF	1981-09-29	France	67	66	5	5	299998
+fr2:17	espn:122994	Julien Cétout	MF	1988-01-02	France	67		5	5	299998
+fr2:17	espn:136284	Jin-Hyung Song	MF	1987-08-13	South Korea	64	63	5	5	299998
+fr2:17	espn:30335	Titi Buengo	FW	1980-02-11	Angola	68		5	4	299998
+fr2:17	espn:86202	Kevin Lejeune	MF	1985-01-22	France	64	62	5	4	299998
+fr2:17	espn:121593	Yoann Thuram	GK	1988-10-31	France	64		4	4	300065
+fr2:17	espn:113534	Wilfried Moimbé	DF	1988-10-18	France	64		4	3	299998
+fr2:17	espn:88966	Francis N'Ganga	DF	1985-06-16	Congo	62	62	3	2	299998
+fr2:17	espn:138573	Jérémy Sopalski	GK	1981-02-06	France	62		5	1	299998
+fr2:17	espn:96509	Prince Oniangué	DF	1988-11-04	Congo	65		4	1	299998
+fr2:17	espn:35452	Yannick Yenga	FW	1985-04-10	DR Congo	58		4	1	299998
+fr2:17	espn:104569	Stéphane Tritz	DF	1987-02-25	France	58		3	0	300065
+fr2:17	espn:139049	Mohamed Ali Gherieni	FW	1983-06-11	Tunisia	57		3	0	300065
+fr2:17	espn:126034	Geoffrey Adjet	DF	1988-04-15	France	58		2	0	300124
+fr2:17	espn:122126	Youssouf Touré	FW	1986-03-14	France	56		1	0	299858
+fr2:17	espn:139363	Benjamin Leroy	GK	1989-04-07	France	55		1	0	299998
+fr2:17	espn:135527	Clément Fabre	MF	1989-05-19	France	55		1	0	299998
+fr2:18	espn:85500	Eloge Enza-Yamissi	DF	1983-01-23	Central African Republic	69		5	5	300093
+fr2:18	espn:118251	Julien Faussurier	MF	1987-01-14	France	69		5	5	300093
+fr2:18	espn:88428	Marcos	FW	1979-09-29	Brazil	69		5	5	300093
+fr2:18	espn:121942	Vincent Carlier	DF	1979-12-20	France	68		5	5	300093
+fr2:18	espn:113151	Diallo Guidilèye	MF	1989-12-30	Mauritania	67		5	5	300093
+fr2:18	espn:30553	Florian Jarjat	DF	1980-02-18	France	66		5	5	300093
+fr2:18	espn:86341	Mounir Obbadi	MF	1983-04-04	Morocco	70		5	4	300093
+fr2:18	espn:150332	Mathieu Duhamel	FW	1984-07-12	France	63		5	4	300093
+fr2:18	espn:33022	Eric Marester	DF	1984-06-12	France	68		4	4	300093
+fr2:18	espn:123685	Abdoul Sissoko	MF	1990-03-20	France	64		4	3	300093
+fr2:18	espn:96527	Claudio Beauvue	MF	1988-04-16	Guadeloupe	62		5	2	300093
+fr2:18	espn:126156	Fabrice N'Sakala	DF	1990-07-21	DR Congo	62		4	2	299977
+fr2:18	espn:85006	Gaël Sanz	DF	1977-05-01	France	59		1	1	299991
+fr2:18	espn:86230	Arnaud Brocard	GK	1986-08-19	France	56		5	0	300093
+fr2:18	espn:112109	Mathieu Baudry	DF	1988-02-24	France	55		4	0	300093
+fr2:18	espn:134646	Frédéric Vieillot	FW	1990-09-07	France	55		3	0	299977
+fr2:18	espn:135522	Sega Keïta	FW	1992-03-03	France	57		2	0	299889
+fr2:18	espn:86258	Grégory Bettiol	FW	1986-03-30	France	64		1	0	299991
+fr2:18	espn:85052	Yacine Bezzaz	MF	1981-07-19	Algeria	63		1	0	300093
+fr2:18	fr2player:antoinephilippon:1986-08-19	Antoine Philippon	GK	1986-08-19	France	59		0	0	n/a
+fr2:19	espn:19828	Guillaume Gauclin	GK	1981-06-17	France	70		5	5	300059
+fr2:19	espn:116186	Sebastien Cantini	DF	1987-07-31	France	67		5	5	300059
+fr2:19	espn:83841	Virgile Reset	MF	1985-08-03	France	66	65	5	5	300059
+fr2:19	espn:122114	Aurélien Faivre	DF	1978-06-22	France	64	61	5	5	300059
+fr2:19	espn:27000	Patrick Leugueun	DF	1981-02-25	France	60	58	5	5	300059
+fr2:19	espn:10616	David Bouard	MF	1977-03-12	France	59	56	5	5	300059
+fr2:19	espn:122115	Nicolas Diguiny	FW	1988-05-31	France	67		6	4	300059
+fr2:19	espn:10628	Laurent Hervé	MF	1976-06-19	France	68		6	3	300059
+fr2:19	espn:41636	Erwan Quintin	MF	1984-12-01	France	67		6	3	300059
+fr2:19	espn:121572	Laurent Macquet	MF	1979-08-11	France	66		6	3	300059
+fr2:19	espn:39409	Yohann Rivière	FW	1984-08-18	France	62	61	6	3	300059
+fr2:19	espn:125079	Loïc Guillon	DF	1982-01-11	France	62	62	5	3	300059
+fr2:19	espn:121579	El Fardou Ben	MF	1989-06-10	Comoros	63		6	2	300059
+fr2:19	espn:135528	Fabien Jarsalé	MF	1990-08-20	France	63		6	2	300059
+fr2:19	espn:84944	Valéry Mézague	MF	1983-12-08	Cameroon	63	64	2	1	300059
+fr2:19	espn:101400	Pascal Delhommeau	DF	1978-08-14	France	61	61	2	1	300059
+fr2:19	espn:85949	Benoit Benvegnu	GK	1985-01-18	France	57		1	1	300184
+fr2:19	espn:10626	Gérard Gnanhouan	GK	1979-02-12	Ivory Coast	59		3	0	300184
+fr2:19	espn:86339	Stéphen Drouin	DF	1984-02-27	France	56		1	0	299991
+fr2:19	fr2player:loicloval:1981-09-28	Loïc Loval	FW	1981-09-28	Guadeloupe	66	66	0	0	n/a
+fr2:19	fr2player:davidmartot:1981-02-01	David Martot	MF	1981-02-01	France	53	53	0	0	n/a

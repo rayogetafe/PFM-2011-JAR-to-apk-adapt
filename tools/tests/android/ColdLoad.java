@@ -110,10 +110,11 @@ public final class ColdLoad extends Instrumentation {
 
     private void checkClub() throws Exception {
         boolean german = "bundesliga2".equals(args.getString("division"));
-        if (!german && !"championship".equals(args.getString("division"))) return;
+        boolean french = "ligue2".equals(args.getString("division"));
+        if (!german && !french && !"championship".equals(args.getString("division"))) return;
         String club = String.valueOf(call("PfmSeasonBridge", null, "clubId", none));
         int rounds = (Integer) call("PfmSeasonBridge", null, "totalRounds", none);
-        if (!(german ? "de2:11" : "en2:23").equals(club) || rounds != (german ? 34 : 46)) {
+        if (!(german ? "de2:11" : french ? "fr2:13" : "en2:23").equals(club) || rounds != (german ? 34 : french ? 38 : 46)) {
             throw new AssertionError("Selected club or calendar changed: " + club + ", " + rounds);
         }
     }
@@ -172,12 +173,13 @@ public final class ColdLoad extends Instrumentation {
         Object main = awaitScreen(runtime, "dy", "a", "v");
         call("ed", manager, "c", new Class<?>[]{core("dv")}, field("dy", "a", core("v")).get(main));
         boolean german = "bundesliga2".equals(args.getString("division"));
-        if (german || "championship".equals(args.getString("division"))) {
+        boolean french = "ligue2".equals(args.getString("division"));
+        if (german || french || "championship".equals(args.getString("division"))) {
             call("dd", runtime, "a", new Class<?>[]{byte.class}, (byte)39);
             Object countries = awaitScreen(runtime, "ea", "a", "v");
-            fire(field("ea", "a", core("v")).get(countries), german ? 3 : 0);
-            chooseDialogItem(german ? "2. Bundesliga" : "Championship");
-            chooseDialogItem(german ? "Hertha BSC" : "Watford");
+            fire(field("ea", "a", core("v")).get(countries), german ? 3 : french ? 4 : 0);
+            chooseDialogItem(german ? "2. Bundesliga" : french ? "Ligue 2" : "Championship");
+            chooseDialogItem(german ? "Hertha BSC" : french ? "FC Nantes" : "Watford");
             Object board = awaitScreen(runtime, "i", "a", "v");
             checkClub();
             Object mailbox = field("du", "a", core("cr")).get(null);

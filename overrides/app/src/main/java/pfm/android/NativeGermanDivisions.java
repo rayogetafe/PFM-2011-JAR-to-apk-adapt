@@ -20,7 +20,11 @@ final class NativeGermanDivisions {
 
     static void freeze(MatchJournal journal, NativeCareerStore.Career career) {
         if (!NativeBundesliga2.active(career, journal.season())) return;
-        for (String league : Arrays.asList(TOP, LOWER)) {
+        freeze(journal, career, TOP);
+    }
+
+    static void freeze(MatchJournal journal, NativeCareerStore.Career career, String country) {
+        for (String league : Arrays.asList(country, country + "2")) {
             String key = UclSeason.membersKey(league);
             if (journal.metadata(key) != null) continue;
             List<String> members = new ArrayList<>();
@@ -31,12 +35,12 @@ final class NativeGermanDivisions {
         }
     }
 
-    private static List<UclSeason.Standing> finalTable(MatchJournal journal, String league,
+    static List<UclSeason.Standing> finalTable(MatchJournal journal, String league,
                                                       NativeCareerStore.Career career) {
         List<UclSeason.Standing> standings = UclSeason.standings(journal, league, career.clubs);
-        if (standings.size() != SIZE) return Collections.emptyList();
+        if (standings.size() != (NativeFrenchDivisions.includes(league) ? 20 : SIZE)) return Collections.emptyList();
         for (UclSeason.Standing row : standings) {
-            if (row.played != NativeBundesliga2.ROUNDS) return Collections.emptyList();
+            if (row.played != NativeCompetitionCalendar.leagueRounds(league)) return Collections.emptyList();
         }
         return standings;
     }
@@ -90,32 +94,40 @@ final class NativeGermanDivisions {
 
     static void rollover(Context context, NativeCareerStore.Career career, int year) throws IOException {
         if (!NativeBundesliga2.active(career, year - 1)) return;
-        if (includes(career.activeLeague) && !EnglishLegacyIds.installed(context, year)) return;
+        rollover(context, career, year, TOP, SIZE);
+    }
+
+    static void rollover(Context context, NativeCareerStore.Career career, int year, String first, int size) throws IOException {
+        boolean active = first.equals(EuropeanPlaces.association(career.activeLeague));
+        if (active && !EnglishLegacyIds.installed(context, year)) return;
+        String second = first + "2";
         File directory = new File(context.getFilesDir(), "match-journals");
         int nonce = NativeWorldCenter.identity();
         MatchJournal next = new MatchJournal(directory, nonce, year);
-        String saved = next.metadata(UclSeason.membersKey(TOP));
+        String saved = next.metadata(UclSeason.membersKey(first));
         Set<String> top;
         if (saved != null) {
             top = new LinkedHashSet<>(EuropeanQualification.ids(saved));
-            Set<String> lower = new HashSet<>(EuropeanQualification.ids(next.metadata(UclSeason.membersKey(LOWER))));
+            Set<String> lower = new HashSet<>(EuropeanQualification.ids(next.metadata(UclSeason.membersKey(second))));
             Set<String> all = new HashSet<>(top);
             all.addAll(lower);
             Set<String> careerClubs = new HashSet<>();
-            for (NativeCareerStore.Club club : career.clubs) if (includes(club.league)) careerClubs.add(club.id);
-            if (top.size() != SIZE || lower.size() != SIZE || all.size() != 2 * SIZE || !all.equals(careerClubs)) {
-                throw new IOException("Invalid saved German league membership");
+            for (NativeCareerStore.Club club : career.clubs) {
+                if (first.equals(EuropeanPlaces.association(club.league))) careerClubs.add(club.id);
+            }
+            if (top.size() != size || lower.size() != size || all.size() != 2 * size || !all.equals(careerClubs)) {
+                throw new IOException("Invalid saved league membership for " + first);
             }
         } else {
             // Keep the original membership if the new season already has pre-v115 fixtures.
-            if (!next.competition("league:de").isEmpty() || !next.competition("league:de2").isEmpty()) return;
-            top = nextTop(new MatchJournal(directory, nonce, year - 1), career, nonce);
+            if (!next.competition("league:" + first).isEmpty() || !next.competition("league:" + second).isEmpty()) return;
+            MatchJournal previous = new MatchJournal(directory, nonce, year - 1);
+            top = "fr".equals(first) ? NativeFrenchDivisions.nextTop(previous, career) : nextTop(previous, career, nonce);
         }
         if (top.isEmpty()) return;
-        boolean active = includes(career.activeLeague);
         for (NativeCareerStore.Club club : career.clubs) {
-            if (!includes(club.league)) continue;
-            club.league = top.contains(club.id) ? TOP : LOWER;
+            if (!first.equals(EuropeanPlaces.association(club.league))) continue;
+            club.league = top.contains(club.id) ? first : second;
             if (active && club.name.equalsIgnoreCase(career.userClub)) career.activeLeague = club.league;
         }
     }

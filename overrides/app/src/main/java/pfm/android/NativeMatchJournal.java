@@ -122,6 +122,10 @@ public final class NativeMatchJournal {
                     m.homeCredit = championshipCredit(homeId, true, homePayroll, m.homeCredit);
                     m.awayCredit = championshipCredit(awayId, false, awayPayroll, m.awayCredit);
                 }
+                if ("league:fr2".equals(competition)) {
+                    m.homeCredit = ligue2Credit(homeId, true, homePayroll);
+                    m.awayCredit = ligue2Credit(awayId, false, awayPayroll);
+                }
                 if ("league:de2".equals(competition)) {
                     m.homeCredit = bundesliga2Credit(homeId, true, homePayroll);
                     m.awayCredit = bundesliga2Credit(awayId, false, awayPayroll);
@@ -141,6 +145,16 @@ public final class NativeMatchJournal {
             return profile == null ? fallback : profile.matchCredit(home, payroll);
         } catch (IOException error) {
             throw new IllegalStateException("Could not load Championship finance", error);
+        }
+    }
+    private static int ligue2Credit(String club, boolean home, long payroll) {
+        try {
+            ClubEconomy.Profile ground = ClubEconomy.profile(context, club);
+            int attendance = ClubEconomy.secondTierAttendance("fr2", club, ground);
+            return ClubEconomy.secondTierDistribution("fr2", attendance) - ClubEconomy.secondTierPayroll("fr2", payroll) +
+                    (home ? 10 * attendance - 2 * ground.capacity : 0);
+        } catch (IOException error) {
+            throw new IllegalStateException("Could not load Ligue 2 finance", error);
         }
     }
     private static int bundesliga2Credit(String club, boolean home, long payroll) {
@@ -192,6 +206,7 @@ public final class NativeMatchJournal {
             if (previous != null && career != null) {
                 NativeEnglishDivisions.moveOpeningBans(domesticBans, previous, career);
                 NativeEnglishDivisions.moveOpeningBans(domesticBans, previous, career, "de", "de2");
+                NativeEnglishDivisions.moveOpeningBans(domesticBans, previous, career, "fr", "fr2");
             }
             journal.defineOpeningBans(domesticBans);
             journal.defineEuropeanOpeningBans(previousEffects.carryEuropeanBans(season - 1));
@@ -246,6 +261,10 @@ public final class NativeMatchJournal {
         NativeGermanDivisions.freeze(j, career);
         if (germanActive && !NativeBundesliga2.CODE.equals(career.activeLeague)) {
             parallel.put(NativeBundesliga2.CODE, NativeWorldCenter.schedule(NativeBundesliga2.CLUBS));
+        }
+        if (NativeLigue2.active(career, season)) {
+            NativeGermanDivisions.freeze(j, career, "fr");
+            if (!"fr2".equals(career.activeLeague)) parallel.put("fr2", NativeWorldCenter.schedule(NativeLigue2.CLUBS));
         }
         Map<String, List<String>> members = new HashMap<>();
         for (String code : parallel.keySet()) members.put(code, NativeEnglishDivisions.members(j, code));

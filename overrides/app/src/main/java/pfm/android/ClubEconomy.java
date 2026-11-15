@@ -12,6 +12,8 @@ import java.util.Map;
 public final class ClubEconomy {
     public static final short CHAMPIONSHIP_TICKET = 40;
     public static final short BUNDESLIGA2_TICKET = 37;
+    public static final short LIGUE2_TICKET = 33;
+    public static final short LIGUE1_TICKET = 45;
     private static final int CHAMPIONSHIP_DISTRIBUTION = 25_000;
     private static Map<String, Profile> profiles;
 
@@ -43,6 +45,19 @@ public final class ClubEconomy {
 
     public static int distribution(String league) {
         return "en2".equals(league) ? CHAMPIONSHIP_DISTRIBUTION : 0;
+    }
+
+    public static int secondTierAttendance(String league, String club, Profile ground) {
+        if (!"fr2".equals(league)) return germanSecondTierAttendance(club, ground);
+        return club.startsWith("fr:") ? ground.attendance * 2 / 3 : ground.attendance;
+    }
+
+    public static int secondTierDistribution(String league, int attendance) {
+        return "fr2".equals(league) ? 72_000 + attendance * 2 : germanSecondTierDistribution(attendance);
+    }
+
+    public static int secondTierPayroll(String league, long payroll) {
+        return "fr2".equals(league) ? (int) (payroll / 38) : germanSecondTierPayroll(payroll);
     }
 
     public static int germanSecondTierAttendance(String club, Profile ground) {

@@ -31,14 +31,14 @@ public final class PfmChampionshipEconomy {
         try {
             int stock = (Integer) STOCK_DEMAND.invoke(null, fixture, influence);
             String league = PfmSeasonBridge.leagueCode();
-            if (!"en2".equals(league) && !"de2".equals(league)) return stock;
+            if (!"en2".equals(league) && !continental(league)) return stock;
             dw home = (dw) HOME.get(null);
             ClubEconomy.Profile profile = profile(home);
             if (profile == null) return stock;
             int seats = CAPACITY.getInt(home);
             int baseline = profile.attendanceAt(seats);
-            if ("de2".equals(league)) {
-                baseline = baseline * ClubEconomy.germanSecondTierAttendance(clubId(home), profile) / profile.attendance;
+            if (continental(league)) {
+                baseline = baseline * ClubEconomy.secondTierAttendance(league, clubId(home), profile) / profile.attendance;
             }
             int variation = Math.max(-baseline / 10, Math.min(baseline / 10, (stock - seats / 3) / 5));
             // The legacy caller adds its own match-to-match fluctuation and clamps to capacity.
@@ -51,8 +51,8 @@ public final class PfmChampionshipEconomy {
     public static int aiDemand(int fixture, int influence) {
         try {
             String league = PfmSeasonBridge.leagueCode();
-            if ("de2".equals(league)) {
-                TICKET.setShort(HOME.get(null), ClubEconomy.BUNDESLIGA2_TICKET);
+            if (continental(league)) {
+                TICKET.setShort(HOME.get(null), "fr2".equals(league) ? ClubEconomy.LIGUE2_TICKET : ClubEconomy.BUNDESLIGA2_TICKET);
             } else if ("en2".equals(league) && profile((dw) HOME.get(null)) != null) {
                 TICKET.setShort(HOME.get(null), ClubEconomy.CHAMPIONSHIP_TICKET);
             }
@@ -66,8 +66,8 @@ public final class PfmChampionshipEconomy {
         try {
             STOCK_SETTLEMENT.invoke(null, result);
             String league = PfmSeasonBridge.leagueCode();
-            if ("de2".equals(league)) {
-                settleGermanRound();
+            if (continental(league)) {
+                settleContinentalRound(league);
                 return;
             }
             if (!"en2".equals(league)) return;
@@ -82,7 +82,11 @@ public final class PfmChampionshipEconomy {
         }
     }
 
-    private static void settleGermanRound() throws ReflectiveOperationException, IOException {
+    private static boolean continental(String league) {
+        return "de2".equals(league) || "fr2".equals(league);
+    }
+
+    private static void settleContinentalRound(String league) throws ReflectiveOperationException, IOException {
         dw[] clubs = (dw[]) CLUBS.get(null);
         ci[] players = (ci[]) PLAYERS.get(null);
         int[][][] calendar = (int[][][]) CALENDAR.get(null);
@@ -92,9 +96,9 @@ public final class PfmChampionshipEconomy {
         for (int i = 0; i < clubs.length; i++) {
             dw club = clubs[i];
             ClubEconomy.Profile ground = profile(club);
-            if (ground == null) throw new IOException("Missing German club finance: " + clubId(club));
-            int distribution = ClubEconomy.germanSecondTierDistribution(
-                    ClubEconomy.germanSecondTierAttendance(clubId(club), ground));
+            if (ground == null) throw new IOException("Missing club finance: " + clubId(club));
+            int distribution = ClubEconomy.secondTierDistribution(league,
+                    ClubEconomy.secondTierAttendance(league, clubId(club), ground));
             long annualWages = 0;
             int stockWages = 0;
             short[] roster = (short[]) ROSTER.get(club);
@@ -103,7 +107,7 @@ public final class PfmChampionshipEconomy {
                 annualWages += salary;
                 stockWages += salary / 52;
             }
-            int wages = ClubEconomy.germanSecondTierPayroll(annualWages);
+            int wages = ClubEconomy.secondTierPayroll(league, annualWages);
             int upkeepReduction = atHome[i] ? CAPACITY.getInt(club) : 0;
             CASH.setInt(club, CASH.getInt(club) + distribution + upkeepReduction - (wages - stockWages));
             if (club == user) {

@@ -13,7 +13,8 @@ public final class MatchEngine {
     private static final Profile EN=new Profile("en",1.076150,0.978114,1063,380,111,0.090918,0.397663,0.314263),ES=new Profile("es",1.039024,0.880435,1042,380,79,0.105164,-0.524888,0.551434),IT=new Profile("it",0.898447,0.852025,955,380,97,0.125208,-0.316774,0.704416),DE=new Profile("de",1.137937,1.108136,894,306,63,-0.126113,0.170077,-0.950000),FR=new Profile("fr",0.831068,0.779695,890,380,130,0.243903,0.409416,-0.519981);
     // DFB's 2010/11 scorecards total 479 home goals, 356 away goals and 69 draws.
     private static final Profile DE2 = new Profile("de2", 1.08, 1.01, 835, 306, 69, 0, 0, 0);
-    public static Profile profile(String competition){String code=competition==null?"":competition;if(code.startsWith("league:"))code=code.substring(7);if(code.equals("en"))return EN;if(code.equals("es"))return ES;if(code.equals("it"))return IT;if(code.equals("de"))return DE;if(code.equals("de2"))return DE2;if(code.equals("fr"))return FR;return DEFAULT;}
+    private static final Profile FR2 = new Profile("fr2", 1.015, 0.845, 891, 380, 123, 0.17, 0.33, -0.45);
+    public static Profile profile(String competition){String code=competition==null?"":competition;if(code.startsWith("league:"))code=code.substring(7);if(code.equals("en"))return EN;if(code.equals("es"))return ES;if(code.equals("it"))return IT;if(code.equals("de"))return DE;if(code.equals("de2"))return DE2;if(code.equals("fr"))return FR;if(code.equals("fr2"))return FR2;return DEFAULT;}
     public static final class Team {
         private double attack, defence, midfield, keeper;
         private double aw, dw, mw, kw;
