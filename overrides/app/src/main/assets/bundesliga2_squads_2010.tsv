@@ -1,0 +1,511 @@
+club_id	uid	name	position	dob	shirt	overall	fifa11_anchor	opening_squads	opening_starts
+de2:0	dfb:4438	Gábor Király	GK	1976-04-01	1	69		4	4
+de2:0	dfb:26784	Philipp Tschauner	GK	1985-11-03	12	63		4	0
+de2:0	dfb:157924	Björn Bussmann	GK	1991-03-18	40	57		0	0
+de2:0	dfb:112454	Vitus Eicher	GK	1990-11-05	30	57		0	0
+de2:0	dfb:3946	Antonio Rukavina	DF	1984-01-26	2	68	69	4	4
+de2:0	dfb:16478	Stefan Buck	DF	1980-09-03	17	66	65	4	4
+de2:0	dfb:14602	Kai Bülow	DF	1986-05-31	4	64	65	3	1
+de2:0	dfb:26786	Mathieu Béda	DF	1981-07-28	5	64	66	0	0
+de2:0	dfb:26793	Benjamin Schwarz	DF	1986-07-10	23	62	63	0	0
+de2:0	dfb:26790	Mate Ghwinianidse	DF	1986-12-10	19	62		2	2
+de2:0	dfb:stefanbell:1991-08-24	Stefan Bell	DF	1991-08-24	3	62	64	0	0
+de2:0	dfb:6474	Juan Barros	DF	1989-06-24	14	60		1	1
+de2:0	dfb:9709	Necat Aygün	DF	1980-02-26	13	60	60	1	0
+de2:0	dfb:158131	Tarik Camdal	DF	1991-03-24	20	58	58	0	0
+de2:0	dfb:112466	Christopher Schindler	DF	1990-04-29	26	57		0	0
+de2:0	dfb:224287	Daniel Hofstetter	DF	1992-07-04	34	57		0	0
+de2:0	dfb:26796	Daniel Bierofka	MF	1979-02-07	7	70	70	4	4
+de2:0	dfb:1873	Stefan Aigner	MF	1987-08-20	15	67	67	4	4
+de2:0	dfb:10655	Alexander Ludwig	MF	1984-01-31	18	66	68	3	0
+de2:0	dfb:1874	Daniel Halfar	MF	1988-01-07	28	66	67	3	0
+de2:0	dfb:25185	Florin Lovin	MF	1982-02-11	24	65	65	4	1
+de2:0	dfb:22956	Eke Uzoma	MF	1989-08-11	22	64	65	3	1
+de2:0	dfb:225906	Moritz Leitner	MF	1992-12-08	35	64		4	3
+de2:0	dfb:149603	Aleksandar Ignjovski	MF	1991-01-27	8	61		3	1
+de2:0	dfb:96625	Dominik Stahl	MF	1988-08-20	16	60	59	4	3
+de2:0	dfb:140832	Emanuel Biancucchi	MF	1988-07-28	25	60		2	0
+de2:0	dfb:112458	Sandro Kaiser	MF	1989-09-21	21	58		1	0
+de2:0	dfb:26805	Benjamin Lauth	FW	1981-08-04	11	69	69	4	4
+de2:0	dfb:4253	Savio Nsereko	FW	1989-07-27	10	68	71	2	0
+de2:0	dfb:21614	Đorđe Rakić	FW	1985-10-31	9	67		4	4
+de2:0	dfb:9317	Kenny Cooper	FW	1984-10-21	33	66	68	0	0
+de2:0	dfb:159888	Kushtrim Lushtaku	FW	1989-10-08	32	58	59	0	0
+de2:0	dfb:224289	Markus Ziereis	FW	1992-08-26	29	57		0	0
+de2:0	dfb:224290	Kevin Volland	FW	1992-07-30	31	54	53	0	0
+de2:1	dfb:1448	David Hohs	GK	1988-03-16	22	66		4	4
+de2:1	dfb:1474	Tim Krumpen	GK	1988-11-28	34	62		4	0
+de2:1	dfb:1450	Thorsten Stuckmann	GK	1981-03-17	1	60		0	0
+de2:1	dfb:16469	Thomas Unger	GK	1985-01-15	13	59		0	0
+de2:1	dfb:90	Aïmen Demai	DF	1982-12-10	12	66	66	4	2
+de2:1	dfb:1478	Nico Herzig	DF	1983-12-10	2	66	67	2	2
+de2:1	dfb:1455	Seyi Olajengbesi	DF	1980-11-17	19	66	67	3	2
+de2:1	dfb:1451	Timo Achenbach	DF	1982-09-03	32	66	66	4	4
+de2:1	dfb:1456	Thomas Stehle	DF	1980-10-26	17	65	65	4	2
+de2:1	dfb:1453	Mirko Casper	DF	1982-03-01	28	64	65	2	0
+de2:1	dfb:28343	Tobias Feisthammel	DF	1988-02-22	5	64	63	4	4
+de2:1	dfb:111480	Robert Wilschrey	DF	1989-06-27	29	58		0	0
+de2:1	dfb:28402	Thomas Zdebel	MF	1973-05-25	8	69	70	4	0
+de2:1	dfb:113775	Zoltán Stieber	MF	1988-10-16	7	66	66	4	2
+de2:1	dfb:1464	Florian Müller	MF	1986-12-30	16	64	65	3	0
+de2:1	dfb:3148	Kevin Kratz	MF	1987-01-21	15	64	64	4	4
+de2:1	dfb:112276	Marco Höger	MF	1989-09-16	37	64	64	4	4
+de2:1	dfb:111800	Tolgay Arslan	MF	1990-08-16	18	63		4	2
+de2:1	dfb:1493	Manuel Junglas	MF	1989-01-31	25	62	61	4	4
+de2:1	dfb:24745	Thorsten Burkhardt	MF	1981-05-21	10	62	63	1	0
+de2:1	dfb:112282	Alper Uludag	MF	1990-12-11	31	61	60	4	4
+de2:1	dfb:1468	Benjamin Auer	FW	1981-01-11	9	70	72	2	0
+de2:1	dfb:10130	Babacar Gueye	FW	1986-03-02	14	67	67	4	4
+de2:1	dfb:1469	Markus Daun	FW	1980-09-10	11	62	63	0	0
+de2:1	dfb:8142	Juvhel Tsoumou	FW	1990-12-27	21	61	62	2	0
+de2:1	dfb:221824	Henrik Ojamaa	FW	1991-05-20	20	59	59	1	0
+de2:1	dfb:261885	Tim Gerhards	FW	1995-03-13		57		0	0
+de2:2	dfb:1861	Dennis Eilhoff	GK	1982-07-31	22	68		4	4
+de2:2	dfb:28505	Patrick Platins	GK	1983-04-19	33	64		4	0
+de2:2	dfb:1862	Rowen Fernandez	GK	1978-02-28	1	61		0	0
+de2:2	dfb:1863	Niklas Hartmann	GK	1989-12-09	21	57		0	0
+de2:2	dfb:223784	Stefan Ortega Moreno	GK	1992-11-06	36	57		0	0
+de2:2	dfb:1865	Markus Bollmann	DF	1981-01-06	3	67	67	4	4
+de2:2	dfb:14596	Benjamin Lense	DF	1978-11-30	4	64	64	3	2
+de2:2	dfb:1872	Markus Schuler	DF	1977-08-01	2	64	63	4	3
+de2:2	dfb:1866	Nils Fischer	DF	1987-02-14	6	64	63	4	4
+de2:2	dfb:8484	Arne Feick	DF	1988-04-01	27	63	64	2	1
+de2:2	dfb:26286	Assimiou Touré	DF	1988-01-01	11	63	63	4	2
+de2:2	dfb:222781	Christ Kasela Mbona	DF	1991-12-19	24	58	59	0	0
+de2:2	dfb:26735	Marcel Appiah	DF	1988-03-26	32	58		0	0
+de2:2	dfb:1871	Maik Rodenberg	DF	1989-01-29	17	57	57	0	0
+de2:2	dfb:1877	Rüdiger Kauf	MF	1975-03-01	5	71	72	3	3
+de2:2	dfb:22222	Manuel Bölstler	MF	1983-04-26	13	64	64	2	2
+de2:2	dfb:20498	Michael Delura	MF	1985-07-01	19	64	65	1	0
+de2:2	dfb:112181	Alon Abelski	MF	1989-05-29	20	62	61	3	3
+de2:2	dfb:222590	Ensar Baykan	MF	1992-01-22	35	62	62	4	3
+de2:2	dfb:107286	Kevin Kerr	MF	1989-01-12	30	59	58	4	0
+de2:2	dfb:230333	Onel Hernández	MF	1993-02-01	40	57		0	0
+de2:2	dfb:3890	Oliver Neuville	FW	1973-05-01	10	70	70	4	4
+de2:2	dfb:9203	Pavel Fořt	FW	1983-06-26	9	67	69	0	0
+de2:2	dfb:4454	Besart Berisha	FW	1985-07-29	18	64	65	2	0
+de2:2	dfb:12670	Sebastian Heidinger	FW	1986-01-11	23	64	63	4	3
+de2:2	dfb:9126	Orhan Mustafi	FW	1990-04-04	8	63	63	4	2
+de2:2	dfb:7676	Franck Guela	FW	1986-06-19	29	62		2	1
+de2:2	dfb:112007	Marwin Studtrucker	FW	1990-04-29	34	61		3	1
+de2:2	dfb:222098	Collin Quaner	FW	1991-06-18	14	58	57	3	1
+de2:2	dfb:1909	Christian Santos	FW	1988-03-24	28	54	53	0	0
+de2:3	dfb:28503	Simon Jentzsch	GK	1976-05-04	1	69		4	4
+de2:3	dfb:10465	Mohamed Amsif	GK	1989-02-07	30	62		4	0
+de2:3	dfb:229751	Ioannis Gelios	GK	1992-04-24	37	57		0	0
+de2:3	dfb:9580	Gibril Sankoh	DF	1983-05-15	3	70	70	4	4
+de2:3	dfb:28894	Paul Verhaegh	DF	1983-09-01	2	69	71	2	2
+de2:3	dfb:uwemohrle:1979-12-03	Uwe Möhrle	DF	1979-12-03	5	68	70	0	0
+de2:3	dfb:16275	Jonas De Roeck	DF	1979-12-20	6	67	69	0	0
+de2:3	dfb:3121	Lukas Sinkiewicz	DF	1985-10-09	22	67	70	0	0
+de2:3	dfb:251	Dominik Reinhardt	DF	1984-12-19	4	66	68	0	0
+de2:3	dfb:22159	Marcel de Jong	DF	1986-10-15	17	66	66	4	2
+de2:3	dfb:221398	Benjamin Woltmann	DF	1990-06-07	34	54	53	2	0
+de2:3	dfb:3880	Marcel Ndjeng	MF	1982-05-06	20	70	71	4	2
+de2:3	dfb:19184	Kees Kwakman	MF	1983-06-10	14	69	71	2	2
+de2:3	dfb:28513	Daniel Baier	MF	1984-05-18	10	68	68	4	4
+de2:3	dfb:14954	Ibrahima Traoré	MF	1988-04-21	16	68	71	2	0
+de2:3	dfb:9061	Tobias Werner	MF	1985-07-19	13	68	69	4	2
+de2:3	dfb:97	Axel Bellinghausen	MF	1983-05-17	8	66	65	4	4
+de2:3	dfb:1452	Daniel Brinkmann	MF	1986-01-29	24	64	64	4	3
+de2:3	dfb:40705	Andrew Sinkala	MF	1979-06-18	23	63	64	0	0
+de2:3	dfb:129709	Sören Bertram	MF	1991-06-05	19	61		4	0
+de2:3	dfb:169665	Moritz Nebel	MF	1991-09-25	29	58		1	0
+de2:3	dfb:thomasrudolph:1989-02-20	Thomas Rudolph	MF	1989-02-20	32	56	55	0	0
+de2:3	dfb:221399	Daniel Framberger	MF	1990-05-27	33	54	53	0	0
+de2:3	dfb:9058	Michael Thurk	FW	1976-05-28	27	71	72	4	4
+de2:3	dfb:598	Nando Rafael	FW	1984-01-10	11	67	68	4	2
+de2:3	dfb:29255	Torsten Oehrl	FW	1986-01-07	9	65	64	4	4
+de2:3	dfb:9053	Stephan Hain	FW	1988-09-27	36	62	62	4	1
+de2:4	dfb:28385	Philipp Heerwagen	GK	1983-04-13	1	68		4	4
+de2:4	dfb:132052	Michael Esser	GK	1987-11-22	31	62		4	0
+de2:4	dfb:28410	Andreas Luthe	GK	1987-03-10	26	58		0	0
+de2:4	dfb:28394	Anthar Yahia	DF	1982-03-21	25	71	73	3	2
+de2:4	dfb:28391	Marcel Maltritz	DF	1978-10-02	4	71	72	4	3
+de2:4	dfb:28392	Mërgim Mavraj	DF	1986-06-09	20	70	71	4	4
+de2:4	dfb:28393	Marc Pfertzel	DF	1981-05-21	21	68	69	3	0
+de2:4	dfb:28389	Matias Concha	DF	1980-03-31	28	68	70	1	0
+de2:4	dfb:28388	Philipp Bönig	DF	1980-03-20	24	66	68	0	0
+de2:4	dfb:3239	Björn Kopplin	DF	1989-01-07	2	64	63	4	4
+de2:4	dfb:28390	Patrick Fabian	DF	1987-10-11	19	59	59	1	0
+de2:4	dfb:28395	Christoph Dabrowski	MF	1978-07-01	5	72	73	4	3
+de2:4	dfb:3950	Giovanni Federico	MF	1980-10-04	18	71	72	4	4
+de2:4	dfb:16264	Miloš Marić	MF	1982-03-05	10	71	73	3	2
+de2:4	dfb:10444	Mimoun Azaouagh	MF	1982-11-17	29	70	73	0	0
+de2:4	dfb:28396	Paul Freier	MF	1979-07-26	7	70	71	4	2
+de2:4	dfb:14386	Andreas Johansson	MF	1982-03-10	8	67	68	3	0
+de2:4	dfb:28397	Dennis Grote	MF	1986-08-09	19	67	67	4	4
+de2:4	dfb:8137	Faton Toski	MF	1987-02-17	14	64	64	4	4
+de2:4	dfb:129933	Oğuzhan Kefkir	MF	1991-08-27	17	59	59	1	0
+de2:4	dfb:112334	Philip Semlits	MF	1990-11-09	33	57		0	0
+de2:4	dfb:129938	Kevin Vogt	MF	1991-09-23	16	54	53	0	0
+de2:4	dfb:112341	Marc Rzatkowski	MF	1990-03-02	23	54	52	3	0
+de2:4	dfb:20787	Zlatko Dedič	FW	1984-10-05	27	69	71	4	1
+de2:4	dfb:28528	Mahir Sağlık	FW	1983-01-18	11	68		4	4
+de2:4	dfb:16665	Tae-Se Jong	FW	1984-03-02	9	65		4	2
+de2:4	dfb:10681	Roman Prokoph	FW	1985-08-06	15	64	65	2	1
+de2:4	dfb:28417	Mirkan Aydin	FW	1987-07-08	22	60	60	0	0
+de2:5	dfb:27033	David Yelldell	GK	1981-10-01	18	68		4	4
+de2:5	dfb:19063	Marcel Herzog	GK	1980-06-28	1	65		4	0
+de2:5	dfb:201	Roland Müller	GK	1988-03-02	31	58		0	0
+de2:5	dfb:223208	Marcel Lenz	GK	1991-05-03	30	57		0	0
+de2:5	dfb:19073	Olivier Veigneau	DF	1985-07-16	28	68	68	4	4
+de2:5	dfb:27034	Branimir Bajić	DF	1979-10-19	25	66	65	4	4
+de2:5	dfb:156839	Bruno Soares	DF	1988-08-21	14	64	63	4	4
+de2:5	dfb:111792	Julian Koch	DF	1990-11-11	2	64	63	4	4
+de2:5	dfb:28508	Daniel Reiche	DF	1988-03-14	5	63	62	4	4
+de2:5	dfb:19091	Sven Theißen	DF	1988-10-24	17	54	52	0	0
+de2:5	dfb:10657	Filip Trojan	MF	1983-02-21	10	68	69	4	0
+de2:5	dfb:19075	Ivica Grlić	MF	1975-08-06	20	68	68	4	4
+de2:5	dfb:27049	Goran Šukalo	MF	1981-08-24	15	66	67	3	0
+de2:5	dfb:19078	Mihai Tararache	MF	1977-10-25	8	66	67	0	0
+de2:5	dfb:3907	Olcay Şahan	MF	1987-05-26	11	65	65	4	4
+de2:5	dfb:19066	Adam Bodzek	MF	1985-09-07	13	64	66	0	0
+de2:5	dfb:9041	Benjamin Kern	MF	1983-11-05	6	64	64	4	0
+de2:5	dfb:111550	Sefa Yilmaz	MF	1990-02-14	32	62	61	4	4
+de2:5	dfb:28295	Michael Blum	MF	1988-12-25	7	60	59	3	0
+de2:5	dfb:223351	André Hoffmann	MF	1993-02-28	21	58	58	0	0
+de2:5	dfb:216173	Burakcan Kunt	MF	1992-05-15	29	58	58	2	0
+de2:5	dfb:19094	Kevin Grund	MF	1987-08-14	24	58	58	0	0
+de2:5	dfb:112173	Tanju Öztürk	MF	1989-07-26	26	58		0	0
+de2:5	dfb:430	Srđjan Baljak	FW	1978-11-25	9	69		4	4
+de2:5	dfb:21554	Stefan Maierhofer	FW	1982-08-16	19	68	68	4	4
+de2:5	dfb:26806	Manuel Schäffler	FW	1989-02-06	22	64	64	4	0
+de2:5	dfb:216174	Maurice Exslager	FW	1991-02-12	27	60	59	4	0
+de2:6	dfb:470	Thorsten Kirschbaum	GK	1987-04-20	1	66		4	4
+de2:6	dfb:28387	Rene Renno	GK	1979-02-19	12	65		4	0
+de2:6	dfb:112123	Marvin Gladrow	GK	1990-04-10	30	57		0	0
+de2:6	dfb:19068	Markus Brzenska	DF	1984-05-25	25	68	69	4	4
+de2:6	dfb:10139	Kolja Afriyie	DF	1982-04-06	3	67	67	4	4
+de2:6	dfb:27564	Takahito Soma	DF	1981-12-10	7	66	66	4	4
+de2:6	dfb:3943	Uwe Hünemeier	DF	1986-01-09	21	65	65	4	1
+de2:6	dfb:8373	Alexander Bittroff	DF	1988-09-19	15	64	64	4	0
+de2:6	dfb:8382	Daniel Ziebig	DF	1983-01-21	17	64	65	0	0
+de2:6	dfb:141498	Adam Straith	DF	1990-09-11	4	62	62	4	3
+de2:6	dfb:112136	Robert Zickert	DF	1990-03-23	5	55	54	0	0
+de2:6	dfb:5938	Jiayi Shao	MF	1980-04-10	20	68	70	3	0
+de2:6	dfb:3955	Marc-André Kruska	MF	1987-06-29	18	68	69	4	4
+de2:6	dfb:28511	Daniel Adlung	MF	1987-10-01	10	66	66	4	4
+de2:6	dfb:71057	Rok Kronaveter	MF	1986-12-07	24	66		4	4
+de2:6	dfb:8395	Dennis Sørensen	MF	1981-05-24	29	64	65	0	0
+de2:6	dfb:8385	Marco Kurth	MF	1978-08-18	16	64	62	4	4
+de2:6	dfb:78734	Roger	MF	1985-08-10	8	64	64	3	0
+de2:6	dfb:160960	Jules Reimerink	MF	1989-09-30	34	61		4	0
+de2:6	dfb:129633	Clemens Fandrich	MF	1991-01-10	28	59	59	2	0
+de2:6	dfb:112144	Heiko Schwarz	MF	1989-08-23	22	57	57	0	0
+de2:6	dfb:11014	Markus Obernosterer	MF	1990-04-14	11	57		0	0
+de2:6	dfb:112128	Nils Miatke	MF	1990-01-30	6	57	57	0	0
+de2:6	dfb:129685	Julian Börner	MF	1991-01-21	13	56	55	0	0
+de2:6	dfb:8392	Emil Jula	FW	1980-01-03	9	70	71	4	4
+de2:6	dfb:9231	Nils Petersen	FW	1988-12-06	26	69	70	4	4
+de2:6	dfb:28339	Sergiu Radu	FW	1977-08-10	14	64	64	4	0
+de2:6	dfb:23888	Adi	FW	1985-12-15		59		0	0
+de2:6	dfb:8396	Marc-Philipp Zimmermann	FW	1990-03-22	19	57		0	0
+de2:6	dfb:170542	Maxim Banaskiewicz	FW	1992-06-17	27	57		0	0
+de2:6	dfb:26717	Velimir Jovanović	FW	1987-08-25	23	55	54	0	0
+de2:7	dfb:8482	Martin Männel	GK	1988-03-16	1	66		4	4
+de2:7	dfb:8481	Stephan Flauder	GK	1986-05-30	26	63		4	0
+de2:7	dfb:167055	Michael Arnold	GK	1989-05-14	24	58		0	0
+de2:7	dfb:28718	René Klingbeil	DF	1981-04-02	15	66	65	4	4
+de2:7	dfb:1463	Patrick Milchraum	DF	1984-05-26	31	64	65	0	0
+de2:7	dfb:8489	Thomas Paulus	DF	1982-03-14	4	64	63	4	4
+de2:7	dfb:8486	Pierre le Beau	DF	1986-03-08	2	63	62	4	3
+de2:7	dfb:8485	Tomasz Kos	DF	1974-04-04	3	63	63	2	0
+de2:7	dfb:132129	Adli Lachheb	DF	1987-06-22	5	61	59	4	4
+de2:7	dfb:104037	Thomas Birk	DF	1988-07-05	7	59	58	3	0
+de2:7	dfb:167059	Dominic Rau	DF	1990-11-29	21	54	53	1	0
+de2:7	dfb:28400	Oliver Schröder	MF	1980-06-11	20	68	68	4	4
+de2:7	dfb:8501	Marc Hensel	MF	1986-04-17	22	66	65	4	4
+de2:7	dfb:22954	Kevin Schlitte	MF	1981-11-04	6	65	64	4	4
+de2:7	dfb:8499	Skerdilaid Curri	MF	1975-10-06	14	64	63	4	4
+de2:7	dfb:8494	Jan Hochscheidt	MF	1987-10-04	17	63	63	2	2
+de2:7	dfb:8495	Fabian Müller	MF	1986-11-06	30	62	61	4	1
+de2:7	dfb:29250	Tobias Kempe	MF	1989-06-27	27	62	62	4	2
+de2:7	dfb:9051	Robert Strauß	MF	1986-10-07	11	61	62	0	0
+de2:7	dfb:15987	Manuel Hiemer	MF	1985-02-03	16	59	58	4	0
+de2:7	dfb:66736	Jörn Wemmer	MF	1984-05-13	25	58	57	3	0
+de2:7	dfb:167068	Sascha Weirauch	MF	1989-08-13	29	54	52	0	0
+de2:7	dfb:ivanristovski:1991-01-19	Ivan Ristovski	MF	1991-01-19	23	53	52	0	0
+de2:7	dfb:14612	Enrico Kern	FW	1979-03-12	18	65	65	4	1
+de2:7	dfb:236	Najeh Braham	FW	1977-05-20	9	62	62	0	0
+de2:7	dfb:25599	Sebastian Glasner	FW	1985-05-06	8	60	58	4	3
+de2:7	dfb:16747	Alban Ramaj	FW	1985-11-08	28	59		0	0
+de2:7	dfb:152828	Patrick Sonntag	FW	1989-06-29	19	54	52	1	0
+de2:8	dfb:12652	Michael Ratajczak	GK	1982-04-16	22	68		4	4
+de2:8	dfb:12651	Michael Melka	GK	1978-07-09	1	65		4	0
+de2:8	dfb:41032	Christian Weber	DF	1983-09-15	2	67	67	4	4
+de2:8	dfb:12655	Jens Langeneke	DF	1977-03-29	6	67	66	4	4
+de2:8	dfb:3885	Johannes van den Bergh	DF	1986-11-21	21	66	66	4	4
+de2:8	dfb:4378	Tiago Calvano	DF	1981-05-19	4	66		3	3
+de2:8	dfb:14597	Assani Lukimya	DF	1986-01-25	5	64		4	1
+de2:8	dfb:12657	Kai Schwertfeger	DF	1988-09-08	31	59	58	4	0
+de2:8	dfb:12661	Marco Christ	MF	1980-11-06	10	67	67	4	2
+de2:8	dfb:12666	Andreas Lambertz	MF	1984-10-15	17	66	67	3	2
+de2:8	dfb:12662	Claus Costa	MF	1984-06-15	3	65	64	4	4
+de2:8	dfb:3124	Sascha Dum	MF	1986-07-03	8	65	65	3	2
+de2:8	dfb:24782	Oliver Fink	MF	1982-06-06	7	64	64	2	2
+de2:8	dfb:2301	Patrick Zoundi	MF	1982-07-19	15	64	63	3	3
+de2:8	dfb:22278	Thiago Rockenbach	MF	1985-02-01	20	63		3	1
+de2:8	dfb:111335	Maximilian Beister	MF	1990-09-06	11	61	62	2	0
+de2:8	dfb:9059	Sandor Torghelle	FW	1982-05-05	14	68	68	4	2
+de2:8	dfb:6163	Wellington	FW	1988-02-11	16	68	69	4	2
+de2:8	dfb:434	Ranisav Jovanović	FW	1980-11-05	9	66	66	3	2
+de2:8	dfb:7910	Thomas Bröker	FW	1985-01-22	18	62	62	3	1
+de2:8	dfb:12699	Marcel Gaus	FW	1989-08-02	19	60	59	3	1
+de2:8	dfb:112519	Marco Königs	FW	1990-01-25	23	57	57	0	0
+de2:9	dfb:12892	Patric Klandt	GK	1983-09-29	1	67		4	4
+de2:9	dfb:22940	Michael Langer	GK	1985-01-06	25	63		4	0
+de2:9	dfb:pabloalvarez:1988-05-18	Pablo Álvarez	GK	1988-05-18	19	58		0	0
+de2:9	dfb:19072	Björn Schlicke	DF	1981-06-23	3	66	66	4	4
+de2:9	dfb:13219	Andreas Dahlén	DF	1982-12-11	18	65	64	4	4
+de2:9	dfb:9049	Christian Müller	DF	1983-08-13	6	64	62	4	4
+de2:9	dfb:14594	Gledson	DF	1979-09-04	28	64	65	2	0
+de2:9	dfb:14953	Marc Stein	DF	1985-07-07	2	64	66	1	0
+de2:9	dfb:16753	Marc Heitmeier	DF	1985-03-18	16	63	62	4	4
+de2:9	dfb:12896	Stefan Hickl	DF	1988-04-11	17	62	62	2	0
+de2:9	dfb:111318	Kai-Fabian Schulz	DF	1990-03-12	4	61	62	0	0
+de2:9	dfb:159878	Alexis Theodosiadis	DF	1988-12-19	29	58	58	0	0
+de2:9	dfb:9122	Jürgen Gjasula	MF	1985-12-05	10	67	67	4	4
+de2:9	dfb:14604	Mario Fillinger	MF	1984-10-10	11	65	66	2	2
+de2:9	dfb:77181	Samil Cinaz	MF	1986-03-08	22	64	63	4	4
+de2:9	dfb:100	Sven Müller	MF	1980-04-04	23	64	63	4	4
+de2:9	dfb:260	Jaouhar Mnari	MF	1976-11-08	7	63		2	0
+de2:9	dfb:22951	Manuel Konrad	MF	1988-04-14	5	63	63	4	0
+de2:9	dfb:214	Mike Wunderlich	MF	1986-03-25	8	63	62	4	4
+de2:9	dfb:12895	Marc Gallego	MF	1985-08-13	21	62	63	0	0
+de2:9	dfb:16768	Tufan Tosunoğlu	MF	1988-07-22	39	61		3	0
+de2:9	dfb:159879	Benjamin Pintol	MF	1990-05-19	24	60	61	0	0
+de2:9	dfb:8170	Ralf Schneider	MF	1986-08-25	26	60	60	0	0
+de2:9	dfb:behnamtayebi:1984-11-30	Behnam Tayebi	MF	1984-11-30	31	58	57	0	0
+de2:9	dfb:24753	Cidimar	FW	1984-07-01	30	66	66	4	4
+de2:9	dfb:19102	Sascha Mölders	FW	1985-03-20	9	64	64	4	2
+de2:9	dfb:10131	Momar N'Diaye	FW	1987-07-13	20	63	63	4	0
+de2:9	dfb:12910	Aziz Bouhaddouz	FW	1987-03-30	27	61	61	4	0
+de2:10	dfb:3234	Max Grün	GK	1987-04-05	26	66		4	4
+de2:10	dfb:111618	Matjaž Rozman	GK	1987-01-03	1	62		4	0
+de2:10	dfb:8064	Jasmin Fejzić	GK	1986-05-15	16	59		0	0
+de2:10	dfb:24740	Marino Biliskov	DF	1976-03-17	4	68	68	4	4
+de2:10	dfb:3873	Thomas Kleine	DF	1977-12-28	19	68	68	4	4
+de2:10	dfb:14606	Christian Rahn	DF	1979-06-15	15	65	65	3	0
+de2:10	dfb:24742	Jan Mauersberger	DF	1985-06-17	5	65	66	4	0
+de2:10	dfb:24756	Bernd Nehrig	DF	1986-09-28	7	64	65	3	2
+de2:10	dfb:24741	Asen Karaslawow	DF	1980-06-08	3	63		2	0
+de2:10	dfb:3141	Kim Falkenberg	DF	1988-04-10	6	62	61	4	2
+de2:10	dfb:24755	Nicolai Müller	MF	1987-09-25	27	68	68	4	4
+de2:10	dfb:425	Milorad Peković	MF	1977-08-05	13	67	67	4	3
+de2:10	dfb:24747	Leonhard Haas	MF	1982-01-09	18	66	67	3	2
+de2:10	dfb:58856	Stephan Schröck	MF	1986-08-21	17	65	65	4	4
+de2:10	dfb:24763	Edgar Prib	MF	1989-12-15	14	64	64	4	4
+de2:10	dfb:24757	Sercan Sararer	MF	1989-11-27	23	62	63	2	2
+de2:10	dfb:3197	Stephan Fürstner	MF	1987-09-11	8	62	62	3	1
+de2:10	dfb:27055	Tayfun Pektürk	MF	1988-05-13	34	62	62	3	0
+de2:10	dfb:24749	Philipp Langen	MF	1986-07-02	35	60	60	0	0
+de2:10	dfb:221564	Felix Klaus	MF	1992-09-13	36	57		0	0
+de2:10	dfb:230133	Johannes Geis	MF	1993-08-17	30	57		0	0
+de2:10	dfb:111404	Kevin Kampl	MF	1990-10-09	10	57		0	0
+de2:10	dfb:159736	Marius Strangl	MF	1990-10-02	21	54	53	0	0
+de2:10	dfb:22391	Christopher Nöthe	FW	1988-01-03	9	68	70	3	3
+de2:10	dfb:14477	Dani Schahin	FW	1989-07-09	11	63	62	4	4
+de2:10	dfb:29020	Danijel Aleksić	FW	1991-04-30	33	60		2	1
+de2:10	dfb:8091	Kingsley Onuegbu	FW	1986-03-05	20	60	59	4	0
+de2:10	dfb:162972	Stefan Kolb	FW	1991-01-22	29	55	54	0	0
+de2:10	dfb:165657	Stefan Vogler	FW	1990-08-13	28	54	53	0	0
+de2:11	dfb:29388	Maikel Aerts	GK	1976-06-26	1	69		4	4
+de2:11	dfb:9708	Marco Sejna	GK	1972-03-20	31	65		4	0
+de2:11	dfb:14934	Sascha Burchert	GK	1989-10-30	21	57		0	0
+de2:11	dfb:12016	Roman Hubník	DF	1984-06-06	4	71	72	4	4
+de2:11	dfb:1870	Andre Mijatović	DF	1979-12-03	5	70	70	4	4
+de2:11	dfb:3191	Christian Lell	DF	1984-08-29	2	69	70	4	4
+de2:11	dfb:476	Christoph Janker	DF	1985-02-14	6	68	69	4	0
+de2:11	dfb:918	Kaká	DF	1981-05-16	22	67	69	0	0
+de2:11	dfb:14938	Shervin Radjabali-Fardi	DF	1991-05-17	24	61	62	0	0
+de2:11	dfb:129419	Sebastian Neumann	DF	1991-02-18	14	60	59	4	0
+de2:11	dfb:112083	Alfredo Morales	DF	1990-05-12	27	57		0	0
+de2:11	dfb:14959	Raffael	MF	1985-03-28	10	73	76	3	2
+de2:11	dfb:10450	Lewan Kobiaschwili	MF	1977-07-10	3	70	71	4	4
+de2:11	dfb:29227	Peter Niemeyer	MF	1983-11-22	18	70	71	4	4
+de2:11	dfb:14946	Patrick Ebert	MF	1987-03-17	20	69	73	0	0
+de2:11	dfb:14945	Pál Dardai	MF	1976-03-16	8	68	70	0	0
+de2:11	dfb:24619	Ronny	MF	1986-05-11	12	68	69	4	0
+de2:11	dfb:25324	Daniel Beichler	MF	1988-10-13	7	66	69	0	0
+de2:11	dfb:14950	Fabian Lustenberger	MF	1988-05-02	28	66	68	0	0
+de2:11	dfb:14943	Sascha Bigalke	MF	1990-01-08	15	62	64	1	0
+de2:11	dfb:14952	Fanol Perdedaj	MF	1991-07-16	23	61	60	4	2
+de2:11	dfb:14947	Lennart Hartmann	MF	1991-04-03	25	60	61	0	0
+de2:11	dfb:223207	Nico Schulz	MF	1993-04-01	26	56	55	4	0
+de2:11	dfb:1565	Adrián Ramos	FW	1986-01-22	9	73	75	4	4
+de2:11	dfb:3887	Rob Friend	FW	1981-01-23	16	72	73	4	4
+de2:11	dfb:20674	Nikita Rukavytsya	FW	1987-06-22	13	67	67	4	4
+de2:11	dfb:14955	Waleri Domowtschijski	FW	1986-10-05	17	66		4	4
+de2:11	dfb:222965	Marco Djuricin	FW	1992-12-12	35	61		4	0
+de2:11	dfb:173206	Pierre-Michel Lasogga	FW	1991-12-15	19	57		0	0
+de2:12	dfb:24738	Sascha Kirschstein	GK	1980-06-09	1	69		4	4
+de2:12	dfb:9706	Michael Lutz	GK	1982-01-25	12	64		4	0
+de2:12	dfb:135752	Christopher Sommerer	GK	1991-03-05	27	57		0	0
+de2:12	dfb:16473	Andreas Görlitz	DF	1982-01-31	37	68	68	4	4
+de2:12	dfb:172	Marvin Matip	DF	1985-09-25	34	67	68	2	2
+de2:12	dfb:28335	David Pisot	DF	1987-07-06	4	64	63	4	4
+de2:12	dfb:9712	Malte Metzelder	DF	1982-05-19	19	64	63	4	4
+de2:12	dfb:9725	Ralf Keidel	DF	1977-03-06	20	63	62	4	1
+de2:12	dfb:2828	Ronald Gërçaliu	DF	1986-02-12	25	63	64	0	0
+de2:12	dfb:104660	Mathias Wittek	DF	1989-03-30	35	62	61	4	1
+de2:12	dfb:15978	Moïse Bambara	DF	1984-11-10	18	62	61	4	3
+de2:12	dfb:374	Steven Ruprecht	DF	1987-06-24	3	62	61	3	2
+de2:12	dfb:9711	Tobias Fink	DF	1983-12-11	15	62	61	4	4
+de2:12	dfb:19455	Amaechi Igwe	DF	1988-05-20	2	61	62	0	0
+de2:12	dfb:9715	Michael Wenczel	DF	1977-11-23	13	61		0	0
+de2:12	dfb:19830	Fabian Gerber	MF	1979-11-28	10	64	64	2	1
+de2:12	dfb:27039	Manuel Hartmann	MF	1984-03-26	5	64	65	0	0
+de2:12	dfb:9718	Andreas Buchner	MF	1985-05-15	16	62	62	2	1
+de2:12	dfb:9724	Markus Karl	MF	1986-02-14	8	62	63	1	0
+de2:12	dfb:9048	Patrick Mölzl	MF	1980-12-28	44	62	62	2	1
+de2:12	dfb:168111	Romain Dedola	MF	1989-01-02	14	62		4	0
+de2:12	dfb:215	Sebastian Zielinsky	MF	1988-02-21	11	62	62	4	1
+de2:12	dfb:9726	Stefan Leitl	MF	1977-08-29	6	62	63	0	0
+de2:12	dfb:418	Robert Fleßers	MF	1987-02-11	17	61	62	0	0
+de2:12	dfb:78424	Benjamin Kauffmann	MF	1988-07-14	24	60	60	0	0
+de2:12	dfb:fabricelassonde:1989-02-18	Fabrice Lassonde	MF	1989-02-18	28	59	59	0	0
+de2:12	dfb:217	Moritz Hartmann	FW	1986-06-20	9	65	64	4	4
+de2:12	dfb:144629	Márkó Futács	FW	1990-02-22	21	64	63	4	4
+de2:12	dfb:28354	Sebastian Hofmann	FW	1983-09-12	7	63	62	4	2
+de2:12	dfb:9732	Steffen Wohlfarth	FW	1983-09-14	23	62	62	2	1
+de2:12	dfb:135764	Stefan Müller	FW	1990-02-24	22	60	60	2	0
+de2:13	dfb:28713	Kristian Nicht	GK	1982-04-03	29	68		4	4
+de2:13	dfb:85	Luis Robles	GK	1984-05-11	32	63		4	0
+de2:13	dfb:16467	Jean-François Kornetzky	GK	1982-07-28	1	60		0	0
+de2:13	dfb:105024	Mathias Moritz	GK	1988-02-21	37	58		0	0
+de2:13	dfb:56569	Matthias Langkamp	DF	1984-02-24	23	67	67	4	4
+de2:13	dfb:16474	Sebastian Langkamp	DF	1988-01-15	24	66	66	4	4
+de2:13	dfb:28462	Andreas Schäfer	DF	1983-02-05	11	64	63	4	4
+de2:13	dfb:412	Christian Demirtas	DF	1984-05-25	5	64	65	1	1
+de2:13	dfb:159547	Matthias Zimmermann	DF	1992-06-16	2	62	61	4	4
+de2:13	dfb:213212	Stefan Müller	DF	1988-11-09	3	58	56	4	0
+de2:13	dfb:131934	Thomas Konrad	DF	1989-11-05	28	56	55	3	0
+de2:13	dfb:16481	Michael Mutzel	MF	1979-09-27	8	67	67	4	3
+de2:13	dfb:16477	Godfried Aduobe	MF	1975-10-29	4	66	66	4	3
+de2:13	dfb:254	Marco Engelhardt	MF	1980-12-02	22	66	67	4	1
+de2:13	dfb:16482	Massimilian Porcello	MF	1980-06-23	10	65	66	0	0
+de2:13	dfb:14556	Gaetan Krebs	MF	1985-11-18	21	64	66	1	0
+de2:13	dfb:16483	Timo Staffeldt	MF	1984-02-09	17	64	63	4	4
+de2:13	dfb:152131	Lukas Rupp	MF	1991-01-08	26	60		3	0
+de2:13	dfb:3250	Stefan Rieß	MF	1988-12-09	6	56	55	0	0
+de2:13	dfb:159533	Matthias Cuntz	MF	1990-05-04	13	54	53	0	0
+de2:13	dfb:16485	Alexander Iaschwili	FW	1977-10-23	9	69		4	4
+de2:13	dfb:16488	Christian Timm	FW	1979-02-27	7	66	67	3	0
+de2:13	dfb:14447	Macauley Chrisantus	FW	1990-08-20	18	65	65	4	4
+de2:13	dfb:24781	Anton Fink	FW	1987-07-31	14	64	64	4	4
+de2:13	dfb:7124	Niklas Tarvajärvi	FW	1983-03-13	15	62	63	1	0
+de2:13	dfb:22442	Serhat Akın	FW	1981-06-05	19	62		2	0
+de2:13	dfb:25609	Christopher Nguyen	FW	1988-01-13	35	61		3	0
+de2:13	dfb:132956	Patrick Dulleck	FW	1990-02-15	27	59	60	0	0
+de2:13	dfb:230100	Andreas Voglsammer	FW	1992-01-09	36	57		0	0
+de2:13	dfb:113657	Christopher Bieber	FW	1989-07-03	16	54	53	0	0
+de2:14	dfb:22372	Sören Pirson	GK	1985-08-27	21	67		4	4
+de2:14	dfb:8313	Stephan Loboué	GK	1981-08-23	1	64		4	0
+de2:14	dfb:155563	Marcel Dietz	GK	1990-09-30	35	57		0	0
+de2:14	dfb:22376	Benjamin Reichert	DF	1983-05-17	5	65	64	4	4
+de2:14	dfb:22224	Marinko Miletic	DF	1980-10-08	18	64	62	4	4
+de2:14	dfb:22375	Dimitrios Pappas	DF	1980-02-25	4	63	61	4	4
+de2:14	dfb:22377	Thomas Schlieter	DF	1981-01-28	16	63	63	1	1
+de2:14	dfb:22379	Daniel Embers	DF	1981-04-14	3	59	58	1	0
+de2:14	dfb:12654	Fabian Hergesell	DF	1985-12-25	14	59	57	4	3
+de2:14	dfb:169425	Kevin Kolberg	DF	1990-11-22	24	57		0	0
+de2:14	dfb:155561	Dominik Borutzki	DF	1990-06-07	36	56	55	0	0
+de2:14	dfb:28399	Heinrich Schmidtgal	MF	1985-11-20	8	66	66	3	3
+de2:14	dfb:22380	Markus Kaya	MF	1979-10-20	23	66	65	4	4
+de2:14	dfb:3951	Daniel Gordon	MF	1985-01-16	6	64	63	4	4
+de2:14	dfb:111399	Oliver Petersch	MF	1989-04-26	17	63	62	4	4
+de2:14	dfb:22374	Marcel Landers	MF	1984-08-24	15	62	61	4	1
+de2:14	dfb:92	Mario Klinger	MF	1986-12-27	2	60	59	4	0
+de2:14	dfb:135791	Patrick Schönfeld	MF	1989-06-21	9	60	58	4	2
+de2:14	dfb:221397	Florian Abel	MF	1989-08-14	30	58		0	0
+de2:14	dfb:47356	Tim Kruse	MF	1983-01-10	20	58	57	0	0
+de2:14	dfb:207	Yohannes Bahcecioglu	MF	1988-02-26	22	58		0	0
+de2:14	dfb:22392	Mike Terranova	FW	1976-11-17	10	66	67	4	0
+de2:14	dfb:3888	Moses Lamidi	FW	1988-01-05	11	66	66	4	4
+de2:14	dfb:25917	Ronny König	FW	1983-06-02	13	66	66	4	0
+de2:14	dfb:27053	Emmanuel Krontiris	FW	1983-02-11	7	64	64	3	2
+de2:14	dfb:22388	Musa Çelik	FW	1983-04-11	27	63		3	0
+de2:14	dfb:22390	Felix Luz	FW	1982-01-18	33	60		0	0
+de2:14	dfb:21999	Mike Tullberg	FW	1985-12-25	28	56	55	0	0
+de2:15	dfb:28457	Tino Berbig	GK	1980-10-07	1	68		4	4
+de2:15	dfb:29072	Manuel Riemann	GK	1988-09-09	33	62		4	0
+de2:15	dfb:12900	Angelo Barletta	DF	1977-02-11	24	64	63	4	3
+de2:15	dfb:176	Tobias Nickenig	DF	1984-08-01	4	64	63	3	3
+de2:15	dfb:7694	Jan Tauer	DF	1983-08-26	3	63	64	0	0
+de2:15	dfb:47432	Alexander Schnetzler	DF	1979-04-17	13	62	60	4	1
+de2:15	dfb:14465	Benjamin Gorka	DF	1984-04-15	5	60	60	3	0
+de2:15	dfb:28460	Konstantin Engel	DF	1988-07-27	25	60	59	2	2
+de2:15	dfb:3902	Oliver Stang	DF	1988-06-26	23	60	59	4	2
+de2:15	dfb:14574	Patrick Herrmann	DF	1988-03-16	2	58		0	0
+de2:15	dfb:129791	Robin Twyrdy	DF	1991-06-24	16	53	52	0	0
+de2:15	dfb:3963	Sebastian Tyrala	MF	1988-02-22	18	66	66	4	3
+de2:15	dfb:25912	Benjamin Siegert	MF	1981-07-07	14	65	64	4	4
+de2:15	dfb:23111	Björn Lindemann	MF	1984-01-23	10	65	65	3	3
+de2:15	dfb:28467	Matthias Heidrich	MF	1977-12-10	21	64	62	4	3
+de2:15	dfb:29528	Michael Lejan	MF	1983-05-02	11	63	61	4	4
+de2:15	dfb:9220	Niels Hansen	MF	1983-07-25	30	63	62	3	3
+de2:15	dfb:8120	Alexander Krük	MF	1987-01-21	6	60	59	2	1
+de2:15	dfb:3909	Kristoffer Andersen	MF	1985-12-09	34	60	59	4	1
+de2:15	dfb:129799	Daniel Latkowski	MF	1991-11-11	26	57		0	0
+de2:15	dfb:24754	Aleksandar Kotuljac	FW	1981-11-02	15	64	63	3	2
+de2:15	dfb:9052	Momo Diabang	FW	1979-01-21	22	64		3	0
+de2:15	dfb:283	Nicky Adler	FW	1985-05-23	9	64	64	4	3
+de2:15	dfb:22958	Henrich Benčík	FW	1978-10-04	8	63	62	2	2
+de2:15	dfb:25918	Dennis Schmidt	FW	1988-04-18	7	61	61	4	0
+de2:15	dfb:222206	Christian Pauli	FW	1992-01-30	17	55	54	0	0
+de2:16	dfb:16728	Daniel Masuch	GK	1977-04-24	22	69		4	4
+de2:16	dfb:3938	Lukas Kruse	GK	1983-07-09	1	64		4	0
+de2:16	dfb:14962	Nico Burchert	GK	1987-06-24	19	58		0	0
+de2:16	dfb:15072	Jukka Raitala	DF	1988-09-15	3	65	66	2	2
+de2:16	dfb:23106	Florian Mohr	DF	1984-08-25	6	64	64	3	3
+de2:16	dfb:23102	Sören Gonther	DF	1986-12-15	26	64	64	4	4
+de2:16	dfb:104627	Christian Strohdiek	DF	1988-01-22	13	63	62	4	3
+de2:16	dfb:23113	Jens Wemmer	DF	1985-10-31	7	63	62	3	3
+de2:16	dfb:23108	Toni Wachsmuth	DF	1986-11-15	4	61	61	2	1
+de2:16	dfb:78026	Markus Palionis	DF	1987-05-12	23	60	60	4	0
+de2:16	dfb:17011	Eugen Klukin	DF	1987-09-20	14	58	58	0	0
+de2:16	dfb:223360	Sergej Schmik	DF	1989-11-27	28	56	55	0	0
+de2:16	dfb:thomasrath:1988-03-27	Thomas Rath	DF	1988-03-27	27	56	55	0	0
+de2:16	dfb:24744	Daniel Brückner	MF	1981-02-14	21	68	68	4	4
+de2:16	dfb:23109	Enis Alushi	MF	1985-12-22	5	66	66	4	4
+de2:16	dfb:23116	Rolf-Christel Guié-Mien	MF	1977-10-28	15	65	64	4	4
+de2:16	dfb:23105	Markus Krösche	MF	1980-09-17	18	64	63	4	4
+de2:16	dfb:28359	Nico Klotz	MF	1986-09-20	16	64	65	4	0
+de2:16	dfb:50069	Philipp Heithölter	MF	1982-08-28	17	62	61	4	0
+de2:16	dfb:67074	Ardian Jevric	MF	1986-07-07	20	60	60	0	0
+de2:16	dfb:stefanparensen:1989-02-26	Stefan Parensen	MF	1989-02-26	25	58		0	0
+de2:16	dfb:edmondkapllani:1982-07-31	Edmond Kapllani	FW	1982-07-31	10	64	66	0	0
+de2:16	dfb:28476	Gaetano Manno	FW	1982-07-26	29	64	65	1	1
+de2:16	dfb:23110	Sören Brandy	FW	1985-05-06	12	64	64	4	1
+de2:16	dfb:21241	Sven Krause	FW	1986-01-19	31	63	63	4	1
+de2:16	dfb:139986	Dragan Georgiev	FW	1990-12-16	8	62	63	0	0
+de2:16	dfb:225582	Jorge Mosquera	FW	1990-04-22	11	61		2	2
+de2:16	dfb:433	Nejmeddin Daghfous	FW	1986-10-01	39	60	60	3	1
+de2:16	dfb:79631	David Jansen	FW	1987-12-04	9	59	59	2	0
+de2:17	dfb:368	Jan Glinker	GK	1984-01-18	1	67		4	4
+de2:17	dfb:3937	Marcel Höttecke	GK	1987-04-25	40	62		4	0
+de2:17	dfb:129497	Christoph Haker	GK	1991-02-06	13	57		0	0
+de2:17	dfb:40871	Ahmed Madouni	DF	1980-10-04	4	67	67	4	4
+de2:17	dfb:371	Daniel Göhlert	DF	1980-09-25	15	66	65	4	3
+de2:17	dfb:16732	Bernd Rauw	DF	1980-01-08	6	65	65	4	1
+de2:17	dfb:373	Patrick Kohlmann	DF	1983-02-25	7	65	64	4	4
+de2:17	dfb:178	Michael Parensen	DF	1986-06-24	29	64	65	1	1
+de2:17	dfb:384	Christian Stuff	DF	1982-08-11	5	62	63	1	0
+de2:17	dfb:382	Christoph Menz	DF	1988-12-22	16	62	62	4	1
+de2:17	dfb:28471	Paul Thomik	DF	1985-01-25	14	62	63	0	0
+de2:17	dfb:222452	Boné Uaferro	DF	1992-01-04	27	56	55	0	0
+de2:17	dfb:227423	Maurice Trapp	DF	1991-12-31	18	53	52	0	0
+de2:17	dfb:28909	Santi Kolk	MF	1981-10-02	10	68	68	4	3
+de2:17	dfb:10651	Björn Brunnemann	MF	1980-08-06	23	67	66	4	4
+de2:17	dfb:389	Mac Younga-Mouhani	MF	1974-08-01	8	67		4	2
+de2:17	dfb:381	Torsten Mattuschka	MF	1980-10-04	17	67	67	4	4
+de2:17	dfb:28468	Dominic Peitz	MF	1984-09-11	3	66	66	4	2
+de2:17	dfb:1466	Jérôme Polenz	MF	1986-11-07	20	64	64	3	3
+de2:17	dfb:111655	Christopher Quiring	MF	1990-11-23	2	58	57	2	0
+de2:17	dfb:24278	John Mosquera	FW	1988-01-15	9	65		4	3
+de2:17	dfb:385	Karim Benyamina	FW	1981-12-18	22	65	64	4	4
+de2:17	dfb:14982	Chinedu Ede	FW	1987-02-05	19	64	65	4	0
+de2:17	dfb:7914	Halil Savran	FW	1985-06-20	21	63	63	4	1
+de2:17	dfb:12673	Kenan Sahin	FW	1984-10-27	11	62	63	1	0
+de2:17	dfb:227424	Steven Skrzybski	FW	1992-11-18	24	57		0	0
