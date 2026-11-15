@@ -41,10 +41,13 @@ public final class NativeEnglishCareer {
         return secondDivisionStart(context, clubIndex, "en2");
     }
 
+    public static boolean reserveClub(String id) { return NativeSegunda.reserve(id); }
+
     public static Opening secondDivisionStart(Context context, int clubIndex, String league) throws IOException {
         Map<String, ArrayList<NativeWorldCenter.T>> world = new HashMap<>();
         boolean german = "de2".equals(league);
-        if ("it2".equals(league)) NativeSerieB.load(context, world);
+        if ("es2".equals(league)) NativeSegunda.load(context, world);
+        else if ("it2".equals(league)) NativeSerieB.load(context, world);
         else if ("fr2".equals(league)) NativeLigue2.load(context, world);
         else if (german) NativeBundesliga2.load(context, world);
         else NativeChampionship.load(context, world);
@@ -70,7 +73,7 @@ public final class NativeEnglishCareer {
                 club.players.add(player);
             }
             ClubEconomy.Profile ground = ClubEconomy.profile(context, club.id);
-            club.budget = "it2".equals(league) ? NativeSerieB.openingCash(ground) : "fr2".equals(league) ? NativeLigue2.openingCash(ground) : german ? NativeBundesliga2.openingCash(ground) : ground.openingCash();
+            club.budget = "es2".equals(league) ? NativeSegunda.openingCash(ground) : "it2".equals(league) ? NativeSerieB.openingCash(ground) : "fr2".equals(league) ? NativeLigue2.openingCash(ground) : german ? NativeBundesliga2.openingCash(ground) : ground.openingCash();
             opening.clubs.add(club);
         }
         return opening;
@@ -88,7 +91,9 @@ public final class NativeEnglishCareer {
         if (career == null) return null;
         MatchJournal previous = new MatchJournal(new File(context.getFilesDir(), "match-journals"), nonce, previousYear);
         if ("en".equals(career.activeLeague) && previous.metadata(NativeEnglishDivisions.FINAL_PREMIER_ORDER) == null) return null;
-        Set<String> premier = "it".equals(country) ? NativeItalianDivisions.nextTop(previous, career)
+        NativeSpanishDivisions.Opening spanish = "es".equals(country) ? NativeSpanishDivisions.opening(previous, career) : null;
+        Set<String> premier = "es".equals(country) ? (spanish == null ? Collections.emptySet() : spanish.top)
+                : "it".equals(country) ? NativeItalianDivisions.nextTop(previous, career)
                 : "fr".equals(country) ? NativeFrenchDivisions.nextTop(previous, career) : german ? NativeGermanDivisions.nextTop(previous, career, nonce)
                 : NativeEnglishDivisions.nextPremier(previous, career);
         if (premier.isEmpty()) return null;
@@ -104,7 +109,9 @@ public final class NativeEnglishCareer {
         opening.league = top ? country : country + "2";
         Map<String, Club> selected = new LinkedHashMap<>();
         for (NativeCareerStore.Club source : career.clubs) {
-            if (!country.equals(EuropeanPlaces.association(source.league)) || premier.contains(source.id) != top) continue;
+            if (spanish != null) {
+                if (!(top ? spanish.top : spanish.lower).contains(source.id)) continue;
+            } else if (!country.equals(EuropeanPlaces.association(source.league)) || premier.contains(source.id) != top) continue;
             Club club = new Club();
             club.id = source.id;
             club.name = source.name;
@@ -128,7 +135,7 @@ public final class NativeEnglishCareer {
             club.players.add(player);
         }
         opening.clubs.addAll(selected.values());
-        if (opening.clubs.size() != ("it".equals(country) ? (top ? 20 : NativeSerieB.CLUBS) : "fr".equals(country) ? NativeLigue2.CLUBS : german ? NativeBundesliga2.CLUBS : top ? 20 : NativeChampionship.CLUBS)) {
+        if (opening.clubs.size() != ("es".equals(country) ? (top ? 20 : NativeSegunda.CLUBS) : "it".equals(country) ? (top ? 20 : NativeSerieB.CLUBS) : "fr".equals(country) ? NativeLigue2.CLUBS : german ? NativeBundesliga2.CLUBS : top ? 20 : NativeChampionship.CLUBS)) {
             throw new IOException("Wrong division size");
         }
         return opening;

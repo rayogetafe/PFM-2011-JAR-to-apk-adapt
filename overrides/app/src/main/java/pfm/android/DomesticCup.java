@@ -105,7 +105,8 @@ final class DomesticCup {
             if (cup == null) {
                 Set<String> eligible = new TreeSet<>();
                 for (NativeCareerStore.Club club : career.clubs) {
-                    if (club.activeFrom <= journal.season() && EuropeanPlaces.association(club.league).equals(league)) {
+                    if (club.activeFrom <= journal.season() && EuropeanPlaces.association(club.league).equals(league) &&
+                            !NativeSegunda.reserve(club.id)) {
                         eligible.add(club.id);
                     }
                 }

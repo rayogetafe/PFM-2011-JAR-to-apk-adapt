@@ -62,7 +62,7 @@ public final class NativeSeasonHub {
 
         LinearLayout root=new LinearLayout(a);root.setOrientation(LinearLayout.VERTICAL);root.setPadding(dp(a,8),dp(a,3),dp(a,8),0);
 
-        TextView title=text(a,ov.team+"   •   "+ov.season+(NativeChampionship.CODE.equals(league)?"   •   Championship":NativeBundesliga2.CODE.equals(league)?"   •   2. Bundesliga":NativeLigue2.CODE.equals(league)?"   •   Ligue 2":NativeSerieB.CODE.equals(league)?"   •   Serie B":""),18f,true);title.setPadding(dp(a,7),dp(a,2),dp(a,7),dp(a,2));root.addView(title);
+        TextView title=text(a,ov.team+"   •   "+ov.season+(NativeChampionship.CODE.equals(league)?"   •   Championship":NativeBundesliga2.CODE.equals(league)?"   •   2. Bundesliga":NativeLigue2.CODE.equals(league)?"   •   Ligue 2":NativeSerieB.CODE.equals(league)?"   •   Serie B":NativeSegunda.CODE.equals(league)?"   •   Segunda División":""),18f,true);title.setPadding(dp(a,7),dp(a,2),dp(a,7),dp(a,2));root.addView(title);
         TextView summary=text(a,"#"+ov.rank+"   "+ov.points+" pts   •   P "+ov.played+"  W "+ov.w+"  D "+ov.d+"  L "+ov.l+"   •   GF "+ov.gf+" : "+ov.ga+"  GD "+(ov.gf-ov.ga),13.2f,true);
         summary.setPadding(dp(a,7),0,dp(a,7),dp(a,4));root.addView(summary);
         String roundText=ov.played>=ov.total?"Season complete":"Next: "+ov.next+"   •   "+(ov.played+1)+" / "+ov.total;
@@ -76,10 +76,10 @@ public final class NativeSeasonHub {
             root.addView(playoff);
         }
 
-        if (NativeSerieB.CODE.equals(league) && ov.played >= ov.total) {
+        if ((NativeSerieB.CODE.equals(league) || NativeSegunda.CODE.equals(league)) && ov.played >= ov.total) {
             Button playoff = new Button(a);
-            playoff.setText("SERIE B PROMOTION");
-            playoff.setOnClickListener(v -> NativeWorldCompetition.showItalianPlayoffs(a, NativeWorldCenter.season()));
+            playoff.setText("PROMOTION PLAY-OFFS");
+            playoff.setOnClickListener(v -> NativeWorldCompetition.showSecondTierPlayoffs(a, league, NativeWorldCenter.season()));
             root.addView(playoff);
         }
 
@@ -92,7 +92,7 @@ public final class NativeSeasonHub {
         tabs.addView(historyBtn,new LinearLayout.LayoutParams(0,LinearLayout.LayoutParams.WRAP_CONTENT,1f));root.addView(tabs);
 
         final LinearLayout tableHead=tableRow(a,"#","CLUB","P","W","D","L","GF","GA","GD","PTS",true,null);root.addView(tableHead);
-        final TextView legend=text(a,NativeChampionship.CODE.equals(league)?"GREEN · AUTOMATIC PROMOTION    BLUE · PLAY-OFFS":NativeGermanDivisions.includes(league)?NativeGermanDivisions.legend(league):NativeLigue2.CODE.equals(league)?"GREEN · AUTOMATIC PROMOTION":NativeSerieB.CODE.equals(league)?"GREEN · AUTOMATIC PROMOTION    BLUE · POTENTIAL PLAY-OFFS":"CHAMPIONS LEAGUE     EUROPA LEAGUE     RELEGATION",9.8f,true);legend.setPadding(dp(a,5),dp(a,2),dp(a,5),dp(a,2));legend.setBackgroundColor(0xfff4f4f4);root.addView(legend);
+        final TextView legend=text(a,NativeChampionship.CODE.equals(league)?"GREEN · AUTOMATIC PROMOTION    BLUE · PLAY-OFFS":NativeGermanDivisions.includes(league)?NativeGermanDivisions.legend(league):NativeLigue2.CODE.equals(league)?"GREEN · AUTOMATIC PROMOTION":NativeSerieB.CODE.equals(league)?"GREEN · AUTOMATIC PROMOTION    BLUE · POTENTIAL PLAY-OFFS":NativeSegunda.CODE.equals(league)?"PROMOTION PLACES EXCLUDE RESERVE TEAMS":"CHAMPIONS LEAGUE     EUROPA LEAGUE     RELEGATION",9.8f,true);legend.setPadding(dp(a,5),dp(a,2),dp(a,5),dp(a,2));legend.setBackgroundColor(0xfff4f4f4);root.addView(legend);
         final ListView tableList=new ListView(a);tableList.setDividerHeight(1);
         ArrayAdapter<TableRow> tableAdapter=new ArrayAdapter<TableRow>(a,android.R.layout.simple_list_item_1,standings){
             @Override public View getView(int pos,View cv,ViewGroup parent){

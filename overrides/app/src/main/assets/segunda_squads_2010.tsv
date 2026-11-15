@@ -1,0 +1,529 @@
+club	uid	name	pos	dob	nat	ovr	anchor	games	starts	fixture
+es2:0	espn:86191	Manu Herrera	GK	1981-09-19	Spain	68		4	4	302909
+es2:0	espn:34144	Raul Moreno	GK	1979-11-21	Mexico	67		4	2	302909
+es2:0	espn:93256	Joaquin Alvarez	DF	1980-07-04	Spain	68		5	4	302909
+es2:0	espn:125097	Ángel Sánchez	DF	1982-01-15	Spain	67		4	4	302909
+es2:0	espn:121989	Jean-Sylvain Babin	DF	1986-10-14	Martinique	64	63	4	3	302909
+es2:0	espn:151506	Javier Hernandez	DF	1983-01-20	Spain	67		3	3	302909
+es2:0	espn:67616	Ruben Dario Martinez	DF	1984-06-22	Spain	67		3	3	302868
+es2:0	espn:151406	Sergio Mora	MF	1979-08-30	Spain	68		4	4	302909
+es2:0	espn:151405	Manuel Rueda	MF	1980-01-02	Spain	66		3	2	302909
+es2:0	espn:12064	Fernando Sales	MF	1977-09-12	Spain	66	66	2	2	302678
+es2:0	espn:143718	Cristian Alberdi	MF	1980-04-14	Spain	61		2	0	302909
+es2:0	espn:143720	Georges Jeremy	MF	1987-11-29	Spain	58		1	0	302909
+es2:0	espn:151407	Ruba	FW	1993-04-14	Spain	65		5	4	302909
+es2:0	espn:125142	Borja Pérez	FW	1982-04-01	Spain	67		4	4	302909
+es2:0	espn:79656	Francisco Montañés	FW	1986-10-08	Spain	66		4	3	302868
+es2:0	espn:143711	Diego Bermudez	DF	1982-06-19	Spain	63		3	1	302909
+es2:0	espn:151515	Nino	DF	1983-01-13	Spain	72	75	3	1	302868
+es2:0	espn:151502	Nagore	DF	1980-12-27	Spain	64	64	2	2	302909
+es2:0	espn:142488	Francisco de Borja Jurado	DF	1990-03-14	Spain	59		1	1	302780
+es2:0	es2player:rubensanz:1980-04-30	Rubén Sanz	MF	1980-04-30	Spain	60	60	0	0	season-roster
+es2:0	es2player:samuelbanos:1979-08-16	Samuel Baños	MF	1979-08-16	Spain	64	65	0	0	season-roster
+es2:0	es2player:rubenanuarbe:1981-06-18	Rubén Anuarbe	DF	1981-06-18	Spain	58		0	0	season-roster
+es2:1	espn:73247	Keylor Navas	GK	1986-12-15	Costa Rica	67		4	4	302821
+es2:1	espn:54242	Miguel Martínez	GK	1981-11-25	Spain	61		2	0	302821
+es2:1	espn:113715	Toni	DF	1985-02-07	Spain	59	57	5	4	302821
+es2:1	espn:68386	José De La Cuesta	DF	1983-02-11	Spain	67		4	4	302821
+es2:1	espn:125342	Javi Tarantino Uriarte	DF	1984-06-26	Spain	67		4	4	302821
+es2:1	espn:125377	Kike	DF	1991-02-10	Spain	64	64	4	4	302821
+es2:1	espn:99218	Dani Fragoso	DF	1982-03-31	Spain	67		4	3	302821
+es2:1	espn:125735	Antonio López	MF	1980-05-12	Spain	66	65	6	4	302821
+es2:1	espn:16203	Francisco Sousa	MF	1980-02-03	Spain	68		4	4	302821
+es2:1	espn:106555	Verza	MF	1986-09-29	Spain	65	65	4	4	302821
+es2:1	espn:134031	Miguel Núňez	MF	1989-06-04	Spain	65		4	4	302821
+es2:1	espn:68499	Jorge Pina	MF	1983-02-20	Spain	66	66	4	3	302821
+es2:1	espn:125359	Asen	FW	1978-10-07	Spain	65	64	4	4	302821
+es2:1	espn:130136	Alfredo Ortuño	FW	1991-01-21	Spain	61		4	1	302821
+es2:1	espn:152093	Nelson Cuevas	FW	1980-01-10	Spain	66	68	3	0	302821
+es2:1	espn:125201	Alan Baró	MF	1985-06-22	Spain	64		4	2	302821
+es2:1	espn:41316	Iban Zubiaurre	DF	1983-01-22	Spain	65		3	2	302821
+es2:1	espn:150789	Sumy	MF	1991-07-22	Spain	59		3	0	302821
+es2:1	espn:114601	Carlos de Lerma	MF	1984-10-07	Spain	59		2	0	302821
+es2:1	espn:150790	Miguel Guerrero	FW	1990-07-12	Spain	59		1	1	302821
+es2:1	espn:150791	Fran amado	FW	1984-06-01	Spain	59		1	0	302863
+es2:1	espn:121628	Pedro Santa Cecilia Garcia	MF	1984-03-10	Spain	59		1	0	302821
+es2:2	espn:131767	Rubén Miño	GK	1989-01-18	Spain	69		3	3	303028
+es2:2	espn:113699	Oier Olazábal	GK	1989-09-14	Spain	67		3	2	303044
+es2:2	espn:135294	Andreu Fontàs	DF	1989-11-14	Spain	68		4	4	303028
+es2:2	espn:145078	Marc Bartra	DF	1991-01-15	Spain	68		4	4	303028
+es2:2	espn:137425	Martín Montoya	DF	1991-04-14	Spain	68		4	4	303028
+es2:2	espn:135405	Marc Muniesa	DF	1992-03-27	Spain	68		3	3	303028
+es2:2	espn:150793	Carles Planas	DF	1991-03-04	Spain	65		2	2	302681
+es2:2	espn:150225	Sergi Roberto	MF	1992-02-07	Spain	68		4	3	303028
+es2:2	espn:45978	Carlos Carmona	MF	1987-07-05	Spain	67		4	2	303028
+es2:2	espn:150185	Ilie Sánchez	MF	1990-11-21	Spain	64		4	1	303028
+es2:2	espn:137439	Jonathan dos Santos	MF	1990-04-26	Mexico	68		3	3	303028
+es2:2	espn:141271	Oriol Romeu	MF	1991-09-24	Spain	66		3	2	303028
+es2:2	espn:125110	Saúl Berjón	FW	1986-05-24	Spain	67		5	2	303028
+es2:2	espn:25019	Jonatan Soriano	FW	1985-09-24	Spain	69		4	4	303028
+es2:2	espn:150227	Nolito	FW	1986-10-15	Spain	69		4	4	303028
+es2:2	espn:150228	Benja	FW	1987-08-23	Spain	67		4	2	303028
+es2:2	espn:135293	Thiago Alcantara	MF	1991-04-11	Spain	66		3	2	303028
+es2:2	espn:150224	Martí Riverola	MF	1991-01-26	Spain	64		3	1	303028
+es2:2	espn:120708	Sergi Gómez	DF	1992-03-28	Spain	65		2	2	303044
+es2:2	espn:114169	Armando	DF	1984-12-16	Spain	64		2	1	303028
+es2:2	espn:151883	Abraham	DF	1986-02-22	Spain	64	64	2	1	303028
+es2:2	espn:150226	Edua Oriol	MF	1986-11-05	Spain	64		2	1	303028
+es2:3	espn:71982	Falcón	GK	1984-04-24	Spain	71		4	4	303049
+es2:3	espn:106746	Yoel	GK	1988-08-28	Spain	62		2	0	303049
+es2:3	espn:125228	David Català	DF	1980-05-03	Spain	66	65	4	4	303049
+es2:3	espn:92790	Roberto Lago	DF	1985-08-30	Spain	67	66	4	4	303049
+es2:3	espn:140271	Hugo Mallo	DF	1991-06-22	Spain	64	63	4	4	303049
+es2:3	espn:142599	Andrés Túñez	DF	1987-03-15	Venezuela	67		3	2	303049
+es2:3	espn:16287	Ander Murillo	DF	1983-07-22	Spain	65		2	1	302984
+es2:3	espn:86152	Jonathan Vila	MF	1986-03-06	Spain	64	63	5	3	303049
+es2:3	espn:125326	Aritz López Garai	MF	1980-11-06	Spain	70		4	4	303049
+es2:3	espn:68487	Roberto Trashorras	MF	1981-02-28	Spain	70		4	4	303049
+es2:3	espn:141057	Álex López	MF	1988-01-11	Spain	69		4	4	303049
+es2:3	espn:92785	Dani Abalo	MF	1987-09-29	Spain	69		4	3	303049
+es2:3	espn:131375	Joan Tomás	FW	1985-05-17	Spain	66	66	6	2	303049
+es2:3	espn:12079	Enrique de Lucas	FW	1978-08-17	Spain	71		4	4	303049
+es2:3	espn:125113	David Rodríguez	FW	1986-02-14	Spain	68	67	4	4	303049
+es2:3	espn:92800	Iago Aspas	FW	1987-08-01	Spain	65		4	1	302984
+es2:3	espn:71551	Dimitrios Papadopoulos	FW	1981-10-20	Greece	65	65	3	1	303049
+es2:3	espn:125714	Michu	FW	1986-03-21	Spain	65	66	3	0	303049
+es2:3	espn:125230	Christian Bustos	MF	1983-05-29	Spain	67		2	2	303049
+es2:3	espn:106847	Toni Dovale	MF	1990-04-04	Spain	63		2	1	303049
+es2:3	espn:121618	Sergio Ortega	DF	1980-11-25	Spain	66	66	1	1	302873
+es2:3	espn:14581	Borja Oubiña	MF	1982-05-17	Spain	64	64	1	0	303049
+es2:4	espn:73213	Alejandro Rebollo	GK	1983-01-11	Spain	68		4	4	303054
+es2:4	espn:87703	Kiko Casilla	GK	1986-10-02	Spain	60		2	0	303054
+es2:4	espn:29219	Exposito	DF	1980-01-23	Spain	68		5	4	303054
+es2:4	espn:140291	Txiqui	DF	1979-09-14	Spain	68		5	4	303054
+es2:4	espn:125239	Pedro Botelho	DF	1989-12-14	Brazil	66	66	4	4	303054
+es2:4	espn:12615	Pascal Cygan	DF	1974-04-29	France	67	67	3	2	303054
+es2:4	espn:122626	Cala	DF	1989-11-26	Spain	63		3	2	303054
+es2:4	espn:140294	Mariano	MF	1978-01-28	Spain	69	69	5	4	303054
+es2:4	espn:68427	Antonio Moral Segura	MF	1981-08-29	Spain	67		4	4	303054
+es2:4	espn:140285	Ander Lafuente Aguado	MF	1983-02-18	Spain	67		4	4	303054
+es2:4	espn:106929	Longás	MF	1984-10-24	Spain	69	70	4	4	303054
+es2:4	espn:151976	Julien Fernandes	MF	1985-03-16	Portugal	62		4	1	303054
+es2:4	espn:103013	Víctor	FW	1974-04-17	Spain	68	68	5	3	303054
+es2:4	espn:106465	José Verdú Nicolás	FW	1983-01-01	Spain	67		4	4	303054
+es2:4	espn:131765	Keko	FW	1991-12-27	Spain	63		3	2	303054
+es2:4	espn:125466	Asier Goiria	FW	1980-09-19	Spain	61		3	0	303054
+es2:4	espn:14552	Iñaki Muñoz	MF	1978-07-02	Spain	62		3	0	303054
+es2:4	espn:71665	Chus Herrero	DF	1984-02-10	Spain	64	65	3	0	303054
+es2:4	espn:30076	Francisco Maldonado	MF	1981-06-02	Spain	60		2	0	302918
+es2:4	espn:129710	Jordi Pablo Ripolles	MF	1990-01-01	Spain	58		2	0	303054
+es2:4	espn:28136	Rafael Clavero	DF	1977-01-10	Spain	60		1	0	303103
+es2:4	espn:140288	Rubén	GK	1984-06-22	Spain	60		1	0	303103
+es2:5	espn:68377	Raúl Navas Paul	GK	1978-05-03	Spain	69		4	4	302775
+es2:5	espn:109907	Alberto García	GK	1985-02-09	Spain	59		1	0	302775
+es2:5	espn:57926	Agus	DF	1985-05-03	Spain	66		4	4	302775
+es2:5	espn:141661	Juan Rafael Fuentes	DF	1990-01-05	Spain	65		3	3	302775
+es2:5	espn:68510	Miguel Tena	DF	1982-01-17	Spain	64		2	2	302775
+es2:5	espn:111204	Samuel Camille	DF	1986-02-02	Martinique	63		2	2	302775
+es2:5	espn:12432	Galvez Gaspar	DF	1979-07-07	Spain	60		1	0	302775
+es2:5	espn:68390	Jonathan Sesma Gonzalez	MF	1978-11-14	Spain	68		4	4	302775
+es2:5	espn:54249	Alberto Aguilar	MF	1984-07-12	Spain	65	64	4	4	302775
+es2:5	espn:68452	Fernando Usero	MF	1984-03-27	Spain	67		4	4	302775
+es2:5	espn:89155	Jorge Luque	MF	1981-03-08	Spain	61		3	0	302775
+es2:5	espn:140317	Jagoba Beobide	MF	1987-02-19	Spain	63		2	2	302775
+es2:5	espn:101313	Richi	FW	1977-04-14	Spain	68		5	3	302775
+es2:5	espn:150794	Charles	FW	1984-04-04	Brazil	64	63	4	4	302775
+es2:5	espn:125399	Pepe Díaz	FW	1980-04-20	Spain	68	68	4	3	302775
+es2:5	espn:76146	Iñigo Díaz de Cerio	FW	1984-05-15	Spain	63		4	1	302775
+es2:5	espn:143933	Oriol Riera	FW	1986-07-03	Spain	62		3	1	302775
+es2:5	espn:169598	Juanmi Callejón	MF	1987-02-11	Spain	59		2	0	302775
+es2:5	espn:87920	José Luis Cabrera	MF	1982-05-10	Spain	59		1	0	302775
+es2:5	espn:125357	Javi Flores	MF	1986-02-09	Spain	60	61	1	0	302984
+es2:5	espn:148610	Antonio Jesus Seoane Ochoa	MF	1989-05-30	Spain	57		1	0	302775
+es2:5	es2player:gerardo:1974-12-07	Gerardo	DF	1974-12-07	Spain	63	63	0	0	season-roster
+es2:6	espn:34949	Wilfredo Caballero	GK	1981-09-28	Argentina	68		4	4	303028
+es2:6	espn:140279	Leandro	GK	1989-02-28	Spain	59		2	0	302918
+es2:6	espn:125234	Edu Albacar	DF	1979-11-16	Spain	68		4	4	303028
+es2:6	espn:115058	Sergio Pelegrín	DF	1979-08-14	Spain	68		4	4	303028
+es2:6	espn:125334	Samuel	DF	1985-04-26	Spain	68	68	4	4	303028
+es2:6	espn:124085	Vasco Fernandes	DF	1986-11-12	Portugal	66	66	4	4	303028
+es2:6	espn:142594	Javier Carpio	DF	1984-04-06	Spain	63		3	1	303028
+es2:6	espn:125195	Jordi Xumetra	MF	1985-10-24	Spain	66		6	4	303028
+es2:6	espn:14546	Generelo	MF	1982-08-11	Spain	66	66	5	4	303028
+es2:6	espn:102994	José Acciari	MF	1978-11-29	Argentina	68		5	3	303028
+es2:6	espn:121632	Enrique Mateo Montoya	MF	1979-12-30	Spain	68		4	4	303028
+es2:6	espn:125331	Sergio Mantecón	MF	1980-06-08	Spain	68		4	3	302937
+es2:6	espn:140335	Miguel Linares Colera	FW	1982-09-30	Spain	67		4	4	303028
+es2:6	espn:24125	Rodolfo Bodipo	FW	1977-10-25	Equatorial Guinea	64		4	1	303028
+es2:6	espn:125203	Ángel Rodríguez	FW	1987-04-26	Spain	58		1	0	303028
+es2:6	espn:98835	Miguel Palanca	MF	1987-12-18	Spain	64		4	2	303028
+es2:6	espn:150796	Francisco Hernandez	MF	1989-07-31	Spain	59		3	0	303028
+es2:6	espn:125372	Mubarak Wakaso	MF	1990-07-25	Ghana	62		2	2	302918
+es2:6	espn:33519	David Sánchez	MF	1982-07-25	Spain	62		2	1	303028
+es2:6	espn:121614	Juan Quero	MF	1984-10-17	Spain	61		2	1	302918
+es2:6	espn:125728	Santos	MF	1980-01-19	Spain	66	67	2	0	303028
+es2:6	espn:125374	Jaime	GK	1980-12-10	Spain	60		1	0	303028
+es2:7	espn:83865	Chueca Ruben Perez	GK	1980-08-07	Spain	69		4	4	302833
+es2:7	espn:151408	Jose Sanchez Moragon	GK	1987-10-06	Spain	61		3	0	302833
+es2:7	espn:43671	Xisco Campos	DF	1982-03-10	Spain	67		4	4	302833
+es2:7	espn:125332	Raúl Fuster	DF	1985-07-23	Spain	63	63	4	2	302833
+es2:7	espn:112796	Alex Ortiz	DF	1985-09-25	Spain	66		3	3	302833
+es2:7	espn:63980	Manuel Ruz	DF	1986-04-05	Spain	62		3	1	302833
+es2:7	espn:121806	Marc Fachan	DF	1989-01-25	France	58		2	0	302833
+es2:7	espn:151409	Fernando Seoane	MF	1983-03-25	Spain	67		4	4	302833
+es2:7	espn:85340	David Medina	MF	1982-07-25	Spain	66	65	4	3	302833
+es2:7	espn:53410	Mingo	MF	1977-06-10	Spain	64	63	3	3	302691
+es2:7	espn:89099	Noriega Santovena Gerardo	MF	1982-03-10	Spain	67		3	3	302833
+es2:7	espn:29227	Ludovic Delporte	MF	1980-02-06	France	67	68	3	1	302691
+es2:7	espn:12268	Mendez Ruben Navarro	FW	1978-06-06	Spain	68		5	4	302833
+es2:7	espn:140330	Juan Domínguez Otaegui	FW	1983-12-29	Spain	67		5	4	302833
+es2:7	espn:140442	Walter Fernandez Balufo	FW	1989-08-14	Spain	63		5	2	302833
+es2:7	espn:43995	Berry Powel	FW	1980-05-02	Netherlands	63	63	5	1	302833
+es2:7	espn:129939	Abraham Gonzalez	MF	1985-07-16	Spain	59		2	0	302833
+es2:7	espn:102968	Pedro Mairata	MF	1979-01-15	Spain	62		1	1	303091
+es2:7	espn:152540	Eloy Gila	FW	1988-06-21	Spain	58		1	0	302833
+es2:7	es2player:rubennavarro:1978-09-09	Rubén Navarro	FW	1978-09-09	Spain	64	65	0	0	season-roster
+es2:7	es2player:juandominguez:1983-12-29	Juan Domínguez	FW	1983-12-29	Spain	62	63	0	0	season-roster
+es2:7	es2player:carlosmingo:1977-06-10	Carlos Mingo	DF	1977-06-10	Spain	59		0	0	season-roster
+es2:8	espn:14576	Dani Mallo	GK	1979-01-25	Spain	69		4	3	302909
+es2:8	espn:68590	Roberto Santamaría	GK	1985-02-17	Spain	62		2	1	302909
+es2:8	espn:125116	Albert Serra Figueras	DF	1978-10-06	Spain	68		4	4	302909
+es2:8	espn:125115	Miguel Ángel González	DF	1980-03-14	Argentina	68		4	4	302909
+es2:8	espn:150799	Luso	DF	1984-12-04	Spain	64		4	2	302760
+es2:8	espn:125114	José Martínez Cervera	DF	1983-06-10	Spain	67		3	3	302909
+es2:8	espn:28034	Francisco Noguerol	DF	1976-07-09	Spain	65		3	1	302909
+es2:8	espn:68354	Jandro	MF	1979-02-27	Spain	66	65	4	4	302909
+es2:8	espn:125964	Chechu	MF	1982-04-19	Spain	63	62	4	4	302909
+es2:8	espn:125130	Dorca	MF	1982-12-23	Spain	66	66	4	4	302909
+es2:8	espn:93591	Ángel Martínez	MF	1986-01-31	Spain	66		4	4	302909
+es2:8	espn:14555	Moha	MF	1977-09-12	Morocco	66	66	4	3	302909
+es2:8	espn:140303	Kiko Raton	FW	1976-09-19	Spain	68		4	4	302909
+es2:8	espn:121604	Roberto Peragón	FW	1978-02-07	Spain	68		4	4	302909
+es2:8	espn:125093	Ranko Despotović	FW	1983-01-21	Serbia	62	63	4	0	302909
+es2:8	espn:150798	Borja Sánchez	MF	1987-02-14	Spain	62		4	1	302909
+es2:8	espn:82544	Dani Bautista	DF	1981-02-25	Spain	64	64	3	1	302909
+es2:8	espn:81812	Francisco Pérez	MF	1986-01-03	Spain	61		2	1	302999
+es2:8	espn:94010	Walid Cherfa	DF	1986-02-24	France	61		2	1	302999
+es2:8	espn:13466	Gerard Lopez	MF	1979-03-12	Spain	61		2	0	302909
+es2:8	espn:71985	Marcos Tebar	MF	1986-02-07	Spain	59		2	0	302909
+es2:8	espn:150800	Victor Curto	FW	1982-06-17	Spain	61		1	1	302999
+es2:9	espn:121621	Roberto Fernández	GK	1979-01-25	Spain	72		3	3	302693
+es2:9	espn:113097	Raúl Fernández	GK	1988-03-13	Spain	64		1	1	302871
+es2:9	espn:151508	Manuel Lucena	DF	1982-11-18	Spain	70		4	3	302693
+es2:9	espn:136945	Allan Nyom	DF	1988-05-10	Cameroon	69		3	3	302693
+es2:9	espn:136638	Jonathan Mensah	DF	1990-07-13	Ghana	68		3	3	302693
+es2:9	espn:125697	Mainz	DF	1982-12-29	Spain	68		3	2	302672
+es2:9	espn:68457	Antonio Párraga	DF	1984-09-02	Spain	67		3	2	302693
+es2:9	espn:68456	Abel	MF	1982-02-20	Spain	68	67	4	3	302693
+es2:9	espn:125202	Carlos Calvo	MF	1985-09-18	Spain	70	71	4	2	302693
+es2:9	espn:125335	Daniel Gonzalez Benitez	MF	1987-04-07	Spain	69		3	3	302693
+es2:9	espn:70076	Fabián Orellana	MF	1986-01-27	Chile	70	71	3	2	302693
+es2:9	espn:125381	Ritchie Kitoko	MF	1988-07-11	Belgium	67	67	3	2	302672
+es2:9	espn:125092	Juan José Collantes	FW	1983-01-07	Spain	68		4	2	302693
+es2:9	espn:31041	Alexandre Geijo	FW	1982-03-11	Switzerland	70		3	3	302693
+es2:9	espn:151509	Tariq Spezie Sevilla	FW	1980-06-21	Spain	67		3	1	302693
+es2:9	espn:151507	Jonathan Martin Golpe	MF	1980-04-09	Spain	67		3	1	302693
+es2:9	espn:89201	Mikel Rico	MF	1984-11-04	Spain	66	66	2	2	302693
+es2:9	espn:125790	Alex Bergantińos	MF	1985-06-07	Spain	68	68	2	2	302693
+es2:9	espn:76104	Guilherme Siqueira	DF	1986-04-28	Brazil	64	64	2	2	302693
+es2:9	espn:125178	Oscar Perez	MF	1981-08-27	Spain	64	63	2	1	302693
+es2:9	espn:130293	Felipe	FW	1982-04-08	Spain	65		2	1	302693
+es2:9	espn:149561	Iñigo López	DF	1982-07-23	Spain	62	61	2	1	302693
+es2:10	espn:125379	Jésus Cabrero	GK	1981-07-28	Spain	68		4	4	303017
+es2:10	espn:125770	Jorge Larrosa Bolea	GK	1985-12-16	Spain	60		2	0	303017
+es2:10	espn:14507	Juan Ochoa	DF	1979-03-04	Spain	68		4	4	303017
+es2:10	espn:43321	Molinero	DF	1985-07-26	Spain	67	67	4	4	303017
+es2:10	espn:140337	Jon Echaide	DF	1988-01-05	Spain	66		4	3	303017
+es2:10	espn:125318	Sebastián Manuel Corona Nacarino	DF	1976-07-08	Spain	69		3	3	303017
+es2:10	espn:125423	Luis Roberto García Toral	DF	1973-05-30	Spain	64		2	1	303017
+es2:10	espn:54252	Juanjo Camacho	MF	1980-08-02	Spain	68		5	4	303017
+es2:10	espn:12006	Luis Helguera	MF	1976-06-09	Spain	67	66	4	4	303017
+es2:10	espn:144785	Gilvan Gomes Vieira	MF	1984-04-09	Brazil	67		4	4	303017
+es2:10	espn:97424	Lluis Sastre	MF	1986-03-26	Spain	66		4	4	303017
+es2:10	espn:125180	David Bauzá Francés	MF	1976-05-29	Spain	69		4	3	303017
+es2:10	espn:140213	Jorge Galán	FW	1989-01-22	Spain	65		6	3	303017
+es2:10	espn:125321	Roberto	FW	1980-02-04	Spain	65	64	4	4	303017
+es2:10	espn:85364	Óscar Vega	FW	1987-01-27	Spain	61	61	3	1	303017
+es2:10	espn:140339	Víctor Pérez	MF	1988-01-12	Spain	64		4	2	303017
+es2:10	espn:125348	Marcos Navas	MF	1982-09-21	Spain	63		4	1	303017
+es2:10	espn:12244	Francisco Gallardo	MF	1980-01-13	Spain	64		3	1	303017
+es2:10	espn:101333	Jokin Esparza	MF	1988-06-15	Spain	64	65	3	1	303017
+es2:10	espn:136183	Valen	MF	1991-02-14	Spain	61		3	1	303017
+es2:10	espn:152089	Marko Lukic	DF	1991-08-10	Spain	60		2	1	303017
+es2:10	espn:125420	Joaquín Sorribas Ariño	MF	1978-06-27	Spain	61		2	0	303017
+es2:11	espn:48362	Mariano Barbosa	GK	1984-07-24	Argentina	68		3	3	302868
+es2:11	es2player:pindado:1976-04-24	Pindado	GK	1976-04-24	Spain	63		0	0	season-roster
+es2:11	espn:125104	David García	DF	1982-02-25	Spain	66	66	3	3	302868
+es2:11	espn:151903	Aythami Álvarez	DF	1988-08-27	Spain	66		3	3	302868
+es2:11	espn:93749	Adrián Pollo	DF	1983-05-02	Spain	63		3	1	302868
+es2:11	espn:113646	Ruymán	DF	1986-10-15	Spain	62		3	1	302868
+es2:11	espn:125361	Daniel Carril Freire	DF	1980-07-28	Spain	65		2	2	303114
+es2:11	espn:125126	David González	MF	1981-08-25	Spain	65	64	4	3	302868
+es2:11	espn:150803	Vitolo	MF	1989-11-02	Spain	65		4	3	302868
+es2:11	espn:9458	Josico	MF	1975-01-06	Spain	64	62	3	3	302868
+es2:11	espn:140305	Alvaro Cejudo	MF	1984-01-29	Spain	67		3	3	302868
+es2:11	espn:150802	Jonathan Viera	MF	1989-10-21	Spain	65		3	3	302868
+es2:11	espn:12200	Antonio Guayre	FW	1980-04-23	Spain	66		3	2	302868
+es2:11	espn:24107	Francisco Javier Garcia Guerrero	FW	1976-10-22	Spain	65		2	2	303114
+es2:11	espn:152090	Mauro Quiroga	FW	1989-12-07	Argentina	59		1	1	303114
+es2:11	espn:39876	Stéphane Pignol	DF	1977-01-03	France	64	64	2	2	303114
+es2:11	espn:12355	Larena Jorge	MF	1981-09-29	Spain	64		2	2	303114
+es2:11	espn:106158	Samuel Fernandez	DF	1984-03-01	Spain	64		2	2	302868
+es2:11	espn:125205	Pedro Vega	MF	1979-07-19	Spain	64	65	2	1	303114
+es2:11	espn:135922	Juanpe	DF	1991-04-30	Spain	60		2	1	302868
+es2:11	espn:102982	Aythami Artiles	DF	1986-04-02	Spain	58		1	0	303091
+es2:11	espn:125108	Sergio Suárez	MF	1987-01-06	Spain	63	65	1	0	302868
+es2:12	espn:12216	Ińaki Lafuente	GK	1976-01-24	Spain	70		4	4	303054
+es2:12	espn:57109	Diego de Miguel	GK	1984-09-01	Spain	59		1	0	303054
+es2:12	espn:66183	Javier Flańo	DF	1984-08-19	Spain	67		4	4	303054
+es2:12	espn:28534	José Antonio Culebras	DF	1979-01-16	Spain	68		4	3	303054
+es2:12	espn:121615	Boris	DF	1980-05-26	Spain	65	65	2	2	302856
+es2:12	espn:13907	Egoitz Jaio	DF	1980-08-13	Spain	65		2	2	303054
+es2:12	espn:125106	Dani López	DF	1983-10-07	Spain	62	61	2	2	302856
+es2:12	espn:60268	Mario Martinez Rubio	MF	1985-03-25	Spain	66		5	3	303054
+es2:12	espn:12215	José Barkero	MF	1979-04-27	Spain	68		4	4	303054
+es2:12	espn:24271	Txomin Nagore	MF	1974-08-26	Spain	69		4	4	303054
+es2:12	espn:13854	Fernando Nano	MF	1982-04-20	Spain	67		4	4	303054
+es2:12	espn:102963	Dimas Delgado	MF	1983-02-06	Spain	67		4	4	303054
+es2:12	espn:102999	Inigo Velez	FW	1982-03-15	Spain	66	65	4	4	303054
+es2:12	espn:143232	Ibrahima Baldé	FW	1989-04-04	Senegal	63		3	2	303054
+es2:12	espn:147545	Diego Anton Perez	FW	1990-05-18	Spain	57		1	0	303054
+es2:12	espn:142124	Cedrick	MF	1992-03-08	Spain	63		4	2	303054
+es2:12	espn:33045	Oscar Hernandez	MF	1994-07-03	Chile	61		3	1	303054
+es2:12	espn:31898	Igor Angulo	MF	1984-01-26	Spain	61		3	0	303054
+es2:12	espn:121617	Manuel Pavón	DF	1984-02-27	Spain	64		2	2	303054
+es2:12	espn:140309	Mikel Álvaro	MF	1982-12-20	Spain	64	66	2	0	303054
+es2:12	espn:145315	Andres Victor	MF	1988-10-21	Spain	58		2	0	303054
+es2:12	espn:85302	Joseba Garmendia	MF	1985-10-04	Spain	60		1	1	302676
+es2:13	espn:151517	Ian Mackay	GK	1986-07-14	Spain	67		4	4	302693
+es2:13	espn:129151	Queco Piña	GK	1980-07-19	Spain	65		4	1	302693
+es2:13	espn:151520	Jano	DF	1980-04-04	Spain	68		4	4	302693
+es2:13	espn:151511	Jose Alcaide	DF	1979-02-08	Spain	68		4	4	302693
+es2:13	espn:125704	David Malo Azagra	DF	1980-08-21	Spain	64		3	1	302693
+es2:13	espn:102991	Ivan Cuadrado	DF	1979-02-21	Spain	64		3	1	302693
+es2:13	espn:151519	Ruben Alba	DF	1988-01-31	Spain	59		2	0	302693
+es2:13	espn:142756	Daniel Toribio	MF	1988-10-05	Spain	65		5	4	302693
+es2:13	espn:151514	Miguel Ángel	MF	1978-09-16	Spain	66	65	4	4	302693
+es2:13	espn:3272	Víctor Salas	MF	1980-06-16	Spain	64	64	4	0	302693
+es2:13	espn:140259	Cristian Garcia Ramos	MF	1981-11-21	Spain	67		3	3	302793
+es2:13	espn:125125	Francis Suárez	MF	1987-01-06	Spain	60	61	2	0	302693
+es2:13	espn:94346	Maceira Ivan Perez	FW	1985-11-16	Spain	66		5	4	302693
+es2:13	espn:151513	Máyor	FW	1984-01-23	Spain	67		4	4	302693
+es2:13	espn:13843	Rubén Vega	FW	1977-07-24	Spain	62	62	4	1	302693
+es2:13	espn:121596	Joseba Olmo	FW	1981-06-20	Spain	65		3	2	302693
+es2:13	espn:151512	Yuri	FW	1982-08-08	Brazil	63		3	1	302693
+es2:13	espn:125787	Gaizka Saizar	FW	1980-07-22	Spain	62		3	0	302693
+es2:13	espn:12212	Oscar De Paula	FW	1975-05-31	Spain	62		2	0	302693
+es2:13	espn:151518	David Mitogo	DF	1990-05-18	Spain	58		2	0	302693
+es2:13	espn:151516	Ivan Menendez Candela	DF	1978-09-13	Spain	62		1	1	302831
+es2:13	espn:89103	Alejandro García	GK	1984-01-13	Spain	60		1	0	302831
+es2:14	espn:70445	David Cobeño	GK	1982-04-06	Spain	71		4	4	302833
+es2:14	espn:140313	Dani Giménez	GK	1983-07-30	Spain	64		2	0	302833
+es2:14	espn:31687	Antonio Amaya	DF	1983-05-31	Spain	70		4	4	302833
+es2:14	espn:112810	Jose Casado	DF	1986-08-09	Spain	69		4	4	302833
+es2:14	espn:125758	Coke	DF	1987-04-26	Spain	69		4	4	302833
+es2:14	espn:143641	Alejandro Arribas	DF	1989-05-01	Spain	68		4	4	302833
+es2:14	espn:140312	Tito	DF	1985-07-11	Spain	64		2	1	302833
+es2:14	espn:24276	José María Movilla	MF	1975-02-08	Spain	72		4	4	302833
+es2:14	espn:122625	Emiliano Armenteros	MF	1986-01-18	Argentina	70	70	4	4	302833
+es2:14	espn:66410	Óscar Trejo	MF	1988-04-26	Argentina	69	69	4	4	302833
+es2:14	espn:136180	Borja García	MF	1990-11-02	Spain	68		4	4	302833
+es2:14	espn:68438	Javi Fuego	MF	1984-01-04	Spain	67	66	3	3	302833
+es2:14	espn:12082	David Aganzo	FW	1981-01-10	Spain	70		5	4	302833
+es2:14	espn:23946	Andrija Delibašić	FW	1981-04-24	Montenegro	69	70	4	1	302833
+es2:14	espn:140283	Juli	FW	1981-08-09	Spain	69	71	4	0	302833
+es2:14	espn:140850	Rafael García	MF	1986-01-14	Spain	65		3	1	302833
+es2:14	espn:146644	Daniel Provencio	MF	1987-10-07	Spain	63		3	0	302919
+es2:14	espn:107477	Néstor Susaeta	MF	1984-12-11	Spain	62		2	0	302833
+es2:14	espn:125759	Yuma	MF	1985-10-08	Spain	62		2	0	302833
+es2:14	espn:57088	Piti	MF	1981-05-26	Spain	66	67	1	0	302833
+es2:14	espn:149562	Borja Gómez	DF	1988-05-14	Spain	65	66	1	0	302919
+es2:14	es2player:jesusperera:1980-04-12	Jesús Perera	FW	1980-04-12	Spain	64	64	0	0	season-roster
+es2:15	espn:38042	Ińaki Goitia	GK	1982-03-02	Spain	71		3	3	302937
+es2:15	espn:86739	Ricardo Alexandre Pereira	GK	1976-02-11	Portugal	67		1	1	302871
+es2:15	espn:12102	David Belenguer	DF	1972-12-17	Spain	72		3	3	302937
+es2:15	espn:125317	Chechu Dorado	DF	1982-07-10	Spain	70		3	3	302937
+es2:15	espn:82531	Fernando Vega	DF	1984-07-03	Spain	69	69	3	2	302973
+es2:15	espn:124161	Miguel Lopes	DF	1986-12-19	Portugal	71	73	2	2	302937
+es2:15	espn:69431	Nélson	DF	1983-06-10	Spain	65		2	1	302871
+es2:15	espn:30692	Momo	MF	1982-07-15	Spain	72	72	4	3	302937
+es2:15	espn:24902	Ignacio Pérez Santamaría	MF	1980-06-24	Spain	71		3	3	302937
+es2:15	espn:30612	Iriney Santos Da Silva	MF	1981-04-23	Brazil	70		3	3	302937
+es2:15	espn:84618	Achille Emaná	MF	1982-06-05	Cameroon	74	76	3	3	302937
+es2:15	espn:112801	Salva Sevilla	MF	1984-03-18	Spain	71	71	3	3	302937
+es2:15	espn:68578	Rubén Castro	FW	1981-06-27	Spain	69	69	3	3	302937
+es2:15	espn:67178	Juan Caffa	FW	1984-09-30	Argentina	69		3	3	302937
+es2:15	espn:116111	Jorge Molina	FW	1982-04-22	Spain	72	73	2	2	302973
+es2:15	espn:13887	Juanma Gómez	MF	1981-05-29	Spain	66		3	1	302973
+es2:15	espn:46435	Bascon Israel	MF	1987-03-16	Spain	63		3	0	302937
+es2:15	espn:85300	Beñat 	MF	1987-02-19	Spain	63	63	3	0	302937
+es2:15	espn:130131	José Cañas	MF	1987-05-27	Spain	63		3	0	302937
+es2:15	espn:24286	Arzu	MF	1981-03-17	Spain	69	70	2	1	302871
+es2:15	espn:124143	Roversio Rodrigues De Barros	DF	1984-01-17	Spain	65		2	1	302871
+es2:15	espn:49950	Isidoro	DF	1986-08-01	Spain	64		2	1	302973
+es2:16	espn:103010	Jacobo Sanz Ovejero	GK	1983-07-10	Spain	65		1	1	302965
+es2:16	espn:115418	Justo Villar	GK	1977-06-30	Paraguay	64		1	0	302965
+es2:16	espn:125344	Carlos Peña	DF	1983-07-28	Spain	65		2	1	302965
+es2:16	espn:103012	Pedro López	DF	1983-11-01	Spain	70	72	1	1	302965
+es2:16	espn:53615	César Arzo	DF	1986-01-21	Spain	70	72	1	1	302965
+es2:16	espn:97423	Marc Valiente	DF	1987-03-29	Spain	63		1	1	302965
+es2:16	espn:113701	Guilherme Oliveira	DF	1988-02-05	Brazil	63		1	1	302965
+es2:16	espn:103009	Alvaro Camarero	MF	1983-12-28	Spain	65		2	1	302965
+es2:16	espn:14537	Álvaro Rubio	MF	1979-04-18	Spain	71	73	1	1	302965
+es2:16	espn:125243	Jorge Alonso	MF	1985-01-05	Spain	66	67	1	1	302965
+es2:16	espn:125109	Nauzet	MF	1985-02-25	Spain	69	71	1	1	302965
+es2:16	espn:103021	Sisinio Martínez	MF	1986-04-22	Spain	63		1	1	302965
+es2:16	espn:93329	Javi Guerra	FW	1982-03-15	Spain	68	70	1	1	302965
+es2:16	espn:13846	Jofre	FW	1980-01-24	Spain	66	67	1	0	302965
+es2:16	espn:104986	Alberto Bueno	FW	1988-03-20	Spain	61		1	0	302965
+es2:16	espn:103016	Javier Baraja	DF	1980-08-24	Spain	68	70	1	0	302965
+es2:16	espn:66521	Antonio Barragán	DF	1987-06-12	Spain	61		1	0	302965
+es2:16	espn:124639	Jesús Rueda	MF	1987-02-19	Spain	61		1	0	302965
+es2:16	espn:124641	Carlos Lazaro	MF	1990-11-13	Spain	65	67	1	0	302965
+es2:16	espn:124640	Quique González	FW	1990-05-16	Spain	60		1	0	302965
+es2:16	es2player:oscargonzalez:1982-11-12	Óscar González	MF	1982-11-12	Spain	70	73	0	0	season-roster
+es2:16	es2player:alhassanekeita:1983-06-26	Alhassane Keita	FW	1983-06-26	Guinea	70	73	0	0	season-roster
+es2:17	espn:93789	Fabri	GK	1987-12-31	Spain	65		4	2	302821
+es2:17	espn:68350	Bernardo	GK	1979-07-06	Spain	67		3	2	302821
+es2:17	espn:85392	David Córcoles	DF	1985-05-08	Spain	62		4	1	302821
+es2:17	espn:125324	Jose Mora	DF	1981-06-11	Spain	67		3	3	302821
+es2:17	espn:121631	Raúl Cámara	DF	1984-02-28	Spain	64	64	3	2	302821
+es2:17	espn:133259	Leandro Cabrera	DF	1991-06-17	Uruguay	66	67	3	2	302821
+es2:17	espn:119292	Andrés Lamas	DF	1984-01-16	Uruguay	64	65	2	1	302821
+es2:17	espn:85384	Antonio Jesus Vázquez	MF	1980-01-18	Spain	68		5	3	302821
+es2:17	espn:115021	Alex Quillo	MF	1986-10-07	Spain	66		5	3	302821
+es2:17	espn:83875	Manolo Martínez	MF	1980-06-15	Spain	66	65	4	3	302821
+es2:17	espn:125236	Emilio Sánchez	MF	1985-03-30	Spain	65	66	4	1	302821
+es2:17	espn:28531	Aitor Tornavaca	MF	1976-03-24	Spain	69		3	3	302821
+es2:17	espn:125122	Pablo Sánchez	FW	1983-01-24	Spain	65	65	5	2	302821
+es2:17	espn:125382	Juan Villar	FW	1988-05-19	Spain	66		4	3	302821
+es2:17	espn:68394	Javier Acuña	FW	1988-06-23	Paraguay	64		4	2	302821
+es2:17	espn:147491	Fidel	MF	1989-10-27	Spain	65		3	3	302821
+es2:17	espn:125336	Dani	FW	1981-09-16	Spain	64	64	3	2	302821
+es2:17	espn:46390	Kepa	FW	1984-01-13	Spain	66	68	2	1	302821
+es2:17	espn:148605	Aranda	MF	1988-07-24	Spain	61		2	1	302973
+es2:17	espn:141913	Jesús Hevia Martín	MF	1990-05-11	Spain	60		2	1	302973
+es2:17	espn:125118	Jordi Matamala Muntadas	MF	1976-05-18	Spain	62		2	0	302821
+es2:17	espn:24254	Poli	DF	1977-03-20	Spain	62	62	2	0	302821
+es2:18	espn:106375	Gabriel Ribas	GK	1985-12-02	Spain	67		4	4	303017
+es2:18	espn:101870	Angel Bernabe	GK	1987-08-11	Spain	60		2	0	303017
+es2:18	espn:140293	Hector Yuste	DF	1988-01-12	Spain	64	63	5	4	303017
+es2:18	espn:105634	Enrique López	DF	1988-01-12	Spain	64		5	2	303017
+es2:18	espn:24115	Jose Moraton Taeno	DF	1979-07-14	Spain	68		4	4	303017
+es2:18	espn:113228	Alejandro Zamora Barbero	DF	1984-04-22	Spain	67		4	4	303017
+es2:18	espn:150806	Anaitz Arbilla	DF	1987-05-15	Spain	66		4	4	303017
+es2:18	espn:68403	Miguel Angel García	MF	1979-09-26	Spain	68		5	4	303017
+es2:18	espn:33381	Pedro Perico	MF	1985-01-18	Spain	66		5	3	303017
+es2:18	espn:109296	Brian Sarmiento	MF	1990-04-22	Argentina	66	66	4	4	303017
+es2:18	espn:36658	Bordas Endika	MF	1982-03-08	Spain	67		4	3	303017
+es2:18	espn:72411	Carlos Valverde	MF	1985-02-19	Spain	59		2	0	303017
+es2:18	espn:125765	Quique Martín	FW	1972-12-29	Spain	66	65	5	2	303017
+es2:18	espn:46280	Juanjo	FW	1985-10-20	Spain	64	64	4	3	303017
+es2:18	espn:108818	Kabiru Akinsola	FW	1991-01-21	Nigeria	57		1	0	303017
+es2:18	espn:67791	Luis Castro Alcala Sito	DF	1980-05-21	Spain	68		4	3	303017
+es2:18	espn:140336	Alexander Goikoetxea Urkiaga	DF	1983-06-08	Spain	67		3	3	302691
+es2:18	espn:125244	Toti	MF	1987-09-21	Spain	64	66	2	0	303017
+es2:18	espn:146547	Sergio Garcia	MF	1989-08-08	Spain	58		2	0	302691
+es2:18	espn:26864	Adriano Rossato	DF	1977-08-27	Brazil	60		1	0	303017
+es2:18	espn:125327	Mario Alberto Rosas Montero	MF	1980-05-22	Spain	60		1	0	302691
+es2:18	espn:150807	Andres Cordero	DF	1988-03-02	Spain	58		1	0	303017
+es2:19	espn:30918	Sergio Aragoneses	GK	1977-02-01	Spain	72		4	3	303049
+es2:19	espn:125177	Luis García	GK	1979-04-23	Spain	68		3	1	303049
+es2:19	espn:55221	Marc Bertrán	DF	1982-05-22	Spain	72	72	5	4	303049
+es2:19	espn:121599	Grégory Béranger	DF	1981-08-30	France	66	65	4	4	303049
+es2:19	espn:26699	Melli	DF	1984-06-06	Spain	72	72	4	4	303049
+es2:19	espn:46884	Pablo Sicilia	DF	1981-09-10	Spain	67	67	3	2	303049
+es2:19	espn:48734	David Prieto	DF	1983-01-02	Spain	68	68	2	2	302989
+es2:19	espn:68504	Juan Luis Lorite	MF	1984-02-07	Spain	70		5	4	303049
+es2:19	espn:121609	Julio Álvarez	MF	1981-05-01	Spain	73	75	5	2	303049
+es2:19	espn:13837	Mikel Alonso	MF	1980-05-16	Spain	71	72	5	1	303049
+es2:19	espn:68454	Antonio Hidalgo	MF	1979-02-06	Spain	69	68	4	4	303049
+es2:19	espn:140362	Omar Ramos	MF	1988-01-26	Spain	68	68	4	4	303049
+es2:19	espn:85348	Nino	FW	1980-06-10	Spain	74	75	4	4	303049
+es2:19	espn:74837	Ricardinho	FW	1989-01-12	Brazil	68		4	4	303049
+es2:19	espn:102979	Natalio	FW	1984-09-18	Spain	68	67	4	3	303049
+es2:19	espn:94735	Iriome González	MF	1987-06-22	Spain	65		3	1	303049
+es2:19	espn:21732	Daniel N'Gom Kome	MF	1980-05-19	Cameroon	68	69	3	0	303049
+es2:19	espn:12266	Bellvís	MF	1985-04-24	Spain	62		2	0	303049
+es2:19	espn:67337	Ezequiel Luna	DF	1986-11-19	Argentina	66	68	2	0	303049
+es2:19	espn:125784	Moreno	DF	1986-05-17	Spain	66	67	1	0	303049
+es2:19	espn:137101	Aitor Nunez	DF	1987-10-02	Spain	65	66	1	0	302919
+es2:19	espn:125940	Cristo Martin	MF	1987-06-18	Spain	61		1	0	303061
+es2:20	espn:87982	Vicente Floro	GK	1987-11-05	Spain	65		3	2	302863
+es2:20	espn:140342	Diego Mariño	GK	1990-05-09	Spain	64		3	2	302793
+es2:20	espn:129711	Kiko	DF	1988-08-21	Spain	64		4	2	302793
+es2:20	espn:123991	Mano	DF	1987-04-09	Portugal	66		3	3	302793
+es2:20	espn:103897	Jaume Costa	DF	1988-03-18	Spain	62	61	3	3	302793
+es2:20	espn:133180	Mario	DF	1990-11-24	Spain	65	66	3	1	302863
+es2:20	espn:125783	Héctor Sánchez Cabrera	DF	1985-03-31	Spain	60		3	0	302793
+es2:20	espn:85394	Natxo Insa	MF	1986-06-09	Malaysia	66		3	3	302793
+es2:20	espn:96188	Facundo Coria	MF	1987-05-28	Argentina	66		3	3	302793
+es2:20	espn:140348	Carlos Tomas	MF	1988-05-18	Spain	66		3	3	302793
+es2:20	espn:131772	Marcos Gullon	MF	1989-02-20	Spain	65		3	3	302793
+es2:20	espn:45660	Marquitos	MF	1987-03-21	Spain	67	68	3	2	302793
+es2:20	espn:150812	Airam Cabrera	FW	1987-10-21	Spain	66		5	3	302793
+es2:20	espn:146570	Nico	FW	1988-11-06	Spain	61		4	1	302793
+es2:20	espn:125491	Iago Falqué	FW	1990-01-04	Spain	65		3	3	302793
+es2:20	espn:82474	Dorian Dervite	DF	1988-07-25	France	66	67	2	2	302863
+es2:20	espn:87171	Nickie Nielsen	MF	1988-02-07	Denmark	61		2	1	302793
+es2:20	espn:143644	Angel Ortega Garcia	DF	1989-11-20	Spain	60		2	1	302793
+es2:20	espn:152091	Mauricio Alves Peruchi	MF	1990-01-02	Brazil	60		2	1	302863
+es2:20	espn:151842	Diego Jiménez López	DF	1991-08-11	Spain	58		2	0	302863
+es2:20	espn:138417	Hernán Pérez	FW	1989-02-25	Paraguay	59		1	1	302965
+es2:20	espn:150810	Palastí	GK	1988-02-18	Spain	59		1	0	302863
+es2:21	espn:103000	Francisco Javier Lledó	GK	1979-07-11	Spain	69		3	3	302775
+es2:21	espn:125148	Chema	GK	1980-04-25	Spain	66		2	2	302681
+es2:21	espn:125144	Juan Luis Redondo	DF	1977-01-22	Spain	68		5	4	302775
+es2:21	espn:125692	Raúl Llorente	DF	1986-04-02	Spain	62		5	1	302775
+es2:21	espn:3263	Jesús Mendoza	DF	1977-02-23	Spain	68		4	4	302775
+es2:21	espn:113392	David Lombán	DF	1987-06-05	Spain	66		4	4	302775
+es2:21	espn:121629	Gerard Autet Serrabasa	DF	1978-09-08	Spain	65		2	2	302676
+es2:21	espn:14918	Pablo Redondo	MF	1982-04-17	Spain	66	65	5	3	302775
+es2:21	espn:12104	Capi	MF	1977-03-26	Spain	68	68	4	4	302775
+es2:21	espn:82541	Rafael Barber	MF	1980-10-02	Spain	67		4	4	302775
+es2:21	espn:28578	Vicente Moreno	MF	1974-10-26	Spain	69		4	4	302775
+es2:21	espn:103019	José Luis Capdevila	MF	1981-02-12	Spain	65		4	2	302775
+es2:21	espn:121817	Óscar Díaz	FW	1984-04-24	Spain	67	67	5	3	302775
+es2:21	espn:102976	Mario Bermejo	FW	1978-10-07	Spain	72	74	4	4	302775
+es2:21	espn:9430	José Mari	FW	1978-12-10	Spain	69	70	3	2	302775
+es2:21	espn:125353	Miguel Ángel Cordero	MF	1987-09-10	Spain	64		3	2	302775
+es2:21	espn:14564	Antonio Ramiro Perez	FW	1978-02-02	Spain	64		3	1	302775
+es2:21	espn:27832	Héctor Font	MF	1984-06-15	Spain	65	66	3	1	302775
+es2:21	espn:28102	Edu Moyá	DF	1981-01-03	Spain	62	62	2	1	302775
+es2:21	espn:125789	José Antonio Portela	DF	1984-10-22	Spain	58		1	0	303103
+es2:21	espn:76363	Bruno Herrero	MF	1985-02-13	Spain	63	65	1	0	303103
+es2:21	espn:134379	Mehrdad Oladi	FW	1985-05-25	Spain	58		1	0	302775
+es3:0	espn:161874	David de Navas	GK	1976-12-07	Spain	67		3	3	331824
+es3:0	espn:125739	Iván Gómez	GK	1980-02-02	Spain	61		3	0	331824
+es3:0	espn:161880	Toni Lao	DF	1984-01-17	Spain	65		3	3	331824
+es3:0	espn:125350	Óscar Ramírez Martín	DF	1984-03-01	Spain	65		3	3	331824
+es3:0	espn:79851	Jesús Olmo	DF	1985-01-24	Spain	64		3	3	331824
+es3:0	espn:142598	Redondo	DF	1985-01-11	Spain	64	64	3	3	331824
+es3:0	espn:166307	Yann Songo'o	DF	1991-11-19	Cameroon	56		2	0	331824
+es3:0	espn:161882	Albert Puigdollers	MF	1980-10-30	Spain	65		3	3	331824
+es3:0	espn:125356	David Pérez Arteaga	MF	1981-12-01	Spain	65		3	3	331824
+es3:0	espn:65405	Hector Escudero	MF	1984-03-13	Spain	65		3	3	331824
+es3:0	espn:114532	Aarón Bueno Gomez	MF	1983-08-21	Spain	63		3	2	331824
+es3:0	espn:161881	Adolfo Miranda Araujo	MF	1989-10-14	Spain	57		3	0	331824
+es3:0	espn:162733	Manuel Lanzarote	FW	1984-01-20	Spain	65		3	3	331824
+es3:0	espn:161887	Florian	FW	1986-01-31	Spain	64		3	3	331824
+es3:0	espn:101331	Fernandez Eneko	FW	1984-05-26	Spain	61		3	1	331824
+es3:0	espn:29818	Juvenal	MF	1979-04-03	Equatorial Guinea	59		2	0	331824
+es3:0	espn:41499	Nabil Baha	FW	1981-08-12	Morocco	58		2	0	331824
+es3:0	espn:102965	David Bermudo	DF	1979-01-14	Spain	58		1	0	331734
+es3:0	espn:25060	Barrero Pablo Ruiz	DF	1981-02-25	Spain	57		1	0	331824
+es3:0	espn:161884	Joaquín	FW	1982-11-28	Spain	57		1	0	331734
+es3:0	espn:140298	Álex Cruz	MF	1990-06-17	Spain	63	66	1	0	331792
+es3:0	es2player:pabloruiz:1981-02-25	Pablo Ruiz	DF	1981-02-25	Spain	65	67	0	0	season-roster
+es3:1	espn:27635	Mikel Saizar	GK	1983-01-18	Spain	66		3	3	331710
+es3:1	espn:161861	Jorge Sanmiguel	GK	1978-08-30	Spain	61		3	0	331710
+es3:1	espn:161864	Jorge	DF	1975-11-24	Spain	67		3	3	331710
+es3:1	espn:151503	Javier Barral	DF	1981-09-30	Spain	65		3	3	331710
+es3:1	espn:76373	Antonio Moreno	DF	1983-02-13	Spain	65		3	3	331710
+es3:1	espn:161863	Javier Sáiz Soria	DF	1984-05-16	Spain	65		3	3	331710
+es3:1	espn:115416	David Fernández	DF	1985-04-06	Spain	64		3	3	331710
+es3:1	espn:161870	Iván Moreno	MF	1981-02-26	Spain	65		3	3	331710
+es3:1	espn:106307	Jon Andoni García Arambillet	MF	1983-01-08	Spain	65		3	3	331710
+es3:1	espn:149560	Ernesto Gómez	MF	1985-04-26	Spain	64		3	3	331710
+es3:1	espn:164441	Jony	MF	1985-04-02	Spain	58		3	0	331710
+es3:1	espn:113576	Rodri	MF	1986-03-07	Spain	62	64	2	0	331710
+es3:1	espn:161872	Aníbal	FW	1982-12-03	Spain	65		3	3	331710
+es3:1	espn:21478	Joseba Arriaga	FW	1982-07-28	Spain	65		3	3	331710
+es3:1	espn:157347	Cristian Fernández Conchuela	FW	1988-12-22	Spain	56		2	0	331843
+es3:1	espn:161894	Ander Gago	DF	1984-09-10	Spain	58		3	0	331710
+es3:1	espn:127299	Mikael Gaffoor	DF	1987-01-21	France	58		3	0	331710
+es3:1	espn:147118	Victor Fernandez Maza	DF	1987-08-25	Spain	58		3	0	331710
+es3:1	espn:104073	Ryan Harper	FW	1987-04-16	Scotland	56		1	0	331710
+es3:1	espn:161873	Gerard Badia	MF	1989-10-18	Spain	55		1	0	333434
+es3:1	es2player:javigonzalez:1992-03-31	Javi González	GK	1992-03-31	Spain	57		0	0	season-roster
+es3:1	es2player:anibalzurdo:1981-12-03	Aníbal Zurdo	FW	1981-12-03	Mexico	56		0	0	season-roster

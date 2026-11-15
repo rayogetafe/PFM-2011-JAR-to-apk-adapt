@@ -15,7 +15,8 @@ public final class MatchEngine {
     private static final Profile DE2 = new Profile("de2", 1.08, 1.01, 835, 306, 69, 0, 0, 0);
     private static final Profile FR2 = new Profile("fr2", 1.015, 0.845, 891, 380, 123, 0.17, 0.33, -0.45);
     private static final Profile IT2 = new Profile("it2", 0.955, 0.877, 1077, 462, 157, 0.21, 0.36, -0.42);
-    public static Profile profile(String competition){String code=competition==null?"":competition;if(code.startsWith("league:"))code=code.substring(7);if(code.equals("en"))return EN;if(code.equals("es"))return ES;if(code.equals("it"))return IT;if(code.equals("it2")||code.equals("playoff:it2"))return IT2;if(code.equals("de"))return DE;if(code.equals("de2"))return DE2;if(code.equals("fr"))return FR;if(code.equals("fr2"))return FR2;return DEFAULT;}
+    private static final Profile ES2 = new Profile("es2", 1.03, 0.96, 1220, 462, 128, 0.14, 0.31, -0.36);
+    public static Profile profile(String competition){String code=competition==null?"":competition;if(code.startsWith("league:"))code=code.substring(7);if(code.equals("en"))return EN;if(code.equals("es"))return ES;if(code.equals("es2")||code.equals("playoff:es2"))return ES2;if(code.equals("it"))return IT;if(code.equals("it2")||code.equals("playoff:it2"))return IT2;if(code.equals("de"))return DE;if(code.equals("de2"))return DE2;if(code.equals("fr"))return FR;if(code.equals("fr2"))return FR2;return DEFAULT;}
     public static final class Team {
         private double attack, defence, midfield, keeper;
         private double aw, dw, mw, kw;

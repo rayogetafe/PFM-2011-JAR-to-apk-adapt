@@ -93,8 +93,8 @@ public final class PfmSeasonBridge {
         try{
             int league=field(ea.class,"a",Integer.TYPE).getInt(null);
             if(league==0&&totalRounds()==46)return "en2";
-            if (league == 2 || league == 3 || league == 4) {
-                String country = league == 2 ? "it" : league == 3 ? "de" : "fr";
+            if (league >= 1 && league <= 4) {
+                String country = league == 1 ? "es" : league == 2 ? "it" : league == 3 ? "de" : "fr";
                 try {
                     return pfm.android.EnglishLegacyIds.season(pfm.android.AndroidRuntime.context(), pfm2.getSeason())
                             .getString("league", country);
@@ -117,9 +117,10 @@ public final class PfmSeasonBridge {
 
     public static String teamName(){return name(userTeam());}
 
-    private static byte[] serieBFinalOrder(byte[] fallback, int played) {
-        if (played != 42 || !"it2".equals(leagueCode()) || fallback == null) return fallback;
-        List<String> finalOrder = NativeMatchJournal.serieBFinalOrder(AndroidRuntime.context(), pfm2.getSeason());
+    private static byte[] secondTierFinalOrder(byte[] fallback, int played) {
+        String league = leagueCode();
+        if (played != 42 || !("it2".equals(league) || "es2".equals(league)) || fallback == null) return fallback;
+        List<String> finalOrder = NativeMatchJournal.secondTierFinalOrder(AndroidRuntime.context(), pfm2.getSeason(), league);
         if (finalOrder.size() != fallback.length) return fallback;
         byte[] ordered = new byte[fallback.length];
         for (byte index : fallback) {
@@ -141,8 +142,8 @@ public final class PfmSeasonBridge {
             int p=played();
             int w=ub(u,"i"),l=ub(u,"j"),d=Math.max(0,p-w-l);
             int gf=ub(u,"k"),ga=ub(u,"l"),pts=ub(u,"h"),rank=ub(u,"m")+1;
-            if (p == 42 && "it2".equals(leagueCode())) {
-                byte[] order = serieBFinalOrder(tableOrder(), p);
+            if (p == 42 && ("it2".equals(leagueCode()) || "es2".equals(leagueCode()))) {
+                byte[] order = secondTierFinalOrder(tableOrder(), p);
                 if (order != null) for (int i = 0; i < order.length; i++) {
                     if ((order[i] & 255) == ub(u, "n")) rank = i + 1;
                 }
@@ -161,7 +162,7 @@ public final class PfmSeasonBridge {
             dw[] all=teams();byte[] order=tableOrder();dw u=userTeam();
             if(all==null||order==null)return new String[0];
             int p=played();
-            order=serieBFinalOrder(order,p);
+            order=secondTierFinalOrder(order,p);
             String[] out=new String[order.length];
             for(int r=0;r<order.length;r++){
                 int idx=order[r]&255;

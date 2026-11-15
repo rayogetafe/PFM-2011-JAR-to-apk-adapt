@@ -52,7 +52,7 @@ public final class PfmChampionshipEconomy {
         try {
             String league = PfmSeasonBridge.leagueCode();
             if (continental(league)) {
-                TICKET.setShort(HOME.get(null), "it2".equals(league) ? ClubEconomy.SERIE_B_TICKET : "fr2".equals(league) ? ClubEconomy.LIGUE2_TICKET : ClubEconomy.BUNDESLIGA2_TICKET);
+                TICKET.setShort(HOME.get(null), "es2".equals(league) ? ClubEconomy.SEGUNDA_TICKET : "it2".equals(league) ? ClubEconomy.SERIE_B_TICKET : "fr2".equals(league) ? ClubEconomy.LIGUE2_TICKET : ClubEconomy.BUNDESLIGA2_TICKET);
             } else if ("en2".equals(league) && profile((dw) HOME.get(null)) != null) {
                 TICKET.setShort(HOME.get(null), ClubEconomy.CHAMPIONSHIP_TICKET);
             }
@@ -83,7 +83,7 @@ public final class PfmChampionshipEconomy {
     }
 
     private static boolean continental(String league) {
-        return "de2".equals(league) || "fr2".equals(league) || "it2".equals(league);
+        return "de2".equals(league) || "fr2".equals(league) || "it2".equals(league) || "es2".equals(league);
     }
 
     private static void settleContinentalRound(String league) throws ReflectiveOperationException, IOException {

@@ -36,7 +36,7 @@ final class NativeCareerStore {
     private static int legacyBudget(){try{return ((Number)Class.forName("PfmTransferBridge").getMethod("budget").invoke(null)).intValue();}catch(Throwable t){return 0;}}
     private static SharedPreferences identity(Context c){return c.getSharedPreferences("pfm_native_career_identity_v67",0);}
     private static String identityKey(){return "slot_"+NativeWorldCenter.slot();}
-    private static boolean sameCareer(Context c,Career old){int saved=identity(c).getInt(identityKey(),0),current=NativeWorldCenter.careerSeed();if(saved!=0&&saved!=current)return false;String league=activeLeague(),club=userClub();return club.equalsIgnoreCase(old.userClub)&&(league.equals(old.activeLeague)||EuropeanPlaces.association(league).equals(EuropeanPlaces.association(old.activeLeague))&&(NativeEnglishDivisions.includes(league)||NativeGermanDivisions.includes(league)||NativeFrenchDivisions.includes(league)||NativeItalianDivisions.includes(league))&&EnglishLegacyIds.installed(c,NativeWorldCenter.season()));}
+    private static boolean sameCareer(Context c,Career old){int saved=identity(c).getInt(identityKey(),0),current=NativeWorldCenter.careerSeed();if(saved!=0&&saved!=current)return false;String league=activeLeague(),club=userClub();return club.equalsIgnoreCase(old.userClub)&&(league.equals(old.activeLeague)||EuropeanPlaces.association(league).equals(EuropeanPlaces.association(old.activeLeague))&&(NativeEnglishDivisions.includes(league)||NativeGermanDivisions.includes(league)||NativeFrenchDivisions.includes(league)||NativeItalianDivisions.includes(league)||NativeSpanishDivisions.includes(league))&&EnglishLegacyIds.installed(c,NativeWorldCenter.season()));}
     private static void markCareer(Context c,boolean fresh){String key=identityKey();SharedPreferences p=identity(c);SharedPreferences.Editor e=p.edit().putInt(key,NativeWorldCenter.careerSeed());if(fresh||!p.contains(key+"_aiAfter"))e.putInt(key+"_aiAfter",Math.max(-1,NativeWorldCenter.played()-(fresh?0:1)));e.commit();}
     static boolean aiReady(Context c){SharedPreferences p=identity(c);String key=identityKey();return p.getInt(key,0)==NativeWorldCenter.careerSeed()&&NativeWorldCenter.played()>p.getInt(key+"_aiAfter",-1);}
     private static void resetLegacy(){try{Class.forName("PfmNativeRosterAdapter").getMethod("resetCareer").invoke(null);}catch(Throwable ignored){}}
@@ -55,6 +55,7 @@ final class NativeCareerStore {
             boolean bundesliga2 = NativeBundesliga2.CODE.equals(code);
             boolean ligue2 = NativeLigue2.CODE.equals(code);
             boolean serieB = NativeSerieB.CODE.equals(code);
+            boolean segunda = NativeSegunda.CODE.equals(code) || NativeSegunda.INACTIVE.equals(code);
             ArrayList<NativeWorldCenter.T> teams = NativeWorldCenter.leagues.get(code);
             if (teams == null) continue;
             for (NativeWorldCenter.T team : teams) {
@@ -63,7 +64,7 @@ final class NativeCareerStore {
                 club.sourceId = team.id;
                 club.name = team.name;
                 club.league = code;
-                club.activeFrom = championship || bundesliga2 || ligue2 || serieB
+                club.activeFrom = NativeSegunda.INACTIVE.equals(code) ? Integer.MAX_VALUE : championship || bundesliga2 || ligue2 || serieB || segunda
                         ? championshipStart(career.season, NativeWorldCenter.played()) : team.activeFrom;
                 career.clubs.add(club);
                 long wages = 0, values = 0;
@@ -76,7 +77,7 @@ final class NativeCareerStore {
                     player.provenance = source.provenance == null ? "LEGACY_TOP5" : source.provenance;
                     player.sourceId = source.id;
                     player.position = source.pos;
-                    player.age = championship || bundesliga2 || ligue2 || serieB
+                    player.age = championship || bundesliga2 || ligue2 || serieB || segunda
                             ? Math.min(50, source.age + Math.max(0, career.season - 2010)) : source.age;
                     player.overall = source.ovr;
                     player.spe = source.spe;
@@ -92,10 +93,10 @@ final class NativeCareerStore {
                 }
                 club.wageBudget = (int) Math.min(Integer.MAX_VALUE, Math.max(1_000_000L, wages * 115L / 100L));
                 club.balance = (int) Math.min(500_000_000L, Math.max(2_000_000L, values / 4L));
-                if (championship || bundesliga2 || ligue2 || serieB) {
+                if (championship || bundesliga2 || ligue2 || serieB || segunda) {
                     ClubEconomy.Profile ground = ClubEconomy.profile(context, club.id);
                     if (ground == null) throw new IOException("Missing stadium profile for " + club.id);
-                    club.balance = serieB ? NativeSerieB.openingCash(ground) : ligue2 ? NativeLigue2.openingCash(ground)
+                    club.balance = segunda ? NativeSegunda.openingCash(ground) : serieB ? NativeSerieB.openingCash(ground) : ligue2 ? NativeLigue2.openingCash(ground)
                             : bundesliga2 ? NativeBundesliga2.openingCash(ground) : ground.openingCash();
                 }
                 if (code.equals(career.activeLeague) && team.name.equalsIgnoreCase(career.userClub)) {
@@ -126,7 +127,7 @@ final class NativeCareerStore {
         if(c.slot!=NativeWorldCenter.slot())return "wrong career slot";
         HashSet<String> players=new HashSet<>();
         HashMap<String,Integer> sizes=new HashMap<>();
-        int championship=0,bundesliga2=0,ligue2=0,serieB=0;
+        int championship=0,bundesliga2=0,ligue2=0,serieB=0,segunda=0,standby=0;
         for(Club club:c.clubs){
             if(club.id==null||sizes.put(club.id,0)!=null)return "duplicate club id";
             if(club.balance<0||club.wageBudget<=0)return "invalid club finance";
@@ -134,6 +135,8 @@ final class NativeCareerStore {
             if(NativeBundesliga2.CODE.equals(club.league))bundesliga2++;
             if(NativeLigue2.CODE.equals(club.league))ligue2++;
             if(NativeSerieB.CODE.equals(club.league))serieB++;
+            if(NativeSegunda.CODE.equals(club.league))segunda++;
+            if(NativeSegunda.INACTIVE.equals(club.league))standby++;
         }
         for(Player x:c.players){
             if(x.id==null||!players.add(x.id))return "duplicate player id";
@@ -150,8 +153,9 @@ final class NativeCareerStore {
         if(bundesliga2!=0&&bundesliga2!=NativeBundesliga2.CLUBS)return "incomplete 2. Bundesliga";
         if(ligue2!=0&&ligue2!=NativeLigue2.CLUBS)return "incomplete Ligue 2";
         if(serieB!=0&&serieB!=NativeSerieB.CLUBS)return "incomplete Serie B";
-        int added=(serieB==0?0:NativeSerieB.PLAYERS)+(ligue2==0?0:NativeLigue2.PLAYERS)+(championship==0?0:NativeChampionship.PLAYERS)+(bundesliga2==0?0:NativeBundesliga2.PLAYERS);
-        if(c.clubs.size()!=227+championship+bundesliga2+ligue2+serieB||c.players.size()<4527+added||c.players.size()>4865+added)return "unexpected import size";
+        if((segunda!=0||standby!=0)&&(segunda!=NativeSegunda.CLUBS||standby!=2))return "incomplete Segunda";
+        int added=(segunda==0?0:NativeSegunda.PLAYERS)+(serieB==0?0:NativeSerieB.PLAYERS)+(ligue2==0?0:NativeLigue2.PLAYERS)+(championship==0?0:NativeChampionship.PLAYERS)+(bundesliga2==0?0:NativeBundesliga2.PLAYERS);
+        if(c.clubs.size()!=227+championship+bundesliga2+ligue2+serieB+segunda+standby||c.players.size()<4527+added||c.players.size()>4865+added)return "unexpected import size";
         return "OK";
     }
     private static JSONObject json(Career c)throws Exception{JSONObject root=new JSONObject();root.put("schema",c.schema);root.put("slot",c.slot);root.put("season",c.season);root.put("created",c.created);root.put("aiWindow",c.aiWindow);root.put("aiCountWindow",c.aiCountWindow);root.put("aiCount",c.aiCount);root.put("activeLeague",c.activeLeague);root.put("userClub",c.userClub);JSONArray clubs=new JSONArray();for(Club x:c.clubs){JSONObject o=new JSONObject();o.put("id",x.id);o.put("name",x.name);o.put("league",x.league);o.put("sourceId",x.sourceId);o.put("balance",x.balance);o.put("wageBudget",x.wageBudget);o.put("activeFrom",x.activeFrom);clubs.put(o);}root.put("clubs",clubs);JSONArray players=new JSONArray();for(Player x:c.players){JSONObject o=new JSONObject();o.put("id",x.id);o.put("name",x.name);o.put("owner",x.owner);o.put("nationality",x.nationality);o.put("provenance",x.provenance);o.put("sourceId",x.sourceId);o.put("position",x.position);o.put("age",x.age);o.put("overall",x.overall);o.put("spe",x.spe);o.put("res",x.res);o.put("qua",x.qua);o.put("morale",x.morale);o.put("value",x.value);o.put("wage",x.wage);o.put("contractWage",x.contractWage);o.put("contractUntil",x.contractUntil);o.put("contractGrace",x.contractGrace);players.put(o);}root.put("players",players);JSONArray deals=new JSONArray();for(Deal x:c.deals){JSONObject o=new JSONObject();o.put("player",x.player);o.put("from",x.from);o.put("to",x.to);o.put("fee",x.fee);o.put("wage",x.wage);o.put("years",x.years);o.put("season",x.season);o.put("ai",x.ai);deals.put(o);}root.put("deals",deals);JSONArray receipts=new JSONArray();for(String id:c.matchReceipts)receipts.put(id);root.put("matchReceipts",receipts);root.put("matchBudgetPending",c.matchBudgetPending);return root;}
@@ -175,7 +179,7 @@ final class NativeCareerStore {
     }
     private static String read(File f)throws Exception{BufferedReader r=new BufferedReader(new InputStreamReader(new FileInputStream(f),"UTF-8"));StringBuilder b=new StringBuilder();char[] q=new char[8192];int n;while((n=r.read(q))>0)b.append(q,0,n);r.close();return b.toString();}
     private static void writeAtomic(Context c,Career career)throws Exception{File target=file(c),bak=backup(c),tmp=new File(target.getParentFile(),target.getName()+".tmp");FileOutputStream out=new FileOutputStream(tmp);byte[] data=json(career).toString().getBytes("UTF-8");out.write(data);out.flush();out.getFD().sync();out.close();Career check=parse(read(tmp));String audit=validate(check);if(!"OK".equals(audit)){tmp.delete();throw new IOException(audit);}if(target.exists()){if(bak.exists())bak.delete();if(!target.renameTo(bak))throw new IOException("backup rename failed");}if(!tmp.renameTo(target)){if(bak.exists())bak.renameTo(target);throw new IOException("atomic rename failed");}}
-    private static void advance(Context context,Career c,int targetSeason)throws IOException{Club user=null;for(Club club:c.clubs)if(club.league.equals(c.activeLeague)&&club.name.equalsIgnoreCase(c.userClub))user=club;while(c.season<targetSeason){NativeEnglishDivisions.rollover(context,c,c.season+1);NativeGermanDivisions.rollover(context,c,c.season+1);NativeFrenchDivisions.rollover(context,c,c.season+1);NativeItalianDivisions.rollover(context,c,c.season+1);c.season++;for(Player p:c.players){p.age=Math.min(50,p.age+1);p.morale=55;if(p.contractUntil<c.season){if(user!=null&&user.id.equals(p.owner)){p.contractUntil=c.season;p.contractGrace=true;}else{p.contractUntil=c.season+1+((p.id.hashCode()&0x7fffffff)%3);p.contractGrace=false;}}}c.aiWindow=-1;}}
+    private static void advance(Context context,Career c,int targetSeason)throws IOException{Club user=null;for(Club club:c.clubs)if(club.league.equals(c.activeLeague)&&club.name.equalsIgnoreCase(c.userClub))user=club;while(c.season<targetSeason){NativeEnglishDivisions.rollover(context,c,c.season+1);NativeGermanDivisions.rollover(context,c,c.season+1);NativeFrenchDivisions.rollover(context,c,c.season+1);NativeItalianDivisions.rollover(context,c,c.season+1);NativeSpanishDivisions.rollover(context,c,c.season+1);c.season++;for(Player p:c.players){p.age=Math.min(50,p.age+1);p.morale=55;if(p.contractUntil<c.season){if(user!=null&&user.id.equals(p.owner)){p.contractUntil=c.season;p.contractGrace=true;}else{p.contractUntil=c.season+1+((p.id.hashCode()&0x7fffffff)%3);p.contractGrace=false;}}}c.aiWindow=-1;}}
     private static Career readSnapshot(File snapshot) {
         try { return snapshot.exists() ? parse(read(snapshot)) : null; }
         catch (Exception ignored) { return null; }
@@ -188,7 +192,7 @@ final class NativeCareerStore {
         if (nonce == 0 || identity(context).getInt(identityKey(), 0) != nonce) return null;
         Career saved = readSnapshot(file(context));
         if (saved == null || saved.season != year || !country.equals(EuropeanPlaces.association(saved.activeLeague)) ||
-                !("it".equals(country) ? NativeSerieB.active(saved, year) : "fr".equals(country) ? NativeLigue2.active(saved, year)
+                !("es".equals(country) ? NativeSegunda.active(saved, year) : "it".equals(country) ? NativeSerieB.active(saved, year) : "fr".equals(country) ? NativeLigue2.active(saved, year)
                         : "de".equals(country) ? NativeBundesliga2.active(saved, year) : NativeChampionship.active(saved, year)) ||
                 !"OK".equals(validate(saved))) return null;
         return saved;
@@ -206,18 +210,19 @@ final class NativeCareerStore {
             changed = true;
         }
         if (!"OK".equals(validate(saved))) return null;
-        if (!hasChampionship(saved) || !NativeBundesliga2.present(saved) || !NativeLigue2.active(saved, Integer.MAX_VALUE) || !NativeSerieB.active(saved, Integer.MAX_VALUE)) {
+        if (!hasChampionship(saved) || !NativeBundesliga2.present(saved) || !NativeLigue2.active(saved, Integer.MAX_VALUE) || !NativeSerieB.active(saved, Integer.MAX_VALUE) || !NativeSegunda.active(saved, Integer.MAX_VALUE)) {
             Career seed = imported(c);
             installChampionship(saved, seed);
             NativeBundesliga2.install(saved, seed);
             NativeLigue2.install(saved, seed);
             NativeSerieB.install(saved, seed);
+            NativeSegunda.install(saved, seed);
             requireSecondDivisions(saved);
             changed = true;
         }
         Club managed = user(saved);
         if (managed != null && (NativeChampionship.CODE.equals(saved.activeLeague) ||
-                NativeGermanDivisions.includes(saved.activeLeague) || NativeFrenchDivisions.includes(saved.activeLeague) || NativeItalianDivisions.includes(saved.activeLeague)) && !saved.matchBudgetPending) {
+                NativeGermanDivisions.includes(saved.activeLeague) || NativeFrenchDivisions.includes(saved.activeLeague) || NativeItalianDivisions.includes(saved.activeLeague) || NativeSpanishDivisions.includes(saved.activeLeague)) && !saved.matchBudgetPending) {
             int balance = Math.max(0, legacyBudget());
             if (managed.balance != balance) {
                 managed.balance = balance;
@@ -245,7 +250,7 @@ final class NativeCareerStore {
         if (fresh.season == 2010 && NativeWorldCenter.played() <= 1) {
             for (Club club : fresh.clubs) {
                 if (NativeChampionship.CODE.equals(club.league) || NativeBundesliga2.CODE.equals(club.league) ||
-                        NativeLigue2.CODE.equals(club.league) || NativeSerieB.CODE.equals(club.league)) club.activeFrom = 2010;
+                        NativeLigue2.CODE.equals(club.league) || NativeSerieB.CODE.equals(club.league) || NativeSegunda.CODE.equals(club.league)) club.activeFrom = 2010;
             }
         }
         writeAtomic(c,fresh);
@@ -253,7 +258,7 @@ final class NativeCareerStore {
         return fresh;
     }
     private static void requireSecondDivisions(Career career) throws IOException {
-        if (!hasChampionship(career) || !NativeBundesliga2.present(career) || !NativeLigue2.active(career, Integer.MAX_VALUE) || !NativeSerieB.active(career, Integer.MAX_VALUE)) {
+        if (!hasChampionship(career) || !NativeBundesliga2.present(career) || !NativeLigue2.active(career, Integer.MAX_VALUE) || !NativeSerieB.active(career, Integer.MAX_VALUE) || !NativeSegunda.active(career, Integer.MAX_VALUE)) {
             throw new IOException("Second-division seed unavailable");
         }
     }

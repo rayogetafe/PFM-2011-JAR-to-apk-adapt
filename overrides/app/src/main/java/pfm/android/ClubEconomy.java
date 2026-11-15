@@ -16,6 +16,8 @@ public final class ClubEconomy {
     public static final short LIGUE1_TICKET = 45;
     public static final short SERIE_B_TICKET = 35;
     public static final short SERIE_A_TICKET = 45;
+    public static final short SEGUNDA_TICKET = 36;
+    public static final short LALIGA_TICKET = 48;
     private static final int CHAMPIONSHIP_DISTRIBUTION = 25_000;
     private static Map<String, Profile> profiles;
 
@@ -50,18 +52,20 @@ public final class ClubEconomy {
     }
 
     public static int secondTierAttendance(String league, String club, Profile ground) {
+        if ("es2".equals(league)) return club.startsWith("es:") ? ground.attendance * 2 / 3 : ground.attendance;
         if ("it2".equals(league)) return club.startsWith("it:") ? ground.attendance * 2 / 3 : ground.attendance;
         if (!"fr2".equals(league)) return germanSecondTierAttendance(club, ground);
         return club.startsWith("fr:") ? ground.attendance * 2 / 3 : ground.attendance;
     }
 
     public static int secondTierDistribution(String league, int attendance) {
+        if ("es2".equals(league)) return 65_000 + attendance * 2;
         if ("it2".equals(league)) return 63_000 + attendance * 2;
         return "fr2".equals(league) ? 72_000 + attendance * 2 : germanSecondTierDistribution(attendance);
     }
 
     public static int secondTierPayroll(String league, long payroll) {
-        if ("it2".equals(league)) return (int) (payroll / 42);
+        if ("it2".equals(league) || "es2".equals(league)) return (int) (payroll / 42);
         return "fr2".equals(league) ? (int) (payroll / 38) : germanSecondTierPayroll(payroll);
     }
 

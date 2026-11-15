@@ -45,7 +45,7 @@ final class NativeSecondDivisionRegistry {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 List<String[]> rows = clubs.get(CODES[position]);
                 String code = CODES[position];
-                boolean hasSquads = "en2".equals(code) || "de2".equals(code) || "fr2".equals(code) || "it2".equals(code);
+                boolean hasSquads = "en2".equals(code) || "de2".equals(code) || "fr2".equals(code) || "it2".equals(code) || "es2".equals(code);
                 status.setText(rows.size() + " clubs · 2010/11 club directory\n" +
                         (hasSquads ? "Tap a club for its August 2010 squad and stadium." : "Squad research pending."));
                 list.setOnItemClickListener(hasSquads ? (p, v, index, rowId) -> showSquad(activity, rows.get(index)) : null);
@@ -91,8 +91,9 @@ final class NativeSecondDivisionRegistry {
         boolean championship = "en2".equals(club[1]);
         boolean french = "fr2".equals(club[1]);
         boolean italian = "it2".equals(club[1]);
-        String asset = championship ? "championship_squads_2010.tsv" : french ? "ligue2_squads_2010.tsv" : italian ? "serie_b_squads_2010.tsv" : "bundesliga2_squads_2010.tsv";
-        String ageDate = championship ? "08-07" : french ? "08-06" : "08-20";
+        boolean spanish = "es2".equals(club[1]);
+        String asset = championship ? "championship_squads_2010.tsv" : french ? "ligue2_squads_2010.tsv" : italian ? "serie_b_squads_2010.tsv" : spanish ? "segunda_squads_2010.tsv" : "bundesliga2_squads_2010.tsv";
+        String ageDate = championship ? "08-07" : french ? "08-06" : spanish ? "08-27" : "08-20";
         List<String> players = new ArrayList<>();
         ClubEconomy.Profile stadium;
         try (BufferedReader in = new BufferedReader(new InputStreamReader(
@@ -120,7 +121,7 @@ final class NativeSecondDivisionRegistry {
         note.setPadding(dp(activity, 12), dp(activity, 8), dp(activity, 12), dp(activity, 8));
         String source = championship ? "August match squads · ages on 7 August"
                 : french ? "August match squads · ages on 6 August"
-                : italian ? "August squads · ages on 20 August" : "DFB squad at 31 August · ages on 20 August";
+                : italian ? "August squads · ages on 20 August" : spanish ? "August squads · ages on 27 August" : "DFB squad at 31 August · ages on 20 August";
         String stadiumLine = stadium == null ? "" : String.format(Locale.ENGLISH,
                 "%s · %,d capacity · %,d average attendance\n", stadium.stadium, stadium.capacity, stadium.attendance);
         note.setText(stadiumLine + players.size() + " players · " + source +

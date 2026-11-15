@@ -61,12 +61,13 @@ public final class NativeHistory {
             if(tableMode[0]){
                 final ArrayList<TableRow> rs=table(y);
                 final String seasonLeague = NativeEnglishDivisions.includes(league) ? (rs.size() == 24 ? "en2" : "en")
-                        : NativeGermanDivisions.includes(league) || NativeFrenchDivisions.includes(league) || NativeItalianDivisions.includes(league)
+                        : NativeGermanDivisions.includes(league) || NativeFrenchDivisions.includes(league) || NativeItalianDivisions.includes(league) || NativeSpanishDivisions.includes(league)
                         ? EnglishLegacyIds.season(a, y).getString("league", EuropeanPlaces.association(league)) : league;
                 legend.setText("en2".equals(seasonLeague) ? "GREEN · AUTOMATIC PROMOTION    BLUE · PLAY-OFFS"
                         : NativeGermanDivisions.includes(seasonLeague) ? NativeGermanDivisions.legend(seasonLeague)
                         : NativeLigue2.CODE.equals(seasonLeague) ? "GREEN · AUTOMATIC PROMOTION"
                         : NativeSerieB.CODE.equals(seasonLeague) ? "GREEN · AUTOMATIC PROMOTION    BLUE · POTENTIAL PLAY-OFFS"
+                        : NativeSegunda.CODE.equals(seasonLeague) ? "PROMOTION PLACES EXCLUDE RESERVE TEAMS"
                         : "CHAMPIONS LEAGUE     EUROPA LEAGUE     RELEGATION");
                 list.setAdapter(new ArrayAdapter<TableRow>(a,android.R.layout.simple_list_item_1,rs){@Override public View getView(int pos,View cv,ViewGroup parent){TableRow r=getItem(pos);String badge=NativeEnglishDivisions.badge(a,r.club,seasonLeague,r.teamId);LinearLayout row=tableRow(a,String.valueOf(r.rank),r.club,String.valueOf(r.p),String.valueOf(r.w),String.valueOf(r.d),String.valueOf(r.l),String.valueOf(r.gf),String.valueOf(r.ga),(r.gd>0?"+":"")+r.gd,String.valueOf(r.pts),r.user,badge);GradientDrawable bg=new GradientDrawable();bg.setColor(zoneColor(seasonLeague,r.rank,rs.size()));if(r.user)bg.setStroke(dp(a,2),0xff2e7d32);row.setBackground(bg);return row;}});
             }else{

@@ -12,7 +12,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        division: [championship, bundesliga2, ligue2, serieb]
+        division: [championship, bundesliga2, ligue2, serieb, segunda]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/download-artifact@v4

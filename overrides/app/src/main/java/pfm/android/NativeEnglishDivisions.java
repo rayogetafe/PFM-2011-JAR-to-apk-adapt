@@ -108,13 +108,14 @@ final class NativeEnglishDivisions {
     }
 
     static String badge(Context context, String clubName, String league, int slot) {
-        if (includes(league) || NativeGermanDivisions.includes(league) || NativeFrenchDivisions.includes(league) || NativeItalianDivisions.includes(league)) {
+        if (includes(league) || NativeGermanDivisions.includes(league) || NativeFrenchDivisions.includes(league) || NativeItalianDivisions.includes(league) || NativeSpanishDivisions.includes(league)) {
             if (NativeWorldCenter.leagues == null) NativeWorldCenter.load(context);
             String country = EuropeanPlaces.association(league);
-            for (String origin : Arrays.asList(country, country + "2")) {
+            for (String origin : "es".equals(country) ? Arrays.asList("es", "es2", "es3") : Arrays.asList(country, country + "2")) {
                 List<NativeWorldCenter.T> clubs = NativeWorldCenter.leagues.get(origin);
                 if (clubs != null) for (NativeWorldCenter.T club : clubs) {
                     if (!club.name.equalsIgnoreCase(clubName)) continue;
+                    if ("es3".equals(origin)) return "segunda_replacement_badges/es3_" + club.id + ".png";
                     return origin.endsWith("2") ? "second_division_badges/" + origin + "_" + club.id + ".png" :
                             "badges/" + origin + (club.id + 1) + ".png";
                 }

@@ -29,9 +29,10 @@ public final class PfmEnglishSeasonBridge {
         boolean germany = "de".equals(country);
         boolean france = "fr".equals(country);
         boolean italy = "it".equals(country);
-        String lower = germany ? "2. Bundesliga" : france ? "Ligue 2" : italy ? "Serie B" : "Championship";
-        activity.runOnUiThread(() -> new AlertDialog.Builder(activity).setTitle(germany ? "German division" : france ? "French division" : italy ? "Italian division" : "English division")
-                .setItems(new String[]{germany ? "Bundesliga" : france ? "Ligue 1" : italy ? "Serie A" : "Premier League", lower}, (dialog, choice) -> {
+        boolean spain = "es".equals(country);
+        String lower = germany ? "2. Bundesliga" : france ? "Ligue 2" : italy ? "Serie B" : spain ? "Segunda División" : "Championship";
+        activity.runOnUiThread(() -> new AlertDialog.Builder(activity).setTitle(germany ? "German division" : france ? "French division" : italy ? "Italian division" : spain ? "Spanish division" : "English division")
+                .setItems(new String[]{germany ? "Bundesliga" : france ? "Ligue 1" : italy ? "Serie A" : spain ? "La Liga" : "Premier League", lower}, (dialog, choice) -> {
                     if (choice == 0) screen.a(destination);
                     else chooseLowerClub(activity, screen, destination, country + "2", lower);
                 }).setOnCancelListener(dialog -> screen.a((byte)38)).show());
@@ -40,7 +41,7 @@ public final class PfmEnglishSeasonBridge {
     private static String country() {
         try {
             int country = get(ea.class, "a", int.class).getInt(null);
-            return country == 0 ? "en" : country == 2 ? "it" : country == 3 ? "de" : country == 4 ? "fr" : "";
+            return country == 0 ? "en" : country == 1 ? "es" : country == 2 ? "it" : country == 3 ? "de" : country == 4 ? "fr" : "";
         }
         catch (ReflectiveOperationException error) { throw new IllegalStateException(error); }
     }
@@ -48,14 +49,19 @@ public final class PfmEnglishSeasonBridge {
     private static void chooseLowerClub(Activity activity, ea screen, byte destination, String code, String label) {
         try {
             NativeEnglishCareer.Opening opening = NativeEnglishCareer.secondDivisionStart(activity, 0, code);
-            String[] clubs = new String[opening.clubs.size()];
-            for (int i = 0; i < clubs.length; i++) clubs[i] = opening.clubs.get(i).name;
+            List<NativeEnglishCareer.Club> candidates = new ArrayList<>();
+            for (NativeEnglishCareer.Club club : opening.clubs) {
+                if (!NativeEnglishCareer.reserveClub(club.id)) candidates.add(club);
+            }
+            String[] clubs = new String[candidates.size()];
+            for (int i = 0; i < clubs.length; i++) clubs[i] = candidates.get(i).name;
             new AlertDialog.Builder(activity).setTitle("Choose a club · " + label)
                     .setItems(clubs, (dialog, choice) -> {
-                        opening.userId = opening.clubs.get(choice).id;
+                        NativeEnglishCareer.Club managed = candidates.get(choice);
+                        opening.userId = managed.id;
                         startingDivision = opening;
                         dc.a = 1;
-                        putStartingClubIndex(choice);
+                        putStartingClubIndex(opening.clubs.indexOf(managed));
                         screen.a(destination);
                     }).setOnCancelListener(dialog -> screen.a((byte)38)).show();
         } catch (IOException error) {
@@ -125,7 +131,7 @@ public final class PfmEnglishSeasonBridge {
     }
 
     private static boolean continentalProjection() {
-        return ("de".equals(country()) || "fr".equals(country()) || "it".equals(country())) && EnglishLegacyIds.installed(AndroidRuntime.context(), pfm2.getSeason());
+        return ("de".equals(country()) || "fr".equals(country()) || "it".equals(country()) || "es".equals(country())) && EnglishLegacyIds.installed(AndroidRuntime.context(), pfm2.getSeason());
     }
 
     public static void startFirstRound() {
@@ -244,6 +250,9 @@ public final class PfmEnglishSeasonBridge {
     static String matchBadgePath(String club) {
         if (club.startsWith("en2:")) return "second_division_badges/en2_" + club.substring(4) + ".png";
         if (club.startsWith("en:")) return "badges/en" + (Integer.parseInt(club.substring(3)) + 1) + ".png";
+        if (club.startsWith("es2:")) return "second_division_badges/" + club.replace(':', '_') + ".png";
+        if (club.startsWith("es3:")) return "segunda_replacement_badges/" + club.replace(':', '_') + ".png";
+        if (club.startsWith("es:")) return "badges/es" + (Integer.parseInt(club.substring(3)) + 1) + ".png";
         if (club.startsWith("it2:")) return "second_division_badges/it2_" + club.substring(4) + ".png";
         if (club.startsWith("it:")) return "badges/it" + (Integer.parseInt(club.substring(3)) + 1) + ".png";
         if (club.startsWith("fr2:")) return "second_division_badges/fr2_" + club.substring(4) + ".png";
@@ -272,10 +281,13 @@ public final class PfmEnglishSeasonBridge {
         boolean french = opening.league.startsWith("fr");
         boolean italian = opening.league.startsWith("it");
         boolean serieB = "it2".equals(opening.league);
+        boolean spanish = opening.league.startsWith("es");
+        boolean segunda = "es2".equals(opening.league);
+        boolean movedSpanishDivision = spanish && !opening.league.equals(previous.getString("league", "es"));
         boolean modifiedItalianDivision = italian && !opening.league.equals(previous.getString("league", "it"));
         boolean frenchLower = "fr2".equals(opening.league);
         boolean movedFrenchDivision = french && !opening.league.equals(previous.getString("league", "fr"));
-        if (size != (german ? 18 : serieB ? 22 : "en2".equals(opening.league) ? 24 : 20)) {
+        if (size != (german ? 18 : (serieB || segunda) ? 22 : "en2".equals(opening.league) ? 24 : 20)) {
             throw new IOException("Invalid division size");
         }
         dw[] teams = new dw[size];
@@ -298,17 +310,18 @@ public final class PfmEnglishSeasonBridge {
                 put(team, "a", byte[].class, latin(club.name));
                 put(team, "b", byte[].class, latin(club.name));
             }
-            if (german || french || italian || club.id.startsWith("en2:")) {
+            if (german || french || italian || spanish || club.id.startsWith("en2:")) {
                 String economyKey = "economy." + club.id;
                 ClubEconomy.Profile economy = ClubEconomy.profile(AndroidRuntime.context(), club.id);
                 if (economy == null) throw new IOException("Missing club economy: " + club.id);
-                if (incoming || ((!french && !italian) || frenchLower || serieB) && previous.getInt(economyKey, 0) == 0) {
+                if (incoming || ((!french && !italian && !spanish) || frenchLower || serieB || segunda) && previous.getInt(economyKey, 0) == 0) {
                     put(team, "b", int.class, economy.capacity);
                     put(team, "c", short.class, (short) 3_375);
                 }
-                if (incoming || movedFrenchDivision || modifiedItalianDivision || !french && !italian && previous.getInt(economyKey, 0) == 0) {
+                if (incoming || movedFrenchDivision || modifiedItalianDivision || movedSpanishDivision || !french && !italian && !spanish && previous.getInt(economyKey, 0) == 0) {
                     short ticket = french ? (frenchLower ? ClubEconomy.LIGUE2_TICKET : ClubEconomy.LIGUE1_TICKET)
                             : italian ? (serieB ? ClubEconomy.SERIE_B_TICKET : ClubEconomy.SERIE_A_TICKET)
+                            : spanish ? (segunda ? ClubEconomy.SEGUNDA_TICKET : ClubEconomy.LALIGA_TICKET)
                             : german ? ClubEconomy.BUNDESLIGA2_TICKET : ClubEconomy.CHAMPIONSHIP_TICKET;
                     put(team, "b", short.class, ticket);
                 }

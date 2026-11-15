@@ -28,21 +28,26 @@ final class NativeItalianDivisions {
     }
 
     static List<UclSeason.Standing> finalSerieBTable(MatchJournal journal, NativeCareerStore.Career career) {
-        List<UclSeason.Standing> table = NativeGermanDivisions.finalTable(journal, NativeSerieB.CODE, career);
+        return finalTable(journal, NativeSerieB.CODE, career, false);
+    }
+
+    static List<UclSeason.Standing> finalTable(MatchJournal journal, String league, NativeCareerStore.Career career,
+                                               boolean headToHeadGoals) {
+        List<UclSeason.Standing> table = NativeGermanDivisions.finalTable(journal, league, career);
         if (table.isEmpty()) return table;
-        List<MatchJournal.Match> fixtures = journal.competition("league:" + NativeSerieB.CODE);
+        List<MatchJournal.Match> fixtures = journal.competition("league:" + league);
         for (int start = 0; start < table.size();) {
             int end = start + 1;
             while (end < table.size() && table.get(end).points == table.get(start).points) end++;
-            if (end - start > 1) orderTiedGroup(table.subList(start, end), fixtures);
+            if (end - start > 1) orderTiedGroup(table.subList(start, end), fixtures, headToHeadGoals);
             start = end;
         }
         return table;
     }
 
-    private static void orderTiedGroup(List<UclSeason.Standing> group, List<MatchJournal.Match> fixtures) {
+    private static void orderTiedGroup(List<UclSeason.Standing> group, List<MatchJournal.Match> fixtures, boolean headToHeadGoals) {
         Map<String, int[]> direct = new HashMap<>();
-        for (UclSeason.Standing row : group) direct.put(row.id, new int[2]);
+        for (UclSeason.Standing row : group) direct.put(row.id, new int[3]);
         for (MatchJournal.Match match : fixtures) {
             int[] home = direct.get(match.home), away = direct.get(match.away);
             if (home == null || away == null) continue;
@@ -51,9 +56,12 @@ final class NativeItalianDivisions {
             away[0] += difference < 0 ? 3 : difference == 0 ? 1 : 0;
             home[1] += difference;
             away[1] -= difference;
+            home[2] += match.homeGoals;
+            away[2] += match.awayGoals;
         }
         group.sort(Comparator.<UclSeason.Standing>comparingInt(row -> direct.get(row.id)[0]).reversed()
                 .thenComparing(Comparator.<UclSeason.Standing>comparingInt(row -> direct.get(row.id)[1]).reversed())
+                .thenComparingInt(row -> headToHeadGoals ? -direct.get(row.id)[2] : 0)
                 .thenComparing(Comparator.<UclSeason.Standing>comparingInt(row -> row.gf - row.ga).reversed())
                 .thenComparing(Comparator.<UclSeason.Standing>comparingInt(row -> row.gf).reversed())
                 .thenComparing(row -> row.id));
@@ -69,24 +77,30 @@ final class NativeItalianDivisions {
         journal.define(TABLE, EuropeanQualification.encode(order));
         if (!needsPlayoff(table)) return;
         int seed = nonce ^ journal.season() * 10007 ^ 0x495432;
+        playPromotion(journal, PLAYOFF, order, seed, total, teams, players, source, effects, career);
+    }
+
+    static void playPromotion(MatchJournal journal, String competition, List<String> order, int seed, int total,
+                              HashMap<String, NativeWorldCenter.T> teams, HashMap<String, NativeWorldCenter.P> players,
+                              String source, MatchEffects effects, NativeCareerStore.Career career) {
         effects.rest(total + 1);
-        MatchJournal.Match lowSeed = NativeMatchJournal.capture(journal, PLAYOFF, 1, table.get(5).id, table.get(2).id,
+        MatchJournal.Match lowSeed = NativeMatchJournal.capture(journal, competition, 1, order.get(5), order.get(2),
                 seed, teams, players, source, effects, career);
-        MatchJournal.Match highSeed = NativeMatchJournal.capture(journal, PLAYOFF, 1, table.get(4).id, table.get(3).id,
+        MatchJournal.Match highSeed = NativeMatchJournal.capture(journal, competition, 1, order.get(4), order.get(3),
                 seed ^ 1009, teams, players, source, effects, career);
         effects.rest(total + 2);
-        String left = NativeMatchJournal.capture(journal, PLAYOFF, 2, lowSeed.away, lowSeed.home,
+        String left = NativeMatchJournal.capture(journal, competition, 2, lowSeed.away, lowSeed.home,
                 seed ^ 104729, teams, players, source, effects, career, lowSeed, false).winner;
-        String right = NativeMatchJournal.capture(journal, PLAYOFF, 2, highSeed.away, highSeed.home,
+        String right = NativeMatchJournal.capture(journal, competition, 2, highSeed.away, highSeed.home,
                 seed ^ 99041, teams, players, source, effects, career, highSeed, false).winner;
         int best = Math.min(order.indexOf(left), order.indexOf(right));
         if (best < 0) throw new IllegalStateException("Serie B play-off semi-final missing a winner");
         String higher = order.get(best);
         effects.rest(total + 3);
-        MatchJournal.Match first = NativeMatchJournal.capture(journal, PLAYOFF, 3,
+        MatchJournal.Match first = NativeMatchJournal.capture(journal, competition, 3,
                 higher.equals(left) ? right : left, higher, seed ^ 209458, teams, players, source, effects, career);
         effects.rest(total + 4);
-        NativeMatchJournal.capture(journal, PLAYOFF, FINAL, first.away, first.home,
+        NativeMatchJournal.capture(journal, competition, FINAL, first.away, first.home,
                 seed ^ 314187, teams, players, source, effects, career, first, false);
     }
 
