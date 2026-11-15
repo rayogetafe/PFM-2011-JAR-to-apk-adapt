@@ -484,6 +484,7 @@ jobs:
           mkdir -p "$testclasses"
           javac -encoding UTF-8 -cp "$cp" -d "$testclasses" \
             overrides/app/src/main/java/PfmEnglishSeasonBridge.java tools/tests/v105/EnglishCoreHarness.java \
+            overrides/app/src/main/java/PfmChampionshipEconomy.java overrides/app/src/main/java/pfm/android/ClubEconomy.java \
             overrides/app/src/main/java/PfmDomesticReplay.java overrides/app/src/main/java/pfmGoalkeeperStats31.java \
             tools/tests/v83/android/content/{Context,SharedPreferences}.java \
             tools/tests/v83/pfm/android/AndroidRuntime.java tools/tests/v81/android/util/Log.java
