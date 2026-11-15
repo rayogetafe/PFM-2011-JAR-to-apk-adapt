@@ -1,0 +1,484 @@
+club	uid	name	pos	dob	nat	ovr	anchor	confirmed	projected_xi	source
+it2:0	it2player:stefanolayeni:1982-03-10	Stefano Layeni	GK	1982-03-10	Italy	68		1	1	august2010
+it2:0	it2player:lucatomasig:1983-03-11	Luca Tomasig	GK	1983-03-11	Italy	64		1	0	august2010
+it2:0	it2player:yurimorandi:1992-01-18	Yuri Morandi	GK	1992-01-18	Italy	62		1	0	august2010
+it2:0	it2player:rubengarlini:1971-05-27	Ruben Garlini	DF	1971-05-27	Italy	62	60	1	1	august2010
+it2:0	it2player:pierregiorgioregonesi:1979-02-22	Pierre Giorgio Regonesi	DF	1979-02-22	Italy	65	64	1	1	august2010
+it2:0	it2player:francescoluoni:1988-04-09	Francesco Luoni	DF	1988-04-09	Italy	64	63	1	1	august2010
+it2:0	it2player:matteopiccinni:1986-03-06	Matteo Piccinni	DF	1986-03-06	Italy	64	63	1	1	august2010
+it2:0	it2player:valeriofoglio:1985-02-09	Valerio Foglio	DF	1985-02-09	Italy	64	63	1	1	august2010
+it2:0	it2player:luigisala:1974-02-21	Luigi Sala	DF	1974-02-21	Italy	64	64	1	0	august2010
+it2:0	it2player:mattiaserafini:1983-07-04	Mattia Serafini	DF	1983-07-04	Italy	60	60	1	0	august2010
+it2:0	it2player:davidebombardini:1974-06-21	Davide Bombardini	MF	1974-06-21	Italy	68		1	1	august2010
+it2:0	it2player:mehmethetemaj:1987-12-08	Mehmet Hetemaj	MF	1987-12-08	Finland	63	62	1	1	august2010
+it2:0	it2player:dariopassoni:1974-02-09	Dario Passoni	MF	1974-02-09	Italy	65	65	1	0	august2010
+it2:0	it2player:robertoprevitali:1981-09-03	Roberto Previtali	MF	1981-09-03	Italy	64	64	1	0	august2010
+it2:0	it2player:alessandrosalvi:1988-06-05	Alessandro Salvi	MF	1988-06-05	Italy	61		1	0	august2010
+it2:0	it2player:michaelcia:1988-08-03	Michael Cia	MF	1988-08-03	Italy	60	59	1	0	august2010
+it2:0	it2player:paologrossi:1985-05-29	Paolo Grossi	MF	1985-05-29	Italy	61		1	0	august2010
+it2:0	it2player:antonytaugourdeau:1989-06-03	Antony Taugourdeau	MF	1989-06-03	France	60		1	0	august2010
+it2:0	it2player:leandromartinez:1989-10-15	Leandro Martinez	FW	1989-10-15	Argentina	64		1	1	august2010
+it2:0	it2player:omartorri:1982-03-30	Omar Torri	FW	1982-03-30	Italy	62		1	0	august2010
+it2:0	it2player:andreacocco:1986-04-08	Andrea Cocco	FW	1986-04-08	Italy	61		1	0	august2010
+it2:0	it2player:matteomomente:1987-02-26	Matteo Momentè	FW	1987-02-26	Italy	61		1	0	august2010
+it2:1	it2player:enricoguarna:1985-08-11	Enrico Guarna	GK	1985-08-11	Italy	68		1	1	august2010
+it2:1	it2player:achillecoser:1982-07-14	Achille Coser	GK	1982-07-14	Italy	65		1	0	august2010
+it2:1	it2player:robertomaurantonio:1981-06-07	Roberto Maurantonio	GK	1981-06-07	Italy	62		0	0	season-roster
+it2:1	it2player:vincenzomelillo:1986-08-22	Vincenzo Melillo	GK	1986-08-22	Italy	61		0	0	season-roster
+it2:1	it2player:andreagiallombardo:1980-08-19	Andrea Giallombardo	DF	1980-08-19	Italy	64	63	1	1	august2010
+it2:1	it2player:vittoriomicolucci:1983-08-14	Vittorio Micolucci	DF	1983-08-14	Italy	65	64	1	1	august2010
+it2:1	it2player:jonasportin:1986-09-30	Jonas Portin	DF	1986-09-30	Finland	64	64	1	1	august2010
+it2:1	it2player:marcellogazzola:1985-04-03	Marcello Gazzola	DF	1985-04-03	Italy	64	64	1	1	august2010
+it2:1	it2player:matteociofani:1988-02-26	Matteo Ciofani	DF	1988-02-26	Italy	62		1	0	august2010
+it2:1	it2player:lorenzopasqualini:1989-08-19	Lorenzo Pasqualini	DF	1989-08-19	Italy	61		1	0	august2010
+it2:1	it2player:vascofaisca:1980-08-27	Vasco Faísca	DF	1980-08-27	Portugal	60		0	0	season-roster
+it2:1	it2player:danieledidonato:1977-02-21	Daniele Di Donato	MF	1977-02-21	Italy	64	63	1	1	august2010
+it2:1	it2player:alexpederzoli:1984-03-06	Alex Pederzoli	MF	1984-03-06	Italy	67		1	1	august2010
+it2:1	it2player:vincenzosommese:1976-06-22	Vincenzo Sommese	MF	1976-06-22	Italy	64	64	0	0	season-roster
+it2:1	it2player:christianamoroso:1976-09-26	Christian Amoroso	MF	1976-09-26	Italy	61		0	0	season-roster
+it2:1	it2player:federicomoretti:1988-10-28	Federico Moretti	MF	1988-10-28	Italy	61		1	0	august2010
+it2:1	it2player:francescouliano:1989-09-19	Francesco Uliano	MF	1989-09-19	Italy	61		1	0	august2010
+it2:1	it2player:simoneesposito:1990-05-24	Simone Esposito	MF	1990-05-24	Italy	62	62	1	0	august2010
+it2:1	it2player:andreacristiano:1984-07-15	Andrea Cristiano	MF	1984-07-15	Italy	62	62	0	0	season-roster
+it2:1	it2player:arturolupoli:1987-06-24	Arturo Lupoli	FW	1987-06-24	Italy	66	66	1	1	august2010
+it2:1	it2player:ettoremendicino:1990-02-11	Ettore Mendicino	FW	1990-02-11	Italy	61		1	0	august2010
+it2:1	it2player:alessandroromeo:1987-01-19	Alessandro Romeo	FW	1987-01-19	Italy	59		0	0	season-roster
+it2:2	it2player:andreaconsigli:1987-01-27	Andrea Consigli	GK	1987-01-27	Italy	71		1	1	august2010
+it2:2	it2player:giorgiofrezzolini:1976-01-21	Giorgio Frezzolini	GK	1976-01-21	Italy	70		1	0	august2010
+it2:2	it2player:gianpaolobellini:1980-03-27	Gianpaolo Bellini	DF	1980-03-27	Italy	72	72	1	1	august2010
+it2:2	it2player:thomasmanfredini:1980-05-27	Thomas Manfredini	DF	1980-05-27	Italy	72	73	1	1	august2010
+it2:2	it2player:cristianraimondi:1981-04-30	Cristian Raimondi	DF	1981-04-30	Italy	68	68	1	1	august2010
+it2:2	it2player:federicopeluso:1984-01-20	Federico Peluso	DF	1984-01-20	Italy	68	69	1	0	august2010
+it2:2	it2player:leonardotalamonti:1981-11-12	Leonardo Talamonti	DF	1981-11-12	Argentina	68	69	1	0	august2010
+it2:2	it2player:danielecapelli:1986-06-20	Daniele Capelli	DF	1986-06-20	Italy	68	69	1	0	august2010
+it2:2	it2player:magnustroest:1987-06-05	Magnus Troest	DF	1987-06-05	Denmark	67	68	1	0	august2010
+it2:2	it2player:adrianoferreirapinto:1979-12-10	Adriano Ferreira Pinto	MF	1979-12-10	Brazil	72	72	1	1	august2010
+it2:2	it2player:simonepadoin:1984-03-18	Simone Padoin	MF	1984-03-18	Italy	72	73	1	1	august2010
+it2:2	it2player:edgarbarreto:1984-07-15	Édgar Barreto	MF	1984-07-15	Paraguay	72	72	1	1	august2010
+it2:2	it2player:leonardopettinari:1986-07-23	Leonardo Pettinari	MF	1986-07-23	Italy	69		1	1	august2010
+it2:2	it2player:cristianodoni:1973-04-01	Cristiano Doni	MF	1973-04-01	Italy	70	70	1	0	august2010
+it2:2	it2player:migjenbasha:1987-01-05	Migjen Basha	MF	1987-01-05	Albania	68	69	1	0	august2010
+it2:2	it2player:giacomobonaventura:1989-08-22	Giacomo Bonaventura	MF	1989-08-22	Italy	64		1	0	august2010
+it2:2	it2player:simonetiribocchi:1978-01-31	Simone Tiribocchi	FW	1978-01-31	Italy	73	74	1	1	august2010
+it2:2	it2player:matteoardemagni:1987-03-26	Matteo Ardemagni	FW	1987-03-26	Italy	71	72	1	1	august2010
+it2:2	it2player:nicolaamoruso:1974-08-29	Nicola Amoruso	FW	1974-08-29	Italy	70	71	1	0	august2010
+it2:2	it2player:francescoruopolo:1983-03-20	Francesco Ruopolo	FW	1983-03-20	Italy	68	69	1	0	august2010
+it2:2	it2player:fabioceravolo:1987-03-05	Fabio Ceravolo	FW	1987-03-05	Italy	67	68	1	0	august2010
+it2:2	it2player:marinodefendi:1985-08-19	Marino Defendi	FW	1985-08-19	Italy	67	68	1	0	august2010
+it2:3	it2player:andreapierobon:1969-07-19	Andrea Pierobon	GK	1969-07-19	Italy	70		1	1	august2010
+it2:3	it2player:simonevillanova:1984-11-22	Simone Villanova	GK	1984-11-22	Italy	63		1	0	august2010
+it2:3	it2player:francescoscardina:1981-12-11	Francesco Scardina	DF	1981-12-11	Italy	65	65	1	1	august2010
+it2:3	it2player:danielsemenzato:1987-01-11	Daniel Semenzato	DF	1987-01-11	Italy	65		1	1	august2010
+it2:3	it2player:danielegasparetto:1988-04-06	Daniele Gasparetto	DF	1988-04-06	Italy	66	66	1	1	august2010
+it2:3	it2player:matteoteoldi:1985-05-12	Matteo Teoldi	DF	1985-05-12	Italy	63	64	1	0	august2010
+it2:3	it2player:albertomarchesan:1980-05-10	Alberto Marchesan	MF	1980-05-10	Italy	66	66	1	1	august2010
+it2:3	it2player:danieledallabona:1983-08-12	Daniele Dalla Bona	MF	1983-08-12	Italy	66		1	1	august2010
+it2:3	it2player:thomasjob:1984-08-20	Thomas Job	MF	1984-08-20	Cameroon	66		1	1	august2010
+it2:3	it2player:robertomusso:1980-06-17	Roberto Musso	MF	1980-06-17	Italy	64	64	1	0	august2010
+it2:3	it2player:andreamanucci:1981-06-18	Andrea Manucci	MF	1981-06-18	Italy	64	65	1	0	august2010
+it2:3	it2player:davidecarteri:1982-10-13	Davide Carteri	MF	1982-10-13	Italy	65	66	1	0	august2010
+it2:3	it2player:gennarovolpe:1981-02-17	Gennaro Volpe	MF	1981-02-17	Italy	64	64	1	0	august2010
+it2:3	it2player:nunziodiroberto:1985-09-21	Nunzio Di Roberto	MF	1985-09-21	Italy	56	55	1	0	august2010
+it2:3	it2player:julianmagallanes:1986-03-20	Julián Magallanes	MF	1986-03-20	Argentina	58		0	0	season-roster
+it2:3	it2player:alexiscarra:1990-01-01	Alexis Carra	MF	1990-01-01	France	57		0	0	season-roster
+it2:3	it2player:joachimdegasperi:1982-05-20	Joachim De Gasperi	FW	1982-05-20	Italy	63	63	1	0	august2010
+it2:3	it2player:paolorossi:1982-12-25	Paolo Rossi	FW	1982-12-25	Italy	59		0	0	season-roster
+it2:3	it2player:federicopiovaccari:1984-09-01	Federico Piovaccari	FW	1984-09-01	Italy	60	61	0	0	season-roster
+it2:3	it2player:raffaeleperna:1986-07-03	Raffaele Perna	FW	1986-07-03	Italy	58		0	0	season-roster
+it2:3	it2player:tommasobellazzini:1987-12-23	Tommaso Bellazzini	FW	1987-12-23	Italy	58		0	0	season-roster
+it2:3	it2player:manologabbiadini:1991-11-26	Manolo Gabbiadini	FW	1991-11-26	Italy	57		0	0	season-roster
+it2:4	it2player:emanueleconcetti:1978-06-03	Emanuele Concetti	GK	1978-06-03	Italy	69		1	1	august2010
+it2:4	it2player:vidbelec:1990-06-06	Vid Belec	GK	1990-06-06	Slovenia	62		1	0	august2010
+it2:4	it2player:simonefarelli:1983-02-19	Simone Farelli	GK	1983-02-19	Italy	61		0	0	season-roster
+it2:4	it2player:giacomobindi:1987-01-02	Giacomo Bindi	GK	1987-01-02	Italy	60		0	0	season-roster
+it2:4	it2player:marcocabeccia:1987-05-25	Marco Cabeccia	DF	1987-05-25	Italy	65		1	1	august2010
+it2:4	it2player:kevinvinetot:1988-06-14	Kevin Vinetot	DF	1988-06-14	France	61		1	0	august2010
+it2:4	it2player:pedrocorreia:1987-03-27	Pedro Correia	DF	1987-03-27	Portugal	61		1	0	august2010
+it2:4	it2player:alessandrocrescenzi:1991-09-25	Alessandro Crescenzi	DF	1991-09-25	Italy	60		1	0	august2010
+it2:4	it2player:lucatedeschi:1987-02-27	Luca Tedeschi	DF	1987-02-27	Italy	58		0	0	season-roster
+it2:4	it2player:antoniogalardo:1976-09-18	Antonio Galardo	MF	1976-09-18	Italy	67		1	1	august2010
+it2:4	it2player:louiseparfait:1990-07-06	Louise Parfait	MF	1990-07-06	Cameroon	60		1	0	august2010
+it2:4	it2player:mirkoeramo:1989-07-12	Mirko Eramo	MF	1989-07-12	Italy	60		1	0	august2010
+it2:4	it2player:yonesehanine:1990-02-20	Yonese Hanine	MF	1990-02-20	Morocco	60		1	0	august2010
+it2:4	it2player:andrearussotto:1988-05-25	Andrea Russotto	MF	1988-05-25	Italy	58		0	0	season-roster
+it2:4	it2player:aniellocutolo:1983-05-19	Aniello Cutolo	FW	1983-05-19	Italy	66		1	1	august2010
+it2:4	it2player:pietrodegiorgio:1983-02-16	Pietro De Giorgio	FW	1983-02-16	Italy	66		1	1	august2010
+it2:4	it2player:daviscuriale:1987-12-30	Davis Curiale	FW	1987-12-30	Italy	61		1	0	august2010
+it2:4	it2player:emmanuelledesma:1988-05-24	Emmanuel Ledesma	FW	1988-05-24	Argentina	61		1	0	august2010
+it2:4	it2player:julianuccello:1986-10-30	Julian Uccello	FW	1986-10-30	Canada	61		1	0	august2010
+it2:4	it2player:aimannapoli:1989-07-02	Aiman Napoli	FW	1989-07-02	Italy	60		1	0	august2010
+it2:4	it2player:ciroginestra:1979-08-03	Ciro Ginestra	FW	1979-08-03	Italy	60		0	0	season-roster
+it2:4	it2player:caetanocalil:1984-05-20	Caetano Calil	FW	1984-05-20	Brazil	59		0	0	season-roster
+it2:5	it2player:jasminhandanovic:1978-01-28	Jasmin Handanovič	GK	1978-01-28	Slovenia	70		1	1	august2010
+it2:5	it2player:albertopelagotti:1989-03-09	Alberto Pelagotti	GK	1989-03-09	Italy	63		1	0	august2010
+it2:5	it2player:lorenzostovini:1976-11-24	Lorenzo Stovini	DF	1976-11-24	Italy	70	70	1	1	august2010
+it2:5	it2player:alessandrovinci:1987-08-08	Alessandro Vinci	DF	1987-08-08	Italy	64	64	1	1	august2010
+it2:5	it2player:massimogotti:1986-05-27	Massimo Gotti	DF	1986-05-27	Italy	66		1	1	august2010
+it2:5	it2player:adamkokoszka:1986-10-06	Adam Kokoszka	DF	1986-10-06	Poland	62		1	0	august2010
+it2:5	it2player:linomarzoratti:1986-10-12	Lino Marzoratti	DF	1986-10-12	Italy	64	64	1	0	august2010
+it2:5	it2player:simoneiacoponi:1987-04-30	Simone Iacoponi	DF	1987-04-30	Italy	62		1	0	august2010
+it2:5	it2player:danielemori:1990-06-28	Daniele Mori	DF	1990-06-28	Italy	61		1	0	august2010
+it2:5	it2player:lorenzotonelli:1990-01-17	Lorenzo Tonelli	DF	1990-01-17	Italy	61		1	0	august2010
+it2:5	it2player:davidemoro:1982-01-02	Davide Moro	MF	1982-01-02	Italy	66	65	1	1	august2010
+it2:5	it2player:gianlucamusacci:1987-04-01	Gianluca Musacci	MF	1987-04-01	Italy	64	64	1	1	august2010
+it2:5	it2player:mirkovaldifiori:1986-04-21	Mirko Valdifiori	MF	1986-04-21	Italy	64	64	1	0	august2010
+it2:5	it2player:francosignorelli:1991-01-01	Franco Signorelli	MF	1991-01-01	Venezuela	61		1	0	august2010
+it2:5	it2player:riccardosaponara:1991-12-21	Riccardo Saponara	MF	1991-12-21	Italy	61		1	0	august2010
+it2:5	it2player:robertosoriano:1991-02-08	Roberto Soriano	MF	1991-02-08	Italy	64	65	1	0	august2010
+it2:5	it2player:iacopofanucchi:1981-09-18	Iacopo Fanucchi	MF	1981-09-18	Italy	60		0	0	season-roster
+it2:5	it2player:riccardonardini:1983-06-27	Riccardo Nardini	MF	1983-06-27	Italy	63	64	0	0	season-roster
+it2:5	it2player:levanmcedlidze:1990-03-24	Levan Mčedlidze	FW	1990-03-24	Georgia	61		1	0	august2010
+it2:5	it2player:nicolaodumitru:1991-10-12	Nicolao Dumitru	FW	1991-10-12	Italy	61		1	0	august2010
+it2:5	it2player:claudiocoralli:1983-03-01	Claudio Coralli	FW	1983-03-01	Italy	68	70	0	0	season-roster
+it2:5	it2player:cristiancesaretti:1987-06-20	Cristian Cesaretti	FW	1987-06-20	Italy	59		0	0	season-roster
+it2:6	it2player:pierluigifrattali:1985-12-01	Pierluigi Frattali	GK	1985-12-01	Italy	66		1	1	august2010
+it2:6	it2player:vincenzosicignano:1974-07-08	Vincenzo Sicignano	GK	1974-07-08	Italy	65		1	0	august2010
+it2:6	it2player:antoniobocchetti:1980-06-11	Antonio Bocchetti	DF	1980-06-11	Italy	64	63	1	1	august2010
+it2:6	it2player:nicholasguidi:1983-07-25	Nicholas Guidi	DF	1983-07-25	Italy	63	62	1	1	august2010
+it2:6	it2player:emanueleterranova:1987-04-14	Emanuele Terranova	DF	1987-04-14	Italy	65	65	1	1	august2010
+it2:6	it2player:gennaroscarlato:1977-05-03	Gennaro Scarlato	DF	1977-05-03	Italy	60	59	1	0	august2010
+it2:6	it2player:nicolaascoli:1979-09-11	Nicola Ascoli	DF	1979-09-11	Italy	60	60	1	0	august2010
+it2:6	it2player:dariobiasi:1979-08-24	Dario Biasi	DF	1979-08-24	Italy	59		0	0	season-roster
+it2:6	it2player:emirfaccioli:1989-08-05	Emir Faccioli	DF	1989-08-05	Argentina	59		1	0	august2010
+it2:6	it2player:fabioformato:1993-10-20	Fabio Formato	DF	1993-10-20	Italy	59		1	0	august2010
+it2:6	it2player:selimbendjemia:1989-01-29	Selim Ben Djemia	DF	1989-01-29	Tunisia	59		1	0	august2010
+it2:6	it2player:simonegrippo:1988-12-12	Simone Grippo	DF	1988-12-12	Switzerland	59	59	1	0	august2010
+it2:6	it2player:mattiabiso:1977-05-06	Mattia Biso	MF	1977-05-06	Italy	62	61	1	1	august2010
+it2:6	it2player:francescolodi:1984-03-23	Francesco Lodi	MF	1984-03-23	Italy	70	72	1	1	august2010
+it2:6	it2player:davidebottone:1986-04-11	Davide Bottone	MF	1986-04-11	Italy	62	62	1	1	august2010
+it2:6	it2player:simonebasso:1982-07-25	Simone Basso	MF	1982-07-25	Italy	61		1	0	august2010
+it2:6	it2player:salvatoreaurelio:1986-01-15	Salvatore Aurelio	MF	1986-01-15	Italy	60		1	0	august2010
+it2:6	it2player:adrianucchino:1991-10-04	Adrian Ucchino	MF	1991-10-04	Australia	59		1	0	august2010
+it2:6	it2player:robertgucher:1991-02-20	Robert Gucher	MF	1991-02-20	Austria	55	54	1	0	august2010
+it2:6	it2player:robertostellone:1977-07-22	Roberto Stellone	FW	1977-07-22	Italy	66	67	1	0	august2010
+it2:6	it2player:vincenzosantoruvo:1978-06-08	Vincenzo Santoruvo	FW	1978-06-08	Italy	64	64	1	0	august2010
+it2:6	it2player:samueldicarmine:1988-09-29	Samuel Di Carmine	FW	1988-09-29	Italy	61	62	1	0	august2010
+it2:7	it2player:antonionarciso:1980-10-01	Antonio Narciso	GK	1980-10-01	Italy	68		1	1	august2010
+it2:7	it2player:michelemangiapelo:1986-05-30	Michele Mangiapelo	GK	1986-05-30	Italy	63		1	0	august2010
+it2:7	it2player:paoloacerbis:1981-05-05	Paolo Acerbis	GK	1981-05-05	Italy	61		0	0	season-roster
+it2:7	it2player:nicolamora:1979-07-13	Nicola Mora	DF	1979-07-13	Italy	66	65	1	1	august2010
+it2:7	it2player:angeloiorio:1982-08-26	Angelo Iorio	DF	1982-08-26	Italy	62	60	1	1	august2010
+it2:7	it2player:marcoturati:1982-05-15	Marco Turati	DF	1982-05-15	Italy	66		1	1	august2010
+it2:7	it2player:gianlucafreddi:1987-03-29	Gianluca Freddi	DF	1987-03-29	Italy	62	61	1	1	august2010
+it2:7	it2player:danielefederici:1988-02-11	Daniele Federici	DF	1988-02-11	Italy	59	58	1	0	august2010
+it2:7	it2player:kewullayconteh:1977-12-31	Kewullay Conteh	DF	1977-12-31	Sierra Leone	64	65	0	0	season-roster
+it2:7	it2player:martinpetras:1979-11-02	Martin Petráš	DF	1979-11-02	Slovakia	60		0	0	season-roster
+it2:7	it2player:matteobruscagin:1989-08-03	Matteo Bruscagin	DF	1989-08-03	Italy	60		1	0	august2010
+it2:7	it2player:leandrovitiello:1985-10-16	Leandro Vitiello	MF	1985-10-16	Italy	64	63	1	1	august2010
+it2:7	it2player:luigiconsonni:1977-02-07	Luigi Consonni	MF	1977-02-07	Italy	65	66	1	0	august2010
+it2:7	it2player:romeopapini:1983-03-21	Romeo Papini	MF	1983-03-21	Italy	62		1	0	august2010
+it2:7	it2player:giuseppestatella:1988-03-15	Giuseppe Statella	MF	1988-03-15	Italy	61		1	0	august2010
+it2:7	it2player:gaetanocaridi:1980-07-22	Gaetano Caridi	MF	1980-07-22	Italy	63	64	0	0	season-roster
+it2:7	it2player:riccardoallegretti:1978-02-15	Riccardo Allegretti	MF	1978-02-15	Italy	67	69	0	0	season-roster
+it2:7	it2player:yawasante:1991-05-18	Yaw Asante	MF	1991-05-18	Ghana	60		1	0	august2010
+it2:7	it2player:thomaspichlmann:1981-04-24	Thomas Pichlmann	FW	1981-04-24	Austria	62		1	0	august2010
+it2:7	it2player:luisalfageme:1984-12-17	Luis Alfageme	FW	1984-12-17	Argentina	61		1	0	august2010
+it2:7	it2player:danijelsubotic:1989-01-31	Danijel Subotič	FW	1989-01-31	Switzerland	60		1	0	august2010
+it2:7	it2player:marcogiovio:1990-07-05	Marco Giovio	FW	1990-07-05	Italy	60		1	0	august2010
+it2:8	it2player:alfonsodelucia:1983-11-11	Alfonso De Lucia	GK	1983-11-11	Italy	70		1	1	august2010
+it2:8	it2player:lucamazzoni:1984-03-29	Luca Mazzoni	GK	1984-03-29	Italy	66		1	0	august2010
+it2:8	it2player:darioknezevic:1982-04-20	Dario Knežević	DF	1982-04-20	Croatia	71	72	1	1	august2010
+it2:8	it2player:romanoperticone:1986-08-13	Romano Perticone	DF	1986-08-13	Italy	67		1	1	august2010
+it2:8	it2player:simonesalviato:1987-07-12	Simone Salviato	DF	1987-07-12	Italy	63	62	1	1	august2010
+it2:8	it2player:leonardomiglionico:1980-01-31	Leonardo Migliónico	DF	1980-01-31	Uruguay	68	69	1	0	august2010
+it2:8	it2player:alessandrobernardini:1987-01-21	Alessandro Bernardini	DF	1987-01-21	Italy	63		1	0	august2010
+it2:8	it2player:alessandrolambrughi:1987-05-19	Alessandro Lambrughi	DF	1987-05-19	Italy	63		1	0	august2010
+it2:8	it2player:fabriziodibella:1988-03-02	Fabrizio Di Bella	DF	1988-03-02	Italy	63		1	0	august2010
+it2:8	it2player:angelobencivenga:1991-07-25	Angelo Bencivenga	DF	1991-07-25	Italy	62		1	0	august2010
+it2:8	it2player:biagiopagano:1983-01-29	Biagio Pagano	MF	1983-01-29	Italy	70	70	1	1	august2010
+it2:8	it2player:manueliori:1982-03-12	Manuel Iori	MF	1982-03-12	Italy	66	65	1	1	august2010
+it2:8	it2player:andrealuci:1985-03-30	Andrea Luci	MF	1985-03-30	Italy	66	65	1	1	august2010
+it2:8	it2player:juansurraco:1987-08-14	Juan Surraco	MF	1987-08-14	Uruguay	67		1	1	august2010
+it2:8	it2player:francescoparravicini:1982-01-31	Francesco Parravicini	MF	1982-01-31	Italy	64	64	1	0	august2010
+it2:8	it2player:pasqualeschiattarella:1987-05-30	Pasquale Schiattarella	MF	1987-05-30	Italy	63		1	0	august2010
+it2:8	it2player:jurgenprutsch:1989-09-22	Jürgen Prutsch	MF	1989-09-22	Austria	62		1	0	august2010
+it2:8	it2player:matteolignani:1991-09-07	Matteo Lignani	MF	1991-09-07	Italy	62		1	0	august2010
+it2:8	it2player:francescotavano:1979-03-02	Francesco Tavano	FW	1979-03-02	Italy	73	74	1	1	august2010
+it2:8	it2player:tomasdanilevicius:1978-07-18	Tomas Danilevičius	FW	1978-07-18	Lithuania	70	72	1	0	august2010
+it2:8	it2player:claudiobellucci:1975-05-31	Claudio Bellucci	FW	1975-05-31	Italy	68	69	0	0	season-roster
+it2:8	it2player:gastoncellerino:1986-06-26	Gastón Cellerino	FW	1986-06-26	Argentina	63		1	0	august2010
+it2:9	it2player:matteoguardalben:1974-06-05	Matteo Guardalben	GK	1974-06-05	Italy	70		1	1	august2010
+it2:9	it2player:enricoalfonso:1988-05-04	Enrico Alfonso	GK	1988-05-04	Italy	63		1	0	august2010
+it2:9	it2player:juritamburini:1977-07-07	Juri Tamburini	DF	1977-07-07	Italy	62	60	1	1	august2010
+it2:9	it2player:andreamilani:1980-12-09	Andrea Milani	DF	1980-12-09	Italy	63	62	1	1	august2010
+it2:9	it2player:armandoperna:1981-04-25	Armando Perna	DF	1981-04-25	Italy	64	63	1	1	august2010
+it2:9	it2player:simonegozzi:1986-04-13	Simone Gozzi	DF	1986-04-13	Italy	62	61	1	1	august2010
+it2:9	it2player:mahametdiagouraga:1984-01-08	Mahamet Diagouraga	DF	1984-01-08	France	62	62	1	0	august2010
+it2:9	it2player:paoloricchi:1987-01-10	Paolo Ricchi	DF	1987-01-10	Italy	60	59	1	0	august2010
+it2:9	it2player:filippocarini:1990-09-26	Filippo Carini	DF	1990-09-26	Italy	60		1	0	august2010
+it2:9	it2player:erminiorullo:1984-02-19	Erminio Rullo	DF	1984-02-19	Italy	59		0	0	season-roster
+it2:9	it2player:leonardocolucci:1972-12-29	Leonardo Colucci	MF	1972-12-29	Italy	64		1	0	august2010
+it2:9	it2player:mirkovelardi:1988-01-28	Mirko Velardi	MF	1988-01-28	Italy	61		1	0	august2010
+it2:9	it2player:carloluisi:1977-03-20	Carlo Luisi	MF	1977-03-20	Italy	62	62	0	0	season-roster
+it2:9	it2player:domenicogiampa:1977-02-15	Domenico Giampá	MF	1977-02-15	Italy	61	61	0	0	season-roster
+it2:9	it2player:riccardopasi:1990-08-27	Riccardo Pasi	MF	1990-08-27	Italy	60		1	0	august2010
+it2:9	it2player:mauriziociaramitaro:1982-01-16	Maurizio Ciaramitaro	MF	1982-01-16	Italy	59		0	0	season-roster
+it2:9	it2player:andreamazzarani:1989-11-06	Andrea Mazzarani	MF	1989-11-06	Italy	57		0	0	season-roster
+it2:9	it2player:francescosignori:1988-10-26	Francesco Signori	MF	1988-10-26	Italy	57		0	0	season-roster
+it2:9	it2player:crisgilioli:1982-12-28	Cris Gilioli	FW	1982-12-28	Italy	62		1	0	august2010
+it2:9	it2player:cristianpasquato:1989-07-20	Cristian Pasquato	FW	1989-07-20	Italy	57		0	0	season-roster
+it2:9	it2player:edgarcani:1989-07-22	Edgar Çani	FW	1989-07-22	Albania	61	62	0	0	season-roster
+it2:10	it2player:samirujkani:1988-07-05	Samir Ujkani	GK	1988-07-05	Kosovo	69		1	1	august2010
+it2:10	it2player:albertofontana:1974-12-02	Alberto Fontana	GK	1974-12-02	Italy	68		1	0	august2010
+it2:10	it2player:andrealisuzzo:1981-01-26	Andrea Lisuzzo	DF	1981-01-26	Italy	68		1	1	august2010
+it2:10	it2player:carlalbertoludi:1982-12-24	Carlalberto Ludi	DF	1982-12-24	Italy	68		1	1	august2010
+it2:10	it2player:giuseppegemiti:1981-05-03	Giuseppe Gemiti	DF	1981-05-03	Germany	62	60	1	1	august2010
+it2:10	it2player:matteocenturioni:1974-05-08	Matteo Centurioni	DF	1974-05-08	Italy	62	61	1	0	august2010
+it2:10	it2player:mavillogheller:1975-08-03	Mavillo Gheller	DF	1975-08-03	Italy	66		1	0	august2010
+it2:10	it2player:michelmorganella:1989-05-17	Michel Morganella	DF	1989-05-17	Switzerland	62	60	1	1	august2010
+it2:10	it2player:albertocossentino:1988-09-10	Alberto Cossentino	DF	1988-09-10	Italy	62	62	1	0	august2010
+it2:10	it2player:guillaumegigliotti:1989-11-09	Guillaume Gigliotti	DF	1989-11-09	France	62		1	0	august2010
+it2:10	it2player:francescomarianini:1979-05-06	Francesco Marianini	MF	1979-05-06	Italy	63	61	1	1	august2010
+it2:10	it2player:marcorigoni:1980-01-05	Marco Rigoni	MF	1980-01-05	Italy	69		1	1	august2010
+it2:10	it2player:filippoporcari:1984-04-28	Filippo Porcari	MF	1984-04-28	Italy	68		1	1	august2010
+it2:10	it2player:davidedrascek:1981-04-23	Davide Drascek	MF	1981-04-23	Italy	64		1	0	august2010
+it2:10	it2player:francescoevola:1984-07-12	Francesco Evola	MF	1984-07-12	Italy	64		1	0	august2010
+it2:10	it2player:rijatshala:1983-09-26	Rijat Shala	MF	1983-09-26	Switzerland	64		1	0	august2010
+it2:10	it2player:manuelscavone:1987-06-03	Manuel Scavone	MF	1987-06-03	Italy	63		1	0	august2010
+it2:10	it2player:simonemotta:1977-08-26	Simone Motta	FW	1977-08-26	Italy	69		1	1	august2010
+it2:10	it2player:cristianbertani:1981-03-14	Cristian Bertani	FW	1981-03-14	Italy	68		1	1	august2010
+it2:10	it2player:pablogonzalez:1985-05-28	Pablo González	FW	1985-05-28	Argentina	67		1	1	august2010
+it2:10	it2player:nicolaventola:1978-05-24	Nicola Ventola	FW	1978-05-24	Italy	63	62	1	0	august2010
+it2:10	it2player:raffaelerubino:1978-01-09	Raffaele Rubino	FW	1978-01-09	Italy	65		1	0	august2010
+it2:11	it2player:andreacano:1976-04-18	Andrea Cano	GK	1976-04-18	Italy	72		1	1	august2010
+it2:11	it2player:federicoagliardi:1983-02-11	Federico Agliardi	GK	1983-02-11	Italy	66		1	0	august2010
+it2:11	it2player:trevortrevisan:1983-12-21	Trevor Trevisan	DF	1983-12-21	Italy	64	62	1	1	august2010
+it2:11	it2player:elialegati:1986-01-03	Elia Legati	DF	1986-01-03	Italy	67		1	1	august2010
+it2:11	it2player:francescorenzetti:1988-01-22	Francesco Renzetti	DF	1988-01-22	Italy	65	64	1	1	august2010
+it2:11	it2player:joseangelcrespo:1987-02-09	José Ángel Crespo	DF	1987-02-09	Spain	67		1	1	august2010
+it2:11	it2player:gianlucagiovannini:1983-12-09	Gianluca Giovannini	DF	1983-12-09	Italy	64		1	0	august2010
+it2:11	it2player:antonioesposito:1990-09-05	Antonio Esposito	DF	1990-09-05	Italy	62		1	0	august2010
+it2:11	it2player:vincenzoitaliano:1977-12-10	Vincenzo Italiano	MF	1977-12-10	Italy	65	64	1	1	august2010
+it2:11	it2player:andreabovo:1986-05-14	Andrea Bovo	MF	1986-05-14	Italy	67		1	1	august2010
+it2:11	it2player:stephanelshaarawy:1992-10-27	Stephan El Shaarawy	MF	1992-10-27	Italy	66		1	1	august2010
+it2:11	it2player:williamjidayi:1984-08-09	William Jidayi	MF	1984-08-09	Italy	62	61	1	0	august2010
+it2:11	it2player:bogdanpatrascu:1979-05-07	Bogdan Pătraşcu	MF	1979-05-07	Romania	62		0	0	season-roster
+it2:11	it2player:marcogallozzi:1988-07-27	Marco Gallozzi	MF	1988-07-27	Italy	60		0	0	season-roster
+it2:11	it2player:davidesucci:1981-10-11	Davide Succi	FW	1981-10-11	Italy	64	63	1	1	august2010
+it2:11	it2player:andreasoncin:1978-09-05	Andrea Soncin	FW	1978-09-05	Italy	62	61	1	0	august2010
+it2:11	it2player:albertofilippini:1987-04-10	Alberto Filippini	FW	1987-04-10	Italy	63		1	0	august2010
+it2:11	it2player:danielevantaggiato:1984-10-10	Daniele Vantaggiato	FW	1984-10-10	Italy	63	63	1	0	august2010
+it2:11	it2player:davidedigennaro:1988-06-16	Davide Di Gennaro	FW	1988-06-16	Italy	62	62	1	0	august2010
+it2:11	it2player:andrearabito:1980-05-11	Andrea Rabito	FW	1980-05-11	Italy	62		0	0	season-roster
+it2:11	it2player:antoniodinardo:1979-07-23	Antonio Di Nardo	FW	1979-07-23	Italy	62		0	0	season-roster
+it2:11	it2player:massimilianovarricchio:1976-11-14	Massimiliano Varricchio	FW	1976-11-14	Italy	62		0	0	season-roster
+it2:12	it2player:salvatorepinna:1975-08-23	Salvatore Pinna	GK	1975-08-23	Italy	71		1	1	august2010
+it2:12	it2player:carlocamilli:1984-10-02	Carlo Camilli	GK	1984-10-02	Italy	61		0	0	season-roster
+it2:12	it2player:samueleolivi:1980-08-01	Samuele Olivi	DF	1980-08-01	Italy	64	63	1	1	august2010
+it2:12	it2player:andreamengoni:1983-09-16	Andrea Mengoni	DF	1983-09-16	Italy	63	62	1	1	august2010
+it2:12	it2player:filippopetterini:1980-11-14	Filippo Petterini	DF	1980-11-14	Italy	67		1	1	august2010
+it2:12	it2player:salvatoredalterio:1980-02-17	Salvatore D'Alterio	DF	1980-02-17	Italy	64		1	0	august2010
+it2:12	it2player:damianozanon:1983-08-09	Damiano Zanon	DF	1983-08-09	Italy	63		1	0	august2010
+it2:12	it2player:tommasoromito:1982-02-09	Tommaso Romito	DF	1982-02-09	Italy	63		1	0	august2010
+it2:12	it2player:lorenzodelprete:1986-01-12	Lorenzo Del Prete	DF	1986-01-12	Italy	61	61	1	0	august2010
+it2:12	it2player:antoniomazzotta:1989-08-02	Antonio Mazzotta	DF	1989-08-02	Italy	61		1	0	august2010
+it2:12	it2player:brunomartella:1992-08-14	Bruno Martella	DF	1992-08-14	Italy	61		1	0	august2010
+it2:12	it2player:andreagessa:1980-01-12	Andrea Gessa	MF	1980-01-12	Italy	62	60	1	1	august2010
+it2:12	it2player:emmanuelcascione:1983-09-22	Emmanuel Cascione	MF	1983-09-22	Italy	64	63	1	1	august2010
+it2:12	it2player:francescodettori:1983-03-02	Francesco Dettori	MF	1983-03-02	Italy	67		1	1	august2010
+it2:12	it2player:marcoverratti:1992-11-05	Marco Verratti	MF	1992-11-05	Italy	65		1	1	august2010
+it2:12	it2player:lucatognozzi:1977-10-03	Luca Tognozzi	MF	1977-10-03	Italy	61	60	1	0	august2010
+it2:12	it2player:massimobonanni:1982-06-10	Massimo Bonanni	MF	1982-06-10	Italy	62	61	1	0	august2010
+it2:12	it2player:francesconicco:1989-08-10	Francesco Nicco	MF	1989-08-10	Italy	61		1	0	august2010
+it2:12	it2player:marcosansovini:1980-06-17	Marco Sansovini	FW	1980-06-17	Italy	62	62	1	0	august2010
+it2:12	it2player:massimoganci:1981-11-17	Massimo Ganci	FW	1981-11-17	Italy	63	63	1	0	august2010
+it2:12	it2player:danilosoddimo:1987-09-27	Danilo Soddimo	FW	1987-09-27	Italy	62		1	0	august2010
+it2:12	it2player:adrianstoian:1991-02-11	Adrian Stoian	FW	1991-02-11	Romania	61		1	0	august2010
+it2:13	it2player:mariocassano:1983-10-08	Mario Cassano	GK	1983-10-08	Italy	67		1	1	august2010
+it2:13	it2player:antoniodonnarumma:1990-07-07	Antonio Donnarumma	GK	1990-07-07	Italy	61		1	0	august2010
+it2:13	it2player:micheleanaclerio:1982-05-15	Michele Anaclerio	DF	1982-05-15	Italy	64	63	1	1	august2010
+it2:13	it2player:cesarerickler:1987-03-18	Cesare Rickler	DF	1987-03-18	Italy	64		1	1	august2010
+it2:13	it2player:stefanoavogadri:1985-08-11	Stefano Avogadri	DF	1985-08-11	Italy	61	60	1	1	august2010
+it2:13	it2player:francescobini:1989-01-02	Francesco Bini	DF	1989-01-02	Italy	59	58	1	1	august2010
+it2:13	it2player:pietrozammuto:1986-12-23	Pietro Zammuto	DF	1986-12-23	Italy	60	60	1	0	august2010
+it2:13	it2player:andreamei:1989-05-18	Andrea Mei	DF	1989-05-18	Italy	60	60	1	0	august2010
+it2:13	it2player:marcocalderoni:1989-02-18	Marco Calderoni	DF	1989-02-18	Italy	58	57	1	0	august2010
+it2:13	it2player:sergiovolpi:1974-02-02	Sergio Volpi	MF	1974-02-02	Italy	66	66	1	1	august2010
+it2:13	it2player:tommasobianchi:1988-11-01	Tommaso Bianchi	MF	1988-11-01	Italy	56	54	1	1	august2010
+it2:13	it2player:danielwolf:1985-05-04	Daniel Wolf	MF	1985-05-04	Austria	57	56	1	0	august2010
+it2:13	it2player:nicolasilvestri:1985-11-21	Nicola Silvestri	MF	1985-11-21	Italy	60		1	0	august2010
+it2:13	it2player:alessandrosbaffo:1990-08-27	Alessandro Sbaffo	MF	1990-08-27	Italy	59		1	0	august2010
+it2:13	it2player:damianozenoni:1977-04-23	Damiano Zenoni	MF	1977-04-23	Italy	59		0	0	season-roster
+it2:13	it2player:lucatremolada:1991-11-25	Luca Tremolada	MF	1991-11-25	Italy	59		1	0	august2010
+it2:13	it2player:matteomandorlini:1988-10-22	Matteo Mandorlini	MF	1988-10-22	Italy	56		0	0	season-roster
+it2:13	it2player:alessandrotulli:1982-04-08	Alessandro Tulli	FW	1982-04-08	Italy	60	60	1	0	august2010
+it2:13	it2player:antoniopiccolo:1988-04-07	Antonio Piccolo	FW	1988-04-07	Italy	56	55	1	0	august2010
+it2:13	it2player:mattiagraffiedi:1980-05-26	Mattia Graffiedi	FW	1980-05-26	Italy	61	62	0	0	season-roster
+it2:13	it2player:danielecacia:1983-08-23	Daniele Cacia	FW	1983-08-23	Italy	66	68	0	0	season-roster
+it2:13	it2player:tomasguzman:1982-03-07	Tomás Guzmán	FW	1982-03-07	Paraguay	64	66	0	0	season-roster
+it2:14	it2player:francescorossi:1977-08-31	Francesco Rossi	GK	1977-08-31	Italy	67		1	1	august2010
+it2:14	it2player:albertomarcato:1988-11-10	Alberto Marcato	GK	1988-11-10	Italy	60		1	0	august2010
+it2:14	it2player:adrianmadaschi:1982-07-11	Adrian Madaschi	DF	1982-07-11	Australia	64		1	1	august2010
+it2:14	it2player:filippocristante:1977-04-20	Filippo Cristante	DF	1977-04-20	Italy	62	62	1	0	august2010
+it2:14	it2player:andreapisani:1987-03-15	Andrea Pisani	DF	1987-03-15	Italy	59		1	0	august2010
+it2:14	it2player:davidebianchi:1987-04-20	Davide Bianchi	DF	1987-04-20	Italy	59		1	0	august2010
+it2:14	it2player:matteolanzoni:1988-07-18	Matteo Lanzoni	DF	1988-07-18	Italy	59	59	1	0	august2010
+it2:14	it2player:salvatoredelia:1989-02-10	Salvatore D'Elia	DF	1989-02-10	Italy	58		1	0	august2010
+it2:14	it2player:erosschiavon:1983-04-24	Eros Schiavon	MF	1983-04-24	Italy	64		1	1	august2010
+it2:14	it2player:nicolasamodio:1983-03-10	Nicolas Amodio	MF	1983-03-10	Uruguay	61	60	1	1	august2010
+it2:14	it2player:vinicioespinal:1982-11-14	Vinicio Espinal	MF	1982-11-14	Dominican Republic	64		1	1	august2010
+it2:14	it2player:danielemattielig:1980-05-02	Daniele Mattielig	MF	1980-05-02	Italy	61		1	0	august2010
+it2:14	it2player:francescoscarpa:1979-06-05	Francesco Scarpa	MF	1979-06-05	Italy	61		1	0	august2010
+it2:14	it2player:matteoscozzarella:1988-06-05	Matteo Scozzarella	MF	1988-06-05	Italy	59		1	0	august2010
+it2:14	it2player:emilianotarana:1979-01-30	Emiliano Tarana	MF	1979-01-30	Italy	60	61	0	0	season-roster
+it2:14	it2player:gabrielepuccio:1989-08-03	Gabriele Puccio	MF	1989-08-03	Italy	58		1	0	august2010
+it2:14	it2player:marcocunico:1978-03-05	Marco Cunico	MF	1978-03-05	Italy	58		0	0	season-roster
+it2:14	it2player:mirkogiacobbe:1992-07-26	Mirko Giacobbe	MF	1992-07-26	Italy	58		1	0	august2010
+it2:14	it2player:gianpieroromano:1988-04-24	Gianpiero Romano	FW	1988-04-24	Italy	59		1	0	august2010
+it2:14	it2player:lucascapuzzi:1991-04-15	Luca Scapuzzi	FW	1991-04-15	Italy	58		1	0	august2010
+it2:14	it2player:simonecorazza:1991-03-22	Simone Corazza	FW	1991-03-22	Italy	58		1	0	august2010
+it2:14	it2player:cristianaltinier:1983-02-15	Cristian Altinier	FW	1983-02-15	Italy	62	63	0	0	season-roster
+it2:15	it2player:christianpuggioni:1981-01-17	Christian Puggioni	GK	1981-01-17	Italy	70		1	1	august2010
+it2:15	it2player:adamkovacsik:1991-04-04	Ádám Kovácsik	GK	1991-04-04	Hungary	61		0	0	season-roster
+it2:15	it2player:simonerizzato:1981-09-21	Simone Rizzato	DF	1981-09-21	Italy	68		1	1	august2010
+it2:15	it2player:francescocosenza:1986-02-05	Francesco Cosenza	DF	1986-02-05	Italy	66	66	1	1	august2010
+it2:15	it2player:lorenzoburzigotti:1987-03-12	Lorenzo Burzigotti	DF	1987-03-12	Italy	67		1	1	august2010
+it2:15	it2player:lorenzolaverone:1989-04-19	Lorenzo Laverone	DF	1989-04-19	Italy	66		1	1	august2010
+it2:15	it2player:antoniogiosa:1983-08-21	Antonio Giosa	DF	1983-08-21	Italy	65	65	1	0	august2010
+it2:15	it2player:andreacosta:1986-02-01	Andrea Costa	DF	1986-02-01	Italy	64	64	1	0	august2010
+it2:15	it2player:daniverruschi:1991-05-11	Dani Verruschi	DF	1991-05-11	Italy	62		1	0	august2010
+it2:15	it2player:vincenzocamilleri:1992-03-06	Vincenzo Camilleri	DF	1992-03-06	Italy	62		1	0	august2010
+it2:15	it2player:carlosvaldez:1983-05-02	Carlos Valdez	DF	1983-05-02	Uruguay	64	65	0	0	season-roster
+it2:15	it2player:simonemissiroli:1986-05-23	Simone Missiroli	MF	1986-05-23	Italy	69	70	1	1	august2010
+it2:15	it2player:antoninobarilla:1988-04-01	Antonino Barilla	MF	1988-04-01	Italy	66	67	1	0	august2010
+it2:15	it2player:giacomotedesco:1976-02-01	Giacomo Tedesco	MF	1976-02-01	Italy	66	67	0	0	season-roster
+it2:15	it2player:ivancastiglia:1988-01-06	Ivan Castiglia	MF	1988-01-06	Italy	64	64	1	0	august2010
+it2:15	it2player:josemontiel:1988-03-19	José Montiel	MF	1988-03-19	Paraguay	63		1	0	august2010
+it2:15	it2player:giusepperizzo:1991-03-18	Giuseppe Rizzo	MF	1991-03-18	Italy	62		1	0	august2010
+it2:15	it2player:lucavigiani:1976-08-25	Luca Vigiani	MF	1976-08-25	Italy	62		0	0	season-roster
+it2:15	it2player:nicolasviola:1989-10-12	Nicolas Viola	MF	1989-10-12	Italy	64	64	1	0	august2010
+it2:15	it2player:emilianobonazzoli:1979-01-20	Emiliano Bonazzoli	FW	1979-01-20	Italy	66	65	1	1	august2010
+it2:15	it2player:francescozizzari:1982-05-31	Francesco Zizzari	FW	1982-05-31	Italy	68		1	1	august2010
+it2:15	it2player:alessiocampagnacci:1987-09-11	Alessio Campagnacci	FW	1987-09-11	Italy	63		1	0	august2010
+it2:16	it2player:walterbressan:1981-01-26	Walter Bressan	GK	1981-01-26	Italy	69		1	1	august2010
+it2:16	it2player:albertopomini:1981-03-17	Alberto Pomini	GK	1981-03-17	Italy	62		0	0	season-roster
+it2:16	it2player:paolobianco:1977-08-20	Paolo Bianco	DF	1977-08-20	Italy	70	70	1	1	august2010
+it2:16	it2player:tizianopolenghi:1978-09-26	Tiziano Polenghi	DF	1978-09-26	Italy	69	69	1	1	august2010
+it2:16	it2player:marcopiccioni:1976-01-25	Marco Piccioni	DF	1976-01-25	Italy	66	66	1	0	august2010
+it2:16	it2player:angelorea:1982-06-15	Angelo Rea	DF	1982-06-15	Italy	66	67	1	0	august2010
+it2:16	it2player:nicoloconsolini:1984-12-22	Nicolò Consolini	DF	1984-12-22	Italy	64	65	1	0	august2010
+it2:16	it2player:antoniocinelli:1989-12-08	Antonio Cinelli	MF	1989-12-08	Italy	65		1	1	august2010
+it2:16	it2player:danielequadrini:1980-07-12	Daniele Quadrini	MF	1980-07-12	Italy	66	67	1	0	august2010
+it2:16	it2player:massimilianofusani:1979-07-17	Massimiliano Fusani	MF	1979-07-17	Italy	63	63	1	0	august2010
+it2:16	it2player:carlvaleri:1984-08-14	Carl Valeri	MF	1984-08-14	Australia	68	69	1	0	august2010
+it2:16	it2player:andreavignali:1991-06-13	Andrea Vignali	MF	1991-06-13	Italy	61		1	0	august2010
+it2:16	it2player:luigiriccio:1977-12-28	Luigi Riccio	MF	1977-12-28	Italy	66	67	0	0	season-roster
+it2:16	it2player:andreadefalco:1986-06-19	Andrea De Falco	MF	1986-06-19	Italy	66	69	0	0	season-roster
+it2:16	it2player:francescomagnanelli:1984-11-12	Francesco Magnanelli	MF	1984-11-12	Italy	65	67	0	0	season-roster
+it2:16	it2player:micheletroiano:1985-01-07	Michele Troiano	MF	1985-01-07	Italy	64	66	0	0	season-roster
+it2:16	it2player:danielemartinetti:1981-06-26	Daniele Martinetti	FW	1981-06-26	Italy	63		1	0	august2010
+it2:16	it2player:gaetanomasucci:1984-10-26	Gaetano Masucci	FW	1984-10-26	Italy	64	64	1	0	august2010
+it2:16	it2player:mariotitone:1988-10-14	Mario Titone	FW	1988-10-14	Italy	61		1	0	august2010
+it2:16	it2player:salvatorebruno:1979-11-09	Salvatore Bruno	FW	1979-11-09	Italy	68	70	0	0	season-roster
+it2:16	it2player:alessandronoselli:1980-09-01	Alessandro Noselli	FW	1980-09-01	Italy	68	70	0	0	season-roster
+it2:16	it2player:andreacatellani:1988-05-26	Andrea Catellani	FW	1988-05-26	Italy	67	70	0	0	season-roster
+it2:17	it2player:ferdinandocoppola:1978-06-10	Ferdinando Coppola	GK	1978-06-10	Italy	72		1	1	august2010
+it2:17	it2player:gianlucapegolo:1981-03-25	Gianluca Pegolo	GK	1981-03-25	Italy	64		0	0	season-roster
+it2:17	it2player:claudioterzi:1984-06-19	Claudio Terzi	DF	1984-06-19	Italy	68	68	1	1	august2010
+it2:17	it2player:robertovitiello:1983-05-08	Roberto Vitiello	DF	1983-05-08	Italy	64	62	1	1	august2010
+it2:17	it2player:lucarossettini:1985-05-09	Luca Rossettini	DF	1985-05-09	Italy	68		1	1	august2010
+it2:17	it2player:danieleficagna:1981-02-23	Daniele Ficagna	DF	1981-02-23	Italy	68	69	1	0	august2010
+it2:17	it2player:andrearossi:1986-11-07	Andrea Rossi	DF	1986-11-07	Italy	64	64	1	0	august2010
+it2:17	it2player:goncalobrandao:1986-10-09	Gonçalo Brandão	DF	1986-10-09	Portugal	69	71	1	0	august2010
+it2:17	it2player:michaelodibe:1988-07-23	Michael Odibe	DF	1988-07-23	Nigeria	64		1	0	august2010
+it2:17	it2player:federicomannini:1992-04-18	Federico Mannini	DF	1992-04-18	Italy	63		1	0	august2010
+it2:17	it2player:filippocarobbio:1979-10-15	Filippo Carobbio	MF	1979-10-15	Italy	68	68	1	1	august2010
+it2:17	it2player:gennarotroianiello:1983-03-21	Gennaro Troianiello	MF	1983-03-21	Italy	69		1	1	august2010
+it2:17	it2player:reginaldo:1983-07-31	Reginaldo	MF	1983-07-31	Brazil	70	70	1	1	august2010
+it2:17	it2player:francescobolzoni:1989-05-07	Francesco Bolzoni	MF	1989-05-07	Italy	66	65	1	1	august2010
+it2:17	it2player:simonevergassola:1976-01-24	Simone Vergassola	MF	1976-01-24	Italy	69	70	1	0	august2010
+it2:17	it2player:davidmounard:1980-10-27	David Mounard	MF	1980-10-27	France	65		1	0	august2010
+it2:17	it2player:paulcodrea:1981-04-04	Paul Codrea	MF	1981-04-04	Romania	69	70	1	0	august2010
+it2:17	it2player:filipe:1987-05-28	Filipe	MF	1987-05-28	Brazil	64		1	0	august2010
+it2:17	it2player:alessiosestu:1983-09-29	Alessio Sestu	FW	1983-09-29	Italy	65		1	0	august2010
+it2:17	it2player:pedrokamata:1981-09-06	Pedro Kamata	FW	1981-09-06	Angola	70	72	1	0	august2010
+it2:17	it2player:marcelolarrondo:1988-08-16	Marcelo Larrondo	FW	1988-08-16	Argentina	64		1	0	august2010
+it2:17	it2player:ciroimmobile:1990-02-20	Ciro Immobile	FW	1990-02-20	Italy	65	66	1	0	august2010
+it2:18	it2player:davidemorello:1978-06-22	Davide Morello	GK	1978-06-22	Italy	68		1	0	august2010
+it2:18	it2player:davidebassi:1985-04-12	Davide Bassi	GK	1985-04-12	Italy	66		1	0	august2010
+it2:18	it2player:valeriodicesare:1983-05-23	Valerio Di Cesare	DF	1983-05-23	Italy	67	66	1	1	august2010
+it2:18	it2player:angeloogbonna:1988-05-23	Angelo Ogbonna	DF	1988-05-23	Italy	68		1	1	august2010
+it2:18	it2player:claudiorivalta:1978-06-30	Claudio Rivalta	DF	1978-06-30	Italy	68	69	1	0	august2010
+it2:18	it2player:francescopratali:1979-01-17	Francesco Pratali	DF	1979-01-17	Italy	65	65	1	0	august2010
+it2:18	it2player:danilodambrosio:1988-09-09	Danilo D’Ambrosio	DF	1988-09-09	Italy	63		1	0	august2010
+it2:18	it2player:lucianozavagno:1977-08-06	Luciano Zavagno	DF	1977-08-06	Argentina	65	66	0	0	season-roster
+it2:18	it2player:paolozanetti:1982-12-16	Paolo Zanetti	MF	1982-12-16	Italy	68	69	1	0	august2010
+it2:18	it2player:jurgensaumel:1984-09-08	Jürgen Säumel	MF	1984-09-08	Austria	68	69	1	0	august2010
+it2:18	it2player:aimodiana:1978-01-02	Aimo Diana	MF	1978-01-02	Italy	63		0	0	season-roster
+it2:18	it2player:alenstevanovic:1991-01-07	Alen Stevanović	MF	1991-01-07	Serbia	63		1	0	august2010
+it2:18	it2player:isaaccofie:1991-09-20	Isaac Cofie	MF	1991-09-20	Ghana	63		1	0	august2010
+it2:18	it2player:nicolasgorobsov:1989-11-25	Nicolás Gorobsov	MF	1989-11-25	Argentina	63		1	0	august2010
+it2:18	it2player:sergiusuciu:1990-05-08	Sergiu Suciu	MF	1990-05-08	Romania	63		1	0	august2010
+it2:18	it2player:danieledevezze:1980-10-06	Daniele De Vezze	MF	1980-10-06	Italy	66	67	0	0	season-roster
+it2:18	it2player:filipeoliveira:1984-05-27	Filipe Oliveira	MF	1984-05-27	Portugal	66	68	0	0	season-roster
+it2:18	it2player:alessandrosgrigna:1980-04-24	Alessandro Sgrigna	FW	1980-04-24	Italy	68	68	1	1	august2010
+it2:18	it2player:antimoiunco:1984-06-10	Antimo Iunco	FW	1984-06-10	Italy	68	68	1	1	august2010
+it2:18	it2player:rolandobianchi:1983-02-15	Rolando Bianchi	FW	1983-02-15	Italy	72	73	1	1	august2010
+it2:18	it2player:andreagasbarroni:1981-08-06	Andrea Gasbarroni	FW	1981-08-06	Italy	70	71	1	0	august2010
+it2:18	it2player:alessandropellicori:1981-07-22	Alessandro Pellicori	FW	1981-07-22	Italy	66	67	0	0	season-roster
+it2:19	it2player:alexcalderoni:1976-05-31	Alex Calderoni	GK	1976-05-31	Italy	62		0	0	season-roster
+it2:19	it2player:robertocolombo:1975-08-24	Roberto Colombo	GK	1975-08-24	Italy	62		0	0	season-roster
+it2:19	it2player:sergioviotti:1990-03-04	Sergio Viotti	GK	1990-03-04	Italy	61		1	0	august2010
+it2:19	it2player:giuseppescurto:1984-01-05	Giuseppe Scurto	DF	1984-01-05	Italy	64	63	1	1	august2010
+it2:19	it2player:roccosabato:1982-09-19	Rocco Sabato	DF	1982-09-19	Italy	61	61	1	0	august2010
+it2:19	it2player:alessandrolonghi:1989-06-25	Alessandro Longhi	DF	1989-06-25	Italy	59		1	0	august2010
+it2:19	it2player:dariodambrosio:1988-09-09	Dario D’Ambrosio	DF	1988-09-09	Italy	59		1	0	august2010
+it2:19	it2player:marcellocottafava:1977-09-08	Marcello Cottafava	DF	1977-09-08	Italy	59		0	0	season-roster
+it2:19	it2player:marcomalago:1978-12-30	Marco Malagó	DF	1978-12-30	Italy	64	65	0	0	season-roster
+it2:19	it2player:riccardobrosco:1991-02-03	Riccardo Brosco	DF	1991-02-03	Italy	59		1	0	august2010
+it2:19	it2player:emilianotestini:1977-01-09	Emiliano Testini	MF	1977-01-09	Italy	64	64	1	1	august2010
+it2:19	it2player:francescolunardini:1984-11-03	Francesco Lunardini	MF	1984-11-03	Italy	65	65	1	1	august2010
+it2:19	it2player:riccardogissi:1980-03-20	Riccardo Gissi	MF	1980-03-20	Italy	60	59	1	0	august2010
+it2:19	it2player:robsontoledo:1981-07-18	Robson Toledo	MF	1981-07-18	Brazil	61		1	0	august2010
+it2:19	it2player:attilafilkor:1988-07-12	Attila Filkor	MF	1988-07-12	Hungary	61	61	1	0	august2010
+it2:19	it2player:giorgiogorgone:1976-08-10	Giorgio Gorgone	MF	1976-08-10	Italy	59	59	0	0	season-roster
+it2:19	it2player:davidebariti:1991-09-07	Davide Bariti	MF	1991-09-07	Italy	59		1	0	august2010
+it2:19	it2player:kelvinmatute:1988-10-10	Kelvin Matute	MF	1988-10-10	Cameroon	59		1	0	august2010
+it2:19	it2player:nicolaprincivalli:1979-09-29	Nicola Princivalli	MF	1979-09-29	Italy	62	63	0	0	season-roster
+it2:19	it2player:denisgodeas:1975-07-25	Denis Godeas	FW	1975-07-25	Italy	60	60	0	0	season-roster
+it2:19	it2player:ettoremarchi:1985-11-06	Ettore Marchi	FW	1985-11-06	Italy	60		1	0	august2010
+it2:19	it2player:luigidellarocca:1984-09-02	Luigi Della Rocca	FW	1984-09-02	Italy	60		1	0	august2010
+it2:20	it2player:mathieumoreau:1983-02-22	Mathieu Moreau	GK	1983-02-22	France	65		1	0	august2010
+it2:20	it2player:cafe:1985-05-16	Café	GK	1985-05-16	Brazil	64		1	0	august2010
+it2:20	it2player:emanuelepesoli:1980-08-31	Emanuele Pesoli	DF	1980-08-31	Italy	63	62	1	1	august2010
+it2:20	it2player:giuseppepugliese:1983-11-04	Giuseppe Pugliese	DF	1983-11-04	Italy	67		1	1	august2010
+it2:20	it2player:alessandrocamisa:1985-04-13	Alessandro Camisa	DF	1985-04-13	Italy	66		1	1	august2010
+it2:20	it2player:erospisano:1987-03-31	Eros Pisano	DF	1987-03-31	Italy	66		1	1	august2010
+it2:20	it2player:alessandroarmenise:1984-10-23	Alessandro Armenise	DF	1984-10-23	Italy	62		1	0	august2010
+it2:20	it2player:giuseppefigliomeni:1987-06-02	Giuseppe Figliomeni	DF	1987-06-02	Italy	62		1	0	august2010
+it2:20	it2player:danielecorti:1980-05-16	Daniele Corti	MF	1980-05-16	Italy	68		1	1	august2010
+it2:20	it2player:gianpietrozecchin:1983-05-05	Gianpietro Zecchin	MF	1983-05-05	Italy	67		1	1	august2010
+it2:20	it2player:alessandrocarrozza:1982-02-01	Alessandro Carrozza	MF	1982-02-01	Italy	63		1	0	august2010
+it2:20	it2player:alessandrogambadori:1981-01-03	Alessandro Gambadori	MF	1981-01-03	Italy	63		1	0	august2010
+it2:20	it2player:danielebuzzegoli:1983-05-07	Daniele Buzzegoli	MF	1983-05-07	Italy	61	60	1	0	august2010
+it2:20	it2player:francolepore:1985-08-16	Franco Lepore	MF	1985-08-16	Italy	62		1	0	august2010
+it2:20	it2player:mattiamustacchio:1989-05-17	Mattia Mustacchio	MF	1989-05-17	Italy	66	68	1	0	august2010
+it2:20	it2player:wilfredosuji:1990-08-05	Wilfred Osuji	MF	1990-08-05	Nigeria	61		1	0	august2010
+it2:20	it2player:alessandrofrara:1982-11-07	Alessandro Frara	MF	1982-11-07	Italy	58	58	0	0	season-roster
+it2:20	it2player:lucascorrea:1984-02-03	Lucas Correa	MF	1984-02-03	Argentina	60		0	0	season-roster
+it2:20	it2player:netopereira:1979-01-08	Neto Pereira	FW	1979-01-08	Brazil	64		1	0	august2010
+it2:20	it2player:osarimenebagua:1986-06-06	Osarimen Ebagua	FW	1986-06-06	Nigeria	62		1	0	august2010
+it2:20	it2player:federicofurlan:1990-11-25	Federico Furlan	FW	1990-11-25	Italy	61		1	0	august2010
+it2:20	it2player:umbertoeusepi:1989-01-09	Umberto Eusepi	FW	1989-01-09	Italy	60	60	1	0	august2010
+it2:21	it2player:albertofrison:1988-01-22	Alberto Frison	GK	1988-01-22	Italy	68		1	1	august2010
+it2:21	it2player:danilorusso:1987-07-08	Danilo Russo	GK	1987-07-08	Italy	64		1	0	august2010
+it2:21	it2player:marcozanchi:1977-04-15	Marco Zanchi	DF	1977-04-15	Italy	66	66	1	1	august2010
+it2:21	it2player:danielemartinelli:1982-02-27	Daniele Martinelli	DF	1982-02-27	Italy	61	59	1	1	august2010
+it2:21	it2player:nicolasgiani:1986-03-13	Nicolas Giani	DF	1986-03-13	Italy	66		1	1	august2010
+it2:21	it2player:denistonucci:1988-09-06	Denis Tonucci	DF	1988-09-06	Italy	60	59	1	1	august2010
+it2:21	it2player:michelangelominieri:1981-05-29	Michelangelo Minieri	DF	1981-05-29	Italy	63		1	0	august2010
+it2:21	it2player:alessandrobastrini:1987-04-03	Alessandro Bastrini	DF	1987-04-03	Italy	60	60	1	0	august2010
+it2:21	it2player:evanssoligo:1979-01-14	Evans Soligo	MF	1979-01-14	Italy	62	60	1	1	august2010
+it2:21	it2player:davidegavazzi:1986-05-07	Davide Gavazzi	MF	1986-05-07	Italy	66		1	1	august2010
+it2:21	it2player:stefanobotta:1986-11-03	Stefano Botta	MF	1986-11-03	Switzerland	62	61	1	1	august2010
+it2:21	it2player:edoardobraiati:1980-03-25	Edoardo Braiati	MF	1980-03-25	Italy	61	60	1	0	august2010
+it2:21	it2player:matteoparo:1983-03-17	Matteo Paro	MF	1983-03-17	Italy	64	64	1	0	august2010
+it2:21	it2player:faustorossi:1990-12-03	Fausto Rossi	MF	1990-12-03	Italy	66	67	1	0	august2010
+it2:21	it2player:nicolarigoni:1990-11-12	Nicola Rigoni	MF	1990-11-12	Italy	61		1	0	august2010
+it2:21	it2player:lucadimatteo:1988-02-25	Luca Di Matteo	MF	1988-02-25	Italy	59	59	0	0	season-roster
+it2:21	it2player:diegooliveira:1987-02-11	Diego Oliveira	FW	1987-02-11	Brazil	62	62	1	0	august2010
+it2:21	it2player:alemao:1989-03-02	Alemão	FW	1989-03-02	Brazil	61		1	0	august2010
+it2:21	it2player:gianvitomisuraca:1990-04-02	Gianvito Misuraca	FW	1990-04-02	Italy	61		1	0	august2010
+it2:21	it2player:mattiaminesso:1990-03-30	Mattia Minesso	FW	1990-03-30	Italy	59	58	1	0	august2010
+it2:21	it2player:elvisabbruscato:1981-04-14	Elvis Abbruscato	FW	1981-04-14	Italy	66	68	0	0	season-roster
+it2:21	it2player:alainbaclet:1986-05-26	Alain Baclet	FW	1986-05-26	France	59		0	0	season-roster

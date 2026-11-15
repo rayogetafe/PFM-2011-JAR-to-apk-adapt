@@ -38,7 +38,7 @@ final class NativeGermanDivisions {
     static List<UclSeason.Standing> finalTable(MatchJournal journal, String league,
                                                       NativeCareerStore.Career career) {
         List<UclSeason.Standing> standings = UclSeason.standings(journal, league, career.clubs);
-        if (standings.size() != (NativeFrenchDivisions.includes(league) ? 20 : SIZE)) return Collections.emptyList();
+        if (standings.size() != NativeCompetitionCalendar.leagueRounds(league) / 2 + 1) return Collections.emptyList();
         for (UclSeason.Standing row : standings) {
             if (row.played != NativeCompetitionCalendar.leagueRounds(league)) return Collections.emptyList();
         }
@@ -115,14 +115,15 @@ final class NativeGermanDivisions {
             for (NativeCareerStore.Club club : career.clubs) {
                 if (first.equals(EuropeanPlaces.association(club.league))) careerClubs.add(club.id);
             }
-            if (top.size() != size || lower.size() != size || all.size() != 2 * size || !all.equals(careerClubs)) {
+            if (top.size() != size || lower.size() != NativeCompetitionCalendar.leagueRounds(second) / 2 + 1 || all.size() != top.size() + lower.size() || !all.equals(careerClubs)) {
                 throw new IOException("Invalid saved league membership for " + first);
             }
         } else {
             // Keep the original membership if the new season already has pre-v115 fixtures.
             if (!next.competition("league:" + first).isEmpty() || !next.competition("league:" + second).isEmpty()) return;
             MatchJournal previous = new MatchJournal(directory, nonce, year - 1);
-            top = "fr".equals(first) ? NativeFrenchDivisions.nextTop(previous, career) : nextTop(previous, career, nonce);
+            top = "it".equals(first) ? NativeItalianDivisions.nextTop(previous, career)
+                    : "fr".equals(first) ? NativeFrenchDivisions.nextTop(previous, career) : nextTop(previous, career, nonce);
         }
         if (top.isEmpty()) return;
         for (NativeCareerStore.Club club : career.clubs) {

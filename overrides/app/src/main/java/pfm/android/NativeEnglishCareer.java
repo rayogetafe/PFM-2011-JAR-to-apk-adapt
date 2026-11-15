@@ -44,7 +44,8 @@ public final class NativeEnglishCareer {
     public static Opening secondDivisionStart(Context context, int clubIndex, String league) throws IOException {
         Map<String, ArrayList<NativeWorldCenter.T>> world = new HashMap<>();
         boolean german = "de2".equals(league);
-        if ("fr2".equals(league)) NativeLigue2.load(context, world);
+        if ("it2".equals(league)) NativeSerieB.load(context, world);
+        else if ("fr2".equals(league)) NativeLigue2.load(context, world);
         else if (german) NativeBundesliga2.load(context, world);
         else NativeChampionship.load(context, world);
         ArrayList<NativeWorldCenter.T> teams = world.get(league);
@@ -69,7 +70,7 @@ public final class NativeEnglishCareer {
                 club.players.add(player);
             }
             ClubEconomy.Profile ground = ClubEconomy.profile(context, club.id);
-            club.budget = "fr2".equals(league) ? NativeLigue2.openingCash(ground) : german ? NativeBundesliga2.openingCash(ground) : ground.openingCash();
+            club.budget = "it2".equals(league) ? NativeSerieB.openingCash(ground) : "fr2".equals(league) ? NativeLigue2.openingCash(ground) : german ? NativeBundesliga2.openingCash(ground) : ground.openingCash();
             opening.clubs.add(club);
         }
         return opening;
@@ -87,7 +88,8 @@ public final class NativeEnglishCareer {
         if (career == null) return null;
         MatchJournal previous = new MatchJournal(new File(context.getFilesDir(), "match-journals"), nonce, previousYear);
         if ("en".equals(career.activeLeague) && previous.metadata(NativeEnglishDivisions.FINAL_PREMIER_ORDER) == null) return null;
-        Set<String> premier = "fr".equals(country) ? NativeFrenchDivisions.nextTop(previous, career) : german ? NativeGermanDivisions.nextTop(previous, career, nonce)
+        Set<String> premier = "it".equals(country) ? NativeItalianDivisions.nextTop(previous, career)
+                : "fr".equals(country) ? NativeFrenchDivisions.nextTop(previous, career) : german ? NativeGermanDivisions.nextTop(previous, career, nonce)
                 : NativeEnglishDivisions.nextPremier(previous, career);
         if (premier.isEmpty()) return null;
         Opening opening = new Opening();
@@ -126,7 +128,7 @@ public final class NativeEnglishCareer {
             club.players.add(player);
         }
         opening.clubs.addAll(selected.values());
-        if (opening.clubs.size() != ("fr".equals(country) ? NativeLigue2.CLUBS : german ? NativeBundesliga2.CLUBS : top ? 20 : NativeChampionship.CLUBS)) {
+        if (opening.clubs.size() != ("it".equals(country) ? (top ? 20 : NativeSerieB.CLUBS) : "fr".equals(country) ? NativeLigue2.CLUBS : german ? NativeBundesliga2.CLUBS : top ? 20 : NativeChampionship.CLUBS)) {
             throw new IOException("Wrong division size");
         }
         return opening;

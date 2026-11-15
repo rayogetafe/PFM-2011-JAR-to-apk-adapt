@@ -1,5 +1,8 @@
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.List;
+import pfm.android.AndroidRuntime;
+import pfm.android.NativeMatchJournal;
 
 /** Read-only Android bridge for the current league season. */
 public final class PfmSeasonBridge {
@@ -90,8 +93,8 @@ public final class PfmSeasonBridge {
         try{
             int league=field(ea.class,"a",Integer.TYPE).getInt(null);
             if(league==0&&totalRounds()==46)return "en2";
-            if (league == 3 || league == 4) {
-                String country = league == 3 ? "de" : "fr";
+            if (league == 2 || league == 3 || league == 4) {
+                String country = league == 2 ? "it" : league == 3 ? "de" : "fr";
                 try {
                     return pfm.android.EnglishLegacyIds.season(pfm.android.AndroidRuntime.context(), pfm2.getSeason())
                             .getString("league", country);
@@ -114,6 +117,19 @@ public final class PfmSeasonBridge {
 
     public static String teamName(){return name(userTeam());}
 
+    private static byte[] serieBFinalOrder(byte[] fallback, int played) {
+        if (played != 42 || !"it2".equals(leagueCode()) || fallback == null) return fallback;
+        List<String> finalOrder = NativeMatchJournal.serieBFinalOrder(AndroidRuntime.context(), pfm2.getSeason());
+        if (finalOrder.size() != fallback.length) return fallback;
+        byte[] ordered = new byte[fallback.length];
+        for (byte index : fallback) {
+            int rank = finalOrder.indexOf(stableClubId(index & 255));
+            if (rank < 0) return fallback;
+            ordered[rank] = index;
+        }
+        return ordered;
+    }
+
     /**
      * Overview TSV:
      * team, season, played, total, rank, points, wins, draws, losses, gf, ga, nextMatch
@@ -125,6 +141,12 @@ public final class PfmSeasonBridge {
             int p=played();
             int w=ub(u,"i"),l=ub(u,"j"),d=Math.max(0,p-w-l);
             int gf=ub(u,"k"),ga=ub(u,"l"),pts=ub(u,"h"),rank=ub(u,"m")+1;
+            if (p == 42 && "it2".equals(leagueCode())) {
+                byte[] order = serieBFinalOrder(tableOrder(), p);
+                if (order != null) for (int i = 0; i < order.length; i++) {
+                    if ((order[i] & 255) == ub(u, "n")) rank = i + 1;
+                }
+            }
             return name(u)+"\t"+seasonLabel()+"\t"+p+"\t"+totalRounds()+"\t"+rank+"\t"+pts+"\t"+
                     w+"\t"+d+"\t"+l+"\t"+gf+"\t"+ga+"\t"+nextMatch();
         }catch(Throwable t){return "";}
@@ -139,6 +161,7 @@ public final class PfmSeasonBridge {
             dw[] all=teams();byte[] order=tableOrder();dw u=userTeam();
             if(all==null||order==null)return new String[0];
             int p=played();
+            order=serieBFinalOrder(order,p);
             String[] out=new String[order.length];
             for(int r=0;r<order.length;r++){
                 int idx=order[r]&255;
